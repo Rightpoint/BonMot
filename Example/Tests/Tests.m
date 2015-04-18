@@ -35,7 +35,7 @@ describe(@"these will pass", ^{
         expect(@"team").toNot.contain(@"I");
     });
     
-    it(@"will wait and succeed", ^AsyncBlock {
+    it(@"will wait and succeed", ^{
         waitUntil(^(DoneCallback done) {
             done();
         });
