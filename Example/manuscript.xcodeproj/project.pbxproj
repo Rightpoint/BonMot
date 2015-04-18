@@ -49,7 +49,6 @@
 		6003F595195388D20070C39A /* manuscript-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "manuscript-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* manuscript-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "manuscript-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* RZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RZAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* RZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A0195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
@@ -150,7 +149,6 @@
 				6003F595195388D20070C39A /* manuscript-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
-				6003F59B195388D20070C39A /* manuscript-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -457,6 +455,18 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-objc-property-synthesis",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-sign-compare",
+					"-Wno-switch-enum",
+					"-Wno-gnu",
+					"-Wnewline-eof",
+				);
 			};
 			name = Debug;
 		};
@@ -490,6 +500,18 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-objc-property-synthesis",
+					"-Wno-direct-ivar-access",
+					"-Wno-assign-enum",
+					"-Wno-float-equal",
+					"-Wno-sign-compare",
+					"-Wno-switch-enum",
+					"-Wno-gnu",
+					"-Wnewline-eof",
+				);
 			};
 			name = Release;
 		};
@@ -499,8 +521,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "manuscript/manuscript-Prefix.pch";
 				INFOPLIST_FILE = "manuscript/manuscript-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -513,8 +533,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "manuscript/manuscript-Prefix.pch";
 				INFOPLIST_FILE = "manuscript/manuscript-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -540,6 +558,12 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+					"-Wno-auto-import",
+					"-Wno-incomplete-module",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -559,6 +583,12 @@
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WARNING_CFLAGS = (
+					"$(inherited)",
+					"-Wno-documentation-unknown-command",
+					"-Wno-auto-import",
+					"-Wno-incomplete-module",
+				);
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

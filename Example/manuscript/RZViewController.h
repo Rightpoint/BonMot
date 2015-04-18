@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Zev Eisenberg. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface RZViewController : UIViewController
 
