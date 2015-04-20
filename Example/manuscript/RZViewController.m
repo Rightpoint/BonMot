@@ -8,11 +8,21 @@
 
 #import "RZViewController.h"
 
+// Cells
+#import "RZTrackingCell.h"
+#import "RZLineHeightCell.h"
+#import "RZFigureStyleCell.h"
+#import "RZBaselineCapHeightCell.h"
+#import "RZInlineImagesCell.h"
+#import "RZBaselineOffsetCell.h"
+#import "RZConcatenationCell.h"
+
+// Pods
 #import <Manuscript/RZManuscript.h>
 
 @interface RZViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (copy, nonatomic) NSArray *cellClasses;
 
 @end
 
@@ -22,19 +32,57 @@
 {
     [super viewDidLoad];
 
-    UIFont *baseFont = [UIFont boldSystemFontOfSize:30];
-    NSString *quote = @"Outside of a dog, a book is a man’s best friend. Inside of a dog, it’s too dark to read.";
-    NSAttributedString *attributedString = RZManuscript.font(baseFont).adobeTracking(200).lineHeightMultiple(3.0f).string(quote).write;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 123.0f;
 
-    self.label.attributedText = attributedString;
+    self.cellClasses = @[
+                         [RZTrackingCell class],
+                         [RZLineHeightCell class],
+                         [RZFigureStyleCell class],
+                         [RZBaselineCapHeightCell class],
+                         [RZInlineImagesCell class],
+                         [RZBaselineOffsetCell class],
+                         [RZConcatenationCell class],
+                         ];
 
-    RZManuscript *manuscriptForLater = RZManuscript.font(baseFont).pointTracking(200).string(quote);
-    NSAttributedString *otherAttributedString = manuscriptForLater.write;
-    NSLog(@"Attributed String: %@", otherAttributedString);
+    for ( Class CellClass in self.cellClasses ) {
+        NSAssert([CellClass respondsToSelector:@selector(reuseIdentifier)],
+                 @"Cells must inherit from %@", NSStringFromClass([RZAbstractCell class]));
 
-    NSDictionary *justTheAttributes = manuscriptForLater.attributes;
-    NSLog(@"Just the attributes: %@", justTheAttributes);
+        [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(CellClass) bundle:nil]
+             forCellReuseIdentifier:[CellClass reuseIdentifier]];
+    }
 
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.cellClasses.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    Class CellClass = self.cellClasses[section];
+    NSAssert([CellClass respondsToSelector:@selector(title)],
+             @"Cells must inherit from %@", NSStringFromClass([RZAbstractCell class]));
+
+    return [CellClass title];
+
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Class CellClass = self.cellClasses[indexPath.section];
+    NSAssert([CellClass respondsToSelector:@selector(reuseIdentifier)],
+             @"Cells must inherit from %@", NSStringFromClass([RZAbstractCell class]));
+
+    RZBaselineOffsetCell *cell = [tableView dequeueReusableCellWithIdentifier:[CellClass reuseIdentifier]];
+    return cell;
 }
 
 @end

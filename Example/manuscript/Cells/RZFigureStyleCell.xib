@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="395" id="d6g-Gc-orO" customClass="RZFigureStyleCell">
+            <rect key="frame" x="0.0" y="0.0" width="491" height="395"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d6g-Gc-orO" id="8H7-Bg-FVy">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmO-DI-ynv">
+                        <rect key="frame" x="15" y="8" width="461" height="61"/>
+                        <string key="text">Proportional Lining
+1111111111
+0123456789</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHP-VJ-is0">
+                        <rect key="frame" x="15" y="79" width="461" height="61"/>
+                        <string key="text">Proportional Oldstyle
+1111111111
+0123456789</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRx-ls-DRY">
+                        <rect key="frame" x="15" y="150" width="461" height="61"/>
+                        <string key="text">Tabular Lining
+1111111111
+0123456789</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1d-SD-JhY">
+                        <rect key="frame" x="13" y="221" width="463" height="61"/>
+                        <string key="text">Tabular Oldstyle
+1111111111
+0123456789</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="z1d-SD-JhY" firstAttribute="top" secondItem="nRx-ls-DRY" secondAttribute="bottom" constant="10" id="BTI-4r-gn9"/>
+                    <constraint firstItem="MmO-DI-ynv" firstAttribute="top" secondItem="8H7-Bg-FVy" secondAttribute="top" constant="8" id="BrX-b0-LLl"/>
+                    <constraint firstItem="nRx-ls-DRY" firstAttribute="leading" secondItem="BHP-VJ-is0" secondAttribute="leading" id="IFM-d4-x9f"/>
+                    <constraint firstItem="BHP-VJ-is0" firstAttribute="trailing" secondItem="MmO-DI-ynv" secondAttribute="trailing" id="IHy-zC-0Al"/>
+                    <constraint firstItem="nRx-ls-DRY" firstAttribute="leading" secondItem="z1d-SD-JhY" secondAttribute="leading" constant="2" id="Kh2-4y-Kxs"/>
+                    <constraint firstItem="nRx-ls-DRY" firstAttribute="trailing" secondItem="z1d-SD-JhY" secondAttribute="trailing" id="QOq-gB-zSP"/>
+                    <constraint firstItem="MmO-DI-ynv" firstAttribute="leading" secondItem="BHP-VJ-is0" secondAttribute="leading" id="SXV-0y-KGj"/>
+                    <constraint firstItem="MmO-DI-ynv" firstAttribute="leading" secondItem="8H7-Bg-FVy" secondAttribute="leading" constant="15" id="dzz-fS-4fp"/>
+                    <constraint firstItem="BHP-VJ-is0" firstAttribute="top" secondItem="MmO-DI-ynv" secondAttribute="bottom" constant="10" id="eCh-mM-qk3"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="z1d-SD-JhY" secondAttribute="bottom" constant="8" id="hh6-Y7-2DS"/>
+                    <constraint firstItem="nRx-ls-DRY" firstAttribute="top" secondItem="BHP-VJ-is0" secondAttribute="bottom" constant="10" id="qZB-Bc-4qc"/>
+                    <constraint firstItem="nRx-ls-DRY" firstAttribute="trailing" secondItem="BHP-VJ-is0" secondAttribute="trailing" id="v98-iF-KNB"/>
+                    <constraint firstAttribute="trailing" secondItem="MmO-DI-ynv" secondAttribute="trailing" constant="15" id="wdi-2S-LXw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="proportionalLiningLabel" destination="MmO-DI-ynv" id="Bkz-YD-0tN"/>
+                <outlet property="proportionalOldstyleLabel" destination="BHP-VJ-is0" id="NnM-72-Jgb"/>
+                <outlet property="tabularLiningLabel" destination="nRx-ls-DRY" id="o5S-E1-fOr"/>
+                <outlet property="tabularOldstyleLabel" destination="z1d-SD-JhY" id="MeN-z6-7KR"/>
+            </connections>
+            <point key="canvasLocation" x="398.5" y="580.5"/>
+        </tableViewCell>
+    </objects>
+</document>

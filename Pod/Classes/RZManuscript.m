@@ -11,6 +11,7 @@
 @import CoreText.SFNTLayoutTypes;
 
 static const CGFloat kRZAdobeTrackingDivisor = 1000.0f;
+static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
 @interface RZManuscript ()
 
@@ -352,7 +353,8 @@ static const CGFloat kRZAdobeTrackingDivisor = 1000.0f;
  */
 + (CGFloat)trackingValueFromAdobeTrackingValue:(NSUInteger)adobeTrackingValue forFont:(UIFont *)font
 {
-    CGFloat convertedTracking = font.pointSize * (adobeTrackingValue / kRZAdobeTrackingDivisor);
+    CGFloat pointSizeToUse = font ? font.pointSize : kRZDefaultFontSize;
+    CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kRZAdobeTrackingDivisor);
     return convertedTracking;
 }
 
