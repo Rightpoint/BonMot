@@ -39,6 +39,7 @@
 		CD9652561AE58DB90013C6B1 /* RZAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9652551AE58DB90013C6B1 /* RZAbstractCell.m */; };
 		CD9E41581AE44B3E00ECFBFB /* RZTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */; };
 		CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */; };
+		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,8 @@
 		CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZTrackingCell.m; sourceTree = "<group>"; };
 		CD9E415B1AE46F3B00ECFBFB /* DashedHairlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashedHairlineView.h; sourceTree = "<group>"; };
 		CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashedHairlineView.m; sourceTree = "<group>"; };
+		CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
+		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		F79B786068DF6EE81053EF09 /* Pods-manuscript.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manuscript.release.xcconfig"; path = "Pods/Target Support Files/Pods-manuscript/Pods-manuscript.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -186,6 +189,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CDFC93B61AE59FCA00C2B7C9 /* Fonts */,
 				6003F595195388D20070C39A /* manuscript-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
@@ -259,6 +263,15 @@
 				CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		CDFC93B61AE59FCA00C2B7C9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */,
+				CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		DFBC5ABF2728C05ADB34E881 /* Pods */ = {
@@ -362,6 +375,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F5A1195388D20070C39A /* Main.storyboard in Resources */,
 				CD79AF541AE58BC700D9F0C5 /* RZFigureStyleCell.xib in Resources */,
+				CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
