@@ -27,7 +27,16 @@
 {
     [super awakeFromNib];
 
-    
+    RZManuscript *baseManuscript = RZManuscript.string(@"❤️");
+
+    NSMutableArray *wave = [NSMutableArray array];
+
+    for ( NSUInteger i = 0; i < 20; i++ ) {
+        CGFloat offset = 15.0f * sin((i / 20.0f) * 7.0f * M_PI);
+        [wave addObject:baseManuscript.baselineOffset(offset)];
+    };
+
+    self.label.attributedText = [RZManuscript joinManuscripts:wave withSeparator:nil];
 }
 
 @end

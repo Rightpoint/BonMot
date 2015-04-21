@@ -19,9 +19,11 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 @property (nonatomic) NSInteger internalAdobeTracking;
 @property (nonatomic) CGFloat internalPointTracking;
 @property (nonatomic) CGFloat internalLineHeightMultiple;
+@property (nonatomic) CGFloat internalBaselineOffset;
 @property (nonatomic) RZFigureCase internalFigureCase;
 @property (nonatomic) RZFigureSpacing internalFigureSpacing;
 @property (copy, nonatomic) NSString *internalString;
+@property (strong, nonatomic) UIImage *internalImage;
 
 @end
 
@@ -31,12 +33,28 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
 - (NSAttributedString *)write
 {
-    NSString *stringToUse = @"";
+    NSAttributedString *attributedString = nil;
     if ( self.internalString ) {
-        stringToUse = self.internalString;
+        attributedString = [[NSAttributedString alloc] initWithString:self.internalString
+                                                           attributes:self.attributes];
     }
-    return [[NSAttributedString alloc] initWithString:stringToUse
-                                           attributes:self.attributes];
+    else if ( self.internalImage ) {
+        NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+        attachment.image = self.internalImage;
+
+        // Use the native size of the image instead of allowing it to be scaled
+        attachment.bounds = CGRectMake(0.0f,
+                                       self.internalBaselineOffset, // images don’t respect normal baseline offset
+                                       self.internalImage.size.width,
+                                       self.internalImage.size.height);
+
+        attributedString = [NSAttributedString attributedStringWithAttachment:attachment];
+    }
+    else {
+        attributedString = [[NSAttributedString alloc] init];
+    }
+    
+    return attributedString;
 }
 
 - (NSDictionary *)attributes
@@ -148,6 +166,12 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
         attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
 
+    // Baseline Offset
+
+    if ( self.internalBaselineOffset != 0.0f ) {
+        attributes[NSBaselineOffsetAttributeName] = @(self.internalBaselineOffset);
+    }
+
     return attributes;
 }
 
@@ -159,8 +183,11 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     manuscript.internalAdobeTracking = self.internalAdobeTracking;
     manuscript.internalPointTracking = self.internalPointTracking;
     manuscript.internalLineHeightMultiple = self.internalLineHeightMultiple;
+    manuscript.internalBaselineOffset = self.internalBaselineOffset;
     manuscript.internalFigureCase = self.internalFigureCase;
     manuscript.internalFigureSpacing = self.internalFigureSpacing;
+    manuscript.internalString = self.internalString;
+    manuscript.internalImage = self.internalImage;
 
     return manuscript;
 }
@@ -223,6 +250,17 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     return [lineHeightMultipleBlock copy];
 }
 
++ (RZManuscriptChainLinkBaselineOffset)baselineOffset
+{
+    RZManuscriptChainLinkBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
+        RZManuscript *manuscript = [[RZManuscript alloc] init];
+        manuscript.internalBaselineOffset = baselineOffset;
+        return manuscript;
+    };
+
+    return [baselineOffsetBlock copy];
+}
+
 + (RZManuscriptChainLinkFigureCase)figureCase
 {
     RZManuscriptChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
@@ -250,10 +288,23 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     RZManuscriptChainLinkString stringBlock = ^(NSString *string) {
         RZManuscript *manuscript = [[RZManuscript alloc] init];
         manuscript.internalString = string;
+        manuscript.internalImage = nil;
         return manuscript;
     };
 
     return [stringBlock copy];
+}
+
++ (RZManuscriptChainLinkImage)image
+{
+    RZManuscriptChainLinkImage imageBlock = ^(UIImage *image) {
+        RZManuscript *manuscript = [[RZManuscript alloc] init];
+        manuscript.internalImage = image;
+        manuscript.internalString = nil;
+        return manuscript;
+    };
+
+    return [imageBlock copy];
 }
 
 #pragma mark - Instance Chain Links
@@ -262,8 +313,10 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 {
     RZManuscriptChainLinkFontNameAndSize fontNameAndSizeBlock = ^(NSString *fontName, CGFloat fontSize) {
         RZManuscript *newManuscript = self.copy;
-        newManuscript.internalFont = [UIFont fontWithName:fontName size:fontSize];
-        return self;
+        UIFont *font = [UIFont fontWithName:fontName size:fontSize];
+        NSAssert(font, @"No font returned from [UIFont fontWithName:%@ size:%@]", fontName, @(fontSize));
+        newManuscript.internalFont = font;
+        return newManuscript;
     };
 
     return [fontNameAndSizeBlock copy];
@@ -316,6 +369,17 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     return [lineHeightMultipleBlock copy];
 }
 
+- (RZManuscriptChainLinkBaselineOffset)baselineOffset
+{
+    RZManuscriptChainLinkBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalBaselineOffset = baselineOffset;
+        return newManuscript;
+    };
+
+    return [baselineOffsetBlock copy];
+}
+
 - (RZManuscriptChainLinkFigureCase)figureCase
 {
     RZManuscriptChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
@@ -348,6 +412,57 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     };
 
     return [stringBlock copy];
+}
+
+- (RZManuscriptChainLinkImage)image
+{
+    RZManuscriptChainLinkImage imageBlock = ^(UIImage *image) {
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalImage = image;
+        newManuscript.internalString = nil;
+        return newManuscript;
+    };
+
+    return [imageBlock copy];
+}
+
+#pragma mark - Utilities
+
++ (NSAttributedString *)joinManuscripts:(NSArray *)manuscripts withSeparator:(RZManuscript *)separator
+{
+    NSParameterAssert(!separator || [separator isKindOfClass:[RZManuscript class]]);
+    NSParameterAssert(!manuscripts || [manuscripts isKindOfClass:[NSArray class]]);
+
+    NSAttributedString *resultString;
+
+    if ( manuscripts.count == 0 ) {
+        // do nothing, and return an empty attributed string
+    }
+    if ( manuscripts.count == 1 ) {
+        NSAssert([manuscripts.firstObject isKindOfClass:[RZManuscript class]], @"Only item in manuscripts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
+
+        resultString = [manuscripts.firstObject write];
+    }
+    else {
+        NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
+        NSAttributedString *separatorAttributedString = separator.write;
+        // For each iteration, append the string and then the separator
+        for ( NSUInteger manuscriptIndex = 0; manuscriptIndex < manuscripts.count; manuscriptIndex++ ) {
+            RZManuscript *manuscript = manuscripts[manuscriptIndex];
+            NSAssert([manuscript isKindOfClass:[RZManuscript class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(manuscriptIndex), NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
+
+            [mutableResult appendAttributedString:manuscript.write];
+
+            // If the separator is not the empty string, append it,
+            // unless this is the last component
+            if ( separatorAttributedString.length > 0 && (manuscriptIndex != manuscripts.count - 1) ) {
+                [mutableResult appendAttributedString:separatorAttributedString];
+            }
+        }
+        resultString = mutableResult;
+    }
+    
+    return resultString;
 }
 
 #pragma mark - Private

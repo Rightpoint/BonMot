@@ -27,9 +27,11 @@ typedef RZManuscript*(^RZManuscriptChainLinkFont)(UIFont *font);
 typedef RZManuscript*(^RZManuscriptChainLinkAdobeTracking)(NSInteger adobeTracking);
 typedef RZManuscript*(^RZManuscriptChainLinkPointTracking)(CGFloat pointTracking);
 typedef RZManuscript*(^RZManuscriptChainLinkLineHeight)(CGFloat lineHeightMultiple);
+typedef RZManuscript*(^RZManuscriptChainLinkBaselineOffset)(CGFloat baselineOffset);
 typedef RZManuscript*(^RZManuscriptChainLinkFigureCase)(RZFigureCase figureCase);
 typedef RZManuscript*(^RZManuscriptChainLinkFigureSpacing)(RZFigureSpacing figureSpacing);
 typedef RZManuscript*(^RZManuscriptChainLinkString)(NSString *string);
+typedef RZManuscript*(^RZManuscriptChainLinkImage)(UIImage *image);
 
 @interface RZManuscript : NSObject <NSCopying>
 
@@ -48,10 +50,14 @@ typedef RZManuscript*(^RZManuscriptChainLinkString)(NSString *string);
 + (RZManuscriptChainLinkAdobeTracking)adobeTracking;
 + (RZManuscriptChainLinkPointTracking)pointTracking;
 
-+ (RZManuscriptChainLinkLineHeight)lineHeightMultiple; // todo: also do line height points
++ (RZManuscriptChainLinkLineHeight)lineHeightMultiple; // todo: also do line height in points
++ (RZManuscriptChainLinkBaselineOffset)baselineOffset;
 + (RZManuscriptChainLinkFigureCase)figureCase;
 + (RZManuscriptChainLinkFigureSpacing)figureSpacing;
+
+// string and image are mutually exclusive: setting one will unset the other
 + (RZManuscriptChainLinkString)string;
++ (RZManuscriptChainLinkImage)image;
 
 // Instance Chain Links
 
@@ -60,8 +66,14 @@ typedef RZManuscript*(^RZManuscriptChainLinkString)(NSString *string);
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkAdobeTracking adobeTracking;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkPointTracking pointTracking;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkLineHeight lineHeightMultiple;
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkBaselineOffset baselineOffset;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureCase figureCase;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureSpacing figureSpacing;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkString string;
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkImage image;
+
+// Utilities
+
++ (NSAttributedString *)joinManuscripts:(NSArray *)manuscripts withSeparator:(RZManuscript *)separator;
 
 @end
