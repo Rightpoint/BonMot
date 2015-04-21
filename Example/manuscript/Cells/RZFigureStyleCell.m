@@ -37,7 +37,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
     NSString *tabularLiningString = self.tabularLiningLabel.text;
     NSString *tabularOldstyleString = self.tabularOldstyleLabel.text;
 
-    UIFont *ebGaramond = [UIFont fontWithName:kRZFontNameEBGaramond size:17.0f];
+    UIFont *ebGaramond = [UIFont fontWithName:kRZFontNameEBGaramond size:24.0f];
 
     self.proportionalLiningLabel.attributedText = RZManuscript.font(ebGaramond).string(proportionalLiningString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseLining).write;
 
