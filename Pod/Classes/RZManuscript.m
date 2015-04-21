@@ -261,7 +261,8 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize
 {
     RZManuscriptChainLinkFontNameAndSize fontNameAndSizeBlock = ^(NSString *fontName, CGFloat fontSize) {
-        self.internalFont = [UIFont fontWithName:fontName size:fontSize];
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalFont = [UIFont fontWithName:fontName size:fontSize];
         return self;
     };
 
@@ -272,8 +273,9 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 {
     RZManuscriptChainLinkFont fontBlock = ^(UIFont *font) {
         NSParameterAssert(font);
-        self.internalFont = font;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalFont = font;
+        return newManuscript;
     };
 
     return [fontBlock copy];
@@ -282,9 +284,10 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkAdobeTracking)adobeTracking
 {
     RZManuscriptChainLinkAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
-        self.internalAdobeTracking = adobeTracking;
-        self.internalPointTracking = 0.0f;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalAdobeTracking = adobeTracking;
+        newManuscript.internalPointTracking = 0.0f;
+        return newManuscript;
     };
 
     return [adobeTrackingBlock copy];
@@ -293,9 +296,10 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkPointTracking)pointTracking
 {
     RZManuscriptChainLinkPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
-        self.internalPointTracking = pointTracking;
-        self.internalAdobeTracking = 0;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalPointTracking = pointTracking;
+        newManuscript.internalAdobeTracking = 0;
+        return newManuscript;
     };
 
     return [pointTrackingBlock copy];
@@ -304,8 +308,9 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkLineHeight)lineHeightMultiple
 {
     RZManuscriptChainLinkLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
-        self.internalLineHeightMultiple = lineHeightMultiple;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalLineHeightMultiple = lineHeightMultiple;
+        return newManuscript;
     };
 
     return [lineHeightMultipleBlock copy];
@@ -314,8 +319,9 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkFigureCase)figureCase
 {
     RZManuscriptChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
-        self.internalFigureCase = figureCase;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalFigureCase = figureCase;
+        return newManuscript;
     };
 
     return [figureCaseBlock copy];
@@ -324,8 +330,9 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkFigureSpacing)figureSpacing
 {
     RZManuscriptChainLinkFigureSpacing figureSpacingBlock = ^(RZFigureSpacing figureSpacing) {
-        self.internalFigureSpacing = figureSpacing;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalFigureSpacing = figureSpacing;
+        return newManuscript;
     };
 
     return [figureSpacingBlock copy];
@@ -334,8 +341,10 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 - (RZManuscriptChainLinkString)string
 {
     RZManuscriptChainLinkString stringBlock = ^(NSString *string) {
-        self.internalString = string;
-        return self;
+        RZManuscript *newManuscript = self.copy;
+        newManuscript.internalString = string;
+        newManuscript.internalImage = nil;
+        return newManuscript;
     };
 
     return [stringBlock copy];
