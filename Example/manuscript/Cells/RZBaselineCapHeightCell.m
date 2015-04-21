@@ -42,7 +42,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 {
     [super awakeFromNib];
 
-    NSAttributedString *numberString = RZManuscript.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"160").write;
+    NSAttributedString *numberString = RZManuscript.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"167").write;
 
     for ( UILabel *label in self.capHeightNumberLabels ) {
         label.attributedText = numberString;
