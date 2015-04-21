@@ -55,7 +55,7 @@ typedef RZManuscript*(^RZManuscriptChainLinkString)(NSString *string);
 
 // Instance Chain Links
 
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFontNameAndSize fontName;
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkFontNameAndSize fontNameAndSize;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkFont font;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkAdobeTracking adobeTracking;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkPointTracking pointTracking;
