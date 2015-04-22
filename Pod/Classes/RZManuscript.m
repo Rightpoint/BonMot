@@ -192,122 +192,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     return manuscript;
 }
 
-#pragma mark - Class Chain Links
-
-+ (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize
-{
-    RZManuscriptChainLinkFontNameAndSize fontNameAndSizeBlock = ^(NSString *fontName, CGFloat fontSize) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalFont = [UIFont fontWithName:fontName size:fontSize];
-        return manuscript;
-    };
-    return [fontNameAndSizeBlock copy];
-}
-
-+ (RZManuscriptChainLinkFont)font
-{
-    RZManuscriptChainLinkFont fontBlock = ^(UIFont *font) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalFont = font;
-        return manuscript;
-    };
-
-    return [fontBlock copy];
-}
-
-+ (RZManuscriptChainLinkAdobeTracking)adobeTracking
-{
-    RZManuscriptChainLinkAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalAdobeTracking = adobeTracking;
-        manuscript.internalPointTracking = 0.0f;
-        return manuscript;
-    };
-
-    return [adobeTrackingBlock copy];
-}
-
-+ (RZManuscriptChainLinkPointTracking)pointTracking
-{
-    RZManuscriptChainLinkPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalPointTracking = pointTracking;
-        manuscript.internalAdobeTracking = 0;
-        return manuscript;
-    };
-
-    return [pointTrackingBlock copy];
-}
-
-+ (RZManuscriptChainLinkLineHeight)lineHeightMultiple
-{
-    RZManuscriptChainLinkLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalLineHeightMultiple = lineHeightMultiple;
-        return manuscript;
-    };
-
-    return [lineHeightMultipleBlock copy];
-}
-
-+ (RZManuscriptChainLinkBaselineOffset)baselineOffset
-{
-    RZManuscriptChainLinkBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalBaselineOffset = baselineOffset;
-        return manuscript;
-    };
-
-    return [baselineOffsetBlock copy];
-}
-
-+ (RZManuscriptChainLinkFigureCase)figureCase
-{
-    RZManuscriptChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalFigureCase = figureCase;
-        return manuscript;
-    };
-
-    return [figureCaseBlock copy];
-}
-
-+ (RZManuscriptChainLinkFigureSpacing)figureSpacing
-{
-    RZManuscriptChainLinkFigureSpacing figureSpacingBlock = ^(RZFigureSpacing figureSpacing) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalFigureSpacing = figureSpacing;
-        return manuscript;
-    };
-
-    return [figureSpacingBlock copy];
-}
-
-+ (RZManuscriptChainLinkString)string
-{
-    RZManuscriptChainLinkString stringBlock = ^(NSString *string) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalString = string;
-        manuscript.internalImage = nil;
-        return manuscript;
-    };
-
-    return [stringBlock copy];
-}
-
-+ (RZManuscriptChainLinkImage)image
-{
-    RZManuscriptChainLinkImage imageBlock = ^(UIImage *image) {
-        RZManuscript *manuscript = [[RZManuscript alloc] init];
-        manuscript.internalImage = image;
-        manuscript.internalString = nil;
-        return manuscript;
-    };
-
-    return [imageBlock copy];
-}
-
-#pragma mark - Instance Chain Links
+#pragma mark - Chain Links
 
 - (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize
 {
@@ -322,108 +207,167 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     return [fontNameAndSizeBlock copy];
 }
 
++ (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.fontNameAndSize;
+}
+
 - (RZManuscriptChainLinkFont)font
 {
     RZManuscriptChainLinkFont fontBlock = ^(UIFont *font) {
-        NSParameterAssert(font);
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalFont = font;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalFont = font;
+        return manuscript;
     };
 
     return [fontBlock copy];
 }
 
++ (RZManuscriptChainLinkFont)font
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.font;
+}
+
 - (RZManuscriptChainLinkAdobeTracking)adobeTracking
 {
     RZManuscriptChainLinkAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalAdobeTracking = adobeTracking;
-        newManuscript.internalPointTracking = 0.0f;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalAdobeTracking = adobeTracking;
+        manuscript.internalPointTracking = 0.0f;
+        return manuscript;
     };
 
     return [adobeTrackingBlock copy];
 }
 
++ (RZManuscriptChainLinkAdobeTracking)adobeTracking
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.adobeTracking;
+}
+
 - (RZManuscriptChainLinkPointTracking)pointTracking
 {
     RZManuscriptChainLinkPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalPointTracking = pointTracking;
-        newManuscript.internalAdobeTracking = 0;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalPointTracking = pointTracking;
+        manuscript.internalAdobeTracking = 0;
+        return manuscript;
     };
 
     return [pointTrackingBlock copy];
 }
 
++ (RZManuscriptChainLinkPointTracking)pointTracking
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.pointTracking;
+}
+
 - (RZManuscriptChainLinkLineHeight)lineHeightMultiple
 {
     RZManuscriptChainLinkLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalLineHeightMultiple = lineHeightMultiple;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalLineHeightMultiple = lineHeightMultiple;
+        return manuscript;
     };
 
     return [lineHeightMultipleBlock copy];
 }
 
++ (RZManuscriptChainLinkLineHeight)lineHeightMultiple
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.lineHeightMultiple;
+}
+
 - (RZManuscriptChainLinkBaselineOffset)baselineOffset
 {
     RZManuscriptChainLinkBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalBaselineOffset = baselineOffset;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalBaselineOffset = baselineOffset;
+        return manuscript;
     };
 
     return [baselineOffsetBlock copy];
 }
 
++ (RZManuscriptChainLinkBaselineOffset)baselineOffset
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.baselineOffset;
+}
+
 - (RZManuscriptChainLinkFigureCase)figureCase
 {
     RZManuscriptChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalFigureCase = figureCase;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalFigureCase = figureCase;
+        return manuscript;
     };
 
     return [figureCaseBlock copy];
 }
 
++ (RZManuscriptChainLinkFigureCase)figureCase
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.figureCase;
+}
+
 - (RZManuscriptChainLinkFigureSpacing)figureSpacing
 {
     RZManuscriptChainLinkFigureSpacing figureSpacingBlock = ^(RZFigureSpacing figureSpacing) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalFigureSpacing = figureSpacing;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalFigureSpacing = figureSpacing;
+        return manuscript;
     };
 
     return [figureSpacingBlock copy];
 }
 
++ (RZManuscriptChainLinkFigureSpacing)figureSpacing
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.figureSpacing;
+}
+
 - (RZManuscriptChainLinkString)string
 {
     RZManuscriptChainLinkString stringBlock = ^(NSString *string) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalString = string;
-        newManuscript.internalImage = nil;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalString = string;
+        manuscript.internalImage = nil;
+        return manuscript;
     };
 
     return [stringBlock copy];
 }
 
++ (RZManuscriptChainLinkString)string
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.string;
+}
+
 - (RZManuscriptChainLinkImage)image
 {
     RZManuscriptChainLinkImage imageBlock = ^(UIImage *image) {
-        RZManuscript *newManuscript = self.copy;
-        newManuscript.internalImage = image;
-        newManuscript.internalString = nil;
-        return newManuscript;
+        RZManuscript *manuscript = self.copy;
+        manuscript.internalImage = image;
+        manuscript.internalString = nil;
+        return manuscript;
     };
 
     return [imageBlock copy];
+}
+
++ (RZManuscriptChainLinkImage)image
+{
+    RZManuscript *manuscript = [[self alloc] init];
+    return manuscript.image;
 }
 
 #pragma mark - Utilities

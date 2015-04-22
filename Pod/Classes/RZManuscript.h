@@ -40,37 +40,37 @@ typedef RZManuscript*(^RZManuscriptChainLinkImage)(UIImage *image);
 @property (copy, nonatomic, readonly) NSAttributedString *write;
 @property (copy, nonatomic, readonly) NSDictionary *attributes;
 
-// Class Chain Links
+// Chain Links
 
 // fontNameAndSize and font are mutually exclusive: setting one will unset the other
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkFontNameAndSize fontNameAndSize;
 + (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize;
+
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkFont font;
 + (RZManuscriptChainLinkFont)font;
 
 // adobeTracking and pointTracking are mutually exclusive: setting one will unset the other
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkAdobeTracking adobeTracking;
 + (RZManuscriptChainLinkAdobeTracking)adobeTracking;
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkPointTracking pointTracking;
 + (RZManuscriptChainLinkPointTracking)pointTracking;
 
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkLineHeight lineHeightMultiple;
 + (RZManuscriptChainLinkLineHeight)lineHeightMultiple; // todo: also do line height in points
+
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkBaselineOffset baselineOffset;
 + (RZManuscriptChainLinkBaselineOffset)baselineOffset;
+
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureCase figureCase;
 + (RZManuscriptChainLinkFigureCase)figureCase;
+@property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureSpacing figureSpacing;
 + (RZManuscriptChainLinkFigureSpacing)figureSpacing;
 
 // string and image are mutually exclusive: setting one will unset the other
-+ (RZManuscriptChainLinkString)string;
-+ (RZManuscriptChainLinkImage)image;
-
-// Instance Chain Links
-
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFontNameAndSize fontNameAndSize;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFont font;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkAdobeTracking adobeTracking;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkPointTracking pointTracking;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkLineHeight lineHeightMultiple;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkBaselineOffset baselineOffset;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureCase figureCase;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureSpacing figureSpacing;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkString string;
++ (RZManuscriptChainLinkString)string;
 @property (copy, nonatomic, readonly) RZManuscriptChainLinkImage image;
++ (RZManuscriptChainLinkImage)image;
 
 // Utilities
 
