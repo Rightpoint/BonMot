@@ -18,7 +18,7 @@
 #import "RZConcatenationCell.h"
 
 // Pods
-#import <Manuscript/RZManuscript.h>
+#import <manuscript/RZChainLink.h>
 
 @interface RZViewController ()
 

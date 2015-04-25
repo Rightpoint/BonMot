@@ -8,7 +8,7 @@
 
 #import "RZFigureStyleCell.h"
 
-#import <manuscript/RZManuscript.h>
+#import <manuscript/RZChainLink.h>
 
 static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
@@ -39,13 +39,13 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
     UIFont *ebGaramond = [UIFont fontWithName:kRZFontNameEBGaramond size:24.0f];
 
-    self.proportionalLiningLabel.attributedText = RZManuscript.font(ebGaramond).string(proportionalLiningString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseLining).write;
+    self.proportionalLiningLabel.attributedText = RZCursive.font(ebGaramond).string(proportionalLiningString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseLining).attributedString;
 
-    self.proportionalOldstyleLabel.attributedText = RZManuscript.font(ebGaramond).string(proportionalOldstyleString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseOldstyle).write;
+    self.proportionalOldstyleLabel.attributedText = RZCursive.font(ebGaramond).string(proportionalOldstyleString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseOldstyle).attributedString;
 
-    self.tabularLiningLabel.attributedText = RZManuscript.font(ebGaramond).string(tabularLiningString).figureSpacing(RZFigureSpacingTabular).figureCase(RZFigureCaseLining).write;
+    self.tabularLiningLabel.attributedText = RZCursive.font(ebGaramond).string(tabularLiningString).figureSpacing(RZFigureSpacingTabular).figureCase(RZFigureCaseLining).attributedString;
 
-    self.tabularOldstyleLabel.attributedText = RZManuscript.font(ebGaramond).string(tabularOldstyleString).figureSpacing(RZFigureSpacingTabular).figureCase(RZFigureCaseOldstyle).write;
+    self.tabularOldstyleLabel.attributedText = RZCursive.font(ebGaramond).string(tabularOldstyleString).figureSpacing(RZFigureSpacingTabular).figureCase(RZFigureCaseOldstyle).attributedString;
 }
 
 @end

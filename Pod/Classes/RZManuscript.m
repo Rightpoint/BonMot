@@ -15,38 +15,29 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
 @interface RZManuscript ()
 
-@property (strong, nonatomic) UIFont *internalFont;
-@property (nonatomic) NSInteger internalAdobeTracking;
-@property (nonatomic) CGFloat internalPointTracking;
-@property (nonatomic) CGFloat internalLineHeightMultiple;
-@property (nonatomic) CGFloat internalBaselineOffset;
-@property (nonatomic) RZFigureCase internalFigureCase;
-@property (nonatomic) RZFigureSpacing internalFigureSpacing;
-@property (copy, nonatomic) NSString *internalString;
-@property (strong, nonatomic) UIImage *internalImage;
+@property (copy, nonatomic, readwrite) NSString *fontName;
+@property (assign, nonatomic, readwrite) CGFloat fontSize;
 
 @end
 
 @implementation RZManuscript
 
-#pragma mark - Getting Values Out
-
-- (NSAttributedString *)write
+- (NSAttributedString *)attributedString
 {
     NSAttributedString *attributedString = nil;
-    if ( self.internalString ) {
-        attributedString = [[NSAttributedString alloc] initWithString:self.internalString
+    if ( self.string ) {
+        attributedString = [[NSAttributedString alloc] initWithString:self.string
                                                            attributes:self.attributes];
     }
-    else if ( self.internalImage ) {
+    else if ( self.image ) {
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-        attachment.image = self.internalImage;
+        attachment.image = self.image;
 
         // Use the native size of the image instead of allowing it to be scaled
         attachment.bounds = CGRectMake(0.0f,
-                                       self.internalBaselineOffset, // images don’t respect normal baseline offset
-                                       self.internalImage.size.width,
-                                       self.internalImage.size.height);
+                                       self.baselineOffset, // images don’t respect attributed string’s baseline offset
+                                       self.image.size.width,
+                                       self.image.size.height);
 
         attributedString = [NSAttributedString attributedStringWithAttachment:attachment];
     }
@@ -67,10 +58,10 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
     // Figure Case
 
-    if ( self.internalFigureCase != RZFigureCaseDefault ) {
+    if ( self.figureCase != RZFigureCaseDefault ) {
 
         int figureCase = -1;
-        switch ( self.internalFigureCase ) {
+        switch ( self.figureCase ) {
             case RZFigureCaseLining:
                 figureCase = kUpperCaseNumbersSelector;
                 break;
@@ -92,10 +83,10 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
     // Figure Spacing
 
-    if ( self.internalFigureSpacing != RZFigureSpacingDefault ) {
+    if ( self.figureSpacing != RZFigureSpacingDefault ) {
 
         int figureSpacing = -1;
-        switch ( self.internalFigureSpacing ) {
+        switch ( self.figureSpacing ) {
             case RZFigureSpacingTabular:
                 figureSpacing = kMonospacedNumbersSelector;
                 break;
@@ -123,18 +114,18 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
         NSMutableDictionary *featureSettingsAttributes = [NSMutableDictionary dictionary];
         featureSettingsAttributes[UIFontDescriptorFeatureSettingsAttribute] = featureSettings;
 
-        if ( self.internalFont ) {
+        if ( self.font ) {
             // get font descriptor from font
-            UIFontDescriptor *descriptor = self.internalFont.fontDescriptor;
+            UIFontDescriptor *descriptor = self.font.fontDescriptor;
             UIFontDescriptor *descriptorToUse = [descriptor fontDescriptorByAddingAttributes:featureSettingsAttributes];
-            fontToUse = [UIFont fontWithDescriptor:descriptorToUse size:self.internalFont.pointSize];
+            fontToUse = [UIFont fontWithDescriptor:descriptorToUse size:self.font.pointSize];
         }
         else {
             [NSException raise:NSInternalInconsistencyException format:@"If font attributes such as figure case or spacing are specified, a font must also be specified."];
         }
     }
     else {
-        fontToUse = self.internalFont;
+        fontToUse = self.font;
     }
 
     if ( fontToUse ) {
@@ -143,14 +134,14 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
     // Tracking
 
-    NSAssert(self.internalAdobeTracking == 0 || self.internalPointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
+    NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0f;
-    if ( self.internalAdobeTracking > 0 ) {
-        trackingInPoints = [self.class trackingValueFromAdobeTrackingValue:self.internalAdobeTracking forFont:fontToUse];
+    if ( self.adobeTracking > 0 ) {
+        trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
-    else if ( self.internalPointTracking > 0.0f ) {
-        trackingInPoints = self.internalPointTracking;
+    else if ( self.pointTracking > 0.0f ) {
+        trackingInPoints = self.pointTracking;
     }
 
     if ( trackingInPoints > 0.0f ) {
@@ -160,16 +151,16 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     
     // Line Height
 
-    if ( self.internalLineHeightMultiple != 1.0f ) {
+    if ( self.lineHeightMultiple != 1.0f ) {
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineHeightMultiple = self.internalLineHeightMultiple;
+        paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
         attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
 
     // Baseline Offset
 
-    if ( self.internalBaselineOffset != 0.0f ) {
-        attributes[NSBaselineOffsetAttributeName] = @(self.internalBaselineOffset);
+    if ( self.baselineOffset != 0.0f ) {
+        attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
 
     return attributes;
@@ -179,195 +170,49 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 {
     __typeof(self) manuscript = [[self.class alloc] init];
 
-    manuscript.internalFont = self.internalFont;
-    manuscript.internalAdobeTracking = self.internalAdobeTracking;
-    manuscript.internalPointTracking = self.internalPointTracking;
-    manuscript.internalLineHeightMultiple = self.internalLineHeightMultiple;
-    manuscript.internalBaselineOffset = self.internalBaselineOffset;
-    manuscript.internalFigureCase = self.internalFigureCase;
-    manuscript.internalFigureSpacing = self.internalFigureSpacing;
-    manuscript.internalString = self.internalString;
-    manuscript.internalImage = self.internalImage;
+    manuscript.font = self.font;
+    manuscript.adobeTracking = self.adobeTracking;
+    manuscript.pointTracking = self.pointTracking;
+    manuscript.lineHeightMultiple = self.lineHeightMultiple;
+    manuscript.baselineOffset = self.baselineOffset;
+    manuscript.figureCase = self.figureCase;
+    manuscript.figureSpacing = self.figureSpacing;
+    manuscript.string = self.string;
+    manuscript.image = self.image;
 
     return manuscript;
 }
 
-#pragma mark - Chain Links
-
-- (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize
+- (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize
 {
-    RZManuscriptChainLinkFontNameAndSize fontNameAndSizeBlock = ^(NSString *fontName, CGFloat fontSize) {
-        RZManuscript *newManuscript = self.copy;
-        UIFont *font = [UIFont fontWithName:fontName size:fontSize];
-        NSAssert(font, @"No font returned from [UIFont fontWithName:%@ size:%@]", fontName, @(fontSize));
-        newManuscript.internalFont = font;
-        return newManuscript;
-    };
-
-    return [fontNameAndSizeBlock copy];
+    UIFont *font = [UIFont fontWithName:fontName size:fontSize];
+    NSAssert(font, @"No font returned from [UIFont fontWithName:%@ size:%@]", fontName, @(fontSize));
+    self.font = font;
+    self.fontName = fontName;
+    self.fontSize = fontSize;
 }
 
-+ (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize
+- (void)setFont:(UIFont *)font
 {
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.fontNameAndSize;
+    _font = font;
+    self.fontName = font.fontName;
+    self.fontSize = font.pointSize;
 }
 
-- (RZManuscriptChainLinkFont)font
+- (void)setString:(NSString *)string
 {
-    RZManuscriptChainLinkFont fontBlock = ^(UIFont *font) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalFont = font;
-        return manuscript;
-    };
-
-    return [fontBlock copy];
+    if ( (_string || string) && ![_string isEqualToString:string] ) {
+        _string = string.copy;
+        self.image = nil;
+    }
 }
 
-+ (RZManuscriptChainLinkFont)font
+- (void)setImage:(UIImage *)image
 {
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.font;
-}
-
-- (RZManuscriptChainLinkAdobeTracking)adobeTracking
-{
-    RZManuscriptChainLinkAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalAdobeTracking = adobeTracking;
-        manuscript.internalPointTracking = 0.0f;
-        return manuscript;
-    };
-
-    return [adobeTrackingBlock copy];
-}
-
-+ (RZManuscriptChainLinkAdobeTracking)adobeTracking
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.adobeTracking;
-}
-
-- (RZManuscriptChainLinkPointTracking)pointTracking
-{
-    RZManuscriptChainLinkPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalPointTracking = pointTracking;
-        manuscript.internalAdobeTracking = 0;
-        return manuscript;
-    };
-
-    return [pointTrackingBlock copy];
-}
-
-+ (RZManuscriptChainLinkPointTracking)pointTracking
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.pointTracking;
-}
-
-- (RZManuscriptChainLinkLineHeight)lineHeightMultiple
-{
-    RZManuscriptChainLinkLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalLineHeightMultiple = lineHeightMultiple;
-        return manuscript;
-    };
-
-    return [lineHeightMultipleBlock copy];
-}
-
-+ (RZManuscriptChainLinkLineHeight)lineHeightMultiple
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.lineHeightMultiple;
-}
-
-- (RZManuscriptChainLinkBaselineOffset)baselineOffset
-{
-    RZManuscriptChainLinkBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalBaselineOffset = baselineOffset;
-        return manuscript;
-    };
-
-    return [baselineOffsetBlock copy];
-}
-
-+ (RZManuscriptChainLinkBaselineOffset)baselineOffset
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.baselineOffset;
-}
-
-- (RZManuscriptChainLinkFigureCase)figureCase
-{
-    RZManuscriptChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalFigureCase = figureCase;
-        return manuscript;
-    };
-
-    return [figureCaseBlock copy];
-}
-
-+ (RZManuscriptChainLinkFigureCase)figureCase
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.figureCase;
-}
-
-- (RZManuscriptChainLinkFigureSpacing)figureSpacing
-{
-    RZManuscriptChainLinkFigureSpacing figureSpacingBlock = ^(RZFigureSpacing figureSpacing) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalFigureSpacing = figureSpacing;
-        return manuscript;
-    };
-
-    return [figureSpacingBlock copy];
-}
-
-+ (RZManuscriptChainLinkFigureSpacing)figureSpacing
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.figureSpacing;
-}
-
-- (RZManuscriptChainLinkString)string
-{
-    RZManuscriptChainLinkString stringBlock = ^(NSString *string) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalString = string;
-        manuscript.internalImage = nil;
-        return manuscript;
-    };
-
-    return [stringBlock copy];
-}
-
-+ (RZManuscriptChainLinkString)string
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.string;
-}
-
-- (RZManuscriptChainLinkImage)image
-{
-    RZManuscriptChainLinkImage imageBlock = ^(UIImage *image) {
-        RZManuscript *manuscript = self.copy;
-        manuscript.internalImage = image;
-        manuscript.internalString = nil;
-        return manuscript;
-    };
-
-    return [imageBlock copy];
-}
-
-+ (RZManuscriptChainLinkImage)image
-{
-    RZManuscript *manuscript = [[self alloc] init];
-    return manuscript.image;
+    if ( (_image || image) && ![_image isEqual:image] ) {
+        _image = image;
+        self.string = nil;
+    }
 }
 
 #pragma mark - Utilities
@@ -385,17 +230,17 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     if ( manuscripts.count == 1 ) {
         NSAssert([manuscripts.firstObject isKindOfClass:[RZManuscript class]], @"Only item in manuscripts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
 
-        resultString = [manuscripts.firstObject write];
+        resultString = [manuscripts.firstObject attributedString];
     }
     else {
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.write;
+        NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
         for ( NSUInteger manuscriptIndex = 0; manuscriptIndex < manuscripts.count; manuscriptIndex++ ) {
             RZManuscript *manuscript = manuscripts[manuscriptIndex];
             NSAssert([manuscript isKindOfClass:[RZManuscript class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(manuscriptIndex), NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
 
-            [mutableResult appendAttributedString:manuscript.write];
+            [mutableResult appendAttributedString:manuscript.attributedString];
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
@@ -419,7 +264,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
  *
  *  @return The converted tracking value.
  */
-+ (CGFloat)trackingValueFromAdobeTrackingValue:(NSUInteger)adobeTrackingValue forFont:(UIFont *)font
++ (CGFloat)pointTrackingValueFromAdobeTrackingValue:(NSUInteger)adobeTrackingValue forFont:(UIFont *)font
 {
     CGFloat pointSizeToUse = font ? font.pointSize : kRZDefaultFontSize;
     CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kRZAdobeTrackingDivisor);

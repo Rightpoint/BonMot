@@ -22,55 +22,36 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 
 @class RZManuscript;
 
-typedef RZManuscript*(^RZManuscriptChainLinkFontNameAndSize)(NSString *fontName, CGFloat fontSize);
-typedef RZManuscript*(^RZManuscriptChainLinkFont)(UIFont *font);
-typedef RZManuscript*(^RZManuscriptChainLinkAdobeTracking)(NSInteger adobeTracking);
-typedef RZManuscript*(^RZManuscriptChainLinkPointTracking)(CGFloat pointTracking);
-typedef RZManuscript*(^RZManuscriptChainLinkLineHeight)(CGFloat lineHeightMultiple);
-typedef RZManuscript*(^RZManuscriptChainLinkBaselineOffset)(CGFloat baselineOffset);
-typedef RZManuscript*(^RZManuscriptChainLinkFigureCase)(RZFigureCase figureCase);
-typedef RZManuscript*(^RZManuscriptChainLinkFigureSpacing)(RZFigureSpacing figureSpacing);
-typedef RZManuscript*(^RZManuscriptChainLinkString)(NSString *string);
-typedef RZManuscript*(^RZManuscriptChainLinkImage)(UIImage *image);
-
 @interface RZManuscript : NSObject <NSCopying>
 
 // Getting Values Out
 
-@property (copy, nonatomic, readonly) NSAttributedString *write;
+@property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) NSDictionary *attributes;
 
 // Chain Links
 
-// fontNameAndSize and font are mutually exclusive: setting one will unset the other
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFontNameAndSize fontNameAndSize;
-+ (RZManuscriptChainLinkFontNameAndSize)fontNameAndSize;
+@property (copy, nonatomic, readonly) NSString *fontName;
+@property (assign, nonatomic, readonly) CGFloat fontSize;
 
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFont font;
-+ (RZManuscriptChainLinkFont)font;
+@property (strong, nonatomic) UIFont *font;
 
-// adobeTracking and pointTracking are mutually exclusive: setting one will unset the other
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkAdobeTracking adobeTracking;
-+ (RZManuscriptChainLinkAdobeTracking)adobeTracking;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkPointTracking pointTracking;
-+ (RZManuscriptChainLinkPointTracking)pointTracking;
+// adobeTracking and pointTracking are two interpretations of the same unit. If both are nonzero, Adobe tracking takes precedence.
+@property (assign, nonatomic) CGFloat adobeTracking;
+@property (assign, nonatomic) CGFloat pointTracking;
 
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkLineHeight lineHeightMultiple;
-+ (RZManuscriptChainLinkLineHeight)lineHeightMultiple; // todo: also do line height in points
+@property (assign, nonatomic) CGFloat lineHeightMultiple;
 
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkBaselineOffset baselineOffset;
-+ (RZManuscriptChainLinkBaselineOffset)baselineOffset;
+@property (assign, nonatomic) CGFloat baselineOffset;
 
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureCase figureCase;
-+ (RZManuscriptChainLinkFigureCase)figureCase;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkFigureSpacing figureSpacing;
-+ (RZManuscriptChainLinkFigureSpacing)figureSpacing;
+@property (assign, nonatomic) RZFigureCase figureCase;
+@property (assign, nonatomic) RZFigureSpacing figureSpacing;
 
 // string and image are mutually exclusive: setting one will unset the other
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkString string;
-+ (RZManuscriptChainLinkString)string;
-@property (copy, nonatomic, readonly) RZManuscriptChainLinkImage image;
-+ (RZManuscriptChainLinkImage)image;
+@property (copy, nonatomic) NSString *string;
+@property (strong, nonatomic) UIImage *image;
+
+- (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize;
 
 // Utilities
 

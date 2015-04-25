@@ -8,7 +8,7 @@
 
 #import "RZTrackingCell.h"
 
-#import <manuscript/RZManuscript.h>
+#import <manuscript/RZChainLink.h>
 
 @interface RZTrackingCell ()
 
@@ -28,7 +28,7 @@
     [super awakeFromNib];
 
     NSString *quote = @"Outside of a dog, a book is a man’s best friend. Inside of a dog, it’s too dark to read.";
-    NSAttributedString *attributedString = RZManuscript.adobeTracking(300).string(quote).write;
+    NSAttributedString *attributedString = RZCursive.adobeTracking(300).string(quote).attributedString;
 
     self.label.attributedText = attributedString;
 

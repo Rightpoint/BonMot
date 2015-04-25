@@ -8,8 +8,7 @@
 
 #import "RZLineHeightCell.h"
 
-#import <manuscript/RZManuscript.h>
-
+#import <manuscript/RZChainLink.h>
 @interface RZLineHeightCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
@@ -28,7 +27,7 @@
     [super awakeFromNib];
 
     NSString *quote = @"Outside of a dog, a book is a man’s best friend. Inside of a dog, it’s too dark to read.";
-    NSAttributedString *attributedString = RZManuscript.lineHeightMultiple(1.8f).string(quote).write;
+    NSAttributedString *attributedString = RZCursive.lineHeightMultiple(1.8f).string(quote).attributedString;
 
     self.label.attributedText = attributedString;
 

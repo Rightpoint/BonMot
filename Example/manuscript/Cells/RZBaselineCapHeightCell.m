@@ -8,8 +8,7 @@
 
 #import "RZBaselineCapHeightCell.h"
 
-#import <manuscript/RZManuscript.h>
-
+#import <manuscript/RZChainLink.h>
 static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface RZBaselineCapHeightCell ()
@@ -42,7 +41,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 {
     [super awakeFromNib];
 
-    NSAttributedString *numberString = RZManuscript.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"167").write;
+    NSAttributedString *numberString = RZCursive.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"167").attributedString;
 
     for ( UILabel *label in self.capHeightNumberLabels ) {
         label.attributedText = numberString;

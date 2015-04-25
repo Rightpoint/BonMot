@@ -8,8 +8,7 @@
 
 #import "RZInlineImagesCell.h"
 
-#import <manuscript/RZManuscript.h>
-
+#import <manuscript/RZChainLink.h>
 @interface RZInlineImagesCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
@@ -31,24 +30,24 @@
     UIImage *knot = [UIImage imageNamed:@"knot"];
     UIImage *oar = [UIImage imageNamed:@"oar"];
 
-    RZManuscript *imageBaselineManuscript = RZManuscript.baselineOffset(-8.0f);
+    RZChainLink *imageBaselineChainLink = RZCursive.baselineOffset(-8.0f);
 
-    RZManuscript *beeManuscript = imageBaselineManuscript.image(bee);
-    RZManuscript *knotManuscript = imageBaselineManuscript.image(knot);
-    RZManuscript *oarManuscript = imageBaselineManuscript.image(oar);
+    RZChainLink *beeChainLink = imageBaselineChainLink.image(bee);
+    RZChainLink *knotChainLink = imageBaselineChainLink.image(knot);
+    RZChainLink *oarChainLink = imageBaselineChainLink.image(oar);
 
-    RZManuscript *twoManuscript = RZManuscript.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
+    RZChainLink *twoChainLink = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
 
     // To be or not to be
     NSAttributedString *rebus = [RZManuscript joinManuscripts:@[
-                                                                twoManuscript,
-                                                                beeManuscript,
-                                                                oarManuscript,
-                                                                knotManuscript,
-                                                                twoManuscript,
-                                                                beeManuscript,
+                                                                twoChainLink.manuscript,
+                                                                beeChainLink.manuscript,
+                                                                oarChainLink.manuscript,
+                                                                knotChainLink.manuscript,
+                                                                twoChainLink.manuscript,
+                                                                beeChainLink.manuscript,
                                                                 ]
-                                                withSeparator:RZManuscript.string(@" ")];
+                                                withSeparator:RZCursive.string(@" ").manuscript];
     self.label.attributedText = rebus;
 }
 

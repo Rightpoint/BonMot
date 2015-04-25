@@ -8,8 +8,7 @@
 
 #import "RZConcatenationCell.h"
 
-#import <manuscript/RZManuscript.h>
-
+#import <manuscript/RZChainLink.h>
 @interface RZConcatenationCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

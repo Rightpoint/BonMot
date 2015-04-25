@@ -8,8 +8,7 @@
 
 #import "RZBaselineOffsetCell.h"
 
-#import <manuscript/RZManuscript.h>
-
+#import <manuscript/RZChainLink.h>
 @interface RZBaselineOffsetCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
@@ -27,13 +26,13 @@
 {
     [super awakeFromNib];
 
-    RZManuscript *baseManuscript = RZManuscript.string(@"❤️");
+    RZChainLink *baseChainLink = RZCursive.string(@"❤️");
 
     NSMutableArray *wave = [NSMutableArray array];
 
     for ( NSUInteger i = 0; i < 20; i++ ) {
         CGFloat offset = 15.0f * sin((i / 20.0f) * 7.0f * M_PI);
-        [wave addObject:baseManuscript.baselineOffset(offset)];
+        [wave addObject:baseChainLink.baselineOffset(offset).manuscript];
     };
 
     self.label.attributedText = [RZManuscript joinManuscripts:wave withSeparator:nil];
