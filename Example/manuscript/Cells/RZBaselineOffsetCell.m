@@ -9,6 +9,7 @@
 #import "RZBaselineOffsetCell.h"
 
 #import <manuscript/RZChainLink.h>
+
 @interface RZBaselineOffsetCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

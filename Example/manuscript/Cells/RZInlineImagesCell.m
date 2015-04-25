@@ -9,6 +9,7 @@
 #import "RZInlineImagesCell.h"
 
 #import <manuscript/RZChainLink.h>
+
 @interface RZInlineImagesCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

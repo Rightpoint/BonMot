@@ -9,6 +9,7 @@
 #import "RZLineHeightCell.h"
 
 #import <manuscript/RZChainLink.h>
+
 @interface RZLineHeightCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
