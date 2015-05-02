@@ -16,6 +16,7 @@
 
 typedef RZChainLink*(^RZChainLinkFontNameAndSize)(NSString *fontName, CGFloat fontSize);
 typedef RZChainLink*(^RZChainLinkFont)(UIFont *font);
+typedef RZChainLink*(^RZChainLinkColor)(UIColor *color);
 typedef RZChainLink*(^RZChainLinkAdobeTracking)(NSInteger adobeTracking);
 typedef RZChainLink*(^RZChainLinkPointTracking)(CGFloat pointTracking);
 typedef RZChainLink*(^RZChainLinkLineHeight)(CGFloat lineHeightMultiple);
@@ -35,6 +36,9 @@ typedef RZChainLink*(^RZChainLinkImage)(UIImage *image);
 @property (copy, nonatomic, readonly) RZChainLinkFontNameAndSize fontNameAndSize;
 
 @property (copy, nonatomic, readonly) RZChainLinkFont font;
+
+@property (copy, nonatomic, readonly) RZChainLinkColor textColor;
+@property (copy, nonatomic, readonly) RZChainLinkColor backgroundColor;
 
 // adobeTracking and pointTracking are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic, readonly) RZChainLinkAdobeTracking adobeTracking;

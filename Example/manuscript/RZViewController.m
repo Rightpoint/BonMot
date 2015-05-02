@@ -9,6 +9,7 @@
 #import "RZViewController.h"
 
 // Cells
+#import "RZColorCell.h"
 #import "RZTrackingCell.h"
 #import "RZLineHeightCell.h"
 #import "RZFigureStyleCell.h"
@@ -36,6 +37,7 @@
     self.tableView.estimatedRowHeight = 123.0f;
 
     self.cellClasses = @[
+                         [RZColorCell class],
                          [RZTrackingCell class],
                          [RZLineHeightCell class],
                          [RZFigureStyleCell class],

@@ -69,6 +69,28 @@
     return [fontBlock copy];
 }
 
+- (RZChainLinkColor)textColor
+{
+    RZChainLinkColor colorBlock = ^(UIColor *color) {
+        typeof(self) newChainLink = self.copy;
+        newChainLink.manuscript.textColor = color;
+        return newChainLink;
+    };
+
+    return [colorBlock copy];
+}
+
+- (RZChainLinkColor)backgroundColor
+{
+    RZChainLinkColor colorBlock = ^(UIColor *color) {
+        typeof(self) newChainLink = self.copy;
+        newChainLink.manuscript.backgroundColor = color;
+        return newChainLink;
+    };
+
+    return [colorBlock copy];
+}
+
 - (RZChainLinkAdobeTracking)adobeTracking
 {
     RZChainLinkAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {

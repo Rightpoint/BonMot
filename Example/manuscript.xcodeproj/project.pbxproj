@@ -39,6 +39,8 @@
 		CD9652561AE58DB90013C6B1 /* RZAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9652551AE58DB90013C6B1 /* RZAbstractCell.m */; };
 		CD9E41581AE44B3E00ECFBFB /* RZTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */; };
 		CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */; };
+		CDD4B9ED1AEB2C3F00B02A0A /* RZColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* RZColorCell.m */; };
+		CDD4B9EE1AEB2C3F00B02A0A /* RZColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */; };
 		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +106,9 @@
 		CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZTrackingCell.m; sourceTree = "<group>"; };
 		CD9E415B1AE46F3B00ECFBFB /* DashedHairlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashedHairlineView.h; sourceTree = "<group>"; };
 		CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashedHairlineView.m; sourceTree = "<group>"; };
+		CDD4B9EA1AEB2C3F00B02A0A /* RZColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZColorCell.h; sourceTree = "<group>"; };
+		CDD4B9EB1AEB2C3F00B02A0A /* RZColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZColorCell.m; sourceTree = "<group>"; };
+		CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZColorCell.xib; sourceTree = "<group>"; };
 		CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +236,9 @@
 			children = (
 				CD9652541AE58DB90013C6B1 /* RZAbstractCell.h */,
 				CD9652551AE58DB90013C6B1 /* RZAbstractCell.m */,
+				CDD4B9EA1AEB2C3F00B02A0A /* RZColorCell.h */,
+				CDD4B9EB1AEB2C3F00B02A0A /* RZColorCell.m */,
+				CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */,
 				CD9E41551AE44B3E00ECFBFB /* RZTrackingCell.h */,
 				CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */,
 				CD79AF4F1AE58B5600D9F0C5 /* RZTrackingCell.xib */,
@@ -377,6 +385,7 @@
 				CD79AF541AE58BC700D9F0C5 /* RZFigureStyleCell.xib in Resources */,
 				CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				CDD4B9EE1AEB2C3F00B02A0A /* RZColorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +469,7 @@
 			files = (
 				CD79AF431AE5823200D9F0C5 /* RZBaselineCapHeightCell.m in Sources */,
 				CD79AF461AE5824000D9F0C5 /* RZInlineImagesCell.m in Sources */,
+				CDD4B9ED1AEB2C3F00B02A0A /* RZColorCell.m in Sources */,
 				6003F59E195388D20070C39A /* RZAppDelegate.m in Sources */,
 				CD9652561AE58DB90013C6B1 /* RZAbstractCell.m in Sources */,
 				6003F5A7195388D20070C39A /* RZViewController.m in Sources */,

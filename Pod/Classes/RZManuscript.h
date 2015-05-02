@@ -36,6 +36,9 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 
 @property (strong, nonatomic) UIFont *font;
 
+@property (strong, nonatomic) UIColor *textColor;
+@property (strong, nonatomic) UIColor *backgroundColor;
+
 // adobeTracking and pointTracking are two interpretations of the same unit. If both are nonzero, Adobe tracking takes precedence.
 @property (assign, nonatomic) CGFloat adobeTracking;
 @property (assign, nonatomic) CGFloat pointTracking;

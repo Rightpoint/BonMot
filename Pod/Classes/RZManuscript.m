@@ -52,6 +52,16 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 
+    // Color
+
+    if ( self.textColor ) {
+        attributes[NSForegroundColorAttributeName] = self.textColor;
+    }
+
+    if ( self.backgroundColor ) {
+        attributes[NSBackgroundColorAttributeName] = self.backgroundColor;
+    }
+
     // Figure Style
 
     NSMutableArray *featureSettings = [NSMutableArray array];
@@ -171,6 +181,8 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     __typeof(self) manuscript = [[self.class alloc] init];
 
     manuscript.font = self.font;
+    manuscript.textColor = self.textColor;
+    manuscript.backgroundColor = self.backgroundColor;
     manuscript.adobeTracking = self.adobeTracking;
     manuscript.pointTracking = self.pointTracking;
     manuscript.lineHeightMultiple = self.lineHeightMultiple;
