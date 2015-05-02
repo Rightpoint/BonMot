@@ -26,4 +26,12 @@
     return self.class.reuseIdentifier;
 }
 
++ (UIColor *)raizlabsRed
+{
+    return [UIColor colorWithRed:0.927f
+                           green:0.352f
+                            blue:0.303f
+                           alpha:1.0f];
+}
+
 @end

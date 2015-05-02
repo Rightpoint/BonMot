@@ -14,4 +14,6 @@
 
 + (NSString *)reuseIdentifier;
 
++ (UIColor *)raizlabsRed;
+
 @end
