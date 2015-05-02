@@ -27,8 +27,8 @@
 {
     [super awakeFromNib];
 
-    NSString *quote = @"Outside of a dog, a book is a man’s best friend. Inside of a dog, it’s too dark to read.";
-    NSAttributedString *attributedString = RZCursive.lineHeightMultiple(1.8f).string(quote).attributedString;
+    NSString *quote = @"I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson";
+    NSAttributedString *attributedString = RZCursive.fontNameAndSize(@"AmericanTypewriter", 17.0f).lineHeightMultiple(1.8f).string(quote).attributedString;
 
     self.label.attributedText = attributedString;
 
