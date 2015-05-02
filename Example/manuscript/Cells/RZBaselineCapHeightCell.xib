@@ -20,14 +20,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aligned top" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3B-Ew-N70">
-                        <rect key="frame" x="105" y="8" width="88" height="20.5"/>
+                        <rect key="frame" x="105" y="8" width="88" height="21"/>
                         <color key="backgroundColor" red="0.94618963310000004" green="0.94818579609999998" blue="0.95417428520000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aligned bottom" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzc-8M-ftn">
-                        <rect key="frame" x="105" y="47" width="117.5" height="20.5"/>
+                        <rect key="frame" x="105" y="47" width="118" height="21"/>
                         <color key="backgroundColor" red="0.94618963310000004" green="0.94818579609999998" blue="0.95417428520000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -41,14 +41,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aligned cap tops" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duU-57-K5K">
-                        <rect key="frame" x="105" y="98" width="130" height="20.5"/>
+                        <rect key="frame" x="105" y="98" width="130" height="21"/>
                         <color key="backgroundColor" red="0.94618963310000004" green="0.94818579609999998" blue="0.95417428520000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Aligned baseline" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-JM-JFZ">
-                        <rect key="frame" x="105" y="129" width="126" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aligned baseline" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-JM-JFZ">
+                        <rect key="frame" x="105" y="130" width="126" height="21"/>
                         <color key="backgroundColor" red="0.94618963310000004" green="0.94818579609999998" blue="0.95417428520000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,8 +72,8 @@
                             <constraint firstAttribute="height" constant="1" id="9Dy-Wh-bKG"/>
                         </constraints>
                     </view>
-                    <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9RP-YE-1da" customClass="DashedHairlineView">
-                        <rect key="frame" x="15" y="149" width="488" height="1"/>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9RP-YE-1da" customClass="DashedHairlineView">
+                        <rect key="frame" x="15" y="150" width="488" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="zdy-el-mej"/>
                         </constraints>
@@ -86,14 +86,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aligned x-height" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mZx-Gq-awp">
-                        <rect key="frame" x="105" y="193" width="125.5" height="20.5"/>
+                        <rect key="frame" x="105" y="193" width="126" height="21"/>
                         <color key="backgroundColor" red="0.94618963310000004" green="0.94818579609999998" blue="0.95417428520000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Aligned baseline" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkq-DD-MZx">
-                        <rect key="frame" x="105" y="224" width="126" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aligned baseline" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkq-DD-MZx">
+                        <rect key="frame" x="105" y="225" width="126" height="21"/>
                         <color key="backgroundColor" red="0.94618963310000004" green="0.94818579609999998" blue="0.95417428520000003" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,8 +105,8 @@
                             <constraint firstAttribute="height" constant="1" id="1VM-U9-UeI"/>
                         </constraints>
                     </view>
-                    <view opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sD5-p1-jLT" customClass="DashedHairlineView">
-                        <rect key="frame" x="15" y="244" width="488" height="1"/>
+                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sD5-p1-jLT" customClass="DashedHairlineView">
+                        <rect key="frame" x="15" y="245" width="488" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="BUh-wz-4bz"/>
                         </constraints>
