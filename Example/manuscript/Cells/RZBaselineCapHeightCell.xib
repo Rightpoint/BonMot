@@ -114,7 +114,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="jzc-8M-ftn" firstAttribute="leading" secondItem="VJ9-DC-vGd" secondAttribute="trailing" constant="8" id="3VP-rU-sQe"/>
-                    <constraint firstItem="duU-57-K5K" firstAttribute="top" secondItem="TYF-a8-VH4" secondAttribute="top" id="43i-nf-A83"/>
+                    <constraint firstItem="duU-57-K5K" firstAttribute="top" secondItem="TYF-a8-VH4" secondAttribute="top" id="43i-nf-A83" customClass="RZTextAlignmentConstraint">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="firstAlignment" value="cap height"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="secondAlignment" value="cap height"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstItem="Tbm-6C-pve" firstAttribute="trailing" secondItem="9RP-YE-1da" secondAttribute="trailing" id="4Rt-JD-u24"/>
                     <constraint firstItem="jzc-8M-ftn" firstAttribute="bottom" secondItem="VJ9-DC-vGd" secondAttribute="bottom" id="5YX-SR-As3"/>
                     <constraint firstItem="Q3B-Ew-N70" firstAttribute="top" secondItem="ate-vj-GnB" secondAttribute="top" id="6te-CZ-6sa"/>
@@ -131,10 +136,20 @@
                     <constraint firstItem="VJ9-DC-vGd" firstAttribute="leading" secondItem="8H7-Bg-FVy" secondAttribute="leading" constant="15" id="K1k-x2-Izn"/>
                     <constraint firstItem="jzc-8M-ftn" firstAttribute="bottom" secondItem="rHu-wm-wuT" secondAttribute="bottom" id="LD1-Wp-ekD"/>
                     <constraint firstItem="TYF-a8-VH4" firstAttribute="leading" secondItem="InB-7c-T4a" secondAttribute="leading" id="LND-BS-GM8"/>
-                    <constraint firstItem="mZx-Gq-awp" firstAttribute="top" secondItem="Tbm-6C-pve" secondAttribute="top" id="NHQ-UJ-vpy"/>
+                    <constraint firstItem="mZx-Gq-awp" firstAttribute="top" secondItem="Tbm-6C-pve" secondAttribute="top" id="NHQ-UJ-vpy" customClass="RZTextAlignmentConstraint">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="firstAlignment" value="x height"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="secondAlignment" value="top"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstItem="9RP-YE-1da" firstAttribute="leading" secondItem="gYi-pb-nKI" secondAttribute="leading" id="P57-nA-nSW"/>
                     <constraint firstItem="duU-57-K5K" firstAttribute="leading" secondItem="TYF-a8-VH4" secondAttribute="trailing" constant="8" id="Qvb-HT-pSy"/>
-                    <constraint firstItem="duU-57-K5K" firstAttribute="top" secondItem="gYi-pb-nKI" secondAttribute="top" id="RZw-H7-y2p"/>
+                    <constraint firstItem="duU-57-K5K" firstAttribute="top" secondItem="gYi-pb-nKI" secondAttribute="top" id="RZw-H7-y2p" customClass="RZTextAlignmentConstraint">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="firstAlignment" value="cap height"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="secondAlignment" value="top"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstItem="9RP-YE-1da" firstAttribute="bottom" secondItem="bgW-JM-JFZ" secondAttribute="bottom" placeholder="YES" id="Rwa-ck-ta2"/>
                     <constraint firstItem="Q3B-Ew-N70" firstAttribute="top" secondItem="VJ9-DC-vGd" secondAttribute="top" id="Tlw-Zh-CJY"/>
                     <constraint firstItem="Gkq-DD-MZx" firstAttribute="baseline" secondItem="InB-7c-T4a" secondAttribute="baseline" id="VPk-0V-KC8"/>
@@ -142,7 +157,12 @@
                     <constraint firstItem="9RP-YE-1da" firstAttribute="trailing" secondItem="gYi-pb-nKI" secondAttribute="trailing" id="Vo4-EP-01c"/>
                     <constraint firstItem="VJ9-DC-vGd" firstAttribute="top" secondItem="8H7-Bg-FVy" secondAttribute="top" constant="8" id="Xeh-oT-Bpk"/>
                     <constraint firstItem="bgW-JM-JFZ" firstAttribute="leading" secondItem="TYF-a8-VH4" secondAttribute="trailing" constant="8" id="Yt4-X2-V15"/>
-                    <constraint firstItem="mZx-Gq-awp" firstAttribute="top" secondItem="InB-7c-T4a" secondAttribute="top" id="dud-oa-JS6"/>
+                    <constraint firstItem="mZx-Gq-awp" firstAttribute="top" secondItem="InB-7c-T4a" secondAttribute="top" id="dud-oa-JS6" customClass="RZTextAlignmentConstraint">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="firstAlignment" value="x-height"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="secondAlignment" value="x-height"/>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstItem="rHu-wm-wuT" firstAttribute="trailing" secondItem="gYi-pb-nKI" secondAttribute="trailing" id="eEh-pm-0XI"/>
                     <constraint firstItem="sD5-p1-jLT" firstAttribute="bottom" secondItem="Gkq-DD-MZx" secondAttribute="bottom" placeholder="YES" id="eLa-hB-dnO"/>
                     <constraint firstItem="ate-vj-GnB" firstAttribute="leading" secondItem="VJ9-DC-vGd" secondAttribute="leading" id="gMe-9C-0HZ"/>
@@ -154,13 +174,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="capHeightBaselineHairline" destination="9RP-YE-1da" id="R0H-RP-4WC"/>
-                <outlet property="labelAlignedToCapTops" destination="duU-57-K5K" id="h6B-Uj-ncx"/>
-                <outlet property="labelAlignedToXHeight" destination="mZx-Gq-awp" id="Ew7-WR-9G1"/>
-                <outlet property="numberCapHeightConstraint" destination="43i-nf-A83" id="XCi-C7-xjG"/>
-                <outlet property="numberCapHeightHairlineConstraint" destination="RZw-H7-y2p" id="3fR-HX-ASA"/>
                 <outlet property="numberCapHeightLabel" destination="TYF-a8-VH4" id="uJu-kk-t3d"/>
-                <outlet property="numberXHeightConstraint" destination="dud-oa-JS6" id="Qn2-qd-95I"/>
-                <outlet property="numberXHeightHairlineConstraint" destination="NHQ-UJ-vpy" id="NgU-cc-UnO"/>
                 <outlet property="numberXHeightLabel" destination="InB-7c-T4a" id="uZ3-To-hc7"/>
                 <outlet property="xHeightBaselineHairline" destination="sD5-p1-jLT" id="yC6-NT-zzU"/>
                 <outletCollection property="capHeightNumberLabels" destination="VJ9-DC-vGd" id="Uav-F9-E0l"/>
