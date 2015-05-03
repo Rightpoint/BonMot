@@ -22,6 +22,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
 		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-manuscript.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-manuscript.a */; };
 		CD79AF3D1AE5820700D9F0C5 /* RZLineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* RZLineHeightCell.m */; };
 		CD79AF401AE5821A00D9F0C5 /* RZFigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* RZFigureStyleCell.m */; };
@@ -79,6 +80,7 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		7A5A12C91AF6685400D111BA /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A647FB2263DC7F8E3F265C4A /* libPods-manuscript.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manuscript.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD79AF3B1AE5820700D9F0C5 /* RZLineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZLineHeightCell.h; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				6003F595195388D20070C39A /* manuscript-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
+				7A5A12C91AF6685400D111BA /* Launch Screen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F5A1195388D20070C39A /* Main.storyboard in Resources */,
 				CD79AF541AE58BC700D9F0C5 /* RZFigureStyleCell.xib in Resources */,
+				7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */,
 				CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				CDD4B9EE1AEB2C3F00B02A0A /* RZColorCell.xib in Resources */,
@@ -630,7 +634,6 @@
 			baseConfigurationReference = 4CA7B4AEE15A750779C800C9 /* Pods-manuscript.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "manuscript/manuscript-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -642,7 +645,6 @@
 			baseConfigurationReference = F79B786068DF6EE81053EF09 /* Pods-manuscript.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = "manuscript/manuscript-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
