@@ -12,6 +12,12 @@
 #define COCOAPODS_VERSION_MINOR_Expecta 4
 #define COCOAPODS_VERSION_PATCH_Expecta 0
 
+// RZDataBinding
+#define COCOAPODS_POD_AVAILABLE_RZDataBinding
+#define COCOAPODS_VERSION_MAJOR_RZDataBinding 1
+#define COCOAPODS_VERSION_MINOR_RZDataBinding 3
+#define COCOAPODS_VERSION_PATCH_RZDataBinding 0
+
 // Specta
 #define COCOAPODS_POD_AVAILABLE_Specta
 #define COCOAPODS_VERSION_MAJOR_Specta 0

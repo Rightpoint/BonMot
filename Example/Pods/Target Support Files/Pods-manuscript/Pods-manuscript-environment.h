@@ -6,6 +6,12 @@
 // project.
 
 
+// RZDataBinding
+#define COCOAPODS_POD_AVAILABLE_RZDataBinding
+#define COCOAPODS_VERSION_MAJOR_RZDataBinding 1
+#define COCOAPODS_VERSION_MINOR_RZDataBinding 3
+#define COCOAPODS_VERSION_PATCH_RZDataBinding 0
+
 // manuscript
 #define COCOAPODS_POD_AVAILABLE_manuscript
 #define COCOAPODS_VERSION_MAJOR_manuscript 0
