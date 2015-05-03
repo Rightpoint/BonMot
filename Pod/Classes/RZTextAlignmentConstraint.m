@@ -186,13 +186,13 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 
     [self rz_addTarget:self
                 action:@selector(updateConstant)
-      forKeyPathChange:firstItemFontKeyPath]; // wait for the second one to update initially
+      forKeyPathChange:firstItemFontKeyPath];
 
     [self rz_addTarget:self
                 action:@selector(updateConstant)
       forKeyPathChange:secondItemFontKeyPath];
 
-    [self updateConstant]; // work around a bug in RZDataBinding where callImmediately doesn't work if the key path can't be fully resolved
+    [self updateConstant]; // work around issue with RZDataBinding where callImmediately doesn't work if the key path can't be fully resolved: https://github.com/Raizlabs/RZDataBinding/issues/34
 }
 
 - (void)updateConstant
