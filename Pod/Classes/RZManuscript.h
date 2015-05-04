@@ -58,6 +58,14 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 
 // Utilities
 
+/**
+ *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
+ *
+ *  @param manuscripts An array of @c RZManuscript objects to join.
+ *  @param separator   The @c RZManuscript to interpose between the elements of the array. May be nil.
+ *
+ *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
+ */
 + (NSAttributedString *)joinManuscripts:(NSArray *)manuscripts withSeparator:(RZManuscript *)separator;
 
 @end
