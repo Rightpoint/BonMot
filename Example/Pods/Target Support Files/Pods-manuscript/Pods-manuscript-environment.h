@@ -8,8 +8,8 @@
 
 // RZDataBinding
 #define COCOAPODS_POD_AVAILABLE_RZDataBinding
-#define COCOAPODS_VERSION_MAJOR_RZDataBinding 1
-#define COCOAPODS_VERSION_MINOR_RZDataBinding 3
+#define COCOAPODS_VERSION_MAJOR_RZDataBinding 2
+#define COCOAPODS_VERSION_MINOR_RZDataBinding 0
 #define COCOAPODS_VERSION_PATCH_RZDataBinding 0
 
 // manuscript

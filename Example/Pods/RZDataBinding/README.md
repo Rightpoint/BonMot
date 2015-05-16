@@ -38,8 +38,8 @@ The demo shows a basic usage of RZDataBinding, but is by no means the canonical 
 // If the method has a parameter, the dictionary will contain values for the appropriate 
 // RZDBChangeKeys. If keys are absent, they can be assumed to be nil. Values will not be NSNull.
 - (void)rz_addTarget:(id)target
-        action:(SEL)action
-        forKeyPathChange:(NSString *)keyPath;
+              action:(SEL)action
+    forKeyPathChange:(NSString *)keyPath;
 ```
 
 **Bind values of two objects together either directly or with a function:**
@@ -47,16 +47,16 @@ The demo shows a basic usage of RZDataBinding, but is by no means the canonical 
 // Binds the value of a given key of the receiver to the value of a key path of another object. 
 // When the key path of the object changes, the bound key of the receiver is also changed.
 - (void)rz_bindKey:(NSString *)key
-        toKeyPath:(NSString *)foreignKeyPath
-        ofObject:(id)object;
+         toKeyPath:(NSString *)foreignKeyPath
+          ofObject:(id)object;
 
 // Same as the above method, but the binding function is first applied 
 // to the changed value before setting the value of the bound key.
 // If nil, the identity function is assumed, making it identical to regular rz_bindKey.
 - (void)rz_bindKey:(NSString *)key 
-        toKeyPath:(NSString *)foreignKeyPath 
-        ofObject:(id)object
-        withFunction:(RZDBKeyBindingFunction)bindingFunction;
+         toKeyPath:(NSString *)foreignKeyPath 
+          ofObject:(id)object
+      withFunction:(RZDBKeyBindingFunction)bindingFunction;
 ```
 Targets can be removed and keys unbound with corresponding removal methods, but unlike with standard KVO, you are not obligated to do so. RZDataBinding will automatically cleanup observers before objects are deallocated. 
 
@@ -70,14 +70,14 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 - (void)setupKVO
 {
     [self.user addObserver:self
-               forKeyPath:@"name"
-               options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
-               context:MyKVOContext]; 
+                forKeyPath:@"name"
+                   options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+                   context:MyKVOContext]; 
                   
     [self.user addObserver:self
-               forKeyPath:@"preferences"
-               options:kNilOptions
-               context:MyKVOContext];
+                forKeyPath:@"preferences"
+                   options:kNilOptions
+                   context:MyKVOContext];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -111,12 +111,12 @@ static void* const MyKVOContext = (void *)&MyKVOContext;
 - (void)setupKVO
 {
     [self.user rz_addTarget:self 
-               action:@selector(nameChanged:) 
-               forKeyPathChange:@"name"];
+                     action:@selector(nameChanged:) 
+           forKeyPathChange:@"name"];
     
     [self.user rz_addTarget:self.collectionView 
-               action:@selector(reloadData) 
-               forKeyPathChange:@"preferences"];
+                     action:@selector(reloadData) 
+           forKeyPathChange:@"preferences"];
 }
 ```
 Aside from the obvious reduction in code, the RZDataBinding implementation demonstrates several other wins:

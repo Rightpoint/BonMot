@@ -26,8 +26,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import "RZDBMacros.h"
+#import "RZDBTransforms.h"
 
 #pragma mark - Constants and Definitions
 
@@ -52,26 +51,18 @@ OBJC_EXTERN NSString* const kRZDBChangeKeyNew;
 OBJC_EXTERN NSString* const kRZDBChangeKeyKeyPath;
 
 /**
- *  A function that takes a value as a parameter and returns an object.
- *
- *  @param value The value that just changed on a foreign object for a bound key path.
- *
- *  @return The value to set for the bound key. Ideally the returned value should depend solely on the input value.
- */
-typedef id (^RZDBKeyBindingFunction)(id value);
-
-/**
  *  Set this to 1 (recommended) to enable automatic cleanup of observers on object deallocation.
  *  If enabled, it is safe to observe or bind to weak references, and there is need to call rz_removeTarget
  *  or rz_unbindKey before targets or observed objects are deallocated. To achieve automatic cleanup,
  *  RZDB swizzles the dealloc method to ensure observers are properly invalidated. There are other ways of implementing similar
- *  behavior, but we found this to be both the safest and most reliable in production.
+ *  behavior, but this has been found to be both the safest and most reliable in production.
  *
  *  If set to 0 (not recommended), objects MUST remove themselves as targets and unbind their keys from any observed objects before being deallocated.
  *  Failure to do so will result in crashes (just like standard KVO). Additionally, you should not add a target to or bind keys to 
  *  objects without first establishing a strong reference. Otherwise, the foreign object might be deallocated before the observer, causing in a crash.
- *  If you choose to disable global automatic cleanup by setting this to 0, you may still use the RZDBObservableObject as a base class to enable
- *  class-specific automatic cleanup.
+ *  If you choose to disable global automatic cleanup by setting this to 0, you must cleanup observers manually.
+ *
+ *  @see rz_cleanupObservers
  */
 #ifndef RZDB_AUTOMATIC_CLEANUP
 #define RZDB_AUTOMATIC_CLEANUP 1
@@ -118,6 +109,18 @@ typedef id (^RZDBKeyBindingFunction)(id value);
 - (void)rz_addTarget:(id)target action:(SEL)action forKeyPathChanges:(NSArray *)keyPaths;
 
 /**
+ *  A convenience method that calls rz_addTarget:action:forKeyPathChange: for each keyPath in the keyPaths array.
+ *
+ *  @param target   The object on which to call the action selector. Must be non-nil. This object is not retained.
+ *  @param action   The selector to call on the target. Must not be NULL. See rz_addTarget documentation for more details.
+ *  @param keyPaths An array of key paths that should trigger an action. Each key path must be KVC compliant.
+ *  @param callImmediately If YES, the action is also called immediately before this method returns. If the action takes no arguments, it will be called once. If the action takes a change dictonary parameter, it will be called once for each keypath, with the appropriate change dict. Note that in this case the dictionary will not contain a value for kRZDBChangeKeyOld.
+ *
+ *  @see RZDB_KP macro for creating keypaths.
+ */
+- (void)rz_addTarget:(id)target action:(SEL)action forKeyPathChanges:(NSArray *)keyPaths callImmediately:(BOOL)callImmediately;
+
+/**
  *  Removes previously registered target/action pairs so that the actions are no longer called when the receiver changes value for keyPath.
  *
  *  @param target  The target to remove. Must be non-nil.
@@ -137,21 +140,27 @@ typedef id (^RZDBKeyBindingFunction)(id value);
  *  @param foreignKeyPath A key path of another object to which the receiver's key value should be bound. Must be KVC compliant.
  *  @param object         An object with a key path that the receiver should bind to.
  *
+ *  @note If binding a primitive-type key to a keypath that may hit a nil object, you MUST use 
+ *  rz_bindKey:toKeyPath:ofObject:withTransform: instead. This is because attempting to set a nil
+ *  value to a primitive-type using KVC causes a crash. In this case it may be helpful to use 
+ *  one of the default RZDBTransforms.
+ *
  *  @see RZDB_KP macro for creating keypaths.
  */
 - (void)rz_bindKey:(NSString *)key toKeyPath:(NSString *)foreignKeyPath ofObject:(id)object;
 
 /**
- *  Binds the value of a given key of the receiver to the value of a key path of another object. When the key path of the object changes, the binding function is invoked and the bound key of the receiver is set to the function's return value. The receiver's value for the key will be set before this method returns.
+ *  Binds the value of a given key of the receiver to the value of a key path of another object. When the key path of the object changes, the binding transform is invoked and the bound key of the receiver is set to the transform's return value. The receiver's value for the key will be set before this method returns.
  *
  *  @param key            The receiver's key whose value should be bound to the value of a foreign key path. Must be KVC compliant.
  *  @param foreignKeyPath A key path of another object to which the receiver's key value should be bound. Must be KVC compliant.
  *  @param object         An object with a key path that the receiver should bind to.
- *  @param bindingFunction The function to apply to changed values before setting the value of the bound key. If nil, the identity function is assumed, making this method identical to regular rz_bindKey.
+ *  @param bindingTransform The transform to apply to changed values before setting the value of the bound key. If nil, the identity transform is assumed, making this method identical to regular rz_bindKey:.
+ *  You may use the constant RZDBTransforms provided for convenience.
  *
- *  @see RZDB_KP macro for creating keypaths.
+ *  @see RZDB_KP macro for creating keypaths, and RZDBTransforms for constant transforms.
  */
-- (void)rz_bindKey:(NSString *)key toKeyPath:(NSString *)foreignKeyPath ofObject:(id)object withFunction:(RZDBKeyBindingFunction)bindingFunction;
+- (void)rz_bindKey:(NSString *)key toKeyPath:(NSString *)foreignKeyPath ofObject:(id)object withTransform:(RZDBKeyBindingTransform)bindingTransform;
 
 /**
  *  Unbinds the given key of the receiver from the key path of another object.
@@ -166,19 +175,18 @@ typedef id (^RZDBKeyBindingFunction)(id value);
  */
 - (void)rz_unbindKey:(NSString *)key fromKeyPath:(NSString *)foreignKeyPath ofObject:(id)object;
 
-@end
-
-#pragma mark - RZDBObservableObject interface
-
+#if !RZDB_AUTOMATIC_CLEANUP
 /**
- *  A base class that automatically cleans up the appropriate observers before being deallocated, replicating the behavior of RZDB_AUTOMATIC_CLEANUP.
- *  When adding targets or binding to RZDBObservableObject instances, it is not necessary to call rz_removeTarget or rz_unbindKey before
- *  either the target or observable object are deallocated.
+ *  Removes all callbacks and bindings both to and from the receiver.
+ *  This method essentially resets the receiver to a pristine state with respect to RZDataBinding.
  *
- *  @note If RZDB_AUTOMATIC_CLEANUP is enabled, there is no need to use this base class. Use of this base class is intended for users who wish to disable
- *  global automatic cleanup, but easily enable it for certain classes.
+ *  If RZDB_AUTOMATIC_CLEANUP is not enabled, you MUST call this method on any
+ *  observing or observed object it is deallocated. Failure to do so will result in a crash (just like standard KVO).
  *
- *  @see RZDB_AUTOMATIC_CLEANUP
+ *  @note This method breaks all bindings and callbacks on the receiver, including those created
+ *  by other clients. Therefore it is only safe to call this method from the receiver's dealloc method.
  */
-@interface RZDBObservableObject : NSObject
+- (void)rz_cleanupObservers;
+#endif
+
 @end

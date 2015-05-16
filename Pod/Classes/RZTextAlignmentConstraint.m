@@ -9,7 +9,7 @@
 #import "RZTextAlignmentConstraint.h"
 
 // Utilities
-#import <RZDataBinding/NSObject+RZDataBinding.h>
+#import <RZDataBinding/RZDataBinding.h>
 
 typedef NS_ENUM(NSUInteger, RZItemOrdinality) {
     RZItemOrdinalityUnknown = 0,
@@ -186,13 +186,13 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 
     [self rz_addTarget:self
                 action:@selector(updateConstant)
-      forKeyPathChange:firstItemFontKeyPath];
+      forKeyPathChange:firstItemFontKeyPath
+       callImmediately:YES];
 
     [self rz_addTarget:self
                 action:@selector(updateConstant)
-      forKeyPathChange:secondItemFontKeyPath];
-
-    [self updateConstant]; // work around issue with RZDataBinding where callImmediately doesn't work if the key path can't be fully resolved: https://github.com/Raizlabs/RZDataBinding/issues/34
+      forKeyPathChange:secondItemFontKeyPath
+       callImmediately:YES];
 }
 
 - (void)updateConstant
