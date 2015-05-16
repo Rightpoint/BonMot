@@ -239,7 +239,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     if ( manuscripts.count == 0 ) {
         resultString = [[NSAttributedString alloc] init];
     }
-    if ( manuscripts.count == 1 ) {
+    else if ( manuscripts.count == 1 ) {
         NSAssert([manuscripts.firstObject isKindOfClass:[RZManuscript class]], @"Only item in manuscripts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
 
         resultString = [manuscripts.firstObject attributedString];
