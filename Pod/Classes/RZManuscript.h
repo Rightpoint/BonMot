@@ -24,13 +24,13 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 
 @interface RZManuscript : NSObject <NSCopying>
 
-// Getting Values Out
+// Appending
 
-@property (copy, nonatomic, readonly) NSAttributedString *attributedString;
-@property (copy, nonatomic, readonly) NSDictionary *attributes;
+@property (strong, nonatomic) RZManuscript *nextManuscript;
 
-// Chain Links
+// Font Properties
 
+- (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize;
 @property (copy, nonatomic, readonly) NSString *fontName;
 @property (assign, nonatomic, readonly) CGFloat fontSize;
 
@@ -54,7 +54,10 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 @property (copy, nonatomic) NSString *string;
 @property (strong, nonatomic) UIImage *image;
 
-- (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize;
+// Getting Values Out
+
+@property (copy, nonatomic, readonly) NSAttributedString *attributedString;
+@property (copy, nonatomic, readonly) NSDictionary *attributes;
 
 // Utilities
 

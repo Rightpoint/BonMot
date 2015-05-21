@@ -24,12 +24,35 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
 - (NSAttributedString *)attributedString
 {
-    NSAttributedString *attributedString = nil;
-    if ( self.string ) {
-        attributedString = [[NSAttributedString alloc] initWithString:self.string
-                                                           attributes:self.attributes];
+    NSArray *attributedStrings = self.attributedStrings;
+    NSAttributedString *attributedString = [self.class joinAttributedStrings:attributedStrings withSeparator:nil];
+    return attributedString;
+}
+
+- (NSArray *)attributedStrings
+{
+    NSMutableArray *attributedStrings = [NSMutableArray array];
+    RZManuscript *nextManuscript = self;
+    while ( nextManuscript ) {
+        RZManuscript *nextNextManuscript = nextManuscript.nextManuscript;
+        BOOL lastConcatenant = ( nextNextManuscript == nil );
+        NSAttributedString *attributedString = [nextManuscript attributedStringLastConcatenant:lastConcatenant];
+        if ( attributedString ) {
+            [attributedStrings addObject:attributedString];
+        }
+
+        nextManuscript = nextNextManuscript;
     }
-    else if ( self.image ) {
+
+    return attributedStrings;
+}
+
+- (NSAttributedString *)attributedStringLastConcatenant:(BOOL)lastConcatenant
+{
+    NSAttributedString *attributedString = nil;
+
+    if ( self.image ) {
+        NSAssert(!self.string, @"If self.image is non-nil, self.string must be nil");
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = self.image;
 
@@ -41,10 +64,21 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
         attributedString = [NSAttributedString attributedStringWithAttachment:attachment];
     }
-    else {
-        attributedString = [[NSAttributedString alloc] init];
+    else if ( self.string ) {
+        if ( lastConcatenant ) {
+            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
+                                                                                                        attributes:self.attributes];
+            NSRange lastCharacterRange = NSMakeRange(self.string.length - 1, 1);
+            [mutableAttributedString removeAttribute:NSKernAttributeName range:lastCharacterRange];
+            attributedString = mutableAttributedString.copy;
+        }
+        else {
+            // tracking all the way through
+            attributedString = [[NSAttributedString alloc] initWithString:self.string
+                                                               attributes:self.attributes];
+        }
     }
-    
+
     return attributedString;
 }
 
@@ -143,7 +177,6 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     }
 
     // Tracking
-
     NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0f;
@@ -155,10 +188,9 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     }
 
     if ( trackingInPoints > 0.0f ) {
-        // TODO: look into tipoff from @infrasonick about leaving this off the last character
         attributes[NSKernAttributeName] = @(trackingInPoints);
     }
-    
+
     // Line Height
 
     if ( self.lineHeightMultiple != 1.0f ) {
@@ -172,7 +204,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     if ( self.baselineOffset != 0.0f ) {
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
-
+    
     return attributes;
 }
 
@@ -191,6 +223,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     manuscript.figureSpacing = self.figureSpacing;
     manuscript.string = self.string;
     manuscript.image = self.image;
+    manuscript.nextManuscript = self.nextManuscript;
 
     return manuscript;
 }
@@ -229,6 +262,43 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
 #pragma mark - Utilities
 
++ (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(RZManuscript *)separator
+{
+    NSParameterAssert(!separator || [separator isKindOfClass:[RZManuscript class]]);
+    NSParameterAssert(!attributedStrings || [attributedStrings isKindOfClass:[NSArray class]]);
+
+    NSAttributedString *resultsString;
+
+    if ( attributedStrings.count == 0 ) {
+        resultsString = [[NSAttributedString alloc] init];
+    }
+    else if ( attributedStrings.count == 1) {
+        NSAssert([attributedStrings.firstObject isKindOfClass:[NSAttributedString class]], @"The only item in the attributedStrings array is not an instance of %@. It is of type %@: %@", NSStringFromClass([NSAttributedString class]), [attributedStrings.firstObject class], attributedStrings.firstObject);
+
+        resultsString = attributedStrings.firstObject;
+    }
+    else {
+        NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
+        NSAttributedString *separatorAttributedString = separator.attributedString;
+        // For each iteration, append the string and then the separator
+        for ( NSUInteger attributedStringIndex = 0; attributedStringIndex < attributedStrings.count; attributedStringIndex++ ) {
+            NSAttributedString *attributedString = attributedStrings[attributedStringIndex];
+            NSAssert([attributedString isKindOfClass:[NSAttributedString class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(attributedStringIndex), NSStringFromClass([NSAttributedString class]), [attributedString class], attributedString);
+
+            [mutableResult appendAttributedString:attributedString];
+
+            // If the separator is not the empty string, append it,
+            // unless this is the last component
+            if ( separatorAttributedString.length > 0 && (attributedStringIndex != attributedStrings.count - 1) ) {
+                [mutableResult appendAttributedString:separatorAttributedString];
+            }
+        }
+        resultsString = mutableResult;
+    }
+
+    return resultsString;
+}
+
 + (NSAttributedString *)joinManuscripts:(NSArray *)manuscripts withSeparator:(RZManuscript *)separator
 {
     NSParameterAssert(!separator || [separator isKindOfClass:[RZManuscript class]]);
@@ -240,7 +310,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
         resultString = [[NSAttributedString alloc] init];
     }
     else if ( manuscripts.count == 1 ) {
-        NSAssert([manuscripts.firstObject isKindOfClass:[RZManuscript class]], @"Only item in manuscripts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
+        NSAssert([manuscripts.firstObject isKindOfClass:[RZManuscript class]], @"The only item in the manuscripts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
 
         resultString = [manuscripts.firstObject attributedString];
     }
@@ -250,7 +320,7 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
         // For each iteration, append the string and then the separator
         for ( NSUInteger manuscriptIndex = 0; manuscriptIndex < manuscripts.count; manuscriptIndex++ ) {
             RZManuscript *manuscript = manuscripts[manuscriptIndex];
-            NSAssert([manuscript isKindOfClass:[RZManuscript class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(manuscriptIndex), NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
+            NSAssert([manuscript isKindOfClass:[RZManuscript class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(manuscriptIndex), NSStringFromClass([RZManuscript class]), [manuscript class], manuscript);
 
             [mutableResult appendAttributedString:manuscript.attributedString];
 
