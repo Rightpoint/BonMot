@@ -13,6 +13,8 @@
 static const CGFloat kRZAdobeTrackingDivisor = 1000.0f;
 static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
 
+static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
+
 @interface RZManuscript ()
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
@@ -351,6 +353,71 @@ static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
     CGFloat pointSizeToUse = font ? font.pointSize : kRZDefaultFontSize;
     CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kRZAdobeTrackingDivisor);
     return convertedTracking;
+}
+
+- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses
+{
+    NSAttributedString *originalAttributedString = self.attributedString;
+
+    NSString *originalString = originalAttributedString.string;
+
+    NSMutableString *debugString = [NSMutableString string];
+
+    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        // New Line
+        [debugString appendString:@"\n"];
+
+        if ( [substring isEqualToString:kRZAttachmentCharacterString] ) {
+            NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
+            NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
+            UIImage *attachedImage = attachment.image;
+            if ( includeImageAddresses ) {
+                [debugString appendFormat:@"%@", attachedImage];
+            }
+            else {
+                [debugString appendFormat:@"[attached image of size: %@]", NSStringFromCGSize(attachedImage.size)];
+            }
+        }
+        else {
+            static NSCharacterSet *s_newLineCharacterSet = nil;
+            if ( !s_newLineCharacterSet ) {
+                s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
+            }
+
+            // If it's not a newline character, append it. Otherwise, append a space.
+            if ( [substring rangeOfCharacterFromSet:s_newLineCharacterSet].location == NSNotFound ) {
+                [debugString appendString:substring];
+            }
+            else {
+                [debugString appendString:@" "];
+            }
+
+            NSMutableString *unicodeName = substring.mutableCopy;
+
+            Boolean success = CFStringTransform((CFMutableStringRef)unicodeName, NULL, kCFStringTransformToUnicodeName, FALSE);
+
+            if ( success ) {
+                // Append name only if it is different from the string itself
+                if ( ![unicodeName isEqualToString:substring] ) {
+                    [debugString appendFormat:@"[%@]", unicodeName];
+                }
+            }
+            else {
+                [debugString appendString:@"[Unable to get name of character]"];
+            }
+        }
+    }];
+    
+    if ( debugString.length == 0 ) {
+        [debugString appendString:@"[empty string]"];
+    }
+    
+    return debugString.copy;
+}
+
+- (NSString *)debugDescription
+{
+    return [self debugDescriptionIncludeImageAddresses:YES];
 }
 
 @end

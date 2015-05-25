@@ -49,7 +49,18 @@
                                                                 beeChainLink.manuscript,
                                                                 ]
                                                 withSeparator:RZCursive.string(@" ").manuscript];
+
     self.label.attributedText = rebus;
+
+    // TODO: replace this with concise appending DSL syntax
+
+    twoChainLink.manuscript.nextManuscript = beeChainLink.manuscript.copy;
+    twoChainLink.manuscript.nextManuscript.nextManuscript = oarChainLink.manuscript.copy;
+    twoChainLink.manuscript.nextManuscript.nextManuscript.nextManuscript = knotChainLink.manuscript.copy;
+    twoChainLink.manuscript.nextManuscript.nextManuscript.nextManuscript.nextManuscript = twoChainLink.manuscript.copy;
+    twoChainLink.manuscript.nextManuscript.nextManuscript.nextManuscript.nextManuscript.nextManuscript = beeChainLink.manuscript.copy;
+
+    NSLog(@"debug string:%@", twoChainLink.manuscript.debugDescription);
 }
 
 @end
