@@ -36,7 +36,7 @@
                          @" black, ",
                          @" I want to be wearing ",
                          @" red. ",
-                         @"\n—Maria Sharapova",
+                         @"\nMaria Sharapova ",
                          ];
 
     RZChainLink *baseLineHeight = RZCursive.lineHeightMultiple(1.2f);
