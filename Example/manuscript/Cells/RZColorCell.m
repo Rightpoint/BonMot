@@ -10,6 +10,9 @@
 
 #import <manuscript/RZChainLink.h>
 
+// Utilities
+#import <manuscript/UIImage+RZManuscriptUtilities.h>
+
 @interface RZColorCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
@@ -29,7 +32,7 @@
 
     // Quote to replicate:
     //    I want to be different. If everyone is wearing black, I want to be wearing red.
-    //    Maria Sharapova
+    //    Maria Sharapova [Tinted Tennis Racket Image]
 
     NSArray *strings = @[
                          @"I want to be different. If everyone is wearing ",
@@ -70,6 +73,12 @@
     }
 
     NSAssert(manuscriptsWithText.count == strings.count, @"wrong count");
+
+    UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
+    UIImage *tinted = [tennisRacketImage rz_tintedImageWithColor:[self.class raizlabsRed]];
+    RZChainLink *tennisRacket = RZCursive.image(tinted).baselineOffset(-4.0f);
+
+    [manuscriptsWithText addObject:tennisRacket.manuscript];
 
     NSAttributedString *attributedString = [RZManuscript joinManuscripts:manuscriptsWithText withSeparator:nil];
     self.label.attributedText = attributedString;
