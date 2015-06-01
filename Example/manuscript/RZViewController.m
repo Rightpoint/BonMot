@@ -54,7 +54,6 @@
         [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(CellClass) bundle:nil]
              forCellReuseIdentifier:[CellClass reuseIdentifier]];
     }
-
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
