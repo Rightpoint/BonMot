@@ -77,5 +77,4 @@
     [self.label layoutIfNeeded];
 }
 
-
 @end
