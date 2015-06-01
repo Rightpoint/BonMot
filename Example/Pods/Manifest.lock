@@ -1,8 +1,6 @@
 PODS:
   - Expecta (0.4.0)
-  - manuscript (0.1.0):
-    - RZDataBinding (~> 2.0)
-  - RZDataBinding (2.0.0)
+  - manuscript (0.1.0)
   - Specta (0.5.0)
 
 DEPENDENCIES:
@@ -16,8 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 392a6b5bfb9f4097e47dd8064d9b732079490332
-  manuscript: 11a19716fe29bf5cc46849c027b651315950d5a7
-  RZDataBinding: 32857fd99029a3ed2e9f4545506b350f7e04b4e7
+  manuscript: e0bead40ab33e4b9c76cf5c39e47fbd83c3a84f1
   Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
 COCOAPODS: 0.35.0

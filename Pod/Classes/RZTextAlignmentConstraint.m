@@ -8,9 +8,6 @@
 
 #import "RZTextAlignmentConstraint.h"
 
-// Utilities
-#import <RZDataBinding/RZDataBinding.h>
-
 typedef NS_ENUM(NSUInteger, RZItemOrdinality) {
     RZItemOrdinalityUnknown = 0,
     RZItemOrdinalityFirst,
@@ -151,7 +148,12 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self configureObservers];
+    [self setUpObservers];
+}
+
+- (void)dealloc
+{
+    [self tearDownObservers];
 }
 
 - (void)setFirstAlignment:(NSString *)firstAlignment
@@ -170,9 +172,21 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
     }
 }
 
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ( context == kRZTextAlignmentConstraintContext ) {
+        [self updateConstant];
+    }
+    else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 #pragma mark - Private
 
-- (void)configureObservers
+- (void)setUpObservers
 {
     NSString *firstItemFontKeyPath = [@[
                                         NSStringFromSelector(@selector(firstItem)),
@@ -184,15 +198,27 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
                                          NSStringFromSelector(@selector(font)),
                                          ] componentsJoinedByString:@"."];
 
-    [self rz_addTarget:self
-                action:@selector(updateConstant)
-      forKeyPathChange:firstItemFontKeyPath
-       callImmediately:YES];
+    [self addObserver:self forKeyPath:firstItemFontKeyPath options:0 context:kRZTextAlignmentConstraintContext];
+    [self addObserver:self forKeyPath:secondItemFontKeyPath options:0 context:kRZTextAlignmentConstraintContext];
 
-    [self rz_addTarget:self
-                action:@selector(updateConstant)
-      forKeyPathChange:secondItemFontKeyPath
-       callImmediately:YES];
+    // Call Observer method once initially
+    [self updateConstant];
+}
+
+- (void)tearDownObservers
+{
+    NSString *firstItemFontKeyPath = [@[
+                                        NSStringFromSelector(@selector(firstItem)),
+                                        NSStringFromSelector(@selector(font)),
+                                        ] componentsJoinedByString:@"."];
+
+    NSString *secondItemFontKeyPath = [@[
+                                         NSStringFromSelector(@selector(secondItem)),
+                                         NSStringFromSelector(@selector(font)),
+                                         ] componentsJoinedByString:@"."];
+
+    [self removeObserver:self forKeyPath:firstItemFontKeyPath context:kRZTextAlignmentConstraintContext];
+    [self removeObserver:self forKeyPath:secondItemFontKeyPath context:kRZTextAlignmentConstraintContext];
 }
 
 - (void)updateConstant
