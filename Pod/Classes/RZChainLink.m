@@ -9,7 +9,6 @@
 #import "RZChainLink.h"
 
 #import <manuscript/RZManuscript.h>
-#import <manuscript/RZManuscript_Framework.h>
 
 @interface RZChainLink ()
 

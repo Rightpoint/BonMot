@@ -7,7 +7,6 @@
 //
 
 #import "RZManuscript.h"
-#import "RZManuscript_Framework.h"
 
 @import CoreText.SFNTLayoutTypes;
 
@@ -338,18 +337,6 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
     }
     
     return resultString;
-}
-
-#pragma mark - Framework
-
-- (RZManuscript *)lastManuscript
-{
-    RZManuscript *lastManuscript = self;
-    while ( lastManuscript.nextManuscript ) {
-        lastManuscript = lastManuscript.nextManuscript;
-    }
-
-    return lastManuscript;
 }
 
 #pragma mark - Private
