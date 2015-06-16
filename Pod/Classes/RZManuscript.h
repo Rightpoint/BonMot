@@ -6,7 +6,7 @@
 //
 //
 
-@import Foundation;
+@import UIKit;
 
 typedef NS_ENUM(NSUInteger, RZFigureCase) {
     RZFigureCaseDefault = 0,
