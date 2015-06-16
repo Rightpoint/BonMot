@@ -39,26 +39,21 @@
 
     RZChainLink *twoChainLink = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
 
-    // To be or not to be
-    NSAttributedString *rebus = [RZManuscript joinManuscripts:@[
-                                                                twoChainLink.manuscript,
-                                                                beeChainLink.manuscript,
-                                                                oarChainLink.manuscript,
-                                                                knotChainLink.manuscript,
-                                                                twoChainLink.manuscript,
-                                                                beeChainLink.manuscript,
-                                                                ]
-                                                withSeparator:RZCursive.string(@" ").manuscript];
+    RZChainLink *space = RZCursive.string(@" ");
 
-    self.label.attributedText = rebus;
+    twoChainLink
+    .append(space)
+    .append(beeChainLink)
+    .append(space)
+    .append(oarChainLink)
+    .append(space)
+    .append(knotChainLink)
+    .append(space)
+    .append(twoChainLink)
+    .append(space)
+    .append(beeChainLink);
 
-    // TODO: replace this with concise appending DSL syntax
-
-    twoChainLink.manuscript.nextManuscript = beeChainLink.manuscript.copy;
-    twoChainLink.manuscript.nextManuscript.nextManuscript = oarChainLink.manuscript.copy;
-    twoChainLink.manuscript.nextManuscript.nextManuscript.nextManuscript = knotChainLink.manuscript.copy;
-    twoChainLink.manuscript.nextManuscript.nextManuscript.nextManuscript.nextManuscript = twoChainLink.manuscript.copy;
-    twoChainLink.manuscript.nextManuscript.nextManuscript.nextManuscript.nextManuscript.nextManuscript = beeChainLink.manuscript.copy;
+    self.label.attributedText = twoChainLink.attributedString;
 
     NSLog(@"debug string:%@", twoChainLink.manuscript.debugDescription);
 }

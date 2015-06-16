@@ -9,10 +9,11 @@
 #import "RZChainLink.h"
 
 #import <manuscript/RZManuscript.h>
+#import <manuscript/RZManuscript_Framework.h>
 
 @interface RZChainLink ()
 
-@property (copy, nonatomic) RZManuscript *manuscript;
+@property (strong, nonatomic) RZManuscript *manuscript;
 
 @end
 
@@ -179,6 +180,28 @@
     };
     
     return [imageBlock copy];
+}
+
+- (RZChainLinkAppend)append
+{
+    RZChainLinkAppend appendBlock = ^(id chainLinkOrManuscript) {
+        RZManuscript *manuscriptToAppend = nil;
+        if ( [chainLinkOrManuscript isKindOfClass:[RZChainLink class]] ) {
+            manuscriptToAppend = [chainLinkOrManuscript manuscript];
+        }
+        else if ( [chainLinkOrManuscript isKindOfClass:[RZManuscript class]] ) {
+            manuscriptToAppend = chainLinkOrManuscript;
+        }
+        else {
+            NSAssert(NO, @"Expected chainLinkOrManuscript to be of class RZChainLink or RZManuscript, but it was of type %@: %@", [chainLinkOrManuscript class], chainLinkOrManuscript);
+        }
+        self.manuscript.nextManuscript = manuscriptToAppend.copy;
+        __typeof(self) newChainLink = [[self.class alloc] init];
+        newChainLink.manuscript = self.manuscript.nextManuscript;
+        return newChainLink;
+    };
+
+    return [appendBlock copy];
 }
 
 @end

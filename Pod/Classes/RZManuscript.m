@@ -7,11 +7,13 @@
 //
 
 #import "RZManuscript.h"
+#import "RZManuscript_Framework.h"
 
 @import CoreText.SFNTLayoutTypes;
 
 static const CGFloat kRZAdobeTrackingDivisor = 1000.0f;
 static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
+static const unichar kRZSpaceCharacter = 32;
 
 static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
 
@@ -338,6 +340,18 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
     return resultString;
 }
 
+#pragma mark - Framework
+
+- (RZManuscript *)lastManuscript
+{
+    RZManuscript *lastManuscript = self;
+    while ( lastManuscript.nextManuscript ) {
+        lastManuscript = lastManuscript.nextManuscript;
+    }
+
+    return lastManuscript;
+}
+
 #pragma mark - Private
 
 /**
@@ -401,9 +415,28 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
                 if ( ![unicodeName isEqualToString:substring] ) {
                     [debugString appendFormat:@"[%@]", unicodeName];
                 }
+                else {
+                    // If it is a whitespace or new line string, describe it better than just appending it
+                    NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
+                    if ( !s_whiteSpaceAndNewLinesSet ) {
+                        s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+                    }
+
+                    if ( [unicodeName rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound ) {
+                        unichar character = [unicodeName characterAtIndex:0];
+                        if ( character == kRZSpaceCharacter ) {
+                            [debugString appendString:@"[Space]"];
+                        }
+                        else {
+                            [debugString appendFormat:@"Whitespace character: %02d, 0x%02X", character, character];
+                        }
+                    }
+                }
+
             }
             else {
-                [debugString appendString:@"[Unable to get name of character]"];
+                unichar character = [substring characterAtIndex:0];
+                [debugString appendFormat:@"[Unknown character: %02d, 0x%02X]", character, character];
             }
         }
     }];

@@ -25,10 +25,11 @@ typedef RZChainLink*(^RZChainLinkFigureCase)(RZFigureCase figureCase);
 typedef RZChainLink*(^RZChainLinkFigureSpacing)(RZFigureSpacing figureSpacing);
 typedef RZChainLink*(^RZChainLinkString)(NSString *string);
 typedef RZChainLink*(^RZChainLinkImage)(UIImage *image);
+typedef RZChainLink*(^RZChainLinkAppend)(id manuscriptOrChainLink);
 
 @interface RZChainLink : NSObject <NSCopying>
 
-@property (copy, nonatomic, readonly) RZManuscript *manuscript;
+@property (strong, nonatomic, readonly) RZManuscript *manuscript;
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) NSDictionary *attributes;
 
@@ -54,5 +55,8 @@ typedef RZChainLink*(^RZChainLinkImage)(UIImage *image);
 // string and image are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic, readonly) RZChainLinkString string;
 @property (copy, nonatomic, readonly) RZChainLinkImage image;
+
+// concatenation
+@property (copy, nonatomic, readonly) RZChainLinkAppend append;
 
 @end

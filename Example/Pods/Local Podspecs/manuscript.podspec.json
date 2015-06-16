@@ -1,0 +1,25 @@
+{
+  "name": "manuscript",
+  "version": "0.1.0",
+  "summary": "A short description of manuscript.",
+  "description": "                       An optional longer description of manuscript\n\n                       * Markdown format.\n                       * Don't worry about the indent, we strip it!\n",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/manuscript",
+  "license": "MIT",
+  "authors": {
+    "Zev Eisenberg": "zev.eisenberg@raizlabs.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/manuscript.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "manuscript": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}
