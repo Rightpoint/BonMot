@@ -580,6 +580,7 @@
 					"-Wno-switch-enum",
 					"-Wno-gnu",
 					"-Wnewline-eof",
+					"-Rno-module-build",
 				);
 			};
 			name = Debug;
@@ -625,6 +626,7 @@
 					"-Wno-switch-enum",
 					"-Wno-gnu",
 					"-Wnewline-eof",
+					"-Rno-module-build",
 				);
 			};
 			name = Release;
