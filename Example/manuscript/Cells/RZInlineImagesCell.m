@@ -41,7 +41,9 @@
 
     RZChainLink *spaceChainLink = RZCursive.string(@" ");
 
-    twoChainLink
+    RZChainLink *wholeString = RZCursive;
+    wholeString
+    .append(twoChainLink)
     .appendWithSeparator(@" ", beeChainLink)
     .appendWithSeparator(@" ", oarChainLink)
     .appendWithSeparator(@" ", knotChainLink)
@@ -50,9 +52,9 @@
     .append(twoChainLink)
     .appendWithSeparator(@" ", beeChainLink);
 
-    self.label.attributedText = twoChainLink.attributedString;
+    self.label.attributedText = wholeString.attributedString;
 
-    NSLog(@"debug string:%@", twoChainLink.manuscript.debugDescription);
+    NSLog(@"debug string:%@", wholeString.manuscript.debugDescription);
 }
 
 @end
