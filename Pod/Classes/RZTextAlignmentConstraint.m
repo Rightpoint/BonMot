@@ -58,10 +58,10 @@ NSString *normalizeString(NSString *string)
 
     // strip all non-letter characters
     NSArray *lettersOnlyComponents = [lowercaseString componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]];
-    NSString *lettersOnlyString = [lettersOnlyComponents componentsJoinedByString:nil];
+    NSString *lettersOnlyString = [lettersOnlyComponents componentsJoinedByString:@""];
 
     NSArray *noWhitespaceComponents = [lettersOnlyString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSString *noWhitespaceString = [noWhitespaceComponents componentsJoinedByString:nil];
+    NSString *noWhitespaceString = [noWhitespaceComponents componentsJoinedByString:@""];
 
     return noWhitespaceString;
 }
