@@ -66,6 +66,12 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
                                        self.image.size.height);
 
         attributedString = [NSAttributedString attributedStringWithAttachment:attachment];
+
+        if ( self.trailingString ) {
+            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
+            [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.trailingString attributes:self.attributes]];
+            attributedString = mutableAttributedString;
+        }
     }
     else if ( self.string ) {
         if ( lastConcatenant ) {
@@ -77,7 +83,14 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
         }
         else {
             // tracking all the way through
-            attributedString = [[NSAttributedString alloc] initWithString:self.string
+            NSString *stringToUse = self.string;
+
+            // we aren't the last component, so append our trailing string using the same attributes as self
+            if ( self.trailingString ) {
+                stringToUse = [stringToUse stringByAppendingString:self.trailingString];
+            }
+
+            attributedString = [[NSAttributedString alloc] initWithString:stringToUse
                                                                attributes:self.attributes];
         }
     }

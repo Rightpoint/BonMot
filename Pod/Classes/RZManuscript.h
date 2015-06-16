@@ -54,6 +54,11 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 @property (copy, nonatomic) NSString *string;
 @property (strong, nonatomic) UIImage *image;
 
+/**
+ *  This string is appended, using the same attributes as @c self, if this manuscript has another manuscript appended to it.
+ */
+@property (copy, nonatomic) NSString *trailingString;
+
 // Getting Values Out
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
@@ -66,6 +71,7 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
  *
  *  @param manuscripts An array of @c RZManuscript objects to join.
  *  @param separator   The @c RZManuscript to interpose between the elements of the array. May be @c nil.
+ *  @note the menuscripts’ @c trailingString property is ignored.
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
  */

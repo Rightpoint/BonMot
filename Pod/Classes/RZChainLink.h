@@ -26,6 +26,7 @@ typedef RZChainLink*(^RZChainLinkFigureSpacing)(RZFigureSpacing figureSpacing);
 typedef RZChainLink*(^RZChainLinkString)(NSString *string);
 typedef RZChainLink*(^RZChainLinkImage)(UIImage *image);
 typedef RZChainLink*(^RZChainLinkAppend)(id manuscriptOrChainLink);
+typedef RZChainLink*(^RZChainLinkAppendWithSeparator)(NSString *separator, id manuscriptOrChainLink);
 
 @interface RZChainLink : NSObject <NSCopying>
 
@@ -58,5 +59,6 @@ typedef RZChainLink*(^RZChainLinkAppend)(id manuscriptOrChainLink);
 
 // concatenation
 @property (copy, nonatomic, readonly) RZChainLinkAppend append;
+@property (copy, nonatomic, readonly) RZChainLinkAppendWithSeparator appendWithSeparator;
 
 @end

@@ -39,19 +39,16 @@
 
     RZChainLink *twoChainLink = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
 
-    RZChainLink *space = RZCursive.string(@" ");
+    RZChainLink *spaceChainLink = RZCursive.string(@" ");
 
     twoChainLink
-    .append(space)
-    .append(beeChainLink)
-    .append(space)
-    .append(oarChainLink)
-    .append(space)
-    .append(knotChainLink)
-    .append(space)
+    .appendWithSeparator(@" ", beeChainLink)
+    .appendWithSeparator(@" ", oarChainLink)
+    .appendWithSeparator(@" ", knotChainLink)
+    // you can also append the space and the chain link separately if you prefer
+    .append(spaceChainLink)
     .append(twoChainLink)
-    .append(space)
-    .append(beeChainLink);
+    .appendWithSeparator(@" ", beeChainLink);
 
     self.label.attributedText = twoChainLink.attributedString;
 

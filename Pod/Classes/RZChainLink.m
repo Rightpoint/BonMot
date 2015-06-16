@@ -203,4 +203,27 @@
     return [appendBlock copy];
 }
 
+- (RZChainLinkAppendWithSeparator)appendWithSeparator
+{
+    RZChainLinkAppendWithSeparator appendBlock = ^(NSString *separator, id chainLinkOrManuscript) {
+        self.manuscript.trailingString = separator;
+        RZManuscript *manuscriptToAppend = nil;
+        if ( [chainLinkOrManuscript isKindOfClass:[RZChainLink class]] ) {
+            manuscriptToAppend = [chainLinkOrManuscript manuscript];
+        }
+        else if ( [chainLinkOrManuscript isKindOfClass:[RZManuscript class]] ) {
+            manuscriptToAppend = chainLinkOrManuscript;
+        }
+        else {
+            NSAssert(NO, @"Expected chainLinkOrManuscript to be of class RZChainLink or RZManuscript, but it was of type %@: %@", [chainLinkOrManuscript class], chainLinkOrManuscript);
+        }
+        self.manuscript.nextManuscript = manuscriptToAppend.copy;
+        __typeof(self) newChainLink = [[self.class alloc] init];
+        newChainLink.manuscript = self.manuscript.nextManuscript;
+        return newChainLink;
+    };
+
+    return [appendBlock copy];
+}
+
 @end
