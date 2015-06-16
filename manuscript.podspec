@@ -9,22 +9,18 @@
 
 Pod::Spec.new do |s|
   s.name             = "manuscript"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of manuscript."
+  s.version          = "0.0.1"
+  s.summary          = "An Objective-C attributed string generation library."
   s.description      = <<-DESC
-                       An optional longer description of manuscript
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
+  Manuscript removes all the mystery from creating beautiful, powerful attributed strings on iOS.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/manuscript"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.homepage         = "https://github.com/ZevEisenberg/manuscript"
   s.license          = 'MIT'
   s.author           = { "Zev Eisenberg" => "zev.eisenberg@raizlabs.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/manuscript.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/ZevEisenberg/manuscript.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/ZevEisenberg'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '8.3'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
@@ -33,5 +29,5 @@ Pod::Spec.new do |s|
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit'
 end

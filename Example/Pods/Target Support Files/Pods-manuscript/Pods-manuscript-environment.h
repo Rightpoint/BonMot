@@ -9,6 +9,6 @@
 // manuscript
 #define COCOAPODS_POD_AVAILABLE_manuscript
 #define COCOAPODS_VERSION_MAJOR_manuscript 0
-#define COCOAPODS_VERSION_MINOR_manuscript 1
-#define COCOAPODS_VERSION_PATCH_manuscript 0
+#define COCOAPODS_VERSION_MINOR_manuscript 0
+#define COCOAPODS_VERSION_PATCH_manuscript 1
 

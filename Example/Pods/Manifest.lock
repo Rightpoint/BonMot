@@ -1,5 +1,5 @@
 PODS:
-  - manuscript (0.1.0)
+  - manuscript (0.0.1)
 
 DEPENDENCIES:
   - manuscript (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  manuscript: 84dabb63c7e4fae5ab36e52de183f1d2f9750a74
+  manuscript: 06aa49d51813db13e899d9e7baa02d4b35282c67
 
 COCOAPODS: 0.37.2
