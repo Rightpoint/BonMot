@@ -1,20 +1,14 @@
 PODS:
-  - Expecta (0.4.0)
   - manuscript (0.1.0)
-  - Specta (0.5.0)
 
 DEPENDENCIES:
-  - Expecta
   - manuscript (from `../`)
-  - Specta
 
 EXTERNAL SOURCES:
   manuscript:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Expecta: 392a6b5bfb9f4097e47dd8064d9b732079490332
   manuscript: 84dabb63c7e4fae5ab36e52de183f1d2f9750a74
-  Specta: eb90708ed77569bbda089f8ead10bb99b8e9489e
 
 COCOAPODS: 0.37.2

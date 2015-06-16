@@ -6,7 +6,4 @@ end
 
 target 'Tests', :exclusive => true do
   pod "manuscript", :path => "../"
-
-  pod 'Specta'
-  pod 'Expecta'
 end
