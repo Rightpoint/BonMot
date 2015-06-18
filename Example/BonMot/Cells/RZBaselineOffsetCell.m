@@ -8,7 +8,7 @@
 
 #import "RZBaselineOffsetCell.h"
 
-#import <BonMot/RZChainLink.h>
+#import <BonMot/BONChainLink.h>
 
 @interface RZBaselineOffsetCell ()
 
@@ -27,16 +27,16 @@
 {
     [super awakeFromNib];
 
-    RZChainLink *baseChainLink = RZCursive.string(@"❤️");
+    BONChainLink *baseChainLink = RZCursive.string(@"❤️");
 
     NSMutableArray *wave = [NSMutableArray array];
 
     for ( NSUInteger i = 0; i < 50; i++ ) {
         CGFloat offset = 15.0f * sin((i / 20.0f) * 7.0f * M_PI);
-        [wave addObject:baseChainLink.baselineOffset(offset).manuscript];
+        [wave addObject:baseChainLink.baselineOffset(offset).textConfiguration];
     };
 
-    self.label.attributedText = [RZManuscript joinManuscripts:wave withSeparator:nil];
+    self.label.attributedText = [BONTextConfiguration joinTextConfigurations:wave withSeparator:nil];
 }
 
 @end

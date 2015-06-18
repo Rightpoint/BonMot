@@ -8,10 +8,10 @@
 
 #import "RZColorCell.h"
 
-#import <BonMot/RZChainLink.h>
+#import <BonMot/BONChainLink.h>
 
 // Utilities
-#import <BonMot/UIImage+RZManuscriptUtilities.h>
+#import <BonMot/UIImage+BonMotUtilities.h>
 
 @interface RZColorCell ()
 
@@ -42,16 +42,16 @@
                          @"\nMaria Sharapova ",
                          ];
 
-    RZChainLink *baseLineHeight = RZCursive.lineHeightMultiple(1.2f);
+    BONChainLink *baseLineHeight = RZCursive.lineHeightMultiple(1.2f);
 
-    RZChainLink *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0f).textColor([UIColor darkGrayColor]);
+    BONChainLink *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0f).textColor([UIColor darkGrayColor]);
 
-    RZChainLink *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0f);
+    BONChainLink *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0f);
 
-    RZChainLink *blackBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
+    BONChainLink *blackBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
 
-    RZChainLink *redBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
-    RZChainLink *redFont = fancyFont.textColor([self.class raizlabsRed]);
+    BONChainLink *redBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
+    BONChainLink *redFont = fancyFont.textColor([self.class raizlabsRed]);
 
     NSArray *chainLinks = @[
                             grayFont,
@@ -63,24 +63,24 @@
 
     NSAssert(strings.count == chainLinks.count, @"wrong count");
 
-    NSMutableArray *manuscriptsWithText = [NSMutableArray array];
+    NSMutableArray *textConfigurationsWithText = [NSMutableArray array];
 
     for ( NSUInteger i = 0; i < strings.count; i++ ) {
         NSString *string = strings[i];
-        RZChainLink *link = chainLinks[i];
-        RZChainLink *newLink = link.string(string);
-        [manuscriptsWithText addObject:newLink.manuscript];
+        BONChainLink *link = chainLinks[i];
+        BONChainLink *newLink = link.string(string);
+        [textConfigurationsWithText addObject:newLink.textConfiguration];
     }
 
-    NSAssert(manuscriptsWithText.count == strings.count, @"wrong count");
+    NSAssert(textConfigurationsWithText.count == strings.count, @"wrong count");
 
     UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
     UIImage *tinted = [tennisRacketImage rz_tintedImageWithColor:[self.class raizlabsRed]];
-    RZChainLink *tennisRacket = RZCursive.image(tinted).baselineOffset(-4.0f);
+    BONChainLink *tennisRacket = RZCursive.image(tinted).baselineOffset(-4.0f);
 
-    [manuscriptsWithText addObject:tennisRacket.manuscript];
+    [textConfigurationsWithText addObject:tennisRacket.textConfiguration];
 
-    NSAttributedString *attributedString = [RZManuscript joinManuscripts:manuscriptsWithText withSeparator:nil];
+    NSAttributedString *attributedString = [BONTextConfiguration joinTextConfigurations:textConfigurationsWithText withSeparator:nil];
     self.label.attributedText = attributedString;
 
     [self.label layoutIfNeeded];

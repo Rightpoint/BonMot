@@ -1,14 +1,14 @@
 //
-//  UIImage+RZManuscriptUtilities.m
+//  UIImage+BonMotUtilities.m
 //  Pods
 //
 //  Created by Zev Eisenberg on 5/11/15.
 //
 //
 
-#import "UIImage+RZManuscriptUtilities.h"
+#import "UIImage+BonMotUtilities.h"
 
-@implementation UIImage (RZManuscriptUtilities)
+@implementation UIImage (BonMotUtilities)
 
 - (UIImage *)rz_tintedImageWithColor:(UIColor *)color
 {

@@ -1,12 +1,12 @@
 //
-//  RZManuscript.m
+//  BONTextConfiguration.m
 //  Pods
 //
 //  Created by Zev Eisenberg on 4/17/15.
 //
 //
 
-#import "RZManuscript.h"
+#import "BONTextConfiguration.h"
 
 @import CoreText.SFNTLayoutTypes;
 
@@ -16,14 +16,14 @@ static const unichar kRZSpaceCharacter = 32;
 
 static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
 
-@interface RZManuscript ()
+@interface BONTextConfiguration ()
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
 @property (assign, nonatomic, readwrite) CGFloat fontSize;
 
 @end
 
-@implementation RZManuscript
+@implementation BONTextConfiguration
 
 - (NSAttributedString *)attributedString
 {
@@ -35,16 +35,16 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
 - (NSArray *)attributedStrings
 {
     NSMutableArray *attributedStrings = [NSMutableArray array];
-    RZManuscript *nextManuscript = self;
-    while ( nextManuscript ) {
-        RZManuscript *nextNextManuscript = nextManuscript.nextManuscript;
-        BOOL lastConcatenant = ( nextNextManuscript == nil );
-        NSAttributedString *attributedString = [nextManuscript attributedStringLastConcatenant:lastConcatenant];
+    BONTextConfiguration *nextTextConfiguration = self;
+    while ( nextTextConfiguration ) {
+        BONTextConfiguration *nextnextTextConfiguration = nextTextConfiguration.nextTextConfiguration;
+        BOOL lastConcatenant = ( nextnextTextConfiguration == nil );
+        NSAttributedString *attributedString = [nextTextConfiguration attributedStringLastConcatenant:lastConcatenant];
         if ( attributedString ) {
             [attributedStrings addObject:attributedString];
         }
 
-        nextManuscript = nextNextManuscript;
+        nextTextConfiguration = nextnextTextConfiguration;
     }
 
     return attributedStrings;
@@ -220,28 +220,28 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
     if ( self.baselineOffset != 0.0f ) {
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
-    
+
     return attributes;
 }
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    __typeof(self) manuscript = [[self.class alloc] init];
+    __typeof(self) textConfiguration = [[self.class alloc] init];
 
-    manuscript.font = self.font;
-    manuscript.textColor = self.textColor;
-    manuscript.backgroundColor = self.backgroundColor;
-    manuscript.adobeTracking = self.adobeTracking;
-    manuscript.pointTracking = self.pointTracking;
-    manuscript.lineHeightMultiple = self.lineHeightMultiple;
-    manuscript.baselineOffset = self.baselineOffset;
-    manuscript.figureCase = self.figureCase;
-    manuscript.figureSpacing = self.figureSpacing;
-    manuscript.string = self.string;
-    manuscript.image = self.image;
-    manuscript.nextManuscript = self.nextManuscript;
+    textConfiguration.font = self.font;
+    textConfiguration.textColor = self.textColor;
+    textConfiguration.backgroundColor = self.backgroundColor;
+    textConfiguration.adobeTracking = self.adobeTracking;
+    textConfiguration.pointTracking = self.pointTracking;
+    textConfiguration.lineHeightMultiple = self.lineHeightMultiple;
+    textConfiguration.baselineOffset = self.baselineOffset;
+    textConfiguration.figureCase = self.figureCase;
+    textConfiguration.figureSpacing = self.figureSpacing;
+    textConfiguration.string = self.string;
+    textConfiguration.image = self.image;
+    textConfiguration.nextTextConfiguration = self.nextTextConfiguration;
 
-    return manuscript;
+    return textConfiguration;
 }
 
 - (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize
@@ -278,9 +278,9 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
 
 #pragma mark - Utilities
 
-+ (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(RZManuscript *)separator
++ (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(BONTextConfiguration *)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[RZManuscript class]]);
+    NSParameterAssert(!separator || [separator isKindOfClass:[BONTextConfiguration class]]);
     NSParameterAssert(!attributedStrings || [attributedStrings isKindOfClass:[NSArray class]]);
 
     NSAttributedString *resultsString;
@@ -315,40 +315,40 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
     return resultsString;
 }
 
-+ (NSAttributedString *)joinManuscripts:(NSArray *)manuscripts withSeparator:(RZManuscript *)separator
++ (NSAttributedString *)joinTextConfigurations:(NSArray *)textConfigurations withSeparator:(BONTextConfiguration *)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[RZManuscript class]]);
-    NSParameterAssert(!manuscripts || [manuscripts isKindOfClass:[NSArray class]]);
+    NSParameterAssert(!separator || [separator isKindOfClass:[BONTextConfiguration class]]);
+    NSParameterAssert(!textConfigurations || [textConfigurations isKindOfClass:[NSArray class]]);
 
     NSAttributedString *resultString;
 
-    if ( manuscripts.count == 0 ) {
+    if ( textConfigurations.count == 0 ) {
         resultString = [[NSAttributedString alloc] init];
     }
-    else if ( manuscripts.count == 1 ) {
-        NSAssert([manuscripts.firstObject isKindOfClass:[RZManuscript class]], @"The only item in the manuscripts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([RZManuscript class]), [manuscripts.firstObject class], manuscripts.firstObject);
+    else if ( textConfigurations.count == 1 ) {
+        NSAssert([textConfigurations.firstObject isKindOfClass:[BONTextConfiguration class]], @"The only item in the textConfigurations array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONTextConfiguration class]), [textConfigurations.firstObject class], textConfigurations.firstObject);
 
-        resultString = [manuscripts.firstObject attributedString];
+        resultString = [textConfigurations.firstObject attributedString];
     }
     else {
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
         NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
-        for ( NSUInteger manuscriptIndex = 0; manuscriptIndex < manuscripts.count; manuscriptIndex++ ) {
-            RZManuscript *manuscript = manuscripts[manuscriptIndex];
-            NSAssert([manuscript isKindOfClass:[RZManuscript class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(manuscriptIndex), NSStringFromClass([RZManuscript class]), [manuscript class], manuscript);
+        for ( NSUInteger textConfigurationIndex = 0; textConfigurationIndex < textConfigurations.count; textConfigurationIndex++ ) {
+            BONTextConfiguration *textConfiguration = textConfigurations[textConfigurationIndex];
+            NSAssert([textConfiguration isKindOfClass:[BONTextConfiguration class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textConfigurationIndex), NSStringFromClass([BONTextConfiguration class]), [textConfiguration class], textConfiguration);
 
-            [mutableResult appendAttributedString:manuscript.attributedString];
+            [mutableResult appendAttributedString:textConfiguration.attributedString];
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if ( separatorAttributedString.length > 0 && (manuscriptIndex != manuscripts.count - 1) ) {
+            if ( separatorAttributedString.length > 0 && (textConfigurationIndex != textConfigurations.count - 1) ) {
                 [mutableResult appendAttributedString:separatorAttributedString];
             }
         }
         resultString = mutableResult;
     }
-    
+
     return resultString;
 }
 

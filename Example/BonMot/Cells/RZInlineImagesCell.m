@@ -8,7 +8,7 @@
 
 #import "RZInlineImagesCell.h"
 
-#import <BonMot/RZChainLink.h>
+#import <BonMot/BONChainLink.h>
 
 @interface RZInlineImagesCell ()
 
@@ -31,17 +31,17 @@
     UIImage *knot = [UIImage imageNamed:@"knot"];
     UIImage *oar = [UIImage imageNamed:@"oar"];
 
-    RZChainLink *imageBaselineChainLink = RZCursive.baselineOffset(-8.0f);
+    BONChainLink *imageBaselineChainLink = RZCursive.baselineOffset(-8.0f);
 
-    RZChainLink *beeChainLink = imageBaselineChainLink.image(bee);
-    RZChainLink *knotChainLink = imageBaselineChainLink.image(knot);
-    RZChainLink *oarChainLink = imageBaselineChainLink.image(oar);
+    BONChainLink *beeChainLink = imageBaselineChainLink.image(bee);
+    BONChainLink *knotChainLink = imageBaselineChainLink.image(knot);
+    BONChainLink *oarChainLink = imageBaselineChainLink.image(oar);
 
-    RZChainLink *twoChainLink = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
+    BONChainLink *twoChainLink = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
 
-    RZChainLink *spaceChainLink = RZCursive.string(@" ");
+    BONChainLink *spaceChainLink = RZCursive.string(@" ");
 
-    RZChainLink *wholeString = RZCursive;
+    BONChainLink *wholeString = RZCursive;
     wholeString
     .append(twoChainLink)
     .appendWithSeparator(@" ", beeChainLink)
@@ -54,7 +54,7 @@
 
     self.label.attributedText = wholeString.attributedString;
 
-    NSLog(@"debug string:%@", wholeString.manuscript.debugDescription);
+    NSLog(@"debug string:%@", wholeString.textConfiguration.debugDescription);
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "RZConcatenationCell.h"
 
-#import <BonMot/RZChainLink.h>
+#import <BonMot/BONChainLink.h>
 
 static const CGFloat kRZColorAlpha = 0.3f;
 static const NSInteger kRZTracking = 200;
@@ -31,11 +31,11 @@ static const NSInteger kRZTracking = 200;
 {
     [super awakeFromNib];
 
-    RZManuscript *centeredSmartTracking = RZCursive.string(@"CENTERED WITH TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kRZColorAlpha]).manuscript;
+    BONTextConfiguration *centeredSmartTracking = RZCursive.string(@"CENTERED WITH TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kRZColorAlpha]).textConfiguration;
 
-    RZManuscript *appended = RZCursive.string(@"APPENDED").adobeTracking(kRZTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kRZColorAlpha]).manuscript;
-    RZManuscript *smartTracking = RZCursive.string(@" SMART TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kRZColorAlpha]).manuscript;
-    appended.nextManuscript = smartTracking;
+    BONTextConfiguration *appended = RZCursive.string(@"APPENDED").adobeTracking(kRZTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kRZColorAlpha]).textConfiguration;
+    BONTextConfiguration *smartTracking = RZCursive.string(@" SMART TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kRZColorAlpha]).textConfiguration;
+    appended.nextTextConfiguration = smartTracking;
 
     self.centeredSmartTrackingLabel.attributedText = centeredSmartTracking.attributedString;
     self.appendedSmartTrackingLabel.attributedText = appended.attributedString;

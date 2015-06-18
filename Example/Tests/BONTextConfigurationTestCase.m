@@ -1,5 +1,5 @@
 //
-//  RZManuscriptTestCase.m
+//  BONTextConfigurationTestCase.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 6/16/15.
@@ -9,13 +9,13 @@
 @import XCTest;
 @import UIKit;
 
-#import <BonMot/RZChainLink.h>
+#import <BonMot/BONChainLink.h>
 
-@interface RZManuscriptTestCase : XCTestCase
+@interface BONTextConfigurationTestCase : XCTestCase
 
 @end
 
-@implementation RZManuscriptTestCase
+@implementation BONTextConfigurationTestCase
 
 - (void)setUp
 {
@@ -29,9 +29,9 @@
     [super tearDown];
 }
 
-- (void)testManuscript
+- (void)testTextConfiguration
 {
-    RZChainLink *chainLink = RZCursive.string(@"Hello, testing world").font([UIFont preferredFontForTextStyle:UIFontTextStyleBody]).textColor([UIColor redColor]);
+    BONChainLink *chainLink = RZCursive.string(@"Hello, testing world").font([UIFont preferredFontForTextStyle:UIFontTextStyleBody]).textColor([UIColor redColor]);
     NSAttributedString *attributedString = chainLink.attributedString;
     XCTAssertEqualObjects(attributedString.string, @"Hello, testing world");
 

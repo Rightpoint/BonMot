@@ -1,5 +1,5 @@
 //
-//  RZTextAlignmentConstraint.h
+//  BONTextAlignmentConstraint.h
 //  Pods
 //
 //  Created by Zev Eisenberg on 5/2/15.
@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, RZConstraintAttribute) {
 NSString *stringFromRZConstraintAttribute(RZConstraintAttribute attribute);
 RZConstraintAttribute RZConstraintAttributeFromString(NSString *string);
 
-@interface RZTextAlignmentConstraint : NSLayoutConstraint
+@interface BONTextAlignmentConstraint : NSLayoutConstraint
 
 @property (nonatomic) RZConstraintAttribute firstItemRZAttribute;
 @property (nonatomic) RZConstraintAttribute secondItemRZAttribute;

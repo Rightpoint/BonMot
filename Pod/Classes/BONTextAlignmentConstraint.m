@@ -1,12 +1,12 @@
 //
-//  RZTextAlignmentConstraint.m
+//  BONTextAlignmentConstraint.m
 //  Pods
 //
 //  Created by Zev Eisenberg on 5/2/15.
 //
 //
 
-#import "RZTextAlignmentConstraint.h"
+#import "BONTextAlignmentConstraint.h"
 
 typedef NS_ENUM(NSUInteger, RZItemOrdinality) {
     RZItemOrdinalityUnknown = 0,
@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, RZItemOrdinality) {
     RZItemOrdinalitySecond,
 };
 
-static void* const kRZTextAlignmentConstraintContext = (void *)&kRZTextAlignmentConstraintContext;
+static void* const kBONTextAlignmentConstraintContext = (void *)&kBONTextAlignmentConstraintContext;
 
 NSString *stringFromRZConstraintAttribute(RZConstraintAttribute attribute)
 {
@@ -132,7 +132,7 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
     return nsAttribute;
 }
 
-@implementation RZTextAlignmentConstraint
+@implementation BONTextAlignmentConstraint
 
 + (instancetype)constraintWithItem:(id)view1
                          attribute:(RZConstraintAttribute)attr1
@@ -176,7 +176,7 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ( context == kRZTextAlignmentConstraintContext ) {
+    if ( context == kBONTextAlignmentConstraintContext ) {
         [self updateConstant];
     }
     else {
@@ -198,8 +198,8 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
                                          NSStringFromSelector(@selector(font)),
                                          ] componentsJoinedByString:@"."];
 
-    [self addObserver:self forKeyPath:firstItemFontKeyPath options:0 context:kRZTextAlignmentConstraintContext];
-    [self addObserver:self forKeyPath:secondItemFontKeyPath options:0 context:kRZTextAlignmentConstraintContext];
+    [self addObserver:self forKeyPath:firstItemFontKeyPath options:0 context:kBONTextAlignmentConstraintContext];
+    [self addObserver:self forKeyPath:secondItemFontKeyPath options:0 context:kBONTextAlignmentConstraintContext];
 
     // Call Observer method once initially
     [self updateConstant];
@@ -217,8 +217,8 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
                                          NSStringFromSelector(@selector(font)),
                                          ] componentsJoinedByString:@"."];
 
-    [self removeObserver:self forKeyPath:firstItemFontKeyPath context:kRZTextAlignmentConstraintContext];
-    [self removeObserver:self forKeyPath:secondItemFontKeyPath context:kRZTextAlignmentConstraintContext];
+    [self removeObserver:self forKeyPath:firstItemFontKeyPath context:kBONTextAlignmentConstraintContext];
+    [self removeObserver:self forKeyPath:secondItemFontKeyPath context:kBONTextAlignmentConstraintContext];
 }
 
 - (void)updateConstant
