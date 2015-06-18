@@ -9,7 +9,7 @@
 @import XCTest;
 @import UIKit;
 
-#import <manuscript/RZChainLink.h>
+#import <BonMot/RZChainLink.h>
 
 @interface RZManuscriptTestCase : XCTestCase
 
