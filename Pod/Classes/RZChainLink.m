@@ -8,7 +8,7 @@
 
 #import "RZChainLink.h"
 
-#import <manuscript/RZManuscript.h>
+#import <BonMot/RZManuscript.h>
 
 @interface RZChainLink ()
 

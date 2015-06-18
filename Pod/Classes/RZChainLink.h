@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-#import <manuscript/RZManuscript.h>
+#import <BonMot/RZManuscript.h>
 
 #define RZCursive [[RZChainLink alloc] init]
 

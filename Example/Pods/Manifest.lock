@@ -1,14 +1,14 @@
 PODS:
-  - manuscript (0.0.1)
+  - BonMot (0.0.1)
 
 DEPENDENCIES:
-  - manuscript (from `../`)
+  - BonMot (from `../`)
 
 EXTERNAL SOURCES:
-  manuscript:
+  BonMot:
     :path: "../"
 
 SPEC CHECKSUMS:
-  manuscript: 06aa49d51813db13e899d9e7baa02d4b35282c67
+  BonMot: f6b94a8e69e279bc427577f4d67ecd3f36fd2b9d
 
 COCOAPODS: 0.37.2

@@ -1,9 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'manuscript', :exclusive => true do
-  pod "manuscript", :path => "../"
+target 'BonMot', :exclusive => true do
+  pod "BonMot", :path => "../"
 end
 
 target 'Tests', :exclusive => true do
-  pod "manuscript", :path => "../"
+  pod "BonMot", :path => "../"
 end
