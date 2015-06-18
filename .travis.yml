@@ -3,6 +3,7 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 language: objective-c
+osx_image: beta-xcode6.3
 # cache: cocoapods
 # podfile: Example/Podfile
 # before_install:
