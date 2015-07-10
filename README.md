@@ -1,6 +1,6 @@
 # BonMot
 
-[![CI Status](http://img.shields.io/travis/ZevEisenberg/BonMot.svg?style=flat)](https://travis-ci.org/Zev Eisenberg/BonMot)
+[![CI Status](http://img.shields.io/travis/ZevEisenberg/BonMot.svg?style=flat)](https://travis-ci.org/ZevEisenberg/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Platform](https://img.shields.io/cocoapods/p/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
