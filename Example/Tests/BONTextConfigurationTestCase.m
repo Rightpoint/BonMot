@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-@import XCTest;
+#import "BONBaseTestCase.h"
 @import UIKit;
 
 #import <BonMot/BONChainLink.h>
 
-@interface BONTextConfigurationTestCase : XCTestCase
+@interface BONTextConfigurationTestCase : BONBaseTestCase
 
 @end
 
@@ -31,27 +31,26 @@
 
 - (void)testTextConfiguration
 {
-    BONChainLink *chainLink = RZCursive.string(@"Hello, testing world").font([UIFont preferredFontForTextStyle:UIFontTextStyleBody]).textColor([UIColor redColor]);
-    NSAttributedString *attributedString = chainLink.attributedString;
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Hello, testing world")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .textColor([UIColor redColor])
+    .attributedString;
+
     XCTAssertEqualObjects(attributedString.string, @"Hello, testing world");
 
-    __block NSUInteger count = 0;
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-        XCTAssertEqual(count, 0);
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
-        NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 20): @{
+                                                NSForegroundColorAttributeName: [UIColor redColor],
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+                                        };
 
-        NSDictionary *testDict = @{
-                                   NSForegroundColorAttributeName: [UIColor redColor],
-                                   NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
-                                   NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                   };
-        XCTAssertEqualObjects(attrs, testDict);
-        
-        count++;
-    }];
-
-    XCTAssertEqual(count, 1);
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
 @end
