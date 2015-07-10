@@ -107,7 +107,8 @@ NSAttributedString *string = [BONTextConfiguration joinAttributedStrings:@[ oneF
 ```
 
 Outputs:
-> one fish, two fish, <span style="color:red;">red fish</span>, <span style="color:blue">blue fish</span>
+
+<img width=227 height=34 src="readme-images/fish-with-black-comma.png" />
 
 You can also append text configurations to each other:
 
@@ -124,7 +125,8 @@ NSAttributedString *string = chainLink.attributedString;
 ```
 
 Outputs:
-> one fish, two fish, <span style="color:red;">red fish,</span> <span style="color:blue">blue fish</span>
+
+<img width=227 height=34 src="readme-images/fish-with-red-comma.png" />
 
 (Notice that the comma after `red fish` is red, but in the previous example, it was not colored. This is the behavior that made the most sense to me, but please open an issue or pull request if you think it should be different.)
 
@@ -141,7 +143,8 @@ NSAttributedString *string = chainLink.attributedString;
 ```
 
 Outputs:
-> <img width=20 height=20 style="position:relative; top: 4pt;" src="http://www.zeveisenberg.com/img/avatars/zev-raizlabs-on-clear-small.png" /> label with icon
+
+<img width=116 height=22 src="readme-images/label-with-icon.png" />
 
 ## Author
 
