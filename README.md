@@ -41,9 +41,11 @@ Think something is missing? Please [file an issue](https://github.com/ZevEisenbe
 The basic object in BonMot is `BONTextConfiguration`. You create a text configuration object, set some properties to configure the font, and then ask for its `.attributedString` to get a string formatted according to your specification. Or ask for `.attributes` if you just need the attributes dictionary:
 
 ```objc
-BONTextConfiguration *config = [BONTextConfiguration new];
-NSString *quote = @"I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson";
+NSString *quote = @"I used to love correcting people’s grammar until\
+ I realized what I loved more was having friends.\n\
+—Mara Wilson";
 
+BONTextConfiguration *config = [BONTextConfiguration new];
 config.font = [UIFont fontWithName:@"AmericanTypewriter" size:17.0f];
 config.lineHeightMultiple = 1.8f;
 config.string = quote;
