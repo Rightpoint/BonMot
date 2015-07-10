@@ -50,6 +50,8 @@
         
         count++;
     }];
+
+    XCTAssertEqual(count, 1);
 }
 
 @end
