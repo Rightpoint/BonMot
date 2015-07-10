@@ -53,4 +53,62 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
+- (void)testPositivePointTracking
+{
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Tracking is awesome!")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .pointTracking(3)
+    .attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Tracking is awesome!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 19): @{
+                                                NSKernAttributeName: @3,
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+
+                                        BONValueFromRange(19, 1): @{
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                }
+                                        };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testPositiveAdobeTracking
+{
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Tracking is awesome!")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .adobeTracking(230)
+    .attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Tracking is awesome!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 19): @{
+                                                NSKernAttributeName: @3.91,
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+
+                                        BONValueFromRange(19, 1): @{
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                }
+                                        };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
 @end
