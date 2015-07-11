@@ -16,6 +16,12 @@ static const unichar kRZSpaceCharacter = 32;
 
 static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
 
+static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
+{
+    const CGFloat epsilon = 0.00001; // ought to be good enough
+    return fabs(float1 - float2) < epsilon;
+}
+
 @interface BONTextConfiguration ()
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
@@ -196,14 +202,14 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
     NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0f;
-    if ( self.adobeTracking > 0 ) {
+    if ( !BONCGFloatsCloseEnough(self.adobeTracking, 0.0f) ) {
         trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
-    else if ( self.pointTracking > 0.0f ) {
+    else if ( !BONCGFloatsCloseEnough(self.pointTracking, 0.0f) ) {
         trackingInPoints = self.pointTracking;
     }
 
-    if ( trackingInPoints > 0.0f ) {
+    if ( !BONCGFloatsCloseEnough(trackingInPoints, 0.0f) ) {
         attributes[NSKernAttributeName] = @(trackingInPoints);
     }
 
@@ -362,7 +368,7 @@ static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
  *
  *  @return The converted tracking value.
  */
-+ (CGFloat)pointTrackingValueFromAdobeTrackingValue:(NSUInteger)adobeTrackingValue forFont:(UIFont *)font
++ (CGFloat)pointTrackingValueFromAdobeTrackingValue:(NSInteger)adobeTrackingValue forFont:(UIFont *)font
 {
     CGFloat pointSizeToUse = font ? font.pointSize : kRZDefaultFontSize;
     CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kRZAdobeTrackingDivisor);

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-@import XCTest;
+#import "BONBaseTestCase.h"
 @import UIKit;
 
 #import <BonMot/BONChainLink.h>
 
-@interface BONTextConfigurationTestCase : XCTestCase
+@interface BONTextConfigurationTestCase : BONBaseTestCase
 
 @end
 
@@ -31,27 +31,142 @@
 
 - (void)testTextConfiguration
 {
-    BONChainLink *chainLink = RZCursive.string(@"Hello, testing world").font([UIFont preferredFontForTextStyle:UIFontTextStyleBody]).textColor([UIColor redColor]);
-    NSAttributedString *attributedString = chainLink.attributedString;
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Hello, testing world")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .textColor([UIColor redColor])
+    .attributedString;
+
     XCTAssertEqualObjects(attributedString.string, @"Hello, testing world");
 
-    __block NSUInteger count = 0;
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-        XCTAssertEqual(count, 0);
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
-        NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 20): @{
+                                                NSForegroundColorAttributeName: [UIColor redColor],
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+                                        };
 
-        NSDictionary *testDict = @{
-                                   NSForegroundColorAttributeName: [UIColor redColor],
-                                   NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
-                                   NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                   };
-        XCTAssertEqualObjects(attrs, testDict);
-        
-        count++;
-    }];
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
 
-    XCTAssertEqual(count, 1);
+- (void)testPositivePointTracking
+{
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Tracking is awesome!")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .pointTracking(3)
+    .attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Tracking is awesome!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 19): @{
+                                                NSKernAttributeName: @3,
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+
+                                        BONValueFromRange(19, 1): @{
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                }
+                                        };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testPositiveAdobeTracking
+{
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Tracking is awesome!")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .adobeTracking(230)
+    .attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Tracking is awesome!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 19): @{
+                                                NSKernAttributeName: @3.91,
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+
+                                        BONValueFromRange(19, 1): @{
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                }
+                                        };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testNegativePointTracking
+{
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Tracking is awesome!")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .pointTracking(-3)
+    .attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Tracking is awesome!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 19): @{
+                                                NSKernAttributeName: @-3,
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+
+                                        BONValueFromRange(19, 1): @{
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                }
+                                        };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testNegativeAdobeTracking
+{
+    NSAttributedString *attributedString =
+    RZCursive
+    .string(@"Tracking is awesome!")
+    .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+    .adobeTracking(-230)
+    .attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Tracking is awesome!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+                                        BONValueFromRange(0, 19): @{
+                                                NSKernAttributeName: @-3.91,
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                },
+
+                                        BONValueFromRange(19, 1): @{
+                                                NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
+                                                }
+                                        };
+    
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
 @end
