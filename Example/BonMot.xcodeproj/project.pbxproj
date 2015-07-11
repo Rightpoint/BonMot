@@ -45,6 +45,9 @@
 		CDD4B9EE1AEB2C3F00B02A0A /* RZColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */; };
 		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
 		CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */; };
+		CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
+		CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
+		CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +121,9 @@
 		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
 		CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BONBaseTestCase.h; sourceTree = "<group>"; };
+		CDFDF54F1B51880C00A1AD42 /* NSDictionary+BONEquality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BONEquality.h"; sourceTree = "<group>"; };
+		CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BONEquality.m"; sourceTree = "<group>"; };
+		CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDictionaryEqualityTestCase.m; sourceTree = "<group>"; };
 		DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		EA798F8B87019E9A6673F5A3 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
 		F79B786068DF6EE81053EF09 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +225,7 @@
 				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
 				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
 				CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */,
+				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -281,6 +288,8 @@
 			children = (
 				CD9E415B1AE46F3B00ECFBFB /* DashedHairlineView.h */,
 				CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */,
+				CDFDF54F1B51880C00A1AD42 /* NSDictionary+BONEquality.h */,
+				CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -482,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
 				CD79AF431AE5823200D9F0C5 /* RZBaselineCapHeightCell.m in Sources */,
 				CD79AF461AE5824000D9F0C5 /* RZInlineImagesCell.m in Sources */,
 				CDD4B9ED1AEB2C3F00B02A0A /* RZColorCell.m in Sources */,
@@ -502,6 +512,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
+				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
 				CD24988D1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m in Sources */,
 			);
