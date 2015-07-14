@@ -19,7 +19,7 @@
 #import "RZConcatenationCell.h"
 
 // Pods
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 @interface RZViewController ()
 

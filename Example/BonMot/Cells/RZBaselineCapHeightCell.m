@@ -8,7 +8,7 @@
 
 #import "RZBaselineCapHeightCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface RZBaselineCapHeightCell ()

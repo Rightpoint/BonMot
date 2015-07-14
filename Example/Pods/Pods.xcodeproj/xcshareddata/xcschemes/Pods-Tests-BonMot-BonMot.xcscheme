@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "41CAC3995B9B0446554C58DC"
+               BlueprintIdentifier = "1D45350264B266EC9007A627"
                BuildableName = "BonMot.bundle"
                BlueprintName = "Pods-Tests-BonMot-BonMot"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -8,7 +8,7 @@
 
 #import "RZConcatenationCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 static const CGFloat kRZColorAlpha = 0.3f;
 static const NSInteger kRZTracking = 200;

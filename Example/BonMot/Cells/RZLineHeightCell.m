@@ -8,7 +8,7 @@
 
 #import "RZLineHeightCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 @interface RZLineHeightCell ()
 

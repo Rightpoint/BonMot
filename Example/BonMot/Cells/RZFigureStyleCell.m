@@ -8,7 +8,7 @@
 
 #import "RZFigureStyleCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
@@ -39,7 +39,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
     UIFont *ebGaramond = [UIFont fontWithName:kRZFontNameEBGaramond size:24.0f];
 
-    BONChainLink *commonFont = RZCursive.font(ebGaramond);
+    BONChain *commonFont = RZCursive.font(ebGaramond);
 
     self.proportionalLiningLabel.attributedText = commonFont.string(proportionalLiningString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseLining).attributedString;
 

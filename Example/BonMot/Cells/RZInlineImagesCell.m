@@ -8,7 +8,7 @@
 
 #import "RZInlineImagesCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 @interface RZInlineImagesCell ()
 
@@ -31,26 +31,26 @@
     UIImage *knot = [UIImage imageNamed:@"knot"];
     UIImage *oar = [UIImage imageNamed:@"oar"];
 
-    BONChainLink *imageBaselineChainLink = RZCursive.baselineOffset(-8.0f);
+    BONChain *imageBaselineChain = RZCursive.baselineOffset(-8.0f);
 
-    BONChainLink *beeChainLink = imageBaselineChainLink.image(bee);
-    BONChainLink *knotChainLink = imageBaselineChainLink.image(knot);
-    BONChainLink *oarChainLink = imageBaselineChainLink.image(oar);
+    BONChain *beeChain = imageBaselineChain.image(bee);
+    BONChain *knotChain = imageBaselineChain.image(knot);
+    BONChain *oarChain = imageBaselineChain.image(oar);
 
-    BONChainLink *twoChainLink = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
+    BONChain *twoChain = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
 
-    BONChainLink *spaceChainLink = RZCursive.string(@" ");
+    BONChain *spaceChain = RZCursive.string(@" ");
 
-    BONChainLink *wholeString = RZCursive;
+    BONChain *wholeString = RZCursive;
     wholeString
-    .append(twoChainLink)
-    .appendWithSeparator(@" ", beeChainLink)
-    .appendWithSeparator(@" ", oarChainLink)
-    .appendWithSeparator(@" ", knotChainLink)
-    // you can also append the space and the chain link separately if you prefer
-    .append(spaceChainLink)
-    .append(twoChainLink)
-    .appendWithSeparator(@" ", beeChainLink);
+    .append(twoChain)
+    .appendWithSeparator(@" ", beeChain)
+    .appendWithSeparator(@" ", oarChain)
+    .appendWithSeparator(@" ", knotChain)
+    // you can also append the space and the chain separately if you prefer
+    .append(spaceChain)
+    .append(twoChain)
+    .appendWithSeparator(@" ", beeChain);
 
     self.label.attributedText = wholeString.attributedString;
 

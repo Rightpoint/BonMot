@@ -8,7 +8,7 @@
 
 #import "RZColorCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 // Utilities
 #import <BonMot/UIImage+BonMotUtilities.h>
@@ -42,41 +42,41 @@
                          @"\nMaria Sharapova ",
                          ];
 
-    BONChainLink *baseLineHeight = RZCursive.lineHeightMultiple(1.2f);
+    BONChain *baseLineHeight = RZCursive.lineHeightMultiple(1.2f);
 
-    BONChainLink *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0f).textColor([UIColor darkGrayColor]);
+    BONChain *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0f).textColor([UIColor darkGrayColor]);
 
-    BONChainLink *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0f);
+    BONChain *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0f);
 
-    BONChainLink *blackBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
+    BONChain *blackBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
 
-    BONChainLink *redBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
-    BONChainLink *redFont = fancyFont.textColor([self.class raizlabsRed]);
+    BONChain *redBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
+    BONChain *redFont = fancyFont.textColor([self.class raizlabsRed]);
 
-    NSArray *chainLinks = @[
-                            grayFont,
-                            blackBackground,
-                            grayFont,
-                            redBackground,
-                            redFont,
-                            ];
+    NSArray *chains = @[
+                        grayFont,
+                        blackBackground,
+                        grayFont,
+                        redBackground,
+                        redFont,
+                        ];
 
-    NSAssert(strings.count == chainLinks.count, @"wrong count");
+    NSAssert(strings.count == chains.count, @"wrong count");
 
     NSMutableArray *textsWithStrings = [NSMutableArray array];
 
     for ( NSUInteger i = 0; i < strings.count; i++ ) {
         NSString *string = strings[i];
-        BONChainLink *link = chainLinks[i];
-        BONChainLink *newLink = link.string(string);
-        [textsWithStrings addObject:newLink.text];
+        BONChain *chain = chains[i];
+        BONChain *newChain = chain.string(string);
+        [textsWithStrings addObject:newChain.text];
     }
 
     NSAssert(textsWithStrings.count == strings.count, @"wrong count");
 
     UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
     UIImage *tinted = [tennisRacketImage rz_tintedImageWithColor:[self.class raizlabsRed]];
-    BONChainLink *tennisRacket = RZCursive.image(tinted).baselineOffset(-4.0f);
+    BONChain *tennisRacket = RZCursive.image(tinted).baselineOffset(-4.0f);
 
     [textsWithStrings addObject:tennisRacket.text];
 

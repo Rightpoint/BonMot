@@ -8,7 +8,7 @@
 
 #import "RZTrackingCell.h"
 
-#import <BonMot/BONChainLink.h>
+#import <BonMot/BONChain.h>
 
 @interface RZTrackingCell ()
 
