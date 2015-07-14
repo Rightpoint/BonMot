@@ -8,8 +8,6 @@
 
 #import "InlineImagesCell.h"
 
-#import <BonMot/BONChain.h>
-
 @interface InlineImagesCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

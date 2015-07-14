@@ -8,7 +8,7 @@
 
 #import "BONChain.h"
 
-#import <BonMot/BONText.h>
+#import "BONText.h"
 
 @interface BONChain ()
 

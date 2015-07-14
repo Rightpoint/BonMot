@@ -8,8 +8,6 @@
 
 #import "TrackingCell.h"
 
-#import <BonMot/BONChain.h>
-
 @interface TrackingCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

@@ -17,11 +17,9 @@
     "ios": "8.3"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "BonMot": [
-      "Pod/Assets/*.png"
-    ]
-  },
+  "source_files": [
+    "Pod",
+    "Pod/Classes/**/*"
+  ],
   "frameworks": "UIKit"
 }

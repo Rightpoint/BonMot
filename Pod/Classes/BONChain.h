@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-#import <BonMot/BONText.h>
+#import "BONText.h"
 
 @class BONChain;
 

@@ -8,8 +8,6 @@
 
 #import "FigureStyleCell.h"
 
-#import <BonMot/BONChain.h>
-
 static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface FigureStyleCell ()

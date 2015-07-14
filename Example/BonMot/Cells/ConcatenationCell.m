@@ -8,8 +8,6 @@
 
 #import "ConcatenationCell.h"
 
-#import <BonMot/BONChain.h>
-
 static const CGFloat kColorAlpha = 0.3f;
 static const NSInteger kTracking = 200;
 

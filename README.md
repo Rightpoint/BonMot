@@ -35,6 +35,8 @@ Think something is missing? Please [file an issue](https://github.com/ZevEisenbe
 
 ## Usage
 
+In any file where you want to use BonMot, simply `#import <BonMot/BonMot.h>`.
+
 The basic object in BonMot is `BONText`. You create a text object, set some properties to configure the font, and then ask for its `.attributedString` to get a string formatted according to your specification. Or ask for `.attributes` if you just need the attributes dictionary:
 
 ```objc

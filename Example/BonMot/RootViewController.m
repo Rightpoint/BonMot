@@ -18,9 +18,6 @@
 #import "BaselineOffsetCell.h"
 #import "ConcatenationCell.h"
 
-// Pods
-#import <BonMot/BONChain.h>
-
 @interface RootViewController ()
 
 @property (copy, nonatomic) NSArray *cellClasses;

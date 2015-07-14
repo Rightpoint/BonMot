@@ -8,11 +8,6 @@
 
 #import "ColorCell.h"
 
-#import <BonMot/BONChain.h>
-
-// Utilities
-#import <BonMot/UIImage+BonMotUtilities.h>
-
 @interface ColorCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

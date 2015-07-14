@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+#import <BonMot/BonMot.h>
+
 @interface AbstractCell : UITableViewCell
 
 + (NSString *)title;

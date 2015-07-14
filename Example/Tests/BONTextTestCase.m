@@ -9,7 +9,7 @@
 #import "BONBaseTestCase.h"
 @import UIKit;
 
-#import <BonMot/BONChain.h>
+#import <BonMot/BonMot.h>
 
 @interface BONTextTestCase : BONBaseTestCase
 

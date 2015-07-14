@@ -8,8 +8,6 @@
 
 #import "LineHeightCell.h"
 
-#import <BonMot/BONChain.h>
-
 @interface LineHeightCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;

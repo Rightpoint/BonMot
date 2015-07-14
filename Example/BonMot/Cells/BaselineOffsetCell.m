@@ -8,8 +8,6 @@
 
 #import "BaselineOffsetCell.h"
 
-#import <BonMot/BONChain.h>
-
 @interface BaselineOffsetCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
