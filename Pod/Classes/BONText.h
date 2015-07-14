@@ -1,5 +1,5 @@
 //
-//  BONTextConfiguration.h
+//  BONText.h
 //  Pods
 //
 //  Created by Zev Eisenberg on 4/17/15.
@@ -20,13 +20,13 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
     RZFigureSpacingProportional,
 };
 
-@class BONTextConfiguration;
+@class BONText;
 
-@interface BONTextConfiguration : NSObject <NSCopying>
+@interface BONText : NSObject <NSCopying>
 
 // Appending
 
-@property (strong, nonatomic) BONTextConfiguration *nextTextConfiguration;
+@property (strong, nonatomic) BONText *nextText;
 
 // Font Properties
 
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 @property (strong, nonatomic) UIImage *image;
 
 /**
- *  This string is appended, using the same attributes as @c self, if this text configuration has another text configuration appended to it.
+ *  This string is appended, using the same attributes as @c self, if this text has another text appended to it.
  */
 @property (copy, nonatomic) NSString *trailingString;
 
@@ -69,13 +69,13 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 /**
  *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
  *
- *  @param textConfiguration An array of @c BONTextConfiguration objects to join.
- *  @param separator         The @c BONTextConfiguration to interpose between the elements of the array. May be @c nil.
+ *  @param texts     An array of @c BONText objects to join.
+ *  @param separator The @c BONText to interpose between the elements of the array. May be @c nil.
  *  @note the menuscripts’ @c trailingString property is ignored.
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
  */
-+ (NSAttributedString *)joinTextConfigurations:(NSArray *)textConfiguration withSeparator:(BONTextConfiguration *)separator;
++ (NSAttributedString *)joinTexts:(NSArray *)texts withSeparator:(BONText *)separator;
 
 /**
  *  Used by -debugDescription to print the attributed string, one character at a time, with special characters and image attachments described.

@@ -38,25 +38,25 @@ Think something is missing? Please [file an issue](https://github.com/ZevEisenbe
 
 ## Usage
 
-The basic object in BonMot is `BONTextConfiguration`. You create a text configuration object, set some properties to configure the font, and then ask for its `.attributedString` to get a string formatted according to your specification. Or ask for `.attributes` if you just need the attributes dictionary:
+The basic object in BonMot is `BONText`. You create a text object, set some properties to configure the font, and then ask for its `.attributedString` to get a string formatted according to your specification. Or ask for `.attributes` if you just need the attributes dictionary:
 
 ```objc
 NSString *quote = @"I used to love correcting people’s grammar until\
  I realized what I loved more was having friends.\n\
 —Mara Wilson";
 
-BONTextConfiguration *config = [BONTextConfiguration new];
-config.font = [UIFont fontWithName:@"AmericanTypewriter" size:17.0f];
-config.lineHeightMultiple = 1.8f;
-config.string = quote;
+BONText *text = [BONText new];
+text.font = [UIFont fontWithName:@"AmericanTypewriter" size:17.0f];
+text.lineHeightMultiple = 1.8f;
+text.string = quote;
 
-NSAttributedString *string = config.attributedString;
-NSDictionary *attributes = config.attributes;
+NSAttributedString *string = text.attributedString;
+NSDictionary *attributes = text.attributes;
 ```
 
 ## Chaining Syntax
 
-`BONChainLink` is a wrapper around `BONTextConfiguration` that allows you to chain properties together for a more concise expression of a style. You can create a chain link with a normal initializer, but it's easier to just use the `RZCursive` macro:
+`BONChainLink` is a wrapper around `BONText` that allows you to chain properties together for a more concise expression of a style. You can create a chain link with a normal initializer, but it's easier to just use the `RZCursive` macro:
 
 ```objc
 NSString *quote = @"I used to love correcting people’s grammar until\
@@ -96,23 +96,23 @@ NSAttributedString *blueBirdSring = blueBirds.attributedString;
 
 ## Concatenation
 
-You can concatenate an array of configurations:
+You can concatenate an array of `BONText`s:
 
 ```objc
-BONTextConfiguration *oneFish = RZCursive.string(@"one fish").textConfiguration;
-BONTextConfiguration *twoFish = RZCursive.string(@"two fish").textConfiguration;
-BONTextConfiguration *redFish = RZCursive.string(@"red fish").textColor([UIColor redColor]).textConfiguration;
-BONTextConfiguration *blueFish = RZCursive.string(@"blue fish").textColor([UIColor blueColor]).textConfiguration;
-BONTextConfiguration *separator = RZCursive.string(@", ").textConfiguration;
+BONText *oneFish = RZCursive.string(@"one fish").text;
+BONText *twoFish = RZCursive.string(@"two fish").text;
+BONText *redFish = RZCursive.string(@"red fish").textColor([UIColor redColor]).text;
+BONText *blueFish = RZCursive.string(@"blue fish").textColor([UIColor blueColor]).text;
+BONText *separator = RZCursive.string(@", ").text;
 
-NSAttributedString *string = [BONTextConfiguration joinAttributedStrings:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
+NSAttributedString *string = [BONText joinTexts:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
 ```
 
 Outputs:
 
 <img width=227 height=34 src="readme-images/fish-with-black-comma.png" />
 
-You can also append text configurations to each other:
+You can also append texts directly to each other:
 
 ```objc
 NSString *commaSpace = @", ";
@@ -134,7 +134,7 @@ Outputs:
 
 ## Image Attachments
 
-BonMot uses NSTextAttachment to embed images in strings. Simply use the `.image` property of a chain link or text configuration:
+BonMot uses NSTextAttachment to embed images in strings. Simply use the `.image` property of a chain link or text:
 
 ```objc
 BONChainLink *chainLink = RZCursive;

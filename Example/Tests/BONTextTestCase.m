@@ -1,5 +1,5 @@
 //
-//  BONTextConfigurationTestCase.m
+//  BONTextTestCase.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 6/16/15.
@@ -11,11 +11,11 @@
 
 #import <BonMot/BONChainLink.h>
 
-@interface BONTextConfigurationTestCase : BONBaseTestCase
+@interface BONTextTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONTextConfigurationTestCase
+@implementation BONTextTestCase
 
 - (void)setUp
 {
@@ -29,7 +29,7 @@
     [super tearDown];
 }
 
-- (void)testTextConfiguration
+- (void)testText
 {
     NSAttributedString *attributedString =
     RZCursive

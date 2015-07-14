@@ -63,24 +63,24 @@
 
     NSAssert(strings.count == chainLinks.count, @"wrong count");
 
-    NSMutableArray *textConfigurationsWithText = [NSMutableArray array];
+    NSMutableArray *textsWithStrings = [NSMutableArray array];
 
     for ( NSUInteger i = 0; i < strings.count; i++ ) {
         NSString *string = strings[i];
         BONChainLink *link = chainLinks[i];
         BONChainLink *newLink = link.string(string);
-        [textConfigurationsWithText addObject:newLink.textConfiguration];
+        [textsWithStrings addObject:newLink.text];
     }
 
-    NSAssert(textConfigurationsWithText.count == strings.count, @"wrong count");
+    NSAssert(textsWithStrings.count == strings.count, @"wrong count");
 
     UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
     UIImage *tinted = [tennisRacketImage rz_tintedImageWithColor:[self.class raizlabsRed]];
     BONChainLink *tennisRacket = RZCursive.image(tinted).baselineOffset(-4.0f);
 
-    [textConfigurationsWithText addObject:tennisRacket.textConfiguration];
+    [textsWithStrings addObject:tennisRacket.text];
 
-    NSAttributedString *attributedString = [BONTextConfiguration joinTextConfigurations:textConfigurationsWithText withSeparator:nil];
+    NSAttributedString *attributedString = [BONText joinTexts:textsWithStrings withSeparator:nil];
     self.label.attributedText = attributedString;
 
     [self.label layoutIfNeeded];

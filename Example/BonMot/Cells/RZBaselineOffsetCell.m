@@ -33,10 +33,10 @@
 
     for ( NSUInteger i = 0; i < 50; i++ ) {
         CGFloat offset = 15.0f * sin((i / 20.0f) * 7.0f * M_PI);
-        [wave addObject:baseChainLink.baselineOffset(offset).textConfiguration];
+        [wave addObject:baseChainLink.baselineOffset(offset).text];
     };
 
-    self.label.attributedText = [BONTextConfiguration joinTextConfigurations:wave withSeparator:nil];
+    self.label.attributedText = [BONText joinTexts:wave withSeparator:nil];
 }
 
 @end

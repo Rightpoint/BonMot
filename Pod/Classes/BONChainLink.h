@@ -8,7 +8,7 @@
 
 @import Foundation;
 
-#import <BonMot/BONTextConfiguration.h>
+#import <BonMot/BONText.h>
 
 #define RZCursive [[BONChainLink alloc] init]
 
@@ -25,12 +25,12 @@ typedef BONChainLink*(^BONChainLinkFigureCase)(RZFigureCase figureCase);
 typedef BONChainLink*(^BONChainLinkFigureSpacing)(RZFigureSpacing figureSpacing);
 typedef BONChainLink*(^BONChainLinkString)(NSString *string);
 typedef BONChainLink*(^BONChainLinkImage)(UIImage *image);
-typedef BONChainLink*(^BONChainLinkAppend)(id chainLinkOrTextConfiguration);
-typedef BONChainLink*(^BONChainLinkAppendWithSeparator)(NSString *separator, id chainLinkOrTextConfiguration);
+typedef BONChainLink*(^BONChainLinkAppend)(id chainLinkOrText);
+typedef BONChainLink*(^BONChainLinkAppendWithSeparator)(NSString *separator, id chainLinkOrText);
 
 @interface BONChainLink : NSObject <NSCopying>
 
-@property (strong, nonatomic, readonly) BONTextConfiguration *textConfiguration;
+@property (strong, nonatomic, readonly) BONText *text;
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) NSDictionary *attributes;
 

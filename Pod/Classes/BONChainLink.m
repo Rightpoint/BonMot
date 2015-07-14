@@ -8,11 +8,11 @@
 
 #import "BONChainLink.h"
 
-#import <BonMot/BONTextConfiguration.h>
+#import <BonMot/BONText.h>
 
 @interface BONChainLink ()
 
-@property (strong, nonatomic) BONTextConfiguration *textConfiguration;
+@property (strong, nonatomic) BONText *text;
 
 @end
 
@@ -22,7 +22,7 @@
 {
     self = [super init];
     if ( self ) {
-        _textConfiguration = [[BONTextConfiguration alloc] init];
+        _text = [[BONText alloc] init];
     }
 
     return self;
@@ -31,18 +31,18 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     __typeof(self) chainLink = [[self.class alloc] init];
-    chainLink.textConfiguration = self.textConfiguration.copy;
+    chainLink.text = self.text.copy;
     return chainLink;
 }
 
 - (NSAttributedString *)attributedString
 {
-    return self.textConfiguration.attributedString;
+    return self.text.attributedString;
 }
 
 - (NSDictionary *)attributes
 {
-    return self.textConfiguration.attributes;
+    return self.text.attributes;
 }
 
 - (BONChainLinkFontNameAndSize)fontNameAndSize
@@ -51,7 +51,7 @@
         typeof(self) newChainLink = self.copy;
         UIFont *font = [UIFont fontWithName:fontName size:fontSize];
         NSAssert(font, @"No font returned from [UIFont fontWithName:%@ size:%@]", fontName, @(fontSize));
-        newChainLink.textConfiguration.font = font;
+        newChainLink.text.font = font;
         return newChainLink;
     };
 
@@ -62,7 +62,7 @@
 {
     BONChainLinkFont fontBlock = ^(UIFont *font) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.font = font;
+        newChainLink.text.font = font;
         return newChainLink;
     };
 
@@ -73,7 +73,7 @@
 {
     BONChainLinkColor colorBlock = ^(UIColor *color) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.textColor = color;
+        newChainLink.text.textColor = color;
         return newChainLink;
     };
 
@@ -84,7 +84,7 @@
 {
     BONChainLinkColor colorBlock = ^(UIColor *color) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.backgroundColor = color;
+        newChainLink.text.backgroundColor = color;
         return newChainLink;
     };
 
@@ -95,8 +95,8 @@
 {
     BONChainLinkAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.adobeTracking = adobeTracking;
-        newChainLink.textConfiguration.pointTracking = 0.0f;
+        newChainLink.text.adobeTracking = adobeTracking;
+        newChainLink.text.pointTracking = 0.0f;
         return newChainLink;
     };
 
@@ -107,8 +107,8 @@
 {
     BONChainLinkPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.pointTracking = pointTracking;
-        newChainLink.textConfiguration.adobeTracking = 0;
+        newChainLink.text.pointTracking = pointTracking;
+        newChainLink.text.adobeTracking = 0;
         return newChainLink;
     };
 
@@ -119,7 +119,7 @@
 {
     BONChainLinkLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.lineHeightMultiple = lineHeightMultiple;
+        newChainLink.text.lineHeightMultiple = lineHeightMultiple;
         return newChainLink;
     };
 
@@ -130,7 +130,7 @@
 {
     BONChainLinkBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.baselineOffset = baselineOffset;
+        newChainLink.text.baselineOffset = baselineOffset;
         return newChainLink;
     };
 
@@ -141,7 +141,7 @@
 {
     BONChainLinkFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.figureCase = figureCase;
+        newChainLink.text.figureCase = figureCase;
         return newChainLink;
     };
 
@@ -152,7 +152,7 @@
 {
     BONChainLinkFigureSpacing figureSpacingBlock = ^(RZFigureSpacing figureSpacing) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.figureSpacing = figureSpacing;
+        newChainLink.text.figureSpacing = figureSpacing;
         return newChainLink;
     };
 
@@ -163,7 +163,7 @@
 {
     BONChainLinkString stringBlock = ^(NSString *string) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.string = string;
+        newChainLink.text.string = string;
         return newChainLink;
     };
 
@@ -174,7 +174,7 @@
 {
     BONChainLinkImage imageBlock = ^(UIImage *image) {
         typeof(self) newChainLink = self.copy;
-        newChainLink.textConfiguration.image = image;
+        newChainLink.text.image = image;
         return newChainLink;
     };
     
@@ -183,20 +183,20 @@
 
 - (BONChainLinkAppend)append
 {
-    BONChainLinkAppend appendBlock = ^(id chainLinkOrTextConfiguration) {
-        BONTextConfiguration *textConfigurationToAppend = nil;
-        if ( [chainLinkOrTextConfiguration isKindOfClass:[BONChainLink class]] ) {
-            textConfigurationToAppend = [chainLinkOrTextConfiguration textConfiguration];
+    BONChainLinkAppend appendBlock = ^(id chainLinkOrText) {
+        BONText *textToAppend = nil;
+        if ( [chainLinkOrText isKindOfClass:[BONChainLink class]] ) {
+            textToAppend = [(BONChainLink *)chainLinkOrText text];
         }
-        else if ( [chainLinkOrTextConfiguration isKindOfClass:[BONTextConfiguration class]] ) {
-            textConfigurationToAppend = chainLinkOrTextConfiguration;
+        else if ( [chainLinkOrText isKindOfClass:[BONText class]] ) {
+            textToAppend = chainLinkOrText;
         }
         else {
-            NSAssert(NO, @"Expected chainLinkOrTextConfiguration to be of class BONChainLink or BONTextConfiguration, but it was of type %@: %@", [chainLinkOrTextConfiguration class], chainLinkOrTextConfiguration);
+            NSAssert(NO, @"Expected chainLinkOrText to be of class BONChainLink or BONText, but it was of type %@: %@", [chainLinkOrText class], chainLinkOrText);
         }
-        self.textConfiguration.nextTextConfiguration = textConfigurationToAppend.copy;
+        self.text.nextText = textToAppend.copy;
         __typeof(self) newChainLink = [[self.class alloc] init];
-        newChainLink.textConfiguration = self.textConfiguration.nextTextConfiguration;
+        newChainLink.text = self.text.nextText;
         return newChainLink;
     };
 
@@ -205,21 +205,21 @@
 
 - (BONChainLinkAppendWithSeparator)appendWithSeparator
 {
-    BONChainLinkAppendWithSeparator appendBlock = ^(NSString *separator, id chainLinkOrTextConfiguration) {
-        self.textConfiguration.trailingString = separator;
-        BONTextConfiguration *textConfigurationToAppend = nil;
-        if ( [chainLinkOrTextConfiguration isKindOfClass:[BONChainLink class]] ) {
-            textConfigurationToAppend = [chainLinkOrTextConfiguration textConfiguration];
+    BONChainLinkAppendWithSeparator appendBlock = ^(NSString *separator, id chainLinkOrText) {
+        self.text.trailingString = separator;
+        BONText *textToAppend = nil;
+        if ( [chainLinkOrText isKindOfClass:[BONChainLink class]] ) {
+            textToAppend = [(BONChainLink *)chainLinkOrText text];
         }
-        else if ( [chainLinkOrTextConfiguration isKindOfClass:[BONTextConfiguration class]] ) {
-            textConfigurationToAppend = chainLinkOrTextConfiguration;
+        else if ( [chainLinkOrText isKindOfClass:[BONText class]] ) {
+            textToAppend = chainLinkOrText;
         }
         else {
-            NSAssert(NO, @"Expected chainLinkOrTextConfiguration to be of class BONChainLink or BONTextConfiguration, but it was of type %@: %@", [chainLinkOrTextConfiguration class], chainLinkOrTextConfiguration);
+            NSAssert(NO, @"Expected chainLinkOrText to be of class BONChainLink or BONText, but it was of type %@: %@", [chainLinkOrText class], chainLinkOrText);
         }
-        self.textConfiguration.nextTextConfiguration = textConfigurationToAppend.copy;
+        self.text.nextText = textToAppend.copy;
         __typeof(self) newChainLink = [[self.class alloc] init];
-        newChainLink.textConfiguration = self.textConfiguration.nextTextConfiguration;
+        newChainLink.text = self.text.nextText;
         return newChainLink;
     };
 

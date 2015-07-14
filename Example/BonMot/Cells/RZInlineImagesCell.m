@@ -54,7 +54,7 @@
 
     self.label.attributedText = wholeString.attributedString;
 
-    NSLog(@"debug string:%@", wholeString.textConfiguration.debugDescription);
+    NSLog(@"debug string:%@", wholeString.text.debugDescription);
 }
 
 @end

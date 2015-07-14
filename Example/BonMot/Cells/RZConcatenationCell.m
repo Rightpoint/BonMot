@@ -31,11 +31,11 @@ static const NSInteger kRZTracking = 200;
 {
     [super awakeFromNib];
 
-    BONTextConfiguration *centeredSmartTracking = RZCursive.string(@"CENTERED WITH TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kRZColorAlpha]).textConfiguration;
+    BONText *centeredSmartTracking = RZCursive.string(@"CENTERED WITH TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kRZColorAlpha]).text;
 
-    BONTextConfiguration *appended = RZCursive.string(@"APPENDED").adobeTracking(kRZTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kRZColorAlpha]).textConfiguration;
-    BONTextConfiguration *smartTracking = RZCursive.string(@" SMART TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kRZColorAlpha]).textConfiguration;
-    appended.nextTextConfiguration = smartTracking;
+    BONText *appended = RZCursive.string(@"APPENDED").adobeTracking(kRZTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kRZColorAlpha]).text;
+    BONText *smartTracking = RZCursive.string(@" SMART TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kRZColorAlpha]).text;
+    appended.nextText = smartTracking;
 
     self.centeredSmartTrackingLabel.attributedText = centeredSmartTracking.attributedString;
     self.appendedSmartTrackingLabel.attributedText = appended.attributedString;

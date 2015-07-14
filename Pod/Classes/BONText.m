@@ -1,12 +1,12 @@
 //
-//  BONTextConfiguration.m
+//  BONText.m
 //  Pods
 //
 //  Created by Zev Eisenberg on 4/17/15.
 //
 //
 
-#import "BONTextConfiguration.h"
+#import "BONText.h"
 
 @import CoreText.SFNTLayoutTypes;
 
@@ -22,14 +22,14 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return fabs(float1 - float2) < epsilon;
 }
 
-@interface BONTextConfiguration ()
+@interface BONText ()
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
 @property (assign, nonatomic, readwrite) CGFloat fontSize;
 
 @end
 
-@implementation BONTextConfiguration
+@implementation BONText
 
 - (NSAttributedString *)attributedString
 {
@@ -41,16 +41,16 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 - (NSArray *)attributedStrings
 {
     NSMutableArray *attributedStrings = [NSMutableArray array];
-    BONTextConfiguration *nextTextConfiguration = self;
-    while ( nextTextConfiguration ) {
-        BONTextConfiguration *nextnextTextConfiguration = nextTextConfiguration.nextTextConfiguration;
-        BOOL lastConcatenant = ( nextnextTextConfiguration == nil );
-        NSAttributedString *attributedString = [nextTextConfiguration attributedStringLastConcatenant:lastConcatenant];
+    BONText *nextText = self;
+    while ( nextText ) {
+        BONText *nextnextText = nextText.nextText;
+        BOOL lastConcatenant = ( nextnextText == nil );
+        NSAttributedString *attributedString = [nextText attributedStringLastConcatenant:lastConcatenant];
         if ( attributedString ) {
             [attributedStrings addObject:attributedString];
         }
 
-        nextTextConfiguration = nextnextTextConfiguration;
+        nextText = nextnextText;
     }
 
     return attributedStrings;
@@ -232,22 +232,22 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    __typeof(self) textConfiguration = [[self.class alloc] init];
+    __typeof(self) text = [[self.class alloc] init];
 
-    textConfiguration.font = self.font;
-    textConfiguration.textColor = self.textColor;
-    textConfiguration.backgroundColor = self.backgroundColor;
-    textConfiguration.adobeTracking = self.adobeTracking;
-    textConfiguration.pointTracking = self.pointTracking;
-    textConfiguration.lineHeightMultiple = self.lineHeightMultiple;
-    textConfiguration.baselineOffset = self.baselineOffset;
-    textConfiguration.figureCase = self.figureCase;
-    textConfiguration.figureSpacing = self.figureSpacing;
-    textConfiguration.string = self.string;
-    textConfiguration.image = self.image;
-    textConfiguration.nextTextConfiguration = self.nextTextConfiguration;
+    text.font = self.font;
+    text.textColor = self.textColor;
+    text.backgroundColor = self.backgroundColor;
+    text.adobeTracking = self.adobeTracking;
+    text.pointTracking = self.pointTracking;
+    text.lineHeightMultiple = self.lineHeightMultiple;
+    text.baselineOffset = self.baselineOffset;
+    text.figureCase = self.figureCase;
+    text.figureSpacing = self.figureSpacing;
+    text.string = self.string;
+    text.image = self.image;
+    text.nextText = self.nextText;
 
-    return textConfiguration;
+    return text;
 }
 
 - (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize
@@ -284,9 +284,9 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 #pragma mark - Utilities
 
-+ (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(BONTextConfiguration *)separator
++ (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(BONText *)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONTextConfiguration class]]);
+    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
     NSParameterAssert(!attributedStrings || [attributedStrings isKindOfClass:[NSArray class]]);
 
     NSAttributedString *resultsString;
@@ -321,34 +321,34 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return resultsString;
 }
 
-+ (NSAttributedString *)joinTextConfigurations:(NSArray *)textConfigurations withSeparator:(BONTextConfiguration *)separator
++ (NSAttributedString *)joinTexts:(NSArray *)texts withSeparator:(BONText *)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONTextConfiguration class]]);
-    NSParameterAssert(!textConfigurations || [textConfigurations isKindOfClass:[NSArray class]]);
+    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
+    NSParameterAssert(!texts || [texts isKindOfClass:[NSArray class]]);
 
     NSAttributedString *resultString;
 
-    if ( textConfigurations.count == 0 ) {
+    if ( texts.count == 0 ) {
         resultString = [[NSAttributedString alloc] init];
     }
-    else if ( textConfigurations.count == 1 ) {
-        NSAssert([textConfigurations.firstObject isKindOfClass:[BONTextConfiguration class]], @"The only item in the textConfigurations array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONTextConfiguration class]), [textConfigurations.firstObject class], textConfigurations.firstObject);
+    else if ( texts.count == 1 ) {
+        NSAssert([texts.firstObject isKindOfClass:[BONText class]], @"The only item in the texts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONText class]), [texts.firstObject class], texts.firstObject);
 
-        resultString = [textConfigurations.firstObject attributedString];
+        resultString = [texts.firstObject attributedString];
     }
     else {
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
         NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
-        for ( NSUInteger textConfigurationIndex = 0; textConfigurationIndex < textConfigurations.count; textConfigurationIndex++ ) {
-            BONTextConfiguration *textConfiguration = textConfigurations[textConfigurationIndex];
-            NSAssert([textConfiguration isKindOfClass:[BONTextConfiguration class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textConfigurationIndex), NSStringFromClass([BONTextConfiguration class]), [textConfiguration class], textConfiguration);
+        for ( NSUInteger textIndex = 0; textIndex < texts.count; textIndex++ ) {
+            BONText *text = texts[textIndex];
+            NSAssert([text isKindOfClass:[BONText class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textIndex), NSStringFromClass([BONText class]), [text class], text);
 
-            [mutableResult appendAttributedString:textConfiguration.attributedString];
+            [mutableResult appendAttributedString:text.attributedString];
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if ( separatorAttributedString.length > 0 && (textConfigurationIndex != textConfigurations.count - 1) ) {
+            if ( separatorAttributedString.length > 0 && (textIndex != texts.count - 1) ) {
                 [mutableResult appendAttributedString:separatorAttributedString];
             }
         }

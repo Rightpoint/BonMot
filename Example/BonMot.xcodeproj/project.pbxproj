@@ -24,7 +24,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
 		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */; };
-		CD24988D1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */; };
+		CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */; };
 		CD79AF3D1AE5820700D9F0C5 /* RZLineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* RZLineHeightCell.m */; };
 		CD79AF401AE5821A00D9F0C5 /* RZFigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* RZFigureStyleCell.m */; };
 		CD79AF431AE5823200D9F0C5 /* RZBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF421AE5823200D9F0C5 /* RZBaselineCapHeightCell.m */; };
@@ -88,7 +88,7 @@
 		7A5A12C91AF6685400D111BA /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextConfigurationTestCase.m; sourceTree = "<group>"; };
+		CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextTestCase.m; sourceTree = "<group>"; };
 		CD79AF3B1AE5820700D9F0C5 /* RZLineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZLineHeightCell.h; sourceTree = "<group>"; };
 		CD79AF3C1AE5820700D9F0C5 /* RZLineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZLineHeightCell.m; sourceTree = "<group>"; };
 		CD79AF3E1AE5821A00D9F0C5 /* RZFigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZFigureStyleCell.h; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 			children = (
 				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
 				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
-				CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */,
+				CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */,
 				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -515,7 +515,7 @@
 				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
 				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
-				CD24988D1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m in Sources */,
+				CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
