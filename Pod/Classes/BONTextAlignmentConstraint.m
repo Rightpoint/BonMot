@@ -8,43 +8,43 @@
 
 #import "BONTextAlignmentConstraint.h"
 
-typedef NS_ENUM(NSUInteger, RZItemOrdinality) {
-    RZItemOrdinalityUnknown = 0,
-    RZItemOrdinalityFirst,
-    RZItemOrdinalitySecond,
+typedef NS_ENUM(NSUInteger, BONItemOrdinality) {
+    BONItemOrdinalityUnknown = 0,
+    BONItemOrdinalityFirst,
+    BONItemOrdinalitySecond,
 };
 
 static void* const kBONTextAlignmentConstraintContext = (void *)&kBONTextAlignmentConstraintContext;
 
-NSString *stringFromRZConstraintAttribute(RZConstraintAttribute attribute)
+NSString *stringFromBONConstraintAttribute(BONConstraintAttribute attribute)
 {
     NSString *string = nil;
     switch ( attribute ) {
-        case RZConstraintAttributeUnspecified: {
+        case BONConstraintAttributeUnspecified: {
             string = @"unspecified";
             break;
         }
-        case RZConstraintAttributeTop: {
+        case BONConstraintAttributeTop: {
             string = @"top";
             break;
         }
-        case RZConstraintAttributeCapHeight: {
+        case BONConstraintAttributeCapHeight: {
             string = @"cap height";
             break;
         }
-        case RZConstraintAttributeXHeight: {
+        case BONConstraintAttributeXHeight: {
             string = @"x-height";
             break;
         }
-        case RZConstraintAttributeFirstBaseline: {
+        case BONConstraintAttributeFirstBaseline: {
             string = @"first baseline";
             break;
         }
-        case RZConstraintAttributeLastBaseline: {
+        case BONConstraintAttributeLastBaseline: {
             string = @"last baseline";
             break;
         }
-        case RZConstraintAttributeBottom: {
+        case BONConstraintAttributeBottom: {
             string = @"bottom";
             break;
         }
@@ -67,18 +67,18 @@ NSString *normalizeString(NSString *string)
 }
 
 
-RZConstraintAttribute RZConstraintAttributeFromString(NSString *string)
+BONConstraintAttribute BONConstraintAttributeFromString(NSString *string)
 {
     static NSDictionary *s_mappings = nil;
     if ( !s_mappings ) {
         s_mappings = @{
-                       @"unspecified": @(RZConstraintAttributeUnspecified),
-                       @"top": @(RZConstraintAttributeTop),
-                       @"capheight": @(RZConstraintAttributeCapHeight),
-                       @"xheight": @(RZConstraintAttributeXHeight),
-                       @"firstbaseline": @(RZConstraintAttributeFirstBaseline),
-                       @"lastbaseline": @(RZConstraintAttributeLastBaseline),
-                       @"bottom": @(RZConstraintAttributeBottom),
+                       @"unspecified": @(BONConstraintAttributeUnspecified),
+                       @"top": @(BONConstraintAttributeTop),
+                       @"capheight": @(BONConstraintAttributeCapHeight),
+                       @"xheight": @(BONConstraintAttributeXHeight),
+                       @"firstbaseline": @(BONConstraintAttributeFirstBaseline),
+                       @"lastbaseline": @(BONConstraintAttributeLastBaseline),
+                       @"bottom": @(BONConstraintAttributeBottom),
                        };
     }
 
@@ -99,7 +99,7 @@ RZConstraintAttribute RZConstraintAttributeFromString(NSString *string)
     NSCAssert(![normalizedString isEqualToString:@"baseline"], @"You must specify whether to align to the first baseline or last baseline of a label, even if it is a single-line label.");
 
     NSNumber *attributeNumber = s_mappings[normalizedString];
-    RZConstraintAttribute attribute = RZConstraintAttributeUnspecified;
+    BONConstraintAttribute attribute = BONConstraintAttributeUnspecified;
     if ( attributeNumber ) {
         attribute = attributeNumber.unsignedIntegerValue;
     }
@@ -107,23 +107,23 @@ RZConstraintAttribute RZConstraintAttributeFromString(NSString *string)
     return attribute;
 }
 
-NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAttribute rzAttribute)
+NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraintAttribute bonConstraintAttribute)
 {
     NSLayoutAttribute nsAttribute;
-    switch ( rzAttribute ) {
-        case RZConstraintAttributeTop: // fall through
-        case RZConstraintAttributeCapHeight: // fall through
-        case RZConstraintAttributeFirstBaseline: // fall through
-        case RZConstraintAttributeXHeight: {
+    switch ( bonConstraintAttribute ) {
+        case BONConstraintAttributeTop: // fall through
+        case BONConstraintAttributeCapHeight: // fall through
+        case BONConstraintAttributeFirstBaseline: // fall through
+        case BONConstraintAttributeXHeight: {
             nsAttribute = NSLayoutAttributeTop;
             break;
         }
-        case RZConstraintAttributeLastBaseline: // fall through
-        case RZConstraintAttributeBottom: {
+        case BONConstraintAttributeLastBaseline: // fall through
+        case BONConstraintAttributeBottom: {
             nsAttribute = NSLayoutAttributeBottom;
             break;
         }
-        case RZConstraintAttributeUnspecified: {
+        case BONConstraintAttributeUnspecified: {
             nsAttribute = NSLayoutAttributeNotAnAttribute;
             break;
         }
@@ -135,10 +135,10 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 @implementation BONTextAlignmentConstraint
 
 + (instancetype)constraintWithItem:(id)view1
-                         attribute:(RZConstraintAttribute)attr1
+                         attribute:(BONConstraintAttribute)attr1
                          relatedBy:(NSLayoutRelation)relation
                             toItem:(id)view2
-                         attribute:(RZConstraintAttribute)attr2
+                         attribute:(BONConstraintAttribute)attr2
 {
     [NSException raise:NSInternalInconsistencyException format:@"This hasn't been implemented yet"];
     // TODO: this
@@ -160,7 +160,7 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 {
     if ( (_firstAlignment || firstAlignment) && ![_firstAlignment isEqualToString:firstAlignment] ) {
         _firstAlignment = firstAlignment.copy;
-        self.firstItemRZAttribute = RZConstraintAttributeFromString(firstAlignment);
+        self.firstItemBONAttribute = BONConstraintAttributeFromString(firstAlignment);
     }
 }
 
@@ -168,7 +168,7 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 {
     if ( (_secondAlignment || secondAlignment) && ![_secondAlignment isEqualToString:secondAlignment] ) {
         _secondAlignment = secondAlignment.copy;
-        self.secondItemRZAttribute = RZConstraintAttributeFromString(secondAlignment);
+        self.secondItemBONAttribute = BONConstraintAttributeFromString(secondAlignment);
     }
 }
 
@@ -223,65 +223,65 @@ NSLayoutAttribute requiredLayoutAttributeForRZConstraintAttribute(RZConstraintAt
 
 - (void)updateConstant
 {
-    CGFloat firstItemDistanceFromTop = [self distanceFromTopOfItem:RZItemOrdinalityFirst];
-    CGFloat secondItemDistanceFromTop = [self distanceFromTopOfItem:RZItemOrdinalitySecond];
+    CGFloat firstItemDistanceFromTop = [self distanceFromTopOfItem:BONItemOrdinalityFirst];
+    CGFloat secondItemDistanceFromTop = [self distanceFromTopOfItem:BONItemOrdinalitySecond];
 
     CGFloat offset = secondItemDistanceFromTop - firstItemDistanceFromTop;
     self.constant = offset;
 }
 
-- (CGFloat)distanceFromTopOfItem:(RZItemOrdinality)ordinality
+- (CGFloat)distanceFromTopOfItem:(BONItemOrdinality)ordinality
 {
     id item;
-    RZConstraintAttribute rzAttribute;
+    BONConstraintAttribute bonConsraintAttribute;
     switch ( ordinality ) {
-        case RZItemOrdinalityFirst:
+        case BONItemOrdinalityFirst:
             item = self.firstItem;
-            rzAttribute = self.firstItemRZAttribute;
+            bonConsraintAttribute = self.firstItemBONAttribute;
             break;
-        case RZItemOrdinalitySecond:
+        case BONItemOrdinalitySecond:
             item = self.secondItem;
-            rzAttribute = self.secondItemRZAttribute;
+            bonConsraintAttribute = self.secondItemBONAttribute;
             break;
-        case RZItemOrdinalityUnknown:
+        case BONItemOrdinalityUnknown:
             [NSException raise:NSInternalInconsistencyException format:@"Requesting distance from top of unknown item"];
             break;
     }
 
     CGFloat distanceFromTop = 0.0f;
 
-    if ( rzAttribute != RZConstraintAttributeTop ) {
+    if ( bonConsraintAttribute != BONConstraintAttributeTop ) {
         if ( [item respondsToSelector:@selector(font)] ) {
             UIFont *font = [item font];
 
             CGFloat topToBaseline = font.ascender;
 
-            switch ( rzAttribute ) {
-                case RZConstraintAttributeCapHeight: {
+            switch ( bonConsraintAttribute ) {
+                case BONConstraintAttributeCapHeight: {
                     CGFloat baselineToCapHeight = font.capHeight;
                     distanceFromTop = topToBaseline - baselineToCapHeight;
                     break;
                 }
-                case RZConstraintAttributeXHeight: {
+                case BONConstraintAttributeXHeight: {
                     CGFloat baselineToXHeight = font.xHeight;
                     distanceFromTop = topToBaseline - baselineToXHeight;
                     break;
                 }
-                case RZConstraintAttributeTop: {
-                    [NSException raise:NSInternalInconsistencyException format:@"Should never get here, because the RZConstraintAttributeTop should be handled above"];
+                case BONConstraintAttributeTop: {
+                    [NSException raise:NSInternalInconsistencyException format:@"Should never get here, because the BONConstraintAttributeTop should be handled above"];
                     break;
                 }
-                case RZConstraintAttributeFirstBaseline: // fall through
-                case RZConstraintAttributeLastBaseline: // fall through
-                case RZConstraintAttributeBottom: // fall through
-                case RZConstraintAttributeUnspecified: {
+                case BONConstraintAttributeFirstBaseline: // fall through
+                case BONConstraintAttributeLastBaseline: // fall through
+                case BONConstraintAttributeBottom: // fall through
+                case BONConstraintAttributeUnspecified: {
                     [NSException raise:NSInternalInconsistencyException format:@"Not implemented yet"];
                     break;
                 }
             }
         }
     }
-
+    
     return distanceFromTop;
 }
 

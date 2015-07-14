@@ -14,9 +14,9 @@
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
-		6003F59E195388D20070C39A /* RZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* RZAppDelegate.m */; };
+		6003F59E195388D20070C39A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* AppDelegate.m */; };
 		6003F5A1195388D20070C39A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F59F195388D20070C39A /* Main.storyboard */; };
-		6003F5A7195388D20070C39A /* RZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* RZViewController.m */; };
+		6003F5A7195388D20070C39A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* RootViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -24,25 +24,25 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
 		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */; };
-		CD24988D1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */; };
-		CD79AF3D1AE5820700D9F0C5 /* RZLineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* RZLineHeightCell.m */; };
-		CD79AF401AE5821A00D9F0C5 /* RZFigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* RZFigureStyleCell.m */; };
-		CD79AF431AE5823200D9F0C5 /* RZBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF421AE5823200D9F0C5 /* RZBaselineCapHeightCell.m */; };
-		CD79AF461AE5824000D9F0C5 /* RZInlineImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF451AE5824000D9F0C5 /* RZInlineImagesCell.m */; };
-		CD79AF491AE5824F00D9F0C5 /* RZConcatenationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF481AE5824F00D9F0C5 /* RZConcatenationCell.m */; };
-		CD79AF4C1AE5873D00D9F0C5 /* RZBaselineOffsetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF4B1AE5873D00D9F0C5 /* RZBaselineOffsetCell.m */; };
-		CD79AF4E1AE58B1900D9F0C5 /* RZBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF4D1AE58B1900D9F0C5 /* RZBaselineCapHeightCell.xib */; };
-		CD79AF501AE58B5600D9F0C5 /* RZTrackingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF4F1AE58B5600D9F0C5 /* RZTrackingCell.xib */; };
-		CD79AF521AE58BC200D9F0C5 /* RZLineHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF511AE58BC200D9F0C5 /* RZLineHeightCell.xib */; };
-		CD79AF541AE58BC700D9F0C5 /* RZFigureStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF531AE58BC700D9F0C5 /* RZFigureStyleCell.xib */; };
-		CD79AF561AE58BCE00D9F0C5 /* RZInlineImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF551AE58BCE00D9F0C5 /* RZInlineImagesCell.xib */; };
-		CD79AF581AE58BD800D9F0C5 /* RZBaselineOffsetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF571AE58BD800D9F0C5 /* RZBaselineOffsetCell.xib */; };
-		CD79AF5A1AE58BDF00D9F0C5 /* RZConcatenationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF591AE58BDF00D9F0C5 /* RZConcatenationCell.xib */; };
-		CD9652561AE58DB90013C6B1 /* RZAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9652551AE58DB90013C6B1 /* RZAbstractCell.m */; };
-		CD9E41581AE44B3E00ECFBFB /* RZTrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */; };
+		CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */; };
+		CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */; };
+		CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */; };
+		CD79AF431AE5823200D9F0C5 /* BaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */; };
+		CD79AF461AE5824000D9F0C5 /* InlineImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */; };
+		CD79AF491AE5824F00D9F0C5 /* ConcatenationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF481AE5824F00D9F0C5 /* ConcatenationCell.m */; };
+		CD79AF4C1AE5873D00D9F0C5 /* BaselineOffsetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */; };
+		CD79AF4E1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF4D1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib */; };
+		CD79AF501AE58B5600D9F0C5 /* TrackingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */; };
+		CD79AF521AE58BC200D9F0C5 /* LineHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */; };
+		CD79AF541AE58BC700D9F0C5 /* FigureStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF531AE58BC700D9F0C5 /* FigureStyleCell.xib */; };
+		CD79AF561AE58BCE00D9F0C5 /* InlineImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */; };
+		CD79AF581AE58BD800D9F0C5 /* BaselineOffsetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */; };
+		CD79AF5A1AE58BDF00D9F0C5 /* ConcatenationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF591AE58BDF00D9F0C5 /* ConcatenationCell.xib */; };
+		CD9652561AE58DB90013C6B1 /* AbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9652551AE58DB90013C6B1 /* AbstractCell.m */; };
+		CD9E41581AE44B3E00ECFBFB /* TrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */; };
 		CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */; };
-		CDD4B9ED1AEB2C3F00B02A0A /* RZColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* RZColorCell.m */; };
-		CDD4B9EE1AEB2C3F00B02A0A /* RZColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */; };
+		CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */; };
+		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
 		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
 		CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */; };
 		CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
@@ -75,11 +75,11 @@
 		6003F595195388D20070C39A /* BonMot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BonMot-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59C195388D20070C39A /* RZAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RZAppDelegate.h; sourceTree = "<group>"; };
-		6003F59D195388D20070C39A /* RZAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZAppDelegate.m; sourceTree = "<group>"; };
+		6003F59C195388D20070C39A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6003F59D195388D20070C39A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6003F5A0195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* RZViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RZViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* RZViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RZViewController.m; sourceTree = "<group>"; };
+		6003F5A5195388D20070C39A /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		6003F5A6195388D20070C39A /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -88,35 +88,35 @@
 		7A5A12C91AF6685400D111BA /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextConfigurationTestCase.m; sourceTree = "<group>"; };
-		CD79AF3B1AE5820700D9F0C5 /* RZLineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZLineHeightCell.h; sourceTree = "<group>"; };
-		CD79AF3C1AE5820700D9F0C5 /* RZLineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZLineHeightCell.m; sourceTree = "<group>"; };
-		CD79AF3E1AE5821A00D9F0C5 /* RZFigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZFigureStyleCell.h; sourceTree = "<group>"; };
-		CD79AF3F1AE5821A00D9F0C5 /* RZFigureStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZFigureStyleCell.m; sourceTree = "<group>"; };
-		CD79AF411AE5823200D9F0C5 /* RZBaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZBaselineCapHeightCell.h; sourceTree = "<group>"; };
-		CD79AF421AE5823200D9F0C5 /* RZBaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZBaselineCapHeightCell.m; sourceTree = "<group>"; };
-		CD79AF441AE5824000D9F0C5 /* RZInlineImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZInlineImagesCell.h; sourceTree = "<group>"; };
-		CD79AF451AE5824000D9F0C5 /* RZInlineImagesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZInlineImagesCell.m; sourceTree = "<group>"; };
-		CD79AF471AE5824F00D9F0C5 /* RZConcatenationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZConcatenationCell.h; sourceTree = "<group>"; };
-		CD79AF481AE5824F00D9F0C5 /* RZConcatenationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZConcatenationCell.m; sourceTree = "<group>"; };
-		CD79AF4A1AE5873D00D9F0C5 /* RZBaselineOffsetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZBaselineOffsetCell.h; sourceTree = "<group>"; };
-		CD79AF4B1AE5873D00D9F0C5 /* RZBaselineOffsetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZBaselineOffsetCell.m; sourceTree = "<group>"; };
-		CD79AF4D1AE58B1900D9F0C5 /* RZBaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZBaselineCapHeightCell.xib; sourceTree = "<group>"; };
-		CD79AF4F1AE58B5600D9F0C5 /* RZTrackingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZTrackingCell.xib; sourceTree = "<group>"; };
-		CD79AF511AE58BC200D9F0C5 /* RZLineHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZLineHeightCell.xib; sourceTree = "<group>"; };
-		CD79AF531AE58BC700D9F0C5 /* RZFigureStyleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZFigureStyleCell.xib; sourceTree = "<group>"; };
-		CD79AF551AE58BCE00D9F0C5 /* RZInlineImagesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZInlineImagesCell.xib; sourceTree = "<group>"; };
-		CD79AF571AE58BD800D9F0C5 /* RZBaselineOffsetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZBaselineOffsetCell.xib; sourceTree = "<group>"; };
-		CD79AF591AE58BDF00D9F0C5 /* RZConcatenationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZConcatenationCell.xib; sourceTree = "<group>"; };
-		CD9652541AE58DB90013C6B1 /* RZAbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZAbstractCell.h; sourceTree = "<group>"; };
-		CD9652551AE58DB90013C6B1 /* RZAbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZAbstractCell.m; sourceTree = "<group>"; };
-		CD9E41551AE44B3E00ECFBFB /* RZTrackingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZTrackingCell.h; sourceTree = "<group>"; };
-		CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZTrackingCell.m; sourceTree = "<group>"; };
+		CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextTestCase.m; sourceTree = "<group>"; };
+		CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineHeightCell.h; sourceTree = "<group>"; };
+		CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineHeightCell.m; sourceTree = "<group>"; };
+		CD79AF3E1AE5821A00D9F0C5 /* FigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureStyleCell.h; sourceTree = "<group>"; };
+		CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureStyleCell.m; sourceTree = "<group>"; };
+		CD79AF411AE5823200D9F0C5 /* BaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaselineCapHeightCell.h; sourceTree = "<group>"; };
+		CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaselineCapHeightCell.m; sourceTree = "<group>"; };
+		CD79AF441AE5824000D9F0C5 /* InlineImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InlineImagesCell.h; sourceTree = "<group>"; };
+		CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InlineImagesCell.m; sourceTree = "<group>"; };
+		CD79AF471AE5824F00D9F0C5 /* ConcatenationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcatenationCell.h; sourceTree = "<group>"; };
+		CD79AF481AE5824F00D9F0C5 /* ConcatenationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcatenationCell.m; sourceTree = "<group>"; };
+		CD79AF4A1AE5873D00D9F0C5 /* BaselineOffsetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaselineOffsetCell.h; sourceTree = "<group>"; };
+		CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaselineOffsetCell.m; sourceTree = "<group>"; };
+		CD79AF4D1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaselineCapHeightCell.xib; sourceTree = "<group>"; };
+		CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackingCell.xib; sourceTree = "<group>"; };
+		CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineHeightCell.xib; sourceTree = "<group>"; };
+		CD79AF531AE58BC700D9F0C5 /* FigureStyleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FigureStyleCell.xib; sourceTree = "<group>"; };
+		CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlineImagesCell.xib; sourceTree = "<group>"; };
+		CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaselineOffsetCell.xib; sourceTree = "<group>"; };
+		CD79AF591AE58BDF00D9F0C5 /* ConcatenationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConcatenationCell.xib; sourceTree = "<group>"; };
+		CD9652541AE58DB90013C6B1 /* AbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCell.h; sourceTree = "<group>"; };
+		CD9652551AE58DB90013C6B1 /* AbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCell.m; sourceTree = "<group>"; };
+		CD9E41551AE44B3E00ECFBFB /* TrackingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingCell.h; sourceTree = "<group>"; };
+		CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingCell.m; sourceTree = "<group>"; };
 		CD9E415B1AE46F3B00ECFBFB /* DashedHairlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashedHairlineView.h; sourceTree = "<group>"; };
 		CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashedHairlineView.m; sourceTree = "<group>"; };
-		CDD4B9EA1AEB2C3F00B02A0A /* RZColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZColorCell.h; sourceTree = "<group>"; };
-		CDD4B9EB1AEB2C3F00B02A0A /* RZColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZColorCell.m; sourceTree = "<group>"; };
-		CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RZColorCell.xib; sourceTree = "<group>"; };
+		CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
+		CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
+		CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
 		CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
@@ -194,11 +194,11 @@
 		6003F593195388D20070C39A /* BonMot */ = {
 			isa = PBXGroup;
 			children = (
-				6003F59C195388D20070C39A /* RZAppDelegate.h */,
-				6003F59D195388D20070C39A /* RZAppDelegate.m */,
+				6003F59C195388D20070C39A /* AppDelegate.h */,
+				6003F59D195388D20070C39A /* AppDelegate.m */,
 				6003F59F195388D20070C39A /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* RZViewController.h */,
-				6003F5A6195388D20070C39A /* RZViewController.m */,
+				6003F5A5195388D20070C39A /* RootViewController.h */,
+				6003F5A6195388D20070C39A /* RootViewController.m */,
 				CD9E415A1AE46F2F00ECFBFB /* Utilities */,
 				CD9E41541AE4457500ECFBFB /* Cells */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -224,7 +224,7 @@
 			children = (
 				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
 				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
-				CD24988C1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m */,
+				CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */,
 				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -253,32 +253,32 @@
 		CD9E41541AE4457500ECFBFB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CD9652541AE58DB90013C6B1 /* RZAbstractCell.h */,
-				CD9652551AE58DB90013C6B1 /* RZAbstractCell.m */,
-				CDD4B9EA1AEB2C3F00B02A0A /* RZColorCell.h */,
-				CDD4B9EB1AEB2C3F00B02A0A /* RZColorCell.m */,
-				CDD4B9EC1AEB2C3F00B02A0A /* RZColorCell.xib */,
-				CD9E41551AE44B3E00ECFBFB /* RZTrackingCell.h */,
-				CD9E41561AE44B3E00ECFBFB /* RZTrackingCell.m */,
-				CD79AF4F1AE58B5600D9F0C5 /* RZTrackingCell.xib */,
-				CD79AF3B1AE5820700D9F0C5 /* RZLineHeightCell.h */,
-				CD79AF3C1AE5820700D9F0C5 /* RZLineHeightCell.m */,
-				CD79AF511AE58BC200D9F0C5 /* RZLineHeightCell.xib */,
-				CD79AF3E1AE5821A00D9F0C5 /* RZFigureStyleCell.h */,
-				CD79AF3F1AE5821A00D9F0C5 /* RZFigureStyleCell.m */,
-				CD79AF531AE58BC700D9F0C5 /* RZFigureStyleCell.xib */,
-				CD79AF411AE5823200D9F0C5 /* RZBaselineCapHeightCell.h */,
-				CD79AF421AE5823200D9F0C5 /* RZBaselineCapHeightCell.m */,
-				CD79AF4D1AE58B1900D9F0C5 /* RZBaselineCapHeightCell.xib */,
-				CD79AF441AE5824000D9F0C5 /* RZInlineImagesCell.h */,
-				CD79AF451AE5824000D9F0C5 /* RZInlineImagesCell.m */,
-				CD79AF551AE58BCE00D9F0C5 /* RZInlineImagesCell.xib */,
-				CD79AF4A1AE5873D00D9F0C5 /* RZBaselineOffsetCell.h */,
-				CD79AF4B1AE5873D00D9F0C5 /* RZBaselineOffsetCell.m */,
-				CD79AF571AE58BD800D9F0C5 /* RZBaselineOffsetCell.xib */,
-				CD79AF471AE5824F00D9F0C5 /* RZConcatenationCell.h */,
-				CD79AF481AE5824F00D9F0C5 /* RZConcatenationCell.m */,
-				CD79AF591AE58BDF00D9F0C5 /* RZConcatenationCell.xib */,
+				CD9652541AE58DB90013C6B1 /* AbstractCell.h */,
+				CD9652551AE58DB90013C6B1 /* AbstractCell.m */,
+				CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */,
+				CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */,
+				CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */,
+				CD9E41551AE44B3E00ECFBFB /* TrackingCell.h */,
+				CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */,
+				CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */,
+				CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */,
+				CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */,
+				CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */,
+				CD79AF3E1AE5821A00D9F0C5 /* FigureStyleCell.h */,
+				CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */,
+				CD79AF531AE58BC700D9F0C5 /* FigureStyleCell.xib */,
+				CD79AF411AE5823200D9F0C5 /* BaselineCapHeightCell.h */,
+				CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */,
+				CD79AF4D1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib */,
+				CD79AF441AE5824000D9F0C5 /* InlineImagesCell.h */,
+				CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */,
+				CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */,
+				CD79AF4A1AE5873D00D9F0C5 /* BaselineOffsetCell.h */,
+				CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */,
+				CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */,
+				CD79AF471AE5824F00D9F0C5 /* ConcatenationCell.h */,
+				CD79AF481AE5824F00D9F0C5 /* ConcatenationCell.m */,
+				CD79AF591AE58BDF00D9F0C5 /* ConcatenationCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -364,7 +364,7 @@
 		6003F582195388D10070C39A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = BON;
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Zev Eisenberg";
 				TargetAttributes = {
@@ -397,19 +397,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD79AF5A1AE58BDF00D9F0C5 /* RZConcatenationCell.xib in Resources */,
-				CD79AF561AE58BCE00D9F0C5 /* RZInlineImagesCell.xib in Resources */,
-				CD79AF521AE58BC200D9F0C5 /* RZLineHeightCell.xib in Resources */,
-				CD79AF581AE58BD800D9F0C5 /* RZBaselineOffsetCell.xib in Resources */,
-				CD79AF4E1AE58B1900D9F0C5 /* RZBaselineCapHeightCell.xib in Resources */,
-				CD79AF501AE58B5600D9F0C5 /* RZTrackingCell.xib in Resources */,
+				CD79AF5A1AE58BDF00D9F0C5 /* ConcatenationCell.xib in Resources */,
+				CD79AF561AE58BCE00D9F0C5 /* InlineImagesCell.xib in Resources */,
+				CD79AF521AE58BC200D9F0C5 /* LineHeightCell.xib in Resources */,
+				CD79AF581AE58BD800D9F0C5 /* BaselineOffsetCell.xib in Resources */,
+				CD79AF4E1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib in Resources */,
+				CD79AF501AE58B5600D9F0C5 /* TrackingCell.xib in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F5A1195388D20070C39A /* Main.storyboard in Resources */,
-				CD79AF541AE58BC700D9F0C5 /* RZFigureStyleCell.xib in Resources */,
+				CD79AF541AE58BC700D9F0C5 /* FigureStyleCell.xib in Resources */,
 				7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */,
 				CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				CDD4B9EE1AEB2C3F00B02A0A /* RZColorCell.xib in Resources */,
+				CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,17 +492,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
-				CD79AF431AE5823200D9F0C5 /* RZBaselineCapHeightCell.m in Sources */,
-				CD79AF461AE5824000D9F0C5 /* RZInlineImagesCell.m in Sources */,
-				CDD4B9ED1AEB2C3F00B02A0A /* RZColorCell.m in Sources */,
-				6003F59E195388D20070C39A /* RZAppDelegate.m in Sources */,
-				CD9652561AE58DB90013C6B1 /* RZAbstractCell.m in Sources */,
-				6003F5A7195388D20070C39A /* RZViewController.m in Sources */,
-				CD79AF491AE5824F00D9F0C5 /* RZConcatenationCell.m in Sources */,
-				CD79AF4C1AE5873D00D9F0C5 /* RZBaselineOffsetCell.m in Sources */,
-				CD79AF3D1AE5820700D9F0C5 /* RZLineHeightCell.m in Sources */,
-				CD9E41581AE44B3E00ECFBFB /* RZTrackingCell.m in Sources */,
-				CD79AF401AE5821A00D9F0C5 /* RZFigureStyleCell.m in Sources */,
+				CD79AF431AE5823200D9F0C5 /* BaselineCapHeightCell.m in Sources */,
+				CD79AF461AE5824000D9F0C5 /* InlineImagesCell.m in Sources */,
+				CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */,
+				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
+				CD9652561AE58DB90013C6B1 /* AbstractCell.m in Sources */,
+				6003F5A7195388D20070C39A /* RootViewController.m in Sources */,
+				CD79AF491AE5824F00D9F0C5 /* ConcatenationCell.m in Sources */,
+				CD79AF4C1AE5873D00D9F0C5 /* BaselineOffsetCell.m in Sources */,
+				CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */,
+				CD9E41581AE44B3E00ECFBFB /* TrackingCell.m in Sources */,
+				CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */,
 			);
@@ -515,7 +515,7 @@
 				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
 				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
-				CD24988D1B30CBA90055F2A7 /* BONTextConfigurationTestCase.m in Sources */,
+				CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

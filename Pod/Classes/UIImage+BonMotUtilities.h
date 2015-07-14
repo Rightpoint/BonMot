@@ -17,6 +17,6 @@
  *
  *  @return A tinted version of the image.
  */
-- (UIImage *)rz_tintedImageWithColor:(UIColor *)color;
+- (UIImage *)bon_tintedImageWithColor:(UIColor *)color;
 
 @end
