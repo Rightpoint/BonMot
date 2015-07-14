@@ -39,7 +39,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
     UIFont *ebGaramond = [UIFont fontWithName:kRZFontNameEBGaramond size:24.0f];
 
-    BONChain *commonFont = RZCursive.font(ebGaramond);
+    BONChain *commonFont = BONChain.new.font(ebGaramond);
 
     self.proportionalLiningLabel.attributedText = commonFont.string(proportionalLiningString).figureSpacing(RZFigureSpacingProportional).figureCase(RZFigureCaseLining).attributedString;
 

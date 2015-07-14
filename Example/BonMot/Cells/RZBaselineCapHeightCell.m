@@ -33,7 +33,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 {
     [super awakeFromNib];
 
-    NSAttributedString *numberString = RZCursive.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"167").attributedString;
+    NSAttributedString *numberString = BONChain.new.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"167").attributedString;
 
     for ( UILabel *label in self.capHeightNumberLabels ) {
         label.attributedText = numberString;

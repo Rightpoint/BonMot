@@ -28,7 +28,7 @@
     [super awakeFromNib];
 
     NSString *quote = @"I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson";
-    NSAttributedString *attributedString = RZCursive.fontNameAndSize(@"AmericanTypewriter", 17.0f).lineHeightMultiple(1.8f).string(quote).attributedString;
+    NSAttributedString *attributedString = BONChain.new.fontNameAndSize(@"AmericanTypewriter", 17.0f).lineHeightMultiple(1.8f).string(quote).attributedString;
 
     self.label.attributedText = attributedString;
 

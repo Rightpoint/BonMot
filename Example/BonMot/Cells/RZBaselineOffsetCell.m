@@ -27,7 +27,7 @@
 {
     [super awakeFromNib];
 
-    BONChain *baseChain = RZCursive.string(@"❤️");
+    BONChain *baseChain = BONChain.new.string(@"❤️");
 
     NSMutableArray *wave = [NSMutableArray array];
 

@@ -31,17 +31,17 @@
     UIImage *knot = [UIImage imageNamed:@"knot"];
     UIImage *oar = [UIImage imageNamed:@"oar"];
 
-    BONChain *imageBaselineChain = RZCursive.baselineOffset(-8.0f);
+    BONChain *imageBaselineChain = BONChain.new.baselineOffset(-8.0f);
 
     BONChain *beeChain = imageBaselineChain.image(bee);
     BONChain *knotChain = imageBaselineChain.image(knot);
     BONChain *oarChain = imageBaselineChain.image(oar);
 
-    BONChain *twoChain = RZCursive.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
+    BONChain *twoChain = BONChain.new.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
 
-    BONChain *spaceChain = RZCursive.string(@" ");
+    BONChain *spaceChain = BONChain.new.string(@" ");
 
-    BONChain *wholeString = RZCursive;
+    BONChain *wholeString = BONChain.new;
     wholeString
     .append(twoChain)
     .appendWithSeparator(@" ", beeChain)

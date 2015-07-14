@@ -56,7 +56,7 @@ NSDictionary *attributes = text.attributes;
 
 ## Chaining Syntax
 
-`BONChain` is a wrapper around `BONText` that allows you to chain properties together for a more concise expression of a style. You can create a chain with a normal initializer, but it's easier to just use the `RZCursive` macro:
+`BONChain` is a wrapper around `BONText` that allows you to chain properties together for a more concise expression of a style. You can create a chain with a normal `[[BONChain alloc] init]`, but it's easier to just use `[BONChain new]` or the even shorter and technically valid `BONChain.new`:
 
 ```objc
 NSString *quote = @"I used to love correcting people’s grammar until\
@@ -65,7 +65,7 @@ NSString *quote = @"I used to love correcting people’s grammar until\
 
 // line-wrapped for readability
 NSAttributedString *attributedString =
-RZCursive
+BONChain.new // [BONChain new] and [[BONChain alloc] init] also work
 .fontNameAndSize(@"AmericanTypewriter", 17.0f)
 .lineHeightMultiple(1.8f)
 .string(quote)
@@ -78,7 +78,7 @@ You can also create a local variable or property to save a partially-configured 
 
 // Base Chain
 BONChain *birdChain =
-RZCursive
+BONChain.new
 .lineHeightMultiple(1.2f)
 .font([UIFont systemFontOfSize:17.0f])
 .string(@"bird");
@@ -99,11 +99,11 @@ NSAttributedString *blueBirdSring = blueBirds.attributedString;
 You can concatenate an array of `BONText`s:
 
 ```objc
-BONText *oneFish = RZCursive.string(@"one fish").text;
-BONText *twoFish = RZCursive.string(@"two fish").text;
-BONText *redFish = RZCursive.string(@"red fish").textColor([UIColor redColor]).text;
-BONText *blueFish = RZCursive.string(@"blue fish").textColor([UIColor blueColor]).text;
-BONText *separator = RZCursive.string(@", ").text;
+BONText *oneFish = BONChain.new.string(@"one fish").text;
+BONText *twoFish = BONChain.new.string(@"two fish").text;
+BONText *redFish = BONChain.new.string(@"red fish").textColor([UIColor redColor]).text;
+BONText *blueFish = BONChain.new.string(@"blue fish").textColor([UIColor blueColor]).text;
+BONText *separator = BONChain.new.string(@", ").text;
 
 NSAttributedString *string = [BONText joinTexts:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
 ```
@@ -116,12 +116,12 @@ You can also append texts directly to each other:
 
 ```objc
 NSString *commaSpace = @", ";
-BONChain *chain = RZCursive;
+BONChain *chain = BONChain.new;
 chain
-.append(RZCursive.string(@"one fish"))
-.appendWithSeparator(commaSpace, RZCursive.string(@"two fish"))
-.appendWithSeparator(commaSpace, RZCursive.string(@"red fish").textColor([UIColor redColor]))
-.appendWithSeparator(commaSpace, RZCursive.string(@"blue fish").textColor([UIColor blueColor]));
+.append(BONChain.new.string(@"one fish"))
+.appendWithSeparator(commaSpace, BONChain.new.string(@"two fish"))
+.appendWithSeparator(commaSpace, BONChain.new.string(@"red fish").textColor([UIColor redColor]))
+.appendWithSeparator(commaSpace, BONChain.new.string(@"blue fish").textColor([UIColor blueColor]));
 
 NSAttributedString *string = chain.attributedString;
 ```
@@ -137,10 +137,10 @@ Outputs:
 BonMot uses NSTextAttachment to embed images in strings. Simply use the `.image` property of a chain or text:
 
 ```objc
-BONChain *chain = RZCursive;
+BONChain *chain = BONChain.new;
 chain
-.append(RZCursive.image(someUIImage).baselineOffset(-4.0f))
-.appendWithSeparator(@" ", RZCursive.text(@"label with icon"));
+.append(BONChain.new.image(someUIImage).baselineOffset(-4.0f))
+.appendWithSeparator(@" ", BONChain.new.text(@"label with icon"));
 NSAttributedString *string = chain.attributedString;
 ```
 

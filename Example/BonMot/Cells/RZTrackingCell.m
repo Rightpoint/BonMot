@@ -28,7 +28,7 @@
     [super awakeFromNib];
 
     NSString *quote = @"Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone";
-    NSAttributedString *attributedString = RZCursive.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f).string(quote).attributedString;
+    NSAttributedString *attributedString = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f).string(quote).attributedString;
 
     self.label.attributedText = attributedString;
 

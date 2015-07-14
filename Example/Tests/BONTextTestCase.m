@@ -32,7 +32,7 @@
 - (void)testText
 {
     NSAttributedString *attributedString =
-    RZCursive
+    BONChain.new
     .string(@"Hello, testing world")
     .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
     .textColor([UIColor redColor])
@@ -56,7 +56,7 @@
 - (void)testPositivePointTracking
 {
     NSAttributedString *attributedString =
-    RZCursive
+    BONChain.new
     .string(@"Tracking is awesome!")
     .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
     .pointTracking(3)
@@ -85,7 +85,7 @@
 - (void)testPositiveAdobeTracking
 {
     NSAttributedString *attributedString =
-    RZCursive
+    BONChain.new
     .string(@"Tracking is awesome!")
     .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
     .adobeTracking(230)
@@ -114,7 +114,7 @@
 - (void)testNegativePointTracking
 {
     NSAttributedString *attributedString =
-    RZCursive
+    BONChain.new
     .string(@"Tracking is awesome!")
     .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
     .pointTracking(-3)
@@ -143,7 +143,7 @@
 - (void)testNegativeAdobeTracking
 {
     NSAttributedString *attributedString =
-    RZCursive
+    BONChain.new
     .string(@"Tracking is awesome!")
     .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
     .adobeTracking(-230)

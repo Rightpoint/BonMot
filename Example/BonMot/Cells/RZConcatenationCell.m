@@ -31,10 +31,10 @@ static const NSInteger kRZTracking = 200;
 {
     [super awakeFromNib];
 
-    BONText *centeredSmartTracking = RZCursive.string(@"CENTERED WITH TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kRZColorAlpha]).text;
+    BONText *centeredSmartTracking = BONChain.new.string(@"CENTERED WITH TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kRZColorAlpha]).text;
 
-    BONText *appended = RZCursive.string(@"APPENDED").adobeTracking(kRZTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kRZColorAlpha]).text;
-    BONText *smartTracking = RZCursive.string(@" SMART TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kRZColorAlpha]).text;
+    BONText *appended = BONChain.new.string(@"APPENDED").adobeTracking(kRZTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kRZColorAlpha]).text;
+    BONText *smartTracking = BONChain.new.string(@" SMART TRACKING").adobeTracking(kRZTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kRZColorAlpha]).text;
     appended.nextText = smartTracking;
 
     self.centeredSmartTrackingLabel.attributedText = centeredSmartTracking.attributedString;

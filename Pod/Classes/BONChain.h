@@ -10,8 +10,6 @@
 
 #import <BonMot/BONText.h>
 
-#define RZCursive [[BONChain alloc] init]
-
 @class BONChain;
 
 typedef BONChain*(^BONChainFontNameAndSize)(NSString *fontName, CGFloat fontSize);
