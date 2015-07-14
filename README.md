@@ -9,9 +9,6 @@ BonMot is an iOS attributed string generation library. It abstracts away the adv
 
 To run the example project, run `pod try BonMot`, or clone the repo and open `Example/BonMot.xcworkspace`.
 
-### Warning:
-BonMot should be considered extremely pre-release. I'm planning on [changing the names](https://github.com/ZevEisenberg/BonMot/issues/7) of several classes, so a future update will definitely break your code. Use accordingly.
-
 ## Installation with CocoaPods
 
 BonMot is available through [CocoaPods](http://cocoapods.org). To install
