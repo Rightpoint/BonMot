@@ -1,5 +1,5 @@
 //
-//  RZAbstractCell.h
+//  AbstractCell.h
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/20/15.
@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface RZAbstractCell : UITableViewCell
+@interface AbstractCell : UITableViewCell
 
 + (NSString *)title;
 

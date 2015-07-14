@@ -1,13 +1,13 @@
 //
-//  RZColorCell.h
+//  ColorCell.h
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/24/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZAbstractCell.h"
+#import "AbstractCell.h"
 
-@interface RZColorCell : RZAbstractCell
+@interface ColorCell : AbstractCell
 
 @end

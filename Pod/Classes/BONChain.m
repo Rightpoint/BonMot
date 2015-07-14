@@ -139,7 +139,7 @@
 
 - (BONChainFigureCase)figureCase
 {
-    BONChainFigureCase figureCaseBlock = ^(RZFigureCase figureCase) {
+    BONChainFigureCase figureCaseBlock = ^(BONFigureCase figureCase) {
         typeof(self) newChain = self.copy;
         newChain.text.figureCase = figureCase;
         return newChain;
@@ -150,7 +150,7 @@
 
 - (BONChainFigureSpacing)figureSpacing
 {
-    BONChainFigureSpacing figureSpacingBlock = ^(RZFigureSpacing figureSpacing) {
+    BONChainFigureSpacing figureSpacingBlock = ^(BONFigureSpacing figureSpacing) {
         typeof(self) newChain = self.copy;
         newChain.text.figureSpacing = figureSpacing;
         return newChain;

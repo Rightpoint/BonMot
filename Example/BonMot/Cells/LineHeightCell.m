@@ -1,22 +1,22 @@
 //
-//  RZLineHeightCell.m
+//  LineHeightCell.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/20/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZLineHeightCell.h"
+#import "LineHeightCell.h"
 
 #import <BonMot/BONChain.h>
 
-@interface RZLineHeightCell ()
+@interface LineHeightCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
-@implementation RZLineHeightCell
+@implementation LineHeightCell
 
 + (NSString *)title
 {

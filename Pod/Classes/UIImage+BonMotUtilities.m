@@ -10,7 +10,7 @@
 
 @implementation UIImage (BonMotUtilities)
 
-- (UIImage *)rz_tintedImageWithColor:(UIColor *)color
+- (UIImage *)bon_tintedImageWithColor:(UIColor *)color
 {
     NSParameterAssert(color);
 

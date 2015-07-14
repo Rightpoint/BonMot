@@ -1,5 +1,5 @@
 //
-//  RZViewController.h
+//  ViewController.h
 //  BonMot
 //
 //  Created by Zev Eisenberg on 04/17/2015.
@@ -8,6 +8,6 @@
 
 @import UIKit;
 
-@interface RZViewController : UITableViewController
+@interface RootViewController : UITableViewController
 
 @end

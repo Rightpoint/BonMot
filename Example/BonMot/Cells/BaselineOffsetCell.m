@@ -1,22 +1,22 @@
 //
-//  RZBaselineOffsetCell.m
+//  BaselineOffsetCell.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/20/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZBaselineOffsetCell.h"
+#import "BaselineOffsetCell.h"
 
 #import <BonMot/BONChain.h>
 
-@interface RZBaselineOffsetCell ()
+@interface BaselineOffsetCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
-@implementation RZBaselineOffsetCell
+@implementation BaselineOffsetCell
 
 + (NSString *)title
 {

@@ -1,17 +1,17 @@
 //
-//  RZBaselineCapHeightCell.m
+//  BaselineCapHeightCell.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/20/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZBaselineCapHeightCell.h"
+#import "BaselineCapHeightCell.h"
 
 #import <BonMot/BONChain.h>
-static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
+static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
-@interface RZBaselineCapHeightCell ()
+@interface BaselineCapHeightCell ()
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *capHeightNumberLabels;
 
@@ -22,7 +22,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @end
 
-@implementation RZBaselineCapHeightCell
+@implementation BaselineCapHeightCell
 
 + (NSString *)title
 {
@@ -33,7 +33,7 @@ static NSString* const kRZFontNameEBGaramond = @"EBGaramond12-Regular";
 {
     [super awakeFromNib];
 
-    NSAttributedString *numberString = BONChain.new.fontNameAndSize(kRZFontNameEBGaramond, 100.0f).figureCase(RZFigureCaseOldstyle).string(@"167").attributedString;
+    NSAttributedString *numberString = BONChain.new.fontNameAndSize(kFontNameEBGaramond, 100.0f).figureCase(BONFigureCaseOldstyle).string(@"167").attributedString;
 
     for ( UILabel *label in self.capHeightNumberLabels ) {
         label.attributedText = numberString;

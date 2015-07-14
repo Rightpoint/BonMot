@@ -1,25 +1,25 @@
 //
-//  RZColorCell.m
+//  ColorCell.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/24/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZColorCell.h"
+#import "ColorCell.h"
 
 #import <BonMot/BONChain.h>
 
 // Utilities
 #import <BonMot/UIImage+BonMotUtilities.h>
 
-@interface RZColorCell ()
+@interface ColorCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
-@implementation RZColorCell
+@implementation ColorCell
 
 + (NSString *)title
 {
@@ -75,7 +75,7 @@
     NSAssert(textsWithStrings.count == strings.count, @"wrong count");
 
     UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
-    UIImage *tinted = [tennisRacketImage rz_tintedImageWithColor:[self.class raizlabsRed]];
+    UIImage *tinted = [tennisRacketImage bon_tintedImageWithColor:[self.class raizlabsRed]];
     BONChain *tennisRacket = BONChain.new.image(tinted).baselineOffset(-4.0f);
 
     [textsWithStrings addObject:tennisRacket.text];

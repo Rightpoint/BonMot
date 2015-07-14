@@ -1,33 +1,33 @@
 //
-//  RZViewController.m
+//  ViewController.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 04/17/2015.
 //  Copyright (c) 2014 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZViewController.h"
+#import "RootViewController.h"
 
 // Cells
-#import "RZColorCell.h"
-#import "RZTrackingCell.h"
-#import "RZLineHeightCell.h"
-#import "RZFigureStyleCell.h"
-#import "RZBaselineCapHeightCell.h"
-#import "RZInlineImagesCell.h"
-#import "RZBaselineOffsetCell.h"
-#import "RZConcatenationCell.h"
+#import "ColorCell.h"
+#import "TrackingCell.h"
+#import "LineHeightCell.h"
+#import "FigureStyleCell.h"
+#import "BaselineCapHeightCell.h"
+#import "InlineImagesCell.h"
+#import "BaselineOffsetCell.h"
+#import "ConcatenationCell.h"
 
 // Pods
 #import <BonMot/BONChain.h>
 
-@interface RZViewController ()
+@interface RootViewController ()
 
 @property (copy, nonatomic) NSArray *cellClasses;
 
 @end
 
-@implementation RZViewController
+@implementation RootViewController
 
 - (void)viewDidLoad
 {
@@ -37,19 +37,19 @@
     self.tableView.estimatedRowHeight = 123.0f;
 
     self.cellClasses = @[
-                         [RZColorCell class],
-                         [RZTrackingCell class],
-                         [RZLineHeightCell class],
-                         [RZFigureStyleCell class],
-                         [RZBaselineCapHeightCell class],
-                         [RZInlineImagesCell class],
-                         [RZBaselineOffsetCell class],
-                         [RZConcatenationCell class],
+                         [ColorCell class],
+                         [TrackingCell class],
+                         [LineHeightCell class],
+                         [FigureStyleCell class],
+                         [BaselineCapHeightCell class],
+                         [InlineImagesCell class],
+                         [BaselineOffsetCell class],
+                         [ConcatenationCell class],
                          ];
 
     for ( Class CellClass in self.cellClasses ) {
         NSAssert([CellClass respondsToSelector:@selector(reuseIdentifier)],
-                 @"Cells must inherit from %@", NSStringFromClass([RZAbstractCell class]));
+                 @"Cells must inherit from %@", NSStringFromClass([AbstractCell class]));
 
         [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(CellClass) bundle:nil]
              forCellReuseIdentifier:[CellClass reuseIdentifier]];
@@ -70,7 +70,7 @@
 {
     Class CellClass = self.cellClasses[section];
     NSAssert([CellClass respondsToSelector:@selector(title)],
-             @"Cells must inherit from %@", NSStringFromClass([RZAbstractCell class]));
+             @"Cells must inherit from %@", NSStringFromClass([AbstractCell class]));
 
     return [CellClass title];
 
@@ -80,9 +80,9 @@
 {
     Class CellClass = self.cellClasses[indexPath.section];
     NSAssert([CellClass respondsToSelector:@selector(reuseIdentifier)],
-             @"Cells must inherit from %@", NSStringFromClass([RZAbstractCell class]));
+             @"Cells must inherit from %@", NSStringFromClass([AbstractCell class]));
 
-    RZBaselineOffsetCell *cell = [tableView dequeueReusableCellWithIdentifier:[CellClass reuseIdentifier]];
+    BaselineOffsetCell *cell = [tableView dequeueReusableCellWithIdentifier:[CellClass reuseIdentifier]];
     return cell;
 }
 

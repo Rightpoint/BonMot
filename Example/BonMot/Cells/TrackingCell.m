@@ -1,22 +1,22 @@
 //
-//  RZTrackingCell.m
+//  TrackingCell.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/19/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZTrackingCell.h"
+#import "TrackingCell.h"
 
 #import <BonMot/BONChain.h>
 
-@interface RZTrackingCell ()
+@interface TrackingCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
-@implementation RZTrackingCell
+@implementation TrackingCell
 
 + (NSString *)title
 {

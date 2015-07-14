@@ -8,16 +8,16 @@
 
 @import UIKit;
 
-typedef NS_ENUM(NSUInteger, RZFigureCase) {
-    RZFigureCaseDefault = 0,
-    RZFigureCaseLining,
-    RZFigureCaseOldstyle,
+typedef NS_ENUM(NSUInteger, BONFigureCase) {
+    BONFigureCaseDefault = 0,
+    BONFigureCaseLining,
+    BONFigureCaseOldstyle,
 };
 
-typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
-    RZFigureSpacingDefault = 0,
-    RZFigureSpacingTabular,
-    RZFigureSpacingProportional,
+typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
+    BONFigureSpacingDefault = 0,
+    BONFigureSpacingTabular,
+    BONFigureSpacingProportional,
 };
 
 @class BONText;
@@ -47,8 +47,8 @@ typedef NS_ENUM(NSUInteger, RZFigureSpacing) {
 
 @property (assign, nonatomic) CGFloat baselineOffset;
 
-@property (assign, nonatomic) RZFigureCase figureCase;
-@property (assign, nonatomic) RZFigureSpacing figureSpacing;
+@property (assign, nonatomic) BONFigureCase figureCase;
+@property (assign, nonatomic) BONFigureSpacing figureSpacing;
 
 // string and image are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic) NSString *string;

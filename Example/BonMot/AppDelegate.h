@@ -1,5 +1,5 @@
 //
-//  RZAppDelegate.h
+//  AppDelegate.h
 //  BonMot
 //
 //  Created by CocoaPods on 04/17/2015.
@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-@interface RZAppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

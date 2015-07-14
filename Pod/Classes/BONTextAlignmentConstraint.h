@@ -8,31 +8,31 @@
 
 @import UIKit;
 
-typedef NS_ENUM(NSUInteger, RZConstraintAttribute) {
-    RZConstraintAttributeUnspecified = 0,
-    RZConstraintAttributeTop,
-    RZConstraintAttributeCapHeight,
-    RZConstraintAttributeXHeight,
-    RZConstraintAttributeFirstBaseline,
-    RZConstraintAttributeLastBaseline,
-    RZConstraintAttributeBottom,
+typedef NS_ENUM(NSUInteger, BONConstraintAttribute) {
+    BONConstraintAttributeUnspecified = 0,
+    BONConstraintAttributeTop,
+    BONConstraintAttributeCapHeight,
+    BONConstraintAttributeXHeight,
+    BONConstraintAttributeFirstBaseline,
+    BONConstraintAttributeLastBaseline,
+    BONConstraintAttributeBottom,
 };
 
-NSString *stringFromRZConstraintAttribute(RZConstraintAttribute attribute);
-RZConstraintAttribute RZConstraintAttributeFromString(NSString *string);
+NSString *stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
+BONConstraintAttribute BONConstraintAttributeFromString(NSString *string);
 
 @interface BONTextAlignmentConstraint : NSLayoutConstraint
 
-@property (nonatomic) RZConstraintAttribute firstItemRZAttribute;
-@property (nonatomic) RZConstraintAttribute secondItemRZAttribute;
+@property (nonatomic) BONConstraintAttribute firstItemBONAttribute;
+@property (nonatomic) BONConstraintAttribute secondItemBONAttribute;
 
 @property (copy, nonatomic) IBInspectable NSString *firstAlignment;
 @property (copy, nonatomic) IBInspectable NSString *secondAlignment;
 
 + (instancetype)constraintWithItem:(id)view1
-                         attribute:(RZConstraintAttribute)attr1
+                         attribute:(BONConstraintAttribute)attr1
                          relatedBy:(NSLayoutRelation)relation
                             toItem:(id)view2
-                         attribute:(RZConstraintAttribute)attr2;
+                         attribute:(BONConstraintAttribute)attr2;
 
 @end

@@ -10,11 +10,11 @@
 
 @import CoreText.SFNTLayoutTypes;
 
-static const CGFloat kRZAdobeTrackingDivisor = 1000.0f;
-static const CGFloat kRZDefaultFontSize = 15.0f; // per docs
-static const unichar kRZSpaceCharacter = 32;
+static const CGFloat kBONAdobeTrackingDivisor = 1000.0f;
+static const CGFloat kBONDefaultFontSize = 15.0f; // per docs
+static const unichar kBONSpaceCharacter = 32;
 
-static NSString* const kRZAttachmentCharacterString = @"\uFFFC";
+static NSString* const kBONAttachmentCharacterString = @"\uFFFC";
 
 static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
@@ -124,18 +124,18 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     // Figure Case
 
-    if ( self.figureCase != RZFigureCaseDefault ) {
+    if ( self.figureCase != BONFigureCaseDefault ) {
 
         int figureCase = -1;
         switch ( self.figureCase ) {
-            case RZFigureCaseLining:
+            case BONFigureCaseLining:
                 figureCase = kUpperCaseNumbersSelector;
                 break;
-            case RZFigureCaseOldstyle:
+            case BONFigureCaseOldstyle:
                 figureCase = kLowerCaseNumbersSelector;
                 break;
-            case RZFigureCaseDefault:
-                [NSException raise:NSInternalInconsistencyException format:@"Logic error: we should not have RZFigureCaseDefault here."];
+            case BONFigureCaseDefault:
+                [NSException raise:NSInternalInconsistencyException format:@"Logic error: we should not have BONFigureCaseDefault here."];
                 break;
         }
 
@@ -149,18 +149,18 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     // Figure Spacing
 
-    if ( self.figureSpacing != RZFigureSpacingDefault ) {
+    if ( self.figureSpacing != BONFigureSpacingDefault ) {
 
         int figureSpacing = -1;
         switch ( self.figureSpacing ) {
-            case RZFigureSpacingTabular:
+            case BONFigureSpacingTabular:
                 figureSpacing = kMonospacedNumbersSelector;
                 break;
-            case RZFigureSpacingProportional:
+            case BONFigureSpacingProportional:
                 figureSpacing = kProportionalNumbersSelector;
                 break;
             default:
-                [NSException raise:NSInternalInconsistencyException format:@"Logic error: we should not have RZFigureSpacingDefault here."];
+                [NSException raise:NSInternalInconsistencyException format:@"Logic error: we should not have BONFigureSpacingDefault here."];
                 break;
         }
 
@@ -370,8 +370,8 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
  */
 + (CGFloat)pointTrackingValueFromAdobeTrackingValue:(NSInteger)adobeTrackingValue forFont:(UIFont *)font
 {
-    CGFloat pointSizeToUse = font ? font.pointSize : kRZDefaultFontSize;
-    CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kRZAdobeTrackingDivisor);
+    CGFloat pointSizeToUse = font ? font.pointSize : kBONDefaultFontSize;
+    CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kBONAdobeTrackingDivisor);
     return convertedTracking;
 }
 
@@ -387,7 +387,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         // New Line
         [debugString appendString:@"\n"];
 
-        if ( [substring isEqualToString:kRZAttachmentCharacterString] ) {
+        if ( [substring isEqualToString:kBONAttachmentCharacterString] ) {
             NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
             NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
             UIImage *attachedImage = attachment.image;
@@ -430,7 +430,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
                     if ( [unicodeName rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound ) {
                         unichar character = [unicodeName characterAtIndex:0];
-                        if ( character == kRZSpaceCharacter ) {
+                        if ( character == kBONSpaceCharacter ) {
                             [debugString appendString:@"[Space]"];
                         }
                         else {

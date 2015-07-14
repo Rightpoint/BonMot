@@ -1,22 +1,22 @@
 //
-//  RZInlineImagesCell.m
+//  InlineImagesCell.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/20/15.
 //  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZInlineImagesCell.h"
+#import "InlineImagesCell.h"
 
 #import <BonMot/BONChain.h>
 
-@interface RZInlineImagesCell ()
+@interface InlineImagesCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
-@implementation RZInlineImagesCell
+@implementation InlineImagesCell
 
 + (NSString *)title
 {

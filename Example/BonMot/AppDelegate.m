@@ -1,14 +1,14 @@
 //
-//  RZAppDelegate.m
+//  AppDelegate.m
 //  BonMot
 //
 //  Created by CocoaPods on 04/17/2015.
 //  Copyright (c) 2014 Zev Eisenberg. All rights reserved.
 //
 
-#import "RZAppDelegate.h"
+#import "AppDelegate.h"
 
-@implementation RZAppDelegate
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
