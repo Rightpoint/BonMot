@@ -223,7 +223,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     // Baseline Offset
 
-    if ( self.baselineOffset != 0.0f ) {
+    if ( self.baselineOffset != 0.0f && !self.image ) {
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
 
