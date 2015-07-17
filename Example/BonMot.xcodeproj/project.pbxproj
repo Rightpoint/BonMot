@@ -25,6 +25,8 @@
 		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
 		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */; };
 		CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */; };
+		CD356FD61B59B55D00572331 /* SpecialCharactersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */; };
+		CD356FD71B59B55D00572331 /* SpecialCharactersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */; };
 		CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */; };
 		CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */; };
 		CD79AF431AE5823200D9F0C5 /* BaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */; };
@@ -89,6 +91,9 @@
 		A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextTestCase.m; sourceTree = "<group>"; };
+		CD356FD31B59B55D00572331 /* SpecialCharactersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialCharactersCell.h; sourceTree = "<group>"; };
+		CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialCharactersCell.m; sourceTree = "<group>"; };
+		CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecialCharactersCell.xib; sourceTree = "<group>"; };
 		CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineHeightCell.h; sourceTree = "<group>"; };
 		CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineHeightCell.m; sourceTree = "<group>"; };
 		CD79AF3E1AE5821A00D9F0C5 /* FigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureStyleCell.h; sourceTree = "<group>"; };
@@ -273,6 +278,9 @@
 				CD79AF441AE5824000D9F0C5 /* InlineImagesCell.h */,
 				CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */,
 				CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */,
+				CD356FD31B59B55D00572331 /* SpecialCharactersCell.h */,
+				CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */,
+				CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */,
 				CD79AF4A1AE5873D00D9F0C5 /* BaselineOffsetCell.h */,
 				CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */,
 				CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */,
@@ -406,6 +414,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F5A1195388D20070C39A /* Main.storyboard in Resources */,
 				CD79AF541AE58BC700D9F0C5 /* FigureStyleCell.xib in Resources */,
+				CD356FD71B59B55D00572331 /* SpecialCharactersCell.xib in Resources */,
 				7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */,
 				CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -505,6 +514,7 @@
 				CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */,
+				CD356FD61B59B55D00572331 /* SpecialCharactersCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

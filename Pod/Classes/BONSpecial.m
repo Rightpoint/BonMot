@@ -10,19 +10,19 @@
 
 @implementation BONSpecial
 
-+ (NSString *)noBreakSpace { return @"\u0160"; }
-+ (NSString *)enSpace { return @"\u8194"; }
-+ (NSString *)emSpace { return @"\u8195"; }
-+ (NSString *)figureSpace { return @"\u8199"; }
-+ (NSString *)thinSpace { return @"\u8201"; }
-+ (NSString *)hairSpace { return @"\u8202"; }
-+ (NSString *)zeroWidthSpace { return @"\u8203"; }
-+ (NSString *)nonBreakingHyphen { return @"\u8209"; }
-+ (NSString *)figureDash { return @"\u8210"; }
-+ (NSString *)enDash { return @"\u8211"; }
-+ (NSString *)emDash { return @"\u8212"; }
-+ (NSString *)narrowNoBreakSpace { return @"\u8239"; }
-+ (NSString *)wordJoiner { return @"\u8288"; }
-+ (NSString *)minusSign { return @"\u8722"; }
++ (NSString *)noBreakSpace { return @"\u00A0"; }
++ (NSString *)enSpace { return @"\u2002"; }
++ (NSString *)emSpace { return @"\u2003"; }
++ (NSString *)figureSpace { return @"\u2007"; }
++ (NSString *)thinSpace { return @"\u2009"; }
++ (NSString *)hairSpace { return @"\u200A"; }
++ (NSString *)zeroWidthSpace { return @"\u200B"; }
++ (NSString *)nonBreakingHyphen { return @"\u2011"; }
++ (NSString *)figureDash { return @"\u2012"; }
++ (NSString *)enDash { return @"\u2013"; }
++ (NSString *)emDash { return @"\u2014"; }
++ (NSString *)narrowNoBreakSpace { return @"\u202F"; }
++ (NSString *)wordJoiner { return @"\u2060"; }
++ (NSString *)minusSign { return @"\u2212"; }
 
 @end

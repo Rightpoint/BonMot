@@ -15,6 +15,7 @@
 #import "FigureStyleCell.h"
 #import "BaselineCapHeightCell.h"
 #import "InlineImagesCell.h"
+#import "SpecialCharactersCell.h"
 #import "BaselineOffsetCell.h"
 #import "ConcatenationCell.h"
 
@@ -40,6 +41,7 @@
                          [FigureStyleCell class],
                          [BaselineCapHeightCell class],
                          [InlineImagesCell class],
+                         [SpecialCharactersCell class],
                          [BaselineOffsetCell class],
                          [ConcatenationCell class],
                          ];

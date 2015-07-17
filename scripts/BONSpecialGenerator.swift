@@ -113,7 +113,7 @@ for theUnichar in specialCharacters {
     let camelCaseName = characterName.camelCaseMethodName()
     let methodPrototype = "+ (NSString *)\(camelCaseName)"
     let interfaceMethod = methodPrototype + ";"
-    let implementationMethod = methodPrototype + (NSString(format:" { return @\"\\u%.4d\"; }", theUnichar) as String)
+    let implementationMethod = methodPrototype + (NSString(format:" { return @\"\\u%.4X\"; }", theUnichar) as String)
     headerCodeString += (interfaceMethod + "\n")
     implementationCodeString += (implementationMethod + "\n")
 }
