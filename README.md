@@ -1,6 +1,6 @@
 # BonMot
 
-[![CI Status](http://img.shields.io/travis/ZevEisenberg/BonMot.svg?style=flat)](https://travis-ci.org/ZevEisenberg/BonMot)
+[![CI Status](http://img.shields.io/travis/Raizlabs/BonMot.svg?style=flat)](https://travis-ci.org/Raizlabs/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Platform](https://img.shields.io/cocoapods/p/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
@@ -31,7 +31,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Figure Spacing (monospace vs. proportional numbers)
 - Inline Images
 
-Think something is missing? Please [file an issue](https://github.com/ZevEisenberg/BonMot/issues) (or add a +1 if one already exists).
+Think something is missing? Please [file an issue](https://github.com/Raizlabs/BonMot/issues) (or add a +1 if one already exists).
 
 ## Usage
 
