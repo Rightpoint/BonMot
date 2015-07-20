@@ -7,263 +7,271 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D9F034A01223C886F0D05AB /* Pods-Tests-BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F75CFB1A739295F4D0BC40 /* Pods-Tests-BonMot-dummy.m */; };
-		1B3EC6F8FF2BCDA005D650DC /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4BD3F2E65DFBE791A139E /* BONText.m */; };
-		27E2248274E8C18F83BEB3E9 /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE7FCCC622F7684D31FB8A /* BONTextAlignmentConstraint.m */; };
-		2F47CD64B5B05DEE097DF19B /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 9431C781B013091388FACBF3 /* BONText.h */; };
-		34C4C62779640C1D7D114E09 /* Pods-BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C042C162DB1528FD992D28 /* Pods-BonMot-dummy.m */; };
-		469610150E1371446DF5A2FA /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DD03C728594AA2EBDF1B153 /* BonMot.h */; };
-		57017C131F97389E78A1F6E7 /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 56FE7FCCC622F7684D31FB8A /* BONTextAlignmentConstraint.m */; };
-		58862825D5967398E87A5F75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA72CC058B41C75030A5A5F6 /* Foundation.framework */; };
-		5C269B5163FD4B27595A6AB3 /* Pods-BonMot-BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B9FC898BA3B521EACDAD2D4C /* Pods-BonMot-BonMot-dummy.m */; };
-		5C79D772B6BB4CEC01B3369F /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 575A0FAC4D6843CA42E56983 /* BONChain.h */; };
-		6AE88DFF1931953B8FCEACDB /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F82D3BC989740DBF7F3AAD /* BONTextAlignmentConstraint.h */; };
-		6C1E52DAF03C9D26EEB28505 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF04DC7AEEBBAE25840DEFED /* UIKit.framework */; };
-		6F032CA8115A610DB8ADCCCE /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F2F82D3BC989740DBF7F3AAD /* BONTextAlignmentConstraint.h */; };
-		752422B24456A67D4516205A /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC4BD3F2E65DFBE791A139E /* BONText.m */; };
-		77FA10DB16FC628DDB9AC47D /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = D75EB3E08E9A0192264FDAAE /* BONChain.m */; };
-		81009797C62CA79278F614BE /* Pods-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1575FC886D84D0426FBA3A86 /* Pods-Tests-dummy.m */; };
-		899B61BBF8EE9342878040B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA72CC058B41C75030A5A5F6 /* Foundation.framework */; };
-		8C0268F361544F7A948A5191 /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C6B0FBB82720E2B4B06924 /* UIImage+BonMotUtilities.m */; };
-		9759EFEB72C8231945968992 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF04DC7AEEBBAE25840DEFED /* UIKit.framework */; };
-		9C3C23B5DCE3125A6EB08964 /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = D75EB3E08E9A0192264FDAAE /* BONChain.m */; };
-		A9214E6758A7DE8B262B4D3C /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 575A0FAC4D6843CA42E56983 /* BONChain.h */; };
-		B87BD551CD7C164316C9F042 /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DD3FD280CB43A4880AAF374 /* UIImage+BonMotUtilities.h */; };
-		D5AE529006B333EB5CBF7F35 /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DD3FD280CB43A4880AAF374 /* UIImage+BonMotUtilities.h */; };
-		D774BFBABE271FF8D1EEDD71 /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C6B0FBB82720E2B4B06924 /* UIImage+BonMotUtilities.m */; };
-		DB7749409F4A27DF19A1F7C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA72CC058B41C75030A5A5F6 /* Foundation.framework */; };
-		E734820AC9AB9FEA3BE9B79C /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 9431C781B013091388FACBF3 /* BONText.h */; };
-		F771C6496FAC8FA09CF0ACDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA72CC058B41C75030A5A5F6 /* Foundation.framework */; };
-		F788EF93D3A4CC9465B9275A /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DD03C728594AA2EBDF1B153 /* BonMot.h */; };
+		1406F77467DDCB5D7EB62345 /* BONSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C363052BA98DBEFFB512BD /* BONSpecial.m */; };
+		30AC3055D5DB8FE9329A2D6C /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = A7CDE3D1442F521DEC911D11 /* BonMot.h */; };
+		377F66C0CF505D0161F528DC /* Pods-BonMot-BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F15FE1E085BA77836C605D1 /* Pods-BonMot-BonMot-dummy.m */; };
+		390194211B5FC3F93F569ACE /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = 3655989BD9B0FC261EA8930D /* BONSpecial.h */; };
+		3A5B50F510F338A10CF334F1 /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E50CB7D4B59555B4D07B27 /* BONTextAlignmentConstraint.m */; };
+		3D3F572BBFE47ACB7D38E9F5 /* BONSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C363052BA98DBEFFB512BD /* BONSpecial.m */; };
+		3DE2AC3A9FCBB3D60D0BE4F2 /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F87789536C47935F3395A3EA /* BONTextAlignmentConstraint.h */; };
+		45D88142B26F1D34875BE1D8 /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730696BC97FE85959FF8904 /* BONText.h */; };
+		484F6BD87E0CC5E9329AAB76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184DD209CF20C4537515C0AD /* Foundation.framework */; };
+		4999674910EF52076A1E476F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184DD209CF20C4537515C0AD /* Foundation.framework */; };
+		5D3A84A324B893601C8B9B70 /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5556C872CE568E8B031980F2 /* UIImage+BonMotUtilities.h */; };
+		694CB7F48051C9FC35D10455 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184DD209CF20C4537515C0AD /* Foundation.framework */; };
+		7468820FD74C75983CB3B3B7 /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = 3655989BD9B0FC261EA8930D /* BONSpecial.h */; };
+		77E54D86949FCE4BF14699E6 /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 233C89C92CD0A56A85DD60D3 /* UIImage+BonMotUtilities.m */; };
+		78CE0DFCF10C72D127B31C17 /* Pods-BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F085EEDD796E6636112F2DAB /* Pods-BonMot-dummy.m */; };
+		7E35887C26E4E8D6CFFADCA0 /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 5556C872CE568E8B031980F2 /* UIImage+BonMotUtilities.h */; };
+		81625A33AF1B004D12676353 /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730696BC97FE85959FF8904 /* BONText.h */; };
+		8B733476C4F9FF5FB426A547 /* Pods-Tests-BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF7C493209BDAF729FBD7FB /* Pods-Tests-BonMot-dummy.m */; };
+		90AFD6ED6862968933B82AEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21EAD972E3269A0336D8D53 /* UIKit.framework */; };
+		93DB09CB87A9554A10FEBC8C /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = A7CDE3D1442F521DEC911D11 /* BonMot.h */; };
+		9A7EB3B6F37C66028DB2A9C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21EAD972E3269A0336D8D53 /* UIKit.framework */; };
+		9B2131E3C4B193249DE0B73A /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 684A85360FD78D37471E54C9 /* BONChain.h */; };
+		A36BB209C7659D829CF9FB9E /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E50CB7D4B59555B4D07B27 /* BONTextAlignmentConstraint.m */; };
+		A48C95CBE77224F9B2B0548A /* Pods-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E28500EEB882755F94E63F /* Pods-Tests-dummy.m */; };
+		B4C42AAFE545FFFABEB3E69A /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = EA19DDAB6EC91B368583E62F /* BONChain.m */; };
+		C4E1089FBFCEAB08BE83C378 /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = F87789536C47935F3395A3EA /* BONTextAlignmentConstraint.h */; };
+		CD17D9B1D26AB0911F0B63B9 /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = A72A5713F06506E1ADE980DD /* BONText.m */; };
+		D084A8DAEAB547F82B68DFB3 /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = A72A5713F06506E1ADE980DD /* BONText.m */; };
+		D22822D70A3372AC0F5C9426 /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 684A85360FD78D37471E54C9 /* BONChain.h */; };
+		E7ACDA07617636282D1DA160 /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = EA19DDAB6EC91B368583E62F /* BONChain.m */; };
+		EB80639F22EB3A3212ECB019 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184DD209CF20C4537515C0AD /* Foundation.framework */; };
+		EBAA5D17985899F5704A8643 /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 233C89C92CD0A56A85DD60D3 /* UIImage+BonMotUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		069D5C24161A00C770E019F5 /* PBXContainerItemProxy */ = {
+		5F5AF4124AEA13A51C0A636D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF84A10FBB7FDBE54B519B28 /* Project object */;
+			containerPortal = 48640562F2CAF514ED23255F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 09972CDBC20F18F97ACFDAE9;
+			remoteGlobalIDString = 4082A49168F316ED292313CE;
 			remoteInfo = "Pods-Tests-BonMot";
 		};
-		ED70D666067316DDCBFCB2F8 /* PBXContainerItemProxy */ = {
+		A90BE67AAA5662D74EE039FE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = AF84A10FBB7FDBE54B519B28 /* Project object */;
+			containerPortal = 48640562F2CAF514ED23255F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F9AF308C5BF2BC7E39F9A961;
+			remoteGlobalIDString = C9361801EFCAF46E26190932;
 			remoteInfo = "Pods-BonMot-BonMot";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01436B496175160C92B8EC87 /* Pods-Tests-BonMot-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-BonMot-Private.xcconfig"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot-Private.xcconfig"; sourceTree = "<group>"; };
-		0881CDB276A63318E8CD7ACB /* Pods-Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tests-environment.h"; sourceTree = "<group>"; };
-		098FDFBB900CE84F8A6D0818 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
-		0D5E4D622FD1DD15CC7781A3 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		1575FC886D84D0426FBA3A86 /* Pods-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tests-dummy.m"; sourceTree = "<group>"; };
-		1760A09FAA8CFADDD84022FC /* libPods-BonMot-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		23C6B0FBB82720E2B4B06924 /* UIImage+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BonMotUtilities.m"; sourceTree = "<group>"; };
-		3C1E1277A8EA9945BFAEC2F1 /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3FD19FD40870EC275E0CA040 /* Pods-BonMot-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot-environment.h"; sourceTree = "<group>"; };
-		50F75CFB1A739295F4D0BC40 /* Pods-Tests-BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-Tests-BonMot-dummy.m"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot-dummy.m"; sourceTree = "<group>"; };
-		56FE7FCCC622F7684D31FB8A /* BONTextAlignmentConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentConstraint.m; sourceTree = "<group>"; };
-		575A0FAC4D6843CA42E56983 /* BONChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONChain.h; sourceTree = "<group>"; };
-		5DD3FD280CB43A4880AAF374 /* UIImage+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+BonMotUtilities.h"; sourceTree = "<group>"; };
-		62C43BCF0E20AA08C63AFD5E /* Pods-BonMot-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BonMot-acknowledgements.plist"; sourceTree = "<group>"; };
-		6D226CCB543B480EBAEBB3CF /* Pods-BonMot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot.debug.xcconfig"; sourceTree = "<group>"; };
-		6E2DB9B610915242128B0D33 /* Pods-Tests-BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-BonMot.xcconfig"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot.xcconfig"; sourceTree = "<group>"; };
-		70AAB9E5B42AD2ED515CB4B4 /* Pods-BonMot-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BonMot-acknowledgements.markdown"; sourceTree = "<group>"; };
-		718287502395E7188FC0FD14 /* Pods-BonMot-BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot-BonMot-prefix.pch"; sourceTree = "<group>"; };
-		79AADDB073CB1FA074C6203E /* Pods-BonMot-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BonMot-resources.sh"; sourceTree = "<group>"; };
-		7FC4BD3F2E65DFBE791A139E /* BONText.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONText.m; sourceTree = "<group>"; };
-		8DD03C728594AA2EBDF1B153 /* BonMot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BonMot.h; sourceTree = "<group>"; };
-		9431C781B013091388FACBF3 /* BONText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONText.h; sourceTree = "<group>"; };
-		953871B6FECCEE2418AF68AF /* Pods-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tests-resources.sh"; sourceTree = "<group>"; };
-		9B4E9E9448191A6EEE08C32E /* Pods-BonMot-BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot-BonMot.xcconfig"; sourceTree = "<group>"; };
-		A9EED716D279E18E997487A7 /* Pods-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		ADBE0CB698330A380DA54211 /* Pods-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		AF04DC7AEEBBAE25840DEFED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		B907D21867211C9A44F759E8 /* Pods-BonMot-BonMot-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot-BonMot-Private.xcconfig"; sourceTree = "<group>"; };
-		B9FC898BA3B521EACDAD2D4C /* Pods-BonMot-BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot-BonMot-dummy.m"; sourceTree = "<group>"; };
-		C877484F49AD34D58030D04A /* Pods-Tests-BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-Tests-BonMot-prefix.pch"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot-prefix.pch"; sourceTree = "<group>"; };
-		D2C042C162DB1528FD992D28 /* Pods-BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot-dummy.m"; sourceTree = "<group>"; };
-		D75EB3E08E9A0192264FDAAE /* BONChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONChain.m; sourceTree = "<group>"; };
-		D810D98DDD86F7779E9C719B /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F2F82D3BC989740DBF7F3AAD /* BONTextAlignmentConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONTextAlignmentConstraint.h; sourceTree = "<group>"; };
-		F3BEDEBB95668742E28579D8 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		F96ED115077B987E46C4CBE7 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		FA72CC058B41C75030A5A5F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		FDD613771042BDE7E165437C /* libPods-Tests-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0452466C1FC3D1591CF0C3D8 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
+		0730696BC97FE85959FF8904 /* BONText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONText.h; sourceTree = "<group>"; };
+		09B840569D94881551063878 /* Pods-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		0E0F37A0EB81AF8D67F4F4B8 /* Pods-Tests-BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-Tests-BonMot-prefix.pch"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot-prefix.pch"; sourceTree = "<group>"; };
+		100A4C89B3266EED13CF0F1A /* Pods-BonMot-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BonMot-acknowledgements.markdown"; sourceTree = "<group>"; };
+		13A7A715C151A3C9101883BC /* Pods-BonMot-BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot-BonMot-prefix.pch"; sourceTree = "<group>"; };
+		184DD209CF20C4537515C0AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		186F29910DAE3D3EA3EB65A3 /* Pods-Tests-BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-BonMot.xcconfig"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot.xcconfig"; sourceTree = "<group>"; };
+		190DDF15577173FCD4BC352D /* Pods-BonMot-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BonMot-resources.sh"; sourceTree = "<group>"; };
+		1DD5F1E751AFFEE499A17E5F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		20B8F26F372525C612664BDE /* Pods-BonMot-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot-environment.h"; sourceTree = "<group>"; };
+		233C89C92CD0A56A85DD60D3 /* UIImage+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BonMotUtilities.m"; sourceTree = "<group>"; };
+		3655989BD9B0FC261EA8930D /* BONSpecial.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONSpecial.h; sourceTree = "<group>"; };
+		5556C872CE568E8B031980F2 /* UIImage+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+BonMotUtilities.h"; sourceTree = "<group>"; };
+		5B1E6B1AC0786293C29F1FB8 /* libPods-Tests-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		60BB8FC26130ED1F779BFF68 /* libPods-BonMot-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		684A85360FD78D37471E54C9 /* BONChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONChain.h; sourceTree = "<group>"; };
+		701F9F49ADEC9CB627C8704B /* Pods-Tests-BonMot-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-BonMot-Private.xcconfig"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot-Private.xcconfig"; sourceTree = "<group>"; };
+		71C0FECE8ABA82FC42341200 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		7F15FE1E085BA77836C605D1 /* Pods-BonMot-BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot-BonMot-dummy.m"; sourceTree = "<group>"; };
+		8A6120899F5159EA81EF0F86 /* Pods-BonMot-BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot-BonMot.xcconfig"; sourceTree = "<group>"; };
+		9E7683E8CCF1B64F7A7FCB55 /* Pods-Tests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tests-environment.h"; sourceTree = "<group>"; };
+		A72A5713F06506E1ADE980DD /* BONText.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONText.m; sourceTree = "<group>"; };
+		A7CDE3D1442F521DEC911D11 /* BonMot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BonMot.h; sourceTree = "<group>"; };
+		B6C363052BA98DBEFFB512BD /* BONSpecial.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONSpecial.m; sourceTree = "<group>"; };
+		B8AF024DC0C9BB4EE00455AB /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFF7C493209BDAF729FBD7FB /* Pods-Tests-BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-Tests-BonMot-dummy.m"; path = "../Pods-Tests-BonMot/Pods-Tests-BonMot-dummy.m"; sourceTree = "<group>"; };
+		C4E50CB7D4B59555B4D07B27 /* BONTextAlignmentConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentConstraint.m; sourceTree = "<group>"; };
+		D3FBE99C60010E7BDA220A20 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		DB05581AE016269DDEC59D72 /* Pods-BonMot-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BonMot-acknowledgements.plist"; sourceTree = "<group>"; };
+		E669C9D5B786D2CBAA1E9DEF /* Pods-BonMot-BonMot-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot-BonMot-Private.xcconfig"; sourceTree = "<group>"; };
+		E81D7B055749E064B82DBD08 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA19DDAB6EC91B368583E62F /* BONChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONChain.m; sourceTree = "<group>"; };
+		EBEC830BA720F27A3D9744D2 /* Pods-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tests-resources.sh"; sourceTree = "<group>"; };
+		F00E757965594AE863618B3A /* Pods-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F085EEDD796E6636112F2DAB /* Pods-BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot-dummy.m"; sourceTree = "<group>"; };
+		F21EAD972E3269A0336D8D53 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		F2E28500EEB882755F94E63F /* Pods-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tests-dummy.m"; sourceTree = "<group>"; };
+		F7274C6083CB58DFEAD96F64 /* Pods-BonMot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot.debug.xcconfig"; sourceTree = "<group>"; };
+		F87789536C47935F3395A3EA /* BONTextAlignmentConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONTextAlignmentConstraint.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		286963523B93ED1FE63EFDB9 /* Frameworks */ = {
+		15E29D61A175CEE58FDE82FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB7749409F4A27DF19A1F7C6 /* Foundation.framework in Frameworks */,
+				694CB7F48051C9FC35D10455 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F7090ADE423D4A0606E100C /* Frameworks */ = {
+		7D9069ED119F466E562D39E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				899B61BBF8EE9342878040B2 /* Foundation.framework in Frameworks */,
+				4999674910EF52076A1E476F /* Foundation.framework in Frameworks */,
+				90AFD6ED6862968933B82AEF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8782B384EEBFAE6D0AE29C99 /* Frameworks */ = {
+		C16AF3450BB5415D7985860F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58862825D5967398E87A5F75 /* Foundation.framework in Frameworks */,
-				9759EFEB72C8231945968992 /* UIKit.framework in Frameworks */,
+				484F6BD87E0CC5E9329AAB76 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8C917C820DAE49B6E85C762 /* Frameworks */ = {
+		E66722FDE86188C704BD8DA5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F771C6496FAC8FA09CF0ACDB /* Foundation.framework in Frameworks */,
-				6C1E52DAF03C9D26EEB28505 /* UIKit.framework in Frameworks */,
+				EB80639F22EB3A3212ECB019 /* Foundation.framework in Frameworks */,
+				9A7EB3B6F37C66028DB2A9C0 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F7A0C9967E93BDEAECF0A6B /* Support Files */ = {
+		0325ACC5A8771FEF4990560A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9B4E9E9448191A6EEE08C32E /* Pods-BonMot-BonMot.xcconfig */,
-				B907D21867211C9A44F759E8 /* Pods-BonMot-BonMot-Private.xcconfig */,
-				B9FC898BA3B521EACDAD2D4C /* Pods-BonMot-BonMot-dummy.m */,
-				718287502395E7188FC0FD14 /* Pods-BonMot-BonMot-prefix.pch */,
-				6E2DB9B610915242128B0D33 /* Pods-Tests-BonMot.xcconfig */,
-				01436B496175160C92B8EC87 /* Pods-Tests-BonMot-Private.xcconfig */,
-				50F75CFB1A739295F4D0BC40 /* Pods-Tests-BonMot-dummy.m */,
-				C877484F49AD34D58030D04A /* Pods-Tests-BonMot-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Pods-BonMot-BonMot";
-			sourceTree = "<group>";
-		};
-		18DB000EB870B3F9BF7EBCB3 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				74E803761683AE8A0F3F9CBC /* BonMot */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		1D46AD05B850A627220C8CA5 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				FA72CC058B41C75030A5A5F6 /* Foundation.framework */,
-				AF04DC7AEEBBAE25840DEFED /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		20C2BB3D6609F1EACCEE7A1E /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				575A0FAC4D6843CA42E56983 /* BONChain.h */,
-				D75EB3E08E9A0192264FDAAE /* BONChain.m */,
-				9431C781B013091388FACBF3 /* BONText.h */,
-				7FC4BD3F2E65DFBE791A139E /* BONText.m */,
-				F2F82D3BC989740DBF7F3AAD /* BONTextAlignmentConstraint.h */,
-				56FE7FCCC622F7684D31FB8A /* BONTextAlignmentConstraint.m */,
-				5DD3FD280CB43A4880AAF374 /* UIImage+BonMotUtilities.h */,
-				23C6B0FBB82720E2B4B06924 /* UIImage+BonMotUtilities.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		408465E2547289E0441DE37E /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				8DD03C728594AA2EBDF1B153 /* BonMot.h */,
-				20C2BB3D6609F1EACCEE7A1E /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		4B104314EB94B9354BC21AD0 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6F3E325640EF58D57F1D10EF /* Pods-BonMot */,
-				EEDDC96146299C983D64E355 /* Pods-Tests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		4E06452AA8160F7E96782245 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1D46AD05B850A627220C8CA5 /* iOS */,
+				ABE7E2642DC369DCC9793C25 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6D31B8340646323F7F55F1F6 /* Products */ = {
+		26A4CC5B1C76F08B14F98163 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3C1E1277A8EA9945BFAEC2F1 /* libPods-BonMot.a */,
-				1760A09FAA8CFADDD84022FC /* libPods-BonMot-BonMot.a */,
-				D810D98DDD86F7779E9C719B /* libPods-Tests.a */,
-				FDD613771042BDE7E165437C /* libPods-Tests-BonMot.a */,
+				684A85360FD78D37471E54C9 /* BONChain.h */,
+				EA19DDAB6EC91B368583E62F /* BONChain.m */,
+				3655989BD9B0FC261EA8930D /* BONSpecial.h */,
+				B6C363052BA98DBEFFB512BD /* BONSpecial.m */,
+				0730696BC97FE85959FF8904 /* BONText.h */,
+				A72A5713F06506E1ADE980DD /* BONText.m */,
+				F87789536C47935F3395A3EA /* BONTextAlignmentConstraint.h */,
+				C4E50CB7D4B59555B4D07B27 /* BONTextAlignmentConstraint.m */,
+				5556C872CE568E8B031980F2 /* UIImage+BonMotUtilities.h */,
+				233C89C92CD0A56A85DD60D3 /* UIImage+BonMotUtilities.m */,
 			);
-			name = Products;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		6F3E325640EF58D57F1D10EF /* Pods-BonMot */ = {
+		56565104480EFB6369A602B8 /* Pods-BonMot */ = {
 			isa = PBXGroup;
 			children = (
-				70AAB9E5B42AD2ED515CB4B4 /* Pods-BonMot-acknowledgements.markdown */,
-				62C43BCF0E20AA08C63AFD5E /* Pods-BonMot-acknowledgements.plist */,
-				D2C042C162DB1528FD992D28 /* Pods-BonMot-dummy.m */,
-				3FD19FD40870EC275E0CA040 /* Pods-BonMot-environment.h */,
-				79AADDB073CB1FA074C6203E /* Pods-BonMot-resources.sh */,
-				6D226CCB543B480EBAEBB3CF /* Pods-BonMot.debug.xcconfig */,
-				098FDFBB900CE84F8A6D0818 /* Pods-BonMot.release.xcconfig */,
+				100A4C89B3266EED13CF0F1A /* Pods-BonMot-acknowledgements.markdown */,
+				DB05581AE016269DDEC59D72 /* Pods-BonMot-acknowledgements.plist */,
+				F085EEDD796E6636112F2DAB /* Pods-BonMot-dummy.m */,
+				20B8F26F372525C612664BDE /* Pods-BonMot-environment.h */,
+				190DDF15577173FCD4BC352D /* Pods-BonMot-resources.sh */,
+				F7274C6083CB58DFEAD96F64 /* Pods-BonMot.debug.xcconfig */,
+				0452466C1FC3D1591CF0C3D8 /* Pods-BonMot.release.xcconfig */,
 			);
 			name = "Pods-BonMot";
 			path = "Target Support Files/Pods-BonMot";
 			sourceTree = "<group>";
 		};
-		74E803761683AE8A0F3F9CBC /* BonMot */ = {
+		73EFC83BD4B2D5B8CAFCEC61 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				408465E2547289E0441DE37E /* Pod */,
-				0F7A0C9967E93BDEAECF0A6B /* Support Files */,
+				F2D36D33DB1F903C8B52BA5C /* BonMot */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		9BE91456E4B342196CC0BB13 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				56565104480EFB6369A602B8 /* Pods-BonMot */,
+				FD03C7BD28B36730D9E0881A /* Pods-Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		ABE7E2642DC369DCC9793C25 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				184DD209CF20C4537515C0AD /* Foundation.framework */,
+				F21EAD972E3269A0336D8D53 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		B6DF9931005CF4688146C80C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				A7CDE3D1442F521DEC911D11 /* BonMot.h */,
+				26A4CC5B1C76F08B14F98163 /* Classes */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		BDD8ECE82F2FC817FE19BFB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B8AF024DC0C9BB4EE00455AB /* libPods-BonMot.a */,
+				60BB8FC26130ED1F779BFF68 /* libPods-BonMot-BonMot.a */,
+				E81D7B055749E064B82DBD08 /* libPods-Tests.a */,
+				5B1E6B1AC0786293C29F1FB8 /* libPods-Tests-BonMot.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CBB2178AD86E44DA874F2161 = {
+			isa = PBXGroup;
+			children = (
+				1DD5F1E751AFFEE499A17E5F /* Podfile */,
+				73EFC83BD4B2D5B8CAFCEC61 /* Development Pods */,
+				0325ACC5A8771FEF4990560A /* Frameworks */,
+				BDD8ECE82F2FC817FE19BFB1 /* Products */,
+				9BE91456E4B342196CC0BB13 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D3CEC87381F9907BDD0079B2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8A6120899F5159EA81EF0F86 /* Pods-BonMot-BonMot.xcconfig */,
+				E669C9D5B786D2CBAA1E9DEF /* Pods-BonMot-BonMot-Private.xcconfig */,
+				7F15FE1E085BA77836C605D1 /* Pods-BonMot-BonMot-dummy.m */,
+				13A7A715C151A3C9101883BC /* Pods-BonMot-BonMot-prefix.pch */,
+				186F29910DAE3D3EA3EB65A3 /* Pods-Tests-BonMot.xcconfig */,
+				701F9F49ADEC9CB627C8704B /* Pods-Tests-BonMot-Private.xcconfig */,
+				BFF7C493209BDAF729FBD7FB /* Pods-Tests-BonMot-dummy.m */,
+				0E0F37A0EB81AF8D67F4F4B8 /* Pods-Tests-BonMot-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Pods-BonMot-BonMot";
+			sourceTree = "<group>";
+		};
+		F2D36D33DB1F903C8B52BA5C /* BonMot */ = {
+			isa = PBXGroup;
+			children = (
+				B6DF9931005CF4688146C80C /* Pod */,
+				D3CEC87381F9907BDD0079B2 /* Support Files */,
 			);
 			name = BonMot;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		E012805D5DBDD779E6ED9677 = {
+		FD03C7BD28B36730D9E0881A /* Pods-Tests */ = {
 			isa = PBXGroup;
 			children = (
-				F3BEDEBB95668742E28579D8 /* Podfile */,
-				18DB000EB870B3F9BF7EBCB3 /* Development Pods */,
-				4E06452AA8160F7E96782245 /* Frameworks */,
-				6D31B8340646323F7F55F1F6 /* Products */,
-				4B104314EB94B9354BC21AD0 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		EEDDC96146299C983D64E355 /* Pods-Tests */ = {
-			isa = PBXGroup;
-			children = (
-				A9EED716D279E18E997487A7 /* Pods-Tests-acknowledgements.markdown */,
-				ADBE0CB698330A380DA54211 /* Pods-Tests-acknowledgements.plist */,
-				1575FC886D84D0426FBA3A86 /* Pods-Tests-dummy.m */,
-				0881CDB276A63318E8CD7ACB /* Pods-Tests-environment.h */,
-				953871B6FECCEE2418AF68AF /* Pods-Tests-resources.sh */,
-				0D5E4D622FD1DD15CC7781A3 /* Pods-Tests.debug.xcconfig */,
-				F96ED115077B987E46C4CBE7 /* Pods-Tests.release.xcconfig */,
+				F00E757965594AE863618B3A /* Pods-Tests-acknowledgements.markdown */,
+				09B840569D94881551063878 /* Pods-Tests-acknowledgements.plist */,
+				F2E28500EEB882755F94E63F /* Pods-Tests-dummy.m */,
+				9E7683E8CCF1B64F7A7FCB55 /* Pods-Tests-environment.h */,
+				EBEC830BA720F27A3D9744D2 /* Pods-Tests-resources.sh */,
+				71C0FECE8ABA82FC42341200 /* Pods-Tests.debug.xcconfig */,
+				D3FBE99C60010E7BDA220A20 /* Pods-Tests.release.xcconfig */,
 			);
 			name = "Pods-Tests";
 			path = "Target Support Files/Pods-Tests";
@@ -272,40 +280,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		126C076CC9D5999CA86A89C9 /* Headers */ = {
+		65C6FBC3384BAB8ED3C02AAC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C79D772B6BB4CEC01B3369F /* BONChain.h in Headers */,
-				2F47CD64B5B05DEE097DF19B /* BONText.h in Headers */,
-				6AE88DFF1931953B8FCEACDB /* BONTextAlignmentConstraint.h in Headers */,
-				F788EF93D3A4CC9465B9275A /* BonMot.h in Headers */,
-				D5AE529006B333EB5CBF7F35 /* UIImage+BonMotUtilities.h in Headers */,
+				9B2131E3C4B193249DE0B73A /* BONChain.h in Headers */,
+				7468820FD74C75983CB3B3B7 /* BONSpecial.h in Headers */,
+				81625A33AF1B004D12676353 /* BONText.h in Headers */,
+				C4E1089FBFCEAB08BE83C378 /* BONTextAlignmentConstraint.h in Headers */,
+				93DB09CB87A9554A10FEBC8C /* BonMot.h in Headers */,
+				5D3A84A324B893601C8B9B70 /* UIImage+BonMotUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9F97756235806764F4B23D1C /* Headers */ = {
+		75A99F3A8F6B26ADEBD954DD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9214E6758A7DE8B262B4D3C /* BONChain.h in Headers */,
-				E734820AC9AB9FEA3BE9B79C /* BONText.h in Headers */,
-				6F032CA8115A610DB8ADCCCE /* BONTextAlignmentConstraint.h in Headers */,
-				469610150E1371446DF5A2FA /* BonMot.h in Headers */,
-				B87BD551CD7C164316C9F042 /* UIImage+BonMotUtilities.h in Headers */,
+				D22822D70A3372AC0F5C9426 /* BONChain.h in Headers */,
+				390194211B5FC3F93F569ACE /* BONSpecial.h in Headers */,
+				45D88142B26F1D34875BE1D8 /* BONText.h in Headers */,
+				3DE2AC3A9FCBB3D60D0BE4F2 /* BONTextAlignmentConstraint.h in Headers */,
+				30AC3055D5DB8FE9329A2D6C /* BonMot.h in Headers */,
+				7E35887C26E4E8D6CFFADCA0 /* UIImage+BonMotUtilities.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		09972CDBC20F18F97ACFDAE9 /* Pods-Tests-BonMot */ = {
+		4082A49168F316ED292313CE /* Pods-Tests-BonMot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C0D0D679EF8DE117BFD060B /* Build configuration list for PBXNativeTarget "Pods-Tests-BonMot" */;
+			buildConfigurationList = F652A1F8F1FA2918883F0802 /* Build configuration list for PBXNativeTarget "Pods-Tests-BonMot" */;
 			buildPhases = (
-				9A429C18D99F5EDC3944BCF0 /* Sources */,
-				8782B384EEBFAE6D0AE29C99 /* Frameworks */,
-				9F97756235806764F4B23D1C /* Headers */,
+				E2D24826946154B2CE5FBB5F /* Sources */,
+				E66722FDE86188C704BD8DA5 /* Frameworks */,
+				75A99F3A8F6B26ADEBD954DD /* Headers */,
 			);
 			buildRules = (
 			);
@@ -313,50 +323,50 @@
 			);
 			name = "Pods-Tests-BonMot";
 			productName = "Pods-Tests-BonMot";
-			productReference = FDD613771042BDE7E165437C /* libPods-Tests-BonMot.a */;
+			productReference = 5B1E6B1AC0786293C29F1FB8 /* libPods-Tests-BonMot.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		7CB29F44974D7ADE849795C9 /* Pods-BonMot */ = {
+		5F5191E1F2491B2C047A435B /* Pods-BonMot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 640B0114F7EB5E5AB32DBAD4 /* Build configuration list for PBXNativeTarget "Pods-BonMot" */;
+			buildConfigurationList = EFA4736994418F53C9B8D6E1 /* Build configuration list for PBXNativeTarget "Pods-BonMot" */;
 			buildPhases = (
-				8607C673720AEFBEABDA0118 /* Sources */,
-				4F7090ADE423D4A0606E100C /* Frameworks */,
+				757A7BB400D4B862DC89AD61 /* Sources */,
+				15E29D61A175CEE58FDE82FD /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				99E4787BAE74A14DDF28D217 /* PBXTargetDependency */,
+				FA0F3CCCF57C838E71A73411 /* PBXTargetDependency */,
 			);
 			name = "Pods-BonMot";
 			productName = "Pods-BonMot";
-			productReference = 3C1E1277A8EA9945BFAEC2F1 /* libPods-BonMot.a */;
+			productReference = B8AF024DC0C9BB4EE00455AB /* libPods-BonMot.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E291FF39FE7628D11310BBB7 /* Pods-Tests */ = {
+		9370D02E4EB2C8F859898A4A /* Pods-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8E5A32AFA00CC91A387E645 /* Build configuration list for PBXNativeTarget "Pods-Tests" */;
+			buildConfigurationList = 9AE01036513F1B0899A6D31C /* Build configuration list for PBXNativeTarget "Pods-Tests" */;
 			buildPhases = (
-				E63C16123089322687EADF47 /* Sources */,
-				286963523B93ED1FE63EFDB9 /* Frameworks */,
+				2A77E58C99524DDE567351F9 /* Sources */,
+				C16AF3450BB5415D7985860F /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E943C3049660C216FA7B7EF8 /* PBXTargetDependency */,
+				0AFAE1D4A86A5BE36BB292CD /* PBXTargetDependency */,
 			);
 			name = "Pods-Tests";
 			productName = "Pods-Tests";
-			productReference = D810D98DDD86F7779E9C719B /* libPods-Tests.a */;
+			productReference = E81D7B055749E064B82DBD08 /* libPods-Tests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		F9AF308C5BF2BC7E39F9A961 /* Pods-BonMot-BonMot */ = {
+		C9361801EFCAF46E26190932 /* Pods-BonMot-BonMot */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5A65D91DDE9E0EE11A0E7D4 /* Build configuration list for PBXNativeTarget "Pods-BonMot-BonMot" */;
+			buildConfigurationList = AB5894A8CD318882F1150EC2 /* Build configuration list for PBXNativeTarget "Pods-BonMot-BonMot" */;
 			buildPhases = (
-				BA2C3D2B9289D102FD7E6A39 /* Sources */,
-				D8C917C820DAE49B6E85C762 /* Frameworks */,
-				126C076CC9D5999CA86A89C9 /* Headers */,
+				BC779827C8AD4DEF03F8904C /* Sources */,
+				7D9069ED119F466E562D39E1 /* Frameworks */,
+				65C6FBC3384BAB8ED3C02AAC /* Headers */,
 			);
 			buildRules = (
 			);
@@ -364,115 +374,101 @@
 			);
 			name = "Pods-BonMot-BonMot";
 			productName = "Pods-BonMot-BonMot";
-			productReference = 1760A09FAA8CFADDD84022FC /* libPods-BonMot-BonMot.a */;
+			productReference = 60BB8FC26130ED1F779BFF68 /* libPods-BonMot-BonMot.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AF84A10FBB7FDBE54B519B28 /* Project object */ = {
+		48640562F2CAF514ED23255F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
 			};
-			buildConfigurationList = 43B0EF35F145B9566BBA3B58 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = BF51D4E734AD3A31DB6D5367 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = E012805D5DBDD779E6ED9677;
-			productRefGroup = 6D31B8340646323F7F55F1F6 /* Products */;
+			mainGroup = CBB2178AD86E44DA874F2161;
+			productRefGroup = BDD8ECE82F2FC817FE19BFB1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CB29F44974D7ADE849795C9 /* Pods-BonMot */,
-				F9AF308C5BF2BC7E39F9A961 /* Pods-BonMot-BonMot */,
-				E291FF39FE7628D11310BBB7 /* Pods-Tests */,
-				09972CDBC20F18F97ACFDAE9 /* Pods-Tests-BonMot */,
+				5F5191E1F2491B2C047A435B /* Pods-BonMot */,
+				C9361801EFCAF46E26190932 /* Pods-BonMot-BonMot */,
+				9370D02E4EB2C8F859898A4A /* Pods-Tests */,
+				4082A49168F316ED292313CE /* Pods-Tests-BonMot */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8607C673720AEFBEABDA0118 /* Sources */ = {
+		2A77E58C99524DDE567351F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34C4C62779640C1D7D114E09 /* Pods-BonMot-dummy.m in Sources */,
+				A48C95CBE77224F9B2B0548A /* Pods-Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9A429C18D99F5EDC3944BCF0 /* Sources */ = {
+		757A7BB400D4B862DC89AD61 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C3C23B5DCE3125A6EB08964 /* BONChain.m in Sources */,
-				752422B24456A67D4516205A /* BONText.m in Sources */,
-				57017C131F97389E78A1F6E7 /* BONTextAlignmentConstraint.m in Sources */,
-				0D9F034A01223C886F0D05AB /* Pods-Tests-BonMot-dummy.m in Sources */,
-				D774BFBABE271FF8D1EEDD71 /* UIImage+BonMotUtilities.m in Sources */,
+				78CE0DFCF10C72D127B31C17 /* Pods-BonMot-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA2C3D2B9289D102FD7E6A39 /* Sources */ = {
+		BC779827C8AD4DEF03F8904C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77FA10DB16FC628DDB9AC47D /* BONChain.m in Sources */,
-				1B3EC6F8FF2BCDA005D650DC /* BONText.m in Sources */,
-				27E2248274E8C18F83BEB3E9 /* BONTextAlignmentConstraint.m in Sources */,
-				5C269B5163FD4B27595A6AB3 /* Pods-BonMot-BonMot-dummy.m in Sources */,
-				8C0268F361544F7A948A5191 /* UIImage+BonMotUtilities.m in Sources */,
+				E7ACDA07617636282D1DA160 /* BONChain.m in Sources */,
+				3D3F572BBFE47ACB7D38E9F5 /* BONSpecial.m in Sources */,
+				D084A8DAEAB547F82B68DFB3 /* BONText.m in Sources */,
+				A36BB209C7659D829CF9FB9E /* BONTextAlignmentConstraint.m in Sources */,
+				377F66C0CF505D0161F528DC /* Pods-BonMot-BonMot-dummy.m in Sources */,
+				77E54D86949FCE4BF14699E6 /* UIImage+BonMotUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E63C16123089322687EADF47 /* Sources */ = {
+		E2D24826946154B2CE5FBB5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81009797C62CA79278F614BE /* Pods-Tests-dummy.m in Sources */,
+				B4C42AAFE545FFFABEB3E69A /* BONChain.m in Sources */,
+				1406F77467DDCB5D7EB62345 /* BONSpecial.m in Sources */,
+				CD17D9B1D26AB0911F0B63B9 /* BONText.m in Sources */,
+				3A5B50F510F338A10CF334F1 /* BONTextAlignmentConstraint.m in Sources */,
+				8B733476C4F9FF5FB426A547 /* Pods-Tests-BonMot-dummy.m in Sources */,
+				EBAA5D17985899F5704A8643 /* UIImage+BonMotUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		99E4787BAE74A14DDF28D217 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-BonMot-BonMot";
-			target = F9AF308C5BF2BC7E39F9A961 /* Pods-BonMot-BonMot */;
-			targetProxy = ED70D666067316DDCBFCB2F8 /* PBXContainerItemProxy */;
-		};
-		E943C3049660C216FA7B7EF8 /* PBXTargetDependency */ = {
+		0AFAE1D4A86A5BE36BB292CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Tests-BonMot";
-			target = 09972CDBC20F18F97ACFDAE9 /* Pods-Tests-BonMot */;
-			targetProxy = 069D5C24161A00C770E019F5 /* PBXContainerItemProxy */;
+			target = 4082A49168F316ED292313CE /* Pods-Tests-BonMot */;
+			targetProxy = 5F5AF4124AEA13A51C0A636D /* PBXContainerItemProxy */;
+		};
+		FA0F3CCCF57C838E71A73411 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-BonMot-BonMot";
+			target = C9361801EFCAF46E26190932 /* Pods-BonMot-BonMot */;
+			targetProxy = A90BE67AAA5662D74EE039FE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0EFA4D71595A0874C798DAC1 /* Release */ = {
+		10D3DE7F2EB96ACA3745D22E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F96ED115077B987E46C4CBE7 /* Pods-Tests.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		455BDFDCE442859A5C8FAC51 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B907D21867211C9A44F759E8 /* Pods-BonMot-BonMot-Private.xcconfig */;
+			baseConfigurationReference = E669C9D5B786D2CBAA1E9DEF /* Pods-BonMot-BonMot-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Pods-BonMot-BonMot/Pods-BonMot-BonMot-prefix.pch";
@@ -486,28 +482,12 @@
 			};
 			name = Debug;
 		};
-		4BAF3213A169E80E4FCAD16B /* Release */ = {
+		2E302B92A5F2DA194EECC39F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 098FDFBB900CE84F8A6D0818 /* Pods-BonMot.release.xcconfig */;
+			baseConfigurationReference = E669C9D5B786D2CBAA1E9DEF /* Pods-BonMot-BonMot-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		4F2EB7E6A2B9D41F5C06E958 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01436B496175160C92B8EC87 /* Pods-Tests-BonMot-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-BonMot/Pods-Tests-BonMot-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-BonMot-BonMot/Pods-BonMot-BonMot-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -518,9 +498,9 @@
 			};
 			name = Release;
 		};
-		58E23F762AF51DDC68321021 /* Debug */ = {
+		345392D6DD0F7157E1773A54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01436B496175160C92B8EC87 /* Pods-Tests-BonMot-Private.xcconfig */;
+			baseConfigurationReference = 701F9F49ADEC9CB627C8704B /* Pods-Tests-BonMot-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-BonMot/Pods-Tests-BonMot-prefix.pch";
@@ -534,7 +514,23 @@
 			};
 			name = Debug;
 		};
-		81FC864F06EE3933DA2EF1C2 /* Release */ = {
+		574313B7841914A9B24EBE1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7274C6083CB58DFEAD96F64 /* Pods-BonMot.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		796F20E343CCC97BB4446EEA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -568,13 +564,13 @@
 			};
 			name = Release;
 		};
-		85932B0C4DC9187C1C572301 /* Debug */ = {
+		A6743319315717F33F6AF6D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D5E4D622FD1DD15CC7781A3 /* Pods-Tests.debug.xcconfig */;
+			baseConfigurationReference = 0452466C1FC3D1591CF0C3D8 /* Pods-BonMot.release.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -582,9 +578,25 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
-		9C42A0B054FC15A3E3D2948A /* Debug */ = {
+		B142D99F22B60726F9C596F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 701F9F49ADEC9CB627C8704B /* Pods-Tests-BonMot-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Tests-BonMot/Pods-Tests-BonMot-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		BF49D1CE9C1B913226311D68 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -623,9 +635,25 @@
 			};
 			name = Debug;
 		};
-		C456C0B1869EFD2E098514D6 /* Debug */ = {
+		CABB135CD6BFE872834609AE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D226CCB543B480EBAEBB3CF /* Pods-BonMot.debug.xcconfig */;
+			baseConfigurationReference = D3FBE99C60010E7BDA220A20 /* Pods-Tests.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		CF27FBAAF5BC245AD047A283 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71C0FECE8ABA82FC42341200 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -639,71 +667,55 @@
 			};
 			name = Debug;
 		};
-		FD4309FF5D2E40931EFC44CD /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B907D21867211C9A44F759E8 /* Pods-BonMot-BonMot-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-BonMot-BonMot/Pods-BonMot-BonMot-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43B0EF35F145B9566BBA3B58 /* Build configuration list for PBXProject "Pods" */ = {
+		9AE01036513F1B0899A6D31C /* Build configuration list for PBXNativeTarget "Pods-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9C42A0B054FC15A3E3D2948A /* Debug */,
-				81FC864F06EE3933DA2EF1C2 /* Release */,
+				CF27FBAAF5BC245AD047A283 /* Debug */,
+				CABB135CD6BFE872834609AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		640B0114F7EB5E5AB32DBAD4 /* Build configuration list for PBXNativeTarget "Pods-BonMot" */ = {
+		AB5894A8CD318882F1150EC2 /* Build configuration list for PBXNativeTarget "Pods-BonMot-BonMot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C456C0B1869EFD2E098514D6 /* Debug */,
-				4BAF3213A169E80E4FCAD16B /* Release */,
+				10D3DE7F2EB96ACA3745D22E /* Debug */,
+				2E302B92A5F2DA194EECC39F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C0D0D679EF8DE117BFD060B /* Build configuration list for PBXNativeTarget "Pods-Tests-BonMot" */ = {
+		BF51D4E734AD3A31DB6D5367 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				58E23F762AF51DDC68321021 /* Debug */,
-				4F2EB7E6A2B9D41F5C06E958 /* Release */,
+				BF49D1CE9C1B913226311D68 /* Debug */,
+				796F20E343CCC97BB4446EEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8E5A32AFA00CC91A387E645 /* Build configuration list for PBXNativeTarget "Pods-Tests" */ = {
+		EFA4736994418F53C9B8D6E1 /* Build configuration list for PBXNativeTarget "Pods-BonMot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				85932B0C4DC9187C1C572301 /* Debug */,
-				0EFA4D71595A0874C798DAC1 /* Release */,
+				574313B7841914A9B24EBE1D /* Debug */,
+				A6743319315717F33F6AF6D1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D5A65D91DDE9E0EE11A0E7D4 /* Build configuration list for PBXNativeTarget "Pods-BonMot-BonMot" */ = {
+		F652A1F8F1FA2918883F0802 /* Build configuration list for PBXNativeTarget "Pods-Tests-BonMot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				455BDFDCE442859A5C8FAC51 /* Debug */,
-				FD4309FF5D2E40931EFC44CD /* Release */,
+				345392D6DD0F7157E1773A54 /* Debug */,
+				B142D99F22B60726F9C596F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AF84A10FBB7FDBE54B519B28 /* Project object */;
+	rootObject = 48640562F2CAF514ED23255F /* Project object */;
 }
