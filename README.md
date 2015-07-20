@@ -149,7 +149,7 @@ Outputs:
 
 ## Author
 
-Zev Eisenberg, zev.eisenberg@raizlabs.com
+Zev Eisenberg, zev.eisenberg@raizlabs.com, [@ZevEisenberg](https://twitter.com/zeveisenberg)
 
 ## License
 
