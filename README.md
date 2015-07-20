@@ -147,6 +147,10 @@ Outputs:
 
 <img width=116 height=22 src="readme-images/label-with-icon.png" />
 
+## Special Characters
+
+You can easily access those hard-to-find special characters using the `BONSpecial` class. These include the No-Break Space, En and Em Spaces, various kinds of dashes, and more. If it’s hard to see in your source code or debug logs, it belongs in `BONSpecial`. If you want to add special characters to BonMot, add them to `BONSpecialGenerator.swift` (requires Xcode 7), run `swift BONSpecialGenerator.swift`, and submit a pull request! See `SpecialCharactersCell.m` in the sample project for some examples of how to use `BONSpecial`.
+
 ## Author
 
 Zev Eisenberg, zev.eisenberg@raizlabs.com, [@ZevEisenberg](https://twitter.com/zeveisenberg)
