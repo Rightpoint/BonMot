@@ -28,7 +28,7 @@ let specialCharacters: [unichar] = [
 ]
 
 extension unichar {
-    var unicodeName : String {
+    var unicodeName: String {
         get {
             let swiftCharacter = Character(UnicodeScalar(self))
 
