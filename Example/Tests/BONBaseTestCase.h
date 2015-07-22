@@ -29,8 +29,29 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
     } \
 })
 
+#define _BONTPrimitiveAssertCGFloatsCloseEnough(test, expression1, expressionStr1, expression2, expressionStr2, ...) \
+({ \
+    @try { \
+        CGFloat expressionValue1 = (expression1); \
+        CGFloat expressionValue2 = (expression2); \
+        if (!BONCGFloatsCloseEnough(expressionValue1, expressionValue2)) { \
+            _XCTRegisterFailure(test, _XCTFailureDescription(_XCTAssertion_Equal, 0, expressionStr1, expressionStr2, expressionValue1, expressionValue2), __VA_ARGS__); \
+        } \
+    } \
+    @catch (_XCTestCaseInterruptionException *interruption) { [interruption raise]; } \
+    @catch (NSException *exception) { \
+        _XCTRegisterFailure(test, _XCTFailureDescription(_XCTAssertion_EqualObjects, 1, expressionStr1, expressionStr2, [exception reason]), __VA_ARGS__); \
+    } \
+    @catch (...) { \
+        _XCTRegisterFailure(test, _XCTFailureDescription(_XCTAssertion_EqualObjects, 2, expressionStr1, expressionStr2), __VA_ARGS__); \
+    } \
+})
+
 #define BONAssertEqualDictionaries(expression1, expression2, ...) \
 _BONTPrimitiveAssertCloseEnoughDictionaries(self, expression1, @#expression1, expression2, @#expression2, __VA_ARGS__)
+
+#define BONAssertCGFloatsCloseEnough(expression1, expression2, ...) \
+_BONTPrimitiveAssertCGFloatsCloseEnough(self, expression1, @#expression1, expression2, @#expression2, __VA_ARGS__)
 
 
 /**
