@@ -1,4 +1,4 @@
-<img width=443 height=138 src="readme-images/BonMot-logo.png" alt="BonMot Logo" />
+<img width=443 src="readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
 [![CI Status](http://img.shields.io/travis/Raizlabs/BonMot.svg?style=flat)](https://travis-ci.org/Raizlabs/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
