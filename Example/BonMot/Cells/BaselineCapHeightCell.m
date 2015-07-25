@@ -25,7 +25,7 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
 + (NSString *)title
 {
-    return @"Baseline, Cap Height, & X-Height";
+    return @"Cap Height & X-Height";
 }
 
 - (void)awakeFromNib

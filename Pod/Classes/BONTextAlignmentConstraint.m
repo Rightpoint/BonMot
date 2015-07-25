@@ -132,6 +132,13 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
     return nsAttribute;
 }
 
+@interface BONTextAlignmentConstraint ()
+
+@property (strong, nonatomic) id strongItem1;
+@property (strong, nonatomic) id strongItem2;
+
+@end
+
 @implementation BONTextAlignmentConstraint
 
 + (instancetype)constraintWithItem:(id)view1
@@ -140,9 +147,29 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
                             toItem:(id)view2
                          attribute:(BONConstraintAttribute)attr2
 {
-    [NSException raise:NSInternalInconsistencyException format:@"This hasn't been implemented yet"];
-    // TODO: this
-    return nil;
+    NSLayoutAttribute item1NSLayoutAttribute = requiredLayoutAttributeForBONConstraintAttribute(attr1);
+    NSLayoutAttribute item2NSLayoutAttribute = requiredLayoutAttributeForBONConstraintAttribute(attr2);
+
+    BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:view1
+                                                                                  attribute:item1NSLayoutAttribute
+                                                                                  relatedBy:relation
+                                                                                     toItem:view2
+                                                                                  attribute:item2NSLayoutAttribute
+                                                                                 multiplier:1.0f
+                                                                                   constant:0.0f];
+    constraint.strongItem1 = view1;
+    constraint.strongItem2 = view2;
+    constraint.firstItemBONAttribute = attr1;
+    constraint.secondItemBONAttribute = attr2;
+    
+    [constraint setUpObservers];
+
+    CGFloat distanceFromTop1 = [constraint distanceFromTopOfItem:BONItemOrdinalityFirst];
+    CGFloat distanceFromTop2 = [constraint distanceFromTopOfItem:BONItemOrdinalitySecond];
+
+    CGFloat difference = distanceFromTop2 - distanceFromTop1;
+    constraint.constant = difference;
+    return constraint;
 }
 
 - (void)awakeFromNib
@@ -233,15 +260,15 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 - (CGFloat)distanceFromTopOfItem:(BONItemOrdinality)ordinality
 {
     id item;
-    BONConstraintAttribute bonConsraintAttribute;
+    BONConstraintAttribute bonConstraintAttribute;
     switch ( ordinality ) {
         case BONItemOrdinalityFirst:
             item = self.firstItem;
-            bonConsraintAttribute = self.firstItemBONAttribute;
+            bonConstraintAttribute = self.firstItemBONAttribute;
             break;
         case BONItemOrdinalitySecond:
             item = self.secondItem;
-            bonConsraintAttribute = self.secondItemBONAttribute;
+            bonConstraintAttribute = self.secondItemBONAttribute;
             break;
         case BONItemOrdinalityUnknown:
             [NSException raise:NSInternalInconsistencyException format:@"Requesting distance from top of unknown item"];
@@ -250,13 +277,13 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 
     CGFloat distanceFromTop = 0.0f;
 
-    if ( bonConsraintAttribute != BONConstraintAttributeTop ) {
+    if ( bonConstraintAttribute != BONConstraintAttributeTop ) {
         if ( [item respondsToSelector:@selector(font)] ) {
             UIFont *font = [item font];
 
             CGFloat topToBaseline = font.ascender;
 
-            switch ( bonConsraintAttribute ) {
+            switch ( bonConstraintAttribute ) {
                 case BONConstraintAttributeCapHeight: {
                     CGFloat baselineToCapHeight = font.capHeight;
                     distanceFromTop = topToBaseline - baselineToCapHeight;
@@ -273,10 +300,12 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
                 }
                 case BONConstraintAttributeFirstBaseline: // fall through
                 case BONConstraintAttributeLastBaseline: // fall through
-                case BONConstraintAttributeBottom: // fall through
-                case BONConstraintAttributeUnspecified: {
-                    [NSException raise:NSInternalInconsistencyException format:@"Not implemented yet"];
+                case BONConstraintAttributeBottom: {
+                    [NSException raise:NSInternalInconsistencyException format:@"%@ alignment is not currently supported with %@. Please check https://github.com/Raizlabs/BonMot/issues/37 for progress on this issue.", stringFromBONConstraintAttribute(bonConstraintAttribute), NSStringFromClass(self.class)];
                     break;
+                }
+                case BONConstraintAttributeUnspecified: {
+                    [NSException raise:NSInternalInconsistencyException format:@"Attempt to reason about unspecified constraint attribute"];
                 }
             }
         }
