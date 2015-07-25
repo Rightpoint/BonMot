@@ -55,7 +55,6 @@ _BONTPrimitiveAssertCloseEnoughDictionaries(self, expression1, @#expression1, ex
 #define BONAssertCGFloatsCloseEnough(expression1, expression2, ...) \
 _BONPrimitiveAssertCGFloatsCloseEnough(self, expression1, @#expression1, expression2, @#expression2, __VA_ARGS__)
 
-
 /**
  *  Uses XCTest assertions to check that the attributes of @c attributedString match the attributes and ranges in @c controlAttributes.
  *

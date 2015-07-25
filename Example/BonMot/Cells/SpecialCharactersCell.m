@@ -37,7 +37,6 @@
                             @"robot",
                             ];
 
-
     NSString *text = @"This string is separated by images and no-break spaces.";
     NSArray *words = [text componentsSeparatedByString:@" "];
 

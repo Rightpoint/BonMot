@@ -55,5 +55,4 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                   constant:0.0f].active = YES;
 }
 
-
 @end

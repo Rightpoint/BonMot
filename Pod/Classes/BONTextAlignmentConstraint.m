@@ -66,7 +66,6 @@ NSString *normalizeString(NSString *string)
     return noWhitespaceString;
 }
 
-
 BONConstraintAttribute BONConstraintAttributeFromString(NSString *string)
 {
     static NSDictionary *s_mappings = nil;
