@@ -24,5 +24,6 @@
 + (NSString *)narrowNoBreakSpace;
 + (NSString *)wordJoiner;
 + (NSString *)minusSign;
++ (NSString *)objectReplacementCharacter;
 
 @end

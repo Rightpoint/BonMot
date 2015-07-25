@@ -24,5 +24,6 @@
 + (NSString *)narrowNoBreakSpace { return @"\u202F"; }
 + (NSString *)wordJoiner { return @"\u2060"; }
 + (NSString *)minusSign { return @"\u2212"; }
++ (NSString *)objectReplacementCharacter { return @"\uFFFC"; }
 
 @end
