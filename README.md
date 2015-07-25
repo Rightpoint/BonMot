@@ -181,7 +181,7 @@ Next, switch to the Attributes Inspector. `BONTextAlignmentConstraint` exposes t
 
 The layout won’t change in Interface Builder (IBDesignable is not supported for constraint subclasses), but it will work when you run your code.
 
-**Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for the status of this issue.
+**Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
 
 
 ## Author
