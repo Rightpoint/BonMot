@@ -1,4 +1,4 @@
-# BonMot
+<img width=443 height=138 src="readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
 [![CI Status](http://img.shields.io/travis/Raizlabs/BonMot.svg?style=flat)](https://travis-ci.org/Raizlabs/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
@@ -154,6 +154,8 @@ You can easily access those hard-to-find special characters using the `BONSpecia
 ## Author
 
 Zev Eisenberg, zev.eisenberg@raizlabs.com, [@ZevEisenberg](https://twitter.com/zeveisenberg)
+
+Logo by Jon Lopkin: [@jonlopkin](https://twitter.com/jonlopkin)
 
 ## License
 
