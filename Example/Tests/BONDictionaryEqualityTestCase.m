@@ -60,7 +60,7 @@
     XCTAssertTrue([dict1 bon_isCloseEnoughEqualToDictionary:dict3]);
 }
 
-- (void)testMacro
+- (void)testBONAssertEqualDictionaries
 {
     NSMutableDictionary *dict1 = [@{ @"asdf": @1.000001f } mutableCopy];
     NSMutableDictionary *dict2 = [@{ @"asdf": @1.000002f } mutableCopy];
@@ -71,6 +71,14 @@
     BONAssertEqualDictionaries(dict3, dict2);
     BONAssertEqualDictionaries(dict1, dict3);
     BONAssertEqualDictionaries(dict3, dict1);
+}
+
+- (void)testBONCGFloatsCloseEnough
+{
+    BONAssertCGFloatsCloseEnough(0.0f, 0.0f);
+    BONAssertCGFloatsCloseEnough(0.0f, 0.0000000001f);
+    BONAssertCGFloatsCloseEnough((1.0f - 0.9f) - 0.1f, 0.0f);
+    BONAssertCGFloatsCloseEnough((1.0 - 0.9) - 0.1, 0.0f);
 }
 
 @end
