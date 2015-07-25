@@ -151,6 +151,39 @@ Outputs:
 
 You can easily access those hard-to-find special characters using the `BONSpecial` class. These include the No-Break Space, En and Em Spaces, various kinds of dashes, and more. If it’s hard to see in your source code or debug logs, it belongs in `BONSpecial`. If you want to add special characters to BonMot, add them to `BONSpecialGenerator.swift` (requires Xcode 7), run `swift BONSpecialGenerator.swift`, and submit a pull request! See `SpecialCharactersCell.m` in the sample project for some examples of how to use `BONSpecial`.
 
+## Vertical Text Alignment
+
+UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTextAlignmentConstraint`, a layout constraint subclass that lets you align labels by cap height and x-height. For some fonts, this is essential to convey the designer’s intention:
+
+<img width=320 src="readme-images/text-alignment.png" alt="Illustration of different methods of aligning text vertically" />
+
+`BONTextAlignmentConstraint` works with any views that expose a `font` property. It uses Key-Value Observing to watch for changes to the `font` property, and adjust its internal measurements accordingly. This is ideal for use with Dynamic Type: if the user changes the font size of the app, `BONTextAlignmentConstraint` will update. You can also use it to align a label with a plain view, as illustrated by the red dotted lines in the example above.
+
+**Warning:** `BONTextAlignmentConstraint` holds strong references to its `firstItem` and `secondItem` properties. Make sure not to have a view that is constrained by this constraint also hold a strong reference to it, because it will cause a retain cycle.
+
+You can use `BONTextAlignmentConstraint`: programmatically or in Interface Builder. In code, use the convenience initializer:
+
+```objc
+[BONTextAlignmentConstraint constraintWithItem:someLabel
+                                     attribute:BONConstraintAttributeCapHeight
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:someOtherLabel
+                                     attribute:BONConstraintAttributeCapHeight].active = YES;
+```
+
+In Interface Builder, start by constraining two views to each other with a `top` constraint. Select the constraint, and in the Identity Inspector, change the class to `BONTextAlignmentConstraint`:
+
+<img width=294 src="readme-images/text-alignment-identity-inspector.png" alt="setting the class in the Identity Inspector" />
+
+Next, switch to the Attributes Inspector. `BONTextAlignmentConstraint` exposes two text fields through [IBInspectables](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html). Type in the attributes you want to align. You will get a run-time error if you enter an invalid value.
+
+<img width=294 src="readme-images/text-alignment-attributes-inspector.png" alt="setting the alignment attributes in the Attributes Inspector" />
+
+The layout won’t change in Interface Builder (IBDesignable is not supported for constraint subclasses), but it will work when you run your code.
+
+**Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
+
+
 ## Author
 
 Zev Eisenberg: <mailto:zev.eisenberg@raizlabs.com>, [@ZevEisenberg](https://twitter.com/zeveisenberg)
