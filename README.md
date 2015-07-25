@@ -153,7 +153,7 @@ You can easily access those hard-to-find special characters using the `BONSpecia
 
 ## Author
 
-Zev Eisenberg, zev.eisenberg@raizlabs.com, [@ZevEisenberg](https://twitter.com/zeveisenberg)
+Zev Eisenberg: <mailto:zev.eisenberg@raizlabs.com>, [@ZevEisenberg](https://twitter.com/zeveisenberg)
 
 Logo by Jon Lopkin: [@jonlopkin](https://twitter.com/jonlopkin)
 
