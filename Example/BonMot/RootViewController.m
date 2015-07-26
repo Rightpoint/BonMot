@@ -20,11 +20,6 @@
 #import "BaselineOffsetCell.h"
 #import "ConcatenationCell.h"
 
-static inline BOOL isRunningUnitTests() {
-    Class XCTestClass = NSClassFromString(@"XCTest");
-    return ( XCTestClass != Nil );
-}
-
 @interface RootViewController ()
 
 @property (copy, nonatomic) NSArray *cellClasses;
@@ -40,21 +35,18 @@ static inline BOOL isRunningUnitTests() {
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 123.0f;
 
-    // If we leave these enabled while running unit tests, the runtime gets very confused due to double 
-    if (!isRunningUnitTests()) {
-        self.cellClasses = @[
-                             [ColorCell class],
-                             [TrackingCell class],
-                             [LineHeightCell class],
-                             [FigureStyleCell class],
-                             [BaselineCapHeightCell class],
-                             [ProgrammaticBaselineCapHeightCell class],
-                             [InlineImagesCell class],
-                             [SpecialCharactersCell class],
-                             [BaselineOffsetCell class],
-                             [ConcatenationCell class],
-                             ];
-    }
+    self.cellClasses = @[
+                         [ColorCell class],
+                         [TrackingCell class],
+                         [LineHeightCell class],
+                         [FigureStyleCell class],
+                         [BaselineCapHeightCell class],
+                         [ProgrammaticBaselineCapHeightCell class],
+                         [InlineImagesCell class],
+                         [SpecialCharactersCell class],
+                         [BaselineOffsetCell class],
+                         [ConcatenationCell class],
+                         ];
 
     for ( Class CellClass in self.cellClasses ) {
         NSAssert([CellClass respondsToSelector:@selector(reuseIdentifier)],
