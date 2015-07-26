@@ -109,7 +109,7 @@ NSAttributedString *string = [BONText joinTexts:@[ oneFish, twoFish, redFish, bl
 
 Outputs:
 
-<img width=227 height=34 src="readme-images/fish-with-black-comma.png" />
+<img width=227 src="readme-images/fish-with-black-comma.png" />
 
 You can also append texts directly to each other:
 
@@ -127,7 +127,7 @@ NSAttributedString *string = chain.attributedString;
 
 Outputs:
 
-<img width=227 height=34 src="readme-images/fish-with-red-comma.png" />
+<img width=227 src="readme-images/fish-with-red-comma.png" />
 
 (Notice that the comma after `red fish` is red, but in the previous example, it was not colored. This is the behavior that made the most sense to me, but please open an issue or pull request if you think it should be different.)
 
