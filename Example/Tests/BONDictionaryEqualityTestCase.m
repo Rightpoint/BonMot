@@ -75,10 +75,11 @@
 
 - (void)testBONCGFloatsCloseEnough
 {
-    BONAssertCGFloatsCloseEnough(0.0f, 0.0f);
-    BONAssertCGFloatsCloseEnough(0.0f, 0.0000000001f);
-    BONAssertCGFloatsCloseEnough((1.0f - 0.9f) - 0.1f, 0.0f);
-    BONAssertCGFloatsCloseEnough((1.0 - 0.9) - 0.1, 0.0f);
+    XCTAssertTrue(BONCGFloatsCloseEnough(0.0f, 0.0f));
+    XCTAssertTrue(BONCGFloatsCloseEnough(0.0f, 0.0000000001f));
+    XCTAssertTrue(BONCGFloatsCloseEnough((1.0f - 0.9f) - 0.1f, 0.0f));
+    XCTAssertTrue(BONCGFloatsCloseEnough((1.0 - 0.9) - 0.1, 0.0f));
+    XCTAssertFalse(BONCGFloatsCloseEnough(0.0f, 0.01f));
 }
 
 @end

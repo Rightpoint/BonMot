@@ -39,7 +39,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeTop];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 0.0f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 0.0f, kBONCGFloatEpsilon);
 }
 
 - (void)testCapHeightConstraint
@@ -53,7 +53,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeCapHeight];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 7.854f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 7.854f, kBONCGFloatEpsilon);
 }
 
 - (void)testXHeightConstraint
@@ -67,7 +67,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeXHeight];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 14.355f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 14.355f, kBONCGFloatEpsilon);
 }
 
 - (void)testTopToCapHeightConstraint
@@ -81,7 +81,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeCapHeight];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 11.9f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 11.9f, kBONCGFloatEpsilon);
 }
 
 - (void)testCapHeightToTopConstraint
@@ -95,7 +95,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeTop];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, -4.046f);
+    XCTAssertEqualWithAccuracy(constraint.constant, -4.046f, kBONCGFloatEpsilon);
 }
 
 - (void)testTopToXHeightConstraint
@@ -109,7 +109,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeXHeight];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 21.75f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 21.75f, kBONCGFloatEpsilon);
 }
 
 - (void)testXHeightToTopConstraint
@@ -123,7 +123,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeTop];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, -7.395f);
+    XCTAssertEqualWithAccuracy(constraint.constant, -7.395f, kBONCGFloatEpsilon);
 }
 
 - (void)testCapHeightToXHeightConstraint
@@ -137,7 +137,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeXHeight];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 17.704f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 17.704f, kBONCGFloatEpsilon);
 }
 
 - (void)testXHeightToCapHeightConstraint
@@ -151,7 +151,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeCapHeight];
 
-    BONAssertCGFloatsCloseEnough(constraint.constant, 4.505f);
+    XCTAssertEqualWithAccuracy(constraint.constant, 4.505f, kBONCGFloatEpsilon);
 }
 
 - (void)testFirstBaselineConstraint

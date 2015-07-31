@@ -10,6 +10,7 @@
 
 @import CoreGraphics.CGBase;
 
+OBJC_EXTERN const CGFloat kBONCGFloatEpsilon;
 OBJC_EXTERN BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2);
 
 @interface NSDictionary (BONEquality)

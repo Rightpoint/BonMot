@@ -10,10 +10,11 @@
 
 @import CoreGraphics.CGBase;
 
+CGFloat const kBONCGFloatEpsilon = 0.0001;
+
 BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
-    static CGFloat epsilon = 0.0001;
-    return fabs(float1 - float2) < epsilon;
+    return fabs(float1 - float2) < kBONCGFloatEpsilon;
 }
 
 static BOOL BONNumberIsFloaty(NSNumber *number)
