@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import AppKit
 
 // Please keep this array sorted
 let specialCharacters: [unichar] = [
@@ -25,7 +26,7 @@ let specialCharacters: [unichar] = [
     0x202F,
     0x2060,
     0x2212,
-    0xFFFC,
+    unichar(NSAttachmentCharacter), // 0xFFFC
 ]
 
 extension unichar {
