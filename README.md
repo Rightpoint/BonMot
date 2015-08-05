@@ -161,7 +161,7 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTex
 
 **Warning:** `BONTextAlignmentConstraint` holds strong references to its `firstItem` and `secondItem` properties. Make sure not to have a view that is constrained by this constraint also hold a strong reference to it, because it will cause a retain cycle.
 
-You can use `BONTextAlignmentConstraint`: programmatically or in Interface Builder. In code, use the convenience initializer:
+You can use `BONTextAlignmentConstraint` programmatically or in Interface Builder. In code, use the convenience initializer:
 
 ```objc
 [BONTextAlignmentConstraint constraintWithItem:someLabel
