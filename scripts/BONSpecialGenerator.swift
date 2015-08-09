@@ -35,7 +35,7 @@ extension unichar {
             let swiftCharacter = Character(UnicodeScalar(self))
 
             let theCFMutableString = NSMutableString(string: String(swiftCharacter)) as CFMutableString
-            CFStringTransform(theCFMutableString, nil, kCFStringTransformToUnicodeName, 0)
+            CFStringTransform(theCFMutableString, UnsafeMutablePointer<CFRange>(), kCFStringTransformToUnicodeName, false)
 
             let characterName = theCFMutableString as String
             var trimmedName = characterName
@@ -60,7 +60,7 @@ extension String {
     }
 
     func camelCaseMethodName() -> String {
-        let components: [String] = split(self.characters){$0 == " " || $0 == "-"}.map(String.init)
+        let components: [String] = self.characters.split{$0 == " " || $0 == "-"}.map(String.init)
         var camelCaseComponents = components.map { $0.capitalizedString }
         if camelCaseComponents.count > 0 {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
@@ -76,7 +76,7 @@ func pathToFolderContainingThisScript() -> String {
     let script = Process.arguments[0];
 
     if script.hasPrefix("/") { // absolute
-        let path = script.stringByDeletingLastPathComponent
+        let path = (script as NSString).stringByDeletingLastPathComponent
         return path
     }
     else { // relative
@@ -84,7 +84,7 @@ func pathToFolderContainingThisScript() -> String {
 
         if let urlPath = NSURL(string: script, relativeToURL: urlCwd) {
             if let path = urlPath.path {
-                let path = path.stringByDeletingLastPathComponent
+                let path = (path as NSString).stringByDeletingLastPathComponent
                 return path
             }
         }
@@ -123,8 +123,8 @@ for theUnichar in specialCharacters {
 // Get the contents of the template files
 
 let currentDirectory = pathToFolderContainingThisScript()
-let headerTemplatePath = currentDirectory.stringByAppendingPathComponent("BONSpecial.h template.txt")
-let implementationTemplatePath = currentDirectory.stringByAppendingPathComponent("BONSpecial.m template.txt")
+let headerTemplatePath = (currentDirectory as NSString).stringByAppendingPathComponent("BONSpecial.h template.txt")
+let implementationTemplatePath = (currentDirectory as NSString).stringByAppendingPathComponent("BONSpecial.m template.txt")
 
 var headerTemplateString: String!
 var implementationTemplateString: String!
@@ -142,14 +142,14 @@ let implementationOutputString = implementationTemplateString.stringByReplacingO
 
 // Write the files out to the project directory
 
-let projectDirectory = currentDirectory.stringByDeletingLastPathComponent
-let classesDirectory = projectDirectory.stringByAppendingPathComponent("Pod/Classes")
+let projectDirectory = (currentDirectory as NSString).stringByDeletingLastPathComponent
+let classesDirectory = (projectDirectory as NSString).stringByAppendingPathComponent("Pod/Classes")
 
 let baseFileName = "BONSpecial"
-let headerFileName = baseFileName.stringByAppendingPathExtension("h")!
-let implementationFileName = baseFileName.stringByAppendingPathExtension("m")!
-let headerFilePath = classesDirectory.stringByAppendingPathComponent(headerFileName)
-let implementationFilePath = classesDirectory.stringByAppendingPathComponent(implementationFileName)
+let headerFileName = (baseFileName as NSString).stringByAppendingPathExtension("h")!
+let implementationFileName = (baseFileName as NSString).stringByAppendingPathExtension("m")!
+let headerFilePath = (classesDirectory as NSString).stringByAppendingPathComponent(headerFileName)
+let implementationFilePath = (classesDirectory as NSString).stringByAppendingPathComponent(implementationFileName)
 
 do {
     try! headerOutputString.writeToFile(headerFilePath, atomically: true, encoding: NSUTF8StringEncoding)
