@@ -14,7 +14,7 @@
   },
   "social_media_url": "https://twitter.com/ZevEisenberg",
   "platforms": {
-    "ios": "8.3"
+    "ios": "8.0"
   },
   "requires_arc": true,
   "source_files": [

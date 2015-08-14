@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BonMot: 1861f29a1e42ca9b833e67f8b6a0532c058b48ab
+  BonMot: bf40ecb94ad66d7bb934ea00eaa59369034f6a2a
 
 COCOAPODS: 0.38.2
