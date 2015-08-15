@@ -21,6 +21,7 @@
 + (NSString *)figureDash { return @"\u2012"; }
 + (NSString *)enDash { return @"\u2013"; }
 + (NSString *)emDash { return @"\u2014"; }
++ (NSString *)lineSeparator { return @"\u2028"; }
 + (NSString *)narrowNoBreakSpace { return @"\u202F"; }
 + (NSString *)wordJoiner { return @"\u2060"; }
 + (NSString *)minusSign { return @"\u2212"; }

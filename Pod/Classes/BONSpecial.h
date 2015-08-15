@@ -21,6 +21,7 @@
 + (NSString *)figureDash;
 + (NSString *)enDash;
 + (NSString *)emDash;
++ (NSString *)lineSeparator;
 + (NSString *)narrowNoBreakSpace;
 + (NSString *)wordJoiner;
 + (NSString *)minusSign;
