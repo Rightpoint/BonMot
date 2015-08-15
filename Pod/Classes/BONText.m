@@ -7,6 +7,7 @@
 //
 
 #import "BONText.h"
+#import "BONText_Private.h"
 
 @import CoreText.SFNTLayoutTypes;
 
@@ -58,7 +59,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 - (NSAttributedString *)attributedStringLastConcatenant:(BOOL)lastConcatenant
 {
-    NSAttributedString *attributedString = nil;
+    NSMutableAttributedString *mutableAttributedString = nil;
 
     if ( self.image ) {
         NSAssert(!self.string, @"If self.image is non-nil, self.string must be nil");
@@ -71,37 +72,80 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
                                        self.image.size.width,
                                        self.image.size.height);
 
-        attributedString = [NSAttributedString attributedStringWithAttachment:attachment];
+        mutableAttributedString = [NSAttributedString attributedStringWithAttachment:attachment].mutableCopy;
 
-        if ( self.trailingString ) {
-            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithAttributedString:attributedString];
-            [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.trailingString attributes:self.attributes]];
-            attributedString = mutableAttributedString;
+        if (!lastConcatenant) {
+            if ( self.trailingString) {
+                [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.trailingString attributes:self.attributes]];
+            }
+            else if ( self.internalIndentSpacer ) {
+                [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
+            }
         }
+
     }
     else if ( self.string ) {
+        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
+                                                                         attributes:self.attributes];
         if ( lastConcatenant ) {
-            NSMutableAttributedString *mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
-                                                                                                        attributes:self.attributes];
             NSRange lastCharacterRange = NSMakeRange(self.string.length - 1, 1);
             [mutableAttributedString removeAttribute:NSKernAttributeName range:lastCharacterRange];
-            attributedString = mutableAttributedString.copy;
         }
         else {
             // tracking all the way through
-            NSString *stringToUse = self.string;
+            NSMutableString *stringToAppend = [NSMutableString string];
 
             // we aren't the last component, so append our trailing string using the same attributes as self
             if ( self.trailingString ) {
-                stringToUse = [stringToUse stringByAppendingString:self.trailingString];
+                [stringToAppend appendString:self.trailingString];
+            }
+            else if ( self.internalIndentSpacer ) {
+                [stringToAppend appendString:@"\t"];
             }
 
-            attributedString = [[NSAttributedString alloc] initWithString:stringToUse
-                                                               attributes:self.attributes];
+            [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:stringToAppend attributes:self.attributes]];
         }
     }
 
-    return attributedString;
+    if (!lastConcatenant && self.internalIndentSpacer) {
+        CGFloat indentation = self.internalIndentSpacer.doubleValue;
+        if (self.image) {
+            indentation += self.image.size.width;
+        }
+        else if ( self.string ) {
+            NSAttributedString *measurementString = [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
+            CGRect boundingRect = [measurementString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+                                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                                                  context:nil];
+            CGFloat width = ceil(CGRectGetWidth(boundingRect));
+            indentation += width;
+        }
+
+        NSRangePointer longestEffectiveRange = NULL;
+        NSRange fullRange = NSMakeRange(0, mutableAttributedString.length);
+        NSMutableParagraphStyle *paragraphStyle = [[mutableAttributedString attribute:NSParagraphStyleAttributeName
+                                                                             atIndex:0
+                                                               longestEffectiveRange:longestEffectiveRange
+                                                                             inRange:fullRange] mutableCopy];
+
+        if (!paragraphStyle) {
+            paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        }
+
+        if (!longestEffectiveRange) {
+            longestEffectiveRange = &fullRange;
+        }
+
+        NSTextTab *tab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:indentation options:nil];
+        paragraphStyle.tabStops = @[ tab ];
+        paragraphStyle.headIndent = indentation;
+
+        [mutableAttributedString addAttribute:NSParagraphStyleAttributeName
+                                        value:paragraphStyle
+                                        range:*longestEffectiveRange];
+    }
+
+    return mutableAttributedString;
 }
 
 - (NSDictionary *)attributes
@@ -216,7 +260,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     // Line Height
 
     if ( self.lineHeightMultiple != 1.0f ) {
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
         attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
@@ -246,9 +290,12 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.string = self.string;
     text.image = self.image;
     text.nextText = self.nextText;
+    text.internalIndentSpacer = self.internalIndentSpacer;
 
     return text;
 }
+
+#pragma mark - Properties
 
 - (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize
 {
@@ -264,6 +311,16 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     _font = font;
     self.fontName = font.fontName;
     self.fontSize = font.pointSize;
+}
+
+- (CGFloat)indentSpacer
+{
+    return self.internalIndentSpacer.doubleValue;
+}
+
+- (void)setIndentSpacer:(CGFloat)indentSpacer
+{
+    self.internalIndentSpacer = @(indentSpacer);
 }
 
 - (void)setString:(NSString *)string

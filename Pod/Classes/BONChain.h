@@ -21,6 +21,7 @@ typedef BONChain*(^BONChainLineHeight)(CGFloat lineHeightMultiple);
 typedef BONChain*(^BONChainBaselineOffset)(CGFloat baselineOffset);
 typedef BONChain*(^BONChainFigureCase)(BONFigureCase figureCase);
 typedef BONChain*(^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
+typedef BONChain*(^BONChainIndentSpacer)(CGFloat indentSpacer);
 typedef BONChain*(^BONChainString)(NSString *string);
 typedef BONChain*(^BONChainImage)(UIImage *image);
 typedef BONChain*(^BONChainAppend)(id chainOrText);
@@ -58,5 +59,10 @@ typedef BONChain*(^BONChainAppendWithSeparator)(NSString *separator, id chainOrT
 // concatenation
 @property (copy, nonatomic, readonly) BONChainAppend append;
 @property (copy, nonatomic, readonly) BONChainAppendWithSeparator appendWithSeparator;
+
+/**
+ *  Must be greater than 0.
+ */
+@property (copy, nonatomic, readonly) BONChainIndentSpacer indentSpacer;
 
 @end

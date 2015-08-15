@@ -9,6 +9,7 @@
 #import "BONChain.h"
 
 #import "BONText.h"
+#import "BONText_Private.h"
 
 @interface BONChain ()
 
@@ -207,6 +208,7 @@
 {
     BONChainAppendWithSeparator appendBlock = ^(NSString *separator, id chainOrText) {
         self.text.trailingString = separator;
+        self.text.internalIndentSpacer = nil;
         BONText *textToAppend = nil;
         if ( [chainOrText isKindOfClass:[BONChain class]] ) {
             textToAppend = [(BONChain *)chainOrText text];
@@ -224,6 +226,19 @@
     };
 
     return [appendBlock copy];
+}
+
+- (BONChainIndentSpacer)indentSpacer
+{
+    BONChainIndentSpacer indentSpacerBlock = ^(CGFloat indentSpacer) {
+        NSAssert(indentSpacer > 0.0f, @"Indent spacer values must be greater than zero. Received %@", @(indentSpacer));
+        typeof(self) newChain = self.copy;
+        newChain.text.indentSpacer = indentSpacer;
+        newChain.text.trailingString = nil;
+        return newChain;
+    };
+
+    return [indentSpacerBlock copy];
 }
 
 @end
