@@ -27,12 +27,14 @@
     [super awakeFromNib];
 
     // First Quote
-    NSString *quote = [NSString stringWithFormat:@"“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”%@%@Radia Perlman.", BONSpecial.lineSeparator, BONSpecial.emDash];
+    NSString *quote = @"“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”";
+    NSString *attribution = [NSString stringWithFormat:@"%@%@Radia Perlman", BONSpecial.lineSeparator, BONSpecial.emDash];
     UIImage *image = [UIImage imageNamed:@"robot"];
     BONChain *firstBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0f);
     BONChain *imageChain = firstBaseTextChain.image(image).indentSpacer(4.0f).baselineOffset(-6.0f);
 
-    imageChain.append(firstBaseTextChain.string(quote));
+    imageChain.append(firstBaseTextChain.string(quote))
+    .append(firstBaseTextChain.string(attribution));
 
     NSAttributedString *imageAttributedString = imageChain.attributedString;
 

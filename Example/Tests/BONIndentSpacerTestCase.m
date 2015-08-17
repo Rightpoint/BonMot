@@ -43,4 +43,21 @@
     XCTAssertEqualObjects(attributedString.string, @"🍑 →\tYou can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.");
 }
 
+- (void)testMultipleConcatenationIndentation
+{
+    NSString *string1 = [NSString stringWithFormat:@"string1"];
+    NSString *string2 = [NSString stringWithFormat:@"string2"];
+    UIImage *image = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
+    BONChain *firstBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0f);
+    BONChain *imageChain = firstBaseTextChain.copy;
+    imageChain.append(firstBaseTextChain.image(image).indentSpacer(4.0f).baselineOffset(-6.0f))
+    .append(firstBaseTextChain.string(string1))
+    .append(firstBaseTextChain.string(string2));
+
+    NSAttributedString *attributedString = imageChain.attributedString;
+
+    NSString *controlString = [NSString stringWithFormat:@"%@\tstring1string2", BONSpecial.objectReplacementCharacter];
+    XCTAssertEqualObjects(attributedString.string, controlString);
+}
+
 @end
