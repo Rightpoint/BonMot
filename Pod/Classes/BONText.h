@@ -55,9 +55,14 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic) UIImage *image;
 
 /**
- *  This string is appended, using the same attributes as @c self, if this text has another text appended to it.
+ *  This string is appended, using the same attributes as @c self, if this text has another text appended to it. If this value is set, @c indentSpacer is unset.
  */
 @property (copy, nonatomic) NSString *trailingString;
+
+/**
+ *  Space, in points, to apply after a preceding image or string. A combination of @headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0. If this value is set, @c trailingString is unset.
+ */
+@property (assign, nonatomic) CGFloat indentSpacer;
 
 // Getting Values Out
 

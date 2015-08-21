@@ -23,6 +23,7 @@ let specialCharacters: [unichar] = [
     0x2012,
     0x2013,
     0x2014,
+    0x2028,
     0x202F,
     0x2060,
     0x2212,

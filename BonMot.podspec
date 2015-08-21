@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod', 'Pod/Classes/**/*'
+  s.private_header_files = "Pod/Classes/*_Private.h"
 
   s.frameworks = 'UIKit'
 end

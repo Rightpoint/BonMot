@@ -1,5 +1,5 @@
 //
-//  BONTextTestCase.m
+//  BONTrackingTestCase.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 6/16/15.
@@ -10,13 +10,13 @@
 
 #import <BonMot/BonMot.h>
 
-@interface BONTextTestCase : BONBaseTestCase
+@interface BONTrackingTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONTextTestCase
+@implementation BONTrackingTestCase
 
-- (void)testText
+- (void)testBasics
 {
     NSAttributedString *attributedString =
     BONChain.new

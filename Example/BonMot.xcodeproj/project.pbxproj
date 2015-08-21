@@ -24,9 +24,11 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
 		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */; };
-		CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */; };
+		CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */; };
 		CD356FD61B59B55D00572331 /* SpecialCharactersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */; };
 		CD356FD71B59B55D00572331 /* SpecialCharactersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */; };
+		CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */; };
+		CD39D8701B7FE32800336231 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */; };
 		CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */; };
 		CD79AF431AE5823200D9F0C5 /* BaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */; };
@@ -48,6 +50,8 @@
 		CDB461F81B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */; };
 		CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */; };
 		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
+		CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */; };
+		CDDFD7ED1B7F9D4700A87008 /* IndentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */; };
 		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
 		CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */; };
 		CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
@@ -93,10 +97,11 @@
 		7A5A12C91AF6685400D111BA /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextTestCase.m; sourceTree = "<group>"; };
+		CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTrackingTestCase.m; sourceTree = "<group>"; };
 		CD356FD31B59B55D00572331 /* SpecialCharactersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialCharactersCell.h; sourceTree = "<group>"; };
 		CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialCharactersCell.m; sourceTree = "<group>"; };
 		CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecialCharactersCell.xib; sourceTree = "<group>"; };
+		CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONIndentSpacerTestCase.m; sourceTree = "<group>"; };
 		CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineHeightCell.h; sourceTree = "<group>"; };
 		CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineHeightCell.m; sourceTree = "<group>"; };
 		CD79AF3E1AE5821A00D9F0C5 /* FigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureStyleCell.h; sourceTree = "<group>"; };
@@ -129,6 +134,9 @@
 		CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
 		CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
 		CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
+		CDDFD7E91B7F9D4700A87008 /* IndentationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentationCell.h; sourceTree = "<group>"; };
+		CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentationCell.m; sourceTree = "<group>"; };
+		CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndentationCell.xib; sourceTree = "<group>"; };
 		CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
@@ -236,7 +244,8 @@
 			children = (
 				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
 				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
-				CD24988C1B30CBA90055F2A7 /* BONTextTestCase.m */,
+				CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */,
+				CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */,
 				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
 				CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
@@ -274,6 +283,9 @@
 				CD9E41551AE44B3E00ECFBFB /* TrackingCell.h */,
 				CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */,
 				CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */,
+				CDDFD7E91B7F9D4700A87008 /* IndentationCell.h */,
+				CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */,
+				CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */,
 				CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */,
 				CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */,
 				CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */,
@@ -412,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD79AF5A1AE58BDF00D9F0C5 /* ConcatenationCell.xib in Resources */,
+				CDDFD7ED1B7F9D4700A87008 /* IndentationCell.xib in Resources */,
 				CD79AF561AE58BCE00D9F0C5 /* InlineImagesCell.xib in Resources */,
 				CD79AF521AE58BC200D9F0C5 /* LineHeightCell.xib in Resources */,
 				CD79AF581AE58BD800D9F0C5 /* BaselineOffsetCell.xib in Resources */,
@@ -434,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				CD39D8701B7FE32800336231 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +534,7 @@
 				CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */,
 				CD9E41581AE44B3E00ECFBFB /* TrackingCell.m in Sources */,
 				CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */,
+				CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */,
 				CD356FD61B59B55D00572331 /* SpecialCharactersCell.m in Sources */,
@@ -533,7 +548,8 @@
 				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
 				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
-				CD24988D1B30CBA90055F2A7 /* BONTextTestCase.m in Sources */,
+				CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */,
+				CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */,
 				CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

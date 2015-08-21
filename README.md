@@ -15,7 +15,7 @@ BonMot is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "BonMot"
+pod 'BonMot'
 ```
 
 ## Supported Text Features
@@ -29,7 +29,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Baseline Offset
 - Figure Case (uppercase vs. lowercase numbers)
 - Figure Spacing (monospace vs. proportional numbers)
-- Inline Images
+- Inline Images with optional multi-line paragraph alignment
 
 Think something is missing? Please [file an issue](https://github.com/Raizlabs/BonMot/issues) (or add a +1 if one already exists).
 
@@ -146,6 +146,21 @@ NSAttributedString *string = chain.attributedString;
 Outputs:
 
 <img width=116 height=22 src="readme-images/label-with-icon.png" />
+
+If you need to wrap multiple lines of text after an image, use the `indentSpacer` property to align the whole paragraph after the image:
+
+```objc
+NSString *quote = @"This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned";
+BONChain *chain = BONChain.new;
+chain
+.append(BONChain.new.image(someUIIMage).indentSpacer(10.0f))
+.append(BONChain.new.string(quote));
+NSAttributedString *attributedString = chain.attributedString;
+```
+
+Outputs:
+
+<img width=285 src="readme-images/wrapped-label-with-icon.png" />
 
 ## Special Characters
 

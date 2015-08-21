@@ -11,6 +11,7 @@
 // Cells
 #import "ColorCell.h"
 #import "TrackingCell.h"
+#import "IndentationCell.h"
 #import "LineHeightCell.h"
 #import "FigureStyleCell.h"
 #import "BaselineCapHeightCell.h"
@@ -38,6 +39,7 @@
     self.cellClasses = @[
                          [ColorCell class],
                          [TrackingCell class],
+                         [IndentationCell class],
                          [LineHeightCell class],
                          [FigureStyleCell class],
                          [BaselineCapHeightCell class],
