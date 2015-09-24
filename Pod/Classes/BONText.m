@@ -136,7 +136,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
             longestEffectiveRange = &fullRange;
         }
 
-        NSTextTab *tab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:indentation options:nil];
+        NSTextTab *tab = [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:indentation options:@{}];
         paragraphStyle.tabStops = @[ tab ];
         paragraphStyle.headIndent = indentation;
 
