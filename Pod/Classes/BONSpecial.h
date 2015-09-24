@@ -22,6 +22,7 @@
 + (NSString *)enDash;
 + (NSString *)emDash;
 + (NSString *)lineSeparator;
++ (NSString *)paragraphSeparator;
 + (NSString *)narrowNoBreakSpace;
 + (NSString *)wordJoiner;
 + (NSString *)minusSign;

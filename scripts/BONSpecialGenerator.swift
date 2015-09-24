@@ -24,6 +24,7 @@ let specialCharacters: [unichar] = [
     0x2013,
     0x2014,
     0x2028,
+    0x2029,
     0x202F,
     0x2060,
     0x2212,
@@ -53,11 +54,11 @@ extension unichar {
 
 extension String {
     subscript(i: Int) -> Character {
-        return self[advance(startIndex, i)]
+        return self[startIndex.advancedBy(i)]
     }
 
     subscript(range: Range<Int>) -> String {
-        return self[advance(startIndex, range.startIndex)..<advance(startIndex, range.endIndex)]
+        return self[startIndex.advancedBy(range.startIndex)..<startIndex.advancedBy(range.endIndex)]
     }
 
     func camelCaseMethodName() -> String {
@@ -66,7 +67,7 @@ extension String {
         if camelCaseComponents.count > 0 {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
         }
-        return "".join(camelCaseComponents)
+        return camelCaseComponents.joinWithSeparator("")
     }
 }
 
