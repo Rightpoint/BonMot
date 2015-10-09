@@ -196,7 +196,6 @@
         NSAssert(indentSpacer > 0.0f, @"Indent spacer values must be greater than zero. Received %@", @(indentSpacer));
         typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.indentSpacer = indentSpacer;
-        newChain.text.trailingString = nil;
         return newChain;
     };
 
