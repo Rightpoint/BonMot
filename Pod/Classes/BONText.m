@@ -339,6 +339,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     }
 }
 
+#pragma mark - BONChainable
+
+- (BONText *)text
+{
+    return self;
+}
+
 #pragma mark - Utilities
 
 + (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(BONText *)separator

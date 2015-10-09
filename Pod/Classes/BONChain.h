@@ -24,12 +24,9 @@ typedef BONChain*(^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
 typedef BONChain*(^BONChainIndentSpacer)(CGFloat indentSpacer);
 typedef BONChain*(^BONChainString)(NSString *string);
 typedef BONChain*(^BONChainImage)(UIImage *image);
-typedef BONChain*(^BONChainAppend)(id chainOrText);
-typedef BONChain*(^BONChainAppendWithSeparator)(NSString *separator, id chainOrText);
 
-@interface BONChain : NSObject <NSCopying>
+@interface BONChain : NSObject <NSCopying, BONChainable>
 
-@property (strong, nonatomic, readonly) BONText *text;
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) NSDictionary *attributes;
 
@@ -56,13 +53,13 @@ typedef BONChain*(^BONChainAppendWithSeparator)(NSString *separator, id chainOrT
 @property (copy, nonatomic, readonly) BONChainString string;
 @property (copy, nonatomic, readonly) BONChainImage image;
 
-// concatenation
-@property (copy, nonatomic, readonly) BONChainAppend append;
-@property (copy, nonatomic, readonly) BONChainAppendWithSeparator appendWithSeparator;
-
 /**
  *  Must be greater than 0.
  */
 @property (copy, nonatomic, readonly) BONChainIndentSpacer indentSpacer;
+
+// concatenation
+- (void)appendLink:(id<BONChainable>)link;
+- (void)appendLink:(id<BONChainable>)link separator:(NSString *)separator;
 
 @end

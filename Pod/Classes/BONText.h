@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+#import "BONChainable.h"
+
 typedef NS_ENUM(NSUInteger, BONFigureCase) {
     BONFigureCaseDefault = 0,
     BONFigureCaseLining,
@@ -22,11 +24,11 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @class BONText;
 
-@interface BONText : NSObject <NSCopying>
+@interface BONText : NSObject <NSCopying, BONChainable>
 
 // Appending
 
-@property (strong, nonatomic) BONText *nextText;
+@property (copy, nonatomic) BONText *nextText;
 
 // Font Properties
 

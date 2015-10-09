@@ -40,15 +40,16 @@
     BONChain *spaceChain = BONChain.new.string(@" ");
 
     BONChain *wholeString = BONChain.new;
-    wholeString
-    .append(twoChain)
-    .appendWithSeparator(@" ", beeChain)
-    .appendWithSeparator(@" ", oarChain)
-    .appendWithSeparator(@" ", knotChain)
+    [wholeString appendLink:twoChain];
+    [wholeString appendLink:beeChain separator:@" "];
+    [wholeString appendLink:oarChain separator:@" "];
+    [wholeString appendLink:knotChain separator:@" "];
+
     // you can also append the space and the chain separately if you prefer
-    .append(spaceChain)
-    .append(twoChain)
-    .appendWithSeparator(@" ", beeChain);
+    [wholeString appendLink:spaceChain];
+    [wholeString appendLink:twoChain];
+
+    [wholeString appendLink:beeChain separator:@" "];
 
     self.label.attributedText = wholeString.attributedString;
 
