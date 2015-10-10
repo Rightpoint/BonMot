@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic) UIColor *textColor;
 @property (strong, nonatomic) UIColor *backgroundColor;
 
-// adobeTracking and pointTracking are two interpretations of the same unit. If both are nonzero, Adobe tracking takes precedence.
+// adobeTracking and pointTracking are two interpretations of the same unit. They cannot both be set - if one is set to any value, the other is set to 0.
 @property (assign, nonatomic) NSInteger adobeTracking;
 @property (assign, nonatomic) CGFloat pointTracking;
 
