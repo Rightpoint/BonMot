@@ -315,6 +315,22 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     self.internalIndentSpacer = @(indentSpacer);
 }
 
+- (void)setAdobeTracking:(NSInteger)adobeTracking
+{
+    if (_adobeTracking != adobeTracking) {
+        _adobeTracking = adobeTracking;
+        _pointTracking = 0.0f;
+    }
+}
+
+- (void)setPointTracking:(CGFloat)pointTracking
+{
+    if (_pointTracking != pointTracking) {
+        _pointTracking = pointTracking;
+        _adobeTracking = 0;
+    }
+}
+
 - (void)setString:(NSString *)string
 {
     if ( (_string || string) && ![_string isEqualToString:string] ) {
