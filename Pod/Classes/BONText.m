@@ -238,7 +238,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0f;
-    if ( !BONCGFloatsCloseEnough(self.adobeTracking, 0.0f) ) {
+    if ( self.adobeTracking != 0 ) {
         trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
     else if ( !BONCGFloatsCloseEnough(self.pointTracking, 0.0f) ) {
