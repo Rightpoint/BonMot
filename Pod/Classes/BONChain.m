@@ -97,7 +97,6 @@
     BONChainAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
         typeof(self) newChain = self.copy;
         newChain.text.adobeTracking = adobeTracking;
-        newChain.text.pointTracking = 0.0f;
         return newChain;
     };
 
@@ -109,7 +108,6 @@
     BONChainPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
         typeof(self) newChain = self.copy;
         newChain.text.pointTracking = pointTracking;
-        newChain.text.adobeTracking = 0;
         return newChain;
     };
 
