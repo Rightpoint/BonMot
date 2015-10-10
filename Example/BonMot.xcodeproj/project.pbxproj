@@ -48,6 +48,8 @@
 		CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */; };
 		CDB461F71B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */; };
 		CDB461F81B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */; };
+		CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */; settings = {ASSET_TAGS = (); }; };
+		CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */; settings = {ASSET_TAGS = (); }; };
 		CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */; };
 		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
 		CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */; };
@@ -131,6 +133,8 @@
 		CDB461F41B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammaticBaselineCapHeightCell.h; sourceTree = "<group>"; };
 		CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammaticBaselineCapHeightCell.m; sourceTree = "<group>"; };
 		CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgrammaticBaselineCapHeightCell.xib; sourceTree = "<group>"; };
+		CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainableTestCase.m; sourceTree = "<group>"; };
+		CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONPropertyClobberingTestCase.m; sourceTree = "<group>"; };
 		CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
 		CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
 		CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
@@ -244,9 +248,11 @@
 			children = (
 				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
 				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
+				CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */,
 				CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */,
 				CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */,
 				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
+				CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */,
 				CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
@@ -359,6 +365,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				BE78F1BA6C5EE44EDEB3F0D1 /* Copy Pods Resources */,
+				9A3EDE593CCFF3A23E681016 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -378,6 +385,7 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				4B189F1C62BA8C46507CA25B /* Copy Pods Resources */,
+				F8E39F3EA9A6C644F3FCE452 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -484,6 +492,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9A3EDE593CCFF3A23E681016 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot/Pods-BonMot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BE78F1BA6C5EE44EDEB3F0D1 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,6 +535,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F8E39F3EA9A6C644F3FCE452 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -546,8 +584,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
+				CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */,
 				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
+				CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */,
 				CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */,
 				CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */,
 				CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */,
@@ -696,6 +736,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "BonMot/BonMot-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = BonMot;
@@ -709,6 +750,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "BonMot/BonMot-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = BonMot;

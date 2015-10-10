@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+#import "BONChainable.h"
+
 typedef NS_ENUM(NSUInteger, BONFigureCase) {
     BONFigureCaseDefault = 0,
     BONFigureCaseLining,
@@ -22,11 +24,11 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @class BONText;
 
-@interface BONText : NSObject <NSCopying>
+@interface BONText : NSObject <NSCopying, BONChainable>
 
 // Appending
 
-@property (strong, nonatomic) BONText *nextText;
+@property (copy, nonatomic) BONText *nextText;
 
 // Font Properties
 
@@ -39,8 +41,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic) UIColor *textColor;
 @property (strong, nonatomic) UIColor *backgroundColor;
 
-// adobeTracking and pointTracking are two interpretations of the same unit. If both are nonzero, Adobe tracking takes precedence.
-@property (assign, nonatomic) CGFloat adobeTracking;
+// adobeTracking and pointTracking are two interpretations of the same unit. They cannot both be set - if one is set to any value, the other is set to 0.
+@property (assign, nonatomic) NSInteger adobeTracking;
 @property (assign, nonatomic) CGFloat pointTracking;
 
 @property (assign, nonatomic) CGFloat lineHeightMultiple;
@@ -55,12 +57,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic) UIImage *image;
 
 /**
- *  This string is appended, using the same attributes as @c self, if this text has another text appended to it. If this value is set, @c indentSpacer is unset.
- */
-@property (copy, nonatomic) NSString *trailingString;
-
-/**
- *  Space, in points, to apply after a preceding image or string. A combination of @headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0. If this value is set, @c trailingString is unset.
+ *  Space, in points, to apply after a preceding image or string. A combination of @headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0.
  */
 @property (assign, nonatomic) CGFloat indentSpacer;
 
@@ -76,7 +73,6 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  *
  *  @param texts     An array of @c BONText objects to join.
  *  @param separator The @c BONText to interpose between the elements of the array. May be @c nil.
- *  @note the menuscripts’ @c trailingString property is ignored.
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
  */

@@ -13,7 +13,8 @@
 
 @interface BONChain ()
 
-@property (strong, nonatomic) BONText *text;
+@property (strong, nonatomic, readwrite) BONText *text;
+@property (strong, nonatomic, readonly) BONChain *copyWithoutNextText;
 
 @end
 
@@ -36,6 +37,13 @@
     return chain;
 }
 
+- (instancetype)copyWithoutNextText
+{
+    __typeof(self) copy = self.copy;
+    copy.text.nextText = nil;
+    return copy;
+}
+
 - (NSAttributedString *)attributedString
 {
     return self.text.attributedString;
@@ -49,7 +57,7 @@
 - (BONChainFontNameAndSize)fontNameAndSize
 {
     BONChainFontNameAndSize fontNameAndSizeBlock = ^(NSString *fontName, CGFloat fontSize) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         UIFont *font = [UIFont fontWithName:fontName size:fontSize];
         NSAssert(font, @"No font returned from [UIFont fontWithName:%@ size:%@]", fontName, @(fontSize));
         newChain.text.font = font;
@@ -62,7 +70,7 @@
 - (BONChainFont)font
 {
     BONChainFont fontBlock = ^(UIFont *font) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.font = font;
         return newChain;
     };
@@ -73,7 +81,7 @@
 - (BONChainColor)textColor
 {
     BONChainColor colorBlock = ^(UIColor *color) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.textColor = color;
         return newChain;
     };
@@ -84,7 +92,7 @@
 - (BONChainColor)backgroundColor
 {
     BONChainColor colorBlock = ^(UIColor *color) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.backgroundColor = color;
         return newChain;
     };
@@ -95,9 +103,8 @@
 - (BONChainAdobeTracking)adobeTracking
 {
     BONChainAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.adobeTracking = adobeTracking;
-        newChain.text.pointTracking = 0.0f;
         return newChain;
     };
 
@@ -107,9 +114,8 @@
 - (BONChainPointTracking)pointTracking
 {
     BONChainPointTracking pointTrackingBlock = ^(CGFloat pointTracking) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.pointTracking = pointTracking;
-        newChain.text.adobeTracking = 0;
         return newChain;
     };
 
@@ -119,7 +125,7 @@
 - (BONChainLineHeight)lineHeightMultiple
 {
     BONChainLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.lineHeightMultiple = lineHeightMultiple;
         return newChain;
     };
@@ -130,7 +136,7 @@
 - (BONChainBaselineOffset)baselineOffset
 {
     BONChainBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.baselineOffset = baselineOffset;
         return newChain;
     };
@@ -141,7 +147,7 @@
 - (BONChainFigureCase)figureCase
 {
     BONChainFigureCase figureCaseBlock = ^(BONFigureCase figureCase) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.figureCase = figureCase;
         return newChain;
     };
@@ -152,7 +158,7 @@
 - (BONChainFigureSpacing)figureSpacing
 {
     BONChainFigureSpacing figureSpacingBlock = ^(BONFigureSpacing figureSpacing) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.figureSpacing = figureSpacing;
         return newChain;
     };
@@ -163,7 +169,7 @@
 - (BONChainString)string
 {
     BONChainString stringBlock = ^(NSString *string) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.string = string;
         return newChain;
     };
@@ -174,71 +180,52 @@
 - (BONChainImage)image
 {
     BONChainImage imageBlock = ^(UIImage *image) {
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.image = image;
         return newChain;
     };
-    
+
     return [imageBlock copy];
-}
-
-- (BONChainAppend)append
-{
-    BONChainAppend appendBlock = ^(id chainOrText) {
-        BONText *textToAppend = nil;
-        if ( [chainOrText isKindOfClass:[BONChain class]] ) {
-            textToAppend = [(BONChain *)chainOrText text];
-        }
-        else if ( [chainOrText isKindOfClass:[BONText class]] ) {
-            textToAppend = chainOrText;
-        }
-        else {
-            NSAssert(NO, @"Expected chainOrText to be of class BONChain or BONText, but it was of type %@: %@", [chainOrText class], chainOrText);
-        }
-        self.text.nextText = textToAppend.copy;
-        __typeof(self) newChain = [[self.class alloc] init];
-        newChain.text = self.text.nextText;
-        return newChain;
-    };
-
-    return [appendBlock copy];
-}
-
-- (BONChainAppendWithSeparator)appendWithSeparator
-{
-    BONChainAppendWithSeparator appendBlock = ^(NSString *separator, id chainOrText) {
-        self.text.trailingString = separator;
-        self.text.internalIndentSpacer = nil;
-        BONText *textToAppend = nil;
-        if ( [chainOrText isKindOfClass:[BONChain class]] ) {
-            textToAppend = [(BONChain *)chainOrText text];
-        }
-        else if ( [chainOrText isKindOfClass:[BONText class]] ) {
-            textToAppend = chainOrText;
-        }
-        else {
-            NSAssert(NO, @"Expected chainOrText to be of class BONChain or BONText, but it was of type %@: %@", [chainOrText class], chainOrText);
-        }
-        self.text.nextText = textToAppend.copy;
-        __typeof(self) newChain = [[self.class alloc] init];
-        newChain.text = self.text.nextText;
-        return newChain;
-    };
-
-    return [appendBlock copy];
 }
 
 - (BONChainIndentSpacer)indentSpacer
 {
     BONChainIndentSpacer indentSpacerBlock = ^(CGFloat indentSpacer) {
         NSAssert(indentSpacer > 0.0f, @"Indent spacer values must be greater than zero. Received %@", @(indentSpacer));
-        typeof(self) newChain = self.copy;
+        typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.indentSpacer = indentSpacer;
-        newChain.text.trailingString = nil;
         return newChain;
     };
 
     return [indentSpacerBlock copy];
+}
+
+- (void)appendLink:(id<BONChainable>)link
+{
+    [self appendLink:link separator:nil];
+}
+
+- (void)appendLink:(id<BONChainable>)link separator:(NSString *)separator
+{
+    if (separator.length > 0) {
+        // Recursion!
+        [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
+    }
+
+    [self.class appendText:link.text toEndOfText:self.text];
+}
+
+#pragma mark - Private
+
++ (void)appendText:(BONText *)suffix toEndOfText:(BONText *)prefix
+{
+    if (prefix.nextText) {
+        // Recursion!
+        [self appendText:suffix toEndOfText:prefix.nextText];
+    }
+    else {
+        prefix.nextText = suffix;
+    }
 }
 
 @end

@@ -53,7 +53,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeCapHeight];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, 7.854f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, 8.1694f, kBONCGFloatEpsilon);
 }
 
 - (void)testXHeightConstraint
@@ -67,7 +67,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeXHeight];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, 14.355f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, 14.05078f, kBONCGFloatEpsilon);
 }
 
 - (void)testTopToCapHeightConstraint
@@ -81,7 +81,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeCapHeight];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, 11.9f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, 12.378f, kBONCGFloatEpsilon);
 }
 
 - (void)testCapHeightToTopConstraint
@@ -95,7 +95,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeTop];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, -4.046f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, -4.20850f, kBONCGFloatEpsilon);
 }
 
 - (void)testTopToXHeightConstraint
@@ -109,7 +109,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeXHeight];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, 21.75f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, 21.289f, kBONCGFloatEpsilon);
 }
 
 - (void)testXHeightToTopConstraint
@@ -123,7 +123,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeTop];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, -7.395f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, -7.2382f, kBONCGFloatEpsilon);
 }
 
 - (void)testCapHeightToXHeightConstraint
@@ -137,7 +137,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeXHeight];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, 17.704f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, 17.0806f, kBONCGFloatEpsilon);
 }
 
 - (void)testXHeightToCapHeightConstraint
@@ -151,7 +151,7 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
                                                                                      toItem:right
                                                                                   attribute:BONConstraintAttributeCapHeight];
 
-    XCTAssertEqualWithAccuracy(constraint.constant, 4.505f, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(constraint.constant, 5.1396f, kBONCGFloatEpsilon);
 }
 
 - (void)testFirstBaselineConstraint

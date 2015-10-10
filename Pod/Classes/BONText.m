@@ -75,12 +75,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         mutableAttributedString = [NSAttributedString attributedStringWithAttachment:attachment].mutableCopy;
 
         if (!lastConcatenant) {
-            if ( self.trailingString) {
-                [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.trailingString attributes:self.attributes]];
-            }
-            else if ( self.internalIndentSpacer ) {
-                [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
-            }
+            [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
         }
 
     }
@@ -95,11 +90,8 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
             // tracking all the way through
             NSMutableString *stringToAppend = [NSMutableString string];
 
-            // we aren't the last component, so append our trailing string using the same attributes as self
-            if ( self.trailingString ) {
-                [stringToAppend appendString:self.trailingString];
-            }
-            else if ( self.internalIndentSpacer ) {
+            // we aren't the last component, so append a tab character if we have indent spacing
+            if ( self.internalIndentSpacer ) {
                 [stringToAppend appendString:@"\t"];
             }
 
@@ -246,7 +238,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0f;
-    if ( !BONCGFloatsCloseEnough(self.adobeTracking, 0.0f) ) {
+    if ( self.adobeTracking != 0 ) {
         trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
     else if ( !BONCGFloatsCloseEnough(self.pointTracking, 0.0f) ) {
@@ -323,6 +315,22 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     self.internalIndentSpacer = @(indentSpacer);
 }
 
+- (void)setAdobeTracking:(NSInteger)adobeTracking
+{
+    if (_adobeTracking != adobeTracking) {
+        _adobeTracking = adobeTracking;
+        _pointTracking = 0.0f;
+    }
+}
+
+- (void)setPointTracking:(CGFloat)pointTracking
+{
+    if (_pointTracking != pointTracking) {
+        _pointTracking = pointTracking;
+        _adobeTracking = 0;
+    }
+}
+
 - (void)setString:(NSString *)string
 {
     if ( (_string || string) && ![_string isEqualToString:string] ) {
@@ -337,6 +345,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         _image = image;
         self.string = nil;
     }
+}
+
+#pragma mark - BONChainable
+
+- (BONText *)text
+{
+    return self;
 }
 
 #pragma mark - Utilities

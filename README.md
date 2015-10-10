@@ -116,11 +116,10 @@ You can also append texts directly to each other:
 ```objc
 NSString *commaSpace = @", ";
 BONChain *chain = BONChain.new;
-chain
-.append(BONChain.new.string(@"one fish"))
-.appendWithSeparator(commaSpace, BONChain.new.string(@"two fish"))
-.appendWithSeparator(commaSpace, BONChain.new.string(@"red fish").textColor([UIColor redColor]))
-.appendWithSeparator(commaSpace, BONChain.new.string(@"blue fish").textColor([UIColor blueColor]));
+[chain appendLink:BONChain.new.string(@"one fish")];
+[chain appendLink:BONChain.new.string(@"two fish") separator:commaSpace];
+[chain appendLink:BONChain.new.string(@"red fish").textColor([UIColor redColor]) separator:commaSpace];
+[chain appendLink:BONChain.new.string(@"blue fish").textColor([UIColor blueColor]) separator:commaSpace];
 
 NSAttributedString *string = chain.attributedString;
 ```
