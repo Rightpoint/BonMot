@@ -48,6 +48,8 @@
 		CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */; };
 		CDB461F71B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */; };
 		CDB461F81B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */; };
+		CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */; settings = {ASSET_TAGS = (); }; };
+		CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */; settings = {ASSET_TAGS = (); }; };
 		CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */; };
 		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
 		CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */; };
@@ -131,6 +133,8 @@
 		CDB461F41B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammaticBaselineCapHeightCell.h; sourceTree = "<group>"; };
 		CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammaticBaselineCapHeightCell.m; sourceTree = "<group>"; };
 		CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgrammaticBaselineCapHeightCell.xib; sourceTree = "<group>"; };
+		CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainableTestCase.m; sourceTree = "<group>"; };
+		CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONPropertyClobberingTestCase.m; sourceTree = "<group>"; };
 		CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
 		CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
 		CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			children = (
 				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
 				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
+				CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */,
 				CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */,
 				CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */,
 				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
@@ -546,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
+				CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */,
 				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
 				CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */,
