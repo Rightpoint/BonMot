@@ -75,12 +75,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         mutableAttributedString = [NSAttributedString attributedStringWithAttachment:attachment].mutableCopy;
 
         if (!lastConcatenant) {
-            if ( self.trailingString) {
-                [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:self.trailingString attributes:self.attributes]];
-            }
-            else if ( self.internalIndentSpacer ) {
-                [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
-            }
+            [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
         }
 
     }
@@ -95,11 +90,8 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
             // tracking all the way through
             NSMutableString *stringToAppend = [NSMutableString string];
 
-            // we aren't the last component, so append our trailing string using the same attributes as self
-            if ( self.trailingString ) {
-                [stringToAppend appendString:self.trailingString];
-            }
-            else if ( self.internalIndentSpacer ) {
+            // we aren't the last component, so append a tab character if we have indent spacing
+            if ( self.internalIndentSpacer ) {
                 [stringToAppend appendString:@"\t"];
             }
 
@@ -353,6 +345,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         _image = image;
         self.string = nil;
     }
+}
+
+#pragma mark - BONChainable
+
+- (BONText *)text
+{
+    return self;
 }
 
 #pragma mark - Utilities

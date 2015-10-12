@@ -23,7 +23,7 @@
     BONChain *baseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0f);
     BONChain *imageChain = baseTextChain.image(image).indentSpacer(4.0f).baselineOffset(-6.0f);
 
-    imageChain.append(baseTextChain.string(quote));
+    [imageChain appendLink:baseTextChain.string(quote)];
 
     NSAttributedString *attributedString = imageChain.attributedString;
 
@@ -36,7 +36,7 @@
     NSString *secondQuote = @"You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.";
     BONChain *baseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Regular", 18.0f);
     BONChain *secondChain = baseTextChain.string(@"🍑 →").indentSpacer(4.0f).textColor([UIColor orangeColor]);
-    secondChain.append(baseTextChain.string(secondQuote).textColor([UIColor darkGrayColor]));
+    [secondChain appendLink:baseTextChain.string(secondQuote).textColor([UIColor darkGrayColor])];
 
     NSAttributedString *attributedString = secondChain.attributedString;
 
@@ -50,9 +50,9 @@
     UIImage *image = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     BONChain *firstBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0f);
     BONChain *imageChain = firstBaseTextChain.copy;
-    imageChain.append(firstBaseTextChain.image(image).indentSpacer(4.0f).baselineOffset(-6.0f))
-    .append(firstBaseTextChain.string(string1))
-    .append(firstBaseTextChain.string(string2));
+    [imageChain appendLink:firstBaseTextChain.image(image).indentSpacer(4.0f).baselineOffset(-6.0f)];
+    [imageChain appendLink:firstBaseTextChain.string(string1)];
+    [imageChain appendLink:firstBaseTextChain.string(string2)];
 
     NSAttributedString *attributedString = imageChain.attributedString;
 

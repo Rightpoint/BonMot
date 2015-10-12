@@ -33,8 +33,8 @@
     BONChain *firstBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0f);
     BONChain *imageChain = firstBaseTextChain.image(image).indentSpacer(4.0f).baselineOffset(-6.0f);
 
-    imageChain.append(firstBaseTextChain.string(quote))
-    .append(firstBaseTextChain.string(attribution));
+    [imageChain appendLink:firstBaseTextChain.string(quote)];
+    [imageChain appendLink:firstBaseTextChain.string(attribution)];
 
     NSAttributedString *imageAttributedString = imageChain.attributedString;
 
@@ -44,7 +44,7 @@
     NSString *secondQuote = @"You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.";
     BONChain *secondBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Regular", 18.0f);
     BONChain *secondChain = secondBaseTextChain.string(@"🍑 →").indentSpacer(4.0f).textColor([UIColor orangeColor]);
-    secondChain.append(secondBaseTextChain.string(secondQuote).textColor([UIColor darkGrayColor]));
+    [secondChain appendLink:secondBaseTextChain.string(secondQuote).textColor([UIColor darkGrayColor])];
 
     NSAttributedString *textAttributedString = secondChain.attributedString;
     self.stringPrefixLabel.attributedText = textAttributedString;

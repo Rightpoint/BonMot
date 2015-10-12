@@ -11,7 +11,7 @@
 
 OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 
-#define _BONTPrimitiveAssertCloseEnoughDictionaries(test, expression1, expressionStr1, expression2, expressionStr2, ...) \
+#define BONTPrimitiveAssertCloseEnoughDictionaries(test, expression1, expressionStr1, expression2, expressionStr2, ...) \
 ({ \
     @try { \
         id expressionValue1 = (expression1); \
@@ -30,7 +30,7 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 })
 
 #define BONAssertEqualDictionaries(expression1, expression2, ...) \
-_BONTPrimitiveAssertCloseEnoughDictionaries(self, expression1, @#expression1, expression2, @#expression2, __VA_ARGS__)
+BONTPrimitiveAssertCloseEnoughDictionaries(self, expression1, @#expression1, expression2, @#expression2, __VA_ARGS__)
 
 /**
  *  Uses XCTest assertions to check that the attributes of @c attributedString match the attributes and ranges in @c controlAttributes.
