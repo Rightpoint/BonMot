@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '268CD0A1D03AF053B8B10E7E'
+               BlueprintIdentifier = '93BBEE52D0A287AD4793E5EE'
                BlueprintName = 'BonMot'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libBonMot.a'>
