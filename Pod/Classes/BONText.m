@@ -82,7 +82,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     else if ( self.string ) {
         mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
                                                                          attributes:self.attributes];
-        if ( lastConcatenant ) {
+        if ( lastConcatenant && self.string.length > 0 ) {
             NSRange lastCharacterRange = NSMakeRange(self.string.length - 1, 1);
             [mutableAttributedString removeAttribute:NSKernAttributeName range:lastCharacterRange];
         }
