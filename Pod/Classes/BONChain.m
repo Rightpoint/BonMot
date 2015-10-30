@@ -144,6 +144,17 @@
     return [baselineOffsetBlock copy];
 }
 
+- (BONChainAlignment)alignment
+{
+    BONChainAlignment alignmentBlock = ^(NSTextAlignment alignment) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.alignment = alignment;
+        return newChain;
+    };
+
+    return [alignmentBlock copy];
+}
+
 - (BONChainFigureCase)figureCase
 {
     BONChainFigureCase figureCaseBlock = ^(BONFigureCase figureCase) {

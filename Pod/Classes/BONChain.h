@@ -19,6 +19,7 @@ typedef BONChain*(^BONChainAdobeTracking)(NSInteger adobeTracking);
 typedef BONChain*(^BONChainPointTracking)(CGFloat pointTracking);
 typedef BONChain*(^BONChainLineHeight)(CGFloat lineHeightMultiple);
 typedef BONChain*(^BONChainBaselineOffset)(CGFloat baselineOffset);
+typedef BONChain*(^BONChainAlignment)(NSTextAlignment alignment);
 typedef BONChain*(^BONChainFigureCase)(BONFigureCase figureCase);
 typedef BONChain*(^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
 typedef BONChain*(^BONChainIndentSpacer)(CGFloat indentSpacer);
@@ -45,6 +46,8 @@ typedef BONChain*(^BONChainImage)(UIImage *image);
 @property (copy, nonatomic, readonly) BONChainLineHeight lineHeightMultiple;
 
 @property (copy, nonatomic, readonly) BONChainBaselineOffset baselineOffset;
+
+@property (copy, nonatomic, readonly) BONChainAlignment alignment;
 
 @property (copy, nonatomic, readonly) BONChainFigureCase figureCase;
 @property (copy, nonatomic, readonly) BONChainFigureSpacing figureSpacing;

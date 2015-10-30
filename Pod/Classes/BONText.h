@@ -49,6 +49,11 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @property (nonatomic) CGFloat baselineOffset;
 
+/**
+ *  Defaults to @c NSTextAlignmentNatural.
+ */
+@property (nonatomic) NSTextAlignment alignment;
+
 @property (nonatomic) BONFigureCase figureCase;
 @property (nonatomic) BONFigureSpacing figureSpacing;
 
