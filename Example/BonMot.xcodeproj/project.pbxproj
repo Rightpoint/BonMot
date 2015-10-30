@@ -55,6 +55,7 @@
 		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
 		CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */; };
 		CDDFD7ED1B7F9D4700A87008 /* IndentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */; };
+		CDEEF16B1BE400BF00A237EC /* BONTextAlignmentTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEEF16A1BE400BF00A237EC /* BONTextAlignmentTestCase.m */; };
 		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
 		CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */; };
 		CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
@@ -143,6 +144,7 @@
 		CDDFD7E91B7F9D4700A87008 /* IndentationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentationCell.h; sourceTree = "<group>"; };
 		CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentationCell.m; sourceTree = "<group>"; };
 		CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndentationCell.xib; sourceTree = "<group>"; };
+		CDEEF16A1BE400BF00A237EC /* BONTextAlignmentTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentTestCase.m; sourceTree = "<group>"; };
 		CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */,
 				CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */,
 				720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */,
+				CDEEF16A1BE400BF00A237EC /* BONTextAlignmentTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -588,6 +591,7 @@
 			files = (
 				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
 				CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */,
+				CDEEF16B1BE400BF00A237EC /* BONTextAlignmentTestCase.m in Sources */,
 				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
 				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
 				CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */,

@@ -26,11 +26,21 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 @interface BONText ()
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
-@property (assign, nonatomic, readwrite) CGFloat fontSize;
+@property (nonatomic, readwrite) CGFloat fontSize;
 
 @end
 
 @implementation BONText
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.alignment = NSTextAlignmentNatural;
+    }
+
+    return self;
+}
 
 - (NSAttributedString *)attributedString
 {
@@ -144,6 +154,14 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 
+    __block NSMutableParagraphStyle *paragraphStyle = nil;
+
+    void (^populateParagraphStyleIfNecessary)() = ^{
+        if (!paragraphStyle) {
+            paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        }
+    };
+
     // Color
 
     if ( self.textColor ) {
@@ -252,15 +270,25 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     // Line Height
 
     if ( self.lineHeightMultiple != 1.0f ) {
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
+        populateParagraphStyleIfNecessary();
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
-        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
 
     // Baseline Offset
 
     if ( self.baselineOffset != 0.0f && !self.image ) {
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
+    }
+
+    // Text Alignment
+
+    if ( self.alignment != NSTextAlignmentNatural ) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.alignment = self.alignment;
+    }
+
+    if (paragraphStyle) {
+        attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
 
     return attributes;
@@ -277,6 +305,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.pointTracking = self.pointTracking;
     text.lineHeightMultiple = self.lineHeightMultiple;
     text.baselineOffset = self.baselineOffset;
+    text.alignment = self.alignment;
     text.figureCase = self.figureCase;
     text.figureSpacing = self.figureSpacing;
     text.string = self.string;
