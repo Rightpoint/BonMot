@@ -8,14 +8,13 @@
 
 #import "BONText.h"
 #import "BONText_Private.h"
+#import "BONSpecial.h"
 
 @import CoreText.SFNTLayoutTypes;
 
 static const CGFloat kBONAdobeTrackingDivisor = 1000.0f;
 static const CGFloat kBONDefaultFontSize = 15.0f; // per docs
 static const unichar kBONSpaceCharacter = 32;
-
-static NSString* const kBONAttachmentCharacterString = @"\uFFFC";
 
 static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
@@ -488,7 +487,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         // New Line
         [debugString appendString:@"\n"];
 
-        if ( [substring isEqualToString:kBONAttachmentCharacterString] ) {
+        if ( [substring isEqualToString:BONSpecial.objectReplacementCharacter] ) {
             NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
             NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
             UIImage *attachedImage = attachment.image;
