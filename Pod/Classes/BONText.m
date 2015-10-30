@@ -252,7 +252,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     // Line Height
 
     if ( self.lineHeightMultiple != 1.0f ) {
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init]; \
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
         attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
