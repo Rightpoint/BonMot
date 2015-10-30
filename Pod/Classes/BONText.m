@@ -84,7 +84,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
         mutableAttributedString = [NSAttributedString attributedStringWithAttachment:attachment].mutableCopy;
 
-        if (!lastConcatenant) {
+        if (self.internalIndentSpacer && !lastConcatenant) {
             [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
         }
 
