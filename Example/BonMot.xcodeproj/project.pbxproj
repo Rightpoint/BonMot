@@ -785,6 +785,7 @@
 					"-Wno-documentation-unknown-command",
 					"-Wno-auto-import",
 					"-Wno-incomplete-module",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -802,6 +803,7 @@
 					"-Wno-documentation-unknown-command",
 					"-Wno-auto-import",
 					"-Wno-incomplete-module",
+					"-Wno-reserved-id-macro",
 				);
 				WRAPPER_EXTENSION = xctest;
 			};
