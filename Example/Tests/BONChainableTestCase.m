@@ -142,4 +142,29 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
+- (void)testConcatenatingImages
+{
+    UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[BONChain class]] compatibleWithTraitCollection:nil];
+    XCTAssertNotNil(barnImage);
+    XCTAssertEqualWithAccuracy(barnImage.size.width, 36.0, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(barnImage.size.height, 36.0, kBONCGFloatEpsilon);
+
+    BONChain *imageChain = BONChain.new.image(barnImage);
+
+    NSAttributedString *imageString = imageChain.attributedString;
+    NSString *controlImageString = [NSString stringWithFormat:@"%C", (unichar)NSAttachmentCharacter];
+    XCTAssertEqualObjects(imageString.string, controlImageString);
+
+    BONChain *textChain = BONChain.new.string(@"concatenate me!");
+    NSAttributedString *textString = textChain.attributedString;
+    XCTAssertEqualObjects(textString.string, @"concatenate me!");
+
+    [imageChain appendLink:textChain separator:BONSpecial.noBreakSpace];
+
+    NSAttributedString *testString = imageChain.attributedString;
+
+    NSString *controlString = [NSString stringWithFormat:@"%C%@concatenate me!", (unichar)NSAttachmentCharacter, BONSpecial.noBreakSpace];
+    XCTAssertEqualObjects(testString.string, controlString);
+}
+
 @end
