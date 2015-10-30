@@ -87,7 +87,7 @@
     NSParagraphStyle *testParagraphStyle = testAttributes[NSParagraphStyleAttributeName];
     XCTAssertNotNil(testParagraphStyle);
     XCTAssertEqual(testParagraphStyle.alignment, NSTextAlignmentCenter);
-    XCTAssertEqual(testParagraphStyle.lineHeightMultiple, 3.14);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.lineHeightMultiple, 3.14, kBONCGFloatEpsilon);
 }
 
 @end
