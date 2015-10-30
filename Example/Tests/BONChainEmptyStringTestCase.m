@@ -7,7 +7,8 @@
 //
 
 #import "BONBaseTestCase.h"
-#import "BONChain.h"
+
+#import <BonMot/BonMot.h>
 
 @interface BONChainEmptyStringTestCase : BONBaseTestCase
 

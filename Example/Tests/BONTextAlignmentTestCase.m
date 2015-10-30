@@ -7,6 +7,7 @@
 //
 
 #import "BONBaseTestCase.h"
+
 #import <BONMot/BonMot.h>
 
 @interface BONTextAlignmentTestCase : BONBaseTestCase
