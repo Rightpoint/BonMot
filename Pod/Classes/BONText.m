@@ -26,7 +26,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 @interface BONText ()
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
-@property (assign, nonatomic, readwrite) CGFloat fontSize;
+@property (nonatomic, readwrite) CGFloat fontSize;
 
 @end
 

@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 - (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize;
 @property (copy, nonatomic, readonly) NSString *fontName;
-@property (assign, nonatomic, readonly) CGFloat fontSize;
+@property (nonatomic, readonly) CGFloat fontSize;
 
 @property (strong, nonatomic) UIFont *font;
 
@@ -42,15 +42,15 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic) UIColor *backgroundColor;
 
 // adobeTracking and pointTracking are two interpretations of the same unit. They cannot both be set - if one is set to any value, the other is set to 0.
-@property (assign, nonatomic) NSInteger adobeTracking;
-@property (assign, nonatomic) CGFloat pointTracking;
+@property (nonatomic) NSInteger adobeTracking;
+@property (nonatomic) CGFloat pointTracking;
 
-@property (assign, nonatomic) CGFloat lineHeightMultiple;
+@property (nonatomic) CGFloat lineHeightMultiple;
 
-@property (assign, nonatomic) CGFloat baselineOffset;
+@property (nonatomic) CGFloat baselineOffset;
 
-@property (assign, nonatomic) BONFigureCase figureCase;
-@property (assign, nonatomic) BONFigureSpacing figureSpacing;
+@property (nonatomic) BONFigureCase figureCase;
+@property (nonatomic) BONFigureSpacing figureSpacing;
 
 // string and image are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic) NSString *string;
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 /**
  *  Space, in points, to apply after a preceding image or string. A combination of @headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0.
  */
-@property (assign, nonatomic) CGFloat indentSpacer;
+@property (nonatomic) CGFloat indentSpacer;
 
 // Getting Values Out
 
