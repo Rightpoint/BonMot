@@ -1,5 +1,5 @@
 //
-//  BonChainCrashingTestCase.m
+//  BONChainEmptyStringTestCase.m
 //  BonMot
 //
 //  Created by Michael Skiba on 10/21/15.
