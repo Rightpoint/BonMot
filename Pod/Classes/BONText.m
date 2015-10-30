@@ -364,7 +364,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
     if ( (_string || string) && ![_string isEqualToString:string] ) {
         _string = string.copy;
-        self.image = nil;
+        _image = nil;
     }
 }
 
@@ -372,7 +372,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
     if ( (_image || image) && ![_image isEqual:image] ) {
         _image = image;
-        self.string = nil;
+        _string = nil;
     }
 }
 
