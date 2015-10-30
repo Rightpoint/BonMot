@@ -22,6 +22,7 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		720F06361BD819400077DC84 /* BONChainEmptyStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */; };
 		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
 		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */; };
 		CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */; };
@@ -48,8 +49,8 @@
 		CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */; };
 		CDB461F71B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */; };
 		CDB461F81B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */; };
-		CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */; settings = {ASSET_TAGS = (); }; };
-		CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */; settings = {ASSET_TAGS = (); }; };
+		CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */; };
+		CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */; };
 		CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */; };
 		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
 		CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */; };
@@ -96,6 +97,7 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainEmptyStringTestCase.m; sourceTree = "<group>"; };
 		7A5A12C91AF6685400D111BA /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +256,7 @@
 				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
 				CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */,
 				CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */,
+				720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -591,6 +594,7 @@
 				CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */,
 				CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */,
 				CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */,
+				720F06361BD819400077DC84 /* BONChainEmptyStringTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
