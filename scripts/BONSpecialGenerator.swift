@@ -12,6 +12,9 @@ import AppKit
 
 // Please keep this array sorted
 let specialCharacters: [unichar] = [
+    0x0009,
+    0x000A,
+    0x0020,
     0x00A0,
     0x2002,
     0x2003,
@@ -31,9 +34,29 @@ let specialCharacters: [unichar] = [
     unichar(NSAttachmentCharacter), // 0xFFFC
 ]
 
+// CFStringTransform doesn't do a good job of naming these characters, so override with custom names
+let customMappings: [unichar: String] = [
+    0x0009: "Tab",
+    0x000A: "Line Feed",
+    0x0020: "Space",
+]
+
+// These characters can't be represented with universal character syntax (@"\uXXXX"),
+// so we use [NSString stringWithFormat:@"%C", BONCharacterFoo]. We don't do this with all
+// characters, even though it would make the code look nicer, for performance reasons
+let charactersRequiringFormatStrings: Set<unichar> = [
+    0x0009,
+    0x000A,
+    0x0020,
+]
+
 extension unichar {
     var unicodeName: String {
         get {
+            if let customName = customMappings[self] {
+                return customName // bail early!
+            }
+
             let swiftCharacter = Character(UnicodeScalar(self))
 
             let theCFMutableString = NSMutableString(string: String(swiftCharacter)) as CFMutableString
@@ -60,14 +83,25 @@ extension String {
     subscript(range: Range<Int>) -> String {
         return self[startIndex.advancedBy(range.startIndex)..<startIndex.advancedBy(range.endIndex)]
     }
-
-    func camelCaseMethodName() -> String {
+    
+    func camelCaseName(initialLetterCapitalized initialLetterCapitalized: Bool) -> String {
         let components: [String] = self.characters.split{$0 == " " || $0 == "-"}.map(String.init)
         var camelCaseComponents = components.map { $0.capitalizedString }
-        if camelCaseComponents.count > 0 {
+        if !initialLetterCapitalized && camelCaseComponents.count > 0 {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
         }
         return camelCaseComponents.joinWithSeparator("")
+        
+    }
+
+    var methodName: String {
+        return self.camelCaseName(initialLetterCapitalized: false)
+    }
+    
+    var enumerationValueName: String {
+        let camelCaseName = self.camelCaseName(initialLetterCapitalized: true)
+        let fullName = "BONCharacter" + camelCaseName
+        return fullName
     }
 }
 
@@ -109,18 +143,39 @@ if sortedSpecialCharacters != specialCharacters {
 }
 
 // Populate strings with the declaration and implementation of the methods
+var headerEnumString = "typedef NS_ENUM(unichar, BONCharacter) {\n"
 var headerCodeString = ""
 var implementationCodeString = ""
 
 for theUnichar in specialCharacters {
     let characterName = theUnichar.unicodeName
-    let camelCaseName = characterName.camelCaseMethodName()
-    let methodPrototype = "+ (NSString *)\(camelCaseName)"
-    let interfaceMethod = methodPrototype + ";"
-    let implementationMethod = methodPrototype + (NSString(format:" { return @\"\\u%.4X\"; }", theUnichar) as String)
-    headerCodeString += (interfaceMethod + "\n")
-    implementationCodeString += (implementationMethod + "\n")
+    let methodName = characterName.methodName
+    let enumerationName = characterName.enumerationValueName
+
+    let hexValueString = NSString(format:"%.4X", theUnichar)
+    let enumerationStatement = "    \(enumerationName) = 0x\(hexValueString),\n"
+    headerEnumString += enumerationStatement
+
+    let methodPrototype = "+ (NSString *)\(methodName)"
+    let methodInterface = methodPrototype + ";"
+    
+    let returnExpression: String
+    
+    if charactersRequiringFormatStrings.contains(theUnichar) {
+        returnExpression = NSString(format:"return [NSString stringWithFormat:@\"%%C\", %@];", enumerationName) as String
+        print(returnExpression)
+    }
+    else {
+        returnExpression = NSString(format:"return @\"\\u%.4X\";", theUnichar) as String
+    }
+    
+    let methodImplementation = "\(methodPrototype) { \(returnExpression as String) }"
+    
+    headerCodeString += (methodInterface + "\n")
+    implementationCodeString += (methodImplementation + "\n")
 }
+
+headerEnumString += "};"
 
 // Get the contents of the template files
 
@@ -139,7 +194,9 @@ do {
 // Replace the template regions of the template files with the generated code
 let replacementString = "{{ contents }}"
 
-let headerOutputString = headerTemplateString.stringByReplacingOccurrencesOfString(replacementString, withString: headerCodeString)
+let fullHeaderString = headerEnumString + "\n\n" + headerCodeString
+
+let headerOutputString = headerTemplateString.stringByReplacingOccurrencesOfString(replacementString, withString: fullHeaderString)
 let implementationOutputString = implementationTemplateString.stringByReplacingOccurrencesOfString(replacementString, withString: implementationCodeString)
 
 // Write the files out to the project directory
