@@ -83,7 +83,7 @@ extension String {
     subscript(range: Range<Int>) -> String {
         return self[startIndex.advancedBy(range.startIndex)..<startIndex.advancedBy(range.endIndex)]
     }
-    
+
     func camelCaseName(initialLetterCapitalized initialLetterCapitalized: Bool) -> String {
         let components: [String] = self.characters.split{$0 == " " || $0 == "-"}.map(String.init)
         var camelCaseComponents = components.map { $0.capitalizedString }
@@ -91,13 +91,13 @@ extension String {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
         }
         return camelCaseComponents.joinWithSeparator("")
-        
+
     }
 
     var methodName: String {
         return self.camelCaseName(initialLetterCapitalized: false)
     }
-    
+
     var enumerationValueName: String {
         let camelCaseName = self.camelCaseName(initialLetterCapitalized: true)
         let fullName = "BONCharacter" + camelCaseName
@@ -158,18 +158,18 @@ for theUnichar in specialCharacters {
 
     let methodPrototype = "+ (NSString *)\(methodName)"
     let methodInterface = methodPrototype + ";"
-    
+
     let returnExpression: String
-    
+
     if charactersRequiringFormatStrings.contains(theUnichar) {
         returnExpression = NSString(format:"return [NSString stringWithFormat:@\"%%C\", %@];", enumerationName) as String
     }
     else {
         returnExpression = NSString(format:"return @\"\\u%.4X\";", theUnichar) as String
     }
-    
+
     let methodImplementation = "\(methodPrototype) { \(returnExpression as String) }"
-    
+
     headerCodeString += (methodInterface + "\n")
     implementationCodeString += (methodImplementation + "\n")
 }
