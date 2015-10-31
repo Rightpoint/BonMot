@@ -16,7 +16,6 @@
 
 @implementation BONTextAlignmentTestCase
 
-
 - (void)testDefaultAlignmentOfText
 {
     BONText *text = [[BONText alloc] init];
@@ -36,10 +35,10 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 14): @{
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 14) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(string, controlAttributes);
 }
@@ -53,10 +52,10 @@
     controlParagraphStyle.alignment = NSTextAlignmentCenter;
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 14): @{
-                                                NSParagraphStyleAttributeName: controlParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 14) : @{
+            NSParagraphStyleAttributeName : controlParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(string, controlAttributes);
 
@@ -77,10 +76,10 @@
     controlParagraphStyle.lineHeightMultiple = 3.14;
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 15): @{
-                                                NSParagraphStyleAttributeName: controlParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 15) : @{
+            NSParagraphStyleAttributeName : controlParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(string, controlAttributes);
 

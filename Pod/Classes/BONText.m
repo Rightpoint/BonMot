@@ -51,11 +51,11 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
     NSMutableArray *attributedStrings = [NSMutableArray array];
     BONText *nextText = self;
-    while ( nextText ) {
+    while (nextText) {
         BONText *nextnextText = nextText.nextText;
-        BOOL lastConcatenant = ( nextnextText == nil );
+        BOOL lastConcatenant = (nextnextText == nil);
         NSAttributedString *attributedString = [nextText attributedStringLastConcatenant:lastConcatenant];
-        if ( attributedString ) {
+        if (attributedString) {
             [attributedStrings addObject:attributedString];
         }
 
@@ -69,7 +69,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
     NSMutableAttributedString *mutableAttributedString = nil;
 
-    if ( self.image ) {
+    if (self.image) {
         NSAssert(!self.string, @"If self.image is non-nil, self.string must be nil");
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
         attachment.image = self.image;
@@ -85,12 +85,11 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         if (self.internalIndentSpacer && !lastConcatenant) {
             [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
         }
-
     }
-    else if ( self.string ) {
+    else if (self.string) {
         mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
                                                                          attributes:self.attributes];
-        if ( lastConcatenant && self.string.length > 0 ) {
+        if (lastConcatenant && self.string.length > 0) {
             NSRange lastCharacterRange = NSMakeRange(self.string.length - 1, 1);
             [mutableAttributedString removeAttribute:NSKernAttributeName range:lastCharacterRange];
         }
@@ -99,7 +98,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
             NSMutableString *stringToAppend = [NSMutableString string];
 
             // we aren't the last component, so append a tab character if we have indent spacing
-            if ( self.internalIndentSpacer ) {
+            if (self.internalIndentSpacer) {
                 [stringToAppend appendString:@"\t"];
             }
 
@@ -112,7 +111,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         if (self.image) {
             indentation += self.image.size.width;
         }
-        else if ( self.string ) {
+        else if (self.string) {
             NSAttributedString *measurementString = [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
             CGRect boundingRect = [measurementString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                                                   options:NSStringDrawingUsesLineFragmentOrigin
@@ -124,9 +123,9 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         NSRangePointer longestEffectiveRange = NULL;
         NSRange fullRange = NSMakeRange(0, mutableAttributedString.length);
         NSMutableParagraphStyle *paragraphStyle = [[mutableAttributedString attribute:NSParagraphStyleAttributeName
-                                                                             atIndex:0
-                                                               longestEffectiveRange:longestEffectiveRange
-                                                                             inRange:fullRange] mutableCopy];
+                                                                              atIndex:0
+                                                                longestEffectiveRange:longestEffectiveRange
+                                                                              inRange:fullRange] mutableCopy];
 
         if (!paragraphStyle) {
             paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -162,11 +161,11 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     // Color
 
-    if ( self.textColor ) {
+    if (self.textColor) {
         attributes[NSForegroundColorAttributeName] = self.textColor;
     }
 
-    if ( self.backgroundColor ) {
+    if (self.backgroundColor) {
         attributes[NSBackgroundColorAttributeName] = self.backgroundColor;
     }
 
@@ -176,10 +175,9 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     // Figure Case
 
-    if ( self.figureCase != BONFigureCaseDefault ) {
-
+    if (self.figureCase != BONFigureCaseDefault) {
         int figureCase = -1;
-        switch ( self.figureCase ) {
+        switch (self.figureCase) {
             case BONFigureCaseLining:
                 figureCase = kUpperCaseNumbersSelector;
                 break;
@@ -192,19 +190,18 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         }
 
         NSDictionary *figureCaseDictionary = @{
-                                               UIFontFeatureTypeIdentifierKey: @(kNumberCaseType),
-                                               UIFontFeatureSelectorIdentifierKey: @(figureCase),
-                                               };
+            UIFontFeatureTypeIdentifierKey : @(kNumberCaseType),
+            UIFontFeatureSelectorIdentifierKey : @(figureCase),
+        };
 
         [featureSettings addObject:figureCaseDictionary];
     }
 
     // Figure Spacing
 
-    if ( self.figureSpacing != BONFigureSpacingDefault ) {
-
+    if (self.figureSpacing != BONFigureSpacingDefault) {
         int figureSpacing = -1;
-        switch ( self.figureSpacing ) {
+        switch (self.figureSpacing) {
             case BONFigureSpacingTabular:
                 figureSpacing = kMonospacedNumbersSelector;
                 break;
@@ -217,22 +214,21 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         }
 
         NSDictionary *figureSpacingDictionary = @{
-                                                  UIFontFeatureTypeIdentifierKey: @(kNumberSpacingType),
-                                                  UIFontFeatureSelectorIdentifierKey: @(figureSpacing),
-                                                  };
+            UIFontFeatureTypeIdentifierKey : @(kNumberSpacingType),
+            UIFontFeatureSelectorIdentifierKey : @(figureSpacing),
+        };
         [featureSettings addObject:figureSpacingDictionary];
-
     }
 
     BOOL needToUseFontDescriptor = featureSettings.count > 0;
 
     UIFont *fontToUse = nil;
 
-    if ( needToUseFontDescriptor ) {
+    if (needToUseFontDescriptor) {
         NSMutableDictionary *featureSettingsAttributes = [NSMutableDictionary dictionary];
         featureSettingsAttributes[UIFontDescriptorFeatureSettingsAttribute] = featureSettings;
 
-        if ( self.font ) {
+        if (self.font) {
             // get font descriptor from font
             UIFontDescriptor *descriptor = self.font.fontDescriptor;
             UIFontDescriptor *descriptorToUse = [descriptor fontDescriptorByAddingAttributes:featureSettingsAttributes];
@@ -246,7 +242,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         fontToUse = self.font;
     }
 
-    if ( fontToUse ) {
+    if (fontToUse) {
         attributes[NSFontAttributeName] = fontToUse;
     }
 
@@ -254,33 +250,33 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0f;
-    if ( self.adobeTracking != 0 ) {
+    if (self.adobeTracking != 0) {
         trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
-    else if ( !BONCGFloatsCloseEnough(self.pointTracking, 0.0f) ) {
+    else if (!BONCGFloatsCloseEnough(self.pointTracking, 0.0f)) {
         trackingInPoints = self.pointTracking;
     }
 
-    if ( !BONCGFloatsCloseEnough(trackingInPoints, 0.0f) ) {
+    if (!BONCGFloatsCloseEnough(trackingInPoints, 0.0f)) {
         attributes[NSKernAttributeName] = @(trackingInPoints);
     }
 
     // Line Height
 
-    if ( self.lineHeightMultiple != 1.0f ) {
+    if (self.lineHeightMultiple != 1.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
     }
 
     // Baseline Offset
 
-    if ( self.baselineOffset != 0.0f && !self.image ) {
+    if (self.baselineOffset != 0.0f && !self.image) {
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
 
     // Text Alignment
 
-    if ( self.alignment != NSTextAlignmentNatural ) {
+    if (self.alignment != NSTextAlignmentNatural) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.alignment = self.alignment;
     }
@@ -360,7 +356,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 - (void)setString:(NSString *)string
 {
-    if ( (_string || string) && ![_string isEqualToString:string] ) {
+    if ((_string || string) && ![_string isEqualToString:string]) {
         _string = string.copy;
         _image = nil;
     }
@@ -368,7 +364,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 - (void)setImage:(UIImage *)image
 {
-    if ( (_image || image) && ![_image isEqual:image] ) {
+    if ((_image || image) && ![_image isEqual:image]) {
         _image = image;
         _string = nil;
     }
@@ -390,10 +386,10 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     NSAttributedString *resultsString;
 
-    if ( attributedStrings.count == 0 ) {
+    if (attributedStrings.count == 0) {
         resultsString = [[NSAttributedString alloc] init];
     }
-    else if ( attributedStrings.count == 1) {
+    else if (attributedStrings.count == 1) {
         NSAssert([attributedStrings.firstObject isKindOfClass:[NSAttributedString class]], @"The only item in the attributedStrings array is not an instance of %@. It is of type %@: %@", NSStringFromClass([NSAttributedString class]), [attributedStrings.firstObject class], attributedStrings.firstObject);
 
         resultsString = attributedStrings.firstObject;
@@ -402,7 +398,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
         NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
-        for ( NSUInteger attributedStringIndex = 0; attributedStringIndex < attributedStrings.count; attributedStringIndex++ ) {
+        for (NSUInteger attributedStringIndex = 0; attributedStringIndex < attributedStrings.count; attributedStringIndex++) {
             NSAttributedString *attributedString = attributedStrings[attributedStringIndex];
             NSAssert([attributedString isKindOfClass:[NSAttributedString class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(attributedStringIndex), NSStringFromClass([NSAttributedString class]), [attributedString class], attributedString);
 
@@ -410,7 +406,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if ( separatorAttributedString.length > 0 && (attributedStringIndex != attributedStrings.count - 1) ) {
+            if (separatorAttributedString.length > 0 && (attributedStringIndex != attributedStrings.count - 1)) {
                 [mutableResult appendAttributedString:separatorAttributedString];
             }
         }
@@ -427,10 +423,10 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     NSAttributedString *resultString;
 
-    if ( texts.count == 0 ) {
+    if (texts.count == 0) {
         resultString = [[NSAttributedString alloc] init];
     }
-    else if ( texts.count == 1 ) {
+    else if (texts.count == 1) {
         NSAssert([texts.firstObject isKindOfClass:[BONText class]], @"The only item in the texts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONText class]), [texts.firstObject class], texts.firstObject);
 
         resultString = [texts.firstObject attributedString];
@@ -439,7 +435,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
         NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
-        for ( NSUInteger textIndex = 0; textIndex < texts.count; textIndex++ ) {
+        for (NSUInteger textIndex = 0; textIndex < texts.count; textIndex++) {
             BONText *text = texts[textIndex];
             NSAssert([text isKindOfClass:[BONText class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textIndex), NSStringFromClass([BONText class]), [text class], text);
 
@@ -447,7 +443,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if ( separatorAttributedString.length > 0 && (textIndex != texts.count - 1) ) {
+            if (separatorAttributedString.length > 0 && (textIndex != texts.count - 1)) {
                 [mutableResult appendAttributedString:separatorAttributedString];
             }
         }
@@ -475,11 +471,11 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
             [debugString appendString:@"\n"];
         }
 
-        if ( [substring isEqualToString:BONSpecial.objectReplacementCharacter] ) {
+        if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
             NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
             NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
             UIImage *attachedImage = attachment.image;
-            if ( includeImageAddresses ) {
+            if (includeImageAddresses) {
                 [debugString appendFormat:@"(%@)", attachedImage];
             }
             else {
@@ -488,12 +484,12 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         }
         else {
             static NSCharacterSet *s_newLineCharacterSet = nil;
-            if ( !s_newLineCharacterSet ) {
+            if (!s_newLineCharacterSet) {
                 s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
             }
 
             // If it's not a newline character, append it. Otherwise, append a space.
-            if ( [substring rangeOfCharacterFromSet:s_newLineCharacterSet].location == NSNotFound ) {
+            if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location == NSNotFound) {
                 [debugString appendString:substring];
             }
             else {
@@ -504,10 +500,10 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
             unichar character = [substring characterAtIndex:0];
             NSDictionary *specialNames = @{
-                                           @(BONCharacterSpace): @"Space",
-                                           @(BONCharacterLineFeed): @"Line Feed",
-                                           @(BONCharacterTab): @"Tab",
-                                           };
+                @(BONCharacterSpace) : @"Space",
+                @(BONCharacterLineFeed) : @"Line Feed",
+                @(BONCharacterTab) : @"Tab",
+            };
 
             NSString *name = specialNames[@(character)];
 
@@ -525,13 +521,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
                 name = mutableUnicodeName;
 
                 NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
-                if ( !s_whiteSpaceAndNewLinesSet ) {
+                if (!s_whiteSpaceAndNewLinesSet) {
                     s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
                 }
 
                 BOOL isWhitespace = [substring rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound;
 
-                if ( isWhitespace ) {
+                if (isWhitespace) {
                     if (name) {
                         [debugString appendFormat:@"(%@)", name];
                     }
@@ -541,7 +537,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
                 }
                 else {
                     // Append name only if it is different from the string itself
-                    if ( ![mutableUnicodeName isEqualToString:substring] ) {
+                    if (![mutableUnicodeName isEqualToString:substring]) {
                         [debugString appendFormat:@"(%@)", mutableUnicodeName];
                     }
                 }
@@ -549,7 +545,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         }
     }];
 
-    if ( debugString.length == 0 ) {
+    if (debugString.length == 0) {
         [debugString appendString:@"(empty string)"];
     }
 

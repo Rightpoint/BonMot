@@ -8,7 +8,7 @@
 
 #import "FigureStyleCell.h"
 
-static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
+static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface FigureStyleCell ()
 

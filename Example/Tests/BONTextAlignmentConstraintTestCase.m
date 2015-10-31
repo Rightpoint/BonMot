@@ -12,7 +12,7 @@
 static UILabel *testLabel(NSString *text, CGFloat fontSize)
 {
     UILabel *label = nil;
-    if ( text && fontSize > 0.0f ) {
+    if (text && fontSize > 0.0f) {
         label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.translatesAutoresizingMaskIntoConstraints = NO;
         label.text = text;

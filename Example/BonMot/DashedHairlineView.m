@@ -15,7 +15,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    const CGFloat dash[2] = { 5.0f, 5.0f }; // pattern 6 times “solid”, 5 times “empty”
+    const CGFloat dash[2] = {5.0f, 5.0f}; // pattern 6 times “solid”, 5 times “empty”
     CGContextSetLineDash(ctx, 0, dash, 2);
 
     CGContextSetLineWidth(ctx, CGRectGetHeight(self.bounds));

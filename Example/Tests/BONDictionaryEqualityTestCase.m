@@ -17,7 +17,7 @@
 
 - (void)testReflexivity
 {
-    NSDictionary *theDict = @{ @"asdf": @1.0f };
+    NSDictionary *theDict = @{ @"asdf" : @1.0f };
     XCTAssertTrue([theDict bon_isCloseEnoughEqualToDictionary:theDict]);
 
     NSDictionary *nilDict = nil;
@@ -26,11 +26,14 @@
 
 - (void)testUnambiguouslyWrong
 {
-    NSDictionary *dict1 = @{ @"asdf": @1.0f };
-    NSDictionary *dict2 = @{ @"jkl;": @"a string" };
+    NSDictionary *dict1 = @{ @"asdf" : @1.0f };
+    NSDictionary *dict2 = @{ @"jkl;" : @"a string" };
     XCTAssertFalse([dict1 bon_isCloseEnoughEqualToDictionary:dict2]);
 
-    NSDictionary *dict3 = @{ @"asdf": @1.0f, @"more keys": @"just stuff" };
+    NSDictionary *dict3 = @{
+        @"asdf" : @1.0f,
+        @"more keys" : @"just stuff",
+    };
     XCTAssertFalse([dict1 bon_isCloseEnoughEqualToDictionary:dict3]);
     XCTAssertFalse([dict3 bon_isCloseEnoughEqualToDictionary:dict1]);
 }
@@ -39,19 +42,22 @@
 {
     NSString *key = @"key";
     NSString *otherKey = @"otherKey";
-    XCTAssertTrue([@{ key: @(1.0f / 3.0f) } bon_isCloseEnoughEqualToDictionary:@{ key: @( 1.0 / 3.0 ) }]);
-    XCTAssertTrue([@{ key: @3.14000000001 } bon_isCloseEnoughEqualToDictionary:@{ key: @3.14000000002}]);
+    XCTAssertTrue([@{ key : @(1.0f / 3.0f) } bon_isCloseEnoughEqualToDictionary:@{ key : @(1.0 / 3.0) }]);
+    XCTAssertTrue([@{ key : @3.14000000001 } bon_isCloseEnoughEqualToDictionary:@{ key : @3.14000000002 }]);
 
-    NSDictionary *dict1 = @{ key: @3.14000000001 };
-    NSDictionary *dict2 = @{ key: @3.14000000002, otherKey: @17 };
+    NSDictionary *dict1 = @{ key : @3.14000000001 };
+    NSDictionary *dict2 = @{
+        key : @3.14000000002,
+        otherKey : @17,
+    };
     XCTAssertFalse([dict1 bon_isCloseEnoughEqualToDictionary:dict2]);
 }
 
 - (void)testMutableDictionary
 {
-    NSMutableDictionary *dict1 = [@{ @"asdf": @1.0f } mutableCopy];
-    NSMutableDictionary *dict2 = [@{ @"asdf": @1.0f } mutableCopy];
-    NSDictionary *dict3 = @{ @"asdf": @1.0f };
+    NSMutableDictionary *dict1 = [@{ @"asdf" : @1.0f } mutableCopy];
+    NSMutableDictionary *dict2 = [@{ @"asdf" : @1.0f } mutableCopy];
+    NSDictionary *dict3 = @{ @"asdf" : @1.0f };
     XCTAssertTrue([dict1 bon_isCloseEnoughEqualToDictionary:dict2]);
     XCTAssertTrue([dict2 bon_isCloseEnoughEqualToDictionary:dict1]);
     XCTAssertTrue([dict2 bon_isCloseEnoughEqualToDictionary:dict3]);
@@ -62,9 +68,9 @@
 
 - (void)testBONAssertEqualDictionaries
 {
-    NSMutableDictionary *dict1 = [@{ @"asdf": @1.000001f } mutableCopy];
-    NSMutableDictionary *dict2 = [@{ @"asdf": @1.000002f } mutableCopy];
-    NSDictionary *dict3 = @{ @"asdf": @1.000003f };
+    NSMutableDictionary *dict1 = [@{ @"asdf" : @1.000001f } mutableCopy];
+    NSMutableDictionary *dict2 = [@{ @"asdf" : @1.000002f } mutableCopy];
+    NSDictionary *dict3 = @{ @"asdf" : @1.000003f };
     BONAssertEqualDictionaries(dict1, dict2);
     BONAssertEqualDictionaries(dict2, dict1);
     BONAssertEqualDictionaries(dict2, dict3);

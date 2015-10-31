@@ -12,19 +12,19 @@
 
 @class BONChain;
 
-typedef BONChain*(^BONChainFontNameAndSize)(NSString *fontName, CGFloat fontSize);
-typedef BONChain*(^BONChainFont)(UIFont *font);
-typedef BONChain*(^BONChainColor)(UIColor *color);
-typedef BONChain*(^BONChainAdobeTracking)(NSInteger adobeTracking);
-typedef BONChain*(^BONChainPointTracking)(CGFloat pointTracking);
-typedef BONChain*(^BONChainLineHeight)(CGFloat lineHeightMultiple);
-typedef BONChain*(^BONChainBaselineOffset)(CGFloat baselineOffset);
-typedef BONChain*(^BONChainAlignment)(NSTextAlignment alignment);
-typedef BONChain*(^BONChainFigureCase)(BONFigureCase figureCase);
-typedef BONChain*(^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
-typedef BONChain*(^BONChainIndentSpacer)(CGFloat indentSpacer);
-typedef BONChain*(^BONChainString)(NSString *string);
-typedef BONChain*(^BONChainImage)(UIImage *image);
+typedef BONChain * (^BONChainFontNameAndSize)(NSString *fontName, CGFloat fontSize);
+typedef BONChain * (^BONChainFont)(UIFont *font);
+typedef BONChain * (^BONChainColor)(UIColor *color);
+typedef BONChain * (^BONChainAdobeTracking)(NSInteger adobeTracking);
+typedef BONChain * (^BONChainPointTracking)(CGFloat pointTracking);
+typedef BONChain * (^BONChainLineHeight)(CGFloat lineHeightMultiple);
+typedef BONChain * (^BONChainBaselineOffset)(CGFloat baselineOffset);
+typedef BONChain * (^BONChainAlignment)(NSTextAlignment alignment);
+typedef BONChain * (^BONChainFigureCase)(BONFigureCase figureCase);
+typedef BONChain * (^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
+typedef BONChain * (^BONChainIndentSpacer)(CGFloat indentSpacer);
+typedef BONChain * (^BONChainString)(NSString *string);
+typedef BONChain * (^BONChainImage)(UIImage *image);
 
 @interface BONChain : NSObject <NSCopying, BONChainable>
 

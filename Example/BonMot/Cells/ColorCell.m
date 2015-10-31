@@ -30,12 +30,12 @@
     //    Maria Sharapova [Tinted Tennis Racket Image]
 
     NSArray *strings = @[
-                         @"I want to be different. If everyone is wearing ",
-                         @" black, ",
-                         @" I want to be wearing ",
-                         @" red. ",
-                         @"\nMaria Sharapova ",
-                         ];
+        @"I want to be different. If everyone is wearing ",
+        @" black, ",
+        @" I want to be wearing ",
+        @" red. ",
+        @"\nMaria Sharapova ",
+    ];
 
     BONChain *baseLineHeight = BONChain.new.lineHeightMultiple(1.2f);
 
@@ -49,18 +49,18 @@
     BONChain *redFont = fancyFont.textColor([self.class raizlabsRed]);
 
     NSArray *chains = @[
-                        grayFont,
-                        blackBackground,
-                        grayFont,
-                        redBackground,
-                        redFont,
-                        ];
+        grayFont,
+        blackBackground,
+        grayFont,
+        redBackground,
+        redFont,
+    ];
 
     NSAssert(strings.count == chains.count, @"wrong count");
 
     NSMutableArray *textsWithStrings = [NSMutableArray array];
 
-    for ( NSUInteger i = 0; i < strings.count; i++ ) {
+    for (NSUInteger i = 0; i < strings.count; i++) {
         NSString *string = strings[i];
         BONChain *chain = chains[i];
         BONChain *newChain = chain.string(string);

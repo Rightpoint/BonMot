@@ -37,20 +37,20 @@
     self.tableView.estimatedRowHeight = 123.0f;
 
     self.cellClasses = @[
-                         [ColorCell class],
-                         [TrackingCell class],
-                         [IndentationCell class],
-                         [LineHeightCell class],
-                         [FigureStyleCell class],
-                         [BaselineCapHeightCell class],
-                         [ProgrammaticBaselineCapHeightCell class],
-                         [InlineImagesCell class],
-                         [SpecialCharactersCell class],
-                         [BaselineOffsetCell class],
-                         [ConcatenationCell class],
-                         ];
+        [ColorCell class],
+        [TrackingCell class],
+        [IndentationCell class],
+        [LineHeightCell class],
+        [FigureStyleCell class],
+        [BaselineCapHeightCell class],
+        [ProgrammaticBaselineCapHeightCell class],
+        [InlineImagesCell class],
+        [SpecialCharactersCell class],
+        [BaselineOffsetCell class],
+        [ConcatenationCell class],
+    ];
 
-    for ( Class CellClass in self.cellClasses ) {
+    for (Class CellClass in self.cellClasses) {
         NSAssert([CellClass respondsToSelector:@selector(reuseIdentifier)],
                  @"Cells must inherit from %@", NSStringFromClass([AbstractCell class]));
 
@@ -76,7 +76,6 @@
              @"Cells must inherit from %@", NSStringFromClass([AbstractCell class]));
 
     return [CellClass title];
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

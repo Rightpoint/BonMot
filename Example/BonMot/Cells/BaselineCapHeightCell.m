@@ -8,7 +8,7 @@
 
 #import "BaselineCapHeightCell.h"
 
-static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
+static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface BaselineCapHeightCell ()
 
@@ -34,7 +34,7 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
     NSAttributedString *numberString = BONChain.new.fontNameAndSize(kFontNameEBGaramond, 100.0f).figureCase(BONFigureCaseOldstyle).string(@"167").attributedString;
 
-    for ( UILabel *label in self.capHeightNumberLabels ) {
+    for (UILabel *label in self.capHeightNumberLabels) {
         label.attributedText = numberString;
     }
 
@@ -44,7 +44,8 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                     toItem:self.capHeightBaselineHairline
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0f
-                                  constant:0.0f].active = YES;
+                                  constant:0.0f]
+        .active = YES;
 
     [NSLayoutConstraint constraintWithItem:self.numberXHeightLabel
                                  attribute:NSLayoutAttributeBaseline
@@ -52,7 +53,8 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                     toItem:self.xHeightBaselineHairline
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0f
-                                  constant:0.0f].active = YES;
+                                  constant:0.0f]
+        .active = YES;
 }
 
 @end
