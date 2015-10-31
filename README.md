@@ -198,6 +198,10 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 **Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
 
+## Contributing
+
+Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) an the included `.clang-format` configuration file.
+
 
 ## Author
 
