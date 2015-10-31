@@ -14,12 +14,12 @@ typedef NS_ENUM(NSUInteger, BONItemOrdinality) {
     BONItemOrdinalitySecond,
 };
 
-static void* const kBONTextAlignmentConstraintContext = (void *)&kBONTextAlignmentConstraintContext;
+static void *const kBONTextAlignmentConstraintContext = (void *)&kBONTextAlignmentConstraintContext;
 
 NSString *stringFromBONConstraintAttribute(BONConstraintAttribute attribute)
 {
     NSString *string = nil;
-    switch ( attribute ) {
+    switch (attribute) {
         case BONConstraintAttributeUnspecified: {
             string = @"unspecified";
             break;
@@ -69,29 +69,29 @@ NSString *normalizeString(NSString *string)
 BONConstraintAttribute BONConstraintAttributeFromString(NSString *string)
 {
     static NSDictionary *s_mappings = nil;
-    if ( !s_mappings ) {
+    if (!s_mappings) {
         s_mappings = @{
-                       @"unspecified": @(BONConstraintAttributeUnspecified),
-                       @"top": @(BONConstraintAttributeTop),
-                       @"capheight": @(BONConstraintAttributeCapHeight),
-                       @"xheight": @(BONConstraintAttributeXHeight),
-                       @"firstbaseline": @(BONConstraintAttributeFirstBaseline),
-                       @"lastbaseline": @(BONConstraintAttributeLastBaseline),
-                       @"bottom": @(BONConstraintAttributeBottom),
-                       };
+            @"unspecified" : @(BONConstraintAttributeUnspecified),
+            @"top" : @(BONConstraintAttributeTop),
+            @"capheight" : @(BONConstraintAttributeCapHeight),
+            @"xheight" : @(BONConstraintAttributeXHeight),
+            @"firstbaseline" : @(BONConstraintAttributeFirstBaseline),
+            @"lastbaseline" : @(BONConstraintAttributeLastBaseline),
+            @"bottom" : @(BONConstraintAttributeBottom),
+        };
     }
 
     NSString *normalizedString = normalizeString(string);
 
 #if !defined(NS_BLOCK_ASSERTIONS)
     // Test our assumption that none of the mapping strings ends in 's'
-    for ( NSString *mappingString in s_mappings ) {
+    for (NSString *mappingString in s_mappings) {
         NSCAssert(![mappingString hasSuffix:@"s"], @"This code assumes we can just strip trailing 's'es off the end of the passed string, but now that s_mappings contains a string with a trailing 's', this is no longer the case.");
     }
 #endif
 
     // Remove trailing s, if present, to handle plural case
-    if ( [normalizedString hasSuffix:@"s"] ) {
+    if ([normalizedString hasSuffix:@"s"]) {
         normalizedString = [normalizedString substringToIndex:normalizedString.length - 1];
     }
 
@@ -99,7 +99,7 @@ BONConstraintAttribute BONConstraintAttributeFromString(NSString *string)
 
     NSNumber *attributeNumber = s_mappings[normalizedString];
     BONConstraintAttribute attribute = BONConstraintAttributeUnspecified;
-    if ( attributeNumber ) {
+    if (attributeNumber) {
         attribute = attributeNumber.unsignedIntegerValue;
     }
 
@@ -109,9 +109,9 @@ BONConstraintAttribute BONConstraintAttributeFromString(NSString *string)
 NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraintAttribute bonConstraintAttribute)
 {
     NSLayoutAttribute nsAttribute;
-    switch ( bonConstraintAttribute ) {
-        case BONConstraintAttributeTop: // fall through
-        case BONConstraintAttributeCapHeight: // fall through
+    switch (bonConstraintAttribute) {
+        case BONConstraintAttributeTop:           // fall through
+        case BONConstraintAttributeCapHeight:     // fall through
         case BONConstraintAttributeFirstBaseline: // fall through
         case BONConstraintAttributeXHeight: {
             nsAttribute = NSLayoutAttributeTop;
@@ -160,7 +160,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
     constraint.strongItem2 = view2;
     constraint.firstItemBONAttribute = attr1;
     constraint.secondItemBONAttribute = attr2;
-    
+
     [constraint setUpObservers];
 
     CGFloat distanceFromTop1 = [constraint distanceFromTopOfItem:BONItemOrdinalityFirst];
@@ -184,7 +184,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 
 - (void)setFirstAlignment:(NSString *)firstAlignment
 {
-    if ( (_firstAlignment || firstAlignment) && ![_firstAlignment isEqualToString:firstAlignment] ) {
+    if ((_firstAlignment || firstAlignment) && ![_firstAlignment isEqualToString:firstAlignment]) {
         _firstAlignment = firstAlignment.copy;
         self.firstItemBONAttribute = BONConstraintAttributeFromString(firstAlignment);
     }
@@ -192,7 +192,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 
 - (void)setSecondAlignment:(NSString *)secondAlignment
 {
-    if ( (_secondAlignment || secondAlignment) && ![_secondAlignment isEqualToString:secondAlignment] ) {
+    if ((_secondAlignment || secondAlignment) && ![_secondAlignment isEqualToString:secondAlignment]) {
         _secondAlignment = secondAlignment.copy;
         self.secondItemBONAttribute = BONConstraintAttributeFromString(secondAlignment);
     }
@@ -202,7 +202,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ( context == kBONTextAlignmentConstraintContext ) {
+    if (context == kBONTextAlignmentConstraintContext) {
         [self updateConstant];
     }
     else {
@@ -215,14 +215,14 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 - (void)setUpObservers
 {
     NSString *firstItemFontKeyPath = [@[
-                                        NSStringFromSelector(@selector(firstItem)),
-                                        NSStringFromSelector(@selector(font)),
-                                        ] componentsJoinedByString:@"."];
+        NSStringFromSelector(@selector(firstItem)),
+        NSStringFromSelector(@selector(font)),
+    ] componentsJoinedByString:@"."];
 
     NSString *secondItemFontKeyPath = [@[
-                                         NSStringFromSelector(@selector(secondItem)),
-                                         NSStringFromSelector(@selector(font)),
-                                         ] componentsJoinedByString:@"."];
+        NSStringFromSelector(@selector(secondItem)),
+        NSStringFromSelector(@selector(font)),
+    ] componentsJoinedByString:@"."];
 
     [self addObserver:self forKeyPath:firstItemFontKeyPath options:0 context:kBONTextAlignmentConstraintContext];
     [self addObserver:self forKeyPath:secondItemFontKeyPath options:0 context:kBONTextAlignmentConstraintContext];
@@ -234,14 +234,14 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 - (void)tearDownObservers
 {
     NSString *firstItemFontKeyPath = [@[
-                                        NSStringFromSelector(@selector(firstItem)),
-                                        NSStringFromSelector(@selector(font)),
-                                        ] componentsJoinedByString:@"."];
+        NSStringFromSelector(@selector(firstItem)),
+        NSStringFromSelector(@selector(font)),
+    ] componentsJoinedByString:@"."];
 
     NSString *secondItemFontKeyPath = [@[
-                                         NSStringFromSelector(@selector(secondItem)),
-                                         NSStringFromSelector(@selector(font)),
-                                         ] componentsJoinedByString:@"."];
+        NSStringFromSelector(@selector(secondItem)),
+        NSStringFromSelector(@selector(font)),
+    ] componentsJoinedByString:@"."];
 
     [self removeObserver:self forKeyPath:firstItemFontKeyPath context:kBONTextAlignmentConstraintContext];
     [self removeObserver:self forKeyPath:secondItemFontKeyPath context:kBONTextAlignmentConstraintContext];
@@ -260,7 +260,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 {
     id item;
     BONConstraintAttribute bonConstraintAttribute;
-    switch ( ordinality ) {
+    switch (ordinality) {
         case BONItemOrdinalityFirst:
             item = self.firstItem;
             bonConstraintAttribute = self.firstItemBONAttribute;
@@ -276,13 +276,13 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 
     CGFloat distanceFromTop = 0.0f;
 
-    if ( bonConstraintAttribute != BONConstraintAttributeTop ) {
-        if ( [item respondsToSelector:@selector(font)] ) {
+    if (bonConstraintAttribute != BONConstraintAttributeTop) {
+        if ([item respondsToSelector:@selector(font)]) {
             UIFont *font = [item font];
 
             CGFloat topToBaseline = font.ascender;
 
-            switch ( bonConstraintAttribute ) {
+            switch (bonConstraintAttribute) {
                 case BONConstraintAttributeCapHeight: {
                     CGFloat baselineToCapHeight = font.capHeight;
                     distanceFromTop = topToBaseline - baselineToCapHeight;
@@ -298,7 +298,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
                     break;
                 }
                 case BONConstraintAttributeFirstBaseline: // fall through
-                case BONConstraintAttributeLastBaseline: // fall through
+                case BONConstraintAttributeLastBaseline:  // fall through
                 case BONConstraintAttributeBottom: {
                     [NSException raise:NSInternalInconsistencyException format:@"%@ alignment is not currently supported with %@. Please check https://github.com/Raizlabs/BonMot/issues/37 for progress on this issue.", stringFromBONConstraintAttribute(bonConstraintAttribute), NSStringFromClass(self.class)];
                     break;
@@ -309,7 +309,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
             }
         }
     }
-    
+
     return distanceFromTop;
 }
 

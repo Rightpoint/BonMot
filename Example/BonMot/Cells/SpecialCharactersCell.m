@@ -26,16 +26,16 @@
     [super awakeFromNib];
 
     NSArray *imageNames = @[
-                            @"barn",
-                            @"bee",
-                            @"bug",
-                            @"circuit",
-                            @"cut",
-                            @"discount",
-                            @"gift",
-                            @"pin",
-                            @"robot",
-                            ];
+        @"barn",
+        @"bee",
+        @"bug",
+        @"circuit",
+        @"cut",
+        @"discount",
+        @"gift",
+        @"pin",
+        @"robot",
+    ];
 
     NSString *text = @"This string is separated by images and no-break spaces.";
     NSArray *words = [text componentsSeparatedByString:@" "];
@@ -46,7 +46,7 @@
     BONChain *baseImageChain = BONChain.new.baselineOffset(-10.0f);
     NSMutableArray *chunks = [NSMutableArray array];
 
-    for ( NSUInteger theIndex = 0; theIndex < imageNames.count; theIndex++ ) {
+    for (NSUInteger theIndex = 0; theIndex < imageNames.count; theIndex++) {
         UIImage *image = [UIImage imageNamed:imageNames[theIndex]];
         NSAssert(image, @"Image must not be nil");
         BONChain *chunk = baseImageChain.image(image);

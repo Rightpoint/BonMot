@@ -45,7 +45,7 @@
 
     // Restore original properties
     image = [image imageWithAlignmentRectInsets:originalAlignmentRectInsets];
-    if ( !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode ) {
+    if (!UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode) {
         image = [image resizableImageWithCapInsets:originalCapInsets resizingMode:originalResizingMode];
     }
 

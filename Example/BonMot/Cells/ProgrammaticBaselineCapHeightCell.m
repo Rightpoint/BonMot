@@ -8,7 +8,7 @@
 
 #import "ProgrammaticBaselineCapHeightCell.h"
 
-static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
+static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface ProgrammaticBaselineCapHeightCell ()
 
@@ -41,7 +41,7 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
     NSAttributedString *numberString = BONChain.new.fontNameAndSize(kFontNameEBGaramond, 100.0f).figureCase(BONFigureCaseOldstyle).string(@"167").attributedString;
 
-    for ( UILabel *label in self.capHeightNumberLabels ) {
+    for (UILabel *label in self.capHeightNumberLabels) {
         label.attributedText = numberString;
     }
 
@@ -50,26 +50,30 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                          attribute:BONConstraintAttributeCapHeight
                                          relatedBy:NSLayoutRelationEqual
                                             toItem:self.textCapHeightLabel
-                                         attribute:BONConstraintAttributeCapHeight].active = YES;
+                                         attribute:BONConstraintAttributeCapHeight]
+        .active = YES;
 
     [BONTextAlignmentConstraint constraintWithItem:self.numberXHeightLabel
                                          attribute:BONConstraintAttributeXHeight
                                          relatedBy:NSLayoutRelationEqual
                                             toItem:self.textXHeightLabel
-                                         attribute:BONConstraintAttributeXHeight].active = YES;
+                                         attribute:BONConstraintAttributeXHeight]
+        .active = YES;
 
     // Constrain hairlines to labels
     [BONTextAlignmentConstraint constraintWithItem:self.capHeightHairline
                                          attribute:BONConstraintAttributeBottom
                                          relatedBy:NSLayoutRelationEqual
                                             toItem:self.numberCapHeightLabel
-                                         attribute:BONConstraintAttributeCapHeight].active = YES;
+                                         attribute:BONConstraintAttributeCapHeight]
+        .active = YES;
 
     [BONTextAlignmentConstraint constraintWithItem:self.xHeightHairline
                                          attribute:BONConstraintAttributeBottom
                                          relatedBy:NSLayoutRelationEqual
                                             toItem:self.numberXHeightLabel
-                                         attribute:BONConstraintAttributeXHeight].active = YES;
+                                         attribute:BONConstraintAttributeXHeight]
+        .active = YES;
 
     [NSLayoutConstraint constraintWithItem:self.numberCapHeightLabel
                                  attribute:NSLayoutAttributeBaseline
@@ -77,7 +81,8 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                     toItem:self.capHeightBaselineHairline
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0f
-                                  constant:0.0f].active = YES;
+                                  constant:0.0f]
+        .active = YES;
 
     [NSLayoutConstraint constraintWithItem:self.numberXHeightLabel
                                  attribute:NSLayoutAttributeBaseline
@@ -85,7 +90,8 @@ static NSString* const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                     toItem:self.xHeightBaselineHairline
                                  attribute:NSLayoutAttributeBottom
                                 multiplier:1.0f
-                                  constant:0.0f].active = YES;
+                                  constant:0.0f]
+        .active = YES;
 }
 
 @end

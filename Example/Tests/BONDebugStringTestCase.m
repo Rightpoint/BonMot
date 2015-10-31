@@ -73,8 +73,8 @@
     }
 
     NSUInteger singleMatches = [expression numberOfMatchesInString:debugStringWithAddresses
-                                                     options:NSMatchingAnchored
-                                                       range:NSMakeRange(0, debugStringWithAddresses.length)];
+                                                           options:NSMatchingAnchored
+                                                             range:NSMakeRange(0, debugStringWithAddresses.length)];
     XCTAssertEqual(singleMatches, 1);
 
     BONChain *longer = BONChain.new.string(@"pre");

@@ -110,5 +110,4 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  */
 - (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
 
-
 @end

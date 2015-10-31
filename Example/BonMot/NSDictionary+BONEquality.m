@@ -38,7 +38,7 @@ static BOOL BONNumberIsFloaty(NSNumber *number)
 
     if ([dictionary isKindOfClass:[NSDictionary class]]) {
         BOOL sameKeys = [self.class bon_dictionary:self hasSameKeysAsDictionary:dictionary];
-        if ( sameKeys ) {
+        if (sameKeys) {
             for (NSString *key in self.allKeys) {
                 id selfValue = self[key];
                 id otherValue = dictionary[key];

@@ -27,10 +27,10 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 13): @{
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
@@ -47,10 +47,10 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 13): @{
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
@@ -67,10 +67,10 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 13): @{
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
@@ -87,10 +87,10 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 13): @{
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
@@ -107,16 +107,16 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 7): @{
-                                                NSForegroundColorAttributeName: [UIColor redColor],
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        BONValueFromRange(7, 6): @{
-                                                NSForegroundColorAttributeName: [UIColor blueColor],
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
+        BONValueFromRange(0, 7) : @{
+            NSForegroundColorAttributeName : [UIColor redColor],
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+        BONValueFromRange(7, 6) : @{
+            NSForegroundColorAttributeName : [UIColor blueColor],
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
 
-                                        };
+    };
 
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
@@ -134,10 +134,10 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 46): @{
-                                                NSParagraphStyleAttributeName: defaultParagraphStyle,
-                                                },
-                                        };
+        BONValueFromRange(0, 46) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
 
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }

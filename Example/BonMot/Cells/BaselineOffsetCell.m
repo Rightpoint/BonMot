@@ -29,7 +29,7 @@
 
     NSMutableArray *wave = [NSMutableArray array];
 
-    for ( NSUInteger i = 0; i < 50; i++ ) {
+    for (NSUInteger i = 0; i < 50; i++) {
         CGFloat offset = 15.0f * sin((i / 20.0f) * 7.0f * M_PI);
         [wave addObject:baseChain.baselineOffset(offset).text];
     };
