@@ -200,7 +200,7 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 ## Contributing
 
-Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) an the included `.clang-format` configuration file.
+Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) and the included `.clang-format` configuration file.
 
 
 ## Author
