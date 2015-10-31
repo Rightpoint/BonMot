@@ -33,4 +33,4 @@
 + (NSString *)objectReplacementCharacter { return @"\uFFFC"; }
 
 @end
-clang-format on
+// clang-format on

@@ -163,7 +163,6 @@ for theUnichar in specialCharacters {
     
     if charactersRequiringFormatStrings.contains(theUnichar) {
         returnExpression = NSString(format:"return [NSString stringWithFormat:@\"%%C\", %@];", enumerationName) as String
-        print(returnExpression)
     }
     else {
         returnExpression = NSString(format:"return @\"\\u%.4X\";", theUnichar) as String
