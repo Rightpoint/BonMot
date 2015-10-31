@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Zev Eisenberg on 4/20/15.
-//  Copyright (c) 2015 Zev Eisenberg. All rights reserved.
+//  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
 #import "InlineImagesCell.h"
@@ -53,7 +53,8 @@
 
     self.label.attributedText = wholeString.attributedString;
 
-    NSLog(@"debug string:%@", wholeString.text.debugDescription);
+    NSLog(@"Look at the bottom of %@ to see the code that led to this being printed:", @(__FILE__).lastPathComponent);
+    NSLog(@"%@", wholeString.text);
 }
 
 @end

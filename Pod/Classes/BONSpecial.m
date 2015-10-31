@@ -10,6 +10,9 @@
 
 @implementation BONSpecial
 
++ (NSString *)tab { return [NSString stringWithFormat:@"%C", BONCharacterTab]; }
++ (NSString *)lineFeed { return [NSString stringWithFormat:@"%C", BONCharacterLineFeed]; }
++ (NSString *)space { return [NSString stringWithFormat:@"%C", BONCharacterSpace]; }
 + (NSString *)noBreakSpace { return @"\u00A0"; }
 + (NSString *)enSpace { return @"\u2002"; }
 + (NSString *)emSpace { return @"\u2003"; }

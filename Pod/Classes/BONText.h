@@ -84,19 +84,31 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 + (NSAttributedString *)joinTexts:(NSArray *)texts withSeparator:(BONText *)separator;
 
 /**
- *  Used by -debugDescription to print the attributed string, one character at a time, with special characters and image attachments described.
+ *  Calls [self debugStringIncludeImageAddresses:YES]
+ *
+ *  @return The debug string, including pointer addresses of attached images.
+ */
+- (NSString *)debugString;
+
+/**
+ *  Returns a representation of the string that puts each character on a new line, and describes whitespace and other characters in a human-readable way. Pass @c NO if you are using this method to write unit tests or other cases where the string value must be deterministic.
+ *
+ *  @return The debug string.
+ */
+- (NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
+
+@end
+
+@interface BONText (BONDeprecated)
+
+/**
+ *  Formerly used by -debugDescription to print the attributed string, one character at a time, with special characters and image attachments described.
  *
  *  @param includeImageAddresses Whether to print the pointer addresses of attached images in the description. Pass @c NO if you are using this method to write unit tests or other cases where the string value must be deterministic.
  *
  *  @return The debug string, using the specified option for including image addresses.
  */
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses;
+- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
 
-/**
- *  Calls [self debugDescriptionIncludingImageAddresses:YES]
- *
- *  @return The debug string, including pointers of attached images.
- */
-- (NSString *)debugDescription;
 
 @end

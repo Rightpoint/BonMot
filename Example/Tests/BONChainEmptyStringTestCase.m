@@ -1,5 +1,5 @@
 //
-//  BonChainCrashingTestCase.m
+//  BONChainEmptyStringTestCase.m
 //  BonMot
 //
 //  Created by Michael Skiba on 10/21/15.
@@ -7,7 +7,8 @@
 //
 
 #import "BONBaseTestCase.h"
-#import "BONChain.h"
+
+#import <BonMot/BonMot.h>
 
 @interface BONChainEmptyStringTestCase : BONBaseTestCase
 

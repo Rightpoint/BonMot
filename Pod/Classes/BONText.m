@@ -8,14 +8,12 @@
 
 #import "BONText.h"
 #import "BONText_Private.h"
+#import "BONSpecial.h"
 
 @import CoreText.SFNTLayoutTypes;
 
 static const CGFloat kBONAdobeTrackingDivisor = 1000.0f;
 static const CGFloat kBONDefaultFontSize = 15.0f; // per docs
-static const unichar kBONSpaceCharacter = 32;
-
-static NSString* const kBONAttachmentCharacterString = @"\uFFFC";
 
 static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
@@ -459,6 +457,105 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return resultString;
 }
 
+- (NSString *)debugString
+{
+    return [self debugStringIncludeImageAddresses:YES];
+}
+
+- (NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses
+{
+    NSAttributedString *originalAttributedString = self.attributedString;
+
+    NSString *originalString = originalAttributedString.string;
+
+    NSMutableString *debugString = [NSMutableString string];
+
+    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        if (substringRange.location != 0) {
+            [debugString appendString:@"\n"];
+        }
+
+        if ( [substring isEqualToString:BONSpecial.objectReplacementCharacter] ) {
+            NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
+            NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
+            UIImage *attachedImage = attachment.image;
+            if ( includeImageAddresses ) {
+                [debugString appendFormat:@"(%@)", attachedImage];
+            }
+            else {
+                [debugString appendFormat:@"(attached image of size: %@)", NSStringFromCGSize(attachedImage.size)];
+            }
+        }
+        else {
+            static NSCharacterSet *s_newLineCharacterSet = nil;
+            if ( !s_newLineCharacterSet ) {
+                s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
+            }
+
+            // If it's not a newline character, append it. Otherwise, append a space.
+            if ( [substring rangeOfCharacterFromSet:s_newLineCharacterSet].location == NSNotFound ) {
+                [debugString appendString:substring];
+            }
+            else {
+                [debugString appendString:BONSpecial.space];
+            }
+
+            // Find, derive, or invent the name/description, and append it
+
+            unichar character = [substring characterAtIndex:0];
+            NSDictionary *specialNames = @{
+                                           @(BONCharacterSpace): @"Space",
+                                           @(BONCharacterLineFeed): @"Line Feed",
+                                           @(BONCharacterTab): @"Tab",
+                                           };
+
+            NSString *name = specialNames[@(character)];
+
+            if (name) {
+                [debugString appendFormat:@"(%@)", name];
+            }
+            else {
+                NSMutableString *mutableUnicodeName = substring.mutableCopy;
+
+                // We can ignore the return value of this function,
+                // because while in principle it can fail, in practice
+                // it never fails with kCFStringTransformToUnicodeName
+                CFStringTransform((CFMutableStringRef)mutableUnicodeName, NULL, kCFStringTransformToUnicodeName, FALSE);
+
+                name = mutableUnicodeName;
+
+                NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
+                if ( !s_whiteSpaceAndNewLinesSet ) {
+                    s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+                }
+
+                BOOL isWhitespace = [substring rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound;
+
+                if ( isWhitespace ) {
+                    if (name) {
+                        [debugString appendFormat:@"(%@)", name];
+                    }
+                    else {
+                        [debugString appendFormat:@"(Whitespace character: %02d, 0x%02X)", character, character];
+                    }
+                }
+                else {
+                    // Append name only if it is different from the string itself
+                    if ( ![mutableUnicodeName isEqualToString:substring] ) {
+                        [debugString appendFormat:@"(%@)", mutableUnicodeName];
+                    }
+                }
+            }
+        }
+    }];
+
+    if ( debugString.length == 0 ) {
+        [debugString appendString:@"(empty string)"];
+    }
+
+    return debugString;
+}
+
 #pragma mark - Private
 
 /**
@@ -476,88 +573,30 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return convertedTracking;
 }
 
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses
+- (NSString *)description
 {
-    NSAttributedString *originalAttributedString = self.attributedString;
+    NSString *debugString = [self debugStringIncludeImageAddresses:YES];
+    NSString *realString = self.attributedString.string;
+    __block NSUInteger composedCharacterCount = 0;
 
-    NSString *originalString = originalAttributedString.string;
+    [realString enumerateSubstringsInRange:NSMakeRange(0, realString.length)
+                                   options:NSStringEnumerationByComposedCharacterSequences
+                                usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                    composedCharacterCount++;
+                                }];
 
-    NSMutableString *debugString = [NSMutableString string];
-
-    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
-        // New Line
-        [debugString appendString:@"\n"];
-
-        if ( [substring isEqualToString:kBONAttachmentCharacterString] ) {
-            NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
-            NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
-            UIImage *attachedImage = attachment.image;
-            if ( includeImageAddresses ) {
-                [debugString appendFormat:@"%@", attachedImage];
-            }
-            else {
-                [debugString appendFormat:@"[attached image of size: %@]", NSStringFromCGSize(attachedImage.size)];
-            }
-        }
-        else {
-            static NSCharacterSet *s_newLineCharacterSet = nil;
-            if ( !s_newLineCharacterSet ) {
-                s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
-            }
-
-            // If it's not a newline character, append it. Otherwise, append a space.
-            if ( [substring rangeOfCharacterFromSet:s_newLineCharacterSet].location == NSNotFound ) {
-                [debugString appendString:substring];
-            }
-            else {
-                [debugString appendString:@" "];
-            }
-
-            NSMutableString *unicodeName = substring.mutableCopy;
-
-            Boolean success = CFStringTransform((CFMutableStringRef)unicodeName, NULL, kCFStringTransformToUnicodeName, FALSE);
-
-            if ( success ) {
-                // Append name only if it is different from the string itself
-                if ( ![unicodeName isEqualToString:substring] ) {
-                    [debugString appendFormat:@"[%@]", unicodeName];
-                }
-                else {
-                    // If it is a whitespace or new line string, describe it better than just appending it
-                    NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
-                    if ( !s_whiteSpaceAndNewLinesSet ) {
-                        s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-                    }
-
-                    if ( [unicodeName rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound ) {
-                        unichar character = [unicodeName characterAtIndex:0];
-                        if ( character == kBONSpaceCharacter ) {
-                            [debugString appendString:@"[Space]"];
-                        }
-                        else {
-                            [debugString appendFormat:@"Whitespace character: %02d, 0x%02X", character, character];
-                        }
-                    }
-                }
-
-            }
-            else {
-                unichar character = [substring characterAtIndex:0];
-                [debugString appendFormat:@"[Unknown character: %02d, 0x%02X]", character, character];
-            }
-        }
-    }];
-    
-    if ( debugString.length == 0 ) {
-        [debugString appendString:@"[empty string]"];
-    }
-    
-    return debugString.copy;
+    NSString *characterSuffix = (composedCharacterCount == 1) ? @"" : @"s"; // pluralization
+    NSString *description = [NSString stringWithFormat:@"<%@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), self, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), self];
+    return description;
 }
 
-- (NSString *)debugDescription
+@end
+
+@implementation BONText (BONDeprecated)
+
+- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses
 {
-    return [self debugDescriptionIncludeImageAddresses:YES];
+    return [self debugStringIncludeImageAddresses:includeImageAddresses];
 }
 
 @end
