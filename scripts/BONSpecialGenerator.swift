@@ -136,7 +136,7 @@ func pathToFolderContainingThisScript() -> String {
 // ******************************
 
 // Make sure specialCharacters is sorted
-let sortedSpecialCharacters = specialCharacters.sort({$0 < $1})
+let sortedSpecialCharacters = specialCharacters.sort(<)
 if sortedSpecialCharacters != specialCharacters {
     print("ERROR: The specialCharacters array is not sorted, and it must be.")
     exit(1)
