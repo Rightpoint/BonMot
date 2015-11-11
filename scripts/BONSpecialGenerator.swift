@@ -26,7 +26,7 @@ let specialCharacters: [unichar] = [
     0x2012,
     0x2013,
     0x2014,
-    0x2026, // HORIZONTAL ELLIPSIS
+    0x2026,
     0x2028,
     0x2029,
     0x202F,
