@@ -25,6 +25,7 @@
 + (NSString *)figureDash { return @"\u2012"; }
 + (NSString *)enDash { return @"\u2013"; }
 + (NSString *)emDash { return @"\u2014"; }
++ (NSString *)horizontalEllipsis { return @"\u2026"; }
 + (NSString *)lineSeparator { return @"\u2028"; }
 + (NSString *)paragraphSeparator { return @"\u2029"; }
 + (NSString *)narrowNoBreakSpace { return @"\u202F"; }

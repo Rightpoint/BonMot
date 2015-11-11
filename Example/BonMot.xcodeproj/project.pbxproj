@@ -155,6 +155,7 @@
 		CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BONEquality.m"; sourceTree = "<group>"; };
 		CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDictionaryEqualityTestCase.m; sourceTree = "<group>"; };
 		DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E19B7EA11BF3C517002CD3D8 /* BONSpecialGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BONSpecialGenerator.swift; path = ../scripts/BONSpecialGenerator.swift; sourceTree = SOURCE_ROOT; };
 		EA798F8B87019E9A6673F5A3 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
 		F79B786068DF6EE81053EF09 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +241,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E19B7EA11BF3C517002CD3D8 /* BONSpecialGenerator.swift */,
 				CDFC93B61AE59FCA00C2B7C9 /* Fonts */,
 				6003F595195388D20070C39A /* BonMot-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
