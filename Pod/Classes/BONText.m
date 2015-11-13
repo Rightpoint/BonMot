@@ -552,23 +552,6 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return debugString;
 }
 
-#pragma mark - Private
-
-/**
- *  Converts Adobe Illustrator/Photoshop Tracking values to a value that’s compatible with @c NSKernAttributeName. Adobe software measures tracking in thousandths of an em, where an em is the width of a capital letter M. @c NSAttributedString treats the point size of the font as 1 em.
- *
- *  @param adobeTrackingValue The tracking value as it is shown in Adobe design apps. Measured in thousandths of an em.
- *  @param font               The font whose point size to use in the calculation.
- *
- *  @return The converted tracking value.
- */
-+ (CGFloat)pointTrackingValueFromAdobeTrackingValue:(NSInteger)adobeTrackingValue forFont:(UIFont *)font
-{
-    CGFloat pointSizeToUse = font ? font.pointSize : kBONDefaultFontSize;
-    CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kBONAdobeTrackingDivisor);
-    return convertedTracking;
-}
-
 - (NSString *)description
 {
     NSString *debugString = [self debugStringIncludeImageAddresses:YES];
@@ -584,6 +567,23 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     NSString *characterSuffix = (composedCharacterCount == 1) ? @"" : @"s"; // pluralization
     NSString *description = [NSString stringWithFormat:@"<%@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), self, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), self];
     return description;
+}
+
+#pragma mark - Private
+
+/**
+ *  Converts Adobe Illustrator/Photoshop Tracking values to a value that’s compatible with @c NSKernAttributeName. Adobe software measures tracking in thousandths of an em, where an em is the width of a capital letter M. @c NSAttributedString treats the point size of the font as 1 em.
+ *
+ *  @param adobeTrackingValue The tracking value as it is shown in Adobe design apps. Measured in thousandths of an em.
+ *  @param font               The font whose point size to use in the calculation.
+ *
+ *  @return The converted tracking value.
+ */
++ (CGFloat)pointTrackingValueFromAdobeTrackingValue:(NSInteger)adobeTrackingValue forFont:(UIFont *)font
+{
+    CGFloat pointSizeToUse = font ? font.pointSize : kBONDefaultFontSize;
+    CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kBONAdobeTrackingDivisor);
+    return convertedTracking;
 }
 
 @end

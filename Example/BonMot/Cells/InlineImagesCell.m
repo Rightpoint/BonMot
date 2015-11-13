@@ -54,7 +54,7 @@
     self.label.attributedText = wholeString.attributedString;
 
     NSLog(@"Look at the bottom of %@ to see the code that led to this being printed:", @(__FILE__).lastPathComponent);
-    NSLog(@"%@", wholeString.text);
+    NSLog(@"%@", wholeString);
 }
 
 @end

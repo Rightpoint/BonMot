@@ -226,6 +226,23 @@
     [self.class appendText:link.text toEndOfText:self.text];
 }
 
+- (NSString *)description
+{
+    NSString *debugString = [self.text debugStringIncludeImageAddresses:YES];
+    NSString *realString = self.attributedString.string;
+    __block NSUInteger composedCharacterCount = 0;
+
+    [realString enumerateSubstringsInRange:NSMakeRange(0, realString.length)
+                                   options:NSStringEnumerationByComposedCharacterSequences
+                                usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                    composedCharacterCount++;
+                                }];
+
+    NSString *characterSuffix = (composedCharacterCount == 1) ? @"" : @"s"; // pluralization
+    NSString *description = [NSString stringWithFormat:@"<%@: %p with %@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), self, NSStringFromClass([BONText class]), self.text, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), self];
+    return description;
+}
+
 #pragma mark - Private
 
 + (void)appendText:(BONText *)suffix toEndOfText:(BONText *)prefix
