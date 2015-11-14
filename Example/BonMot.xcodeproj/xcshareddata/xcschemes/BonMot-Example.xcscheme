@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "BonMot.app"
-               BlueprintName = "BonMot"
+               BuildableName = "BonMot_Example.app"
+               BlueprintName = "BonMot_Example"
                ReferencedContainer = "container:BonMot.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A788D59A7EFD0C34A5CC252FBE025056"
+               BuildableName = "BonMot.framework"
+               BlueprintName = "BonMot"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,15 +40,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
+               BuildableName = "BonMot_Tests.xctest"
+               BlueprintName = "BonMot_Tests"
                ReferencedContainer = "container:BonMot.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,8 +58,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "BonMot.app"
-            BlueprintName = "BonMot"
+            BuildableName = "BonMot_Example.app"
+            BlueprintName = "BonMot_Example"
             ReferencedContainer = "container:BonMot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "BonMot.app"
-            BlueprintName = "BonMot"
+            BuildableName = "BonMot_Example.app"
+            BlueprintName = "BonMot_Example"
             ReferencedContainer = "container:BonMot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -85,8 +100,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "BonMot.app"
-            BlueprintName = "BonMot"
+            BuildableName = "BonMot_Example.app"
+            BlueprintName = "BonMot_Example"
             ReferencedContainer = "container:BonMot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

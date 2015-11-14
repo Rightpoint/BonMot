@@ -8,6 +8,7 @@
 
 @import XCTest;
 #import "NSDictionary+BONEquality.h"
+#import "DummyAssetClass.h"
 
 OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 

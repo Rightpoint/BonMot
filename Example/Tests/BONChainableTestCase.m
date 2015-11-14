@@ -7,7 +7,8 @@
 //
 
 #import "BONBaseTestCase.h"
-#import <BONMot/BonMot.h>
+
+@import BonMot;
 
 @interface BONChainableTestCase : BONBaseTestCase
 
@@ -144,7 +145,7 @@
 
 - (void)testConcatenatingImages
 {
-    UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[BONChain class]] compatibleWithTraitCollection:nil];
+    UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
     XCTAssertNotNil(barnImage);
     XCTAssertEqualWithAccuracy(barnImage.size.width, 36.0, kBONCGFloatEpsilon);
     XCTAssertEqualWithAccuracy(barnImage.size.height, 36.0, kBONCGFloatEpsilon);

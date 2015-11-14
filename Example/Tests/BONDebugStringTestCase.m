@@ -8,7 +8,7 @@
 
 #import "BONBaseTestCase.h"
 
-#import <BonMot/BonMot.h>
+@import BonMot;
 
 @interface BONDebugStringTestCase : BONBaseTestCase
 
@@ -58,7 +58,7 @@
 
 - (void)testImage
 {
-    UIImage *image = [UIImage imageNamed:@"circuit" inBundle:[NSBundle bundleForClass:[BONChain class]] compatibleWithTraitCollection:nil];
+    UIImage *image = [UIImage imageNamed:@"circuit" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
     BONText *singleImage = BONChain.new.image(image).text;
     XCTAssertEqualObjects([singleImage debugStringIncludeImageAddresses:NO], @"(attached image of size: {36, 36})");
 
@@ -95,7 +95,7 @@
 
 - (void)testSomeOfEverything
 {
-    UIImage *image = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:[BONChain class]] compatibleWithTraitCollection:nil];
+    UIImage *image = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
 
     BONChain *everything = BONChain.new;
     [everything appendLink:BONChain.new.string(@"aluminium")];

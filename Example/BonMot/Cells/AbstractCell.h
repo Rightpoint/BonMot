@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-#import <BonMot/BonMot.h>
+@import BonMot;
 
 @interface AbstractCell : UITableViewCell
 
