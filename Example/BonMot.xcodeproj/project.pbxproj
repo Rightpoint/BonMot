@@ -7,61 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14A806079B0C19B4DE676067 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */; };
-		26380D145A6D2DDDE4686DC5 /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F8FBA353FF63A44E9AE612 /* libPods-BonMot.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
-		6003F59E195388D20070C39A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* AppDelegate.m */; };
-		6003F5A1195388D20070C39A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6003F59F195388D20070C39A /* Main.storyboard */; };
-		6003F5A7195388D20070C39A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* RootViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		720F06361BD819400077DC84 /* BONChainEmptyStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */; };
-		7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A5A12C91AF6685400D111BA /* Launch Screen.xib */; };
-		8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */; };
-		CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */; };
-		CD356FD61B59B55D00572331 /* SpecialCharactersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */; };
-		CD356FD71B59B55D00572331 /* SpecialCharactersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */; };
-		CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */; };
-		CD39D8701B7FE32800336231 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
-		CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */; };
-		CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */; };
-		CD79AF431AE5823200D9F0C5 /* BaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */; };
-		CD79AF461AE5824000D9F0C5 /* InlineImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */; };
-		CD79AF491AE5824F00D9F0C5 /* ConcatenationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF481AE5824F00D9F0C5 /* ConcatenationCell.m */; };
-		CD79AF4C1AE5873D00D9F0C5 /* BaselineOffsetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */; };
-		CD79AF4E1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF4D1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib */; };
-		CD79AF501AE58B5600D9F0C5 /* TrackingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */; };
-		CD79AF521AE58BC200D9F0C5 /* LineHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */; };
-		CD79AF541AE58BC700D9F0C5 /* FigureStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF531AE58BC700D9F0C5 /* FigureStyleCell.xib */; };
-		CD79AF561AE58BCE00D9F0C5 /* InlineImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */; };
-		CD79AF581AE58BD800D9F0C5 /* BaselineOffsetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */; };
-		CD79AF5A1AE58BDF00D9F0C5 /* ConcatenationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD79AF591AE58BDF00D9F0C5 /* ConcatenationCell.xib */; };
-		CD9652561AE58DB90013C6B1 /* AbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9652551AE58DB90013C6B1 /* AbstractCell.m */; };
-		CD9E41581AE44B3E00ECFBFB /* TrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */; };
-		CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */; };
-		CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */; };
-		CDB461F71B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */; };
-		CDB461F81B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */; };
-		CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */; };
-		CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */; };
-		CDC8D95A1BE42FCD001F30A2 /* BONDebugStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC8D9591BE42FCD001F30A2 /* BONDebugStringTestCase.m */; };
-		CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */; };
-		CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */; };
-		CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */; };
-		CDDFD7ED1B7F9D4700A87008 /* IndentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */; };
-		CDEEF16B1BE400BF00A237EC /* BONTextAlignmentTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEEF16A1BE400BF00A237EC /* BONTextAlignmentTestCase.m */; };
-		CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */; };
-		CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */; };
-		CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
-		CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */; };
-		CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */; };
+		6836AD13A829A45AE2425588 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */; };
+		CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */; };
+		CD6DEFE31BF6ADF900676E2D /* BONChainableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONChainableTestCase.m */; };
+		CD6DEFE51BF6ADF900676E2D /* BONChainEmptyStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD81BF6ADF900676E2D /* BONChainEmptyStringTestCase.m */; };
+		CD6DEFE71BF6ADF900676E2D /* BONDebugStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */; };
+		CD6DEFE91BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */; };
+		CD6DEFEB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */; };
+		CD6DEFED1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDC1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m */; };
+		CD6DEFEF1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDD1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m */; };
+		CD6DEFF11BF6ADF900676E2D /* BONTextAlignmentTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDE1BF6ADF900676E2D /* BONTextAlignmentTestCase.m */; };
+		CD6DEFF31BF6ADF900676E2D /* BONTrackingTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDF1BF6ADF900676E2D /* BONTrackingTestCase.m */; };
+		CD6DEFF61BF6AE4C00676E2D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFF51BF6AE4C00676E2D /* AppDelegate.m */; };
+		CD6DEFF91BF6AE5800676E2D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFF81BF6AE5800676E2D /* RootViewController.m */; };
+		CD6DF0231BF6AE8200676E2D /* AbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0011BF6AE8200676E2D /* AbstractCell.m */; };
+		CD6DF0241BF6AE8200676E2D /* BaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0031BF6AE8200676E2D /* BaselineCapHeightCell.m */; };
+		CD6DF0251BF6AE8200676E2D /* BaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0041BF6AE8200676E2D /* BaselineCapHeightCell.xib */; };
+		CD6DF0261BF6AE8200676E2D /* BaselineOffsetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0061BF6AE8200676E2D /* BaselineOffsetCell.m */; };
+		CD6DF0271BF6AE8200676E2D /* BaselineOffsetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0071BF6AE8200676E2D /* BaselineOffsetCell.xib */; };
+		CD6DF0281BF6AE8200676E2D /* ColorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0091BF6AE8200676E2D /* ColorCell.m */; };
+		CD6DF0291BF6AE8200676E2D /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF00A1BF6AE8200676E2D /* ColorCell.xib */; };
+		CD6DF02A1BF6AE8200676E2D /* ConcatenationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF00C1BF6AE8200676E2D /* ConcatenationCell.m */; };
+		CD6DF02B1BF6AE8200676E2D /* ConcatenationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF00D1BF6AE8200676E2D /* ConcatenationCell.xib */; };
+		CD6DF02C1BF6AE8200676E2D /* FigureStyleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF00F1BF6AE8200676E2D /* FigureStyleCell.m */; };
+		CD6DF02D1BF6AE8200676E2D /* FigureStyleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0101BF6AE8200676E2D /* FigureStyleCell.xib */; };
+		CD6DF02E1BF6AE8200676E2D /* IndentationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0121BF6AE8200676E2D /* IndentationCell.m */; };
+		CD6DF02F1BF6AE8200676E2D /* IndentationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0131BF6AE8200676E2D /* IndentationCell.xib */; };
+		CD6DF0301BF6AE8200676E2D /* InlineImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0151BF6AE8200676E2D /* InlineImagesCell.m */; };
+		CD6DF0311BF6AE8200676E2D /* InlineImagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0161BF6AE8200676E2D /* InlineImagesCell.xib */; };
+		CD6DF0321BF6AE8200676E2D /* LineHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0181BF6AE8200676E2D /* LineHeightCell.m */; };
+		CD6DF0331BF6AE8200676E2D /* LineHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0191BF6AE8200676E2D /* LineHeightCell.xib */; };
+		CD6DF0341BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF01B1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.m */; };
+		CD6DF0351BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF01C1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.xib */; };
+		CD6DF0361BF6AE8200676E2D /* SpecialCharactersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF01E1BF6AE8200676E2D /* SpecialCharactersCell.m */; };
+		CD6DF0371BF6AE8200676E2D /* SpecialCharactersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF01F1BF6AE8200676E2D /* SpecialCharactersCell.xib */; };
+		CD6DF0381BF6AE8200676E2D /* TrackingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0211BF6AE8200676E2D /* TrackingCell.m */; };
+		CD6DF0391BF6AE8200676E2D /* TrackingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0221BF6AE8200676E2D /* TrackingCell.xib */; };
+		CD6DF03F1BF6AFAA00676E2D /* EB Garamond License.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03D1BF6AFAA00676E2D /* EB Garamond License.txt */; };
+		CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
+		CD6DF0461BF6B24300676E2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
+		CD6DF04A1BF6B37E00676E2D /* DummyAssetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0491BF6B37E00676E2D /* DummyAssetClass.m */; };
+		CD6DF04B1BF6B37E00676E2D /* DummyAssetClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0491BF6B37E00676E2D /* DummyAssetClass.m */; };
+		CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */; };
+		CD6DF0561BF6B63300676E2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0541BF6B63300676E2D /* Main.storyboard */; };
+		CD6DF0591BF6B7AF00676E2D /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0581BF6B7AF00676E2D /* DashedHairlineView.m */; };
+		CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */; };
+		F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,89 +76,88 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		014804514A6243D91F7F3623 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		07E8C8E277A0BC3EC7C6AF3D /* BonMot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BonMot.podspec; path = ../BonMot.podspec; sourceTree = "<group>"; };
-		1E84D35CA3666CF0D172AD61 /* Pods-BonMot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.debug.xcconfig"; sourceTree = "<group>"; };
-		21BCF2089CBF744CCAE1A354 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		21F5F9A6570398B4631B98DF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		21F8FBA353FF63A44E9AE612 /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4CA7B4AEE15A750779C800C9 /* Pods-BonMot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.debug.xcconfig"; sourceTree = "<group>"; };
-		6003F58A195388D20070C39A /* BonMot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonMot.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		442D6A6A5BDCDABF372F06F0 /* Pods-BonMot_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4AF5C68DE6171D35A3DA3AB3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		6003F58A195388D20070C39A /* BonMot_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonMot_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6003F595195388D20070C39A /* BonMot-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BonMot-Info.plist"; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59C195388D20070C39A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6003F59D195388D20070C39A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6003F5A0195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AE195388D20070C39A /* BonMot_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BonMot_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainEmptyStringTestCase.m; sourceTree = "<group>"; };
-		7A5A12C91AF6685400D111BA /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
-		A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BonMot.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTrackingTestCase.m; sourceTree = "<group>"; };
-		CD356FD31B59B55D00572331 /* SpecialCharactersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialCharactersCell.h; sourceTree = "<group>"; };
-		CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialCharactersCell.m; sourceTree = "<group>"; };
-		CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecialCharactersCell.xib; sourceTree = "<group>"; };
-		CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONIndentSpacerTestCase.m; sourceTree = "<group>"; };
-		CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineHeightCell.h; sourceTree = "<group>"; };
-		CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineHeightCell.m; sourceTree = "<group>"; };
-		CD79AF3E1AE5821A00D9F0C5 /* FigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureStyleCell.h; sourceTree = "<group>"; };
-		CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureStyleCell.m; sourceTree = "<group>"; };
-		CD79AF411AE5823200D9F0C5 /* BaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaselineCapHeightCell.h; sourceTree = "<group>"; };
-		CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaselineCapHeightCell.m; sourceTree = "<group>"; };
-		CD79AF441AE5824000D9F0C5 /* InlineImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InlineImagesCell.h; sourceTree = "<group>"; };
-		CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InlineImagesCell.m; sourceTree = "<group>"; };
-		CD79AF471AE5824F00D9F0C5 /* ConcatenationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcatenationCell.h; sourceTree = "<group>"; };
-		CD79AF481AE5824F00D9F0C5 /* ConcatenationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcatenationCell.m; sourceTree = "<group>"; };
-		CD79AF4A1AE5873D00D9F0C5 /* BaselineOffsetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaselineOffsetCell.h; sourceTree = "<group>"; };
-		CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaselineOffsetCell.m; sourceTree = "<group>"; };
-		CD79AF4D1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaselineCapHeightCell.xib; sourceTree = "<group>"; };
-		CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackingCell.xib; sourceTree = "<group>"; };
-		CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineHeightCell.xib; sourceTree = "<group>"; };
-		CD79AF531AE58BC700D9F0C5 /* FigureStyleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FigureStyleCell.xib; sourceTree = "<group>"; };
-		CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlineImagesCell.xib; sourceTree = "<group>"; };
-		CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaselineOffsetCell.xib; sourceTree = "<group>"; };
-		CD79AF591AE58BDF00D9F0C5 /* ConcatenationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConcatenationCell.xib; sourceTree = "<group>"; };
-		CD9652541AE58DB90013C6B1 /* AbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCell.h; sourceTree = "<group>"; };
-		CD9652551AE58DB90013C6B1 /* AbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCell.m; sourceTree = "<group>"; };
-		CD9E41551AE44B3E00ECFBFB /* TrackingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingCell.h; sourceTree = "<group>"; };
-		CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingCell.m; sourceTree = "<group>"; };
-		CD9E415B1AE46F3B00ECFBFB /* DashedHairlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashedHairlineView.h; sourceTree = "<group>"; };
-		CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashedHairlineView.m; sourceTree = "<group>"; };
-		CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentConstraintTestCase.m; sourceTree = "<group>"; };
-		CDB461F41B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammaticBaselineCapHeightCell.h; sourceTree = "<group>"; };
-		CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammaticBaselineCapHeightCell.m; sourceTree = "<group>"; };
-		CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgrammaticBaselineCapHeightCell.xib; sourceTree = "<group>"; };
-		CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainableTestCase.m; sourceTree = "<group>"; };
-		CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONPropertyClobberingTestCase.m; sourceTree = "<group>"; };
-		CDC8D9591BE42FCD001F30A2 /* BONDebugStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDebugStringTestCase.m; sourceTree = "<group>"; };
-		CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
-		CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
-		CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
-		CDDFD7E91B7F9D4700A87008 /* IndentationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentationCell.h; sourceTree = "<group>"; };
-		CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentationCell.m; sourceTree = "<group>"; };
-		CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndentationCell.xib; sourceTree = "<group>"; };
-		CDEEF16A1BE400BF00A237EC /* BONTextAlignmentTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentTestCase.m; sourceTree = "<group>"; };
-		CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
-		CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
-		CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
-		CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BONBaseTestCase.h; sourceTree = "<group>"; };
-		CDFDF54F1B51880C00A1AD42 /* NSDictionary+BONEquality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BONEquality.h"; sourceTree = "<group>"; };
-		CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BONEquality.m"; sourceTree = "<group>"; };
-		CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDictionaryEqualityTestCase.m; sourceTree = "<group>"; };
-		DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E19B7EA11BF3C517002CD3D8 /* BONSpecialGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BONSpecialGenerator.swift; path = ../scripts/BONSpecialGenerator.swift; sourceTree = SOURCE_ROOT; };
-		EA798F8B87019E9A6673F5A3 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
-		F79B786068DF6EE81053EF09 /* Pods-BonMot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot/Pods-BonMot.release.xcconfig"; sourceTree = "<group>"; };
+		8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F7BD757BEB762F22E099560 /* BonMot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BonMot.podspec; path = ../BonMot.podspec; sourceTree = "<group>"; };
+		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CD6DEFD51BF6ADF900676E2D /* BONBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BONBaseTestCase.h; sourceTree = "<group>"; };
+		CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
+		CD6DEFD71BF6ADF900676E2D /* BONChainableTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainableTestCase.m; sourceTree = "<group>"; };
+		CD6DEFD81BF6ADF900676E2D /* BONChainEmptyStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainEmptyStringTestCase.m; sourceTree = "<group>"; };
+		CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDebugStringTestCase.m; sourceTree = "<group>"; };
+		CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDictionaryEqualityTestCase.m; sourceTree = "<group>"; };
+		CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONIndentSpacerTestCase.m; sourceTree = "<group>"; };
+		CD6DEFDC1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONPropertyClobberingTestCase.m; sourceTree = "<group>"; };
+		CD6DEFDD1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentConstraintTestCase.m; sourceTree = "<group>"; };
+		CD6DEFDE1BF6ADF900676E2D /* BONTextAlignmentTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentTestCase.m; sourceTree = "<group>"; };
+		CD6DEFDF1BF6ADF900676E2D /* BONTrackingTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTrackingTestCase.m; sourceTree = "<group>"; };
+		CD6DEFF41BF6AE4C00676E2D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CD6DEFF51BF6AE4C00676E2D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CD6DEFF71BF6AE5800676E2D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		CD6DEFF81BF6AE5800676E2D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		CD6DF0001BF6AE8200676E2D /* AbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCell.h; sourceTree = "<group>"; };
+		CD6DF0011BF6AE8200676E2D /* AbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCell.m; sourceTree = "<group>"; };
+		CD6DF0021BF6AE8200676E2D /* BaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaselineCapHeightCell.h; sourceTree = "<group>"; };
+		CD6DF0031BF6AE8200676E2D /* BaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaselineCapHeightCell.m; sourceTree = "<group>"; };
+		CD6DF0041BF6AE8200676E2D /* BaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaselineCapHeightCell.xib; sourceTree = "<group>"; };
+		CD6DF0051BF6AE8200676E2D /* BaselineOffsetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaselineOffsetCell.h; sourceTree = "<group>"; };
+		CD6DF0061BF6AE8200676E2D /* BaselineOffsetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaselineOffsetCell.m; sourceTree = "<group>"; };
+		CD6DF0071BF6AE8200676E2D /* BaselineOffsetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaselineOffsetCell.xib; sourceTree = "<group>"; };
+		CD6DF0081BF6AE8200676E2D /* ColorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCell.h; sourceTree = "<group>"; };
+		CD6DF0091BF6AE8200676E2D /* ColorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCell.m; sourceTree = "<group>"; };
+		CD6DF00A1BF6AE8200676E2D /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
+		CD6DF00B1BF6AE8200676E2D /* ConcatenationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcatenationCell.h; sourceTree = "<group>"; };
+		CD6DF00C1BF6AE8200676E2D /* ConcatenationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcatenationCell.m; sourceTree = "<group>"; };
+		CD6DF00D1BF6AE8200676E2D /* ConcatenationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConcatenationCell.xib; sourceTree = "<group>"; };
+		CD6DF00E1BF6AE8200676E2D /* FigureStyleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureStyleCell.h; sourceTree = "<group>"; };
+		CD6DF00F1BF6AE8200676E2D /* FigureStyleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureStyleCell.m; sourceTree = "<group>"; };
+		CD6DF0101BF6AE8200676E2D /* FigureStyleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FigureStyleCell.xib; sourceTree = "<group>"; };
+		CD6DF0111BF6AE8200676E2D /* IndentationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentationCell.h; sourceTree = "<group>"; };
+		CD6DF0121BF6AE8200676E2D /* IndentationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentationCell.m; sourceTree = "<group>"; };
+		CD6DF0131BF6AE8200676E2D /* IndentationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndentationCell.xib; sourceTree = "<group>"; };
+		CD6DF0141BF6AE8200676E2D /* InlineImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InlineImagesCell.h; sourceTree = "<group>"; };
+		CD6DF0151BF6AE8200676E2D /* InlineImagesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InlineImagesCell.m; sourceTree = "<group>"; };
+		CD6DF0161BF6AE8200676E2D /* InlineImagesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InlineImagesCell.xib; sourceTree = "<group>"; };
+		CD6DF0171BF6AE8200676E2D /* LineHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineHeightCell.h; sourceTree = "<group>"; };
+		CD6DF0181BF6AE8200676E2D /* LineHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineHeightCell.m; sourceTree = "<group>"; };
+		CD6DF0191BF6AE8200676E2D /* LineHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineHeightCell.xib; sourceTree = "<group>"; };
+		CD6DF01A1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgrammaticBaselineCapHeightCell.h; sourceTree = "<group>"; };
+		CD6DF01B1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgrammaticBaselineCapHeightCell.m; sourceTree = "<group>"; };
+		CD6DF01C1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgrammaticBaselineCapHeightCell.xib; sourceTree = "<group>"; };
+		CD6DF01D1BF6AE8200676E2D /* SpecialCharactersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecialCharactersCell.h; sourceTree = "<group>"; };
+		CD6DF01E1BF6AE8200676E2D /* SpecialCharactersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecialCharactersCell.m; sourceTree = "<group>"; };
+		CD6DF01F1BF6AE8200676E2D /* SpecialCharactersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecialCharactersCell.xib; sourceTree = "<group>"; };
+		CD6DF0201BF6AE8200676E2D /* TrackingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingCell.h; sourceTree = "<group>"; };
+		CD6DF0211BF6AE8200676E2D /* TrackingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackingCell.m; sourceTree = "<group>"; };
+		CD6DF0221BF6AE8200676E2D /* TrackingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackingCell.xib; sourceTree = "<group>"; };
+		CD6DF03A1BF6AF9B00676E2D /* BONSpecialGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BONSpecialGenerator.swift; path = ../../scripts/BONSpecialGenerator.swift; sourceTree = "<group>"; };
+		CD6DF03D1BF6AFAA00676E2D /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
+		CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
+		CD6DF0481BF6B37E00676E2D /* DummyAssetClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyAssetClass.h; sourceTree = "<group>"; };
+		CD6DF0491BF6B37E00676E2D /* DummyAssetClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyAssetClass.m; sourceTree = "<group>"; };
+		CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		CD6DF04E1BF6B53100676E2D /* NSDictionary+BONEquality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+BONEquality.h"; path = "BonMot/NSDictionary+BONEquality.h"; sourceTree = SOURCE_ROOT; };
+		CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+BONEquality.m"; path = "BonMot/NSDictionary+BONEquality.m"; sourceTree = SOURCE_ROOT; };
+		CD6DF0551BF6B63300676E2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CD6DF0571BF6B7AF00676E2D /* DashedHairlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashedHairlineView.h; path = BonMot/DashedHairlineView.h; sourceTree = SOURCE_ROOT; };
+		CD6DF0581BF6B7AF00676E2D /* DashedHairlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashedHairlineView.m; path = BonMot/DashedHairlineView.m; sourceTree = SOURCE_ROOT; };
+		CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,8 +168,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				8FA6E2DDD5E6EC28DC1FD6CF /* libPods-BonMot.a in Frameworks */,
-				26380D145A6D2DDDE4686DC5 /* libPods-BonMot.a in Frameworks */,
+				F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,30 +179,41 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				14A806079B0C19B4DE676067 /* libPods-Tests.a in Frameworks */,
+				6836AD13A829A45AE2425588 /* Pods_BonMot_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0730349BEF864AAD45841AAB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				442D6A6A5BDCDABF372F06F0 /* Pods-BonMot_Example.debug.xcconfig */,
+				EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */,
+				8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */,
+				AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				6003F593195388D20070C39A /* BonMot */,
+				6003F593195388D20070C39A /* Example for BonMot */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				DFBC5ABF2728C05ADB34E881 /* Pods */,
+				0730349BEF864AAD45841AAB /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* BonMot.app */,
-				6003F5AE195388D20070C39A /* Tests.xctest */,
+				6003F58A195388D20070C39A /* BonMot_Example.app */,
+				6003F5AE195388D20070C39A /* BonMot_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,38 +225,38 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				AA5CE135D846CCB2972ED1F8 /* libPods-Tests.a */,
-				A647FB2263DC7F8E3F265C4A /* libPods-BonMot.a */,
-				21F8FBA353FF63A44E9AE612 /* libPods-BonMot.a */,
+				2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */,
+				CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* BonMot */ = {
+		6003F593195388D20070C39A /* Example for BonMot */ = {
 			isa = PBXGroup;
 			children = (
-				6003F59C195388D20070C39A /* AppDelegate.h */,
-				6003F59D195388D20070C39A /* AppDelegate.m */,
-				6003F59F195388D20070C39A /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* RootViewController.h */,
-				6003F5A6195388D20070C39A /* RootViewController.m */,
-				CD9E415A1AE46F2F00ECFBFB /* Utilities */,
-				CD9E41541AE4457500ECFBFB /* Cells */,
+				CD6DEFF41BF6AE4C00676E2D /* AppDelegate.h */,
+				CD6DEFF51BF6AE4C00676E2D /* AppDelegate.m */,
+				CD6DF0541BF6B63300676E2D /* Main.storyboard */,
+				CD6DEFF71BF6AE5800676E2D /* RootViewController.h */,
+				CD6DEFF81BF6AE5800676E2D /* RootViewController.m */,
+				CD6DEFFF1BF6AE8200676E2D /* Cells */,
+				CD6DEFFA1BF6AE7100676E2D /* Utilities */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
+			name = "Example for BonMot";
 			path = BonMot;
 			sourceTree = "<group>";
 		};
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E19B7EA11BF3C517002CD3D8 /* BONSpecialGenerator.swift */,
-				CDFC93B61AE59FCA00C2B7C9 /* Fonts */,
+				CD6DF03A1BF6AF9B00676E2D /* BONSpecialGenerator.swift */,
+				CD6DF03C1BF6AFAA00676E2D /* Fonts */,
 				6003F595195388D20070C39A /* BonMot-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
-				7A5A12C91AF6685400D111BA /* Launch Screen.xib */,
+				CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -254,18 +264,20 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CDFCA9E21B507909000E47DB /* BONBaseTestCase.h */,
-				CDFCA9E01B5078E0000E47DB /* BONBaseTestCase.m */,
-				CDB7D35A1BC88C05006B842F /* BONPropertyClobberingTestCase.m */,
-				CD24988C1B30CBA90055F2A7 /* BONTrackingTestCase.m */,
-				CD39D86D1B7FE1CB00336231 /* BONIndentSpacerTestCase.m */,
-				CDFDF5531B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m */,
-				CDB7D3581BC86FF8006B842F /* BONChainableTestCase.m */,
-				CDAB918B1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m */,
-				720F06351BD819400077DC84 /* BONChainEmptyStringTestCase.m */,
-				CDEEF16A1BE400BF00A237EC /* BONTextAlignmentTestCase.m */,
-				CDC8D9591BE42FCD001F30A2 /* BONDebugStringTestCase.m */,
+				CD6DEFD51BF6ADF900676E2D /* BONBaseTestCase.h */,
+				CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */,
+				CD6DEFD71BF6ADF900676E2D /* BONChainableTestCase.m */,
+				CD6DEFD81BF6ADF900676E2D /* BONChainEmptyStringTestCase.m */,
+				CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */,
+				CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */,
+				CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */,
+				CD6DEFDC1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m */,
+				CD6DEFDD1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m */,
+				CD6DEFDE1BF6ADF900676E2D /* BONTextAlignmentTestCase.m */,
+				CD6DEFDF1BF6ADF900676E2D /* BONTrackingTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				CD6DF0481BF6B37E00676E2D /* DummyAssetClass.h */,
+				CD6DF0491BF6B37E00676E2D /* DummyAssetClass.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -282,130 +294,117 @@
 		60FF7A9C1954A5C5007DD14C /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				07E8C8E277A0BC3EC7C6AF3D /* BonMot.podspec */,
-				21F5F9A6570398B4631B98DF /* README.md */,
-				21BCF2089CBF744CCAE1A354 /* LICENSE */,
+				8F7BD757BEB762F22E099560 /* BonMot.podspec */,
+				4AF5C68DE6171D35A3DA3AB3 /* README.md */,
+				AD71A3A4149F5274009A4C2F /* LICENSE */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		CD9E41541AE4457500ECFBFB /* Cells */ = {
+		CD6DEFFA1BF6AE7100676E2D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				CD9652541AE58DB90013C6B1 /* AbstractCell.h */,
-				CD9652551AE58DB90013C6B1 /* AbstractCell.m */,
-				CDD4B9EA1AEB2C3F00B02A0A /* ColorCell.h */,
-				CDD4B9EB1AEB2C3F00B02A0A /* ColorCell.m */,
-				CDD4B9EC1AEB2C3F00B02A0A /* ColorCell.xib */,
-				CD9E41551AE44B3E00ECFBFB /* TrackingCell.h */,
-				CD9E41561AE44B3E00ECFBFB /* TrackingCell.m */,
-				CD79AF4F1AE58B5600D9F0C5 /* TrackingCell.xib */,
-				CDDFD7E91B7F9D4700A87008 /* IndentationCell.h */,
-				CDDFD7EA1B7F9D4700A87008 /* IndentationCell.m */,
-				CDDFD7EB1B7F9D4700A87008 /* IndentationCell.xib */,
-				CD79AF3B1AE5820700D9F0C5 /* LineHeightCell.h */,
-				CD79AF3C1AE5820700D9F0C5 /* LineHeightCell.m */,
-				CD79AF511AE58BC200D9F0C5 /* LineHeightCell.xib */,
-				CD79AF3E1AE5821A00D9F0C5 /* FigureStyleCell.h */,
-				CD79AF3F1AE5821A00D9F0C5 /* FigureStyleCell.m */,
-				CD79AF531AE58BC700D9F0C5 /* FigureStyleCell.xib */,
-				CD79AF411AE5823200D9F0C5 /* BaselineCapHeightCell.h */,
-				CD79AF421AE5823200D9F0C5 /* BaselineCapHeightCell.m */,
-				CD79AF4D1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib */,
-				CDB461F41B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.h */,
-				CDB461F51B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m */,
-				CDB461F61B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib */,
-				CD79AF441AE5824000D9F0C5 /* InlineImagesCell.h */,
-				CD79AF451AE5824000D9F0C5 /* InlineImagesCell.m */,
-				CD79AF551AE58BCE00D9F0C5 /* InlineImagesCell.xib */,
-				CD356FD31B59B55D00572331 /* SpecialCharactersCell.h */,
-				CD356FD41B59B55D00572331 /* SpecialCharactersCell.m */,
-				CD356FD51B59B55D00572331 /* SpecialCharactersCell.xib */,
-				CD79AF4A1AE5873D00D9F0C5 /* BaselineOffsetCell.h */,
-				CD79AF4B1AE5873D00D9F0C5 /* BaselineOffsetCell.m */,
-				CD79AF571AE58BD800D9F0C5 /* BaselineOffsetCell.xib */,
-				CD79AF471AE5824F00D9F0C5 /* ConcatenationCell.h */,
-				CD79AF481AE5824F00D9F0C5 /* ConcatenationCell.m */,
-				CD79AF591AE58BDF00D9F0C5 /* ConcatenationCell.xib */,
+				CD6DF04E1BF6B53100676E2D /* NSDictionary+BONEquality.h */,
+				CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */,
+				CD6DF0571BF6B7AF00676E2D /* DashedHairlineView.h */,
+				CD6DF0581BF6B7AF00676E2D /* DashedHairlineView.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CD6DEFFF1BF6AE8200676E2D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CD6DF0001BF6AE8200676E2D /* AbstractCell.h */,
+				CD6DF0011BF6AE8200676E2D /* AbstractCell.m */,
+				CD6DF0021BF6AE8200676E2D /* BaselineCapHeightCell.h */,
+				CD6DF0031BF6AE8200676E2D /* BaselineCapHeightCell.m */,
+				CD6DF0041BF6AE8200676E2D /* BaselineCapHeightCell.xib */,
+				CD6DF0051BF6AE8200676E2D /* BaselineOffsetCell.h */,
+				CD6DF0061BF6AE8200676E2D /* BaselineOffsetCell.m */,
+				CD6DF0071BF6AE8200676E2D /* BaselineOffsetCell.xib */,
+				CD6DF0081BF6AE8200676E2D /* ColorCell.h */,
+				CD6DF0091BF6AE8200676E2D /* ColorCell.m */,
+				CD6DF00A1BF6AE8200676E2D /* ColorCell.xib */,
+				CD6DF00B1BF6AE8200676E2D /* ConcatenationCell.h */,
+				CD6DF00C1BF6AE8200676E2D /* ConcatenationCell.m */,
+				CD6DF00D1BF6AE8200676E2D /* ConcatenationCell.xib */,
+				CD6DF00E1BF6AE8200676E2D /* FigureStyleCell.h */,
+				CD6DF00F1BF6AE8200676E2D /* FigureStyleCell.m */,
+				CD6DF0101BF6AE8200676E2D /* FigureStyleCell.xib */,
+				CD6DF0111BF6AE8200676E2D /* IndentationCell.h */,
+				CD6DF0121BF6AE8200676E2D /* IndentationCell.m */,
+				CD6DF0131BF6AE8200676E2D /* IndentationCell.xib */,
+				CD6DF0141BF6AE8200676E2D /* InlineImagesCell.h */,
+				CD6DF0151BF6AE8200676E2D /* InlineImagesCell.m */,
+				CD6DF0161BF6AE8200676E2D /* InlineImagesCell.xib */,
+				CD6DF0171BF6AE8200676E2D /* LineHeightCell.h */,
+				CD6DF0181BF6AE8200676E2D /* LineHeightCell.m */,
+				CD6DF0191BF6AE8200676E2D /* LineHeightCell.xib */,
+				CD6DF01A1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.h */,
+				CD6DF01B1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.m */,
+				CD6DF01C1BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.xib */,
+				CD6DF01D1BF6AE8200676E2D /* SpecialCharactersCell.h */,
+				CD6DF01E1BF6AE8200676E2D /* SpecialCharactersCell.m */,
+				CD6DF01F1BF6AE8200676E2D /* SpecialCharactersCell.xib */,
+				CD6DF0201BF6AE8200676E2D /* TrackingCell.h */,
+				CD6DF0211BF6AE8200676E2D /* TrackingCell.m */,
+				CD6DF0221BF6AE8200676E2D /* TrackingCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		CD9E415A1AE46F2F00ECFBFB /* Utilities */ = {
+		CD6DF03C1BF6AFAA00676E2D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CD9E415B1AE46F3B00ECFBFB /* DashedHairlineView.h */,
-				CD9E415C1AE46F3B00ECFBFB /* DashedHairlineView.m */,
-				CDFDF54F1B51880C00A1AD42 /* NSDictionary+BONEquality.h */,
-				CDFDF5501B51880D00A1AD42 /* NSDictionary+BONEquality.m */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
-		CDFC93B61AE59FCA00C2B7C9 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CDFC93B71AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf */,
-				CDFC93B91AE5A17100C2B7C9 /* EB Garamond License.txt */,
+				CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */,
+				CD6DF03D1BF6AFAA00676E2D /* EB Garamond License.txt */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		DFBC5ABF2728C05ADB34E881 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */,
-				014804514A6243D91F7F3623 /* Pods-Tests.release.xcconfig */,
-				4CA7B4AEE15A750779C800C9 /* Pods-BonMot.debug.xcconfig */,
-				F79B786068DF6EE81053EF09 /* Pods-BonMot.release.xcconfig */,
-				1E84D35CA3666CF0D172AD61 /* Pods-BonMot.debug.xcconfig */,
-				EA798F8B87019E9A6673F5A3 /* Pods-BonMot.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* BonMot */ = {
+		6003F589195388D20070C39A /* BonMot_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot_Example" */;
 			buildPhases = (
-				ECFDB1F96820A3A10F4DC435 /* Check Pods Manifest.lock */,
+				6AB594B297DF552235E1CE35 /* Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				BE78F1BA6C5EE44EDEB3F0D1 /* Copy Pods Resources */,
-				9A3EDE593CCFF3A23E681016 /* Embed Pods Frameworks */,
+				1CCC79A4F26B6FE8D650CF95 /* Embed Pods Frameworks */,
+				0837FCE44F293FBB0E772E9E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BonMot;
+			name = BonMot_Example;
 			productName = BonMot;
-			productReference = 6003F58A195388D20070C39A /* BonMot.app */;
+			productReference = 6003F58A195388D20070C39A /* BonMot_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6003F5AD195388D20070C39A /* Tests */ = {
+		6003F5AD195388D20070C39A /* BonMot_Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot_Tests" */;
 			buildPhases = (
-				276546033FF199C33A8AEA86 /* Check Pods Manifest.lock */,
+				2468AD10DEDC9A5794D1E190 /* Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				4B189F1C62BA8C46507CA25B /* Copy Pods Resources */,
-				F8E39F3EA9A6C644F3FCE452 /* Embed Pods Frameworks */,
+				A7D8BFF86A740E1DC1EFE8BE /* Embed Pods Frameworks */,
+				063A46423FC0BD2C4AB50D4A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
-			name = Tests;
+			name = BonMot_Tests;
 			productName = BonMotTests;
-			productReference = 6003F5AE195388D20070C39A /* Tests.xctest */;
+			productReference = 6003F5AE195388D20070C39A /* BonMot_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -415,6 +414,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Zev Eisenberg";
 			};
@@ -431,8 +431,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* BonMot */,
-				6003F5AD195388D20070C39A /* Tests */,
+				6003F589195388D20070C39A /* BonMot_Example */,
+				6003F5AD195388D20070C39A /* BonMot_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -442,22 +442,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD79AF5A1AE58BDF00D9F0C5 /* ConcatenationCell.xib in Resources */,
-				CDDFD7ED1B7F9D4700A87008 /* IndentationCell.xib in Resources */,
-				CD79AF561AE58BCE00D9F0C5 /* InlineImagesCell.xib in Resources */,
-				CD79AF521AE58BC200D9F0C5 /* LineHeightCell.xib in Resources */,
-				CD79AF581AE58BD800D9F0C5 /* BaselineOffsetCell.xib in Resources */,
-				CD79AF4E1AE58B1900D9F0C5 /* BaselineCapHeightCell.xib in Resources */,
-				CD79AF501AE58B5600D9F0C5 /* TrackingCell.xib in Resources */,
-				CDB461F81B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.xib in Resources */,
+				CD6DF0391BF6AE8200676E2D /* TrackingCell.xib in Resources */,
+				CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */,
+				CD6DF0271BF6AE8200676E2D /* BaselineOffsetCell.xib in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				6003F5A1195388D20070C39A /* Main.storyboard in Resources */,
-				CD79AF541AE58BC700D9F0C5 /* FigureStyleCell.xib in Resources */,
-				CD356FD71B59B55D00572331 /* SpecialCharactersCell.xib in Resources */,
-				7A5A12CA1AF6685400D111BA /* Launch Screen.xib in Resources */,
-				CDFC93B81AE59FCA00C2B7C9 /* EBGaramond12-Regular.otf in Resources */,
+				CD6DF0291BF6AE8200676E2D /* ColorCell.xib in Resources */,
+				CD6DF02B1BF6AE8200676E2D /* ConcatenationCell.xib in Resources */,
+				CD6DF03F1BF6AFAA00676E2D /* EB Garamond License.txt in Resources */,
+				CD6DF0331BF6AE8200676E2D /* LineHeightCell.xib in Resources */,
+				CD6DF0251BF6AE8200676E2D /* BaselineCapHeightCell.xib in Resources */,
+				CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */,
+				CD6DF0311BF6AE8200676E2D /* InlineImagesCell.xib in Resources */,
+				CD6DF0351BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.xib in Resources */,
+				CD6DF02F1BF6AE8200676E2D /* IndentationCell.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				CDD4B9EE1AEB2C3F00B02A0A /* ColorCell.xib in Resources */,
+				CD6DF0561BF6B63300676E2D /* Main.storyboard in Resources */,
+				CD6DF02D1BF6AE8200676E2D /* FigureStyleCell.xib in Resources */,
+				CD6DF0371BF6AE8200676E2D /* SpecialCharactersCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,14 +467,59 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
-				CD39D8701B7FE32800336231 /* Images.xcassets in Resources */,
+				CD6DF0461BF6B24300676E2D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		276546033FF199C33A8AEA86 /* Check Pods Manifest.lock */ = {
+		063A46423FC0BD2C4AB50D4A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0837FCE44F293FBB0E772E9E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1CCC79A4F26B6FE8D650CF95 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2468AD10DEDC9A5794D1E190 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -488,52 +534,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		4B189F1C62BA8C46507CA25B /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9A3EDE593CCFF3A23E681016 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot/Pods-BonMot-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BE78F1BA6C5EE44EDEB3F0D1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot/Pods-BonMot-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ECFDB1F96820A3A10F4DC435 /* Check Pods Manifest.lock */ = {
+		6AB594B297DF552235E1CE35 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -548,7 +549,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F8E39F3EA9A6C644F3FCE452 /* Embed Pods Frameworks */ = {
+		A7D8BFF86A740E1DC1EFE8BE /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -560,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -570,23 +571,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDFDF5511B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
-				CDB461F71B63246D00F1B49B /* ProgrammaticBaselineCapHeightCell.m in Sources */,
-				CD79AF431AE5823200D9F0C5 /* BaselineCapHeightCell.m in Sources */,
-				CD79AF461AE5824000D9F0C5 /* InlineImagesCell.m in Sources */,
-				CDD4B9ED1AEB2C3F00B02A0A /* ColorCell.m in Sources */,
-				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
-				CD9652561AE58DB90013C6B1 /* AbstractCell.m in Sources */,
-				6003F5A7195388D20070C39A /* RootViewController.m in Sources */,
-				CD79AF491AE5824F00D9F0C5 /* ConcatenationCell.m in Sources */,
-				CD79AF4C1AE5873D00D9F0C5 /* BaselineOffsetCell.m in Sources */,
-				CD79AF3D1AE5820700D9F0C5 /* LineHeightCell.m in Sources */,
-				CD9E41581AE44B3E00ECFBFB /* TrackingCell.m in Sources */,
-				CD79AF401AE5821A00D9F0C5 /* FigureStyleCell.m in Sources */,
-				CDDFD7EC1B7F9D4700A87008 /* IndentationCell.m in Sources */,
+				CD6DF02E1BF6AE8200676E2D /* IndentationCell.m in Sources */,
+				CD6DF0241BF6AE8200676E2D /* BaselineCapHeightCell.m in Sources */,
+				CD6DF0361BF6AE8200676E2D /* SpecialCharactersCell.m in Sources */,
+				CD6DF0341BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.m in Sources */,
+				CD6DF0301BF6AE8200676E2D /* InlineImagesCell.m in Sources */,
+				CD6DF0281BF6AE8200676E2D /* ColorCell.m in Sources */,
+				CD6DF02C1BF6AE8200676E2D /* FigureStyleCell.m in Sources */,
+				CD6DF04A1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,
+				CD6DF0591BF6B7AF00676E2D /* DashedHairlineView.m in Sources */,
+				CD6DF0381BF6AE8200676E2D /* TrackingCell.m in Sources */,
+				CD6DF0231BF6AE8200676E2D /* AbstractCell.m in Sources */,
+				CD6DEFF61BF6AE4C00676E2D /* AppDelegate.m in Sources */,
+				CD6DEFF91BF6AE5800676E2D /* RootViewController.m in Sources */,
+				CD6DF02A1BF6AE8200676E2D /* ConcatenationCell.m in Sources */,
+				CD6DF0321BF6AE8200676E2D /* LineHeightCell.m in Sources */,
+				CD6DF0261BF6AE8200676E2D /* BaselineOffsetCell.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				CD9E415D1AE46F3B00ECFBFB /* DashedHairlineView.m in Sources */,
-				CD356FD61B59B55D00572331 /* SpecialCharactersCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,17 +595,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDFDF5521B51880D00A1AD42 /* NSDictionary+BONEquality.m in Sources */,
-				CDB7D35B1BC88C05006B842F /* BONPropertyClobberingTestCase.m in Sources */,
-				CDEEF16B1BE400BF00A237EC /* BONTextAlignmentTestCase.m in Sources */,
-				CDFDF5541B518F3900A1AD42 /* BONDictionaryEqualityTestCase.m in Sources */,
-				CDFCA9E11B5078E0000E47DB /* BONBaseTestCase.m in Sources */,
-				CDB7D3591BC86FF8006B842F /* BONChainableTestCase.m in Sources */,
-				CD39D86E1B7FE1CB00336231 /* BONIndentSpacerTestCase.m in Sources */,
-				CDC8D95A1BE42FCD001F30A2 /* BONDebugStringTestCase.m in Sources */,
-				CD24988D1B30CBA90055F2A7 /* BONTrackingTestCase.m in Sources */,
-				CDAB918C1B5F2A410023E432 /* BONTextAlignmentConstraintTestCase.m in Sources */,
-				720F06361BD819400077DC84 /* BONChainEmptyStringTestCase.m in Sources */,
+				CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */,
+				CD6DF04B1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,
+				CD6DEFE51BF6ADF900676E2D /* BONChainEmptyStringTestCase.m in Sources */,
+				CD6DEFED1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m in Sources */,
+				CD6DEFF11BF6ADF900676E2D /* BONTextAlignmentTestCase.m in Sources */,
+				CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */,
+				CD6DEFE31BF6ADF900676E2D /* BONChainableTestCase.m in Sources */,
+				CD6DEFF31BF6ADF900676E2D /* BONTrackingTestCase.m in Sources */,
+				CD6DEFE91BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m in Sources */,
+				CD6DEFEB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m in Sources */,
+				CD6DEFEF1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m in Sources */,
+				CD6DEFE71BF6ADF900676E2D /* BONDebugStringTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,7 +615,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* BonMot */;
+			target = 6003F589195388D20070C39A /* BonMot_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -627,20 +629,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		6003F59F195388D20070C39A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6003F5A0195388D20070C39A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6003F5B8195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6003F5B9195388D20070C39A /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CD6DF0541BF6B63300676E2D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD6DF0551BF6B63300676E2D /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -679,7 +681,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -695,6 +697,7 @@
 					"-Wno-gnu",
 					"-Wnewline-eof",
 					"-Rno-module-build",
+					"-Wno-auto-import",
 				);
 			};
 			name = Debug;
@@ -725,7 +728,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -741,43 +744,47 @@
 					"-Wno-gnu",
 					"-Wnewline-eof",
 					"-Rno-module-build",
+					"-Wno-auto-import",
 				);
 			};
 			name = Release;
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E84D35CA3666CF0D172AD61 /* Pods-BonMot.debug.xcconfig */;
+			baseConfigurationReference = 442D6A6A5BDCDABF372F06F0 /* Pods-BonMot_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "BonMot/BonMot-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.demo.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = BonMot;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raizlabs.demo.BonMot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA798F8B87019E9A6673F5A3 /* Pods-BonMot.release.xcconfig */;
+			baseConfigurationReference = EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "BonMot/BonMot-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.demo.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = BonMot;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MODULE_NAME = ExampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raizlabs.demo.BonMot;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC26879CFC50F3E9302E163B /* Pods-Tests.debug.xcconfig */;
+			baseConfigurationReference = 8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -789,7 +796,6 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
-					"-Wno-auto-import",
 					"-Wno-incomplete-module",
 					"-Wno-reserved-id-macro",
 				);
@@ -799,7 +805,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 014804514A6243D91F7F3623 /* Pods-Tests.release.xcconfig */;
+			baseConfigurationReference = AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
@@ -807,7 +813,6 @@
 				WARNING_CFLAGS = (
 					"$(inherited)",
 					"-Wno-documentation-unknown-command",
-					"-Wno-auto-import",
 					"-Wno-incomplete-module",
 					"-Wno-reserved-id-macro",
 				);
@@ -827,7 +832,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
@@ -836,7 +841,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,

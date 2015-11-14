@@ -8,7 +8,7 @@
 
 @import XCTest;
 
-#import <BONMot/BonMot.h>
+@import BonMot;
 
 @interface BONPropertyClobberingTestCase : XCTestCase
 
