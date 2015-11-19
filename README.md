@@ -137,9 +137,8 @@ BonMot uses NSTextAttachment to embed images in strings. Simply use the `.image`
 
 ```objc
 BONChain *chain = BONChain.new;
-chain
-.append(BONChain.new.image(someUIImage).baselineOffset(-4.0f))
-.appendWithSeparator(@" ", BONChain.new.text(@"label with icon"));
+[chain appendLink:BONChain.new.image(someUIImage).baselineOffset(-4.0f)];
+[chain appendLink:BONChain.new.text(@"label with icon") separator: @" "];
 NSAttributedString *string = chain.attributedString;
 ```
 
@@ -152,9 +151,8 @@ If you need to wrap multiple lines of text after an image, use the `indentSpacer
 ```objc
 NSString *quote = @"This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned";
 BONChain *chain = BONChain.new;
-chain
-.append(BONChain.new.image(someUIIMage).indentSpacer(10.0f))
-.append(BONChain.new.string(quote));
+[chain appendLink:BONChain.new.image(someUIIMage).indentSpacer(10.0f)];
+[chain appendLink:BONChain.new.string(quote)];
 NSAttributedString *attributedString = chain.attributedString;
 ```
 
