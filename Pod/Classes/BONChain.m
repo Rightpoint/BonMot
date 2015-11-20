@@ -202,7 +202,6 @@
 - (BONChainIndentSpacer)indentSpacer
 {
     BONChainIndentSpacer indentSpacerBlock = ^(CGFloat indentSpacer) {
-        NSAssert(indentSpacer > 0.0f, @"Indent spacer values must be greater than zero. Received %@", @(indentSpacer));
         __typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.indentSpacer = indentSpacer;
         return newChain;

@@ -60,4 +60,64 @@
     XCTAssertEqualObjects(attributedString.string, controlString);
 }
 
+- (void)testIndentSpacer
+{
+    BONChain *testChain;
+    XCTAssertNoThrow(testChain = BONChain.new.string(@"hello ").font([UIFont systemFontOfSize:12.0f]).indentSpacer(10.0f));
+    XCTAssertNotNil(testChain);
+
+    [testChain appendLink:BONChain.new.string(@"world").font([UIFont boldSystemFontOfSize:12.0f])];
+
+    XCTAssertEqualObjects(testChain.attributedString.string, @"hello \tworld");
+
+    NSMutableParagraphStyle *controlParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+    NSMutableParagraphStyle *indentedControlParagraphStyle = controlParagraphStyle.mutableCopy;
+    indentedControlParagraphStyle.headIndent = 41.0f;
+    indentedControlParagraphStyle.tabStops = @[
+        [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:41.0f options:@{}],
+    ];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 7) : @{
+            NSParagraphStyleAttributeName : indentedControlParagraphStyle.copy,
+            NSFontAttributeName : [UIFont systemFontOfSize:12.0f],
+        },
+        BONValueFromRange(7, 5) : @{
+            NSParagraphStyleAttributeName : controlParagraphStyle.copy,
+            NSFontAttributeName : [UIFont boldSystemFontOfSize:12.0f],
+        },
+    };
+    BONAssertAttributedStringHasAttributes(testChain.attributedString, controlAttributes);
+}
+
+- (void)testZeroIndentSpacer
+{
+    BONChain *testChain;
+    XCTAssertNoThrow(testChain = BONChain.new.string(@"hello ").font([UIFont systemFontOfSize:12.0f]).indentSpacer(0.0f));
+    XCTAssertNotNil(testChain);
+
+    [testChain appendLink:BONChain.new.string(@"world").font([UIFont boldSystemFontOfSize:12.0f])];
+
+    XCTAssertEqualObjects(testChain.attributedString.string, @"hello \tworld");
+
+    NSMutableParagraphStyle *controlParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+    NSMutableParagraphStyle *indentedControlParagraphStyle = controlParagraphStyle.mutableCopy;
+    indentedControlParagraphStyle.headIndent = 31.0f;
+    indentedControlParagraphStyle.tabStops = @[
+        [[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentNatural location:31.0f options:@{}],
+    ];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 7) : @{
+            NSParagraphStyleAttributeName : indentedControlParagraphStyle.copy,
+            NSFontAttributeName : [UIFont systemFontOfSize:12.0f],
+        },
+        BONValueFromRange(7, 5) : @{
+            NSParagraphStyleAttributeName : controlParagraphStyle.copy,
+            NSFontAttributeName : [UIFont boldSystemFontOfSize:12.0f],
+        },
+    };
+    BONAssertAttributedStringHasAttributes(testChain.attributedString, controlAttributes);
+}
+
 @end
