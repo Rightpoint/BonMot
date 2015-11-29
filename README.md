@@ -172,7 +172,7 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTex
 
 `BONTextAlignmentConstraint` works with any views that expose a `font` property. It uses Key-Value Observing to watch for changes to the `font` property, and adjust its internal measurements accordingly. This is ideal for use with Dynamic Type: if the user changes the font size of the app, `BONTextAlignmentConstraint` will update. You can also use it to align a label with a plain view, as illustrated by the red dotted line views in the example above.
 
-**Warning:** `BONTextAlignmentConstraint` holds strong references to its `firstItem` and `secondItem` properties. Make that sure a view that is constrained by this constraint does not also hold a strong reference to said constraint, because it will cause a retain cycle.
+**Warning:** `BONTextAlignmentConstraint` holds strong references to its `firstItem` and `secondItem` properties. Make sure that a view that is constrained by this constraint does not also hold a strong reference to said constraint, because it will cause a retain cycle.
 
 You can use `BONTextAlignmentConstraint` programmatically or in Interface Builder. In code, use the convenience initializer:
 
