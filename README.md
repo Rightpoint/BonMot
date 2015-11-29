@@ -36,7 +36,7 @@ Think something is missing? Please [file an issue](https://github.com/Raizlabs/B
 
 ## Usage
 
-In any file where you want to use BonMot, simply `#import <BonMot/BonMot.h>`.
+In any file where you want to use BonMot, simply `#import <BonMot/BonMot.h>` or `@import BonMot`.
 
 The basic object in BonMot is `BONText`. You create a text object, set some properties to configure the font, and then ask for its `.attributedString` to get a string formatted according to your specification. Or ask for `.attributes` if you just need the attributes dictionary:
 
@@ -133,7 +133,7 @@ Outputs:
 
 ## Image Attachments
 
-BonMot uses NSTextAttachment to embed images in strings. Simply use the `.image` property of a chain or text:
+BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain or text:
 
 ```objc
 BONChain *chain = BONChain.new;
@@ -170,9 +170,9 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTex
 
 <img width=320 src="readme-images/text-alignment.png" alt="Illustration of different methods of aligning text vertically" />
 
-`BONTextAlignmentConstraint` works with any views that expose a `font` property. It uses Key-Value Observing to watch for changes to the `font` property, and adjust its internal measurements accordingly. This is ideal for use with Dynamic Type: if the user changes the font size of the app, `BONTextAlignmentConstraint` will update. You can also use it to align a label with a plain view, as illustrated by the red dotted lines in the example above.
+`BONTextAlignmentConstraint` works with any views that expose a `font` property. It uses Key-Value Observing to watch for changes to the `font` property, and adjust its internal measurements accordingly. This is ideal for use with Dynamic Type: if the user changes the font size of the app, `BONTextAlignmentConstraint` will update. You can also use it to align a label with a plain view, as illustrated by the red dotted line views in the example above.
 
-**Warning:** `BONTextAlignmentConstraint` holds strong references to its `firstItem` and `secondItem` properties. Make sure not to have a view that is constrained by this constraint also hold a strong reference to it, because it will cause a retain cycle.
+**Warning:** `BONTextAlignmentConstraint` holds strong references to its `firstItem` and `secondItem` properties. Make that a view that is constrained by this constraint does not also hold a strong reference to it, because it will cause a retain cycle.
 
 You can use `BONTextAlignmentConstraint` programmatically or in Interface Builder. In code, use the convenience initializer:
 
