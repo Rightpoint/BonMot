@@ -66,6 +66,9 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  */
 @property (nonatomic) CGFloat indentSpacer;
 
+@property (assign, nonatomic) NSUnderlineStyle underlineStyle;
+@property (strong, nonatomic) UIColor          *underlineColor;
+
 // Getting Values Out
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
