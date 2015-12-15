@@ -23,7 +23,7 @@ pod 'BonMot'
 
 BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
 
-```ogml
+```ogdl
 github "Raizlabs/BonMot"
 ```
 
