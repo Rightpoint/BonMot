@@ -268,6 +268,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
     }
 
+    // Line Spacing
+
+    if (self.lineSpacing != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.lineSpacing = self.lineSpacing;
+    }
+
     // Baseline Offset
 
     if (self.baselineOffset != 0.0f && !self.image) {

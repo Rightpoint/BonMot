@@ -133,6 +133,17 @@
     return [lineHeightMultipleBlock copy];
 }
 
+- (BONChainLineSpacing)lineSpacing
+{
+    BONChainLineSpacing lineSpacingBlock = ^(CGFloat lineSpacing) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.lineSpacing = lineSpacing;
+        return newChain;
+    };
+
+    return [lineSpacingBlock copy];
+}
+
 - (BONChainBaselineOffset)baselineOffset
 {
     BONChainBaselineOffset baselineOffsetBlock = ^(CGFloat baselineOffset) {

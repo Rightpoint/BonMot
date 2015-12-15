@@ -46,6 +46,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) CGFloat pointTracking;
 
 @property (nonatomic) CGFloat lineHeightMultiple;
+@property (nonatomic) CGFloat lineSpacing;
 
 @property (nonatomic) CGFloat baselineOffset;
 
