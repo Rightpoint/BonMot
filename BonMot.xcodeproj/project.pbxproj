@@ -8,30 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		303630F91C20668400DA1D1D /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = 303630F81C20668400DA1D1D /* BonMot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3036310F1C2066D200DA1D1D /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631021C2066D200DA1D1D /* BONChain.h */; };
+		3036310F1C2066D200DA1D1D /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631021C2066D200DA1D1D /* BONChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303631101C2066D200DA1D1D /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 303631031C2066D200DA1D1D /* BONChain.m */; };
-		303631111C2066D200DA1D1D /* BONChainable.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631041C2066D200DA1D1D /* BONChainable.h */; };
-		303631121C2066D200DA1D1D /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631051C2066D200DA1D1D /* BONSpecial.h */; };
+		303631111C2066D200DA1D1D /* BONChainable.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631041C2066D200DA1D1D /* BONChainable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		303631121C2066D200DA1D1D /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631051C2066D200DA1D1D /* BONSpecial.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303631131C2066D200DA1D1D /* BONSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 303631061C2066D200DA1D1D /* BONSpecial.m */; };
-		303631141C2066D200DA1D1D /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631071C2066D200DA1D1D /* BONText.h */; };
+		303631141C2066D200DA1D1D /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631071C2066D200DA1D1D /* BONText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303631151C2066D200DA1D1D /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = 303631081C2066D200DA1D1D /* BONText.m */; };
 		303631161C2066D200DA1D1D /* BONText_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631091C2066D200DA1D1D /* BONText_Private.h */; };
-		303631171C2066D200DA1D1D /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310A1C2066D200DA1D1D /* BONTextAlignmentConstraint.h */; };
+		303631171C2066D200DA1D1D /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310A1C2066D200DA1D1D /* BONTextAlignmentConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303631181C2066D200DA1D1D /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3036310B1C2066D200DA1D1D /* BONTextAlignmentConstraint.m */; };
-		303631191C2066D200DA1D1D /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310C1C2066D200DA1D1D /* UIImage+BonMotUtilities.h */; };
+		303631191C2066D200DA1D1D /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310C1C2066D200DA1D1D /* UIImage+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3036311A1C2066D200DA1D1D /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3036310D1C2066D200DA1D1D /* UIImage+BonMotUtilities.m */; };
 		3036311D1C20676700DA1D1D /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 303631031C2066D200DA1D1D /* BONChain.m */; };
 		3036311E1C20676700DA1D1D /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = 303631081C2066D200DA1D1D /* BONText.m */; };
 		3036311F1C20676700DA1D1D /* BONSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 303631061C2066D200DA1D1D /* BONSpecial.m */; };
 		303631201C20676700DA1D1D /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3036310D1C2066D200DA1D1D /* UIImage+BonMotUtilities.m */; };
 		303631211C20676700DA1D1D /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3036310B1C2066D200DA1D1D /* BONTextAlignmentConstraint.m */; };
-		303631241C20676700DA1D1D /* BONChainable.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631041C2066D200DA1D1D /* BONChainable.h */; };
-		303631251C20676700DA1D1D /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631021C2066D200DA1D1D /* BONChain.h */; };
-		303631261C20676700DA1D1D /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310A1C2066D200DA1D1D /* BONTextAlignmentConstraint.h */; };
-		303631271C20676700DA1D1D /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631071C2066D200DA1D1D /* BONText.h */; };
-		303631281C20676700DA1D1D /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631051C2066D200DA1D1D /* BONSpecial.h */; };
+		303631241C20676700DA1D1D /* BONChainable.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631041C2066D200DA1D1D /* BONChainable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		303631251C20676700DA1D1D /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631021C2066D200DA1D1D /* BONChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		303631261C20676700DA1D1D /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310A1C2066D200DA1D1D /* BONTextAlignmentConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		303631271C20676700DA1D1D /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631071C2066D200DA1D1D /* BONText.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		303631281C20676700DA1D1D /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631051C2066D200DA1D1D /* BONSpecial.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303631291C20676700DA1D1D /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = 303630F81C20668400DA1D1D /* BonMot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3036312A1C20676700DA1D1D /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310C1C2066D200DA1D1D /* UIImage+BonMotUtilities.h */; };
+		3036312A1C20676700DA1D1D /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 3036310C1C2066D200DA1D1D /* UIImage+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3036312B1C20676700DA1D1D /* BONText_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 303631091C2066D200DA1D1D /* BONText_Private.h */; };
 /* End PBXBuildFile section */
 
