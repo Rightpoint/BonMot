@@ -305,6 +305,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.adobeTracking = self.adobeTracking;
     text.pointTracking = self.pointTracking;
     text.lineHeightMultiple = self.lineHeightMultiple;
+    text.lineSpacing = self.lineSpacing;
     text.baselineOffset = self.baselineOffset;
     text.alignment = self.alignment;
     text.figureCase = self.figureCase;
