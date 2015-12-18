@@ -35,6 +35,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Text Color
 - Tracking (in either UIKit Points or Adobe-friendly thousandths of an *em*)
 - Line Height Multiple
+- Line Spacing
 - Baseline Offset
 - Text alignment
 - Figure Case (uppercase vs. lowercase numbers)

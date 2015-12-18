@@ -268,6 +268,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
     }
 
+    // Line Spacing
+
+    if (self.lineSpacing != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.lineSpacing = self.lineSpacing;
+    }
+
     // Baseline Offset
 
     if (self.baselineOffset != 0.0f && !self.image) {
@@ -298,6 +305,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.adobeTracking = self.adobeTracking;
     text.pointTracking = self.pointTracking;
     text.lineHeightMultiple = self.lineHeightMultiple;
+    text.lineSpacing = self.lineSpacing;
     text.baselineOffset = self.baselineOffset;
     text.alignment = self.alignment;
     text.figureCase = self.figureCase;

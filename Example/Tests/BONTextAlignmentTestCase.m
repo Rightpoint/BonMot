@@ -65,15 +65,16 @@
     XCTAssertEqual(testParagraphStyle.alignment, NSTextAlignmentCenter);
 }
 
-// Test setting both line height multiple and alignment, since they both affect the paragraph style
-- (void)testMixingAlignmentAndLineHeightMultiple
+// Test setting line height multiple, line spacing, and alignment, since they all affect the paragraph style
+- (void)testMixingAlignmentLineHeightMultipleAndLineSpacing
 {
-    BONChain *chain = BONChain.new.string(@"E pluribus unum").alignment(NSTextAlignmentCenter).lineHeightMultiple(3.14);
+    BONChain *chain = BONChain.new.string(@"E pluribus unum").alignment(NSTextAlignmentCenter).lineHeightMultiple(3.14).lineSpacing(2.72);
     NSAttributedString *string = chain.attributedString;
 
     NSMutableParagraphStyle *controlParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     controlParagraphStyle.alignment = NSTextAlignmentCenter;
     controlParagraphStyle.lineHeightMultiple = 3.14;
+    controlParagraphStyle.lineSpacing = 2.72;
 
     NSDictionary *controlAttributes = @{
         BONValueFromRange(0, 15) : @{
@@ -88,6 +89,7 @@
     XCTAssertNotNil(testParagraphStyle);
     XCTAssertEqual(testParagraphStyle.alignment, NSTextAlignmentCenter);
     XCTAssertEqualWithAccuracy(testParagraphStyle.lineHeightMultiple, 3.14, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.lineSpacing, 2.72, kBONCGFloatEpsilon);
 }
 
 @end
