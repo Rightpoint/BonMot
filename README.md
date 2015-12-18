@@ -41,6 +41,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Figure Case (uppercase vs. lowercase numbers)
 - Figure Spacing (monospace vs. proportional numbers)
 - Inline Images with optional multi-line paragraph alignment
+- Underlining and strikethrough
 
 Think something is missing? Please [file an issue](https://github.com/Raizlabs/BonMot/issues) (or add a +1 if one already exists).
 
