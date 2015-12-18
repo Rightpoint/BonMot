@@ -70,6 +70,9 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) NSUnderlineStyle underlineStyle;
 @property (strong, nonatomic) UIColor *underlineColor;
 
+@property (nonatomic) NSUnderlineStyle strikethroughStyle;
+@property (strong, nonatomic) UIColor *strikethroughColor;
+
 // Getting Values Out
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;

@@ -36,6 +36,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     if (self) {
         self.alignment = NSTextAlignmentNatural;
         self.underlineStyle = NSUnderlineStyleNone;
+        self.strikethroughStyle = NSUnderlineStyleNone;
     }
 
     return self;
@@ -293,7 +294,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
 
-    // Text Underlining
+    // Underlining
 
     if (self.underlineStyle != NSUnderlineStyleNone) {
         attributes[NSUnderlineStyleAttributeName] = @(self.underlineStyle);
@@ -301,6 +302,16 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     if (self.underlineColor) {
         attributes[NSUnderlineColorAttributeName] = self.underlineColor;
+    }
+
+    // Strikethrough
+
+    if (self.strikethroughStyle != NSUnderlineStyleNone) {
+        attributes[NSStrikethroughStyleAttributeName] = @(self.strikethroughStyle);
+    }
+
+    if (self.strikethroughColor) {
+        attributes[NSStrikethroughColorAttributeName] = self.strikethroughColor;
     }
 
     return attributes;
@@ -329,6 +340,9 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     text.underlineStyle = self.underlineStyle;
     text.underlineColor = self.underlineColor;
+
+    text.strikethroughStyle = self.strikethroughStyle;
+    text.strikethroughColor = self.strikethroughColor;
 
     return text;
 }
