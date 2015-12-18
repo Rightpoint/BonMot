@@ -27,6 +27,9 @@ typedef BONChain * (^BONChainIndentSpacer)(CGFloat indentSpacer);
 typedef BONChain * (^BONChainString)(NSString *string);
 typedef BONChain * (^BONChainImage)(UIImage *image);
 
+typedef BONChain * (^BONChainUnderlineStyle)(NSUnderlineStyle style);
+typedef BONChain * (^BONChainUnderlineColor)(UIColor *color);
+
 @interface BONChain : NSObject <NSCopying, BONChainable>
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
@@ -62,6 +65,9 @@ typedef BONChain * (^BONChainImage)(UIImage *image);
  *  Must be greater than 0.
  */
 @property (copy, nonatomic, readonly) BONChainIndentSpacer indentSpacer;
+
+@property (copy, nonatomic, readonly) BONChainUnderlineStyle underlineStyle;
+@property (copy, nonatomic, readonly) BONChainUnderlineColor underlineColor;
 
 // concatenation
 - (void)appendLink:(id<BONChainable>)link;

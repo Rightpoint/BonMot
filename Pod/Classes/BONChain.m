@@ -221,6 +221,28 @@
     return [indentSpacerBlock copy];
 }
 
+- (BONChainUnderlineStyle)underlineStyle
+{
+  BONChainUnderlineStyle underlineStyleBlock = ^(NSUnderlineStyle style) {
+    __typeof(self) newChain = self.copyWithoutNextText;
+    newChain.text.underlineStyle = style;
+    return newChain;
+  };
+
+  return [underlineStyleBlock copy];
+}
+
+- (BONChainUnderlineColor)underlineColor
+{
+  BONChainUnderlineColor underlineColorBlock = ^(UIColor *color) {
+    __typeof(self) newChain = self.copyWithoutNextText;
+    newChain.text.underlineColor = color;
+    return newChain;
+  };
+
+  return [underlineColorBlock copy];
+}
+
 - (void)appendLink:(id<BONChainable>)link
 {
     [self appendLink:link separator:nil];

@@ -292,6 +292,16 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         attributes[NSParagraphStyleAttributeName] = paragraphStyle;
     }
 
+    // Text Underlining
+
+    if (self.underlineStyle != NSUnderlineStyleNone) {
+        attributes[NSUnderlineStyleAttributeName] = @(self.underlineStyle);
+    }
+
+    if (self.underlineColor != nil) {
+        attributes[NSUnderlineColorAttributeName] = self.underlineColor;
+    }
+
     return attributes;
 }
 
@@ -313,7 +323,12 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.string = self.string;
     text.image = self.image;
     text.nextText = self.nextText;
+
+    // !!!: why are you not copying indentSpace too
     text.internalIndentSpacer = self.internalIndentSpacer;
+
+    text.underlineStyle = self.underlineStyle;
+    text.underlineColor = self.underlineColor;
 
     return text;
 }
