@@ -32,14 +32,15 @@ github "Raizlabs/BonMot"
 BonMot uses attributed strings to give you control over the following typographical features:
 
 - Font
-- Text Color
+- Text color
 - Tracking (in either UIKit Points or Adobe-friendly thousandths of an *em*)
-- Line Height Multiple
-- Line Spacing
-- Baseline Offset
+- Line height multiple
+- Line spacing
+- Baseline offset
 - Text alignment
-- Figure Case (uppercase vs. lowercase numbers)
-- Figure Spacing (monospace vs. proportional numbers)
+- Underlining and strikethrough
+- Figure case (uppercase vs. lowercase numbers)
+- Figure spacing (monospace vs. proportional numbers)
 - Inline Images with optional multi-line paragraph alignment
 
 Think something is missing? Please [file an issue](https://github.com/Raizlabs/BonMot/issues) (or add a +1 if one already exists).
