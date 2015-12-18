@@ -66,7 +66,7 @@
 }
 
 // Test setting line height multiple, line spacing, and alignment, since they all affect the paragraph style
-- (void)testMixingAlignmentAndLineHeightMultiple
+- (void)testMixingAlignmentLineHeightMultipleAndLineSpacing
 {
     BONChain *chain = BONChain.new.string(@"E pluribus unum").alignment(NSTextAlignmentCenter).lineHeightMultiple(3.14).lineSpacing(2.72);
     NSAttributedString *string = chain.attributedString;
