@@ -263,6 +263,27 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         attributes[NSKernAttributeName] = @(trackingInPoints);
     }
 
+    // First Line Head Indent
+    
+    if (self.firstLineHeadIndent != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.firstLineHeadIndent = self.firstLineHeadIndent;
+    }
+
+    // Head Indent
+    
+    if (self.headIndent != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.headIndent = self.headIndent;
+    }
+
+    // Head Indent
+    
+    if (self.tailIndent != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.tailIndent = self.tailIndent;
+    }
+
     // Line Height
 
     if (self.lineHeightMultiple != 1.0f) {
@@ -270,11 +291,39 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
     }
 
+    // Maximum Line Height
+    
+    if (self.maximumLineHeight != 1.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.maximumLineHeight = self.maximumLineHeight;
+    }
+
+    // Minimum Line Height
+    
+    if (self.minimumLineHeight != 1.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.minimumLineHeight = self.minimumLineHeight;
+    }
+
     // Line Spacing
 
     if (self.lineSpacing != 0.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineSpacing = self.lineSpacing;
+    }
+
+    // Paragraph Spacing
+    
+    if (self.paragraphSpacing != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.paragraphSpacing = self.paragraphSpacing;
+    }
+
+    // Paragraph Spacing Before
+    
+    if (self.paragraphSpacingBefore != 0.0f) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.paragraphSpacingBefore = self.paragraphSpacingBefore;
     }
 
     // Baseline Offset
@@ -326,8 +375,15 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.backgroundColor = self.backgroundColor;
     text.adobeTracking = self.adobeTracking;
     text.pointTracking = self.pointTracking;
+    text.firstLineHeadIndent = self.firstLineHeadIndent;
+    text.headIndent = self.headIndent;
+    text.tailIndent = self.tailIndent;
     text.lineHeightMultiple = self.lineHeightMultiple;
+    text.maximumLineHeight = self.maximumLineHeight;
+    text.minimumLineHeight = self.minimumLineHeight;
     text.lineSpacing = self.lineSpacing;
+    text.paragraphSpacing = self.paragraphSpacing;
+    text.paragraphSpacingBefore = self.paragraphSpacingBefore;
     text.baselineOffset = self.baselineOffset;
     text.alignment = self.alignment;
     text.figureCase = self.figureCase;

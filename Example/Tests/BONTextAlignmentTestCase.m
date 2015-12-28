@@ -65,16 +65,34 @@
     XCTAssertEqual(testParagraphStyle.alignment, NSTextAlignmentCenter);
 }
 
-// Test setting line height multiple, line spacing, and alignment, since they all affect the paragraph style
-- (void)testMixingAlignmentLineHeightMultipleAndLineSpacing
+// Test setting the various paragraph style attributes
+- (void)testParagraphStyle
 {
-    BONChain *chain = BONChain.new.string(@"E pluribus unum").alignment(NSTextAlignmentCenter).lineHeightMultiple(3.14).lineSpacing(2.72);
+    BONChain *chain = BONChain.new
+        .string(@"E pluribus unum")
+        .alignment(NSTextAlignmentCenter)
+        .firstLineHeadIndent(1.23)
+        .headIndent(2.34)
+        .tailIndent(3.45)
+        .lineHeightMultiple(3.14)
+        .maximumLineHeight(5.67)
+        .minimumLineHeight(4.56)
+        .lineSpacing(2.72)
+        .paragraphSpacing(6.78)
+        .paragraphSpacingBefore(7.89);
     NSAttributedString *string = chain.attributedString;
 
     NSMutableParagraphStyle *controlParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     controlParagraphStyle.alignment = NSTextAlignmentCenter;
+    controlParagraphStyle.firstLineHeadIndent = 1.23;
+    controlParagraphStyle.headIndent = 2.34;
+    controlParagraphStyle.tailIndent = 3.45;
     controlParagraphStyle.lineHeightMultiple = 3.14;
+    controlParagraphStyle.maximumLineHeight = 5.67;
+    controlParagraphStyle.minimumLineHeight = 4.56;
     controlParagraphStyle.lineSpacing = 2.72;
+    controlParagraphStyle.paragraphSpacing = 6.78;
+    controlParagraphStyle.paragraphSpacingBefore = 7.89;
 
     NSDictionary *controlAttributes = @{
         BONValueFromRange(0, 15) : @{
@@ -88,8 +106,15 @@
     NSParagraphStyle *testParagraphStyle = testAttributes[NSParagraphStyleAttributeName];
     XCTAssertNotNil(testParagraphStyle);
     XCTAssertEqual(testParagraphStyle.alignment, NSTextAlignmentCenter);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.firstLineHeadIndent, 1.23, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 2.34, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.tailIndent, 3.45, kBONCGFloatEpsilon);
     XCTAssertEqualWithAccuracy(testParagraphStyle.lineHeightMultiple, 3.14, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.maximumLineHeight, 5.67, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.minimumLineHeight, 4.56, kBONCGFloatEpsilon);
     XCTAssertEqualWithAccuracy(testParagraphStyle.lineSpacing, 2.72, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacing, 6.78, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacingBefore, 7.89, kBONCGFloatEpsilon);
 }
 
 @end

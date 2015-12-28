@@ -45,8 +45,15 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) NSInteger adobeTracking;
 @property (nonatomic) CGFloat pointTracking;
 
+@property (nonatomic) CGFloat firstLineHeadIndent;
+@property (nonatomic) CGFloat headIndent;
+@property (nonatomic) CGFloat tailIndent;
 @property (nonatomic) CGFloat lineHeightMultiple;
+@property (nonatomic) CGFloat maximumLineHeight;
+@property (nonatomic) CGFloat minimumLineHeight;
 @property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) CGFloat paragraphSpacing;
+@property (nonatomic) CGFloat paragraphSpacingBefore;
 
 @property (nonatomic) CGFloat baselineOffset;
 
