@@ -52,7 +52,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) CGFloat maximumLineHeight;
 @property (nonatomic) CGFloat minimumLineHeight;
 @property (nonatomic) CGFloat lineSpacing;
-@property (nonatomic) CGFloat paragraphSpacing;
+@property (nonatomic) CGFloat paragraphSpacingAfter;
 @property (nonatomic) CGFloat paragraphSpacingBefore;
 
 @property (nonatomic) CGFloat baselineOffset;

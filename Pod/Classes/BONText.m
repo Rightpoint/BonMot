@@ -314,9 +314,9 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     // Paragraph Spacing
     
-    if (self.paragraphSpacing != 0.0f) {
+    if (self.paragraphSpacingAfter != 0.0f) {
         populateParagraphStyleIfNecessary();
-        paragraphStyle.paragraphSpacing = self.paragraphSpacing;
+        paragraphStyle.paragraphSpacing = self.paragraphSpacingAfter;
     }
 
     // Paragraph Spacing Before
@@ -382,7 +382,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     text.maximumLineHeight = self.maximumLineHeight;
     text.minimumLineHeight = self.minimumLineHeight;
     text.lineSpacing = self.lineSpacing;
-    text.paragraphSpacing = self.paragraphSpacing;
+    text.paragraphSpacingAfter = self.paragraphSpacingAfter;
     text.paragraphSpacingBefore = self.paragraphSpacingBefore;
     text.baselineOffset = self.baselineOffset;
     text.alignment = self.alignment;

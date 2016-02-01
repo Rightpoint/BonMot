@@ -199,15 +199,15 @@
     return [lineSpacingBlock copy];
 }
 
-- (BONChainParagraphSpacing)paragraphSpacing
+- (BONChainParagraphSpacing)paragraphSpacingAfter
 {
-    BONChainParagraphSpacing paragraphSpacingBlock = ^(CGFloat paragraphSpacing) {
+    BONChainParagraphSpacing paragraphSpacingAfterBlock = ^(CGFloat paragraphSpacing) {
         __typeof(self) newChain = self.copyWithoutNextText;
-        newChain.text.paragraphSpacing = paragraphSpacing;
+        newChain.text.paragraphSpacingAfter = paragraphSpacing;
         return newChain;
     };
     
-    return [paragraphSpacingBlock copy];
+    return [paragraphSpacingAfterBlock copy];
 }
 
 - (BONChainParagraphSpacingBefore)paragraphSpacingBefore

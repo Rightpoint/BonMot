@@ -64,7 +64,7 @@ typedef BONChain * (^BONChainStrikethroughColor)(UIColor *color);
 @property (copy, nonatomic, readonly) BONChainMaximumLineHeight maximumLineHeight;
 @property (copy, nonatomic, readonly) BONChainMinimumLineHeight minimumLineHeight;
 @property (copy, nonatomic, readonly) BONChainLineSpacing lineSpacing;
-@property (copy, nonatomic, readonly) BONChainParagraphSpacing paragraphSpacing;
+@property (copy, nonatomic, readonly) BONChainParagraphSpacing paragraphSpacingAfter;
 @property (copy, nonatomic, readonly) BONChainParagraphSpacingBefore paragraphSpacingBefore;
 
 @property (copy, nonatomic, readonly) BONChainBaselineOffset baselineOffset;

@@ -78,7 +78,7 @@
         .maximumLineHeight(5.67)
         .minimumLineHeight(4.56)
         .lineSpacing(2.72)
-        .paragraphSpacing(6.78)
+        .paragraphSpacingAfter(6.78)
         .paragraphSpacingBefore(7.89);
     NSAttributedString *string = chain.attributedString;
 
