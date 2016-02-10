@@ -69,17 +69,17 @@
 - (void)testParagraphStyle
 {
     BONChain *chain = BONChain.new
-        .string(@"E pluribus unum")
-        .alignment(NSTextAlignmentCenter)
-        .firstLineHeadIndent(1.23)
-        .headIndent(2.34)
-        .tailIndent(3.45)
-        .lineHeightMultiple(3.14)
-        .maximumLineHeight(5.67)
-        .minimumLineHeight(4.56)
-        .lineSpacing(2.72)
-        .paragraphSpacingAfter(6.78)
-        .paragraphSpacingBefore(7.89);
+                          .string(@"E pluribus unum")
+                          .alignment(NSTextAlignmentCenter)
+                          .firstLineHeadIndent(1.23)
+                          .headIndent(2.34)
+                          .tailIndent(3.45)
+                          .lineHeightMultiple(3.14)
+                          .maximumLineHeight(5.67)
+                          .minimumLineHeight(4.56)
+                          .lineSpacing(2.72)
+                          .paragraphSpacingAfter(6.78)
+                          .paragraphSpacingBefore(7.89);
     NSAttributedString *string = chain.attributedString;
 
     NSMutableParagraphStyle *controlParagraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -121,9 +121,9 @@
 - (void)testHeadIndentWithIndentSpacer
 {
     BONChain *chain = BONChain.new
-        .image([UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil])
-        .headIndent(1.23)
-        .indentSpacer(4.0);
+                          .image([UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil])
+                          .headIndent(1.23)
+                          .indentSpacer(4.0);
     [chain appendLink:chain.string(@"test")];
 
     NSDictionary *testAttributes = chain.attributes;
@@ -133,22 +133,21 @@
     // The `indentSpacer` doesn't overwrite the `headIndent` value
     XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
 
-    [testAttributedString enumerateAttributesInRange:NSMakeRange(0, [testAttributedString length]) options:0 usingBlock:
-     ^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
-         NSParagraphStyle *paragraphStyle = attrs[NSParagraphStyleAttributeName];
-         if (paragraphStyle != nil) {
-             NSString *substring = [testAttributedString.string substringWithRange:range];
-             NSLog(@"\"%@\": %@", substring, paragraphStyle);
+    [testAttributedString enumerateAttributesInRange:NSMakeRange(0, [testAttributedString length]) options:0 usingBlock:^(NSDictionary<NSString *, id> *_Nonnull attrs, NSRange range, BOOL *_Nonnull stop) {
+        NSParagraphStyle *paragraphStyle = attrs[NSParagraphStyleAttributeName];
+        if (paragraphStyle != nil) {
+            NSString *substring = [testAttributedString.string substringWithRange:range];
+            NSLog(@"\"%@\": %@", substring, paragraphStyle);
 
-             // The `indentSpacer` does overwrite the `headIndent` value for the object replacement character and the inserted tab
-             if ([substring isEqualToString:BONSpecial.objectReplacementCharacter] || [substring isEqualToString:@"\t"]) {
-                 XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 40.0, kBONCGFloatEpsilon);
-             }
-             else {
-                 XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
-             }
-         }
-     }];
+            // The `indentSpacer` _does_ overwrite the `headIndent` value for the object replacement character and the inserted tab
+            if ([substring isEqualToString:BONSpecial.objectReplacementCharacter] || [substring isEqualToString:BONSpecial.tab]) {
+                XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 40.0, kBONCGFloatEpsilon);
+            }
+            else {
+                XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
+            }
+        }
+    }];
 }
 
 @end
