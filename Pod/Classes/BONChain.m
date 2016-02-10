@@ -129,7 +129,7 @@
         newChain.text.firstLineHeadIndent = firstLineHeadIndent;
         return newChain;
     };
-    
+
     return [firstLineHeadIndentBlock copy];
 }
 
@@ -140,7 +140,7 @@
         newChain.text.headIndent = headIndent;
         return newChain;
     };
-    
+
     return [headIndentBlock copy];
 }
 
@@ -151,7 +151,7 @@
         newChain.text.tailIndent = tailIndent;
         return newChain;
     };
-    
+
     return [tailIndentBlock copy];
 }
 
@@ -173,7 +173,7 @@
         newChain.text.maximumLineHeight = maximumLineHeight;
         return newChain;
     };
-    
+
     return [maximumLineHeightBlock copy];
 }
 
@@ -184,7 +184,7 @@
         newChain.text.minimumLineHeight = minimumLineHeight;
         return newChain;
     };
-    
+
     return [minimumLineHeightBlock copy];
 }
 
@@ -206,7 +206,7 @@
         newChain.text.paragraphSpacingAfter = paragraphSpacingAfter;
         return newChain;
     };
-    
+
     return [paragraphSpacingAfterBlock copy];
 }
 
@@ -217,7 +217,7 @@
         newChain.text.paragraphSpacingBefore = paragraphSpacingBefore;
         return newChain;
     };
-    
+
     return [paragraphSpacingBeforeBlock copy];
 }
 
