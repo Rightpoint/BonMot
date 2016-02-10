@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 /**
  *  Space, in points, to apply after a preceding image or string. A combination of @c headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0.
  *
- *  NOTE: Using this property will overwrite the headIndent property for the paragraph.
+ *  @note Using this property will overwrite the @c headIndent property for the paragraph.
  */
 @property (nonatomic) CGFloat indentSpacer;
 
