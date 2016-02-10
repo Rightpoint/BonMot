@@ -201,9 +201,9 @@
 
 - (BONChainParagraphSpacingAfter)paragraphSpacingAfter
 {
-    BONChainParagraphSpacingAfter paragraphSpacingAfterBlock = ^(CGFloat paragraphSpacing) {
+    BONChainParagraphSpacingAfter paragraphSpacingAfterBlock = ^(CGFloat paragraphSpacingAfter) {
         __typeof(self) newChain = self.copyWithoutNextText;
-        newChain.text.paragraphSpacingAfter = paragraphSpacing;
+        newChain.text.paragraphSpacingAfter = paragraphSpacingAfter;
         return newChain;
     };
     
