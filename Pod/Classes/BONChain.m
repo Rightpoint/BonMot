@@ -122,6 +122,39 @@
     return [pointTrackingBlock copy];
 }
 
+- (BONChainFirstLineHeadIndent)firstLineHeadIndent
+{
+    BONChainFirstLineHeadIndent firstLineHeadIndentBlock = ^(CGFloat firstLineHeadIndent) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.firstLineHeadIndent = firstLineHeadIndent;
+        return newChain;
+    };
+
+    return [firstLineHeadIndentBlock copy];
+}
+
+- (BONChainHeadIndent)headIndent
+{
+    BONChainHeadIndent headIndentBlock = ^(CGFloat headIndent) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.headIndent = headIndent;
+        return newChain;
+    };
+
+    return [headIndentBlock copy];
+}
+
+- (BONChainTailIndent)tailIndent
+{
+    BONChainTailIndent tailIndentBlock = ^(CGFloat tailIndent) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.tailIndent = tailIndent;
+        return newChain;
+    };
+
+    return [tailIndentBlock copy];
+}
+
 - (BONChainLineHeight)lineHeightMultiple
 {
     BONChainLineHeight lineHeightMultipleBlock = ^(CGFloat lineHeightMultiple) {
@@ -133,6 +166,28 @@
     return [lineHeightMultipleBlock copy];
 }
 
+- (BONChainMaximumLineHeight)maximumLineHeight
+{
+    BONChainMaximumLineHeight maximumLineHeightBlock = ^(CGFloat maximumLineHeight) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.maximumLineHeight = maximumLineHeight;
+        return newChain;
+    };
+
+    return [maximumLineHeightBlock copy];
+}
+
+- (BONChainMinimumLineHeight)minimumLineHeight
+{
+    BONChainMinimumLineHeight minimumLineHeightBlock = ^(CGFloat minimumLineHeight) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.minimumLineHeight = minimumLineHeight;
+        return newChain;
+    };
+
+    return [minimumLineHeightBlock copy];
+}
+
 - (BONChainLineSpacing)lineSpacing
 {
     BONChainLineSpacing lineSpacingBlock = ^(CGFloat lineSpacing) {
@@ -142,6 +197,28 @@
     };
 
     return [lineSpacingBlock copy];
+}
+
+- (BONChainParagraphSpacingAfter)paragraphSpacingAfter
+{
+    BONChainParagraphSpacingAfter paragraphSpacingAfterBlock = ^(CGFloat paragraphSpacingAfter) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.paragraphSpacingAfter = paragraphSpacingAfter;
+        return newChain;
+    };
+
+    return [paragraphSpacingAfterBlock copy];
+}
+
+- (BONChainParagraphSpacingBefore)paragraphSpacingBefore
+{
+    BONChainParagraphSpacingBefore paragraphSpacingBeforeBlock = ^(CGFloat paragraphSpacingBefore) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.paragraphSpacingBefore = paragraphSpacingBefore;
+        return newChain;
+    };
+
+    return [paragraphSpacingBeforeBlock copy];
 }
 
 - (BONChainBaselineOffset)baselineOffset

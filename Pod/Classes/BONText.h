@@ -45,8 +45,15 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) NSInteger adobeTracking;
 @property (nonatomic) CGFloat pointTracking;
 
+@property (nonatomic) CGFloat firstLineHeadIndent;
+@property (nonatomic) CGFloat headIndent;
+@property (nonatomic) CGFloat tailIndent;
 @property (nonatomic) CGFloat lineHeightMultiple;
+@property (nonatomic) CGFloat maximumLineHeight;
+@property (nonatomic) CGFloat minimumLineHeight;
 @property (nonatomic) CGFloat lineSpacing;
+@property (nonatomic) CGFloat paragraphSpacingAfter;
+@property (nonatomic) CGFloat paragraphSpacingBefore;
 
 @property (nonatomic) CGFloat baselineOffset;
 
@@ -64,6 +71,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 /**
  *  Space, in points, to apply after a preceding image or string. A combination of @c headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0.
+ *
+ *  @note Using this property will overwrite the @c headIndent property for the paragraph.
  */
 @property (nonatomic) CGFloat indentSpacer;
 

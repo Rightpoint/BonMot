@@ -34,8 +34,15 @@ BonMot uses attributed strings to give you control over the following typographi
 - Font
 - Text color
 - Tracking (in either UIKit Points or Adobe-friendly thousandths of an *em*)
+- First line head indent
+- Head indent
+- Tail indent
 - Line height multiple
+- Maximum line height
+- Minimum line height
 - Line spacing
+- Paragraph spacing before
+- Paragraph spacing after
 - Baseline offset
 - Text alignment
 - Underlining and strikethrough
