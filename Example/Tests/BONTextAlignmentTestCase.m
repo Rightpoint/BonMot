@@ -137,7 +137,6 @@
         NSParagraphStyle *paragraphStyle = attrs[NSParagraphStyleAttributeName];
         if (paragraphStyle != nil) {
             NSString *substring = [testAttributedString.string substringWithRange:range];
-            NSLog(@"\"%@\": %@", substring, paragraphStyle);
 
             // The `indentSpacer` _does_ overwrite the `headIndent` value for the object replacement character and the inserted tab
             if ([substring isEqualToString:BONSpecial.objectReplacementCharacter] || [substring isEqualToString:BONSpecial.tab]) {
