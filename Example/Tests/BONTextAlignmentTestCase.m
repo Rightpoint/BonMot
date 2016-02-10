@@ -133,7 +133,7 @@
     // The `indentSpacer` doesn't overwrite the `headIndent` value
     XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
 
-    [testAttributedString enumerateAttributesInRange:NSMakeRange(0, [testAttributedString length]) options:0 usingBlock:^(NSDictionary<NSString *, id> *_Nonnull attrs, NSRange range, BOOL *_Nonnull stop) {
+    [testAttributedString enumerateAttributesInRange:NSMakeRange(0, testAttributedString.length) options:0 usingBlock:^(NSDictionary<NSString *, id> *_Nonnull attrs, NSRange range, BOOL *_Nonnull stop) {
         NSParagraphStyle *paragraphStyle = attrs[NSParagraphStyleAttributeName];
         if (paragraphStyle != nil) {
             NSString *substring = [testAttributedString.string substringWithRange:range];
