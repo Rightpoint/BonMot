@@ -109,7 +109,7 @@ BONChain *blueBirds = birdChain.textColor([UIColor blueColor]);
 // two different attributed strings with all attributes shared
 // except for text color
 NSAttributedString *redBirdString = redBirds.attributedString;
-NSAttributedString *blueBirdSring = blueBirds.attributedString;
+NSAttributedString *blueBirdString = blueBirds.attributedString;
 ```
 
 ## Concatenation
