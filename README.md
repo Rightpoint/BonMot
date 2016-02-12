@@ -169,7 +169,7 @@ If you need to wrap multiple lines of text after an image, use the `indentSpacer
 ```objc
 NSString *quote = @"This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned";
 BONChain *chain = BONChain.new;
-[chain appendLink:BONChain.new.image(someUIIMage).indentSpacer(10.0f)];
+[chain appendLink:BONChain.new.image(someUIImage).indentSpacer(10.0f)];
 [chain appendLink:BONChain.new.string(quote)];
 NSAttributedString *attributedString = chain.attributedString;
 ```
