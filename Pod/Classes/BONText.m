@@ -9,6 +9,7 @@
 #import "BONText.h"
 #import "BONText_Private.h"
 #import "BONSpecial.h"
+#import "BONTag_Private.h"
 
 @import CoreText.SFNTLayoutTypes;
 
@@ -72,6 +73,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 {
     NSMutableAttributedString *mutableAttributedString = nil;
 
+    NSString *string = self.string;
+
     if (self.image) {
         NSAssert(!self.string, @"If self.image is non-nil, self.string must be nil");
         NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
@@ -89,11 +92,26 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
             [mutableAttributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"\t" attributes:self.attributes]];
         }
     }
-    else if (self.string) {
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
+    else if (string) {
+        // If there is tag styling applied, strip the tags from the string and identify the ranges to apply the tag based chains to.
+        NSArray *rangesPerTag = nil;
+
+        if (self.tagStyles) {
+            rangesPerTag = [BONTag rangesInString:&string betweenTags:self.tagStyles stripTags:YES];
+        }
+
+        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:string
                                                                          attributes:self.attributes];
-        if (lastConcatenant && self.string.length > 0) {
-            NSRange lastCharacterRange = NSMakeRange(self.string.length - 1, 1);
+
+        for (BONTag *tag in rangesPerTag) {
+            NSDictionary *attributes = tag.textable.text.attributes;
+            for (NSValue *value in tag.ranges) {
+                [mutableAttributedString setAttributes:attributes range:value.rangeValue];
+            }
+        }
+
+        if (lastConcatenant && string.length > 0) {
+            NSRange lastCharacterRange = NSMakeRange(string.length - 1, 1);
             [mutableAttributedString removeAttribute:NSKernAttributeName range:lastCharacterRange];
         }
         else {
@@ -114,8 +132,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         if (self.image) {
             indentation += self.image.size.width;
         }
-        else if (self.string) {
-            NSAttributedString *measurementString = [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
+        else if (string) {
+            NSAttributedString *measurementString = [[NSAttributedString alloc] initWithString:string attributes:self.attributes];
             CGRect boundingRect = [measurementString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                                                   options:NSStringDrawingUsesLineFragmentOrigin
                                                                   context:nil];
@@ -408,6 +426,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
     text.strikethroughStyle = self.strikethroughStyle;
     text.strikethroughColor = self.strikethroughColor;
+
+    text.tagStyles = self.tagStyles;
 
     return text;
 }

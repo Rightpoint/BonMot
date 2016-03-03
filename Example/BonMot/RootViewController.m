@@ -20,6 +20,7 @@
 #import "SpecialCharactersCell.h"
 #import "BaselineOffsetCell.h"
 #import "ConcatenationCell.h"
+#import "TagStylesCell.h"
 
 @interface RootViewController ()
 
@@ -48,6 +49,7 @@
         [SpecialCharactersCell class],
         [BaselineOffsetCell class],
         [ConcatenationCell class],
+        [TagStylesCell class]
     ];
 
     for (Class CellClass in self.cellClasses) {

@@ -21,8 +21,6 @@
 		730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */; };
 		CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */; };
 		CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */; };
-		CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */; };
-		CD6DEFE51BF6ADF900676E2D /* BONChainEmptyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD81BF6ADF900676E2D /* BONChainEmptyTestCase.m */; };
 		CD6DEFE71BF6ADF900676E2D /* BONDebugStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */; };
 		CD6DEFE91BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */; };
 		CD6DEFEB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */; };
@@ -66,7 +64,11 @@
 		CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */; };
 		CD78701E1CA5F8EC00B2714F /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */; };
+		EC433DB31C88B7D9001B3ABE /* BONTagStylesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB11C88B65B001B3ABE /* BONTagStylesTestCase.m */; };
 		EC433DB61C88BBDE001B3ABE /* BONUIKitUtilitiesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB41C88BBDB001B3ABE /* BONUIKitUtilitiesTestCase.m */; };
+		EC433DB91C88DE5F001B3ABE /* TagStylesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB81C88DE5F001B3ABE /* TagStylesCell.m */; };
+		EC433DBB1C88DEF7001B3ABE /* TagStylesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC433DBA1C88DEF7001B3ABE /* TagStylesCell.xib */; };
+		ECD4DB6B1CE3EA2700079675 /* BONTagComplexStylesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4DB691CE3EA1F00079675 /* BONTagComplexStylesTestCase.m */; };
 		F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -166,7 +168,12 @@
 		CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUnderlineAndStrikethroughTestCase.m; sourceTree = "<group>"; };
 		CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
+		EC433DB11C88B65B001B3ABE /* BONTagStylesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagStylesTestCase.m; sourceTree = "<group>"; };
 		EC433DB41C88BBDB001B3ABE /* BONUIKitUtilitiesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUIKitUtilitiesTestCase.m; sourceTree = "<group>"; };
+		EC433DB71C88DE5F001B3ABE /* TagStylesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagStylesCell.h; sourceTree = "<group>"; };
+		EC433DB81C88DE5F001B3ABE /* TagStylesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagStylesCell.m; sourceTree = "<group>"; };
+		EC433DBA1C88DEF7001B3ABE /* TagStylesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagStylesCell.xib; sourceTree = "<group>"; };
+		ECD4DB691CE3EA1F00079675 /* BONTagComplexStylesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagComplexStylesTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +288,8 @@
 				CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */,
 				730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */,
 				CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */,
+				EC433DB11C88B65B001B3ABE /* BONTagStylesTestCase.m */,
+				ECD4DB691CE3EA1F00079675 /* BONTagComplexStylesTestCase.m */,
 				CD6DEFDC1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m */,
 				CD6DEFDD1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m */,
 				CD6DEFDE1BF6ADF900676E2D /* BONTextAlignmentTestCase.m */,
@@ -360,6 +369,9 @@
 				CD6DF01D1BF6AE8200676E2D /* SpecialCharactersCell.h */,
 				CD6DF01E1BF6AE8200676E2D /* SpecialCharactersCell.m */,
 				CD6DF01F1BF6AE8200676E2D /* SpecialCharactersCell.xib */,
+				EC433DB71C88DE5F001B3ABE /* TagStylesCell.h */,
+				EC433DB81C88DE5F001B3ABE /* TagStylesCell.m */,
+				EC433DBA1C88DEF7001B3ABE /* TagStylesCell.xib */,
 				CD6DF0201BF6AE8200676E2D /* TrackingCell.h */,
 				CD6DF0211BF6AE8200676E2D /* TrackingCell.m */,
 				CD6DF0221BF6AE8200676E2D /* TrackingCell.xib */,
@@ -467,6 +479,7 @@
 				CD6DF0251BF6AE8200676E2D /* BaselineCapHeightCell.xib in Resources */,
 				CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */,
 				CD6DF0311BF6AE8200676E2D /* InlineImagesCell.xib in Resources */,
+				EC433DBB1C88DEF7001B3ABE /* TagStylesCell.xib in Resources */,
 				CD6DF0351BF6AE8200676E2D /* ProgrammaticBaselineCapHeightCell.xib in Resources */,
 				CD6DF02F1BF6AE8200676E2D /* IndentationCell.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -609,6 +622,7 @@
 				CD6DF02C1BF6AE8200676E2D /* FigureStyleCell.m in Sources */,
 				CD6DF04A1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,
 				CD6DF0591BF6B7AF00676E2D /* DashedHairlineView.m in Sources */,
+				EC433DB91C88DE5F001B3ABE /* TagStylesCell.m in Sources */,
 				CD6DF0381BF6AE8200676E2D /* TrackingCell.m in Sources */,
 				CD6DF0231BF6AE8200676E2D /* AbstractCell.m in Sources */,
 				CD6DEFF61BF6AE4C00676E2D /* AppDelegate.m in Sources */,
@@ -628,11 +642,11 @@
 				CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */,
 				CD6DF04B1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,
 				730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */,
-				CD6DEFE51BF6ADF900676E2D /* BONChainEmptyTestCase.m in Sources */,
+				ECD4DB6B1CE3EA2700079675 /* BONTagComplexStylesTestCase.m in Sources */,
 				CD6DEFED1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m in Sources */,
 				CD6DEFF11BF6ADF900676E2D /* BONTextAlignmentTestCase.m in Sources */,
 				CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */,
-				CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */,
+				EC433DB31C88B7D9001B3ABE /* BONTagStylesTestCase.m in Sources */,
 				CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */,
 				CD6DEFF31BF6ADF900676E2D /* BONTrackingTestCase.m in Sources */,
 				CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */,

@@ -4,6 +4,7 @@
 #import "BONChain.h"
 #import "BONCompatibility.h"
 #import "BONSpecial.h"
+#import "BONTag.h"
 #import "BONText.h"
 #import "BONTextable.h"
 #import "NSAttributedString+BonMotUtilities.h"

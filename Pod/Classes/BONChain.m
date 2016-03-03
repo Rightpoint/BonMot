@@ -353,6 +353,17 @@
     return [strikethroughColorBlock copy];
 }
 
+- (BONTagStyles)tagStyles
+{
+    BONTagStyles tagStylesBlock = ^(NSArray *tagStyles) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.tagStyles = tagStyles;
+        return newChain;
+    };
+
+    return [tagStylesBlock copy];
+}
+
 - (void)appendLink:(id<BONTextable>)link
 {
     [self appendLink:link separator:nil];

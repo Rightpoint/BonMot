@@ -56,6 +56,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Figure case (uppercase vs. lowercase numbers)
 - Figure spacing (monospace vs. proportional numbers)
 - Inline Images with optional multi-line paragraph alignment
+- Tag parsing (excluding nested tags)
 
 Think something is missing? Please [file an issue](https://github.com/Raizlabs/BonMot/issues) (or add a +1 if one already exists).
 
@@ -266,6 +267,45 @@ Prints this:
 ```
 {image24x36}{noBreakSpace}Monday{enDash}Friday
 ```
+
+## Tag Styles
+
+BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character.
+
+```objc
+BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
+BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
+
+BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
+    .tagStyles(@[BONTagMake(@"bold", boldChain), BONTagMake(@"italic", italicChain)])
+    .string(@"<bold>This text is wrapped in a \\<bold> tag.</bold>\n<italic>This text is wrapped in an \\<italic> tag.</italic>");
+
+NSAttributedString *string = chain.attributedString;
+```
+
+Outputs:
+
+<img width=275 height=40 src="readme-images/tag-styling.png" />
+
+BonMot can also style text between any arbitrary start and end strings using any escape string.
+
+```objc
+BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
+BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
+
+BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
+.tagStyles(@[BONTagComplexMake(@"~start~", @"!end", @"escape", boldChain)])
+.string(@"~start~This text is wrapped in a escape~start~ tag.!end");
+
+NSAttributedString *string = chain.attributedString;
+```
+
+Outputs:
+
+<img width=275 height=25 src="readme-images/arbitrary-tag-styling.png" />
+
+**Note:** Tag styles do not support nested or interleaved tags. The first tag matched will be applied, any additional tags between the start end end will be ignored.
+
 
 ## Contributing
 
