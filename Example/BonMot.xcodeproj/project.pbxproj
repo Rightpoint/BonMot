@@ -63,6 +63,7 @@
 		CD6DF0591BF6B7AF00676E2D /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0581BF6B7AF00676E2D /* DashedHairlineView.m */; };
 		CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */; };
 		CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */; };
+		EC433DB61C88BBDE001B3ABE /* BONUtilitiesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB41C88BBDB001B3ABE /* BONUtilitiesTestCase.m */; };
 		F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,7 @@
 		CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUnderlineAndStrikethroughTestCase.m; sourceTree = "<group>"; };
 		CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
+		EC433DB41C88BBDB001B3ABE /* BONUtilitiesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUtilitiesTestCase.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 				CD6DEFDE1BF6ADF900676E2D /* BONTextAlignmentTestCase.m */,
 				CD6DEFDF1BF6ADF900676E2D /* BONTrackingTestCase.m */,
 				CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */,
+				EC433DB41C88BBDB001B3ABE /* BONUtilitiesTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				CD6DF0481BF6B37E00676E2D /* DummyAssetClass.h */,
 				CD6DF0491BF6B37E00676E2D /* DummyAssetClass.m */,
@@ -598,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC433DB61C88BBDE001B3ABE /* BONUtilitiesTestCase.m in Sources */,
 				CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */,
 				CD6DF04B1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,
 				CD6DEFE51BF6ADF900676E2D /* BONChainEmptyStringTestCase.m in Sources */,
