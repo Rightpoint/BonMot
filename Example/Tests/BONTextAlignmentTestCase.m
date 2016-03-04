@@ -120,8 +120,9 @@
 // Test behavior when using both `headIndent` and `indentSpacer`
 - (void)testHeadIndentWithIndentSpacer
 {
+    UIImage *robotImage = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     BONChain *chain = BONChain.new
-                          .image([UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil])
+                          .image(robotImage)
                           .headIndent(1.23)
                           .indentSpacer(4.0);
     [chain appendLink:chain.string(@"test")];

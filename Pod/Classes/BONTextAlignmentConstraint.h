@@ -18,21 +18,21 @@ typedef NS_ENUM(NSUInteger, BONConstraintAttribute) {
     BONConstraintAttributeBottom,
 };
 
-NSString *stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
-BONConstraintAttribute BONConstraintAttributeFromString(NSString *string);
+NSString *_Nonnull stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
+BONConstraintAttribute BONConstraintAttributeFromString(NSString *_Nonnull string);
 
 @interface BONTextAlignmentConstraint : NSLayoutConstraint
 
 @property (nonatomic) BONConstraintAttribute firstItemBONAttribute;
 @property (nonatomic) BONConstraintAttribute secondItemBONAttribute;
 
-@property (copy, nonatomic) IBInspectable NSString *firstAlignment;
-@property (copy, nonatomic) IBInspectable NSString *secondAlignment;
+@property (copy, nonatomic) IBInspectable NSString *_Nullable firstAlignment;
+@property (copy, nonatomic) IBInspectable NSString *_Nullable secondAlignment;
 
-+ (instancetype)constraintWithItem:(id)view1
-                         attribute:(BONConstraintAttribute)attr1
-                         relatedBy:(NSLayoutRelation)relation
-                            toItem:(id)view2
-                         attribute:(BONConstraintAttribute)attr2;
++ (instancetype _Nonnull)constraintWithItem:(id _Nonnull)view1
+                                  attribute:(BONConstraintAttribute)attr1
+                                  relatedBy:(NSLayoutRelation)relation
+                                     toItem:(id _Nonnull)view2
+                                  attribute:(BONConstraintAttribute)attr2;
 
 @end

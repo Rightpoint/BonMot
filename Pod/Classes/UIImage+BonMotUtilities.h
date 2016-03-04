@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIImage (BonMotUtilities)
 
 /**
@@ -20,3 +22,4 @@
 - (UIImage *)bon_tintedImageWithColor:(UIColor *)color;
 
 @end
+NS_ASSUME_NONNULL_END

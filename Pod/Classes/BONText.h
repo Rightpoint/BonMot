@@ -28,18 +28,18 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 // Appending
 
-@property (copy, nonatomic) BONText *nextText;
+@property (copy, nonatomic) BONText *_Nullable nextText;
 
 // Font Properties
 
-- (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize;
-@property (copy, nonatomic, readonly) NSString *fontName;
+- (void)setFontName:(NSString *_Nonnull)fontName size:(CGFloat)fontSize;
+@property (copy, nonatomic, readonly) NSString *_Nullable fontName;
 @property (nonatomic, readonly) CGFloat fontSize;
 
-@property (strong, nonatomic) UIFont *font;
+@property (strong, nonatomic) UIFont *_Nullable font;
 
-@property (strong, nonatomic) UIColor *textColor;
-@property (strong, nonatomic) UIColor *backgroundColor;
+@property (strong, nonatomic) UIColor *_Nullable textColor;
+@property (strong, nonatomic) UIColor *_Nullable backgroundColor;
 
 // adobeTracking and pointTracking are two interpretations of the same unit. They cannot both be set - if one is set to any value, the other is set to 0.
 @property (nonatomic) NSInteger adobeTracking;
@@ -66,8 +66,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) BONFigureSpacing figureSpacing;
 
 // string and image are mutually exclusive: setting one will unset the other
-@property (copy, nonatomic) NSString *string;
-@property (strong, nonatomic) UIImage *image;
+@property (copy, nonatomic) NSString *_Nullable string;
+@property (strong, nonatomic) UIImage *_Nullable image;
 
 /**
  *  Space, in points, to apply after a preceding image or string. A combination of @c headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0.
@@ -77,15 +77,15 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) CGFloat indentSpacer;
 
 @property (nonatomic) NSUnderlineStyle underlineStyle;
-@property (strong, nonatomic) UIColor *underlineColor;
+@property (strong, nonatomic) UIColor *_Nullable underlineColor;
 
 @property (nonatomic) NSUnderlineStyle strikethroughStyle;
-@property (strong, nonatomic) UIColor *strikethroughColor;
+@property (strong, nonatomic) UIColor *_Nullable strikethroughColor;
 
 // Getting Values Out
 
-@property (copy, nonatomic, readonly) NSAttributedString *attributedString;
-@property (copy, nonatomic, readonly) NSDictionary *attributes;
+@property (copy, nonatomic, readonly) NSAttributedString *_Nonnull attributedString;
+@property (copy, nonatomic, readonly) NSDictionary<NSString *, id> *_Nonnull attributes;
 
 // Utilities
 
@@ -97,21 +97,21 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
  */
-+ (NSAttributedString *)joinTexts:(NSArray *)texts withSeparator:(BONText *)separator;
++ (NSAttributedString *_Nonnull)joinTexts:(NSArray<BONText *> *_Nullable)texts withSeparator:(BONText *_Nullable)separator;
 
 /**
  *  Calls [self debugStringIncludeImageAddresses:YES]
  *
  *  @return The debug string, including pointer addresses of attached images.
  */
-- (NSString *)debugString;
+- (NSString *_Nonnull)debugString;
 
 /**
  *  Returns a representation of the string that puts each character on a new line, and describes whitespace and other characters in a human-readable way. Pass @c NO if you are using this method to write unit tests or other cases where the string value must be deterministic.
  *
  *  @return The debug string.
  */
-- (NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
+- (NSString *_Nonnull)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
 
 @end
 
@@ -124,6 +124,6 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  *
  *  @return The debug string, using the specified option for including image addresses.
  */
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
+- (NSString *_Nonnull)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
 
 @end
