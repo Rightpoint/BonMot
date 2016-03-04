@@ -19,4 +19,4 @@ OBJC_EXTERN BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2);
 - (BOOL)bon_isCloseEnoughEqualToDictionary : (NSDictionary<KeyType, ObjectType> *_Nullable)dictionary;
 
 @end
-// clang-format off
+// clang-format on
