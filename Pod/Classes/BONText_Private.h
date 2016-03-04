@@ -1,6 +1,6 @@
 //
 //  BONText.h
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 4/17/15.
 //

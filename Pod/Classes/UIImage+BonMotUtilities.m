@@ -1,6 +1,6 @@
 //
 //  UIImage+BonMotUtilities.m
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 5/11/15.
 //
