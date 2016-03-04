@@ -41,13 +41,13 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
  *  @param attributedString  The attributed string to validate.
  *  @param controlAttributes A dictionary whose keys are @c NSValue objects containing @c NSRange structs, and whose values are attributes dictionaries.
  */
-#define BONAssertAttributedStringHasAttributes(attributedString, controlAttributes)                                                                                     \
-    NSMutableDictionary *mutableControlAttributes = controlAttributes.mutableCopy;                                                                                      \
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary * attrs, NSRange range, BOOL * stop) { \
-        NSValue *testRangeValue = [NSValue valueWithRange:range];                                                                                                   \
-        NSDictionary *controlAttrs = controlAttributes[testRangeValue];                                                                                             \
-        XCTAssertNotNil(controlAttrs, @"Attributed String had attributes that were not accounted for at %@: %@", NSStringFromRange(range), attrs);                  \
-        BONAssertEqualDictionaries(attrs, controlAttrs);                                                                                                            \
+#define BONAssertAttributedStringHasAttributes(attributedString, controlAttributes)                                                                                                                       \
+    NSMutableDictionary *mutableControlAttributes = controlAttributes.mutableCopy;                                                                                                                        \
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary<NSString *, id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) { \
+        NSValue *testRangeValue = [NSValue valueWithRange:range];                                                                                                                                    \
+        NSDictionary *controlAttrs = controlAttributes[testRangeValue];                                                                                                                              \
+        XCTAssertNotNil(controlAttrs, @"Attributed String had attributes that were not accounted for at %@: %@", NSStringFromRange(range), attrs);                                                   \
+        BONAssertEqualDictionaries(attrs, controlAttrs);                                                                                                                                             \
         [mutableControlAttributes removeObjectForKey:testRangeValue]; }]; \
     XCTAssertEqual(mutableControlAttributes.count, 0, @"Some attributes not found in string: %@", mutableControlAttributes);
 

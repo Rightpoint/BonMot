@@ -559,7 +559,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     NSMutableString *debugString = [NSMutableString string];
 
-    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *_Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL *_Nonnull stop) {
         if (substringRange.location != 0) {
             [debugString appendString:@"\n"];
         }
@@ -653,7 +653,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     [realString enumerateSubstringsInRange:NSMakeRange(0, realString.length)
                                    options:NSStringEnumerationByComposedCharacterSequences
-                                usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                usingBlock:^(NSString *_Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL *_Nonnull stop) {
                                     composedCharacterCount++;
                                 }];
 

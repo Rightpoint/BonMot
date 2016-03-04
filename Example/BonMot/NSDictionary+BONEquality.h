@@ -16,7 +16,7 @@ OBJC_EXTERN BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2);
 // clang-format off
 @interface NSDictionary <KeyType, ObjectType> (BONEquality)
 
-- (BOOL)bon_isCloseEnoughEqualToDictionary : (NSDictionary<KeyType, ObjectType> *_Nullable)dictionary;
+- (BOOL)bon_isCloseEnoughEqualToDictionary:(nullable NSDictionary<KeyType, ObjectType> *)dictionary;
 
 @end
 // clang-format on

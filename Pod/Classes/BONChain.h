@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class BONChain;
 
-typedef BONChain *_Nonnull (^BONChainFontNameAndSize)(NSString *fontName, CGFloat fontSize);
-typedef BONChain *_Nonnull (^BONChainFont)(UIFont *font);
-typedef BONChain *_Nonnull (^BONChainColor)(UIColor *color);
+typedef BONChain *_Nonnull (^BONChainFontNameAndSize)(NSString *_Nonnull fontName, CGFloat fontSize);
+typedef BONChain *_Nonnull (^BONChainFont)(UIFont *_Nullable font);
+typedef BONChain *_Nonnull (^BONChainColor)(UIColor *_Nullable color);
 typedef BONChain *_Nonnull (^BONChainAdobeTracking)(NSInteger adobeTracking);
 typedef BONChain *_Nonnull (^BONChainPointTracking)(CGFloat pointTracking);
 typedef BONChain *_Nonnull (^BONChainFirstLineHeadIndent)(CGFloat firstLineHeadIndent);
@@ -33,14 +33,14 @@ typedef BONChain *_Nonnull (^BONChainAlignment)(NSTextAlignment alignment);
 typedef BONChain *_Nonnull (^BONChainFigureCase)(BONFigureCase figureCase);
 typedef BONChain *_Nonnull (^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
 typedef BONChain *_Nonnull (^BONChainIndentSpacer)(CGFloat indentSpacer);
-typedef BONChain *_Nonnull (^BONChainString)(NSString *string);
-typedef BONChain *_Nonnull (^BONChainImage)(UIImage *image);
+typedef BONChain *_Nonnull (^BONChainString)(NSString *_Nullable string);
+typedef BONChain *_Nonnull (^BONChainImage)(UIImage *_Nullable image);
 
 typedef BONChain *_Nonnull (^BONChainUnderlineStyle)(NSUnderlineStyle style);
-typedef BONChain *_Nonnull (^BONChainUnderlineColor)(UIColor *color);
+typedef BONChain *_Nonnull (^BONChainUnderlineColor)(UIColor *_Nullable color);
 
 typedef BONChain *_Nonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
-typedef BONChain *_Nonnull (^BONChainStrikethroughColor)(UIColor *color);
+typedef BONChain *_Nonnull (^BONChainStrikethroughColor)(UIColor *_Nullable color);
 
 @interface BONChain : NSObject <NSCopying, BONChainable>
 
@@ -93,7 +93,7 @@ typedef BONChain *_Nonnull (^BONChainStrikethroughColor)(UIColor *color);
 
 // concatenation
 - (void)appendLink:(id<BONChainable>)link;
-- (void)appendLink:(id<BONChainable>)link separator:(NSString *_Nullable)separator;
+- (void)appendLink:(id<BONChainable>)link separator:(nullable NSString *)separator;
 
 @end
 

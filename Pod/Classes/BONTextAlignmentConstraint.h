@@ -26,13 +26,13 @@ BONConstraintAttribute BONConstraintAttributeFromString(NSString *_Nonnull strin
 @property (nonatomic) BONConstraintAttribute firstItemBONAttribute;
 @property (nonatomic) BONConstraintAttribute secondItemBONAttribute;
 
-@property (copy, nonatomic) IBInspectable NSString *_Nullable firstAlignment;
-@property (copy, nonatomic) IBInspectable NSString *_Nullable secondAlignment;
+@property (copy, nonatomic, nullable) IBInspectable NSString *firstAlignment;
+@property (copy, nonatomic, nullable) IBInspectable NSString *secondAlignment;
 
-+ (instancetype _Nonnull)constraintWithItem:(id _Nonnull)view1
-                                  attribute:(BONConstraintAttribute)attr1
-                                  relatedBy:(NSLayoutRelation)relation
-                                     toItem:(id _Nonnull)view2
-                                  attribute:(BONConstraintAttribute)attr2;
++ (nonnull instancetype)constraintWithItem:(nonnull id)view1
+                                 attribute:(BONConstraintAttribute)attr1
+                                 relatedBy:(NSLayoutRelation)relation
+                                    toItem:(nonnull id)view2
+                                 attribute:(BONConstraintAttribute)attr2;
 
 @end
