@@ -15,10 +15,8 @@
 OBJC_EXTERN const CGFloat kBONCGFloatEpsilon;
 OBJC_EXTERN BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2);
 
-// clang-format off
 @interface BONGenericDict (BONEquality)
 
 - (BOOL)bon_isCloseEnoughEqualToDictionary:(BONNullable BONGenericDict *)dictionary;
 
 @end
-// clang-format on
