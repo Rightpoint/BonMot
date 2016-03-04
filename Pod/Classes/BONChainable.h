@@ -8,9 +8,11 @@
 
 @import Foundation;
 
+#import "BONCompatibility.h"
+
 @class BONText;
 
-NS_ASSUME_NONNULL_BEGIN
+BON_ASSUME_NONNULL_BEGIN
 
 /**
  *  Objects conforming to this protocol can be used in BonMot chaining operations.
@@ -21,4 +23,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
+BON_ASSUME_NONNULL_END

@@ -52,15 +52,15 @@ NSString *stringFromBONConstraintAttribute(BONConstraintAttribute attribute)
     return string;
 }
 
-NSString *_Nonnull normalizeString(NSString *_Nonnull string)
+NSString *BONCNonnull normalizeString(NSString *BONCNonnull string)
 {
     NSString *lowercaseString = [string lowercaseString];
 
     // strip all non-letter characters
-    NSArray<NSString *> *lettersOnlyComponents = [lowercaseString componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]];
+    BONGeneric(NSArray, NSString *)*lettersOnlyComponents = [lowercaseString componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]];
     NSString *lettersOnlyString = [lettersOnlyComponents componentsJoinedByString:@""];
 
-    NSArray<NSString *> *noWhitespaceComponents = [lettersOnlyString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    BONGeneric(NSArray, NSString *)*noWhitespaceComponents = [lettersOnlyString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *noWhitespaceString = [noWhitespaceComponents componentsJoinedByString:@""];
 
     return noWhitespaceString;
@@ -68,7 +68,7 @@ NSString *_Nonnull normalizeString(NSString *_Nonnull string)
 
 BONConstraintAttribute BONConstraintAttributeFromString(NSString *string)
 {
-    static NSDictionary<NSString *, NSNumber *> *s_mappings = nil;
+    static BONGeneric(NSDictionary, NSString *, NSNumber *)*s_mappings = nil;
     if (!s_mappings) {
         s_mappings = @{
             @"unspecified" : @(BONConstraintAttributeUnspecified),
@@ -200,7 +200,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
 
 #pragma mark - KVO
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *, id> *)change context:(void *)context
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(BONStringDict *)change context:(void *)context
 {
     if (context == kBONTextAlignmentConstraintContext) {
         [self updateConstant];

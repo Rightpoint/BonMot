@@ -9,43 +9,44 @@
 @import Foundation;
 
 #import "BONText.h"
+#import "BONCompatibility.h"
 
-NS_ASSUME_NONNULL_BEGIN
+BON_ASSUME_NONNULL_BEGIN
 
 @class BONChain;
 
-typedef BONChain *_Nonnull (^BONChainFontNameAndSize)(NSString *_Nonnull fontName, CGFloat fontSize);
-typedef BONChain *_Nonnull (^BONChainFont)(UIFont *_Nullable font);
-typedef BONChain *_Nonnull (^BONChainColor)(UIColor *_Nullable color);
-typedef BONChain *_Nonnull (^BONChainAdobeTracking)(NSInteger adobeTracking);
-typedef BONChain *_Nonnull (^BONChainPointTracking)(CGFloat pointTracking);
-typedef BONChain *_Nonnull (^BONChainFirstLineHeadIndent)(CGFloat firstLineHeadIndent);
-typedef BONChain *_Nonnull (^BONChainHeadIndent)(CGFloat headIndent);
-typedef BONChain *_Nonnull (^BONChainTailIndent)(CGFloat tailIndent);
-typedef BONChain *_Nonnull (^BONChainLineHeight)(CGFloat lineHeightMultiple);
-typedef BONChain *_Nonnull (^BONChainMaximumLineHeight)(CGFloat maximumLineHeight);
-typedef BONChain *_Nonnull (^BONChainMinimumLineHeight)(CGFloat minimumLineHeight);
-typedef BONChain *_Nonnull (^BONChainLineSpacing)(CGFloat lineSpacing);
-typedef BONChain *_Nonnull (^BONChainParagraphSpacingAfter)(CGFloat paragraphSpacing);
-typedef BONChain *_Nonnull (^BONChainParagraphSpacingBefore)(CGFloat paragraphSpacingBefore);
-typedef BONChain *_Nonnull (^BONChainBaselineOffset)(CGFloat baselineOffset);
-typedef BONChain *_Nonnull (^BONChainAlignment)(NSTextAlignment alignment);
-typedef BONChain *_Nonnull (^BONChainFigureCase)(BONFigureCase figureCase);
-typedef BONChain *_Nonnull (^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
-typedef BONChain *_Nonnull (^BONChainIndentSpacer)(CGFloat indentSpacer);
-typedef BONChain *_Nonnull (^BONChainString)(NSString *_Nullable string);
-typedef BONChain *_Nonnull (^BONChainImage)(UIImage *_Nullable image);
+typedef BONChain *BONCNonnull (^BONChainFontNameAndSize)(NSString *BONCNonnull fontName, CGFloat fontSize);
+typedef BONChain *BONCNonnull (^BONChainFont)(UIFont *BONCNullable font);
+typedef BONChain *BONCNonnull (^BONChainColor)(UIColor *BONCNullable color);
+typedef BONChain *BONCNonnull (^BONChainAdobeTracking)(NSInteger adobeTracking);
+typedef BONChain *BONCNonnull (^BONChainPointTracking)(CGFloat pointTracking);
+typedef BONChain *BONCNonnull (^BONChainFirstLineHeadIndent)(CGFloat firstLineHeadIndent);
+typedef BONChain *BONCNonnull (^BONChainHeadIndent)(CGFloat headIndent);
+typedef BONChain *BONCNonnull (^BONChainTailIndent)(CGFloat tailIndent);
+typedef BONChain *BONCNonnull (^BONChainLineHeight)(CGFloat lineHeightMultiple);
+typedef BONChain *BONCNonnull (^BONChainMaximumLineHeight)(CGFloat maximumLineHeight);
+typedef BONChain *BONCNonnull (^BONChainMinimumLineHeight)(CGFloat minimumLineHeight);
+typedef BONChain *BONCNonnull (^BONChainLineSpacing)(CGFloat lineSpacing);
+typedef BONChain *BONCNonnull (^BONChainParagraphSpacingAfter)(CGFloat paragraphSpacing);
+typedef BONChain *BONCNonnull (^BONChainParagraphSpacingBefore)(CGFloat paragraphSpacingBefore);
+typedef BONChain *BONCNonnull (^BONChainBaselineOffset)(CGFloat baselineOffset);
+typedef BONChain *BONCNonnull (^BONChainAlignment)(NSTextAlignment alignment);
+typedef BONChain *BONCNonnull (^BONChainFigureCase)(BONFigureCase figureCase);
+typedef BONChain *BONCNonnull (^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
+typedef BONChain *BONCNonnull (^BONChainIndentSpacer)(CGFloat indentSpacer);
+typedef BONChain *BONCNonnull (^BONChainString)(NSString *BONCNullable string);
+typedef BONChain *BONCNonnull (^BONChainImage)(UIImage *BONCNullable image);
 
-typedef BONChain *_Nonnull (^BONChainUnderlineStyle)(NSUnderlineStyle style);
-typedef BONChain *_Nonnull (^BONChainUnderlineColor)(UIColor *_Nullable color);
+typedef BONChain *BONCNonnull (^BONChainUnderlineStyle)(NSUnderlineStyle style);
+typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable color);
 
-typedef BONChain *_Nonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
-typedef BONChain *_Nonnull (^BONChainStrikethroughColor)(UIColor *_Nullable color);
+typedef BONChain *BONCNonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
+typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullable color);
 
 @interface BONChain : NSObject <NSCopying, BONChainable>
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
-@property (copy, nonatomic, readonly) NSDictionary<NSString *, id> *attributes;
+@property (copy, nonatomic, readonly) BONStringDict *attributes;
 
 // fontNameAndSize and font are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic, readonly) BONChainFontNameAndSize fontNameAndSize;
@@ -93,8 +94,8 @@ typedef BONChain *_Nonnull (^BONChainStrikethroughColor)(UIColor *_Nullable colo
 
 // concatenation
 - (void)appendLink:(id<BONChainable>)link;
-- (void)appendLink:(id<BONChainable>)link separator:(nullable NSString *)separator;
+- (void)appendLink:(id<BONChainable>)link separator:(BONNullable NSString *)separator;
 
 @end
 
-NS_ASSUME_NONNULL_END
+BON_ASSUME_NONNULL_END

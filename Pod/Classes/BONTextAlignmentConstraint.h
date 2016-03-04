@@ -8,6 +8,8 @@
 
 @import UIKit;
 
+#import "BONCompatibility.h"
+
 typedef NS_ENUM(NSUInteger, BONConstraintAttribute) {
     BONConstraintAttributeUnspecified = 0,
     BONConstraintAttributeTop,
@@ -18,21 +20,21 @@ typedef NS_ENUM(NSUInteger, BONConstraintAttribute) {
     BONConstraintAttributeBottom,
 };
 
-NSString *_Nonnull stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
-BONConstraintAttribute BONConstraintAttributeFromString(NSString *_Nonnull string);
+NSString *BONCNonnull stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
+BONConstraintAttribute BONConstraintAttributeFromString(NSString *BONCNonnull string);
 
 @interface BONTextAlignmentConstraint : NSLayoutConstraint
 
 @property (nonatomic) BONConstraintAttribute firstItemBONAttribute;
 @property (nonatomic) BONConstraintAttribute secondItemBONAttribute;
 
-@property (copy, nonatomic, nullable) IBInspectable NSString *firstAlignment;
-@property (copy, nonatomic, nullable) IBInspectable NSString *secondAlignment;
+@property (copy, nonatomic, BONNullable) IBInspectable NSString *firstAlignment;
+@property (copy, nonatomic, BONNullable) IBInspectable NSString *secondAlignment;
 
-+ (nonnull instancetype)constraintWithItem:(nonnull id)view1
-                                 attribute:(BONConstraintAttribute)attr1
-                                 relatedBy:(NSLayoutRelation)relation
-                                    toItem:(nonnull id)view2
-                                 attribute:(BONConstraintAttribute)attr2;
++ (BONNonnull instancetype)constraintWithItem:(BONNonnull id)view1
+                                    attribute:(BONConstraintAttribute)attr1
+                                    relatedBy:(NSLayoutRelation)relation
+                                       toItem:(BONNonnull id)view2
+                                    attribute:(BONConstraintAttribute)attr2;
 
 @end

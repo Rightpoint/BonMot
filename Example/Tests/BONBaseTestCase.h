@@ -9,6 +9,7 @@
 @import XCTest;
 #import "NSDictionary+BONEquality.h"
 #import "DummyAssetClass.h"
+#import "BONCompatibility.h"
 
 OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 
@@ -41,9 +42,9 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
  *  @param attributedString  The attributed string to validate.
  *  @param controlAttributes A dictionary whose keys are @c NSValue objects containing @c NSRange structs, and whose values are attributes dictionaries.
  */
-#define BONAssertAttributedStringHasAttributes(attributedString, controlAttributes)                                                                                                                       \
-    NSMutableDictionary *mutableControlAttributes = controlAttributes.mutableCopy;                                                                                                                        \
-    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary<NSString *, id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) { \
+#define BONAssertAttributedStringHasAttributes(attributedString, controlAttributes)                                                                                                              \
+    NSMutableDictionary *mutableControlAttributes = controlAttributes.mutableCopy;                                                                                                               \
+    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(BONStringDict * BONCNonnull attrs, NSRange range, BOOL * BONCNonnull stop) { \
         NSValue *testRangeValue = [NSValue valueWithRange:range];                                                                                                                                    \
         NSDictionary *controlAttrs = controlAttributes[testRangeValue];                                                                                                                              \
         XCTAssertNotNil(controlAttrs, @"Attributed String had attributes that were not accounted for at %@: %@", NSStringFromRange(range), attrs);                                                   \

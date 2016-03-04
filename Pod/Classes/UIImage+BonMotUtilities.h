@@ -8,7 +8,9 @@
 
 @import UIKit;
 
-NS_ASSUME_NONNULL_BEGIN
+#import "BONCompatibility.h"
+
+BON_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (BonMotUtilities)
 
@@ -22,4 +24,4 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIImage *)bon_tintedImageWithColor:(UIColor *)color;
 
 @end
-NS_ASSUME_NONNULL_END
+BON_ASSUME_NONNULL_END
