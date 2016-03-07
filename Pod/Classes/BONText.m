@@ -1,6 +1,6 @@
 //
 //  BONText.m
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 4/17/15.
 //
@@ -44,14 +44,14 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 - (NSAttributedString *)attributedString
 {
-    NSArray *attributedStrings = self.attributedStrings;
+    BONGeneric(NSArray, NSAttributedString *)*attributedStrings = self.attributedStrings;
     NSAttributedString *attributedString = [self.class joinAttributedStrings:attributedStrings withSeparator:nil];
     return attributedString;
 }
 
-- (NSArray *)attributedStrings
+- (BONGeneric(NSArray, NSAttributedString *) *)attributedStrings
 {
-    NSMutableArray *attributedStrings = [NSMutableArray array];
+    BONGeneric(NSMutableArray, NSAttributedString *)*attributedStrings = [NSMutableArray array];
     BONText *nextText = self;
     while (nextText) {
         BONText *nextnextText = nextText.nextText;
@@ -149,9 +149,9 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return mutableAttributedString;
 }
 
-- (NSDictionary *)attributes
+- (BONStringDict *)attributes
 {
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    BONStringMutableDict *attributes = [NSMutableDictionary dictionary];
 
     __block NSMutableParagraphStyle *paragraphStyle = nil;
 
@@ -191,7 +191,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
                 break;
         }
 
-        NSDictionary *figureCaseDictionary = @{
+        BONStringDict *figureCaseDictionary = @{
             UIFontFeatureTypeIdentifierKey : @(kNumberCaseType),
             UIFontFeatureSelectorIdentifierKey : @(figureCase),
         };
@@ -215,7 +215,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
                 break;
         }
 
-        NSDictionary *figureSpacingDictionary = @{
+        BONStringDict *figureSpacingDictionary = @{
             UIFontFeatureTypeIdentifierKey : @(kNumberSpacingType),
             UIFontFeatureSelectorIdentifierKey : @(figureSpacing),
         };
@@ -264,21 +264,21 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     }
 
     // First Line Head Indent
-    
+
     if (self.firstLineHeadIndent != 0.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.firstLineHeadIndent = self.firstLineHeadIndent;
     }
 
     // Head Indent
-    
+
     if (self.headIndent != 0.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.headIndent = self.headIndent;
     }
 
     // Head Indent
-    
+
     if (self.tailIndent != 0.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.tailIndent = self.tailIndent;
@@ -292,14 +292,14 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     }
 
     // Maximum Line Height
-    
+
     if (self.maximumLineHeight != 1.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.maximumLineHeight = self.maximumLineHeight;
     }
 
     // Minimum Line Height
-    
+
     if (self.minimumLineHeight != 1.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.minimumLineHeight = self.minimumLineHeight;
@@ -313,14 +313,14 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     }
 
     // Paragraph Spacing
-    
+
     if (self.paragraphSpacingAfter != 0.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.paragraphSpacing = self.paragraphSpacingAfter;
     }
 
     // Paragraph Spacing Before
-    
+
     if (self.paragraphSpacingBefore != 0.0f) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.paragraphSpacingBefore = self.paragraphSpacingBefore;
@@ -472,7 +472,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
 #pragma mark - Utilities
 
-+ (NSAttributedString *)joinAttributedStrings:(NSArray *)attributedStrings withSeparator:(BONText *)separator
++ (NSAttributedString *)joinAttributedStrings:(BONGeneric(NSArray, NSAttributedString *) *)attributedStrings withSeparator:(BONText *)separator
 {
     NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
     NSParameterAssert(!attributedStrings || [attributedStrings isKindOfClass:[NSArray class]]);
@@ -509,7 +509,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     return resultsString;
 }
 
-+ (NSAttributedString *)joinTexts:(NSArray *)texts withSeparator:(BONText *)separator
++ (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
 {
     NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
     NSParameterAssert(!texts || [texts isKindOfClass:[NSArray class]]);
@@ -559,13 +559,13 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     NSMutableString *debugString = [NSMutableString string];
 
-    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *BONCNullable substring, NSRange substringRange, NSRange enclosingRange, BOOL *BONCNonnull stop) {
         if (substringRange.location != 0) {
             [debugString appendString:@"\n"];
         }
 
         if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
-            NSDictionary *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
+            BONStringDict *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
             NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
             UIImage *attachedImage = attachment.image;
             if (includeImageAddresses) {
@@ -592,7 +592,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
             // Find, derive, or invent the name/description, and append it
 
             unichar character = [substring characterAtIndex:0];
-            NSDictionary *specialNames = @{
+            BONGeneric(NSDictionary, NSNumber *, NSString *)*specialNames = @{
                 @(BONCharacterSpace) : @"Space",
                 @(BONCharacterLineFeed) : @"Line Feed",
                 @(BONCharacterTab) : @"Tab",
@@ -653,7 +653,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 
     [realString enumerateSubstringsInRange:NSMakeRange(0, realString.length)
                                    options:NSStringEnumerationByComposedCharacterSequences
-                                usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                usingBlock:^(NSString *BONCNullable substring, NSRange substringRange, NSRange enclosingRange, BOOL *BONCNonnull stop) {
                                     composedCharacterCount++;
                                 }];
 

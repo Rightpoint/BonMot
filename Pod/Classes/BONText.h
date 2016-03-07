@@ -1,6 +1,6 @@
 //
 //  BONText.h
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 4/17/15.
 //
@@ -9,6 +9,7 @@
 @import UIKit;
 
 #import "BONChainable.h"
+#import "BONCompatibility.h"
 
 typedef NS_ENUM(NSUInteger, BONFigureCase) {
     BONFigureCaseDefault = 0,
@@ -28,18 +29,18 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 // Appending
 
-@property (copy, nonatomic) BONText *nextText;
+@property (copy, nonatomic, BONNullable) BONText *nextText;
 
 // Font Properties
 
-- (void)setFontName:(NSString *)fontName size:(CGFloat)fontSize;
-@property (copy, nonatomic, readonly) NSString *fontName;
+- (void)setFontName:(BONNonnull NSString *)fontName size:(CGFloat)fontSize;
+@property (copy, nonatomic, readonly, BONNullable) NSString *fontName;
 @property (nonatomic, readonly) CGFloat fontSize;
 
-@property (strong, nonatomic) UIFont *font;
+@property (strong, nonatomic, BONNullable) UIFont *font;
 
-@property (strong, nonatomic) UIColor *textColor;
-@property (strong, nonatomic) UIColor *backgroundColor;
+@property (strong, nonatomic, BONNullable) UIColor *textColor;
+@property (strong, nonatomic, BONNullable) UIColor *backgroundColor;
 
 // adobeTracking and pointTracking are two interpretations of the same unit. They cannot both be set - if one is set to any value, the other is set to 0.
 @property (nonatomic) NSInteger adobeTracking;
@@ -66,8 +67,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) BONFigureSpacing figureSpacing;
 
 // string and image are mutually exclusive: setting one will unset the other
-@property (copy, nonatomic) NSString *string;
-@property (strong, nonatomic) UIImage *image;
+@property (copy, nonatomic, BONNullable) NSString *string;
+@property (strong, nonatomic, BONNullable) UIImage *image;
 
 /**
  *  Space, in points, to apply after a preceding image or string. A combination of @c headIndent and tab stops is used to indent the whole leading edge of the paragram, except for the preceding image or string, by the same amount, so they line up vertically. Must be greater than 0.
@@ -77,15 +78,15 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) CGFloat indentSpacer;
 
 @property (nonatomic) NSUnderlineStyle underlineStyle;
-@property (strong, nonatomic) UIColor *underlineColor;
+@property (strong, nonatomic, BONNullable) UIColor *underlineColor;
 
 @property (nonatomic) NSUnderlineStyle strikethroughStyle;
-@property (strong, nonatomic) UIColor *strikethroughColor;
+@property (strong, nonatomic, BONNullable) UIColor *strikethroughColor;
 
 // Getting Values Out
 
-@property (copy, nonatomic, readonly) NSAttributedString *attributedString;
-@property (copy, nonatomic, readonly) NSDictionary *attributes;
+@property (copy, nonatomic, readonly, BONNonnull) NSAttributedString *attributedString;
+@property (copy, nonatomic, readonly, BONNonnull) BONStringDict *attributes;
 
 // Utilities
 
@@ -97,21 +98,21 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
  */
-+ (NSAttributedString *)joinTexts:(NSArray *)texts withSeparator:(BONText *)separator;
++ (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator;
 
 /**
  *  Calls [self debugStringIncludeImageAddresses:YES]
  *
  *  @return The debug string, including pointer addresses of attached images.
  */
-- (NSString *)debugString;
+- (BONNonnull NSString *)debugString;
 
 /**
  *  Returns a representation of the string that puts each character on a new line, and describes whitespace and other characters in a human-readable way. Pass @c NO if you are using this method to write unit tests or other cases where the string value must be deterministic.
  *
  *  @return The debug string.
  */
-- (NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
+- (BONNonnull NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
 
 @end
 
@@ -124,6 +125,6 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  *
  *  @return The debug string, using the specified option for including image addresses.
  */
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
+- (BONNonnull NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
 
 @end

@@ -1,12 +1,14 @@
 //
 //  BONTextAlignmentConstraint.h
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 5/2/15.
 //
 //
 
 @import UIKit;
+
+#import "BONCompatibility.h"
 
 typedef NS_ENUM(NSUInteger, BONConstraintAttribute) {
     BONConstraintAttributeUnspecified = 0,
@@ -18,21 +20,21 @@ typedef NS_ENUM(NSUInteger, BONConstraintAttribute) {
     BONConstraintAttributeBottom,
 };
 
-NSString *stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
-BONConstraintAttribute BONConstraintAttributeFromString(NSString *string);
+NSString *BONCNonnull stringFromBONConstraintAttribute(BONConstraintAttribute attribute);
+BONConstraintAttribute BONConstraintAttributeFromString(NSString *BONCNonnull string);
 
 @interface BONTextAlignmentConstraint : NSLayoutConstraint
 
 @property (nonatomic) BONConstraintAttribute firstItemBONAttribute;
 @property (nonatomic) BONConstraintAttribute secondItemBONAttribute;
 
-@property (copy, nonatomic) IBInspectable NSString *firstAlignment;
-@property (copy, nonatomic) IBInspectable NSString *secondAlignment;
+@property (copy, nonatomic, BONNullable) IBInspectable NSString *firstAlignment;
+@property (copy, nonatomic, BONNullable) IBInspectable NSString *secondAlignment;
 
-+ (instancetype)constraintWithItem:(id)view1
-                         attribute:(BONConstraintAttribute)attr1
-                         relatedBy:(NSLayoutRelation)relation
-                            toItem:(id)view2
-                         attribute:(BONConstraintAttribute)attr2;
++ (BONNonnull instancetype)constraintWithItem:(BONNonnull id)view1
+                                    attribute:(BONConstraintAttribute)attr1
+                                    relatedBy:(NSLayoutRelation)relation
+                                       toItem:(BONNonnull id)view2
+                                    attribute:(BONConstraintAttribute)attr2;
 
 @end

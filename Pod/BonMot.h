@@ -1,6 +1,6 @@
 //
 //  BonMot.h
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 7/13/15.
 //

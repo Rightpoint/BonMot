@@ -1,12 +1,16 @@
 //
 //  UIImage+BonMotUtilities.h
-//  Pods
+//  BonMot
 //
 //  Created by Zev Eisenberg on 5/11/15.
 //
 //
 
 @import UIKit;
+
+#import "BONCompatibility.h"
+
+BON_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (BonMotUtilities)
 
@@ -20,3 +24,4 @@
 - (UIImage *)bon_tintedImageWithColor:(UIColor *)color;
 
 @end
+BON_ASSUME_NONNULL_END

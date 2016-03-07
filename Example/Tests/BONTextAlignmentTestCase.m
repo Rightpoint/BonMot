@@ -120,8 +120,9 @@
 // Test behavior when using both `headIndent` and `indentSpacer`
 - (void)testHeadIndentWithIndentSpacer
 {
+    UIImage *robotImage = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     BONChain *chain = BONChain.new
-                          .image([UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil])
+                          .image(robotImage)
                           .headIndent(1.23)
                           .indentSpacer(4.0);
     [chain appendLink:chain.string(@"test")];
@@ -133,7 +134,7 @@
     // The `indentSpacer` doesn't overwrite the `headIndent` value
     XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
 
-    [testAttributedString enumerateAttributesInRange:NSMakeRange(0, testAttributedString.length) options:0 usingBlock:^(NSDictionary<NSString *, id> *_Nonnull attrs, NSRange range, BOOL *_Nonnull stop) {
+    [testAttributedString enumerateAttributesInRange:NSMakeRange(0, testAttributedString.length) options:0 usingBlock:^(BONStringDict *BONCNonnull attrs, NSRange range, BOOL *BONCNonnull stop) {
         NSParagraphStyle *paragraphStyle = attrs[NSParagraphStyleAttributeName];
         if (paragraphStyle != nil) {
             NSString *substring = [testAttributedString.string substringWithRange:range];

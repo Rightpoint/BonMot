@@ -8,13 +8,15 @@
 
 @import Foundation;
 
+#import "BONCompatibility.h"
+
 @import CoreGraphics.CGBase;
 
 OBJC_EXTERN const CGFloat kBONCGFloatEpsilon;
 OBJC_EXTERN BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2);
 
-@interface NSDictionary (BONEquality)
+@interface BONGenericDict (BONEquality)
 
-- (BOOL)bon_isCloseEnoughEqualToDictionary:(NSDictionary *)dictionary;
+- (BOOL)bon_isCloseEnoughEqualToDictionary:(BONNullable BONGenericDict *)dictionary;
 
 @end
