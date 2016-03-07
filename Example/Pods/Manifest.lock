@@ -1,5 +1,5 @@
 PODS:
-  - BonMot (2.3)
+  - BonMot (2.4)
 
 DEPENDENCIES:
   - BonMot (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BonMot: 6fbd53628aca43c70db2a0e778fa847384a7d858
+  BonMot: 5d6e68a9e112c1775b951c3499185f9e240c2f97
 
 COCOAPODS: 0.39.0
