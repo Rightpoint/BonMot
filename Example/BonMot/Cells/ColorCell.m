@@ -37,11 +37,11 @@
         @"\nMaria Sharapova ",
     ];
 
-    BONChain *baseLineHeight = BONChain.new.lineHeightMultiple(1.2f);
+    BONChain *baseLineHeight = BONChain.new.lineHeightMultiple(1.2);
 
-    BONChain *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0f).textColor([UIColor darkGrayColor]);
+    BONChain *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0).textColor([UIColor darkGrayColor]);
 
-    BONChain *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0f);
+    BONChain *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0);
 
     BONChain *blackBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
 
@@ -71,7 +71,7 @@
 
     UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
     UIImage *tinted = [tennisRacketImage bon_tintedImageWithColor:[self.class raizlabsRed]];
-    BONChain *tennisRacket = BONChain.new.image(tinted).baselineOffset(-4.0f);
+    BONChain *tennisRacket = BONChain.new.image(tinted).baselineOffset(-4.0);
 
     [textsWithStrings addObject:tennisRacket.text];
 

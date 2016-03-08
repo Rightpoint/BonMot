@@ -106,15 +106,15 @@
     NSParagraphStyle *testParagraphStyle = testAttributes[NSParagraphStyleAttributeName];
     XCTAssertNotNil(testParagraphStyle);
     XCTAssertEqual(testParagraphStyle.alignment, NSTextAlignmentCenter);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.firstLineHeadIndent, 1.23, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 2.34, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.tailIndent, 3.45, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.lineHeightMultiple, 3.14, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.maximumLineHeight, 5.67, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.minimumLineHeight, 4.56, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.lineSpacing, 2.72, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacing, 6.78, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacingBefore, 7.89, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.firstLineHeadIndent, 1.23, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 2.34, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.tailIndent, 3.45, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.lineHeightMultiple, 3.14, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.maximumLineHeight, 5.67, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.minimumLineHeight, 4.56, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.lineSpacing, 2.72, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacing, 6.78, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacingBefore, 7.89, kBONDoubleEpsilon);
 }
 
 // Test behavior when using both `headIndent` and `indentSpacer`
@@ -132,7 +132,7 @@
     NSAttributedString *testAttributedString = chain.attributedString;
 
     // The `indentSpacer` doesn't overwrite the `headIndent` value
-    XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(testParagraphStyle.headIndent, 1.23, kBONDoubleEpsilon);
 
     [testAttributedString enumerateAttributesInRange:NSMakeRange(0, testAttributedString.length) options:0 usingBlock:^(BONStringDict *BONCNonnull attrs, NSRange range, BOOL *BONCNonnull stop) {
         NSParagraphStyle *paragraphStyle = attrs[NSParagraphStyleAttributeName];
@@ -141,10 +141,10 @@
 
             // The `indentSpacer` _does_ overwrite the `headIndent` value for the object replacement character and the inserted tab
             if ([substring isEqualToString:BONSpecial.objectReplacementCharacter] || [substring isEqualToString:BONSpecial.tab]) {
-                XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 40.0, kBONCGFloatEpsilon);
+                XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 40.0, kBONDoubleEpsilon);
             }
             else {
-                XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 1.23, kBONCGFloatEpsilon);
+                XCTAssertEqualWithAccuracy(paragraphStyle.headIndent, 1.23, kBONDoubleEpsilon);
             }
         }
     }];

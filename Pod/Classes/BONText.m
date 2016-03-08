@@ -12,10 +12,10 @@
 
 @import CoreText.SFNTLayoutTypes;
 
-static const CGFloat kBONAdobeTrackingDivisor = 1000.0f;
-static const CGFloat kBONDefaultFontSize = 15.0f; // per docs
+static const CGFloat kBONAdobeTrackingDivisor = 1000.0;
+static const CGFloat kBONDefaultFontSize = 15.0; // per docs
 
-static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
+static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 {
     const CGFloat epsilon = 0.00001; // ought to be good enough
     return fabs(float1 - float2) < epsilon;
@@ -77,7 +77,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
         attachment.image = self.image;
 
         // Use the native size of the image instead of allowing it to be scaled
-        attachment.bounds = CGRectMake(0.0f,
+        attachment.bounds = CGRectMake(0.0,
                                        self.baselineOffset, // images don’t respect attributed string’s baseline offset
                                        self.image.size.width,
                                        self.image.size.height);
@@ -249,86 +249,86 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     }
 
     // Tracking
-    NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0f, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
+    NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
-    CGFloat trackingInPoints = 0.0f;
+    CGFloat trackingInPoints = 0.0;
     if (self.adobeTracking != 0) {
         trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
-    else if (!BONCGFloatsCloseEnough(self.pointTracking, 0.0f)) {
+    else if (!BONDoublesCloseEnough(self.pointTracking, 0.0)) {
         trackingInPoints = self.pointTracking;
     }
 
-    if (!BONCGFloatsCloseEnough(trackingInPoints, 0.0f)) {
+    if (!BONDoublesCloseEnough(trackingInPoints, 0.0)) {
         attributes[NSKernAttributeName] = @(trackingInPoints);
     }
 
     // First Line Head Indent
 
-    if (self.firstLineHeadIndent != 0.0f) {
+    if (self.firstLineHeadIndent != 0.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.firstLineHeadIndent = self.firstLineHeadIndent;
     }
 
     // Head Indent
 
-    if (self.headIndent != 0.0f) {
+    if (self.headIndent != 0.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.headIndent = self.headIndent;
     }
 
     // Head Indent
 
-    if (self.tailIndent != 0.0f) {
+    if (self.tailIndent != 0.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.tailIndent = self.tailIndent;
     }
 
     // Line Height
 
-    if (self.lineHeightMultiple != 1.0f) {
+    if (self.lineHeightMultiple != 1.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineHeightMultiple = self.lineHeightMultiple;
     }
 
     // Maximum Line Height
 
-    if (self.maximumLineHeight != 1.0f) {
+    if (self.maximumLineHeight != 1.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.maximumLineHeight = self.maximumLineHeight;
     }
 
     // Minimum Line Height
 
-    if (self.minimumLineHeight != 1.0f) {
+    if (self.minimumLineHeight != 1.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.minimumLineHeight = self.minimumLineHeight;
     }
 
     // Line Spacing
 
-    if (self.lineSpacing != 0.0f) {
+    if (self.lineSpacing != 0.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineSpacing = self.lineSpacing;
     }
 
     // Paragraph Spacing
 
-    if (self.paragraphSpacingAfter != 0.0f) {
+    if (self.paragraphSpacingAfter != 0.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.paragraphSpacing = self.paragraphSpacingAfter;
     }
 
     // Paragraph Spacing Before
 
-    if (self.paragraphSpacingBefore != 0.0f) {
+    if (self.paragraphSpacingBefore != 0.0) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.paragraphSpacingBefore = self.paragraphSpacingBefore;
     }
 
     // Baseline Offset
 
-    if (self.baselineOffset != 0.0f && !self.image) {
+    if (self.baselineOffset != 0.0 && !self.image) {
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
 
@@ -435,7 +435,7 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
 {
     if (_adobeTracking != adobeTracking) {
         _adobeTracking = adobeTracking;
-        _pointTracking = 0.0f;
+        _pointTracking = 0.0;
     }
 }
 

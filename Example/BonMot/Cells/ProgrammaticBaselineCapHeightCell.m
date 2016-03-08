@@ -39,7 +39,7 @@ static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
 {
     [super awakeFromNib];
 
-    NSAttributedString *numberString = BONChain.new.fontNameAndSize(kFontNameEBGaramond, 100.0f).figureCase(BONFigureCaseOldstyle).string(@"167").attributedString;
+    NSAttributedString *numberString = BONChain.new.fontNameAndSize(kFontNameEBGaramond, 100.0).figureCase(BONFigureCaseOldstyle).string(@"167").attributedString;
 
     for (UILabel *label in self.capHeightNumberLabels) {
         label.attributedText = numberString;
@@ -80,8 +80,8 @@ static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.capHeightBaselineHairline
                                  attribute:NSLayoutAttributeBottom
-                                multiplier:1.0f
-                                  constant:0.0f]
+                                multiplier:1.0
+                                  constant:0.0]
         .active = YES;
 
     [NSLayoutConstraint constraintWithItem:self.numberXHeightLabel
@@ -89,8 +89,8 @@ static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
                                  relatedBy:NSLayoutRelationEqual
                                     toItem:self.xHeightBaselineHairline
                                  attribute:NSLayoutAttributeBottom
-                                multiplier:1.0f
-                                  constant:0.0f]
+                                multiplier:1.0
+                                  constant:0.0]
         .active = YES;
 }
 
