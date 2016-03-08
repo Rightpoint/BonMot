@@ -19,8 +19,8 @@
     CGContextSetLineDash(ctx, 0, dash, 2);
 
     CGContextSetLineWidth(ctx, CGRectGetHeight(self.bounds));
-    CGContextMoveToPoint(ctx, 0.0, CGRectGetHeight(self.bounds) / 2.0f);
-    CGContextAddLineToPoint(ctx, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) / 2.0f);
+    CGContextMoveToPoint(ctx, 0.0, CGRectGetHeight(self.bounds) / 2);
+    CGContextAddLineToPoint(ctx, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) / 2);
     CGContextSetStrokeColorWithColor(ctx, RAIZLABS_RED.CGColor);
     CGContextStrokePath(ctx);
 }
