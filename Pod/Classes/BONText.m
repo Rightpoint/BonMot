@@ -13,9 +13,9 @@
 @import CoreText.SFNTLayoutTypes;
 
 static const CGFloat kBONAdobeTrackingDivisor = 1000.0f;
-static const CGFloat kBONDefaultFontSize = 15.0f; // per docs
+static const CGFloat kBONDefaultFontSize = 15.0; // per docs
 
-static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
+static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 {
     const CGFloat epsilon = 0.00001; // ought to be good enough
     return fabs(float1 - float2) < epsilon;
@@ -255,11 +255,11 @@ static inline BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
     if (self.adobeTracking != 0) {
         trackingInPoints = [self.class pointTrackingValueFromAdobeTrackingValue:self.adobeTracking forFont:fontToUse];
     }
-    else if (!BONCGFloatsCloseEnough(self.pointTracking, 0.0f)) {
+    else if (!BONDoublesCloseEnough(self.pointTracking, 0.0)) {
         trackingInPoints = self.pointTracking;
     }
 
-    if (!BONCGFloatsCloseEnough(trackingInPoints, 0.0f)) {
+    if (!BONDoublesCloseEnough(trackingInPoints, 0.0)) {
         attributes[NSKernAttributeName] = @(trackingInPoints);
     }
 

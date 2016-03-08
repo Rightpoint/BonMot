@@ -147,8 +147,8 @@
 {
     UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
     XCTAssertNotNil(barnImage);
-    XCTAssertEqualWithAccuracy(barnImage.size.width, 36.0, kBONCGFloatEpsilon);
-    XCTAssertEqualWithAccuracy(barnImage.size.height, 36.0, kBONCGFloatEpsilon);
+    XCTAssertEqualWithAccuracy(barnImage.size.width, 36.0, kBONDoubleEpsilon);
+    XCTAssertEqualWithAccuracy(barnImage.size.height, 36.0, kBONDoubleEpsilon);
 
     BONChain *imageChain = BONChain.new.image(barnImage);
 

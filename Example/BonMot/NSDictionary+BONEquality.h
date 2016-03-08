@@ -12,8 +12,8 @@
 
 @import CoreGraphics.CGBase;
 
-OBJC_EXTERN const CGFloat kBONCGFloatEpsilon;
-OBJC_EXTERN BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2);
+OBJC_EXTERN const double kBONDoubleEpsilon;
+OBJC_EXTERN BOOL BONDoublesCloseEnough(double float1, double float2);
 
 @interface BONGenericDict (BONEquality)
 

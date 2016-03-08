@@ -10,11 +10,11 @@
 
 @import CoreGraphics.CGBase;
 
-CGFloat const kBONCGFloatEpsilon = 0.0001;
+const double kBONDoubleEpsilon = 0.0001;
 
-BOOL BONCGFloatsCloseEnough(CGFloat float1, CGFloat float2)
+BOOL BONDoublesCloseEnough(double float1, double float2)
 {
-    return fabs(float1 - float2) < kBONCGFloatEpsilon;
+    return fabs(float1 - float2) < kBONDoubleEpsilon;
 }
 
 static BOOL BONNumberIsFloaty(NSNumber *number)
@@ -45,9 +45,9 @@ static BOOL BONNumberIsFloaty(NSNumber *number)
                 if (![selfValue isEqual:otherValue]) {
                     if ([selfValue isKindOfClass:[NSNumber class]] && [otherValue isKindOfClass:[NSNumber class]]) {
                         if (BONNumberIsFloaty(selfValue) && BONNumberIsFloaty(otherValue)) {
-                            CGFloat selfFloat = [selfValue floatValue];
-                            CGFloat otherFloat = [otherValue floatValue];
-                            BOOL closeEnough = BONCGFloatsCloseEnough(selfFloat, otherFloat);
+                            double selfDouble = [selfValue doubleValue];
+                            double otherDouble = [otherValue doubleValue];
+                            BOOL closeEnough = BONDoublesCloseEnough(selfDouble, otherDouble);
                             if (!closeEnough) {
                                 equal = NO;
                                 break;
