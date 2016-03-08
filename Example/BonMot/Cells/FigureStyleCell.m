@@ -35,7 +35,7 @@ static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
     NSString *tabularLiningString = self.tabularLiningLabel.text;
     NSString *tabularOldstyleString = self.tabularOldstyleLabel.text;
 
-    UIFont *ebGaramond = [UIFont fontWithName:kFontNameEBGaramond size:24.0f];
+    UIFont *ebGaramond = [UIFont fontWithName:kFontNameEBGaramond size:24.0];
 
     BONChain *commonFont = BONChain.new.font(ebGaramond);
 

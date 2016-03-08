@@ -64,8 +64,8 @@ NSString *quote = @"I used to love correcting people’s grammar until\
 —Mara Wilson";
 
 BONText *text = [BONText new];
-text.font = [UIFont fontWithName:@"AmericanTypewriter" size:17.0f];
-text.lineHeightMultiple = 1.8f;
+text.font = [UIFont fontWithName:@"AmericanTypewriter" size:17.0];
+text.lineHeightMultiple = 1.8;
 text.string = quote;
 
 NSAttributedString *string = text.attributedString;
@@ -84,8 +84,8 @@ NSString *quote = @"I used to love correcting people’s grammar until\
 // line-wrapped for readability
 NSAttributedString *attributedString =
 BONChain.new // [BONChain new] and [[BONChain alloc] init] also work
-.fontNameAndSize(@"AmericanTypewriter", 17.0f)
-.lineHeightMultiple(1.8f)
+.fontNameAndSize(@"AmericanTypewriter", 17.0)
+.lineHeightMultiple(1.8)
 .string(quote)
 .attributedString;
 ```
@@ -97,8 +97,8 @@ You can also create a local variable or property to save a partially-configured 
 // Base Chain
 BONChain *birdChain =
 BONChain.new
-.lineHeightMultiple(1.2f)
-.font([UIFont systemFontOfSize:17.0f])
+.lineHeightMultiple(1.2)
+.font([UIFont systemFontOfSize:17.0])
 .string(@"bird");
 
 // Two chains with different colors
@@ -155,7 +155,7 @@ BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.imag
 
 ```objc
 BONChain *chain = BONChain.new;
-[chain appendLink:BONChain.new.image(someUIImage).baselineOffset(-4.0f)];
+[chain appendLink:BONChain.new.image(someUIImage).baselineOffset(-4.0)];
 [chain appendLink:BONChain.new.text(@"label with icon") separator: @" "];
 NSAttributedString *string = chain.attributedString;
 ```
@@ -169,7 +169,7 @@ If you need to wrap multiple lines of text after an image, use the `indentSpacer
 ```objc
 NSString *quote = @"This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned";
 BONChain *chain = BONChain.new;
-[chain appendLink:BONChain.new.image(someUIImage).indentSpacer(10.0f)];
+[chain appendLink:BONChain.new.image(someUIImage).indentSpacer(10.0)];
 [chain appendLink:BONChain.new.string(quote)];
 NSAttributedString *attributedString = chain.attributedString;
 ```

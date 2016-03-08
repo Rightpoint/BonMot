@@ -154,8 +154,8 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
                                                                                   relatedBy:relation
                                                                                      toItem:view2
                                                                                   attribute:item2NSLayoutAttribute
-                                                                                 multiplier:1.0f
-                                                                                   constant:0.0f];
+                                                                                 multiplier:1.0
+                                                                                   constant:0.0];
     constraint.strongItem1 = view1;
     constraint.strongItem2 = view2;
     constraint.firstItemBONAttribute = attr1;
@@ -274,7 +274,7 @@ NSLayoutAttribute requiredLayoutAttributeForBONConstraintAttribute(BONConstraint
             break;
     }
 
-    CGFloat distanceFromTop = 0.0f;
+    CGFloat distanceFromTop = 0.0;
 
     if (bonConstraintAttribute != BONConstraintAttributeTop) {
         if ([item respondsToSelector:@selector(font)]) {

@@ -20,14 +20,14 @@
     UIEdgeInsets originalAlignmentRectInsets = self.alignmentRectInsets;
 
     // Create image context
-    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
 
     // Flip the context vertically
-    CGContextTranslateCTM(ctx, 0.0f, self.size.height);
-    CGContextScaleCTM(ctx, 1.0f, -1.0f);
+    CGContextTranslateCTM(ctx, 0.0, self.size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
 
-    CGRect imageRect = CGRectMake(0.0f, 0.0f, self.size.width, self.size.height);
+    CGRect imageRect = CGRectMake(0.0, 0.0, self.size.width, self.size.height);
 
     // Image tinting mostly inspired by http://stackoverflow.com/a/22528426/255489
 

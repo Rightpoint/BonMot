@@ -74,7 +74,7 @@
     NSAttributedString *attributedString =
         BONChain.new
             .string(@"Tracking is awesome!")
-            .font([UIFont systemFontOfSize:16.0f])
+            .font([UIFont systemFontOfSize:16.0])
             .adobeTracking(230)
             .attributedString;
 
@@ -85,12 +85,12 @@
     NSDictionary *controlAttributes = @{
         BONValueFromRange(0, 19) : @{
             NSKernAttributeName : @3.68,
-            NSFontAttributeName : [UIFont systemFontOfSize:16.0f],
+            NSFontAttributeName : [UIFont systemFontOfSize:16.0],
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
 
         BONValueFromRange(19, 1) : @{
-            NSFontAttributeName : [UIFont systemFontOfSize:16.0f],
+            NSFontAttributeName : [UIFont systemFontOfSize:16.0],
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         }
     };
@@ -132,7 +132,7 @@
     NSAttributedString *attributedString =
         BONChain.new
             .string(@"Tracking is awesome!")
-            .font([UIFont systemFontOfSize:16.0f])
+            .font([UIFont systemFontOfSize:16.0])
             .adobeTracking(-230)
             .attributedString;
 
@@ -143,12 +143,12 @@
     NSDictionary *controlAttributes = @{
         BONValueFromRange(0, 19) : @{
             NSKernAttributeName : @-3.68,
-            NSFontAttributeName : [UIFont systemFontOfSize:16.0f],
+            NSFontAttributeName : [UIFont systemFontOfSize:16.0],
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
 
         BONValueFromRange(19, 1) : @{
-            NSFontAttributeName : [UIFont systemFontOfSize:16.0f],
+            NSFontAttributeName : [UIFont systemFontOfSize:16.0],
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         }
     };

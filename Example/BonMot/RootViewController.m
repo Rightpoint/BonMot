@@ -34,7 +34,7 @@
     [super viewDidLoad];
 
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 123.0f;
+    self.tableView.estimatedRowHeight = 123.0;
 
     self.cellClasses = @[
         [ColorCell class],

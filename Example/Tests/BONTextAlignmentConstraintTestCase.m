@@ -12,7 +12,7 @@
 static UILabel *testLabel(NSString *text, CGFloat fontSize)
 {
     UILabel *label = nil;
-    if (text && fontSize > 0.0f) {
+    if (text && fontSize > 0) {
         label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.translatesAutoresizingMaskIntoConstraints = NO;
         label.text = text;
@@ -30,8 +30,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testTopConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeTop
@@ -44,8 +44,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testCapHeightConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeCapHeight
@@ -58,8 +58,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testXHeightConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeXHeight
@@ -72,8 +72,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testTopToCapHeightConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeTop
@@ -86,8 +86,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testCapHeightToTopConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeCapHeight
@@ -100,8 +100,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testTopToXHeightConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeTop
@@ -128,8 +128,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testCapHeightToXHeightConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeCapHeight
@@ -142,8 +142,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testXHeightToCapHeightConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     BONTextAlignmentConstraint *constraint = [BONTextAlignmentConstraint constraintWithItem:left
                                                                                   attribute:BONConstraintAttributeXHeight
@@ -156,8 +156,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testFirstBaselineConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     XCTAssertThrows([BONTextAlignmentConstraint constraintWithItem:left
                                                          attribute:BONConstraintAttributeFirstBaseline
@@ -168,8 +168,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testLastBaselineConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     XCTAssertThrows([BONTextAlignmentConstraint constraintWithItem:left
                                                          attribute:BONConstraintAttributeLastBaseline
@@ -180,8 +180,8 @@ static UILabel *testLabel(NSString *text, CGFloat fontSize)
 
 - (void)testBottomConstraint
 {
-    UILabel *left = testLabel(@"left", 17.0f);
-    UILabel *right = testLabel(@"right", 50.0f);
+    UILabel *left = testLabel(@"left", 17.0);
+    UILabel *right = testLabel(@"right", 50.0);
 
     XCTAssertThrows([BONTextAlignmentConstraint constraintWithItem:left
                                                          attribute:BONConstraintAttributeBottom

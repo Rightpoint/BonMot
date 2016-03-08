@@ -8,7 +8,7 @@
 
 #import "ConcatenationCell.h"
 
-static const CGFloat kColorAlpha = 0.3f;
+static const CGFloat kColorAlpha = 0.3;
 static const NSInteger kTracking = 200;
 
 @interface ConcatenationCell ()

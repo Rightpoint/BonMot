@@ -29,13 +29,13 @@
     UIImage *knot = [UIImage imageNamed:@"knot"];
     UIImage *oar = [UIImage imageNamed:@"oar"];
 
-    BONChain *imageBaselineChain = BONChain.new.baselineOffset(-8.0f);
+    BONChain *imageBaselineChain = BONChain.new.baselineOffset(-8.0);
 
     BONChain *beeChain = imageBaselineChain.image(bee);
     BONChain *knotChain = imageBaselineChain.image(knot);
     BONChain *oarChain = imageBaselineChain.image(oar);
 
-    BONChain *twoChain = BONChain.new.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0f);
+    BONChain *twoChain = BONChain.new.string(@"2").fontNameAndSize(@"HelveticaNeue-Bold", 24.0);
 
     BONChain *spaceChain = BONChain.new.string(@" ");
 
