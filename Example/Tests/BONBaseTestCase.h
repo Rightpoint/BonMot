@@ -10,6 +10,7 @@
 #import "NSDictionary+BONEquality.h"
 #import "DummyAssetClass.h"
 #import "BONCompatibility.h"
+#import "BonMot.h"
 
 OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 
@@ -51,6 +52,12 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
         BONAssertEqualDictionaries(attrs, controlAttrs);                                                                                                                                             \
         [mutableControlAttributes removeObjectForKey:testRangeValue]; }]; \
     XCTAssertEqual(mutableControlAttributes.count, 0, @"Some attributes not found in string: %@", mutableControlAttributes);
+
+#define BONAssertEquivalentStrings(attributedString, controlHumanReadableString) \
+    NSAttributedString *castAttributedString = (NSAttributedString *)attributedString; \
+    NSString *humanReadableAttributedString = castAttributedString.humanReadableString; \
+    XCTAssertEqualObjects(humanReadableAttributedString, controlHumanReadableString);
+
 
 @interface BONBaseTestCase : XCTestCase
 

@@ -33,10 +33,9 @@
     NSAttributedString *textString = textChain.attributedString;
     XCTAssertEqualObjects(textString.string, @"concatenate me!");
     
-    [imageChain appendLink:textChain separator:BONSpecial.noBreakSpace];
-    
-    NSString *expectedHumanReadableString = @"{image36x36}{noBreakSpace}concatenate me!";
-    XCTAssertEqualObjects(imageChain.attributedString.humanReadableString, expectedHumanReadableString);
+    [imageChain appendLink:textChain];
+
+    BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!")
 }
 
 - (void)testSpecialCharacters
@@ -63,7 +62,9 @@
     [chain appendLink:BONChain.new.string(@"name") separator:BONSpecial.minusSign];
     
     NSString *expectedHumanReadableString = @"This{tab}string{lineFeed}is populated{noBreakSpace}by{enSpace}BONSpecial{figureSpace}characters{thinSpace}that{hairSpace}will{zeroWidthSpace}be{nonBreakingHyphen}replaced{figureDash}by{enDash}simple{emDash}human{horizontalEllipsis}readable{lineSeparator}versions{paragraphSeparator}of{narrowNoBreakSpace}their{wordJoiner}own{minusSign}name";
-    XCTAssertEqualObjects(chain.attributedString.humanReadableString, expectedHumanReadableString);
+    NSAttributedString *testAttributedStringProperty = chain.attributedString;
+    
+    BONAssertEquivalentStrings(testAttributedStringProperty, expectedHumanReadableString);
 }
 
 - (void)testAllTheCharactersInTheKitchenSink
@@ -75,8 +76,8 @@
     [everything appendLink:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
     [everything appendLink:BONChain.new.string(@"\u20AB")];
     
-    NSString *controlString = @"neonسلام🚲{figureDash}򡌷₫";
-    XCTAssertEqualObjects(everything.attributedString.humanReadableString, controlString);
+    NSAttributedString *kitchenSinkAttributedString = everything.attributedString;
+    BONAssertEquivalentStrings(kitchenSinkAttributedString, @"neonسلام🚲{figureDash}򡌷₫");
 }
 
 @end
