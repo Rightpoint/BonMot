@@ -645,6 +645,98 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return debugString;
 }
 
+- (NSString *)humanReadableString
+{
+    NSAttributedString *originalAttributedString = self.attributedString;
+    NSString *originalString = originalAttributedString.string;
+    NSMutableString *composedHumanReadableString = [NSMutableString string];
+    
+    [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *BONCNullable substring, NSRange substringRange, NSRange enclosingRange, BOOL *BONCNonnull stop) {
+        
+        static NSCharacterSet *s_newLineCharacterSet = nil;
+        if (!s_newLineCharacterSet) {
+            s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
+        }
+        NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
+        if (!s_whiteSpaceAndNewLinesSet) {
+            s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        }
+        
+        // Handle Image substitutions
+        if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
+            BONStringDict *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
+            NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
+            UIImage *attachedImage = attachment.image;
+            NSString *imageSubstitutionString = [NSString stringWithFormat:@"{ image%.0fx%.0f }", attachedImage.size.height, attachedImage.size.width];
+            [composedHumanReadableString appendString:imageSubstitutionString];
+        } else {
+            
+            // Look for BONSpecial Characters
+            // Find, derive, or invent the name/description, and append it
+            unichar character = [substring characterAtIndex:0];
+            BONGeneric(NSDictionary, NSNumber *, NSString *)*specialNames = @{
+                                                                              @(BONCharacterLineFeed) : @"{ lineFeed }",
+                                                                              @(BONCharacterTab) : @"{ tab }",
+                                                                              @(BONCharacterSpace) : @" ",
+                                                                              @(BONCharacterNoBreakSpace) : @"{ noBreakSpace }",
+                                                                              @(BONCharacterEnSpace) : @"{ enSpace }",
+                                                                              @(BONCharacterEmSpace) : @"{ emSpace }",
+                                                                              @(BONCharacterFigureSpace) : @"{ figureSpace }",
+                                                                              @(BONCharacterThinSpace) : @"{ thinSpace }",
+                                                                              @(BONCharacterHairSpace) : @"{ hairSpace }",
+                                                                              @(BONCharacterZeroWidthSpace) : @"{ zeroWidthSpace }",
+                                                                              @(BONCharacterNonBreakingHyphen) : @"{ nonBreakingHyphen }",
+                                                                              @(BONCharacterFigureDash) : @"{ figureDash }",
+                                                                              @(BONCharacterEnDash) : @"{ enDash }",
+                                                                              @(BONCharacterEmDash) : @"{ emDash }",
+                                                                              @(BONCharacterHorizontalEllipsis) : @"{ horizontalEllipsis }",
+                                                                              @(BONCharacterLineSeparator) : @"{ lineSeparator }",
+                                                                              @(BONCharacterParagraphSeparator) : @"{ paragraphSeparator }",
+                                                                              @(BONCharacterNarrowNoBreakSpace) : @"{ narrowNoBreakSpace }",
+                                                                              @(BONCharacterWordJoiner) : @"{ wordJoiner }",
+                                                                              @(BONCharacterMinusSign) : @"{ minusSign }"
+                                                                              };
+            
+            NSString *specialCharacterReplacementName = specialNames[@(character)];
+            
+            if (specialCharacterReplacementName) {
+                [composedHumanReadableString appendFormat:@"%@", specialCharacterReplacementName];
+            } else if ([substring rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location == NSNotFound) {
+                // If not a newline or whitespace character, append it
+                [composedHumanReadableString appendString:substring];
+            } else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
+                // If it's a newline character, append a space.
+                [composedHumanReadableString appendString:BONSpecial.space];
+            } else {
+                NSMutableString *mutableUnicodeName = substring.mutableCopy;
+                
+                // We can ignore the return value of this function,
+                // because while in principle it can fail, in practice
+                // it never fails with kCFStringTransformToUnicodeName
+                CFStringTransform((CFMutableStringRef)mutableUnicodeName, NULL, kCFStringTransformToUnicodeName, FALSE);
+                
+                specialCharacterReplacementName = mutableUnicodeName;
+                
+                BOOL isWhitespace = [substring rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound;
+                if (isWhitespace) {
+                    [composedHumanReadableString appendFormat:@"{ whitespaceCharacter: %02d, 0x%02X }", character, character];
+                } else {
+                    // Append name only if it is different from the string itself
+                    if (![mutableUnicodeName isEqualToString:substring]) {
+                        [composedHumanReadableString appendFormat:@"{ %@ }", mutableUnicodeName];
+                    }
+                }
+            }
+        }
+    }];
+    
+    if (composedHumanReadableString.length == 0) {
+        [composedHumanReadableString appendString:@""];
+    }
+    
+    return composedHumanReadableString;
+}
+
 - (NSString *)description
 {
     NSString *debugString = [self debugStringIncludeImageAddresses:YES];
