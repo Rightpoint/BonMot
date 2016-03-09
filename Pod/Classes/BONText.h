@@ -100,9 +100,6 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  */
 + (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator;
 
-
-- (BONNonnull NSString*)humanReadableString;
-
 /**
  *  Calls [self debugStringIncludeImageAddresses:YES]
  *

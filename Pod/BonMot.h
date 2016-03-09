@@ -11,4 +11,5 @@
 #import "BONSpecial.h"
 #import "BONTextAlignmentConstraint.h"
 #import "UIImage+BONMotUtilities.h"
-//#import "NSAttributedString+BonMotUtilities.h"
+#import "NSAttributedString+BonMotUtilities.h"
+

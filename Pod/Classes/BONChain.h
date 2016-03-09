@@ -47,7 +47,6 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) BONStringDict *attributes;
-@property (copy, nonatomic, readonly) NSString *humanReadableString;
 
 // fontNameAndSize and font are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic, readonly) BONChainFontNameAndSize fontNameAndSize;

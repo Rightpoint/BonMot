@@ -357,11 +357,6 @@
     [self.class appendText:link.text toEndOfText:self.text];
 }
 
-- (NSString *)humanReadableString
-{
-    return [self.text humanReadableString];
-}
-
 - (NSString *)description
 {
     NSString *debugString = [self.text debugStringIncludeImageAddresses:YES];

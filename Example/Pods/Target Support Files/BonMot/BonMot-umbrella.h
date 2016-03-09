@@ -7,6 +7,7 @@
 #import "BONSpecial.h"
 #import "BONText.h"
 #import "BONTextAlignmentConstraint.h"
+#import "NSAttributedString+BonMotUtilities.h"
 #import "UIImage+BonMotUtilities.h"
 
 FOUNDATION_EXPORT double BonMotVersionNumber;
