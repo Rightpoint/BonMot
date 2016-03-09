@@ -66,4 +66,17 @@
     XCTAssertEqualObjects(chain.attributedString.humanReadableString, expectedHumanReadableString);
 }
 
+- (void)testAllTheCharactersInTheKitchenSink
+{
+    BONChain *everything = BONChain.new;
+    [everything appendLink:BONChain.new.string(@"neon")];
+    [everything appendLink:BONChain.new.string(@"سلام")];
+    [everything appendLink:BONChain.new.string(@"🚲")];
+    [everything appendLink:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
+    [everything appendLink:BONChain.new.string(@"\u20AB")];
+    
+    NSString *controlString = @"neonسلام🚲{figureDash}򡌷₫";
+    XCTAssertEqualObjects(everything.attributedString.humanReadableString, controlString);
+}
+
 @end

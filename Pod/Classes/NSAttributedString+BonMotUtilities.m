@@ -28,7 +28,7 @@
             s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
         }
         
-        // Handle Image substitutions
+        // Substitute Images with @"{image#heightx#width}"
         if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
             BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
             NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
@@ -37,8 +37,7 @@
             [composedHumanReadableString appendString:imageSubstitutionString];
         } else {
             
-            // Look for BONSpecial Characters
-            // Find, derive, or invent the name/description, and append it
+            // Substitute BONSpecial Characters with @"{#name}"
             unichar character = [substring characterAtIndex:0];
             BONGeneric(NSDictionary, NSNumber *, NSString *)*specialNames = @{
                                                                               @(BONCharacterLineFeed) : @"{lineFeed}",
@@ -73,25 +72,6 @@
             } else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
                 // If it's a newline character, append a @"{newline}".
                 [composedHumanReadableString appendString:@"{newline}"];
-            } else {
-                NSMutableString *mutableUnicodeName = substring.mutableCopy;
-                
-                // We can ignore the return value of this function,
-                // because while in principle it can fail, in practice
-                // it never fails with kCFStringTransformToUnicodeName
-                CFStringTransform((CFMutableStringRef)mutableUnicodeName, NULL, kCFStringTransformToUnicodeName, FALSE);
-                
-                specialCharacterReplacementName = mutableUnicodeName;
-                
-                BOOL isWhitespace = [substring rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location != NSNotFound;
-                if (isWhitespace) {
-                    [composedHumanReadableString appendFormat:@"{whitespaceCharacter: %02d, 0x%02X}", character, character];
-                } else {
-                    // Append name only if it is different from the string itself
-                    if (![mutableUnicodeName isEqualToString:substring]) {
-                        [composedHumanReadableString appendFormat:@"{%@}", mutableUnicodeName];
-                    }
-                }
             }
         }
     }];
