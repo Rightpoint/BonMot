@@ -1,6 +1,6 @@
 //
 //  NSAttributedString+BonMotUtilities.m
-//  Pods
+//  BonMot
 //
 //  Created by Eliot Williams on 3/9/16.
 //
@@ -59,7 +59,7 @@
                 @(BONCharacterParagraphSeparator) : @"{paragraphSeparator}",
                 @(BONCharacterNarrowNoBreakSpace) : @"{narrowNoBreakSpace}",
                 @(BONCharacterWordJoiner) : @"{wordJoiner}",
-                @(BONCharacterMinusSign) : @"{minusSign}"
+                @(BONCharacterMinusSign) : @"{minusSign}",
             };
 
             NSString *specialCharacterReplacementName = specialNames[@(character)];
@@ -77,10 +77,6 @@
             }
         }
     }];
-
-    if (composedHumanReadableString.length == 0) {
-        [composedHumanReadableString appendString:@""];
-    }
 
     return composedHumanReadableString;
 }

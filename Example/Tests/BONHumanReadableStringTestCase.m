@@ -21,7 +21,7 @@
     UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
     BONChain *imageChain = BONChain.new.image(barnImage);
     BONChain *textChain = BONChain.new.string(@"concatenate me!");
-    
+
     [imageChain appendLink:textChain];
 
     BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!")
@@ -49,10 +49,10 @@
     [chain appendLink:BONChain.new.string(@"their") separator:BONSpecial.narrowNoBreakSpace];
     [chain appendLink:BONChain.new.string(@"own") separator:BONSpecial.wordJoiner];
     [chain appendLink:BONChain.new.string(@"name") separator:BONSpecial.minusSign];
-    
+
     NSString *expectedHumanReadableString = @"This{tab}string{lineFeed}is populated{noBreakSpace}by{enSpace}BONSpecial{figureSpace}characters{thinSpace}that{hairSpace}will{zeroWidthSpace}be{nonBreakingHyphen}replaced{figureDash}by{enDash}simple{emDash}human{horizontalEllipsis}readable{lineSeparator}versions{paragraphSeparator}of{narrowNoBreakSpace}their{wordJoiner}own{minusSign}name";
     NSAttributedString *testAttributedStringProperty = chain.attributedString;
-    
+
     BONAssertEquivalentStrings(testAttributedStringProperty, expectedHumanReadableString);
 }
 
@@ -64,9 +64,15 @@
     [everything appendLink:BONChain.new.string(@"🚲")];
     [everything appendLink:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
     [everything appendLink:BONChain.new.string(@"\u20AB")];
-    
+
     NSAttributedString *kitchenSinkAttributedString = everything.attributedString;
     BONAssertEquivalentStrings(kitchenSinkAttributedString, @"neonسلام🚲{figureDash}򡌷₫");
+}
+
+- (void)testEmptyString
+{
+    BONChain *emptyChain = BONChain.new.string(@"");
+    BONAssertEquivalentStrings(emptyChain.attributedString, @"");
 }
 
 @end

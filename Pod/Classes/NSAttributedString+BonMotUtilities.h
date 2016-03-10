@@ -1,6 +1,6 @@
 //
 //  NSAttributedString+BonMotUtilities.h
-//  Pods
+//  BonMot
 //
 //  Created by Eliot Williams on 3/9/16.
 //
