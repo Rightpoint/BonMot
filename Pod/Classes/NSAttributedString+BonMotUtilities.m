@@ -28,53 +28,30 @@
             s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
         }
 
+        BONGeneric(NSDictionary, NSNumber *, NSString *)*specialCharacterSubstitutionNameDictionary = [BONSpecial humanReadableStringDictionary];
+        unichar character = [substring characterAtIndex:0];
+        NSString *specialCharacterSubstitutionString = specialCharacterSubstitutionNameDictionary[@(character)];
+
+        // Substitute BONSpecial Characters with @"{#name}"
+        if (specialCharacterSubstitutionString) {
+            [composedHumanReadableString appendFormat:@"%@", specialCharacterSubstitutionString];
+        }
+
         // Substitute Images with @"{image#heightx#width}"
-        if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
+        else if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
             BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
             NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
             UIImage *attachedImage = attachment.image;
             NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%.0fx%.0f}", attachedImage.size.height, attachedImage.size.width];
             [composedHumanReadableString appendString:imageSubstitutionString];
         }
+
+        // Substitute Newline character with  @"{newline}"
+        else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
+            [composedHumanReadableString appendString:@"{newline}"];
+        }
         else {
-            // Substitute BONSpecial Characters with @"{#name}"
-            unichar character = [substring characterAtIndex:0];
-            BONGeneric(NSDictionary, NSNumber *, NSString *)*specialNames = @{
-                @(BONCharacterLineFeed) : @"{lineFeed}",
-                @(BONCharacterTab) : @"{tab}",
-                @(BONCharacterSpace) : @" ",
-                @(BONCharacterNoBreakSpace) : @"{noBreakSpace}",
-                @(BONCharacterEnSpace) : @"{enSpace}",
-                @(BONCharacterEmSpace) : @"{emSpace}",
-                @(BONCharacterFigureSpace) : @"{figureSpace}",
-                @(BONCharacterThinSpace) : @"{thinSpace}",
-                @(BONCharacterHairSpace) : @"{hairSpace}",
-                @(BONCharacterZeroWidthSpace) : @"{zeroWidthSpace}",
-                @(BONCharacterNonBreakingHyphen) : @"{nonBreakingHyphen}",
-                @(BONCharacterFigureDash) : @"{figureDash}",
-                @(BONCharacterEnDash) : @"{enDash}",
-                @(BONCharacterEmDash) : @"{emDash}",
-                @(BONCharacterHorizontalEllipsis) : @"{horizontalEllipsis}",
-                @(BONCharacterLineSeparator) : @"{lineSeparator}",
-                @(BONCharacterParagraphSeparator) : @"{paragraphSeparator}",
-                @(BONCharacterNarrowNoBreakSpace) : @"{narrowNoBreakSpace}",
-                @(BONCharacterWordJoiner) : @"{wordJoiner}",
-                @(BONCharacterMinusSign) : @"{minusSign}",
-            };
-
-            NSString *specialCharacterReplacementName = specialNames[@(character)];
-
-            if (specialCharacterReplacementName) {
-                [composedHumanReadableString appendFormat:@"%@", specialCharacterReplacementName];
-            }
-            else if ([substring rangeOfCharacterFromSet:s_whiteSpaceAndNewLinesSet].location == NSNotFound) {
-                // If not a newline or whitespace character, append it
-                [composedHumanReadableString appendString:substring];
-            }
-            else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
-                // If it's a newline character, append a @"{newline}".
-                [composedHumanReadableString appendString:@"{newline}"];
-            }
+            [composedHumanReadableString appendString:substring];
         }
     }];
 
