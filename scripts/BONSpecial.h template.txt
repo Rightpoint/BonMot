@@ -11,13 +11,13 @@
 
 #import "BONCompatibility.h"
 
-BONAssumeNonnullBegin
+BON_ASSUME_NONNULL_BEGIN
 
 @interface BONSpecial : NSObject
 
 {{ contents }}
 @end
 
-BONAssumeNonnullEnd
+BON_ASSUME_NONNULL_END
 
 // clang-format on
