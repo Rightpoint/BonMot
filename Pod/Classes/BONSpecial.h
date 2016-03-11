@@ -61,7 +61,7 @@ typedef NS_ENUM(unichar, BONCharacter) {
 + (NSString *)minusSign;
 + (NSString *)objectReplacementCharacter;
 
-+ (NSDictionary *)humanReadableStringDictionary;
++ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary;
 
 @end
 

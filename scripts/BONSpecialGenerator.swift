@@ -51,11 +51,9 @@ let charactersRequiringFormatStrings: Set<unichar> = [
     0x0020,
 ]
 
-// These special characters are to be excluded from the human readable string dictionary
-// They are handled outside the generated dictionary
+// These special characters are to be excluded from the human readable string dictionary.
 let charactersToExcludeFromHumanReadableStringDictionary: Set<unichar> = [
     0x0020,
-    unichar(NSAttachmentCharacter),
 ]
 
 extension unichar {
@@ -154,8 +152,7 @@ if sortedSpecialCharacters != specialCharacters {
 var headerEnumString = "typedef NS_ENUM(unichar, BONCharacter) {\n"
 var headerCodeString = ""
 var implementationCodeString = ""
-var humanReadableDictionaryHeaderDeclaration = "+ (NSDictionary *)humanReadableStringDictionary;"
-var humanReadableDictionaryImplementation = "+ (NSDictionary *)humanReadableStringDictionary { \n    return @{\n"
+var humanReadableDictionaryContent = ""
 
 for theUnichar in specialCharacters {
     let characterName = theUnichar.unicodeName
@@ -168,7 +165,7 @@ for theUnichar in specialCharacters {
     
     if !charactersToExcludeFromHumanReadableStringDictionary.contains(theUnichar) {
         let dictionaryStatement = "        @(\(enumerationName)) : @\"{\(methodName)}\", \n"
-        humanReadableDictionaryImplementation += dictionaryStatement
+        humanReadableDictionaryContent += dictionaryStatement
     }
 
     let methodPrototype = "+ (NSString *)\(methodName)"
@@ -189,7 +186,8 @@ for theUnichar in specialCharacters {
     implementationCodeString += (methodImplementation + "\n")
 }
 
-humanReadableDictionaryImplementation += "    };\n}"
+let humanReadableDictionaryHeaderDeclaration = "+ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary;"
+let humanReadableDictionaryImplementation = "+ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary\n{\n    return @{\n" + humanReadableDictionaryContent + "    };\n}"
 
 headerCodeString += ("\n" + humanReadableDictionaryHeaderDeclaration + "\n")
 headerEnumString += "};"

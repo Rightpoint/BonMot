@@ -75,4 +75,11 @@
     BONAssertEquivalentStrings(emptyChain.attributedString, @"");
 }
 
+- (void)testObjectReplacementCharacterWithoutAnImage
+{
+    BONChain *chain = BONChain.new.string(@"No image? ");
+    [chain appendLink:BONChain.new.string(@" No problem.") separator:BONSpecial.objectReplacementCharacter];
+    BONAssertEquivalentStrings(chain.attributedString, @"No image? {objectReplacementCharacter} No problem.");
+}
+
 @end

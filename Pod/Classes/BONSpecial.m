@@ -33,7 +33,8 @@
 + (NSString *)minusSign { return @"\u2212"; }
 + (NSString *)objectReplacementCharacter { return @"\uFFFC"; }
 
-+ (NSDictionary *)humanReadableStringDictionary { 
++ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary
+{
     return @{
         @(BONCharacterTab) : @"{tab}", 
         @(BONCharacterLineFeed) : @"{lineFeed}", 
@@ -54,6 +55,7 @@
         @(BONCharacterNarrowNoBreakSpace) : @"{narrowNoBreakSpace}", 
         @(BONCharacterWordJoiner) : @"{wordJoiner}", 
         @(BONCharacterMinusSign) : @"{minusSign}", 
+        @(BONCharacterObjectReplacementCharacter) : @"{objectReplacementCharacter}", 
     };
 }
 

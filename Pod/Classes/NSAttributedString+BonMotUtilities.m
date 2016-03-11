@@ -32,20 +32,20 @@
         unichar character = [substring characterAtIndex:0];
         NSString *specialCharacterSubstitutionString = specialCharacterSubstitutionNameDictionary[@(character)];
 
-        // Substitute BONSpecial Characters with @"{#name}"
-        if (specialCharacterSubstitutionString) {
-            [composedHumanReadableString appendFormat:@"%@", specialCharacterSubstitutionString];
-        }
+        BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
+        NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
+        UIImage *attachedImage;
+        attachedImage = attachment.image;
 
-        // Substitute Images with @"{image#heightx#width}"
-        else if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
-            BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
-            NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
-            UIImage *attachedImage = attachment.image;
+        // Substitute attached images with @"{image#heightx#width}"
+        if (attachedImage) {
             NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%.0fx%.0f}", attachedImage.size.height, attachedImage.size.width];
             [composedHumanReadableString appendString:imageSubstitutionString];
         }
-
+        // Swap applicable BONSpecial characters with @"{#camelCaseName}"
+        else if (specialCharacterSubstitutionString) {
+            [composedHumanReadableString appendFormat:@"%@", specialCharacterSubstitutionString];
+        }
         // Substitute Newline character with  @"{newline}"
         else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
             [composedHumanReadableString appendString:@"{newline}"];
