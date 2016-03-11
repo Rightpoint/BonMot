@@ -41,7 +41,7 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
 {
     UILabel *label = UILabel.new;
     label.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
-    label.text = @"Hello, world!";
+    label.textAndApplyChainable = @"Hello, world!";
 
     XCTAssertEqualObjects(label.attributedText.string, @"Hello, world!");
 
@@ -60,7 +60,7 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
 - (void)testLabelTextBeforeChainable
 {
     UILabel *label = UILabel.new;
-    label.text = @"Hello, world!";
+    label.textAndApplyChainable = @"Hello, world!";
     label.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
     XCTAssertEqualObjects(label.attributedText.string, @"Hello, world!");
@@ -83,7 +83,6 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
     label.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
     label.attributedText = [[NSAttributedString alloc] initWithString:@"Hello, world!"];
 
-    XCTAssertNil(label.bonChainable);
     XCTAssertEqualObjects(label.attributedText.string, @"Hello, world!");
 
     NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UILabel class], @"Hello, world!");
@@ -118,7 +117,7 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
 {
     UITextView *textView = UITextView.new;
     textView.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
-    textView.text = @"Hello, world!";
+    textView.textAndApplyChainable = @"Hello, world!";
 
     XCTAssertEqualObjects(textView.attributedText.string, @"Hello, world!");
 
@@ -137,7 +136,7 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
 - (void)testTextViewTextBeforeChainable
 {
     UITextView *textView = UITextView.new;
-    textView.text = @"Hello, world!";
+    textView.textAndApplyChainable = @"Hello, world!";
     textView.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
     XCTAssertEqualObjects(textView.attributedText.string, @"Hello, world!");
@@ -193,7 +192,7 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
 {
     UITextField *textField = UITextField.new;
     textField.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
-    textField.text = @"Hello, world!";
+    textField.textAndApplyChainable = @"Hello, world!";
 
     XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
 
@@ -210,7 +209,7 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
 - (void)testTextFieldTextBeforeChainable
 {
     UITextField *textField = UITextField.new;
-    textField.text = @"Hello, world!";
+    textField.textAndApplyChainable = @"Hello, world!";
     textField.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
     XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
@@ -231,7 +230,6 @@ NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *
     textField.bonChainable = BONChain.new.font([UIFont systemFontOfSize:16]);
     textField.attributedText = [[NSAttributedString alloc] initWithString:@"Hello, world!"];
 
-    XCTAssertNil(textField.bonChainable);
     XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
 
     NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");

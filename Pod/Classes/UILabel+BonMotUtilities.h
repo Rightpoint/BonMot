@@ -17,4 +17,11 @@
  */
 @property (copy, nonatomic) id<BONChainable> bonChainable;
 
+/**
+ *  Assigning text via this method will apply the chain attributes and set the @p attributedText with the resulting @p NSAttributedString.
+ *
+ *  @param text The text to be displayed.
+ */
+- (void)setTextAndApplyChainable:(NSString *)text;
+
 @end
