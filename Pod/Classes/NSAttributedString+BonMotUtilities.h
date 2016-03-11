@@ -10,6 +10,6 @@
 
 @interface NSAttributedString (BonMotUtilities)
 
-@property (nonatomic, readonly, nonnull) NSString *humanReadableString;
+@property (nonatomic, readonly, nonnull) NSString *bon_humanReadableString;
 
 @end

@@ -12,7 +12,7 @@
 
 @implementation NSAttributedString (BonMotUtilities)
 
-- (NSString *)humanReadableString
+- (NSString *)bon_humanReadableString
 {
     NSString *originalString = self.string;
     NSMutableString *composedHumanReadableString = [NSMutableString string];
