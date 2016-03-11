@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/BONTextAlignmentConstraint.h
+../../../../../Pod/UI/Classes/BONTextAlignmentConstraint.h

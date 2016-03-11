@@ -1,14 +1,19 @@
 PODS:
-  - BonMot (2.4.1)
+  - BonMot (2.4.1):
+    - BonMot/Core (= 2.4.1)
+  - BonMot/Core (2.4.1)
+  - BonMot/UI (2.4.1):
+    - BonMot/Core
 
 DEPENDENCIES:
   - BonMot (from `../`)
+  - BonMot/UI (from `../`)
 
 EXTERNAL SOURCES:
   BonMot:
     :path: ../
 
 SPEC CHECKSUMS:
-  BonMot: 6a9a314f50e60e71a48d5ec63bc44412ec520e19
+  BonMot: 90e8f2228c5174697f928fdfc9f14b937fdf0ec7
 
 COCOAPODS: 0.39.0
