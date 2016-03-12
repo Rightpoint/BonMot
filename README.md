@@ -114,15 +114,15 @@ NSAttributedString *blueBirdString = blueBirds.attributedString;
 
 ## Label, TextView, and TextField Utilities
 
-BonMot provides a `bonChainable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONChainable` object to apply styling to the `text` property in a similar way as the `font` property.
+BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `bonString` property.
 
 ```objc
 UILabel *label = [[UILabel alloc] init];
 
 BONChain *chain = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f);
 
-label.bonChainable = chain;
-label.text = @"Some initial text.";
+label.bonTextable = chain;
+label.bonString = @"Some initial text.";
 ```
 
 Outputs:
@@ -132,14 +132,12 @@ Outputs:
 Some time later, you can update the text of the label without losing the original styling.
 
 ```objc
-label.text = @"Some updated text.";
+label.bonString = @"Some updated text.";
 ```
 
 Outputs:
 
 <img width=310 src="readme-images/updated-text.png" />
-
-**Warning:** Using the `attributedText` property directly is unsupported when an assignment has been made to the `bonChainable` property. Assigning a value to this property will `nil` the `bonChainable` property.
 
 ## Concatenation
 

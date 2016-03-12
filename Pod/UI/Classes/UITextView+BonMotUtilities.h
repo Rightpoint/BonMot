@@ -7,21 +7,21 @@
 //
 
 @import UIKit;
-@protocol BONChainable;
+
+@protocol BONTextable;
 
 @interface UITextView (BonMotUtilities)
 
 /**
- *  Assign a @p BONChainable object to apply to the label text. When a new value is assigned to @p text the chain attributes will be applied.
- *  If a new value is assigned directly to @p attributedText the @p bonChainable property will be set to @p nil.
+ *  Assign a @c BONTextable object to apply to the label text. When a new value is assigned to @c bonString the chain attributes will be applied.
  */
-@property (copy, nonatomic) id<BONChainable> bonChainable;
+@property (copy, nonatomic) id<BONTextable> bonTextable;
 
 /**
- *  Assigning text via this method will apply the chain attributes and set the @p attributedText with the resulting @p NSAttributedString.
+ *  Assigning a string via this method will apply the attributes of any assigned @c BONTextable and set the @c attributedText with the resulting @c NSAttributedString.
  *
- *  @param text The text to be displayed.
+ *  @param string The text to be displayed.
  */
-- (void)setTextAndApplyChainable:(NSString *)text;
+- (void)setBonString:(NSString *)string;
 
 @end

@@ -2,10 +2,10 @@
 
 #import "BonMot.h"
 #import "BONChain.h"
-#import "BONChainable.h"
 #import "BONCompatibility.h"
 #import "BONSpecial.h"
 #import "BONText.h"
+#import "BONTextable.h"
 #import "UIImage+BonMotUtilities.h"
 #import "BonMot-UI.h"
 #import "BONTextAlignmentConstraint.h"

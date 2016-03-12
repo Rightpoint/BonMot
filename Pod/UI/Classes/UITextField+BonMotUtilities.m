@@ -11,26 +11,26 @@
 
 @implementation UITextField (BonMotUtilities)
 
-- (void)setBonChainable:(id<BONChainable>)chainable
+- (void)setBonTextable:(id<BONTextable>)textable
 {
-    objc_setAssociatedObject(self, @selector(bonChainable), chainable, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(bonTextable), textable, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-    self.textAndApplyChainable = self.text;
+    self.bonString = self.text;
 }
 
-- (BONChain *)bonChainable
+- (BONChain *)bonTextable
 {
-    return objc_getAssociatedObject(self, @selector(bonChainable));
+    return objc_getAssociatedObject(self, @selector(bonTextable));
 }
 
-- (void)setTextAndApplyChainable:(NSString *)text
+- (void)setBonString:(NSString *)string
 {
-    if (self.bonChainable) {
-        self.bonChainable.text.string = text;
-        self.attributedText = self.bonChainable.text.attributedString;
+    if (self.bonTextable) {
+        self.bonTextable.text.string = string;
+        self.attributedText = self.bonTextable.text.attributedString;
     }
     else {
-        self.text = text;
+        self.text = string;
     }
 }
 
