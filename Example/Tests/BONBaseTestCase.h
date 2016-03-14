@@ -56,7 +56,7 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 #define BONAssertEquivalentStrings(attributedString, controlHumanReadableString)       \
     NSAttributedString *castAttributedString = (NSAttributedString *)attributedString; \
     NSString *humanReadableString = castAttributedString.bon_humanReadableString;      \
-    XCTAssertEqualObjects(humanReadableAttributedString, controlHumanReadableString);
+    XCTAssertEqualObjects(humanReadableString, controlHumanReadableString);
 
 @interface BONBaseTestCase : XCTestCase
 
