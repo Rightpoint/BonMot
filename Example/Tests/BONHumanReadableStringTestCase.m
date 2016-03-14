@@ -62,11 +62,12 @@
     [everything appendLink:BONChain.new.string(@"neon")];
     [everything appendLink:BONChain.new.string(@"سلام")];
     [everything appendLink:BONChain.new.string(@"🚲")];
-    [everything appendLink:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
+    [everything appendLink:BONChain.new.string(@"\U000A1338") separator:BONSpecial.figureDash];
     [everything appendLink:BONChain.new.string(@"\u20AB")];
+    [everything appendLink:BONChain.new.string(@"\U000A1339")];
 
     NSAttributedString *kitchenSinkAttributedString = everything.attributedString;
-    BONAssertEquivalentStrings(kitchenSinkAttributedString, @"neonسلام🚲{figureDash}򡌷₫");
+    BONAssertEquivalentStrings(kitchenSinkAttributedString, @"neonسلام🚲{figureDash}{unassignedUnicodeA1338}₫{unassignedUnicodeA1339}");
 }
 
 - (void)testEmptyString

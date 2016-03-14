@@ -10,6 +10,9 @@
 #import "BONChain.h"
 #import "BONSpecial.h"
 
+static NSString *const kUnassignedCharacterNamePrefix = @"\\N{<unassigned-";
+static NSString *const kUnassignedCharacterNameSuffix = @">}";
+
 @implementation NSAttributedString (BonMotUtilities)
 
 - (NSString *)bon_humanReadableString
@@ -31,6 +34,9 @@
         unichar character = [substring characterAtIndex:0];
         NSString *specialCharacterSubstitutionString = [BONSpecial humanReadableStringDictionary][@(character)];
 
+        NSMutableString *mutableUnicodeName = substring.mutableCopy;
+        CFStringTransform((CFMutableStringRef)mutableUnicodeName, NULL, kCFStringTransformToUnicodeName, FALSE);
+
         BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
         NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
         UIImage *attachedImage;
@@ -48,6 +54,13 @@
         // Substitute Newline character with  @"{newline}"
         else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
             [composedHumanReadableString appendString:@"{newline}"];
+        }
+        // Substitute 򡌸 or similar with {unassignedUnicode#unicodeNumber}
+        else if ([mutableUnicodeName hasPrefix:kUnassignedCharacterNamePrefix] && [mutableUnicodeName hasSuffix:kUnassignedCharacterNameSuffix]) {
+            NSString *unicodeName = [mutableUnicodeName substringWithRange:NSMakeRange(kUnassignedCharacterNamePrefix.length, mutableUnicodeName.length - kUnassignedCharacterNamePrefix.length - kUnassignedCharacterNameSuffix.length)];
+
+            NSString *unassignedCharacterString = [NSString stringWithFormat:@"{unassignedUnicode%@}", unicodeName];
+            [composedHumanReadableString appendString:unassignedCharacterString];
         }
         else {
             [composedHumanReadableString appendString:substring];
