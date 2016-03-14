@@ -28,9 +28,8 @@
             s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
         }
 
-        BONGeneric(NSDictionary, NSNumber *, NSString *)*specialCharacterSubstitutionNameDictionary = [BONSpecial humanReadableStringDictionary];
         unichar character = [substring characterAtIndex:0];
-        NSString *specialCharacterSubstitutionString = specialCharacterSubstitutionNameDictionary[@(character)];
+        NSString *specialCharacterSubstitutionString = [BONSpecial humanReadableStringDictionary][@(character)];
 
         BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
         NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
