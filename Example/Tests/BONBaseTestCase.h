@@ -53,9 +53,9 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
         [mutableControlAttributes removeObjectForKey:testRangeValue]; }]; \
     XCTAssertEqual(mutableControlAttributes.count, 0, @"Some attributes not found in string: %@", mutableControlAttributes);
 
-#define BONAssertEquivalentStrings(attributedString, controlHumanReadableString)            \
-    NSAttributedString *castAttributedString = (NSAttributedString *)attributedString;      \
-    NSString *humanReadableAttributedString = castAttributedString.bon_humanReadableString; \
+#define BONAssertEquivalentStrings(attributedString, controlHumanReadableString)       \
+    NSAttributedString *castAttributedString = (NSAttributedString *)attributedString; \
+    NSString *humanReadableString = castAttributedString.bon_humanReadableString;      \
     XCTAssertEqualObjects(humanReadableAttributedString, controlHumanReadableString);
 
 @interface BONBaseTestCase : XCTestCase
