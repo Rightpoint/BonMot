@@ -116,6 +116,8 @@ NSAttributedString *blueBirdString = blueBirds.attributedString;
 
 BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `bonString` property.
 
+**Note:** to use these utilities, add `pod 'BonMot/UI'` to your Podfile.
+
 ```objc
 UILabel *label = [[UILabel alloc] init];
 
