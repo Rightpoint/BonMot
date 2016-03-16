@@ -43,7 +43,7 @@ typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable co
 typedef BONChain *BONCNonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
 typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullable color);
 
-@interface BONChain : NSObject <NSCopying, BONChainable>
+@interface BONChain : NSObject <BONTextable>
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) BONStringDict *attributes;
@@ -93,8 +93,8 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 @property (copy, nonatomic, readonly) BONChainStrikethroughColor strikethroughColor;
 
 // concatenation
-- (void)appendLink:(id<BONChainable>)link;
-- (void)appendLink:(id<BONChainable>)link separator:(BONNullable NSString *)separator;
+- (void)appendLink:(id<BONTextable>)link;
+- (void)appendLink:(id<BONTextable>)link separator:(BONNullable NSString *)separator;
 
 @end
 

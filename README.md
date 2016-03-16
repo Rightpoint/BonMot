@@ -112,6 +112,33 @@ NSAttributedString *redBirdString = redBirds.attributedString;
 NSAttributedString *blueBirdString = blueBirds.attributedString;
 ```
 
+## Label, TextView, and TextField Utilities
+
+BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `bonString` property.
+
+```objc
+UILabel *label = [[UILabel alloc] init];
+
+BONChain *chain = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f);
+
+label.bonTextable = chain;
+label.bonString = @"Some initial text.";
+```
+
+Outputs:
+
+<img width=310 src="readme-images/initial-text.png" />
+
+Some time later, you can update the text of the label without losing the original styling.
+
+```objc
+label.bonString = @"Some updated text.";
+```
+
+Outputs:
+
+<img width=310 src="readme-images/updated-text.png" />
+
 ## Concatenation
 
 You can concatenate an array of `BONText`s:

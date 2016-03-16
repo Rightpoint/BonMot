@@ -17,10 +17,28 @@
     "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": [
-    "Pod",
-    "Pod/Classes/**/*"
-  ],
-  "private_header_files": "Pod/Classes/*_Private.h",
-  "frameworks": "UIKit"
+  "frameworks": "UIKit",
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": [
+        "Pod",
+        "Pod/Classes/**/*"
+      ],
+      "private_header_files": "Pod/Classes/*_Private.h"
+    },
+    {
+      "name": "UI",
+      "source_files": [
+        "Pod/UI",
+        "Pod/UI/Classes/**/*"
+      ],
+      "dependencies": {
+        "BonMot/Core": [
+
+        ]
+      }
+    }
+  ]
 }
