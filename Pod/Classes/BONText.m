@@ -463,6 +463,11 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     }
 }
 
+- (BOOL)empty
+{
+    return (self.string.length == 0 && (!self.nextText || self.nextText.empty));
+}
+
 #pragma mark - BONTextable
 
 - (BONText *)text

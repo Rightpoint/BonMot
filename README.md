@@ -112,35 +112,6 @@ NSAttributedString *redBirdString = redBirds.attributedString;
 NSAttributedString *blueBirdString = blueBirds.attributedString;
 ```
 
-## Label, TextView, and TextField Utilities
-
-BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `bonString` property.
-
-**Note:** to use these utilities, add `pod 'BonMot/UI'` to your Podfile.
-
-```objc
-UILabel *label = [[UILabel alloc] init];
-
-BONChain *chain = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f);
-
-label.bonTextable = chain;
-label.bonString = @"Some initial text.";
-```
-
-Outputs:
-
-<img width=310 src="readme-images/initial-text.png" />
-
-Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
-
-```objc
-label.bonString = @"Some updated text.";
-```
-
-Outputs:
-
-<img width=310 src="readme-images/updated-text.png" />
-
 ## Concatenation
 
 You can concatenate an array of `BONText`s:
@@ -211,7 +182,40 @@ Outputs:
 
 You can easily access those hard-to-find special characters using the `BONSpecial` class. These include the No-Break Space, En and Em Spaces, various kinds of dashes, and more. If it’s hard to see in your source code or debug logs, it belongs in `BONSpecial`. If you want to add special characters to BonMot, add them to `BONSpecialGenerator.swift` (requires Xcode 7), run `swift BONSpecialGenerator.swift`, and submit a pull request! See `SpecialCharactersCell.m` in the sample project for some examples of how to use `BONSpecial`.
 
-## Vertical Text Alignment
+## UIKit Utilities
+
+BonMot provides several utilities that enhance its interoperability with UIKit.
+
+### Text UI Elements
+
+BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `bonString` property.
+
+**Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
+
+```objc
+UILabel *label = [[UILabel alloc] init];
+
+BONChain *chain = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f);
+
+label.bonTextable = chain;
+label.bonString = @"Some initial text.";
+```
+
+Outputs:
+
+<img width=310 src="readme-images/initial-text.png" />
+
+Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
+
+```objc
+label.bonString = @"Some updated text.";
+```
+
+Outputs:
+
+<img width=310 src="readme-images/updated-text.png" />
+
+### Vertical Text Alignment
 
 UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTextAlignmentConstraint`, a layout constraint subclass that lets you align labels by cap height and x-height. For some fonts, this is essential to convey the designer’s intention:
 
