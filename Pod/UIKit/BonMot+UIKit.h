@@ -1,5 +1,5 @@
 //
-//  BonMot-UI.h
+//  BonMot+UIKit.h
 //  Pods
 //
 //  Created by Nora Trapp on 3/10/16.

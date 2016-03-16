@@ -8,7 +8,7 @@
 #import "BONTextable.h"
 #import "NSAttributedString+BonMotUtilities.h"
 #import "UIImage+BonMotUtilities.h"
-#import "BonMot-UI.h"
+#import "BonMot+UIKit.h"
 #import "BONTextAlignmentConstraint.h"
 #import "UILabel+BonMotUtilities.h"
 #import "UITextField+BonMotUtilities.h"

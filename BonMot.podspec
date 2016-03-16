@@ -23,8 +23,8 @@ Pod::Spec.new do |s|
     sp.private_header_files = "Pod/Classes/*_Private.h"
   end
 
-  s.subspec 'UI' do |sp|
-    sp.source_files = 'Pod/UI', 'Pod/UI/Classes/**/*'
+  s.subspec 'UIKit' do |sp|
+    sp.source_files = 'Pod/UIKit', 'Pod/UIKit/Classes/**/*'
     sp.dependency 'BonMot/Core'
   end
 end

@@ -1,808 +1,2242 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		0219B207E1DFB298AE0638868013EE2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */; };
-		0E4C967D9164B39B23F7D8574CADABE0 /* UILabel+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = FF9EEA2A97C457E8C2BD114BF30D8059 /* UILabel+BonMotUtilities.m */; };
-		1026542108186371262F37503A4813D3 /* BONText_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B08C6FB910EF19B2FECE9112AC31B626 /* BONText_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		1F4F56746B5D935F01269C39DAD5AD3A /* BONCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = BC64E33FDE5F26F66A0CC314EDE4F94A /* BONCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		20A63EF13894B3AA22B933560AA53F18 /* UITextView+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 873BE9F4D8E3260E1B2B51BDC013F654 /* UITextView+BonMotUtilities.m */; };
-		29A1FBDD8EE4DBD4F5BC6E4695C00A62 /* BONText.h in Headers */ = {isa = PBXBuildFile; fileRef = 545A2AB0456CD7F1019DFE74264E214B /* BONText.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2B18E7F3D4A623CE4200F5B10EE3DEB6 /* BonMot.h in Headers */ = {isa = PBXBuildFile; fileRef = BCCFFCE70BF2E4738194EF20904AE994 /* BonMot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		304E716C2718C5366409757C167F395B /* UITextField+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A6C324134DCF48F5C9B07AD6DA1E7 /* UITextField+BonMotUtilities.m */; };
-		343209DCE85C839F7B1C9A277C3C4381 /* BONTextable.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EAE1F475CD56784E03CE9D28596AC9D /* BONTextable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		382422134FD5BE7524B02520A21D6690 /* NSAttributedString+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 609C1C4D43D7BC84DA6286EAB6C2F26F /* NSAttributedString+BonMotUtilities.m */; };
-		45EB385A63AF0AA85959AE03497B88E4 /* Pods-BonMot_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DAE09174C6886D8EFBA0B3C9BF3BDB /* Pods-BonMot_Tests-dummy.m */; };
-		478830357B13B6F648D4E1ED203CD27A /* BonMot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1957144DDBC6AAFCCC6C75584E798D /* BonMot-dummy.m */; };
-		498034B59B2C155D3B3F173CC32514A0 /* BONChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 37D9AB92B1D0BB3632891AA767EC9932 /* BONChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6D5F8E997511A18E27D5C8E0AD1F00BF /* BonMot-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F83BFF5366AB7505DF3FE30FC1D897C /* BonMot-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		73F001AAAAAB975ABFFA01EAF7E8FCBC /* BONText.m in Sources */ = {isa = PBXBuildFile; fileRef = C5BA0CBD6473A40F316A345F3399C663 /* BONText.m */; };
-		7F5A776BED0EC9D74CC3548D038A1BD0 /* UIImage+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 00055C15C9C19D9834B319956BACD092 /* UIImage+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82CA6517CFCBD1CC5D4D001E9D7A6427 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		831FF5982ACCF7AC95D322D71DD45114 /* UILabel+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = C62A9A489A5F07436D988B6724CE57E7 /* UILabel+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		878BD9F2E523C306AF0DEAAD9688D376 /* BONSpecial.h in Headers */ = {isa = PBXBuildFile; fileRef = B5C608ECCEBF6ED3FBCEF1989861B127 /* BONSpecial.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9256FE898C951D38DA2ACB8BE4AC0C49 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		9CEA0E53F516C3F512419A8DC5A93D5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
-		9D140E79298E32A1925D960D3BC79608 /* BONTextAlignmentConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 437AA09126C984A62D6D8EA04959C072 /* BONTextAlignmentConstraint.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9ECD0A9EB5DCC43C18F291D874BE6207 /* BONSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C697DA78C5080F7B79C09508EED842E /* BONSpecial.m */; };
-		A357495232D4BF470F4CE2BC59C9FC09 /* BONTextAlignmentConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FE13FA28606238880F321A4656DA7FB /* BONTextAlignmentConstraint.m */; };
-		A435ADD2EB2D7908AD6E3AF2B28C23F0 /* UITextView+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = B0F060095EBA2829B1EF12C9F35A7FB5 /* UITextView+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AE93C94C5CFC1F805B75EE4FD8FFD8E3 /* UIImage+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D3D808123C167CDC93E5361C34EA7FF /* UIImage+BonMotUtilities.m */; };
-		AF204595E7688801E2F48F80986E4502 /* BonMot-UI.h in Headers */ = {isa = PBXBuildFile; fileRef = ED184F3E3EB07D94DFE4F44F7D5A2895 /* BonMot-UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8B3F952D07B86A574F97FF01798B7BD /* NSAttributedString+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E04481E34E81A75D3CF3F13FC60616 /* NSAttributedString+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DEB00DF039E1CA771FBBC53D23CDD7EA /* Pods-BonMot_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E40A36D2E548722345E1738CFBAB4824 /* Pods-BonMot_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2E7D9F8E52A8BFD913B85964D4BC526 /* Pods-BonMot_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FDE2C7008028D72D6FB445DF416ABD /* Pods-BonMot_Example-dummy.m */; };
-		F3A64DEBEA03CF850D7B6D3C05715BE4 /* UITextField+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 39ECB0B2DABFCD1FC63B763394CE3EFD /* UITextField+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F996D2E26CD444025BEEF2E9D5605760 /* Pods-BonMot_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7008BD5F4245F12DCD72A0FC7BCC83C /* Pods-BonMot_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC8B3E0621B411FD79396927F3D0BC13 /* BONChain.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F77A2C754BB8F27406BC49D3CEC7D6 /* BONChain.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		88E07F9197F21D50F764DBA2D8F1C787 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7960D5870921BF8F1FE6568BBEB009B5;
-			remoteInfo = BonMot;
-		};
-		A106EC63441BF09009E975CB16456475 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7960D5870921BF8F1FE6568BBEB009B5;
-			remoteInfo = BonMot;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		00055C15C9C19D9834B319956BACD092 /* UIImage+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+BonMotUtilities.h"; sourceTree = "<group>"; };
-		0918C87910956FED935D88D6DB334CFB /* Pods-BonMot_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BonMot_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		1F83BFF5366AB7505DF3FE30FC1D897C /* BonMot-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-umbrella.h"; sourceTree = "<group>"; };
-		26DAE09174C6886D8EFBA0B3C9BF3BDB /* Pods-BonMot_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot_Tests-dummy.m"; sourceTree = "<group>"; };
-		33E52D65DA852755FC89F75BEA02503F /* Pods-BonMot_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		37D9AB92B1D0BB3632891AA767EC9932 /* BONChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONChain.h; sourceTree = "<group>"; };
-		39ECB0B2DABFCD1FC63B763394CE3EFD /* UITextField+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextField+BonMotUtilities.h"; sourceTree = "<group>"; };
-		435463AFCD23B71C80A85D625BB305CB /* Pods-BonMot_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BonMot_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		437AA09126C984A62D6D8EA04959C072 /* BONTextAlignmentConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONTextAlignmentConstraint.h; sourceTree = "<group>"; };
-		4C4450E89E7003A9B4F4B4AA685F16EA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4C7198A0A8D85E86ABDB02566E17CE0D /* Pods-BonMot_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		4F2146CD3B43AAD92339D41681616284 /* Pods-BonMot_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BonMot_Example.modulemap"; sourceTree = "<group>"; };
-		51D4DC924673736C887833A213B8733A /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
-		545A2AB0456CD7F1019DFE74264E214B /* BONText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONText.h; sourceTree = "<group>"; };
-		55572D20A461EDABEAD1B8C1D03101A2 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D3D808123C167CDC93E5361C34EA7FF /* UIImage+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BonMotUtilities.m"; sourceTree = "<group>"; };
-		609C1C4D43D7BC84DA6286EAB6C2F26F /* NSAttributedString+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+BonMotUtilities.m"; sourceTree = "<group>"; };
-		621B433020566394142071265EABE9A0 /* Pods-BonMot_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BonMot_Example-resources.sh"; sourceTree = "<group>"; };
-		690A840FE201A4B932BB6539F2BA5173 /* Pods-BonMot_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-BonMot_Tests.modulemap"; sourceTree = "<group>"; };
-		6C3A2FADB025B64FEEAE2DFC85035890 /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6FE13FA28606238880F321A4656DA7FB /* BONTextAlignmentConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentConstraint.m; sourceTree = "<group>"; };
-		75787587D6CC99EAC1321E3BC29A6276 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78E04481E34E81A75D3CF3F13FC60616 /* NSAttributedString+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+BonMotUtilities.h"; sourceTree = "<group>"; };
-		7AA4AFFEF440529E9D52D5EAC848B442 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		873BE9F4D8E3260E1B2B51BDC013F654 /* UITextView+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextView+BonMotUtilities.m"; sourceTree = "<group>"; };
-		8A6A6C324134DCF48F5C9B07AD6DA1E7 /* UITextField+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BonMotUtilities.m"; sourceTree = "<group>"; };
-		8B9A7F78A71EB4371EA47808D1A40E61 /* BonMot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BonMot.xcconfig; sourceTree = "<group>"; };
-		8C697DA78C5080F7B79C09508EED842E /* BONSpecial.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONSpecial.m; sourceTree = "<group>"; };
-		8EAE1F475CD56784E03CE9D28596AC9D /* BONTextable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONTextable.h; sourceTree = "<group>"; };
-		987B388AEB3482E871DC28F0AE48017A /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A03AFD7A68BE8224BF54B742392FB216 /* Pods-BonMot_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BonMot_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		A4FC1DAF3C2A249E641CA572FCEF3426 /* Pods-BonMot_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BonMot_Tests-resources.sh"; sourceTree = "<group>"; };
-		B08C6FB910EF19B2FECE9112AC31B626 /* BONText_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONText_Private.h; sourceTree = "<group>"; };
-		B0F060095EBA2829B1EF12C9F35A7FB5 /* UITextView+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextView+BonMotUtilities.h"; sourceTree = "<group>"; };
-		B5C608ECCEBF6ED3FBCEF1989861B127 /* BONSpecial.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONSpecial.h; sourceTree = "<group>"; };
-		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BC64E33FDE5F26F66A0CC314EDE4F94A /* BONCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONCompatibility.h; sourceTree = "<group>"; };
-		BCCFFCE70BF2E4738194EF20904AE994 /* BonMot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BonMot.h; sourceTree = "<group>"; };
-		C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		C5BA0CBD6473A40F316A345F3399C663 /* BONText.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONText.m; sourceTree = "<group>"; };
-		C62A9A489A5F07436D988B6724CE57E7 /* UILabel+BonMotUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UILabel+BonMotUtilities.h"; sourceTree = "<group>"; };
-		C7008BD5F4245F12DCD72A0FC7BCC83C /* Pods-BonMot_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot_Tests-umbrella.h"; sourceTree = "<group>"; };
-		CA1957144DDBC6AAFCCC6C75584E798D /* BonMot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BonMot-dummy.m"; sourceTree = "<group>"; };
-		CB2FD0FB92AFB48BF4840DB66DE560C8 /* Pods-BonMot_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BonMot_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D0FDE2C7008028D72D6FB445DF416ABD /* Pods-BonMot_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot_Example-dummy.m"; sourceTree = "<group>"; };
-		DB10352B2AAD2C93526F983E38D5DBF6 /* BonMot.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BonMot.modulemap; sourceTree = "<group>"; };
-		E25641E248FCA33FB78676B255411C8B /* Pods-BonMot_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BonMot_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E40A36D2E548722345E1738CFBAB4824 /* Pods-BonMot_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot_Example-umbrella.h"; sourceTree = "<group>"; };
-		E6A4A31764F66E923338C3C235E678B3 /* Pods-BonMot_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BonMot_Example-frameworks.sh"; sourceTree = "<group>"; };
-		E89F36821E111202094A68FE7AC830A8 /* BonMot-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-prefix.pch"; sourceTree = "<group>"; };
-		E9C5BFEE6B78D9F70782C6B7734BD9DB /* Pods-BonMot_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BonMot_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		ED184F3E3EB07D94DFE4F44F7D5A2895 /* BonMot-UI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BonMot-UI.h"; sourceTree = "<group>"; };
-		F6F77A2C754BB8F27406BC49D3CEC7D6 /* BONChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONChain.m; sourceTree = "<group>"; };
-		FF9EEA2A97C457E8C2BD114BF30D8059 /* UILabel+BonMotUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UILabel+BonMotUtilities.m"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		806F7E65027C5EA011501EEDA6C86696 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9256FE898C951D38DA2ACB8BE4AC0C49 /* Foundation.framework in Frameworks */,
-				0219B207E1DFB298AE0638868013EE2A /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		98B433C5921986A1EC81E50DEBBB892C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9CEA0E53F516C3F512419A8DC5A93D5C /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C4C71EFA244B01AC4152D3408F38E9FA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82CA6517CFCBD1CC5D4D001E9D7A6427 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		1273D55EE471A7D0ED82B848A87FA52F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				DB10352B2AAD2C93526F983E38D5DBF6 /* BonMot.modulemap */,
-				8B9A7F78A71EB4371EA47808D1A40E61 /* BonMot.xcconfig */,
-				CA1957144DDBC6AAFCCC6C75584E798D /* BonMot-dummy.m */,
-				E89F36821E111202094A68FE7AC830A8 /* BonMot-prefix.pch */,
-				1F83BFF5366AB7505DF3FE30FC1D897C /* BonMot-umbrella.h */,
-				75787587D6CC99EAC1321E3BC29A6276 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/BonMot";
-			sourceTree = "<group>";
-		};
-		18340F12838DEE43507667CC74401EB1 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */,
-				C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		2FFE0E9DA1EA5B039B3F5A5EC3E3A2E3 /* Pods-BonMot_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4C4450E89E7003A9B4F4B4AA685F16EA /* Info.plist */,
-				690A840FE201A4B932BB6539F2BA5173 /* Pods-BonMot_Tests.modulemap */,
-				435463AFCD23B71C80A85D625BB305CB /* Pods-BonMot_Tests-acknowledgements.markdown */,
-				E25641E248FCA33FB78676B255411C8B /* Pods-BonMot_Tests-acknowledgements.plist */,
-				26DAE09174C6886D8EFBA0B3C9BF3BDB /* Pods-BonMot_Tests-dummy.m */,
-				0918C87910956FED935D88D6DB334CFB /* Pods-BonMot_Tests-frameworks.sh */,
-				A4FC1DAF3C2A249E641CA572FCEF3426 /* Pods-BonMot_Tests-resources.sh */,
-				C7008BD5F4245F12DCD72A0FC7BCC83C /* Pods-BonMot_Tests-umbrella.h */,
-				A03AFD7A68BE8224BF54B742392FB216 /* Pods-BonMot_Tests.debug.xcconfig */,
-				33E52D65DA852755FC89F75BEA02503F /* Pods-BonMot_Tests.release.xcconfig */,
-			);
-			name = "Pods-BonMot_Tests";
-			path = "Target Support Files/Pods-BonMot_Tests";
-			sourceTree = "<group>";
-		};
-		37697D1DD45AEEEC3611B1D3A3E94D51 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				654F176B885586FEE15FD0C67E41DB97 /* BonMot */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		3FF3E81C01CBCBE069BC565BB512947E /* Pods-BonMot_Example */ = {
-			isa = PBXGroup;
-			children = (
-				7AA4AFFEF440529E9D52D5EAC848B442 /* Info.plist */,
-				4F2146CD3B43AAD92339D41681616284 /* Pods-BonMot_Example.modulemap */,
-				CB2FD0FB92AFB48BF4840DB66DE560C8 /* Pods-BonMot_Example-acknowledgements.markdown */,
-				E9C5BFEE6B78D9F70782C6B7734BD9DB /* Pods-BonMot_Example-acknowledgements.plist */,
-				D0FDE2C7008028D72D6FB445DF416ABD /* Pods-BonMot_Example-dummy.m */,
-				E6A4A31764F66E923338C3C235E678B3 /* Pods-BonMot_Example-frameworks.sh */,
-				621B433020566394142071265EABE9A0 /* Pods-BonMot_Example-resources.sh */,
-				E40A36D2E548722345E1738CFBAB4824 /* Pods-BonMot_Example-umbrella.h */,
-				4C7198A0A8D85E86ABDB02566E17CE0D /* Pods-BonMot_Example.debug.xcconfig */,
-				51D4DC924673736C887833A213B8733A /* Pods-BonMot_Example.release.xcconfig */,
-			);
-			name = "Pods-BonMot_Example";
-			path = "Target Support Files/Pods-BonMot_Example";
-			sourceTree = "<group>";
-		};
-		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				18340F12838DEE43507667CC74401EB1 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4C3CB73B9C5CFF01CF657D6E250102C4 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				E7355743D1ABB45E19578420B31ECB2F /* Pod */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
-		654F176B885586FEE15FD0C67E41DB97 /* BonMot */ = {
-			isa = PBXGroup;
-			children = (
-				CF324BFB59B2A80176A19897C3A45B93 /* Core */,
-				1273D55EE471A7D0ED82B848A87FA52F /* Support Files */,
-				4C3CB73B9C5CFF01CF657D6E250102C4 /* UI */,
-			);
-			name = BonMot;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		7DB346D0F39D3F0E887471402A8071AB = {
-			isa = PBXGroup;
-			children = (
-				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				37697D1DD45AEEEC3611B1D3A3E94D51 /* Development Pods */,
-				433CD3331B6C3787F473C941B61FC68F /* Frameworks */,
-				B59262F8D011AD50CC9CA6DEAB4AB9DB /* Products */,
-				ED562394440514D7886F9C32296C2260 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		84AE1A062F18DFEE4A7C3ABE8ED1268A /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				ED184F3E3EB07D94DFE4F44F7D5A2895 /* BonMot-UI.h */,
-				CC33266AC78337648132E82D1876E13A /* Classes */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		A685D5CD164CB9852AD35E1A9ABE34D3 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				BCCFFCE70BF2E4738194EF20904AE994 /* BonMot.h */,
-				F23DFC76603064F32CA4993DF8A19257 /* Classes */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		B59262F8D011AD50CC9CA6DEAB4AB9DB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				987B388AEB3482E871DC28F0AE48017A /* BonMot.framework */,
-				55572D20A461EDABEAD1B8C1D03101A2 /* Pods_BonMot_Example.framework */,
-				6C3A2FADB025B64FEEAE2DFC85035890 /* Pods_BonMot_Tests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CC33266AC78337648132E82D1876E13A /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				437AA09126C984A62D6D8EA04959C072 /* BONTextAlignmentConstraint.h */,
-				6FE13FA28606238880F321A4656DA7FB /* BONTextAlignmentConstraint.m */,
-				C62A9A489A5F07436D988B6724CE57E7 /* UILabel+BonMotUtilities.h */,
-				FF9EEA2A97C457E8C2BD114BF30D8059 /* UILabel+BonMotUtilities.m */,
-				39ECB0B2DABFCD1FC63B763394CE3EFD /* UITextField+BonMotUtilities.h */,
-				8A6A6C324134DCF48F5C9B07AD6DA1E7 /* UITextField+BonMotUtilities.m */,
-				B0F060095EBA2829B1EF12C9F35A7FB5 /* UITextView+BonMotUtilities.h */,
-				873BE9F4D8E3260E1B2B51BDC013F654 /* UITextView+BonMotUtilities.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		CF324BFB59B2A80176A19897C3A45B93 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				A685D5CD164CB9852AD35E1A9ABE34D3 /* Pod */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		E7355743D1ABB45E19578420B31ECB2F /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				84AE1A062F18DFEE4A7C3ABE8ED1268A /* UI */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		ED562394440514D7886F9C32296C2260 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3FF3E81C01CBCBE069BC565BB512947E /* Pods-BonMot_Example */,
-				2FFE0E9DA1EA5B039B3F5A5EC3E3A2E3 /* Pods-BonMot_Tests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		F23DFC76603064F32CA4993DF8A19257 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				37D9AB92B1D0BB3632891AA767EC9932 /* BONChain.h */,
-				F6F77A2C754BB8F27406BC49D3CEC7D6 /* BONChain.m */,
-				BC64E33FDE5F26F66A0CC314EDE4F94A /* BONCompatibility.h */,
-				B5C608ECCEBF6ED3FBCEF1989861B127 /* BONSpecial.h */,
-				8C697DA78C5080F7B79C09508EED842E /* BONSpecial.m */,
-				545A2AB0456CD7F1019DFE74264E214B /* BONText.h */,
-				C5BA0CBD6473A40F316A345F3399C663 /* BONText.m */,
-				B08C6FB910EF19B2FECE9112AC31B626 /* BONText_Private.h */,
-				8EAE1F475CD56784E03CE9D28596AC9D /* BONTextable.h */,
-				78E04481E34E81A75D3CF3F13FC60616 /* NSAttributedString+BonMotUtilities.h */,
-				609C1C4D43D7BC84DA6286EAB6C2F26F /* NSAttributedString+BonMotUtilities.m */,
-				00055C15C9C19D9834B319956BACD092 /* UIImage+BonMotUtilities.h */,
-				5D3D808123C167CDC93E5361C34EA7FF /* UIImage+BonMotUtilities.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		53071CC95B0000FCE22CD2EB417EFA7D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F996D2E26CD444025BEEF2E9D5605760 /* Pods-BonMot_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D109463AFD9A30BB8C6C8C2E2597027D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DEB00DF039E1CA771FBBC53D23CDD7EA /* Pods-BonMot_Example-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E49B217F77FC5B68A029AA5664CC9A8E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				498034B59B2C155D3B3F173CC32514A0 /* BONChain.h in Headers */,
-				1F4F56746B5D935F01269C39DAD5AD3A /* BONCompatibility.h in Headers */,
-				AF204595E7688801E2F48F80986E4502 /* BonMot-UI.h in Headers */,
-				6D5F8E997511A18E27D5C8E0AD1F00BF /* BonMot-umbrella.h in Headers */,
-				2B18E7F3D4A623CE4200F5B10EE3DEB6 /* BonMot.h in Headers */,
-				878BD9F2E523C306AF0DEAAD9688D376 /* BONSpecial.h in Headers */,
-				29A1FBDD8EE4DBD4F5BC6E4695C00A62 /* BONText.h in Headers */,
-				1026542108186371262F37503A4813D3 /* BONText_Private.h in Headers */,
-				343209DCE85C839F7B1C9A277C3C4381 /* BONTextable.h in Headers */,
-				9D140E79298E32A1925D960D3BC79608 /* BONTextAlignmentConstraint.h in Headers */,
-				D8B3F952D07B86A574F97FF01798B7BD /* NSAttributedString+BonMotUtilities.h in Headers */,
-				7F5A776BED0EC9D74CC3548D038A1BD0 /* UIImage+BonMotUtilities.h in Headers */,
-				831FF5982ACCF7AC95D322D71DD45114 /* UILabel+BonMotUtilities.h in Headers */,
-				F3A64DEBEA03CF850D7B6D3C05715BE4 /* UITextField+BonMotUtilities.h in Headers */,
-				A435ADD2EB2D7908AD6E3AF2B28C23F0 /* UITextView+BonMotUtilities.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
-/* Begin PBXNativeTarget section */
-		7960D5870921BF8F1FE6568BBEB009B5 /* BonMot */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9DA064760DB15CDFD92BBF5A6F53276A /* Build configuration list for PBXNativeTarget "BonMot" */;
-			buildPhases = (
-				420D64DDCD3ADF1EC24AF6BB68D18AFC /* Sources */,
-				806F7E65027C5EA011501EEDA6C86696 /* Frameworks */,
-				E49B217F77FC5B68A029AA5664CC9A8E /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BonMot;
-			productName = BonMot;
-			productReference = 987B388AEB3482E871DC28F0AE48017A /* BonMot.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C6A0921570F1E8C9ECC7B63F726B4556 /* Pods-BonMot_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AA8AFAE9DD36173AD2A960E6AA0A0B21 /* Build configuration list for PBXNativeTarget "Pods-BonMot_Tests" */;
-			buildPhases = (
-				8DF38EBD5DEBA527F41E30530E874B97 /* Sources */,
-				C4C71EFA244B01AC4152D3408F38E9FA /* Frameworks */,
-				53071CC95B0000FCE22CD2EB417EFA7D /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B0AFE2D343DE0EA96E89CE31EF4A1EC4 /* PBXTargetDependency */,
-			);
-			name = "Pods-BonMot_Tests";
-			productName = "Pods-BonMot_Tests";
-			productReference = 6C3A2FADB025B64FEEAE2DFC85035890 /* Pods_BonMot_Tests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E84C4E74F02AFF5309A6A3817A638C1F /* Pods-BonMot_Example */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D628178EF8FFEF0FD32001265F6CC679 /* Build configuration list for PBXNativeTarget "Pods-BonMot_Example" */;
-			buildPhases = (
-				DB417569E730FB94784548ED1A1F03AD /* Sources */,
-				98B433C5921986A1EC81E50DEBBB892C /* Frameworks */,
-				D109463AFD9A30BB8C6C8C2E2597027D /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A4460C09E7BBD75AD099733F59516E77 /* PBXTargetDependency */,
-			);
-			name = "Pods-BonMot_Example";
-			productName = "Pods-BonMot_Example";
-			productReference = 55572D20A461EDABEAD1B8C1D03101A2 /* Pods_BonMot_Example.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
-			};
-			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-			);
-			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = B59262F8D011AD50CC9CA6DEAB4AB9DB /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				7960D5870921BF8F1FE6568BBEB009B5 /* BonMot */,
-				E84C4E74F02AFF5309A6A3817A638C1F /* Pods-BonMot_Example */,
-				C6A0921570F1E8C9ECC7B63F726B4556 /* Pods-BonMot_Tests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		420D64DDCD3ADF1EC24AF6BB68D18AFC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FC8B3E0621B411FD79396927F3D0BC13 /* BONChain.m in Sources */,
-				478830357B13B6F648D4E1ED203CD27A /* BonMot-dummy.m in Sources */,
-				9ECD0A9EB5DCC43C18F291D874BE6207 /* BONSpecial.m in Sources */,
-				73F001AAAAAB975ABFFA01EAF7E8FCBC /* BONText.m in Sources */,
-				A357495232D4BF470F4CE2BC59C9FC09 /* BONTextAlignmentConstraint.m in Sources */,
-				382422134FD5BE7524B02520A21D6690 /* NSAttributedString+BonMotUtilities.m in Sources */,
-				AE93C94C5CFC1F805B75EE4FD8FFD8E3 /* UIImage+BonMotUtilities.m in Sources */,
-				0E4C967D9164B39B23F7D8574CADABE0 /* UILabel+BonMotUtilities.m in Sources */,
-				304E716C2718C5366409757C167F395B /* UITextField+BonMotUtilities.m in Sources */,
-				20A63EF13894B3AA22B933560AA53F18 /* UITextView+BonMotUtilities.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8DF38EBD5DEBA527F41E30530E874B97 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45EB385A63AF0AA85959AE03497B88E4 /* Pods-BonMot_Tests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DB417569E730FB94784548ED1A1F03AD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2E7D9F8E52A8BFD913B85964D4BC526 /* Pods-BonMot_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A4460C09E7BBD75AD099733F59516E77 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BonMot;
-			target = 7960D5870921BF8F1FE6568BBEB009B5 /* BonMot */;
-			targetProxy = 88E07F9197F21D50F764DBA2D8F1C787 /* PBXContainerItemProxy */;
-		};
-		B0AFE2D343DE0EA96E89CE31EF4A1EC4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BonMot;
-			target = 7960D5870921BF8F1FE6568BBEB009B5 /* BonMot */;
-			targetProxy = A106EC63441BF09009E975CB16456475 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin XCBuildConfiguration section */
-		179F4E16F04D6C2B2FCF3166BA15B72A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51D4DC924673736C887833A213B8733A /* Pods-BonMot_Example.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-BonMot_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_BonMot_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5778A03AE98FAACCA2BDB435635B04C2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A03AFD7A68BE8224BF54B742392FB216 /* Pods-BonMot_Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-BonMot_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_BonMot_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		840456DBAF5B6C919D75BBE641E11DDD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B9A7F78A71EB4371EA47808D1A40E61 /* BonMot.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BonMot/BonMot-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BonMot/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BonMot/BonMot.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = BonMot;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				ONLY_ACTIVE_ARCH = YES;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		B95F26D83A85C76C3949416F60C7E1E1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B9A7F78A71EB4371EA47808D1A40E61 /* BonMot.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/BonMot/BonMot-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/BonMot/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/BonMot/BonMot.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = BonMot;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CDA4F5B325BBC8347176E2207B0430BF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33E52D65DA852755FC89F75BEA02503F /* Pods-BonMot_Tests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-BonMot_Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_BonMot_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		DFC2C9B179EA068F46C8051F217E7743 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C7198A0A8D85E86ABDB02566E17CE0D /* Pods-BonMot_Example.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-BonMot_Example/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_BonMot_Example;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
-				FB45FFD90572718D82AB9092B750F0CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9DA064760DB15CDFD92BBF5A6F53276A /* Build configuration list for PBXNativeTarget "BonMot" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				840456DBAF5B6C919D75BBE641E11DDD /* Debug */,
-				B95F26D83A85C76C3949416F60C7E1E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AA8AFAE9DD36173AD2A960E6AA0A0B21 /* Build configuration list for PBXNativeTarget "Pods-BonMot_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5778A03AE98FAACCA2BDB435635B04C2 /* Debug */,
-				CDA4F5B325BBC8347176E2207B0430BF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D628178EF8FFEF0FD32001265F6CC679 /* Build configuration list for PBXNativeTarget "Pods-BonMot_Example" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DFC2C9B179EA068F46C8051F217E7743 /* Debug */,
-				179F4E16F04D6C2B2FCF3166BA15B72A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>00D954F3747AA02DCA0A3809CFCD2B17</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FAB64E9029A05F73B2B4A250B105E030</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>01E1BE6EC18457D2F88E270800F860C3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>085FB431F3FE96089534EAAC6FE8BDF8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>0219B207E1DFB298AE0638868013EE2A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C3B7BDF5CE5CB8F095FE12DA55D9A9BB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>085FB431F3FE96089534EAAC6FE8BDF8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONSpecial.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0918C87910956FED935D88D6DB334CFB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0E4C967D9164B39B23F7D8574CADABE0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D744BF15A46AA8823523F480524DA6D1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>10BC01F663CA7849D1A21B7F337370F0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BonMot-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>10BE4F0AA4813318BC4FB1C492F89E90</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>UILabel+BonMotUtilities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>10DF186E92A057124ADBE3A48881C3D8</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>11803258EC1F574DE5532274D8D2C6D5</string>
+				<string>881C9B3E63E37A68AED32A58F7C155D3</string>
+				<string>9B0D2370FE0282DEB29E2764F3B7502E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>BonMot</string>
+			<key>path</key>
+			<string>../..</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>11803258EC1F574DE5532274D8D2C6D5</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BE8601DA8860F7392B95146FC34AA1C7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Core</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>13394710B1F81A23CB801EC414777F81</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BonMot.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1511D8A08DEB71B22A57C315F7151F13</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>BonMot.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>179F4E16F04D6C2B2FCF3166BA15B72A</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>51D4DC924673736C887833A213B8733A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Example/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_BonMot_Example</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>18340F12838DEE43507667CC74401EB1</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
+				<string>C3B7BDF5CE5CB8F095FE12DA55D9A9BB</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>iOS</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1BB8C8B0D6FFC76CF6E70FF4AAFD9A79</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>BONChain.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>20A63EF13894B3AA22B933560AA53F18</key>
+		<dict>
+			<key>fileRef</key>
+			<string>71C80B4B47FA325B1D150662D2EF15C2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>212D5BC776EC758921C6BA007E2B182E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>BONText.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>223A0AE1B4C1AB6C22803C3F6F4E7C36</key>
+		<dict>
+			<key>fileRef</key>
+			<string>946B30FF1BFF268E9AA4A27BAC2E5ECD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>26DAE09174C6886D8EFBA0B3C9BF3BDB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>28D4FDE16DE8250F25DC730765DC221B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONCompatibility.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>29A9CD70F27600DBF695A88C9FF0AF50</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>NSAttributedString+BonMotUtilities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2AA3029BF1F6DE94522F0133B389D5F1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>BONSpecial.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2C763DD88B7C65E2E698491B831F3F3D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>13394710B1F81A23CB801EC414777F81</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>A70CDAD61F90AC503C7D04CC22DA2923</string>
+				<string>FB45FFD90572718D82AB9092B750F0CA</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>2FFE0E9DA1EA5B039B3F5A5EC3E3A2E3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>4C4450E89E7003A9B4F4B4AA685F16EA</string>
+				<string>690A840FE201A4B932BB6539F2BA5173</string>
+				<string>435463AFCD23B71C80A85D625BB305CB</string>
+				<string>E25641E248FCA33FB78676B255411C8B</string>
+				<string>26DAE09174C6886D8EFBA0B3C9BF3BDB</string>
+				<string>0918C87910956FED935D88D6DB334CFB</string>
+				<string>A4FC1DAF3C2A249E641CA572FCEF3426</string>
+				<string>C7008BD5F4245F12DCD72A0FC7BCC83C</string>
+				<string>A03AFD7A68BE8224BF54B742392FB216</string>
+				<string>33E52D65DA852755FC89F75BEA02503F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-BonMot_Tests</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-BonMot_Tests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>304E716C2718C5366409757C167F395B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>65E326689AAFF02F1507650324813E89</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>32467CAF5979C65E3DB3C11F76C85B53</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7656BC2502D0F175B42AA5251C923450</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>33E52D65DA852755FC89F75BEA02503F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>37697D1DD45AEEEC3611B1D3A3E94D51</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>10DF186E92A057124ADBE3A48881C3D8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Development Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>382422134FD5BE7524B02520A21D6690</key>
+		<dict>
+			<key>fileRef</key>
+			<string>29A9CD70F27600DBF695A88C9FF0AF50</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>3FF3E81C01CBCBE069BC565BB512947E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>7AA4AFFEF440529E9D52D5EAC848B442</string>
+				<string>4F2146CD3B43AAD92339D41681616284</string>
+				<string>CB2FD0FB92AFB48BF4840DB66DE560C8</string>
+				<string>E9C5BFEE6B78D9F70782C6B7734BD9DB</string>
+				<string>D0FDE2C7008028D72D6FB445DF416ABD</string>
+				<string>E6A4A31764F66E923338C3C235E678B3</string>
+				<string>621B433020566394142071265EABE9A0</string>
+				<string>E40A36D2E548722345E1738CFBAB4824</string>
+				<string>4C7198A0A8D85E86ABDB02566E17CE0D</string>
+				<string>51D4DC924673736C887833A213B8733A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods-BonMot_Example</string>
+			<key>path</key>
+			<string>Target Support Files/Pods-BonMot_Example</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>420D64DDCD3ADF1EC24AF6BB68D18AFC</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>FC8B3E0621B411FD79396927F3D0BC13</string>
+				<string>478830357B13B6F648D4E1ED203CD27A</string>
+				<string>9ECD0A9EB5DCC43C18F291D874BE6207</string>
+				<string>73F001AAAAAB975ABFFA01EAF7E8FCBC</string>
+				<string>A357495232D4BF470F4CE2BC59C9FC09</string>
+				<string>382422134FD5BE7524B02520A21D6690</string>
+				<string>AE93C94C5CFC1F805B75EE4FD8FFD8E3</string>
+				<string>0E4C967D9164B39B23F7D8574CADABE0</string>
+				<string>304E716C2718C5366409757C167F395B</string>
+				<string>20A63EF13894B3AA22B933560AA53F18</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>433CD3331B6C3787F473C941B61FC68F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>18340F12838DEE43507667CC74401EB1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>435463AFCD23B71C80A85D625BB305CB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>45EB385A63AF0AA85959AE03497B88E4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>26DAE09174C6886D8EFBA0B3C9BF3BDB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>478830357B13B6F648D4E1ED203CD27A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D4B83982FE17B01A0A18B9382CE242A7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4C4450E89E7003A9B4F4B4AA685F16EA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4C7198A0A8D85E86ABDB02566E17CE0D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4F2146CD3B43AAD92339D41681616284</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>51D4DC924673736C887833A213B8733A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>53071CC95B0000FCE22CD2EB417EFA7D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F996D2E26CD444025BEEF2E9D5605760</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>53BEB5EF5FD30BA79950A4BD482E3F3B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>UIImage+BonMotUtilities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>55572D20A461EDABEAD1B8C1D03101A2</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_BonMot_Example.framework</string>
+			<key>path</key>
+			<string>Pods_BonMot_Example.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>5778A03AE98FAACCA2BDB435635B04C2</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>A03AFD7A68BE8224BF54B742392FB216</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Tests/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_BonMot_Tests</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>621B433020566394142071265EABE9A0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6300608DB9CA45054481077A506554A4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>UITextView+BonMotUtilities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>65E326689AAFF02F1507650324813E89</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UITextField+BonMotUtilities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>690A840FE201A4B932BB6539F2BA5173</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6C3A2FADB025B64FEEAE2DFC85035890</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_BonMot_Tests.framework</string>
+			<key>path</key>
+			<string>Pods_BonMot_Tests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>6E7E5AF37923BFA48D6994B9BFC6535F</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>71C80B4B47FA325B1D150662D2EF15C2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UITextView+BonMotUtilities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>726940D4C81A5A90179226804F99A3A0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONChain.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>73F001AAAAAB975ABFFA01EAF7E8FCBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>212D5BC776EC758921C6BA007E2B182E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>7656BC2502D0F175B42AA5251C923450</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>NSAttributedString+BonMotUtilities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7960D5870921BF8F1FE6568BBEB009B5</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>9DA064760DB15CDFD92BBF5A6F53276A</string>
+			<key>buildPhases</key>
+			<array>
+				<string>420D64DDCD3ADF1EC24AF6BB68D18AFC</string>
+				<string>806F7E65027C5EA011501EEDA6C86696</string>
+				<string>C7AC1A115C88CDA55C8F507E58A1DDBF</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>BonMot</string>
+			<key>productName</key>
+			<string>BonMot</string>
+			<key>productReference</key>
+			<string>987B388AEB3482E871DC28F0AE48017A</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>79C19A2B453E4B0567FF6F03C5B1B0EA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>53BEB5EF5FD30BA79950A4BD482E3F3B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>7AA4AFFEF440529E9D52D5EAC848B442</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7DB346D0F39D3F0E887471402A8071AB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
+				<string>37697D1DD45AEEEC3611B1D3A3E94D51</string>
+				<string>433CD3331B6C3787F473C941B61FC68F</string>
+				<string>B59262F8D011AD50CC9CA6DEAB4AB9DB</string>
+				<string>ED562394440514D7886F9C32296C2260</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>806F7E65027C5EA011501EEDA6C86696</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9256FE898C951D38DA2ACB8BE4AC0C49</string>
+				<string>0219B207E1DFB298AE0638868013EE2A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>82CA6517CFCBD1CC5D4D001E9D7A6427</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>840456DBAF5B6C919D75BBE641E11DDD</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>907B9450CCC329D3E8FFEB42C73C99EE</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/BonMot/BonMot-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/BonMot/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/BonMot/BonMot.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>BonMot</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>854FD81E8C8A6D67C6177C34537726A8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UIImage+BonMotUtilities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>881C9B3E63E37A68AED32A58F7C155D3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1511D8A08DEB71B22A57C315F7151F13</string>
+				<string>907B9450CCC329D3E8FFEB42C73C99EE</string>
+				<string>D4B83982FE17B01A0A18B9382CE242A7</string>
+				<string>8A9AC478590DC8CF06F72B8E52F27640</string>
+				<string>10BC01F663CA7849D1A21B7F337370F0</string>
+				<string>DCCC41C850102058BED3D4D57D28A83C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>Example/Pods/Target Support Files/BonMot</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>88E07F9197F21D50F764DBA2D8F1C787</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>7960D5870921BF8F1FE6568BBEB009B5</string>
+			<key>remoteInfo</key>
+			<string>BonMot</string>
+		</dict>
+		<key>8A9AC478590DC8CF06F72B8E52F27640</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BonMot-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8B63557B3C823AE3067A0A62BC06400A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6300608DB9CA45054481077A506554A4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>8CC583263BA5A300A8153C1A29EAB54E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONTextAlignmentConstraint.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8DF38EBD5DEBA527F41E30530E874B97</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>45EB385A63AF0AA85959AE03497B88E4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8E1CB68C12E5976C42276A8BC76AF3C6</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC583263BA5A300A8153C1A29EAB54E</string>
+				<string>B40764AE97F30C2BAAD83E38C5B52A6D</string>
+				<string>10BE4F0AA4813318BC4FB1C492F89E90</string>
+				<string>D744BF15A46AA8823523F480524DA6D1</string>
+				<string>9CC10C208517AA62B5773BA59C750FCB</string>
+				<string>65E326689AAFF02F1507650324813E89</string>
+				<string>6300608DB9CA45054481077A506554A4</string>
+				<string>71C80B4B47FA325B1D150662D2EF15C2</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Classes</string>
+			<key>path</key>
+			<string>Classes</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>907B9450CCC329D3E8FFEB42C73C99EE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>BonMot.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>91095713BC69DBA99E10B37AADC85750</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC583263BA5A300A8153C1A29EAB54E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>9256FE898C951D38DA2ACB8BE4AC0C49</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>946B30FF1BFF268E9AA4A27BAC2E5ECD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONTextable.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>987B388AEB3482E871DC28F0AE48017A</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>BonMot.framework</string>
+			<key>path</key>
+			<string>BonMot.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>98B433C5921986A1EC81E50DEBBB892C</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>9CEA0E53F516C3F512419A8DC5A93D5C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>9B0D2370FE0282DEB29E2764F3B7502E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA83B0ECBE6D761F2AF6872F857E76B3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>UIKit</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9CC10C208517AA62B5773BA59C750FCB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>UITextField+BonMotUtilities.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9CEA0E53F516C3F512419A8DC5A93D5C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9DA064760DB15CDFD92BBF5A6F53276A</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>840456DBAF5B6C919D75BBE641E11DDD</string>
+				<string>B95F26D83A85C76C3949416F60C7E1E1</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>9ECD0A9EB5DCC43C18F291D874BE6207</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2AA3029BF1F6DE94522F0133B389D5F1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A03AFD7A68BE8224BF54B742392FB216</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A106EC63441BF09009E975CB16456475</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>7960D5870921BF8F1FE6568BBEB009B5</string>
+			<key>remoteInfo</key>
+			<string>BonMot</string>
+		</dict>
+		<key>A357495232D4BF470F4CE2BC59C9FC09</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B40764AE97F30C2BAAD83E38C5B52A6D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A4460C09E7BBD75AD099733F59516E77</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>BonMot</string>
+			<key>target</key>
+			<string>7960D5870921BF8F1FE6568BBEB009B5</string>
+			<key>targetProxy</key>
+			<string>88E07F9197F21D50F764DBA2D8F1C787</string>
+		</dict>
+		<key>A4FC1DAF3C2A249E641CA572FCEF3426</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests-resources.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A70CDAD61F90AC503C7D04CC22DA2923</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>SYMROOT</key>
+				<string>${SRCROOT}/../build</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>AA8AFAE9DD36173AD2A960E6AA0A0B21</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>5778A03AE98FAACCA2BDB435635B04C2</string>
+				<string>CDA4F5B325BBC8347176E2207B0430BF</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>AE604A23841D67F0735CD4518EB98573</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9CC10C208517AA62B5773BA59C750FCB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>AE93C94C5CFC1F805B75EE4FD8FFD8E3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>854FD81E8C8A6D67C6177C34537726A8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B0AFE2D343DE0EA96E89CE31EF4A1EC4</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>BonMot</string>
+			<key>target</key>
+			<string>7960D5870921BF8F1FE6568BBEB009B5</string>
+			<key>targetProxy</key>
+			<string>A106EC63441BF09009E975CB16456475</string>
+		</dict>
+		<key>B40764AE97F30C2BAAD83E38C5B52A6D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>BONTextAlignmentConstraint.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B59262F8D011AD50CC9CA6DEAB4AB9DB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>987B388AEB3482E871DC28F0AE48017A</string>
+				<string>55572D20A461EDABEAD1B8C1D03101A2</string>
+				<string>6C3A2FADB025B64FEEAE2DFC85035890</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B95F26D83A85C76C3949416F60C7E1E1</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>907B9450CCC329D3E8FFEB42C73C99EE</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/BonMot/BonMot-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/BonMot/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/BonMot/BonMot.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>BonMot</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>name</key>
+			<string>Podfile</string>
+			<key>path</key>
+			<string>../Podfile</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+			<key>xcLanguageSpecificationIdentifier</key>
+			<string>xcode.lang.ruby</string>
+		</dict>
+		<key>BA83B0ECBE6D761F2AF6872F857E76B3</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>FEC4B2323A49EDD7A9FE32C85F2DE364</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pod</string>
+			<key>path</key>
+			<string>Pod</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BE8601DA8860F7392B95146FC34AA1C7</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>13394710B1F81A23CB801EC414777F81</string>
+				<string>ED3DCC7B86AC9F7CF038A2160156040E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pod</string>
+			<key>path</key>
+			<string>Pod</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C3B7BDF5CE5CB8F095FE12DA55D9A9BB</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>C4C71EFA244B01AC4152D3408F38E9FA</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>82CA6517CFCBD1CC5D4D001E9D7A6427</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>C6A0921570F1E8C9ECC7B63F726B4556</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>AA8AFAE9DD36173AD2A960E6AA0A0B21</string>
+			<key>buildPhases</key>
+			<array>
+				<string>8DF38EBD5DEBA527F41E30530E874B97</string>
+				<string>C4C71EFA244B01AC4152D3408F38E9FA</string>
+				<string>53071CC95B0000FCE22CD2EB417EFA7D</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>B0AFE2D343DE0EA96E89CE31EF4A1EC4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-BonMot_Tests</string>
+			<key>productName</key>
+			<string>Pods-BonMot_Tests</string>
+			<key>productReference</key>
+			<string>6C3A2FADB025B64FEEAE2DFC85035890</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>C7008BD5F4245F12DCD72A0FC7BCC83C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C7AC1A115C88CDA55C8F507E58A1DDBF</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F522BE1C9B2D42743D52239BE44E1CC5</string>
+				<string>CE30C228369D6FD5AEC0AB99341AA4CF</string>
+				<string>EF3639A79EE8F73A22918377F0B42D82</string>
+				<string>D39213E93EC1038DC1113AA269E845AF</string>
+				<string>2C763DD88B7C65E2E698491B831F3F3D</string>
+				<string>01E1BE6EC18457D2F88E270800F860C3</string>
+				<string>00D954F3747AA02DCA0A3809CFCD2B17</string>
+				<string>D57F5373D6DC1FBDE880D03BC460552E</string>
+				<string>223A0AE1B4C1AB6C22803C3F6F4E7C36</string>
+				<string>91095713BC69DBA99E10B37AADC85750</string>
+				<string>32467CAF5979C65E3DB3C11F76C85B53</string>
+				<string>79C19A2B453E4B0567FF6F03C5B1B0EA</string>
+				<string>D1BB6107B193D42B208AE41C084B7438</string>
+				<string>AE604A23841D67F0735CD4518EB98573</string>
+				<string>8B63557B3C823AE3067A0A62BC06400A</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>CA7D9F5FC702DA9A09A5F3128839B84A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BonMot+UIKit.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CB2FD0FB92AFB48BF4840DB66DE560C8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example-acknowledgements.markdown</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CDA4F5B325BBC8347176E2207B0430BF</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>33E52D65DA852755FC89F75BEA02503F</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Tests/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_BonMot_Tests</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>CE30C228369D6FD5AEC0AB99341AA4CF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>28D4FDE16DE8250F25DC730765DC221B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D0FDE2C7008028D72D6FB445DF416ABD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D109463AFD9A30BB8C6C8C2E2597027D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>DEB00DF039E1CA771FBBC53D23CDD7EA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>D1BB6107B193D42B208AE41C084B7438</key>
+		<dict>
+			<key>fileRef</key>
+			<string>10BE4F0AA4813318BC4FB1C492F89E90</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D39213E93EC1038DC1113AA269E845AF</key>
+		<dict>
+			<key>fileRef</key>
+			<string>10BC01F663CA7849D1A21B7F337370F0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D41D8CD98F00B204E9800998ECF8427E</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0700</string>
+				<key>LastUpgradeCheck</key>
+				<string>0700</string>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>2D8E8EC45A3A1A1D94AE762CB5028504</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+			</array>
+			<key>mainGroup</key>
+			<string>7DB346D0F39D3F0E887471402A8071AB</string>
+			<key>productRefGroup</key>
+			<string>B59262F8D011AD50CC9CA6DEAB4AB9DB</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>7960D5870921BF8F1FE6568BBEB009B5</string>
+				<string>E84C4E74F02AFF5309A6A3817A638C1F</string>
+				<string>C6A0921570F1E8C9ECC7B63F726B4556</string>
+			</array>
+		</dict>
+		<key>D4B83982FE17B01A0A18B9382CE242A7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>BonMot-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D57F5373D6DC1FBDE880D03BC460552E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E1927D7CD5C58406A4D41F8C171BF93B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D628178EF8FFEF0FD32001265F6CC679</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>DFC2C9B179EA068F46C8051F217E7743</string>
+				<string>179F4E16F04D6C2B2FCF3166BA15B72A</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>D744BF15A46AA8823523F480524DA6D1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UILabel+BonMotUtilities.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DB417569E730FB94784548ED1A1F03AD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E2E7D9F8E52A8BFD913B85964D4BC526</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>DCCC41C850102058BED3D4D57D28A83C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DEB00DF039E1CA771FBBC53D23CDD7EA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E40A36D2E548722345E1738CFBAB4824</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>DFC2C9B179EA068F46C8051F217E7743</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>4C7198A0A8D85E86ABDB02566E17CE0D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Example/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>Pods_BonMot_Example</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E1927D7CD5C58406A4D41F8C171BF93B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONText_Private.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E25641E248FCA33FB78676B255411C8B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-BonMot_Tests-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E2E7D9F8E52A8BFD913B85964D4BC526</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D0FDE2C7008028D72D6FB445DF416ABD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E40A36D2E548722345E1738CFBAB4824</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E6A4A31764F66E923338C3C235E678B3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.script.sh</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example-frameworks.sh</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E84C4E74F02AFF5309A6A3817A638C1F</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>D628178EF8FFEF0FD32001265F6CC679</string>
+			<key>buildPhases</key>
+			<array>
+				<string>DB417569E730FB94784548ED1A1F03AD</string>
+				<string>98B433C5921986A1EC81E50DEBBB892C</string>
+				<string>D109463AFD9A30BB8C6C8C2E2597027D</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>A4460C09E7BBD75AD099733F59516E77</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-BonMot_Example</string>
+			<key>productName</key>
+			<string>Pods-BonMot_Example</string>
+			<key>productReference</key>
+			<string>55572D20A461EDABEAD1B8C1D03101A2</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
+		</dict>
+		<key>E9C5BFEE6B78D9F70782C6B7734BD9DB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Pods-BonMot_Example-acknowledgements.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>ED3DCC7B86AC9F7CF038A2160156040E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>726940D4C81A5A90179226804F99A3A0</string>
+				<string>1BB8C8B0D6FFC76CF6E70FF4AAFD9A79</string>
+				<string>28D4FDE16DE8250F25DC730765DC221B</string>
+				<string>085FB431F3FE96089534EAAC6FE8BDF8</string>
+				<string>2AA3029BF1F6DE94522F0133B389D5F1</string>
+				<string>FAB64E9029A05F73B2B4A250B105E030</string>
+				<string>212D5BC776EC758921C6BA007E2B182E</string>
+				<string>E1927D7CD5C58406A4D41F8C171BF93B</string>
+				<string>946B30FF1BFF268E9AA4A27BAC2E5ECD</string>
+				<string>7656BC2502D0F175B42AA5251C923450</string>
+				<string>29A9CD70F27600DBF695A88C9FF0AF50</string>
+				<string>53BEB5EF5FD30BA79950A4BD482E3F3B</string>
+				<string>854FD81E8C8A6D67C6177C34537726A8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Classes</string>
+			<key>path</key>
+			<string>Classes</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>ED562394440514D7886F9C32296C2260</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>3FF3E81C01CBCBE069BC565BB512947E</string>
+				<string>2FFE0E9DA1EA5B039B3F5A5EC3E3A2E3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Targets Support Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EF3639A79EE8F73A22918377F0B42D82</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CA7D9F5FC702DA9A09A5F3128839B84A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>F522BE1C9B2D42743D52239BE44E1CC5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>726940D4C81A5A90179226804F99A3A0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>F996D2E26CD444025BEEF2E9D5605760</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C7008BD5F4245F12DCD72A0FC7BCC83C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>FAB64E9029A05F73B2B4A250B105E030</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>BONText.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FB45FFD90572718D82AB9092B750F0CA</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>RELEASE=1</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>STRIP_INSTALLED_PRODUCT</key>
+				<string>NO</string>
+				<key>SYMROOT</key>
+				<string>${SRCROOT}/../build</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>FC8B3E0621B411FD79396927F3D0BC13</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1BB8C8B0D6FFC76CF6E70FF4AAFD9A79</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>FEC4B2323A49EDD7A9FE32C85F2DE364</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>CA7D9F5FC702DA9A09A5F3128839B84A</string>
+				<string>8E1CB68C12E5976C42276A8BC76AF3C6</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>UIKit</string>
+			<key>path</key>
+			<string>UIKit</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>D41D8CD98F00B204E9800998ECF8427E</string>
+</dict>
+</plist>

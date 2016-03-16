@@ -19,6 +19,12 @@ it, simply add the following line to your Podfile:
 pod 'BonMot'
 ```
 
+If you want to use the [UIKit Utilities](#uikit-utilities), add:
+
+```ruby
+pod 'BonMot/UIKit'
+```
+
 ## Installation with Carthage
 
 BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
@@ -185,6 +191,8 @@ You can easily access those hard-to-find special characters using the `BONSpecia
 ## UIKit Utilities
 
 BonMot provides several utilities that enhance its interoperability with UIKit.
+
+**Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
 
 ### Text UI Elements
 
