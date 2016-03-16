@@ -131,7 +131,7 @@ Outputs:
 
 <img width=310 src="readme-images/initial-text.png" />
 
-Some time later, you can update the text of the label without losing the original styling.
+Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
 
 ```objc
 label.bonString = @"Some updated text.";
