@@ -1,6 +1,6 @@
 //
 //  BonMot+UIKit.h
-//  Pods
+//  BonMot
 //
 //  Created by Nora Trapp on 3/10/16.
 //
