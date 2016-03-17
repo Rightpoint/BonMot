@@ -3,8 +3,10 @@ use_frameworks!
 
 target 'BonMot_Example', :exclusive => true do
   pod "BonMot", :path => "../"
+  pod "BonMot/UI", :path => "../"
 end
 
 target 'BonMot_Tests', :exclusive => true do
   pod "BonMot", :path => "../"
+  pod "BonMot/UI", :path => "../"
 end

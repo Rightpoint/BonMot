@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-#import "BONChainable.h"
+#import "BONTextable.h"
 #import "BONCompatibility.h"
 
 typedef NS_ENUM(NSUInteger, BONFigureCase) {
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @class BONText;
 
-@interface BONText : NSObject <NSCopying, BONChainable>
+@interface BONText : NSObject <BONTextable>
 
 // Appending
 
