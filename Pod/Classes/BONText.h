@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 /**
  *  @c YES if and only if the resulting @c attributedString will be the empty attributed string.
  */
-@property (nonatomic, readonly) BOOL empty;
+@property (nonatomic, readonly) BOOL generatesEmptyString;
 
 // Utilities
 

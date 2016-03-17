@@ -24,28 +24,28 @@
 - (void)testEmptyText
 {
     BONChain *chain = BONChain.new.string(@"");
-    XCTAssertTrue(chain.text.empty);
+    XCTAssertTrue(chain.text.generatesEmptyString);
 
     BONText *text1 = [[BONText alloc] init];
-    XCTAssertTrue(text1.empty);
+    XCTAssertTrue(text1.generatesEmptyString);
     text1.string = @"";
-    XCTAssertTrue(text1.empty);
+    XCTAssertTrue(text1.generatesEmptyString);
 
     BONText *text2 = [[BONText alloc] init];
     text1.nextText = text2;
-    XCTAssertTrue(text1.empty);
+    XCTAssertTrue(text1.generatesEmptyString);
 
     text2.string = @"";
     text1.nextText = text2;
-    XCTAssertTrue(text1.empty);
+    XCTAssertTrue(text1.generatesEmptyString);
 
     text2.string = @"a";
     text1.nextText = text2;
-    XCTAssertFalse(text1.empty);
+    XCTAssertFalse(text1.generatesEmptyString);
 
     text1.nextText = nil;
     text1.string = @"b";
-    XCTAssertFalse(text1.empty);
+    XCTAssertFalse(text1.generatesEmptyString);
 }
 
 @end

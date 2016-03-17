@@ -16,7 +16,7 @@
     objc_setAssociatedObject(self, @selector(bonTextable), textable, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
     // If the textable is empty, use the text field’s existing text
-    if (textable.text.empty) {
+    if (textable.text.generatesEmptyString) {
         self.bonString = self.text;
     }
     else {
