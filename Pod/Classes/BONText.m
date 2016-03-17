@@ -463,7 +463,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     }
 }
 
-#pragma mark - BONChainable
+#pragma mark - BONTextable
 
 - (BONText *)text
 {

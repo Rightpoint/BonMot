@@ -342,12 +342,12 @@
     return [strikethroughColorBlock copy];
 }
 
-- (void)appendLink:(id<BONChainable>)link
+- (void)appendLink:(id<BONTextable>)link
 {
     [self appendLink:link separator:nil];
 }
 
-- (void)appendLink:(id<BONChainable>)link separator:(NSString *)separator
+- (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
 {
     if (separator.length > 0) {
         // Recursion!

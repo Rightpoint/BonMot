@@ -1,5 +1,5 @@
 //
-//  BONChainableTestCase.m
+//  BONTextableTestCase.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 10/9/15.
@@ -10,11 +10,11 @@
 
 @import BonMot;
 
-@interface BONChainableTestCase : BONBaseTestCase
+@interface BONTextableTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONChainableTestCase
+@implementation BONTextableTestCase
 
 - (void)testConcatenation
 {
