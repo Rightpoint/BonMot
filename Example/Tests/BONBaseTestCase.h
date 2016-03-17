@@ -10,7 +10,6 @@
 #import "NSDictionary+BONEquality.h"
 #import "DummyAssetClass.h"
 #import "BONCompatibility.h"
-#import "BonMot.h"
 
 OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 
