@@ -7,7 +7,6 @@
 //
 
 #import "BONBaseTestCase.h"
-#import <BonMot/BonMot.h>
 
 @import BonMot;
 

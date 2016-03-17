@@ -15,7 +15,7 @@ static NSString *const kUnassignedCharacterNameSuffix = @">}";
 
 @implementation NSAttributedString (BonMotUtilities)
 
-- (NSString *)bon_humanReadableString
+- (NSString *)bon_humanReadableStringIncludingImageSize:(BOOL)shouldIncludeImageSize
 {
     NSString *originalString = self.string;
     NSMutableString *composedHumanReadableString = [NSMutableString string];
@@ -44,7 +44,16 @@ static NSString *const kUnassignedCharacterNameSuffix = @">}";
 
         // Substitute attached images with @"{image#heightx#width}"
         if (attachedImage) {
-            NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%.0fx%.0f}", attachedImage.size.height, attachedImage.size.width];
+            NSString *imageSubstitutionString;
+            NSMutableString *imageSizeString = [NSMutableString stringWithFormat:@"%@", NSStringFromCGSize(attachedImage.size)];
+            if (imageSizeString && shouldIncludeImageSize) {
+                NSMutableString *modifiedImageSizeString = [imageSizeString stringByReplacingOccurrencesOfString:@", " withString:@"x"].mutableCopy;
+                [modifiedImageSizeString insertString:@"image" atIndex:1];
+                imageSubstitutionString = modifiedImageSizeString;
+            }
+            else {
+                imageSubstitutionString = @"{image}";
+            }
             [composedHumanReadableString appendString:imageSubstitutionString];
         }
         // Swap applicable BONSpecial characters with @"{#camelCaseName}"

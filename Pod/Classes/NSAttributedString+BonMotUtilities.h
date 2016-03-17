@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BONCompatibility.h"
+
+BON_ASSUME_NONNULL_BEGIN
 
 @interface NSAttributedString (BonMotUtilities)
 
-@property (nonatomic, readonly, nonnull) NSString *bon_humanReadableString;
+- (NSString *)bon_humanReadableStringIncludingImageSize:(BOOL)shouldIncludeImageSize;
 
 @end
+
+BON_ASSUME_NONNULL_END

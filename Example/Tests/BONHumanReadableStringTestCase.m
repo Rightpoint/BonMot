@@ -7,6 +7,7 @@
 //
 
 #import "BONBaseTestCase.h"
+#import "NSAttributedString+BonMotUtilities.h"
 
 @import BonMot;
 
@@ -16,7 +17,7 @@
 
 @implementation BONHumanReadableStringTestCase
 
-- (void)testImageReplacementString
+- (void)test36x36ImageReplacementString
 {
     UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
     BONChain *imageChain = BONChain.new.image(barnImage);
@@ -25,6 +26,22 @@
     [imageChain appendLink:textChain];
 
     BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!")
+}
+
+- (void)testBonMotLogoImageReplacementString
+{
+    UIImage *bonMotLogoImage = [UIImage imageNamed:@"BonMot-logo" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
+    BONChain *secondImageChain = BONChain.new.image(bonMotLogoImage);
+
+    BONAssertEquivalentStrings(secondImageChain.attributedString, @"{image443x138}");
+}
+
+- (void)test1x2x3xAssets
+{
+    UIImage *bikeImage = [UIImage imageNamed:@"bicycle_sketch" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
+    BONChain *bikeImageChain = BONChain.new.image(bikeImage);
+
+    BONAssertEquivalentStrings(bikeImageChain.attributedString, @"{image320x188}");
 }
 
 - (void)testSpecialCharacters
