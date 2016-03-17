@@ -18,6 +18,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6836AD13A829A45AE2425588 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */; };
+		730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */; };
 		CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */; };
 		CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */; };
 		CD6DEFE51BF6ADF900676E2D /* BONChainEmptyStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD81BF6ADF900676E2D /* BONChainEmptyStringTestCase.m */; };
@@ -93,6 +94,7 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONHumanReadableStringTestCase.m; sourceTree = "<group>"; };
 		8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8F7BD757BEB762F22E099560 /* BonMot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BonMot.podspec; path = ../BonMot.podspec; sourceTree = "<group>"; };
 		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				CD6DEFD81BF6ADF900676E2D /* BONChainEmptyStringTestCase.m */,
 				CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */,
 				CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */,
+				730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */,
 				CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */,
 				CD6DEFDC1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m */,
 				CD6DEFDD1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m */,
@@ -604,6 +607,7 @@
 				EC433DB61C88BBDE001B3ABE /* BONUtilitiesTestCase.m in Sources */,
 				CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */,
 				CD6DF04B1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,
+				730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */,
 				CD6DEFE51BF6ADF900676E2D /* BONChainEmptyStringTestCase.m in Sources */,
 				CD6DEFED1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m in Sources */,
 				CD6DEFF11BF6ADF900676E2D /* BONTextAlignmentTestCase.m in Sources */,
