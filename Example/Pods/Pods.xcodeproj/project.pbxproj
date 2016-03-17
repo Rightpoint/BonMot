@@ -21,6 +21,8 @@
 		637838656B7C895490FB05DC384861BE /* BonMot-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F83BFF5366AB7505DF3FE30FC1D897C /* BonMot-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6391BAE3523A5C96443CB42EDA5603A1 /* BONSpecial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5721F272B13E241C17EC5CCBECED88 /* BONSpecial.m */; };
 		6DF232828E6B3CBE1ACC399FC09F0EFF /* UITextField+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6A6C324134DCF48F5C9B07AD6DA1E7 /* UITextField+BonMotUtilities.m */; };
+		730361DF1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 730361DD1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.h */; };
+		730361E01C9B5AB100987809 /* NSAttributedString+BonMotUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 730361DE1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.m */; };
 		7511FB1016731034F1334DF7BB1C9FAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
 		779704D27B30E4D05FD335EF80EDE037 /* UITextField+BonMotUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 39ECB0B2DABFCD1FC63B763394CE3EFD /* UITextField+BonMotUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82CA6517CFCBD1CC5D4D001E9D7A6427 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
@@ -83,6 +85,8 @@
 		6C3A2FADB025B64FEEAE2DFC85035890 /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		6FE13FA28606238880F321A4656DA7FB /* BONTextAlignmentConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BONTextAlignmentConstraint.m; sourceTree = "<group>"; };
+		730361DD1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+BonMotUtilities.h"; sourceTree = "<group>"; };
+		730361DE1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+BonMotUtilities.m"; sourceTree = "<group>"; };
 		75787587D6CC99EAC1321E3BC29A6276 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		776F79C216D9F4477160114C3F9E2D6A /* BONChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BONChain.h; sourceTree = "<group>"; };
 		7AA4AFFEF440529E9D52D5EAC848B442 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 				63397F47E9EDBD3B3AB7C63CA62C9A60 /* BONText.m */,
 				4212363CDD5CC5B6EE4D73A5CC4A28EF /* BONText_Private.h */,
 				5AFD7C43ECBA20E128341EF49D5FFFE0 /* BONTextable.h */,
+				730361DD1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.h */,
+				730361DE1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.m */,
 				539FA11680FCD1406D3E2B404381B75D /* UIImage+BonMotUtilities.h */,
 				C579639D984A1B5FB723829F7B330134 /* UIImage+BonMotUtilities.m */,
 			);
@@ -352,6 +358,7 @@
 				E938B90DE8693013114F894D99C6CDF8 /* BONTextAlignmentConstraint.h in Headers */,
 				13DCD41335D745CA1CED7356045D20C5 /* UIImage+BonMotUtilities.h in Headers */,
 				624FB42187F5EF2215935ADEC65E4C21 /* UILabel+BonMotUtilities.h in Headers */,
+				730361DF1C9B5AB100987809 /* NSAttributedString+BonMotUtilities.h in Headers */,
 				779704D27B30E4D05FD335EF80EDE037 /* UITextField+BonMotUtilities.h in Headers */,
 				91F65541B941B3D7C4383B7F5C6D5196 /* UITextView+BonMotUtilities.h in Headers */,
 			);
@@ -469,6 +476,7 @@
 				ECC505807DF917E9F22948F3EA906F05 /* BONTextAlignmentConstraint.m in Sources */,
 				B263D408EC2DEA444C8D1AB48C02FDB1 /* UIImage+BonMotUtilities.m in Sources */,
 				5D6724EA32DA962637AA9F775A0BA251 /* UILabel+BonMotUtilities.m in Sources */,
+				730361E01C9B5AB100987809 /* NSAttributedString+BonMotUtilities.m in Sources */,
 				6DF232828E6B3CBE1ACC399FC09F0EFF /* UITextField+BonMotUtilities.m in Sources */,
 				A12E14EC4204027DB47485EDD0600EE3 /* UITextView+BonMotUtilities.m in Sources */,
 			);
