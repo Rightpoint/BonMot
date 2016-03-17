@@ -33,5 +33,31 @@
 + (NSString *)minusSign { return @"\u2212"; }
 + (NSString *)objectReplacementCharacter { return @"\uFFFC"; }
 
++ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary
+{
+    return @{
+        @(BONCharacterTab) : @"{tab}", 
+        @(BONCharacterLineFeed) : @"{lineFeed}", 
+        @(BONCharacterNoBreakSpace) : @"{noBreakSpace}", 
+        @(BONCharacterEnSpace) : @"{enSpace}", 
+        @(BONCharacterEmSpace) : @"{emSpace}", 
+        @(BONCharacterFigureSpace) : @"{figureSpace}", 
+        @(BONCharacterThinSpace) : @"{thinSpace}", 
+        @(BONCharacterHairSpace) : @"{hairSpace}", 
+        @(BONCharacterZeroWidthSpace) : @"{zeroWidthSpace}", 
+        @(BONCharacterNonBreakingHyphen) : @"{nonBreakingHyphen}", 
+        @(BONCharacterFigureDash) : @"{figureDash}", 
+        @(BONCharacterEnDash) : @"{enDash}", 
+        @(BONCharacterEmDash) : @"{emDash}", 
+        @(BONCharacterHorizontalEllipsis) : @"{horizontalEllipsis}", 
+        @(BONCharacterLineSeparator) : @"{lineSeparator}", 
+        @(BONCharacterParagraphSeparator) : @"{paragraphSeparator}", 
+        @(BONCharacterNarrowNoBreakSpace) : @"{narrowNoBreakSpace}", 
+        @(BONCharacterWordJoiner) : @"{wordJoiner}", 
+        @(BONCharacterMinusSign) : @"{minusSign}", 
+        @(BONCharacterObjectReplacementCharacter) : @"{objectReplacementCharacter}", 
+    };
+}
+
 @end
 // clang-format on
