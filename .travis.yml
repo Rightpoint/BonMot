@@ -7,6 +7,6 @@ osx_image: xcode7.3
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO
+- xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
+- xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
