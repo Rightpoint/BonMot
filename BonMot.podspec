@@ -5,10 +5,10 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
   BonMot removes all the mystery from creating beautiful, powerful attributed strings on iOS.
                        DESC
-  s.homepage         = "https://github.com/ZevEisenberg/BonMot"
+  s.homepage         = "https://github.com/Raizlabs/BonMot"
   s.license          = 'MIT'
   s.author           = { "Zev Eisenberg" => "zev.eisenberg@raizlabs.com" }
-  s.source           = { :git => "https://github.com/ZevEisenberg/BonMot.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/Raizlabs/BonMot.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/ZevEisenberg'
 
   s.platform     = :ios, '8.0'
