@@ -22,6 +22,9 @@
 
     NSDictionary *nilDict = nil;
     XCTAssertFalse([nilDict bon_isCloseEnoughEqualToDictionary:nilDict]);
+
+    NSDictionary *emptyDict = @{};
+    XCTAssertTrue([emptyDict bon_isCloseEnoughEqualToDictionary:emptyDict]);
 }
 
 - (void)testUnambiguouslyWrong
@@ -42,6 +45,8 @@
 
     NSDictionary *dict5 = @{ @"asdf" : @"sike - not a number!" };
     XCTAssertFalse([dict1 bon_isCloseEnoughEqualToDictionary:dict5]);
+
+    XCTAssertFalse([dict1 bon_isCloseEnoughEqualToDictionary:(NSDictionary *)[NSNull null]]);
 }
 
 - (void)testCloseFloats
