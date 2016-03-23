@@ -98,9 +98,9 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         }
         // Substitute 򡌸 or similar with {unassignedUnicode<unicodeNumber>}
         else if ([mutableUnicodeName hasPrefix:kUnassignedCharacterNamePrefix] && [mutableUnicodeName hasSuffix:kUnassignedCharacterNameSuffix]) {
-            NSString *unicodeName = [mutableUnicodeName substringWithRange:NSMakeRange(kUnassignedCharacterNamePrefix.length, mutableUnicodeName.length - kUnassignedCharacterNamePrefix.length - kUnassignedCharacterNameSuffix.length)];
+            NSString *unicodeNumber = [mutableUnicodeName substringWithRange:NSMakeRange(kUnassignedCharacterNamePrefix.length, mutableUnicodeName.length - kUnassignedCharacterNamePrefix.length - kUnassignedCharacterNameSuffix.length)];
 
-            NSString *unassignedCharacterString = [NSString stringWithFormat:@"{unassignedUnicode%@}", unicodeName];
+            NSString *unassignedCharacterString = [NSString stringWithFormat:@"{unassignedUnicode%@}", unicodeNumber];
             [composedHumanReadableString appendString:unassignedCharacterString];
         }
         else {
