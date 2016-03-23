@@ -62,20 +62,20 @@ extension unichar {
             if let customName = customMappings[self] {
                 return customName // bail early!
             }
-            
+
             let swiftCharacter = Character(UnicodeScalar(self))
-            
+
             let theCFMutableString = NSMutableString(string: String(swiftCharacter)) as CFMutableString
             CFStringTransform(theCFMutableString, UnsafeMutablePointer<CFRange>(nil), kCFStringTransformToUnicodeName, false)
-            
+
             let characterName = theCFMutableString as String
             var trimmedName = characterName
-            
+
             if characterName != String(swiftCharacter) {
                 // characterName will look like "\N{NO-BREAK SPACE}", so trim "\N{" and "}"
                 trimmedName = characterName[3..<characterName.utf8.count - 1]
             }
-            
+
             return trimmedName
         }
     }
@@ -85,11 +85,11 @@ extension String {
     subscript(i: Int) -> Character {
         return self[startIndex.advancedBy(i)]
     }
-    
+
     subscript(range: Range<Int>) -> String {
         return self[startIndex.advancedBy(range.startIndex)..<startIndex.advancedBy(range.endIndex)]
     }
-    
+
     func camelCaseName(initialLetterCapitalized initialLetterCapitalized: Bool) -> String {
         let components: [String] = self.characters.split{$0 == " " || $0 == "-"}.map(String.init)
         var camelCaseComponents = components.map { $0.capitalizedString }
@@ -97,13 +97,13 @@ extension String {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
         }
         return camelCaseComponents.joinWithSeparator("")
-        
+
     }
-    
+
     var methodName: String {
         return self.camelCaseName(initialLetterCapitalized: false)
     }
-    
+
     var enumerationValueName: String {
         let camelCaseName = self.camelCaseName(initialLetterCapitalized: true)
         let fullName = "BONCharacter" + camelCaseName
@@ -114,16 +114,16 @@ extension String {
 // from http://stackoverflow.com/a/31480534/255489
 func pathToFolderContainingThisScript() -> String {
     let cwd = NSFileManager.defaultManager().currentDirectoryPath
-    
+
     let script = Process.arguments[0];
-    
+
     if script.hasPrefix("/") { // absolute
         let path = (script as NSString).stringByDeletingLastPathComponent
         return path
     }
     else { // relative
         let urlCwd = NSURL(fileURLWithPath: cwd)
-        
+
         if let urlPath = NSURL(string: script, relativeToURL: urlCwd) {
             if let path = urlPath.path {
                 let path = (path as NSString).stringByDeletingLastPathComponent
@@ -131,7 +131,7 @@ func pathToFolderContainingThisScript() -> String {
             }
         }
     }
-    
+
     return ""
 }
 
@@ -158,30 +158,30 @@ for theUnichar in specialCharacters {
     let characterName = theUnichar.unicodeName
     let methodName = characterName.methodName
     let enumerationName = characterName.enumerationValueName
-    
+
     let hexValueString = NSString(format:"%.4X", theUnichar)
     let enumerationStatement = "    \(enumerationName) = 0x\(hexValueString),\n"
     headerEnumString += enumerationStatement
-    
+
     if !charactersToExcludeFromHumanReadableStringDictionary.contains(theUnichar) {
         let dictionaryStatement = "        @(\(enumerationName)) : @\"{\(methodName)}\", \n"
         humanReadableDictionaryContent += dictionaryStatement
     }
-    
+
     let methodPrototype = "+ (NSString *)\(methodName)"
     let methodInterface = methodPrototype + ";"
-    
+
     let returnExpression: String
-    
+
     if charactersRequiringFormatStrings.contains(theUnichar) {
         returnExpression = NSString(format:"return [NSString stringWithFormat:@\"%%C\", %@];", enumerationName) as String
     }
     else {
         returnExpression = NSString(format:"return @\"\\u%.4X\";", theUnichar) as String
     }
-    
+
     let methodImplementation = "\(methodPrototype) { \(returnExpression as String) }"
-    
+
     headerCodeString += (methodInterface + "\n")
     implementationCodeString += (methodImplementation + "\n")
 }
@@ -229,7 +229,7 @@ let implementationFilePath = (classesDirectory as NSString).stringByAppendingPat
 do {
     try! headerOutputString.writeToFile(headerFilePath, atomically: true, encoding: NSUTF8StringEncoding)
     try! implementationOutputString.writeToFile(implementationFilePath, atomically: true, encoding: NSUTF8StringEncoding)
-    
+
     print("Updated \(headerFileName) and \(implementationFileName) in \(classesDirectory)")
     print("Please run `pod install` to update the headers in the example project.")
 }
