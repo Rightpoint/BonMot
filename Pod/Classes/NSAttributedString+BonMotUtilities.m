@@ -92,7 +92,7 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         else if (specialCharacterSubstitutionString) {
             [composedHumanReadableString appendString:specialCharacterSubstitutionString];
         }
-        // Substitute Newline character with  @"{newline}"
+        // Substitute Newline character with @"{newline}"
         else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
             [composedHumanReadableString appendString:@"{newline}"];
         }
