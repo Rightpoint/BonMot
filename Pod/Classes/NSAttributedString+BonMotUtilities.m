@@ -78,12 +78,12 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         UIImage *attachedImage;
         attachedImage = attachment.image;
 
-        // Substitute attached images with @"{image#heightx#width}"
+        // Substitute attached images with @"{image<height>x<width>}"
         if (attachedImage) {
             NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%@}", BONPrettyStringFromCGSize(attachedImage.size)];
             [composedHumanReadableString appendString:imageSubstitutionString];
         }
-        // Swap applicable BONSpecial characters with @"{#camelCaseName}"
+        // Swap applicable BONSpecial characters with @"{<camelCaseName>}"
         else if (specialCharacterSubstitutionString) {
             [composedHumanReadableString appendFormat:@"%@", specialCharacterSubstitutionString];
         }
@@ -91,7 +91,7 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
             [composedHumanReadableString appendString:@"{newline}"];
         }
-        // Substitute 򡌸 or similar with {unassignedUnicode#unicodeNumber}
+        // Substitute 򡌸 or similar with {unassignedUnicode<unicodeNumber>}
         else if ([mutableUnicodeName hasPrefix:kUnassignedCharacterNamePrefix] && [mutableUnicodeName hasSuffix:kUnassignedCharacterNameSuffix]) {
             NSString *unicodeName = [mutableUnicodeName substringWithRange:NSMakeRange(kUnassignedCharacterNamePrefix.length, mutableUnicodeName.length - kUnassignedCharacterNamePrefix.length - kUnassignedCharacterNameSuffix.length)];
 
