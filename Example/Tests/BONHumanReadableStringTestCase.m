@@ -98,6 +98,18 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
     BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!");
 }
 
+- (void)testNoImageSizeReplacementString
+{
+    UIImage *image = [self.class dummyImageOfSize:CGSizeMake(36.0, 36.0) scale:1.0];
+    BONChain *imageChain = BONChain.new.image(image);
+    BONChain *textChain = BONChain.new.string(@"concatenate me!");
+
+    [imageChain appendLink:textChain];
+
+    NSString *humanReadableString = [imageChain.attributedString bon_humanReadableStringIncludingImageSize:NO];
+    XCTAssertEqualObjects(humanReadableString, @"{image}concatenate me!");
+}
+
 - (void)testBonMotLogoImageReplacementString
 {
     UIImage *bonMotLogoImage = [UIImage imageNamed:@"BonMot-logo" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];

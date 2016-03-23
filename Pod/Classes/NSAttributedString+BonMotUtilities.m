@@ -80,7 +80,8 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
 
         // Substitute attached images with @"{image<height>x<width>}"
         if (attachedImage) {
-            NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%@}", BONPrettyStringFromCGSize(attachedImage.size)];
+            NSString *sizeString = includeImageSize ? BONPrettyStringFromCGSize(attachedImage.size) : @"";
+            NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%@}", sizeString];
             [composedHumanReadableString appendString:imageSubstitutionString];
         }
         // Swap applicable BONSpecial characters with @"{<camelCaseName>}"
