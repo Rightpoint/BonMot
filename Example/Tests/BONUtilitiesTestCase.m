@@ -8,7 +8,7 @@
 
 #import "BONBaseTestCase.h"
 
-NSDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *string)
+NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSString *string)
 {
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 
