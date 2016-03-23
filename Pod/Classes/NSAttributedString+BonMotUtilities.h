@@ -13,6 +13,8 @@ BON_ASSUME_NONNULL_BEGIN
 
 @interface NSAttributedString (BonMotUtilities)
 
+@property (copy, nonatomic, readonly) NSString *bon_humanReadableString;
+
 - (NSString *)bon_humanReadableStringIncludingImageSize:(BOOL)shouldIncludeImageSize;
 
 @end

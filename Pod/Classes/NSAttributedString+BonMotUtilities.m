@@ -51,7 +51,12 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
 
 @implementation NSAttributedString (BonMotUtilities)
 
-- (NSString *)bon_humanReadableStringIncludingImageSize:(BOOL)shouldIncludeImageSize
+- (NSString *)bon_humanReadableString
+{
+    return [self bon_humanReadableStringIncludingImageSize:YES];
+}
+
+- (NSString *)bon_humanReadableStringIncludingImageSize:(BOOL)includeImageSize
 {
     NSString *originalString = self.string;
     NSMutableString *composedHumanReadableString = [NSMutableString string];
