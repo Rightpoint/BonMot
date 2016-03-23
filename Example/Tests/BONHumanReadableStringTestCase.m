@@ -8,6 +8,13 @@
 
 #import "BONBaseTestCase.h"
 
+static const double kBONEpsilon = 0.0001;
+static const double kBONOneThird = 1.0 / 3.0;
+static const double kBONTwoThirds = 2.0 / 3.0;
+
+OBJC_EXTERN NSString *BONDoubleRoundedString(double theDouble);
+OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
+
 @import BonMot;
 
 @interface BONHumanReadableStringTestCase : BONBaseTestCase
@@ -16,15 +23,79 @@
 
 @implementation BONHumanReadableStringTestCase
 
-- (void)test36x36ImageReplacementString
++ (UIImage *)dummyImageOfSize:(CGSize)size scale:(CGFloat)scale
 {
-    UIImage *barnImage = [UIImage imageNamed:@"barn" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
-    BONChain *imageChain = BONChain.new.image(barnImage);
+    UIGraphicsBeginImageContextWithOptions(size, YES, scale);
+
+    [[UIColor redColor] setFill];
+    UIRectFill(CGRectMake(0.0, 0.0, size.width, size.height));
+
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+- (void)testDoubleRoundedString
+{
+    NSString *basic = BONDoubleRoundedString(1.0);
+    XCTAssertEqualObjects(basic, @"1");
+
+    NSString *epsilonTest = BONDoubleRoundedString(1.0000001);
+    XCTAssertEqualObjects(epsilonTest, @"1");
+
+    NSString *negative = BONDoubleRoundedString(-1.0);
+    XCTAssertEqualObjects(negative, @"-1");
+
+    NSString *smallFractional = BONDoubleRoundedString(7 + kBONTwoThirds);
+    XCTAssertEqualObjects(smallFractional, @"7.667");
+
+    NSString *largeFractional = BONDoubleRoundedString(13682 + kBONOneThird);
+    XCTAssertEqualObjects(largeFractional, @"13682.333");
+
+    NSString *halfFractional = BONDoubleRoundedString(12345.5);
+    XCTAssertEqualObjects(halfFractional, @"12345.5");
+}
+
+- (void)testPrettyCGSize
+{
+    NSString *basic = BONPrettyStringFromCGSize(CGSizeMake(1.0, 1.0));
+    XCTAssertEqualObjects(basic, @"1x1");
+
+    NSString *fractions = BONPrettyStringFromCGSize(CGSizeMake(13.5, 827 + kBONOneThird));
+    XCTAssertEqualObjects(fractions, @"13.5x827.333");
+
+    NSString *bigFractions = BONPrettyStringFromCGSize(CGSizeMake(2468.0 + kBONTwoThirds, -4272.5));
+    XCTAssertEqualObjects(bigFractions, @"2468.667x-4272.5");
+}
+
+- (void)testDummyImageMaker
+{
+    UIImage *image1x = [self.class dummyImageOfSize:CGSizeMake(1.0, 1.0) scale:1.0];
+    XCTAssertEqualWithAccuracy(image1x.size.width, 1.0, kBONEpsilon);
+    XCTAssertEqualWithAccuracy(image1x.size.height, 1.0, kBONEpsilon);
+
+    UIImage *image2x = [self.class dummyImageOfSize:CGSizeMake(1.0, 1.0) scale:2.0];
+    XCTAssertEqualWithAccuracy(image2x.size.width, 1.0, kBONEpsilon);
+    XCTAssertEqualWithAccuracy(image2x.size.height, 1.0, kBONEpsilon);
+
+    UIImage *image3x = [self.class dummyImageOfSize:CGSizeMake(1.0, 1.0) scale:2.0];
+    XCTAssertEqualWithAccuracy(image3x.size.width, 1.0, kBONEpsilon);
+    XCTAssertEqualWithAccuracy(image3x.size.height, 1.0, kBONEpsilon);
+
+    UIImage *imageFractional3x = [self.class dummyImageOfSize:CGSizeMake(3.0 + kBONOneThird, 10.0 + kBONTwoThirds) scale:3.0];
+    XCTAssertEqualWithAccuracy(imageFractional3x.size.width, 3.333333333, kBONEpsilon);
+    XCTAssertEqualWithAccuracy(imageFractional3x.size.height, 10.66666666, kBONEpsilon);
+}
+
+- (void)testBasicImageReplacementString
+{
+    UIImage *image = [self.class dummyImageOfSize:CGSizeMake(36.0, 36.0) scale:1.0];
+    BONChain *imageChain = BONChain.new.image(image);
     BONChain *textChain = BONChain.new.string(@"concatenate me!");
 
     [imageChain appendLink:textChain];
 
-    BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!")
+    BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!");
 }
 
 - (void)testBonMotLogoImageReplacementString
@@ -35,12 +106,35 @@
     BONAssertEquivalentStrings(secondImageChain.attributedString, @"{image443x138}");
 }
 
-- (void)test1x2x3xAssets
+- (void)testImagesOfDifferentScales
 {
-    UIImage *bikeImage = [UIImage imageNamed:@"bicycle_sketch" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
-    BONChain *bikeImageChain = BONChain.new.image(bikeImage);
+    UIImage *image1x = [self.class dummyImageOfSize:CGSizeMake(320.0, 188.0) scale:1.0];
+    BONChain *chain1x = BONChain.new.image(image1x);
 
-    BONAssertEquivalentStrings(bikeImageChain.attributedString, @"{image320x188}");
+    BONAssertEquivalentStrings(chain1x.attributedString, @"{image320x188}");
+
+    UIImage *image2x = [self.class dummyImageOfSize:CGSizeMake(640.0, 376.0) scale:1.0];
+    BONChain *chain2x = BONChain.new.image(image2x);
+
+    BONAssertEquivalentStrings(chain2x.attributedString, @"{image640x376}");
+
+    UIImage *image3x = [self.class dummyImageOfSize:CGSizeMake(750.0, 441.0) scale:1.0];
+    BONChain *chain3x = BONChain.new.image(image3x);
+
+    BONAssertEquivalentStrings(chain3x.attributedString, @"{image750x441}");
+}
+
+- (void)testFractionalImagesOfDifferentScales
+{
+    UIImage *fractionalImage2x = [self.class dummyImageOfSize:CGSizeMake(640.5, 376.5) scale:2.0];
+    BONChain *fractionalChain2x = BONChain.new.image(fractionalImage2x);
+
+    BONAssertEquivalentStrings(fractionalChain2x.attributedString, @"{image640.5x376.5}");
+
+    UIImage *fractionalImage3x = [self.class dummyImageOfSize:CGSizeMake(750.0 + kBONOneThird, 441.0 + kBONTwoThirds) scale:3.0];
+    BONChain *fractionalChain3x = BONChain.new.image(fractionalImage3x);
+
+    BONAssertEquivalentStrings(fractionalChain3x.attributedString, @"{image750.333x441.667}");
 }
 
 - (void)testSpecialCharacters

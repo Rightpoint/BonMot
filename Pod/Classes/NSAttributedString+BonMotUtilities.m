@@ -13,6 +13,42 @@
 static NSString *const kUnassignedCharacterNamePrefix = @"\\N{<unassigned-";
 static NSString *const kUnassignedCharacterNameSuffix = @">}";
 
+static const int kBONMaxRoundingDigits = 3;
+static inline double BONEpsilon(void)
+{
+    return pow(10.0, -kBONMaxRoundingDigits) / 2.0; // half the smallest number representable with this many digits
+}
+
+NSString *BONDoubleRoundedString(double theDouble)
+{
+    BOOL integral = NO;
+    if (fabs(theDouble - floor(theDouble)) < BONEpsilon()) {
+        integral = YES;
+    }
+
+    BOOL multipleOfOneHalf = fabs(fmod(theDouble, 0.5)) < BONEpsilon();
+
+    int numberOfDigits;
+    if (integral) {
+        numberOfDigits = 0;
+    }
+    else if (multipleOfOneHalf) {
+        numberOfDigits = 1;
+    }
+    else {
+        numberOfDigits = kBONMaxRoundingDigits;
+    }
+
+    NSString *string = [NSString stringWithFormat:@"%.*lf", numberOfDigits, theDouble];
+    return string;
+}
+
+NSString *BONPrettyStringFromCGSize(CGSize size)
+{
+    NSString *string = [NSString stringWithFormat:@"%@x%@", BONDoubleRoundedString(size.width), BONDoubleRoundedString(size.height)];
+    return string;
+}
+
 @implementation NSAttributedString (BonMotUtilities)
 
 - (NSString *)bon_humanReadableStringIncludingImageSize:(BOOL)shouldIncludeImageSize
@@ -44,16 +80,7 @@ static NSString *const kUnassignedCharacterNameSuffix = @">}";
 
         // Substitute attached images with @"{image#heightx#width}"
         if (attachedImage) {
-            NSString *imageSubstitutionString;
-            NSMutableString *imageSizeString = [NSMutableString stringWithFormat:@"%@", NSStringFromCGSize(attachedImage.size)];
-            if (imageSizeString && shouldIncludeImageSize) {
-                NSMutableString *modifiedImageSizeString = [imageSizeString stringByReplacingOccurrencesOfString:@", " withString:@"x"].mutableCopy;
-                [modifiedImageSizeString insertString:@"image" atIndex:1];
-                imageSubstitutionString = modifiedImageSizeString;
-            }
-            else {
-                imageSubstitutionString = @"{image}";
-            }
+            NSString *imageSubstitutionString = [NSString stringWithFormat:@"{image%@}", BONPrettyStringFromCGSize(attachedImage.size)];
             [composedHumanReadableString appendString:imageSubstitutionString];
         }
         // Swap applicable BONSpecial characters with @"{#camelCaseName}"
