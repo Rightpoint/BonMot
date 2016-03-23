@@ -80,8 +80,7 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
 
         BONStringDict *attributes = [self attributesAtIndex:substringRange.location effectiveRange:NULL];
         NSTextAttachment *attachment = attributes[NSAttachmentAttributeName];
-        UIImage *attachedImage;
-        attachedImage = attachment.image;
+        UIImage *attachedImage = attachment.image;
 
         // Substitute attached images with @"{image<height>x<width>}"
         if (attachedImage) {
