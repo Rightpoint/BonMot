@@ -85,7 +85,7 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         }
         // Swap applicable BONSpecial characters with @"{<camelCaseName>}"
         else if (specialCharacterSubstitutionString) {
-            [composedHumanReadableString appendFormat:@"%@", specialCharacterSubstitutionString];
+            [composedHumanReadableString appendString:specialCharacterSubstitutionString];
         }
         // Substitute Newline character with  @"{newline}"
         else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
