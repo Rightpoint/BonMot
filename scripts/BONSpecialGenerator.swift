@@ -115,7 +115,7 @@ extension String {
 func pathToFolderContainingThisScript() -> String {
     let cwd = NSFileManager.defaultManager().currentDirectoryPath
 
-    let script = Process.arguments[0];
+    let script = Process.arguments[0]
 
     if script.hasPrefix("/") { // absolute
         let path = (script as NSString).stringByDeletingLastPathComponent
