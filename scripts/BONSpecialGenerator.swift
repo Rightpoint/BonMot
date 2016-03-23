@@ -91,7 +91,7 @@ extension String {
     }
 
     func camelCaseName(initialLetterCapitalized initialLetterCapitalized: Bool) -> String {
-        let components: [String] = self.characters.split{$0 == " " || $0 == "-"}.map(String.init)
+        let components: [String] = self.characters.split { $0 == " " || $0 == "-" }.map(String.init)
         var camelCaseComponents = components.map { $0.capitalizedString }
         if !initialLetterCapitalized && camelCaseComponents.count > 0 {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
