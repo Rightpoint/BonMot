@@ -51,6 +51,11 @@ let charactersRequiringFormatStrings: Set<unichar> = [
     0x0020,
 ]
 
+// These special characters are to be excluded from the human readable string dictionary.
+let charactersToExcludeFromHumanReadableStringDictionary: Set<unichar> = [
+    0x0020,
+]
+
 extension unichar {
     var unicodeName: String {
         get {
@@ -86,7 +91,7 @@ extension String {
     }
 
     func camelCaseName(initialLetterCapitalized initialLetterCapitalized: Bool) -> String {
-        let components: [String] = self.characters.split{$0 == " " || $0 == "-"}.map(String.init)
+        let components: [String] = self.characters.split { $0 == " " || $0 == "-" }.map(String.init)
         var camelCaseComponents = components.map { $0.capitalizedString }
         if !initialLetterCapitalized && camelCaseComponents.count > 0 {
             camelCaseComponents[0] = camelCaseComponents[0].lowercaseString
@@ -110,7 +115,7 @@ extension String {
 func pathToFolderContainingThisScript() -> String {
     let cwd = NSFileManager.defaultManager().currentDirectoryPath
 
-    let script = Process.arguments[0];
+    let script = Process.arguments[0]
 
     if script.hasPrefix("/") { // absolute
         let path = (script as NSString).stringByDeletingLastPathComponent
@@ -147,6 +152,7 @@ if sortedSpecialCharacters != specialCharacters {
 var headerEnumString = "typedef NS_ENUM(unichar, BONCharacter) {\n"
 var headerCodeString = ""
 var implementationCodeString = ""
+var humanReadableDictionaryContent = ""
 
 for theUnichar in specialCharacters {
     let characterName = theUnichar.unicodeName
@@ -156,6 +162,11 @@ for theUnichar in specialCharacters {
     let hexValueString = NSString(format:"%.4X", theUnichar)
     let enumerationStatement = "    \(enumerationName) = 0x\(hexValueString),\n"
     headerEnumString += enumerationStatement
+
+    if !charactersToExcludeFromHumanReadableStringDictionary.contains(theUnichar) {
+        let dictionaryStatement = "        @(\(enumerationName)) : @\"{\(methodName)}\", \n"
+        humanReadableDictionaryContent += dictionaryStatement
+    }
 
     let methodPrototype = "+ (NSString *)\(methodName)"
     let methodInterface = methodPrototype + ";"
@@ -175,7 +186,12 @@ for theUnichar in specialCharacters {
     implementationCodeString += (methodImplementation + "\n")
 }
 
+let humanReadableDictionaryHeaderDeclaration = "+ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary;"
+let humanReadableDictionaryImplementation = "+ (BONGeneric(NSDictionary, NSNumber *, NSString *) *)humanReadableStringDictionary\n{\n    return @{\n" + humanReadableDictionaryContent + "    };\n}"
+
+headerCodeString += ("\n" + humanReadableDictionaryHeaderDeclaration + "\n")
 headerEnumString += "};"
+implementationCodeString += ("\n" + humanReadableDictionaryImplementation + "\n")
 
 // Get the contents of the template files
 

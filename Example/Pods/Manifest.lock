@@ -11,9 +11,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   BonMot:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  BonMot: 90e8f2228c5174697f928fdfc9f14b937fdf0ec7
+  BonMot: fe7e7256625af086449cbae0464aaa10d2b352c6
 
 COCOAPODS: 0.39.0
