@@ -1,5 +1,5 @@
 //
-//  UITextField+BonMotUtilities.m
+//  UILabel+BonMotUtilities.m
 //  BonMot
 //
 //  Created by Nora Trapp on 3/2/16.
@@ -9,13 +9,19 @@
 #import "BonMot.h"
 @import ObjectiveC.runtime;
 
-@implementation UITextField (BonMotUtilities)
+@implementation UILabel (BonMotUtilities)
 
 - (void)setBonTextable:(id<BONTextable>)textable
 {
     objc_setAssociatedObject(self, @selector(bonTextable), textable, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-    self.bonString = self.text;
+    // If the textable is empty, use the label’s existing text
+    if (textable.text.generatesEmptyString) {
+        self.bonString = self.text;
+    }
+    else {
+        self.attributedText = self.bonTextable.text.attributedString;
+    }
 }
 
 - (BONChain *)bonTextable

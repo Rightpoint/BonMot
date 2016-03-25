@@ -51,7 +51,8 @@
 
     [wholeString appendLink:beeChain separator:@" "];
 
-    self.label.attributedText = wholeString.attributedString;
+    // You can set the bonTextable directly on the label, instead of having to extract the attributed string
+    self.label.bonTextable = wholeString;
 
     NSLog(@"Look at the bottom of %@ to see the code that led to this being printed:", @(__FILE__).lastPathComponent);
     NSLog(@"%@", wholeString);

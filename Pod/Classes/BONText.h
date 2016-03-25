@@ -88,6 +88,11 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (copy, nonatomic, readonly, BONNonnull) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly, BONNonnull) BONStringDict *attributes;
 
+/**
+ *  @c YES if and only if the resulting @c attributedString will be the empty attributed string.
+ */
+@property (nonatomic, readonly) BOOL generatesEmptyString;
+
 // Utilities
 
 /**

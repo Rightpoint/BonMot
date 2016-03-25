@@ -1,5 +1,5 @@
 //
-//  BONUtilitiesTestCase.m
+//  BONUIKitUtilitiesTestCase.m
 //  BonMot
 //
 //  Created by Nora Trapp on 3/3/16.
@@ -111,6 +111,27 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     BONAssertAttributedStringHasAttributes(label.attributedText, controlAttributes);
 }
 
+- (void)testLabelTextableWithStringClobbersExistingString
+{
+    UILabel *label = UILabel.new;
+    label.text = @"this too shall pass";
+    label.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]).string(@"Hello, world!");
+
+    XCTAssertNotNil(label.bonTextable);
+    XCTAssertEqualObjects(label.attributedText.string, @"Hello, world!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+            NSFontAttributeName : [UIFont systemFontOfSize:16],
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(label.attributedText, controlAttributes);
+}
+
 #pragma mark - UITextView
 
 - (void)testTextViewTextAfterTextable
@@ -186,6 +207,27 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     BONAssertAttributedStringHasAttributes(textView.attributedText, controlAttributes);
 }
 
+- (void)testTextViewTextableWithStringClobbersExistingString
+{
+    UITextView *textView = UITextView.new;
+    textView.text = @"this too shall pass";
+    textView.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]).string(@"Hello, world!");
+
+    XCTAssertNotNil(textView.bonTextable);
+    XCTAssertEqualObjects(textView.attributedText.string, @"Hello, world!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+            NSFontAttributeName : [UIFont systemFontOfSize:16],
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(textView.attributedText, controlAttributes);
+}
+
 #pragma mark - UITextField
 
 - (void)testTextFieldTextAfterTextable
@@ -196,7 +238,7 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
 
     XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
 
-    NSMutableDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
+    NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
     [controlAttributes[BONValueFromRange(0, 13)] addEntriesFromDictionary:@{
         NSFontAttributeName : [UIFont systemFontOfSize:16],
     }];
@@ -214,7 +256,7 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
 
     XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
 
-    NSMutableDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
+    NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
     [controlAttributes[BONValueFromRange(0, 13)] addEntriesFromDictionary:@{
         NSFontAttributeName : [UIFont systemFontOfSize:16],
     }];
@@ -246,7 +288,26 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     XCTAssertNotNil(textField.bonTextable);
     XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
 
-    NSMutableDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
+    NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
+    [controlAttributes[BONValueFromRange(0, 13)] addEntriesFromDictionary:@{
+        NSFontAttributeName : [UIFont systemFontOfSize:16],
+    }];
+
+    XCTAssertNotNil(controlAttributes[BONValueFromRange(0, 13)]);
+
+    BONAssertAttributedStringHasAttributes(textField.attributedText, controlAttributes);
+}
+
+- (void)testTextFieldTextableWithStringClobbersExistingString
+{
+    UITextField *textField = UITextField.new;
+    textField.text = @"this too shall pass";
+    textField.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]).string(@"Hello, world!");
+
+    XCTAssertNotNil(textField.bonTextable);
+    XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
+
+    NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
     [controlAttributes[BONValueFromRange(0, 13)] addEntriesFromDictionary:@{
         NSFontAttributeName : [UIFont systemFontOfSize:16],
     }];

@@ -29,10 +29,10 @@
       "private_header_files": "Pod/Classes/*_Private.h"
     },
     {
-      "name": "UI",
+      "name": "UIKit",
       "source_files": [
-        "Pod/UI",
-        "Pod/UI/Classes/**/*"
+        "Pod/UIKit",
+        "Pod/UIKit/Classes/**/*"
       ],
       "dependencies": {
         "BonMot/Core": [
