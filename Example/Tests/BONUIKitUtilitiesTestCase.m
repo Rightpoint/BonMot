@@ -29,11 +29,11 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
 
 @import BonMot;
 
-@interface BONUtilitiesTestCase : BONBaseTestCase
+@interface BONUIKitUtilitiesTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONUtilitiesTestCase
+@implementation BONUIKitUtilitiesTestCase
 
 #pragma mark - UILabel
 
