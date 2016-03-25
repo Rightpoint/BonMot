@@ -173,7 +173,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
     // Figure Style
 
-    NSMutableArray *featureSettings = [NSMutableArray array];
+    BONGeneric(NSMutableArray, BONStringDict *)*featureSettings = [NSMutableArray array];
 
     // Figure Case
 
@@ -227,7 +227,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     UIFont *fontToUse = nil;
 
     if (needToUseFontDescriptor) {
-        NSMutableDictionary *featureSettingsAttributes = [NSMutableDictionary dictionary];
+        BONGeneric(NSMutableDictionary, NSString *, BONGeneric(NSArray, BONStringDict *)*)*featureSettingsAttributes = [NSMutableDictionary dictionary];
         featureSettingsAttributes[UIFontDescriptorFeatureSettingsAttribute] = featureSettings;
 
         if (self.font) {
