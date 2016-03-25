@@ -37,6 +37,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         self.alignment = NSTextAlignmentNatural;
         self.underlineStyle = NSUnderlineStyleNone;
         self.strikethroughStyle = NSUnderlineStyleNone;
+        self.lineBreakMode = NSLineBreakByWordWrapping;
     }
 
     return self;
