@@ -47,6 +47,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Maximum line height
 - Minimum line height
 - Line spacing
+- Line break mode
 - Paragraph spacing before
 - Paragraph spacing after
 - Baseline offset

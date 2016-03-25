@@ -75,6 +75,7 @@
                           .headIndent(2.34)
                           .tailIndent(3.45)
                           .lineHeightMultiple(3.14)
+                          .lineBreakMode(NSLineBreakByTruncatingTail)
                           .maximumLineHeight(5.67)
                           .minimumLineHeight(4.56)
                           .lineSpacing(2.72)
@@ -91,6 +92,7 @@
     controlParagraphStyle.maximumLineHeight = 5.67;
     controlParagraphStyle.minimumLineHeight = 4.56;
     controlParagraphStyle.lineSpacing = 2.72;
+    controlParagraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     controlParagraphStyle.paragraphSpacing = 6.78;
     controlParagraphStyle.paragraphSpacingBefore = 7.89;
 
@@ -113,6 +115,7 @@
     XCTAssertEqualWithAccuracy(testParagraphStyle.maximumLineHeight, 5.67, kBONDoubleEpsilon);
     XCTAssertEqualWithAccuracy(testParagraphStyle.minimumLineHeight, 4.56, kBONDoubleEpsilon);
     XCTAssertEqualWithAccuracy(testParagraphStyle.lineSpacing, 2.72, kBONDoubleEpsilon);
+    XCTAssertEqual(testParagraphStyle.lineBreakMode, NSLineBreakByTruncatingTail);
     XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacing, 6.78, kBONDoubleEpsilon);
     XCTAssertEqualWithAccuracy(testParagraphStyle.paragraphSpacingBefore, 7.89, kBONDoubleEpsilon);
 }
