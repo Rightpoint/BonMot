@@ -75,10 +75,10 @@
                           .headIndent(2.34)
                           .tailIndent(3.45)
                           .lineHeightMultiple(3.14)
-                          .lineBreakMode(NSLineBreakByTruncatingTail)
                           .maximumLineHeight(5.67)
                           .minimumLineHeight(4.56)
                           .lineSpacing(2.72)
+                          .lineBreakMode(NSLineBreakByTruncatingTail)
                           .paragraphSpacingAfter(6.78)
                           .paragraphSpacingBefore(7.89);
     NSAttributedString *string = chain.attributedString;
