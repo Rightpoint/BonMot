@@ -63,4 +63,6 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
 
 @interface BONBaseTestCase : XCTestCase
 
++ (void)loadEBGaramondFont;
+
 @end

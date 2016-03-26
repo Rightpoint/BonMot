@@ -11,9 +11,9 @@ script:
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
 - echo "simulator UDID is $IOS_SIMULATOR_UDID"
 - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO
+- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 4s (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
 - echo "simulator UDID is $IOS_SIMULATOR_UDID"
 - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO
+- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint

@@ -19,6 +19,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6836AD13A829A45AE2425588 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */; };
 		730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */; };
+		CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */; };
 		CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */; };
 		CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */; };
 		CD6DEFE51BF6ADF900676E2D /* BONChainEmptyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD81BF6ADF900676E2D /* BONChainEmptyTestCase.m */; };
@@ -63,6 +64,7 @@
 		CD6DF0561BF6B63300676E2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF0541BF6B63300676E2D /* Main.storyboard */; };
 		CD6DF0591BF6B7AF00676E2D /* DashedHairlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF0581BF6B7AF00676E2D /* DashedHairlineView.m */; };
 		CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */; };
+		CD78701E1CA5F8EC00B2714F /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */; };
 		EC433DB61C88BBDE001B3ABE /* BONUIKitUtilitiesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB41C88BBDB001B3ABE /* BONUIKitUtilitiesTestCase.m */; };
 		F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */; };
@@ -99,6 +101,7 @@
 		8F7BD757BEB762F22E099560 /* BonMot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BonMot.podspec; path = ../BonMot.podspec; sourceTree = "<group>"; };
 		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONFigureTestCase.m; sourceTree = "<group>"; };
 		CD6DEFD51BF6ADF900676E2D /* BONBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BONBaseTestCase.h; sourceTree = "<group>"; };
 		CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
 		CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextableTestCase.m; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 				CD6DEFDE1BF6ADF900676E2D /* BONTextAlignmentTestCase.m */,
 				CD6DEFDF1BF6ADF900676E2D /* BONTrackingTestCase.m */,
 				CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */,
+				CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */,
 				EC433DB41C88BBDB001B3ABE /* BONUIKitUtilitiesTestCase.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				CD6DF0481BF6B37E00676E2D /* DummyAssetClass.h */,
@@ -476,6 +480,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD78701E1CA5F8EC00B2714F /* EBGaramond12-Regular.otf in Resources */,
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 				CD6DF0461BF6B24300676E2D /* Images.xcassets in Resources */,
 			);
@@ -630,6 +635,7 @@
 				CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */,
 				CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */,
 				CD6DEFF31BF6ADF900676E2D /* BONTrackingTestCase.m in Sources */,
+				CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */,
 				CD6DEFE91BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m in Sources */,
 				CD6DEFEB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m in Sources */,
 				CD6DEFEF1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m in Sources */,
