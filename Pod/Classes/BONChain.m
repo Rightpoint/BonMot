@@ -199,6 +199,17 @@
     return [lineSpacingBlock copy];
 }
 
+- (BONChainLineBreakMode)lineBreakMode
+{
+    BONChainLineBreakMode lineBreakModeBlock = ^(NSLineBreakMode lineBreakMode) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.lineBreakMode = lineBreakMode;
+        return newChain;
+    };
+    
+    return [lineBreakModeBlock copy];
+}
+
 - (BONChainParagraphSpacingAfter)paragraphSpacingAfter
 {
     BONChainParagraphSpacingAfter paragraphSpacingAfterBlock = ^(CGFloat paragraphSpacingAfter) {

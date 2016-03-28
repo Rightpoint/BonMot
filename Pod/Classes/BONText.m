@@ -37,6 +37,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         self.alignment = NSTextAlignmentNatural;
         self.underlineStyle = NSUnderlineStyleNone;
         self.strikethroughStyle = NSUnderlineStyleNone;
+        self.lineBreakMode = NSLineBreakByWordWrapping;
     }
 
     return self;
@@ -311,6 +312,13 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineSpacing = self.lineSpacing;
     }
+    
+    // Line Break Mode
+    
+    if (self.lineBreakMode != NSLineBreakByWordWrapping) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.lineBreakMode = self.lineBreakMode;
+    }
 
     // Paragraph Spacing
 
@@ -382,6 +390,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     text.maximumLineHeight = self.maximumLineHeight;
     text.minimumLineHeight = self.minimumLineHeight;
     text.lineSpacing = self.lineSpacing;
+    text.lineBreakMode = self.lineBreakMode;
     text.paragraphSpacingAfter = self.paragraphSpacingAfter;
     text.paragraphSpacingBefore = self.paragraphSpacingBefore;
     text.baselineOffset = self.baselineOffset;

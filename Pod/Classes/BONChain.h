@@ -27,6 +27,7 @@ typedef BONChain *BONCNonnull (^BONChainLineHeight)(CGFloat lineHeightMultiple);
 typedef BONChain *BONCNonnull (^BONChainMaximumLineHeight)(CGFloat maximumLineHeight);
 typedef BONChain *BONCNonnull (^BONChainMinimumLineHeight)(CGFloat minimumLineHeight);
 typedef BONChain *BONCNonnull (^BONChainLineSpacing)(CGFloat lineSpacing);
+typedef BONChain *BONCNonnull (^BONChainLineBreakMode)(NSLineBreakMode lineBreakMode);
 typedef BONChain *BONCNonnull (^BONChainParagraphSpacingAfter)(CGFloat paragraphSpacing);
 typedef BONChain *BONCNonnull (^BONChainParagraphSpacingBefore)(CGFloat paragraphSpacingBefore);
 typedef BONChain *BONCNonnull (^BONChainBaselineOffset)(CGFloat baselineOffset);
@@ -67,6 +68,7 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 @property (copy, nonatomic, readonly) BONChainMaximumLineHeight maximumLineHeight;
 @property (copy, nonatomic, readonly) BONChainMinimumLineHeight minimumLineHeight;
 @property (copy, nonatomic, readonly) BONChainLineSpacing lineSpacing;
+@property (copy, nonatomic, readonly) BONChainLineBreakMode lineBreakMode;
 @property (copy, nonatomic, readonly) BONChainParagraphSpacingAfter paragraphSpacingAfter;
 @property (copy, nonatomic, readonly) BONChainParagraphSpacingBefore paragraphSpacingBefore;
 
