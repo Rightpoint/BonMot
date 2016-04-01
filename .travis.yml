@@ -6,6 +6,7 @@ language: objective-c
 osx_image: xcode7.3
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+- export PYTHONUSERBASE=~/.local
 - easy_install --user scan-build
 script:
 # "warm" simulator by pre-launching it so tests don't hang
@@ -18,6 +19,6 @@ script:
 - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 - set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO | xcpretty
 # use scan-build with --status-bugs to fail the build for static analysis warnings per http://jonboydell.blogspot.ca/2013/02/clang-static-analysis.html
-- export PATH=$PATH:/usr/local/bin
+- export PATH="${HOME}/.local/bin:${PATH}"
 - set -o pipefail && scan-build --status-bugs xcodebuild analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint
