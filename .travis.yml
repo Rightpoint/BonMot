@@ -4,19 +4,9 @@
 
 language: objective-c
 osx_image: xcode7.3
-python:
-- "2.7"
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-# install python via brew
-- brew install python
-# make brew’s python the system default
-- brew link --overwrite python
-- which python
-- python --version
-# pip init
-- pip install --upgrade pip
-- pip install scan-build
+- easy_install scan-build
 script:
 # "warm" simulator by pre-launching it so tests don't hang
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
