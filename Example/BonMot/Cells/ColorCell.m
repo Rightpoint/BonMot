@@ -29,7 +29,7 @@
     //    I want to be different. If everyone is wearing black, I want to be wearing red.
     //    Maria Sharapova [Tinted Tennis Racket Image]
 
-    NSArray *strings = @[
+    BONGeneric(NSArray, NSString *)*strings = @[
         @"I want to be different. If everyone is wearing ",
         @" black, ",
         @" I want to be wearing ",
@@ -48,7 +48,7 @@
     BONChain *redBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
     BONChain *redFont = fancyFont.textColor([self.class raizlabsRed]);
 
-    NSArray *chains = @[
+    BONGeneric(NSArray, BONChain *)*chains = @[
         grayFont,
         blackBackground,
         grayFont,
