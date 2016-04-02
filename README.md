@@ -61,27 +61,9 @@ Think something is missing? Please [file an issue](https://github.com/Raizlabs/B
 
 ## Usage
 
-In any file where you want to use BonMot, simply `#import <BonMot/BonMot.h>` or `@import BonMot`.
+In any Swift file where you want to use BonMot, simply `import BonMot`. In Objective-C, that’s `#import <BonMot/BonMot.h>` or `@import BonMot`.
 
-The basic object in BonMot is `BONText`. You create a text object, set some properties to configure the font, and then ask for its `.attributedString` to get a string formatted according to your specification. Or ask for `.attributes` if you just need the attributes dictionary:
-
-```objc
-NSString *quote = @"I used to love correcting people’s grammar until\
- I realized what I loved more was having friends.\n\
-—Mara Wilson";
-
-BONText *text = [BONText new];
-text.font = [UIFont fontWithName:@"AmericanTypewriter" size:17.0];
-text.lineHeightMultiple = 1.8;
-text.string = quote;
-
-NSAttributedString *string = text.attributedString;
-NSDictionary *attributes = text.attributes;
-```
-
-## Chaining Syntax
-
-`BONChain` is a wrapper around `BONText` that allows you to chain properties together for a more concise expression of a style. You can create a chain with a normal `[[BONChain alloc] init]`, but it's easier to just use `[BONChain new]` or the even shorter and technically valid `BONChain.new`:
+The basic object in BonMot is `BONChain`, which allows you quickly construct attributed strings. You can create a chain with a normal `[[BONChain alloc] init]`, but it's easier to just use `[BONChain new]` or the even shorter and technically valid `BONChain.new`:
 
 ```objc
 NSString *quote = @"I used to love correcting people’s grammar until\
@@ -157,7 +139,7 @@ Outputs:
 
 ## Image Attachments
 
-BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain or text:
+BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain:
 
 ```objc
 BONChain *chain = BONChain.new;
@@ -187,6 +169,10 @@ Outputs:
 ## Special Characters
 
 You can easily access those hard-to-find special characters using the `BONSpecial` class. These include the No-Break Space, En and Em Spaces, various kinds of dashes, and more. If it’s hard to see in your source code or debug logs, it belongs in `BONSpecial`. If you want to add special characters to BonMot, add them to `BONSpecialGenerator.swift` (requires Xcode 7), run `swift BONSpecialGenerator.swift`, and submit a pull request! See `SpecialCharactersCell.m` in the sample project for some examples of how to use `BONSpecial`.
+
+## Querying Properties
+
+Every `BONChain` is backed by a `BONText` object, which you can access through `BONChain`’s `.text` property. Use a chain’s `BONText` if you need to extract properties. This can be useful, for example, when vending a `BONChain` from a view model.
 
 ## UIKit Utilities
 
