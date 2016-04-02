@@ -25,7 +25,7 @@
 {
     [super awakeFromNib];
 
-    NSArray *imageNames = @[
+    BONGeneric(NSArray, NSString *)*imageNames = @[
         @"barn",
         @"bee",
         @"bug",
@@ -38,7 +38,7 @@
     ];
 
     NSString *text = @"This string is separated by images and no-break spaces.";
-    NSArray *words = [text componentsSeparatedByString:@" "];
+    BONGeneric(NSArray, NSString *)*words = [text componentsSeparatedByString:@" "];
 
     NSAssert(imageNames.count == words.count, @"We must have the same number of words as images");
 
