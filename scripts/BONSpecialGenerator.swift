@@ -14,7 +14,11 @@ import AppKit
 let specialCharacters: [unichar] = [
     0x0009,
     0x000A,
+    0x000B,
+    0x000C,
+    0x000D,
     0x0020,
+    0x0085,
     0x00A0,
     0x2002,
     0x2003,
@@ -39,7 +43,11 @@ let specialCharacters: [unichar] = [
 let customMappings: [unichar: String] = [
     0x0009: "Tab",
     0x000A: "Line Feed",
+    0x000B: "Vertical Tab",
+    0x000C: "Form Feed",
+    0x000D: "Carriage Return",
     0x0020: "Space",
+    0x0085: "Next Line",
 ]
 
 // These characters can't be represented with universal character syntax (@"\uXXXX"),
@@ -48,7 +56,11 @@ let customMappings: [unichar: String] = [
 let charactersRequiringFormatStrings: Set<unichar> = [
     0x0009,
     0x000A,
+    0x000B,
+    0x000C,
+    0x000D,
     0x0020,
+    0x0085,
 ]
 
 // These special characters are to be excluded from the human readable string dictionary.

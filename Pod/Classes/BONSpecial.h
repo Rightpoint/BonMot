@@ -18,7 +18,11 @@ BON_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(unichar, BONCharacter) {
     BONCharacterTab = 0x0009,
     BONCharacterLineFeed = 0x000A,
+    BONCharacterVerticalTab = 0x000B,
+    BONCharacterFormFeed = 0x000C,
+    BONCharacterCarriageReturn = 0x000D,
     BONCharacterSpace = 0x0020,
+    BONCharacterNextLine = 0x0085,
     BONCharacterNoBreakSpace = 0x00A0,
     BONCharacterEnSpace = 0x2002,
     BONCharacterEmSpace = 0x2003,
@@ -41,7 +45,11 @@ typedef NS_ENUM(unichar, BONCharacter) {
 
 + (NSString *)tab;
 + (NSString *)lineFeed;
++ (NSString *)verticalTab;
++ (NSString *)formFeed;
++ (NSString *)carriageReturn;
 + (NSString *)space;
++ (NSString *)nextLine;
 + (NSString *)noBreakSpace;
 + (NSString *)enSpace;
 + (NSString *)emSpace;
