@@ -223,6 +223,9 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
     NSString *carriageReturnLineFeedControlString = @"foo{carriageReturn}{lineFeed}bar";
 
     BONAssertEquivalentStrings(carriageReturnLineFeedAttributedString, carriageReturnLineFeedControlString);
+
+    BONChain *escapedCharactersChain = BONChain.new.string(@"backslash-n\n\\n\r\\r");
+    BONAssertEquivalentStrings(escapedCharactersChain.attributedString, @"backslash-n{lineFeed}\\n{carriageReturn}\\r");
 }
 
 - (void)testEmptyString
