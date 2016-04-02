@@ -10,6 +10,8 @@
 
 @import BonMot;
 
+#import "BONChain_Private.h"
+
 @interface BONTextAlignmentTestCase : BONBaseTestCase
 
 @end
@@ -128,7 +130,7 @@
                           .image(robotImage)
                           .headIndent(1.23)
                           .indentSpacer(4.0);
-    [chain appendLink:chain.string(@"test")];
+    [chain appendChain:chain.string(@"test")];
 
     NSDictionary *testAttributes = chain.attributes;
     NSParagraphStyle *testParagraphStyle = testAttributes[NSParagraphStyleAttributeName];

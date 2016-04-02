@@ -58,24 +58,24 @@
 
     NSAssert(strings.count == chains.count, @"wrong count");
 
-    NSMutableArray *textsWithStrings = [NSMutableArray array];
+    BONGeneric(NSMutableArray, BONChain *)*chainsWithStrings = [NSMutableArray array];
 
     for (NSUInteger i = 0; i < strings.count; i++) {
         NSString *string = strings[i];
         BONChain *chain = chains[i];
         BONChain *newChain = chain.string(string);
-        [textsWithStrings addObject:newChain.text];
+        [chainsWithStrings addObject:newChain];
     }
 
-    NSAssert(textsWithStrings.count == strings.count, @"wrong count");
+    NSAssert(chainsWithStrings.count == strings.count, @"wrong count");
 
     UIImage *tennisRacketImage = [UIImage imageNamed:@"Tennis Racket"];
     UIImage *tinted = [tennisRacketImage bon_tintedImageWithColor:[self.class raizlabsRed]];
     BONChain *tennisRacket = BONChain.new.image(tinted).baselineOffset(-4.0);
 
-    [textsWithStrings addObject:tennisRacket.text];
+    [chainsWithStrings addObject:tennisRacket];
 
-    NSAttributedString *attributedString = [BONText joinTexts:textsWithStrings withSeparator:nil];
+    NSAttributedString *attributedString = [BONChain joinChains:chainsWithStrings withSeparator:nil];
     self.label.attributedText = attributedString;
 
     [self.label layoutIfNeeded];

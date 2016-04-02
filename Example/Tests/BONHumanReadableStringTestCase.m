@@ -93,7 +93,7 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
     BONChain *imageChain = BONChain.new.image(image);
     BONChain *textChain = BONChain.new.string(@"concatenate me!");
 
-    [imageChain appendLink:textChain];
+    [imageChain appendChain:textChain];
 
     BONAssertEquivalentStrings(imageChain.attributedString, @"{image36x36}concatenate me!");
 }
@@ -104,7 +104,7 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
     BONChain *imageChain = BONChain.new.image(image);
     BONChain *textChain = BONChain.new.string(@"concatenate me!");
 
-    [imageChain appendLink:textChain];
+    [imageChain appendChain:textChain];
 
     NSString *humanReadableString = [imageChain.attributedString bon_humanReadableStringIncludingImageSize:NO];
     XCTAssertEqualObjects(humanReadableString, @"{image}concatenate me!");
@@ -152,25 +152,25 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
 - (void)testSpecialCharacters
 {
     BONChain *chain = BONChain.new.string(@"This");
-    [chain appendLink:BONChain.new.string(@"string") separator:BONSpecial.tab];
-    [chain appendLink:BONChain.new.string(@"is") separator:BONSpecial.lineFeed];
-    [chain appendLink:BONChain.new.string(@"populated") separator:BONSpecial.space];
-    [chain appendLink:BONChain.new.string(@"by") separator:BONSpecial.noBreakSpace];
-    [chain appendLink:BONChain.new.string(@"BONSpecial") separator:BONSpecial.enSpace];
-    [chain appendLink:BONChain.new.string(@"characters") separator:BONSpecial.figureSpace];
-    [chain appendLink:BONChain.new.string(@"that") separator:BONSpecial.thinSpace];
-    [chain appendLink:BONChain.new.string(@"will") separator:BONSpecial.hairSpace];
-    [chain appendLink:BONChain.new.string(@"be") separator:BONSpecial.zeroWidthSpace];
-    [chain appendLink:BONChain.new.string(@"replaced") separator:BONSpecial.nonBreakingHyphen];
-    [chain appendLink:BONChain.new.string(@"by") separator:BONSpecial.figureDash];
-    [chain appendLink:BONChain.new.string(@"simple") separator:BONSpecial.enDash];
-    [chain appendLink:BONChain.new.string(@"human") separator:BONSpecial.emDash];
-    [chain appendLink:BONChain.new.string(@"readable") separator:BONSpecial.horizontalEllipsis];
-    [chain appendLink:BONChain.new.string(@"versions") separator:BONSpecial.lineSeparator];
-    [chain appendLink:BONChain.new.string(@"of") separator:BONSpecial.paragraphSeparator];
-    [chain appendLink:BONChain.new.string(@"their") separator:BONSpecial.narrowNoBreakSpace];
-    [chain appendLink:BONChain.new.string(@"own") separator:BONSpecial.wordJoiner];
-    [chain appendLink:BONChain.new.string(@"name") separator:BONSpecial.minusSign];
+    [chain appendChain:BONChain.new.string(@"string") separator:BONSpecial.tab];
+    [chain appendChain:BONChain.new.string(@"is") separator:BONSpecial.lineFeed];
+    [chain appendChain:BONChain.new.string(@"populated") separator:BONSpecial.space];
+    [chain appendChain:BONChain.new.string(@"by") separator:BONSpecial.noBreakSpace];
+    [chain appendChain:BONChain.new.string(@"BONSpecial") separator:BONSpecial.enSpace];
+    [chain appendChain:BONChain.new.string(@"characters") separator:BONSpecial.figureSpace];
+    [chain appendChain:BONChain.new.string(@"that") separator:BONSpecial.thinSpace];
+    [chain appendChain:BONChain.new.string(@"will") separator:BONSpecial.hairSpace];
+    [chain appendChain:BONChain.new.string(@"be") separator:BONSpecial.zeroWidthSpace];
+    [chain appendChain:BONChain.new.string(@"replaced") separator:BONSpecial.nonBreakingHyphen];
+    [chain appendChain:BONChain.new.string(@"by") separator:BONSpecial.figureDash];
+    [chain appendChain:BONChain.new.string(@"simple") separator:BONSpecial.enDash];
+    [chain appendChain:BONChain.new.string(@"human") separator:BONSpecial.emDash];
+    [chain appendChain:BONChain.new.string(@"readable") separator:BONSpecial.horizontalEllipsis];
+    [chain appendChain:BONChain.new.string(@"versions") separator:BONSpecial.lineSeparator];
+    [chain appendChain:BONChain.new.string(@"of") separator:BONSpecial.paragraphSeparator];
+    [chain appendChain:BONChain.new.string(@"their") separator:BONSpecial.narrowNoBreakSpace];
+    [chain appendChain:BONChain.new.string(@"own") separator:BONSpecial.wordJoiner];
+    [chain appendChain:BONChain.new.string(@"name") separator:BONSpecial.minusSign];
 
     NSString *expectedHumanReadableString = @"This{tab}string{lineFeed}is populated{noBreakSpace}by{enSpace}BONSpecial{figureSpace}characters{thinSpace}that{hairSpace}will{zeroWidthSpace}be{nonBreakingHyphen}replaced{figureDash}by{enDash}simple{emDash}human{horizontalEllipsis}readable{lineSeparator}versions{paragraphSeparator}of{narrowNoBreakSpace}their{wordJoiner}own{minusSign}name";
     NSAttributedString *testAttributedStringProperty = chain.attributedString;
@@ -181,12 +181,12 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
 - (void)testAllTheCharactersInTheKitchenSink
 {
     BONChain *everything = BONChain.new;
-    [everything appendLink:BONChain.new.string(@"neon")];
-    [everything appendLink:BONChain.new.string(@"سلام")];
-    [everything appendLink:BONChain.new.string(@"🚲")];
-    [everything appendLink:BONChain.new.string(@"\U000A1338") separator:BONSpecial.figureDash];
-    [everything appendLink:BONChain.new.string(@"\u20AB")];
-    [everything appendLink:BONChain.new.string(@"\U000A1339")];
+    [everything appendChain:BONChain.new.string(@"neon")];
+    [everything appendChain:BONChain.new.string(@"سلام")];
+    [everything appendChain:BONChain.new.string(@"🚲")];
+    [everything appendChain:BONChain.new.string(@"\U000A1338") separator:BONSpecial.figureDash];
+    [everything appendChain:BONChain.new.string(@"\u20AB")];
+    [everything appendChain:BONChain.new.string(@"\U000A1339")];
 
     NSAttributedString *kitchenSinkAttributedString = everything.attributedString;
     BONAssertEquivalentStrings(kitchenSinkAttributedString, @"neonسلام🚲{figureDash}{unassignedUnicodeA1338}₫{unassignedUnicodeA1339}");
@@ -208,10 +208,10 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
 
     for (NSUInteger i = 0; i < lineBreakCharacters.count; i++) {
         NSString *character = lineBreakCharacters[i];
-        [lineBreaksChain appendLink:BONChain.new.string(character) separator:@(i).stringValue];
+        [lineBreaksChain appendChain:BONChain.new.string(character) separator:@(i).stringValue];
     }
 
-    [lineBreaksChain appendLink:BONChain.new.string(@(lineBreakCharacters.count).stringValue)];
+    [lineBreaksChain appendChain:BONChain.new.string(@(lineBreakCharacters.count).stringValue)];
 
     NSAttributedString *lineBreaksAttributedString = lineBreaksChain.attributedString;
     NSString *controlLineBreaksString = @"0{lineFeed}1{verticalTab}2{formFeed}3{carriageReturn}4{nextLine}5{lineSeparator}6{paragraphSeparator}7";
@@ -237,7 +237,7 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
 - (void)testObjectReplacementCharacterWithoutAnImage
 {
     BONChain *chain = BONChain.new.string(@"No image? ");
-    [chain appendLink:BONChain.new.string(@" No problem.") separator:BONSpecial.objectReplacementCharacter];
+    [chain appendChain:BONChain.new.string(@" No problem.") separator:BONSpecial.objectReplacementCharacter];
     BONAssertEquivalentStrings(chain.attributedString, @"No image? {objectReplacementCharacter} No problem.");
 }
 

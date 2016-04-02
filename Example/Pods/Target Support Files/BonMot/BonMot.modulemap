@@ -4,5 +4,6 @@ framework module BonMot {
   export *
   module * { export * }
 
-  private header "BONText_Private.h"
+  private header "BONChain_Private.h"
+  private header "BONText.h"
 }

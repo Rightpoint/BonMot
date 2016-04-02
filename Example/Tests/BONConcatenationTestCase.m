@@ -1,5 +1,5 @@
 //
-//  BONTextableTestCase.m
+//  BONConcatenationTestCase.m
 //  BonMot
 //
 //  Created by Zev Eisenberg on 10/9/15.
@@ -10,16 +10,16 @@
 
 @import BonMot;
 
-@interface BONTextableTestCase : BONBaseTestCase
+@interface BONConcatenationTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONTextableTestCase
+@implementation BONConcatenationTestCase
 
 - (void)testConcatenation
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
-    [chain appendLink:BONChain.new.string(@"world!")];
+    [chain appendChain:BONChain.new.string(@"world!")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -39,7 +39,7 @@
 - (void)testConcatenationWithSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello");
-    [chain appendLink:BONChain.new.string(@"world!") separator:@", "];
+    [chain appendChain:BONChain.new.string(@"world!") separator:@", "];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -59,7 +59,7 @@
 - (void)testConcatenationWithNilSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
-    [chain appendLink:BONChain.new.string(@"world!") separator:nil];
+    [chain appendChain:BONChain.new.string(@"world!") separator:nil];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -79,7 +79,7 @@
 - (void)testConcatenationWithEmptySeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
-    [chain appendLink:BONChain.new.string(@"world!") separator:@""];
+    [chain appendChain:BONChain.new.string(@"world!") separator:@""];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -99,7 +99,7 @@
 - (void)testConcatenationWithDifferentAttributes
 {
     BONChain *chain = BONChain.new.string(@"Hello").textColor([UIColor redColor]);
-    [chain appendLink:BONChain.new.string(@"world!").textColor([UIColor blueColor]) separator:@", "];
+    [chain appendChain:BONChain.new.string(@"world!").textColor([UIColor blueColor]) separator:@", "];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -125,8 +125,8 @@
 - (void)testMultipleConcatenations
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
-    [chain appendLink:BONChain.new.string(@"world!")];
-    [chain appendLink:BONChain.new.string(@"It really is a lovely day today.") separator:@" "];
+    [chain appendChain:BONChain.new.string(@"world!")];
+    [chain appendChain:BONChain.new.string(@"It really is a lovely day today.") separator:@" "];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -160,7 +160,7 @@
     NSAttributedString *textString = textChain.attributedString;
     XCTAssertEqualObjects(textString.string, @"concatenate me!");
 
-    [imageChain appendLink:textChain separator:BONSpecial.noBreakSpace];
+    [imageChain appendChain:textChain separator:BONSpecial.noBreakSpace];
 
     NSAttributedString *testString = imageChain.attributedString;
 

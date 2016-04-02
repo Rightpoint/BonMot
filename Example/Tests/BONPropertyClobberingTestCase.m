@@ -9,6 +9,7 @@
 #import "BONBaseTestCase.h"
 
 @import BonMot;
+#import "BONChain_Private.h"
 
 @interface BONPropertyClobberingTestCase : BONBaseTestCase
 

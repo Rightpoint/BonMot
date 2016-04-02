@@ -21,7 +21,7 @@
 		730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */; };
 		CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */; };
 		CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */; };
-		CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */; };
+		CD6DEFE31BF6ADF900676E2D /* BONConcatenationTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONConcatenationTestCase.m */; };
 		CD6DEFE51BF6ADF900676E2D /* BONChainEmptyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD81BF6ADF900676E2D /* BONChainEmptyTestCase.m */; };
 		CD6DEFE71BF6ADF900676E2D /* BONDebugStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */; };
 		CD6DEFE91BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */; };
@@ -104,7 +104,7 @@
 		CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONFigureTestCase.m; sourceTree = "<group>"; };
 		CD6DEFD51BF6ADF900676E2D /* BONBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BONBaseTestCase.h; sourceTree = "<group>"; };
 		CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
-		CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTextableTestCase.m; sourceTree = "<group>"; };
+		CD6DEFD71BF6ADF900676E2D /* BONConcatenationTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONConcatenationTestCase.m; sourceTree = "<group>"; };
 		CD6DEFD81BF6ADF900676E2D /* BONChainEmptyTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONChainEmptyTestCase.m; sourceTree = "<group>"; };
 		CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDebugStringTestCase.m; sourceTree = "<group>"; };
 		CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONDictionaryEqualityTestCase.m; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 			children = (
 				CD6DEFD51BF6ADF900676E2D /* BONBaseTestCase.h */,
 				CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */,
-				CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */,
+				CD6DEFD71BF6ADF900676E2D /* BONConcatenationTestCase.m */,
 				CD6DEFD81BF6ADF900676E2D /* BONChainEmptyTestCase.m */,
 				CD6DEFD91BF6ADF900676E2D /* BONDebugStringTestCase.m */,
 				CD6DEFDA1BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m */,
@@ -632,7 +632,7 @@
 				CD6DEFED1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m in Sources */,
 				CD6DEFF11BF6ADF900676E2D /* BONTextAlignmentTestCase.m in Sources */,
 				CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */,
-				CD6DEFE31BF6ADF900676E2D /* BONTextableTestCase.m in Sources */,
+				CD6DEFE31BF6ADF900676E2D /* BONConcatenationTestCase.m in Sources */,
 				CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */,
 				CD6DEFF31BF6ADF900676E2D /* BONTrackingTestCase.m in Sources */,
 				CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */,

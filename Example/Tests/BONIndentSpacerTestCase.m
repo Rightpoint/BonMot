@@ -23,7 +23,7 @@
     BONChain *baseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0);
     BONChain *imageChain = baseTextChain.image(image).indentSpacer(4.0).baselineOffset(-6.0);
 
-    [imageChain appendLink:baseTextChain.string(quote)];
+    [imageChain appendChain:baseTextChain.string(quote)];
 
     NSAttributedString *attributedString = imageChain.attributedString;
 
@@ -36,7 +36,7 @@
     NSString *secondQuote = @"You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.";
     BONChain *baseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Regular", 18.0);
     BONChain *secondChain = baseTextChain.string(@"🍑 →").indentSpacer(4.0).textColor([UIColor orangeColor]);
-    [secondChain appendLink:baseTextChain.string(secondQuote).textColor([UIColor darkGrayColor])];
+    [secondChain appendChain:baseTextChain.string(secondQuote).textColor([UIColor darkGrayColor])];
 
     NSAttributedString *attributedString = secondChain.attributedString;
 
@@ -50,9 +50,9 @@
     UIImage *image = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     BONChain *firstBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Medium", 18.0);
     BONChain *imageChain = firstBaseTextChain.copy;
-    [imageChain appendLink:firstBaseTextChain.image(image).indentSpacer(4.0).baselineOffset(-6.0)];
-    [imageChain appendLink:firstBaseTextChain.string(string1)];
-    [imageChain appendLink:firstBaseTextChain.string(string2)];
+    [imageChain appendChain:firstBaseTextChain.image(image).indentSpacer(4.0).baselineOffset(-6.0)];
+    [imageChain appendChain:firstBaseTextChain.string(string1)];
+    [imageChain appendChain:firstBaseTextChain.string(string2)];
 
     NSAttributedString *attributedString = imageChain.attributedString;
 
@@ -66,7 +66,7 @@
     XCTAssertNoThrow(testChain = BONChain.new.string(@"hello ").font([UIFont systemFontOfSize:12.0]).indentSpacer(10.0));
     XCTAssertNotNil(testChain);
 
-    [testChain appendLink:BONChain.new.string(@"world").font([UIFont boldSystemFontOfSize:12.0])];
+    [testChain appendChain:BONChain.new.string(@"world").font([UIFont boldSystemFontOfSize:12.0])];
 
     XCTAssertEqualObjects(testChain.attributedString.string, @"hello \tworld");
 
@@ -96,7 +96,7 @@
     XCTAssertNoThrow(testChain = BONChain.new.string(@"hello ").font([UIFont systemFontOfSize:12.0]).indentSpacer(0.0));
     XCTAssertNotNil(testChain);
 
-    [testChain appendLink:BONChain.new.string(@"world").font([UIFont boldSystemFontOfSize:12.0])];
+    [testChain appendChain:BONChain.new.string(@"world").font([UIFont boldSystemFontOfSize:12.0])];
 
     XCTAssertEqualObjects(testChain.attributedString.string, @"hello \tworld");
 

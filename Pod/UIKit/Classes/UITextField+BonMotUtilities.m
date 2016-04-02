@@ -7,33 +7,35 @@
 //
 
 #import "BonMot.h"
+#import "BONChain_Private.h"
+
 @import ObjectiveC.runtime;
 
 @implementation UITextField (BonMotUtilities)
 
-- (void)setBonTextable:(id<BONTextable>)textable
+- (void)setBonChain:(BONChain *)chain
 {
-    objc_setAssociatedObject(self, @selector(bonTextable), textable, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(bonChain), chain, OBJC_ASSOCIATION_COPY_NONATOMIC);
 
-    // If the textable is empty, use the text field’s existing text
-    if (textable.text.generatesEmptyString) {
+    // If the chain is empty, use the text field’s existing text
+    if (chain.generatesEmptyString) {
         self.bonString = self.text;
     }
     else {
-        self.attributedText = self.bonTextable.text.attributedString;
+        self.attributedText = self.bonChain.attributedString;
     }
 }
 
-- (BONChain *)bonTextable
+- (BONChain *)bonChain
 {
-    return objc_getAssociatedObject(self, @selector(bonTextable));
+    return objc_getAssociatedObject(self, @selector(bonChain));
 }
 
 - (void)setBonString:(NSString *)string
 {
-    if (self.bonTextable) {
-        self.bonTextable.text.string = string;
-        self.attributedText = self.bonTextable.text.attributedString;
+    if (self.bonChain) {
+        self.bonChain.text.string = string;
+        self.attributedText = self.bonChain.attributedString;
     }
     else {
         self.text = string;

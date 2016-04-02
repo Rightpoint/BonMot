@@ -8,24 +8,12 @@
 
 @import UIKit;
 
-#import "BONTextable.h"
 #import "BONCompatibility.h"
-
-typedef NS_ENUM(NSUInteger, BONFigureCase) {
-    BONFigureCaseDefault = 0,
-    BONFigureCaseLining,
-    BONFigureCaseOldstyle,
-};
-
-typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
-    BONFigureSpacingDefault = 0,
-    BONFigureSpacingTabular,
-    BONFigureSpacingProportional,
-};
+#import "BONTypes.h"
 
 @class BONText;
 
-@interface BONText : NSObject <BONTextable>
+@interface BONText : NSObject
 
 // Appending
 
@@ -95,16 +83,6 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic, readonly) BOOL generatesEmptyString;
 
 // Utilities
-
-/**
- *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
- *
- *  @param texts     An array of @c BONText objects to join.
- *  @param separator The @c BONText to interpose between the elements of the array. May be @c nil.
- *
- *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
- */
-+ (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator;
 
 /**
  *  Calls [self debugStringIncludeImageAddresses:YES]

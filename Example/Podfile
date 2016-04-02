@@ -1,12 +1,13 @@
-source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
 use_frameworks!
 
 target 'BonMot_Example', :exclusive => true do
-  pod "BonMot", :path => "../"
-  pod "BonMot/UIKit", :path => "../"
+  pod 'BonMot', :path => '../'
+  pod 'BonMot/UIKit', :path => '../'
 end
 
 target 'BonMot_Tests', :exclusive => true do
-  pod "BonMot", :path => "../"
-  pod "BonMot/UIKit", :path => "../"
+  pod 'BonMot', :path => '../'
+  pod 'BonMot/UIKit', :path => '../'
+  pod 'BonMot_Testing', :path => '../Pod/Classes/Private/'
 end

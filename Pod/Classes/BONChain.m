@@ -8,13 +8,11 @@
 
 #import "BONChain.h"
 
-#import "BONText.h"
-#import "BONText_Private.h"
+#import "BONChain_Private.h"
 
 @interface BONChain ()
 
-@property (strong, nonatomic, readwrite) BONText *text;
-@property (strong, nonatomic, readonly) BONChain *copyWithoutNextText;
+@property (BONNonnull, strong, nonatomic, readonly) BONChain *copyWithoutNextText;
 
 @end
 
@@ -44,12 +42,17 @@
     return copy;
 }
 
+- (BOOL)generatesEmptyString
+{
+    return self.text.generatesEmptyString;
+}
+
 - (NSAttributedString *)attributedString
 {
     return self.text.attributedString;
 }
 
-- (NSDictionary *)attributes
+- (BONStringDict *)attributes
 {
     return self.text.attributes;
 }
@@ -206,7 +209,7 @@
         newChain.text.lineBreakMode = lineBreakMode;
         return newChain;
     };
-    
+
     return [lineBreakModeBlock copy];
 }
 
@@ -353,19 +356,56 @@
     return [strikethroughColorBlock copy];
 }
 
-- (void)appendLink:(id<BONTextable>)link
+- (void)appendChain:(BONChain *)chain
 {
-    [self appendLink:link separator:nil];
+    [self appendChain:chain separator:nil];
 }
 
-- (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
+- (void)appendChain:(BONChain *)chain separator:(NSString *)separator
 {
     if (separator.length > 0) {
         // Recursion!
-        [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
+        [self appendChain:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
     }
 
-    [self.class appendText:link.text toEndOfText:self.text];
+    [self.class appendText:chain.text toEndOfText:self.text];
+}
+
++ (NSAttributedString *)joinChains:(BONGeneric(NSArray, BONChain *) *)chains withSeparator:(BONChain *)separator
+{
+    NSParameterAssert(!separator || [separator isKindOfClass:[BONChain class]]);
+    NSParameterAssert(!chains || [chains isKindOfClass:[NSArray class]]);
+
+    NSAttributedString *resultString;
+
+    if (chains.count == 0) {
+        resultString = [[NSAttributedString alloc] init];
+    }
+    else if (chains.count == 1) {
+        NSAssert([chains.firstObject isKindOfClass:[BONChain class]], @"The only item in the chains array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONChain class]), [chains.firstObject class], chains.firstObject);
+
+        resultString = [chains.firstObject attributedString];
+    }
+    else {
+        NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
+        NSAttributedString *separatorAttributedString = separator.attributedString;
+        // For each iteration, append the string and then the separator
+        for (NSUInteger textIndex = 0; textIndex < chains.count; textIndex++) {
+            BONChain *chain = chains[textIndex];
+            NSAssert([chain isKindOfClass:[BONChain class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textIndex), NSStringFromClass([BONChain class]), [chain class], chain);
+
+            [mutableResult appendAttributedString:chain.attributedString];
+
+            // If the separator is not the empty string, append it,
+            // unless this is the last component
+            if (separatorAttributedString.length > 0 && (textIndex != chains.count - 1)) {
+                [mutableResult appendAttributedString:separatorAttributedString];
+            }
+        }
+        resultString = mutableResult;
+    }
+
+    return resultString;
 }
 
 - (NSString *)description
@@ -381,7 +421,7 @@
                                 }];
 
     NSString *characterSuffix = (composedCharacterCount == 1) ? @"" : @"s"; // pluralization
-    NSString *description = [NSString stringWithFormat:@"<%@: %p with %@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), self, NSStringFromClass([BONText class]), self.text, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), self];
+    NSString *description = [NSString stringWithFormat:@"<%@: %p with %@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), self, NSStringFromClass([BONChain class]), self.text, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), self];
     return description;
 }
 

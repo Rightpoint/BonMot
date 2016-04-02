@@ -26,7 +26,8 @@
         "Pod",
         "Pod/Classes/**/*"
       ],
-      "private_header_files": "Pod/Classes/*_Private.h"
+      "private_header_files": "Pod/Classes/Private/*.h",
+      "exclude_files": "Pod/Classes/Private/BonMot_Testing.podspec"
     },
     {
       "name": "UIKit",
