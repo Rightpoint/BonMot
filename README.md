@@ -163,7 +163,7 @@ BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.imag
 ```objc
 BONChain *chain = BONChain.new;
 [chain appendLink:BONChain.new.image(someUIImage).baselineOffset(-4.0)];
-[chain appendLink:BONChain.new.text(@"label with icon") separator: @" "];
+[chain appendLink:BONChain.new.string(@"label with icon") separator: @" "];
 NSAttributedString *string = chain.attributedString;
 ```
 
