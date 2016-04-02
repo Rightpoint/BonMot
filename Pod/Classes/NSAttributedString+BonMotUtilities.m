@@ -67,10 +67,6 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         if (!s_newLineCharacterSet) {
             s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
         }
-        NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
-        if (!s_whiteSpaceAndNewLinesSet) {
-            s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-        }
 
         unichar character = [substring characterAtIndex:0];
         NSString *specialCharacterSubstitutionString = [BONSpecial humanReadableStringDictionary][@(character)];
