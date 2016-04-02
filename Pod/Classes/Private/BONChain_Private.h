@@ -12,6 +12,9 @@
 
 @interface BONChain ()
 
+/**
+ *  The @c BONText that backs @c BONChain.
+ */
 @property (BONNonnull, strong, nonatomic, readwrite) BONText *text;
 
 @end
