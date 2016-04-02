@@ -192,6 +192,42 @@ OBJC_EXTERN NSString *BONPrettyStringFromCGSize(CGSize size);
     BONAssertEquivalentStrings(kitchenSinkAttributedString, @"neonسلام🚲{figureDash}{unassignedUnicodeA1338}₫{unassignedUnicodeA1339}");
 }
 
+- (void)testNewLines
+{
+    BONGeneric(NSArray, NSString *)*lineBreakCharacters = @[
+        BONSpecial.lineFeed,
+        BONSpecial.verticalTab,
+        BONSpecial.formFeed,
+        BONSpecial.carriageReturn,
+        BONSpecial.nextLine,
+        BONSpecial.lineSeparator,
+        BONSpecial.paragraphSeparator,
+    ];
+
+    BONChain *lineBreaksChain = BONChain.new;
+
+    for (NSUInteger i = 0; i < lineBreakCharacters.count; i++) {
+        NSString *character = lineBreakCharacters[i];
+        [lineBreaksChain appendLink:BONChain.new.string(character) separator:@(i).stringValue];
+    }
+
+    [lineBreaksChain appendLink:BONChain.new.string(@(lineBreakCharacters.count).stringValue)];
+
+    NSAttributedString *lineBreaksAttributedString = lineBreaksChain.attributedString;
+    NSString *controlLineBreaksString = @"0{lineFeed}1{verticalTab}2{formFeed}3{carriageReturn}4{nextLine}5{lineSeparator}6{paragraphSeparator}7";
+
+    BONAssertEquivalentStrings(lineBreaksAttributedString, controlLineBreaksString);
+
+    BONChain *carriageReturnLineFeedChain = BONChain.new.string(@"foo\r\nbar");
+    NSAttributedString *carriageReturnLineFeedAttributedString = carriageReturnLineFeedChain.attributedString;
+    NSString *carriageReturnLineFeedControlString = @"foo{carriageReturn}{lineFeed}bar";
+
+    BONAssertEquivalentStrings(carriageReturnLineFeedAttributedString, carriageReturnLineFeedControlString);
+
+    BONChain *escapedCharactersChain = BONChain.new.string(@"backslash-n\n\\n\r\\r");
+    BONAssertEquivalentStrings(escapedCharactersChain.attributedString, @"backslash-n{lineFeed}\\n{carriageReturn}\\r");
+}
+
 - (void)testEmptyString
 {
     BONChain *emptyChain = BONChain.new.string(@"");

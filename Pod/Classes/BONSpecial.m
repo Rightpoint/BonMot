@@ -13,7 +13,11 @@
 
 + (NSString *)tab { return [NSString stringWithFormat:@"%C", BONCharacterTab]; }
 + (NSString *)lineFeed { return [NSString stringWithFormat:@"%C", BONCharacterLineFeed]; }
++ (NSString *)verticalTab { return [NSString stringWithFormat:@"%C", BONCharacterVerticalTab]; }
++ (NSString *)formFeed { return [NSString stringWithFormat:@"%C", BONCharacterFormFeed]; }
++ (NSString *)carriageReturn { return [NSString stringWithFormat:@"%C", BONCharacterCarriageReturn]; }
 + (NSString *)space { return [NSString stringWithFormat:@"%C", BONCharacterSpace]; }
++ (NSString *)nextLine { return [NSString stringWithFormat:@"%C", BONCharacterNextLine]; }
 + (NSString *)noBreakSpace { return @"\u00A0"; }
 + (NSString *)enSpace { return @"\u2002"; }
 + (NSString *)emSpace { return @"\u2003"; }
@@ -38,6 +42,10 @@
     return @{
         @(BONCharacterTab) : @"{tab}", 
         @(BONCharacterLineFeed) : @"{lineFeed}", 
+        @(BONCharacterVerticalTab) : @"{verticalTab}", 
+        @(BONCharacterFormFeed) : @"{formFeed}", 
+        @(BONCharacterCarriageReturn) : @"{carriageReturn}", 
+        @(BONCharacterNextLine) : @"{nextLine}", 
         @(BONCharacterNoBreakSpace) : @"{noBreakSpace}", 
         @(BONCharacterEnSpace) : @"{enSpace}", 
         @(BONCharacterEmSpace) : @"{emSpace}", 

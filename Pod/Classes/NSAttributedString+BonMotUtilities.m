@@ -63,15 +63,6 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
 
     [originalString enumerateSubstringsInRange:NSMakeRange(0, originalString.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *BONCNullable substring, NSRange substringRange, NSRange enclosingRange, BOOL *BONCNonnull stop) {
 
-        static NSCharacterSet *s_newLineCharacterSet = nil;
-        if (!s_newLineCharacterSet) {
-            s_newLineCharacterSet = [NSCharacterSet newlineCharacterSet];
-        }
-        NSCharacterSet *s_whiteSpaceAndNewLinesSet = nil;
-        if (!s_whiteSpaceAndNewLinesSet) {
-            s_whiteSpaceAndNewLinesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-        }
-
         unichar character = [substring characterAtIndex:0];
         NSString *specialCharacterSubstitutionString = [BONSpecial humanReadableStringDictionary][@(character)];
 
@@ -91,10 +82,6 @@ NSString *BONPrettyStringFromCGSize(CGSize size)
         // Swap applicable BONSpecial characters with @"{<camelCaseName>}"
         else if (specialCharacterSubstitutionString) {
             [composedHumanReadableString appendString:specialCharacterSubstitutionString];
-        }
-        // Substitute Newline character with @"{newline}"
-        else if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location != NSNotFound) {
-            [composedHumanReadableString appendString:@"{newline}"];
         }
         // Substitute 򡌸 or similar with {unassignedUnicode<unicodeNumber>}
         else if ([mutableUnicodeName hasPrefix:kUnassignedCharacterNamePrefix] && [mutableUnicodeName hasSuffix:kUnassignedCharacterNameSuffix]) {
