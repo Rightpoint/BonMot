@@ -8,24 +8,12 @@
 
 @import UIKit;
 
-#import "BONTextable.h"
 #import "BONCompatibility.h"
-
-typedef NS_ENUM(NSUInteger, BONFigureCase) {
-    BONFigureCaseDefault = 0,
-    BONFigureCaseLining,
-    BONFigureCaseOldstyle,
-};
-
-typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
-    BONFigureSpacingDefault = 0,
-    BONFigureSpacingTabular,
-    BONFigureSpacingProportional,
-};
+#import "BONTypes.h"
 
 @class BONText;
 
-@interface BONText : NSObject <BONTextable>
+@interface BONText : NSObject
 
 // Appending
 
@@ -97,16 +85,6 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 // Utilities
 
 /**
- *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
- *
- *  @param texts     An array of @c BONText objects to join.
- *  @param separator The @c BONText to interpose between the elements of the array. May be @c nil.
- *
- *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
- */
-+ (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator;
-
-/**
  *  Calls [self debugStringIncludeImageAddresses:YES]
  *
  *  @return The debug string, including pointer addresses of attached images.
@@ -119,18 +97,5 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  *  @return The debug string.
  */
 - (BONNonnull NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
-
-@end
-
-@interface BONText (BONDeprecated)
-
-/**
- *  Formerly used by -debugDescription to print the attributed string, one character at a time, with special characters and image attachments described.
- *
- *  @param includeImageAddresses Whether to print the pointer addresses of attached images in the description. Pass @c NO if you are using this method to write unit tests or other cases where the string value must be deterministic.
- *
- *  @return The debug string, using the specified option for including image addresses.
- */
-- (BONNonnull NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
 
 @end

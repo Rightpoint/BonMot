@@ -10,6 +10,8 @@
 
 @import BonMot;
 
+#import "BONChain_Private.h"
+
 @interface BONDebugStringTestCase : BONBaseTestCase
 
 @end
@@ -59,10 +61,10 @@
 - (void)testImage
 {
     UIImage *image = [UIImage imageNamed:@"circuit" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
-    BONText *singleImage = BONChain.new.image(image).text;
-    XCTAssertEqualObjects([singleImage debugStringIncludeImageAddresses:NO], @"(attached image of size: {36, 36})");
+    BONChain *singleImage = BONChain.new.image(image);
+    XCTAssertEqualObjects([singleImage.text debugStringIncludeImageAddresses:NO], @"(attached image of size: {36, 36})");
 
-    NSString *debugStringWithAddresses = [singleImage debugString];
+    NSString *debugStringWithAddresses = [singleImage.text debugString];
     NSString *imagePattern = @"\\(<UIImage: 0x[0-9a-f]{6,12}>, \\{36, 36\\}\\)";
 
     NSError *expressionError;
@@ -78,8 +80,8 @@
     XCTAssertEqual(singleMatches, 1);
 
     BONChain *longer = BONChain.new.string(@"pre");
-    [longer appendLink:singleImage];
-    [longer appendLink:BONChain.new.string(@"post")];
+    [longer appendChain:singleImage];
+    [longer appendChain:BONChain.new.string(@"post")];
 
     XCTAssertEqualObjects([longer.text debugStringIncludeImageAddresses:NO], @"p\nr\ne\n(attached image of size: {36, 36})\np\no\ns\nt");
 
@@ -98,11 +100,11 @@
     UIImage *image = [UIImage imageNamed:@"robot" inBundle:[NSBundle bundleForClass:[DummyAssetClass class]] compatibleWithTraitCollection:nil];
 
     BONChain *everything = BONChain.new;
-    [everything appendLink:BONChain.new.string(@"aluminium")];
-    [everything appendLink:BONChain.new.string(@"זְאֵב")];
-    [everything appendLink:BONChain.new.string(@"🐺")];
-    [everything appendLink:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
-    [everything appendLink:BONChain.new.image(image)];
+    [everything appendChain:BONChain.new.string(@"aluminium")];
+    [everything appendChain:BONChain.new.string(@"זְאֵב")];
+    [everything appendChain:BONChain.new.string(@"🐺")];
+    [everything appendChain:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
+    [everything appendChain:BONChain.new.image(image)];
 
     NSString *controlString = [NSString stringWithFormat:@"a\nl\nu\nm\ni\nn\ni\nu\nm\nזְ(\\N{HEBREW LETTER ZAYIN}\\N{HEBREW POINT SHEVA})\nאֵ(\\N{HEBREW LETTER ALEF}\\N{HEBREW POINT TSERE})\nב(\\N{HEBREW LETTER BET})\n🐺(\\N{WOLF FACE})\n%@(\\N{FIGURE DASH})\n\U000A1337(\\N{<unassigned-A1337>})\n(attached image of size: {36, 36})", BONSpecial.figureDash];
     XCTAssertEqualObjects([everything.text debugStringIncludeImageAddresses:NO], controlString);

@@ -8,8 +8,8 @@
 
 @import Foundation;
 
-#import "BONText.h"
 #import "BONCompatibility.h"
+#import "BONTypes.h"
 
 BON_ASSUME_NONNULL_BEGIN
 
@@ -44,7 +44,12 @@ typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable co
 typedef BONChain *BONCNonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
 typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullable color);
 
-@interface BONChain : NSObject <BONTextable>
+@interface BONChain : NSObject
+
+/**
+ *  @c YES if and only if the resulting @c attributedString will be the empty attributed string.
+ */
+@property (nonatomic, readonly) BOOL generatesEmptyString;
 
 @property (copy, nonatomic, readonly) NSAttributedString *attributedString;
 @property (copy, nonatomic, readonly) BONStringDict *attributes;
@@ -95,8 +100,18 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 @property (copy, nonatomic, readonly) BONChainStrikethroughColor strikethroughColor;
 
 // concatenation
-- (void)appendLink:(id<BONTextable>)link;
-- (void)appendLink:(id<BONTextable>)link separator:(BONNullable NSString *)separator;
+- (void)appendChain:(BONChain *)chain;
+- (void)appendChain:(BONChain *)chain separator:(BONNullable NSString *)separator;
+
+/**
+ *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
+ *
+ *  @param chains    An array of @c BONChain objects to join.
+ *  @param separator The @c BONChain to interpose between the elements of the array. May be @c nil.
+ *
+ *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
+ */
++ (BONNonnull NSAttributedString *)joinChains:(BONNullable BONGeneric(NSArray, BONChain *) *)chains withSeparator:(BONNullable BONChain *)separator;
 
 @end
 

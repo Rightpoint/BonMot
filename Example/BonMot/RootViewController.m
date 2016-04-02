@@ -23,7 +23,7 @@
 
 @interface RootViewController ()
 
-@property (copy, nonatomic) NSArray *cellClasses;
+@property (copy, nonatomic) BONGeneric(NSArray, Class) * cellClasses;
 
 @end
 

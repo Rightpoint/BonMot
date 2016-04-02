@@ -20,7 +20,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |sp|
     sp.source_files = 'Pod', 'Pod/Classes/**/*'
-    sp.private_header_files = "Pod/Classes/*_Private.h"
+    sp.private_header_files = "Pod/Classes/Private/*.h"
+    sp.exclude_files = 'Pod/Classes/Private/BonMot_Testing.podspec'
   end
 
   s.subspec 'UIKit' do |sp|

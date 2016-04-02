@@ -4,16 +4,21 @@ PODS:
   - BonMot/Core (2.4.1)
   - BonMot/UIKit (2.4.1):
     - BonMot/Core
+  - BonMot_Testing (2.4.1)
 
 DEPENDENCIES:
   - BonMot (from `../`)
   - BonMot/UIKit (from `../`)
+  - BonMot_Testing (from `../Pod/Classes/Private/`)
 
 EXTERNAL SOURCES:
   BonMot:
     :path: "../"
+  BonMot_Testing:
+    :path: "../Pod/Classes/Private/"
 
 SPEC CHECKSUMS:
-  BonMot: c70e265f83a0d19dc9afb7fc4ec17ccf059e0cb6
+  BonMot: cabe94caddbd1c0db6274ad45881d12223b60529
+  BonMot_Testing: fc9d99c15a6dcdd60a6e602c98b573a6775a787f
 
 COCOAPODS: 0.39.0

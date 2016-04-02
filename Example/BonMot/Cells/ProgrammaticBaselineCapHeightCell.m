@@ -12,7 +12,7 @@ static NSString *const kFontNameEBGaramond = @"EBGaramond12-Regular";
 
 @interface ProgrammaticBaselineCapHeightCell ()
 
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *capHeightNumberLabels;
+@property (strong, nonatomic) IBOutletCollection(UILabel) BONGeneric(NSArray, UILabel *) * capHeightNumberLabels;
 
 @property (weak, nonatomic) IBOutlet UILabel *numberCapHeightLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberXHeightLabel;

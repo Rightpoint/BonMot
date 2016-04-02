@@ -27,14 +27,14 @@
 
     BONChain *baseChain = BONChain.new.string(@"❤️");
 
-    NSMutableArray *wave = [NSMutableArray array];
+    BONGeneric(NSMutableArray, BONChain *)*wave = [NSMutableArray array];
 
     for (NSUInteger i = 0; i < 50; i++) {
         CGFloat offset = 15.0 * sin((i / 20.0) * 7.0 * M_PI);
-        [wave addObject:baseChain.baselineOffset(offset).text];
+        [wave addObject:baseChain.baselineOffset(offset)];
     };
 
-    self.label.attributedText = [BONText joinTexts:wave withSeparator:nil];
+    self.label.attributedText = [BONChain joinChains:wave withSeparator:nil];
 }
 
 @end

@@ -40,19 +40,19 @@
     BONChain *spaceChain = BONChain.new.string(@" ");
 
     BONChain *wholeString = BONChain.new;
-    [wholeString appendLink:twoChain];
-    [wholeString appendLink:beeChain separator:@" "];
-    [wholeString appendLink:oarChain separator:@" "];
-    [wholeString appendLink:knotChain separator:@" "];
+    [wholeString appendChain:twoChain];
+    [wholeString appendChain:beeChain separator:@" "];
+    [wholeString appendChain:oarChain separator:@" "];
+    [wholeString appendChain:knotChain separator:@" "];
 
     // you can also append the space and the chain separately if you prefer
-    [wholeString appendLink:spaceChain];
-    [wholeString appendLink:twoChain];
+    [wholeString appendChain:spaceChain];
+    [wholeString appendChain:twoChain];
 
-    [wholeString appendLink:beeChain separator:@" "];
+    [wholeString appendChain:beeChain separator:@" "];
 
-    // You can set the bonTextable directly on the label, instead of having to extract the attributed string
-    self.label.bonTextable = wholeString;
+    // You can set the bonChain directly on the label, instead of having to extract the attributed string
+    self.label.bonChain = wholeString;
 
     NSLog(@"Look at the bottom of %@ to see the code that led to this being printed:", @(__FILE__).lastPathComponent);
     NSLog(@"%@", wholeString);

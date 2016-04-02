@@ -7,7 +7,6 @@
 //
 
 #import "BONText.h"
-#import "BONText_Private.h"
 #import "BONSpecial.h"
 
 @import CoreText.SFNTLayoutTypes;
@@ -25,6 +24,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 @property (copy, nonatomic, readwrite) NSString *fontName;
 @property (nonatomic, readwrite) CGFloat fontSize;
+@property (strong, nonatomic) NSNumber *internalIndentSpacer;
 
 @end
 
@@ -90,7 +90,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         }
     }
     else if (self.string) {
-        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:self.string
+        NSString *nonNullSelfString = self.string;
+        mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:nonNullSelfString
                                                                          attributes:self.attributes];
         if (lastConcatenant && self.string.length > 0) {
             NSRange lastCharacterRange = NSMakeRange(self.string.length - 1, 1);
@@ -115,7 +116,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
             indentation += self.image.size.width;
         }
         else if (self.string) {
-            NSAttributedString *measurementString = [[NSAttributedString alloc] initWithString:self.string attributes:self.attributes];
+            NSString *nonNullSelfString = self.string;
+            NSAttributedString *measurementString = [[NSAttributedString alloc] initWithString:nonNullSelfString attributes:self.attributes];
             CGRect boundingRect = [measurementString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                                                   options:NSStringDrawingUsesLineFragmentOrigin
                                                                   context:nil];
@@ -312,9 +314,9 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineSpacing = self.lineSpacing;
     }
-    
+
     // Line Break Mode
-    
+
     if (self.lineBreakMode != NSLineBreakByWordWrapping) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineBreakMode = self.lineBreakMode;
@@ -477,13 +479,6 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return (self.string.length == 0 && (!self.nextText || self.nextText.generatesEmptyString));
 }
 
-#pragma mark - BONTextable
-
-- (BONText *)text
-{
-    return self;
-}
-
 #pragma mark - Utilities
 
 + (NSAttributedString *)joinAttributedStrings:(BONGeneric(NSArray, NSAttributedString *) *)attributedStrings withSeparator:(BONText *)separator
@@ -523,43 +518,6 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return resultsString;
 }
 
-+ (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
-{
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
-    NSParameterAssert(!texts || [texts isKindOfClass:[NSArray class]]);
-
-    NSAttributedString *resultString;
-
-    if (texts.count == 0) {
-        resultString = [[NSAttributedString alloc] init];
-    }
-    else if (texts.count == 1) {
-        NSAssert([texts.firstObject isKindOfClass:[BONText class]], @"The only item in the texts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONText class]), [texts.firstObject class], texts.firstObject);
-
-        resultString = [texts.firstObject attributedString];
-    }
-    else {
-        NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.attributedString;
-        // For each iteration, append the string and then the separator
-        for (NSUInteger textIndex = 0; textIndex < texts.count; textIndex++) {
-            BONText *text = texts[textIndex];
-            NSAssert([text isKindOfClass:[BONText class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textIndex), NSStringFromClass([BONText class]), [text class], text);
-
-            [mutableResult appendAttributedString:text.attributedString];
-
-            // If the separator is not the empty string, append it,
-            // unless this is the last component
-            if (separatorAttributedString.length > 0 && (textIndex != texts.count - 1)) {
-                [mutableResult appendAttributedString:separatorAttributedString];
-            }
-        }
-        resultString = mutableResult;
-    }
-
-    return resultString;
-}
-
 - (NSString *)debugString
 {
     return [self debugStringIncludeImageAddresses:YES];
@@ -597,7 +555,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
             // If it's not a newline character, append it. Otherwise, append a space.
             if ([substring rangeOfCharacterFromSet:s_newLineCharacterSet].location == NSNotFound) {
-                [debugString appendString:substring];
+                NSString *nonNullSubstring = substring;
+                [debugString appendString:nonNullSubstring];
             }
             else {
                 [debugString appendString:BONSpecial.space];
@@ -644,7 +603,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
                 }
                 else {
                     // Append name only if it is different from the string itself
-                    if (![mutableUnicodeName isEqualToString:substring]) {
+                    NSString *nonnNullSubstring = substring;
+                    if (![mutableUnicodeName isEqualToString:nonnNullSubstring]) {
                         [debugString appendFormat:@"(%@)", mutableUnicodeName];
                     }
                 }
@@ -672,7 +632,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
                                 }];
 
     NSString *characterSuffix = (composedCharacterCount == 1) ? @"" : @"s"; // pluralization
-    NSString *description = [NSString stringWithFormat:@"<%@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), self, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), self];
+    NSString *description = [NSString stringWithFormat:@"<%@: %p, %@ composed character%@:\n%@\n// end of %@: %p description>", NSStringFromClass(self.class), (void *)self, @(composedCharacterCount), characterSuffix, debugString, NSStringFromClass(self.class), (void *)self];
     return description;
 }
 
@@ -691,15 +651,6 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     CGFloat pointSizeToUse = font ? font.pointSize : kBONDefaultFontSize;
     CGFloat convertedTracking = pointSizeToUse * (adobeTrackingValue / kBONAdobeTrackingDivisor);
     return convertedTracking;
-}
-
-@end
-
-@implementation BONText (BONDeprecated)
-
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses
-{
-    return [self debugStringIncludeImageAddresses:includeImageAddresses];
 }
 
 @end

@@ -29,11 +29,11 @@ static const NSInteger kTracking = 200;
 {
     [super awakeFromNib];
 
-    BONText *centeredSmartTracking = BONChain.new.string(@"CENTERED WITH TRACKING").adobeTracking(kTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kColorAlpha]).text;
+    BONChain *centeredSmartTracking = BONChain.new.string(@"CENTERED WITH TRACKING").adobeTracking(kTracking).backgroundColor([[UIColor redColor] colorWithAlphaComponent:kColorAlpha]);
 
-    BONText *appended = BONChain.new.string(@"APPENDED").adobeTracking(kTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kColorAlpha]).text;
-    BONText *smartTracking = BONChain.new.string(@" SMART TRACKING").adobeTracking(kTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kColorAlpha]).text;
-    appended.nextText = smartTracking;
+    BONChain *appended = BONChain.new.string(@"APPENDED").adobeTracking(kTracking).backgroundColor([[UIColor greenColor] colorWithAlphaComponent:kColorAlpha]);
+    BONChain *smartTracking = BONChain.new.string(@" SMART TRACKING").adobeTracking(kTracking).backgroundColor([[UIColor blueColor] colorWithAlphaComponent:kColorAlpha]);
+    [appended appendChain:smartTracking];
 
     self.centeredSmartTrackingLabel.attributedText = centeredSmartTracking.attributedString;
     self.appendedSmartTrackingLabel.attributedText = appended.attributedString;

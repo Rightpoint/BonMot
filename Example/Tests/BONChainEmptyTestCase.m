@@ -9,6 +9,7 @@
 #import "BONBaseTestCase.h"
 
 @import BonMot;
+#import "BONChain_Private.h"
 
 @interface BONChainEmptyTestCase : BONBaseTestCase
 
@@ -46,6 +47,12 @@
     text1.nextText = nil;
     text1.string = @"b";
     XCTAssertFalse(text1.generatesEmptyString);
+}
+
+- (void)testEmptyChain
+{
+    BONChain *emptyChain = BONChain.new;
+    XCTAssertTrue(emptyChain.generatesEmptyString);
 }
 
 @end
