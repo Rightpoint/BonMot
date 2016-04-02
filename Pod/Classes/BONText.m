@@ -694,12 +694,3 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 }
 
 @end
-
-@implementation BONText (BONDeprecated)
-
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses
-{
-    return [self debugStringIncludeImageAddresses:includeImageAddresses];
-}
-
-@end
