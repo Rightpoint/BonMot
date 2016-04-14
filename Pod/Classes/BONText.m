@@ -164,8 +164,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
     // Color
 
-    if (self.textColor) {
-        attributes[NSForegroundColorAttributeName] = self.textColor;
+    if (self.color) {
+        attributes[NSForegroundColorAttributeName] = self.color;
     }
 
     if (self.backgroundColor) {
@@ -379,7 +379,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     __typeof(self) text = [[self.class alloc] init];
 
     text.font = self.font;
-    text.textColor = self.textColor;
+    text.color = self.color;
     text.backgroundColor = self.backgroundColor;
     text.adobeTracking = self.adobeTracking;
     text.pointTracking = self.pointTracking;
@@ -671,6 +671,16 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 @end
 
 @implementation BONText (Deprecated)
+
+- (UIColor *)textColor
+{
+    return self.color;
+}
+
+- (void)setTextColor:(UIColor *)textColor
+{
+    self.color = textColor;
+}
 
 + (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
 {

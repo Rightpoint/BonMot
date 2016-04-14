@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @property (strong, nonatomic, BONNullable) UIFont *font;
 
-@property (strong, nonatomic, BONNullable) UIColor *textColor;
+@property (strong, nonatomic, BONNullable) UIColor *color;
 @property (strong, nonatomic, BONNullable) UIColor *backgroundColor;
 
 // adobeTracking and pointTracking are two interpretations of the same unit. They cannot both be set - if one is set to any value, the other is set to 0.
@@ -123,6 +123,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @end
 
 @interface BONText (Deprecated)
+
+@property (strong, nonatomic, BONNullable) UIColor *textColor __attribute__((deprecated("use -color instead")));
 
 + (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator __attribute__((deprecated("use +joinTextables:withSeparator: instead")));
 
