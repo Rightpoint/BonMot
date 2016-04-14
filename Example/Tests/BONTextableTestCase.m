@@ -213,8 +213,8 @@
 
 - (void)testJoiningWithDifferentAttributes
 {
-    BONChain *chain1 = BONChain.new.string(@"Hello").textColor([UIColor redColor]);
-    BONChain *chain2 = BONChain.new.string(@"world!").textColor([UIColor blueColor]);
+    BONChain *chain1 = BONChain.new.string(@"Hello").color([UIColor redColor]);
+    BONChain *chain2 = BONChain.new.string(@"world!").color([UIColor blueColor]);
 
     NSAttributedString *attributedString = [BONText joinTextables:@[ chain1, chain2 ] withSeparator:chain1.string(@", ")];
 
