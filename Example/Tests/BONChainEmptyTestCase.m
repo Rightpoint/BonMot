@@ -48,4 +48,10 @@
     XCTAssertFalse(text1.generatesEmptyString);
 }
 
+- (void)testImageCountsAsNotEmpty
+{
+    BONChain *chain = BONChain.new.image(UIImage.new);
+    XCTAssertFalse(chain.text.generatesEmptyString);
+}
+
 @end
