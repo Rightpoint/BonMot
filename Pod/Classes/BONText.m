@@ -250,7 +250,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     }
 
     // Tracking
-    NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
+    NSAssert(self.adobeTracking == 0 || BONDoublesCloseEnough(self.pointTracking, 0.0), @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0;
     if (self.adobeTracking != 0) {
