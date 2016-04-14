@@ -93,8 +93,8 @@ BONChain.new
 
 // Two chains with different colors
 // that inherit their parents’ properties
-BONChain *redBirds = birdChain.textColor([UIColor redColor]);
-BONChain *blueBirds = birdChain.textColor([UIColor blueColor]);
+BONChain *redBirds = birdChain.color([UIColor redColor]);
+BONChain *blueBirds = birdChain.color([UIColor blueColor]);
 
 // two different attributed strings with all attributes shared
 // except for text color
@@ -109,8 +109,8 @@ You can concatenate an array of `BONChain`s or `BONText`s:
 ```objc
 BONChain *oneFish = BONChain.new.string(@"one fish");
 BONChain *twoFish = BONChain.new.string(@"two fish");
-BONChain *redFish = BONChain.new.string(@"red fish").textColor([UIColor redColor]);
-BONChain *blueFish = BONChain.new.string(@"blue fish").textColor([UIColor blueColor]);
+BONChain *redFish = BONChain.new.string(@"red fish").color([UIColor redColor]);
+BONChain *blueFish = BONChain.new.string(@"blue fish").color([UIColor blueColor]);
 BONChain *separator = BONChain.new.string(@", ");
 
 NSAttributedString *string = [BONText joinTextables:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
@@ -127,8 +127,8 @@ NSString *commaSpace = @", ";
 BONChain *chain = BONChain.new;
 [chain appendLink:BONChain.new.string(@"one fish")];
 [chain appendLink:BONChain.new.string(@"two fish") separator:commaSpace];
-[chain appendLink:BONChain.new.string(@"red fish").textColor([UIColor redColor]) separator:commaSpace];
-[chain appendLink:BONChain.new.string(@"blue fish").textColor([UIColor blueColor]) separator:commaSpace];
+[chain appendLink:BONChain.new.string(@"red fish").color([UIColor redColor]) separator:commaSpace];
+[chain appendLink:BONChain.new.string(@"blue fish").color([UIColor blueColor]) separator:commaSpace];
 
 NSAttributedString *string = chain.attributedString;
 ```

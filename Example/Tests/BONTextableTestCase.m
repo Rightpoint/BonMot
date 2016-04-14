@@ -188,8 +188,8 @@
 
 - (void)testAppendingWithDifferentAttributes
 {
-    BONChain *chain = BONChain.new.string(@"Hello").textColor([UIColor redColor]);
-    [chain appendLink:BONChain.new.string(@"world!").textColor([UIColor blueColor]) separator:@", "];
+    BONChain *chain = BONChain.new.string(@"Hello").color([UIColor redColor]);
+    [chain appendLink:BONChain.new.string(@"world!").color([UIColor blueColor]) separator:@", "];
 
     NSAttributedString *attributedString = chain.attributedString;
 

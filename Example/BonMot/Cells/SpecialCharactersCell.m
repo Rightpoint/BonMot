@@ -42,7 +42,7 @@
 
     NSAssert(imageNames.count == words.count, @"We must have the same number of words as images");
 
-    BONChain *baseTextChain = BONChain.new.textColor([UIColor darkGrayColor]);
+    BONChain *baseTextChain = BONChain.new.color([UIColor darkGrayColor]);
     BONChain *baseImageChain = BONChain.new.baselineOffset(-10.0);
     BONGeneric(NSMutableArray, BONChain *)*chains = [NSMutableArray array];
 

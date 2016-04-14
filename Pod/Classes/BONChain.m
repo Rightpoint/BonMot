@@ -78,11 +78,11 @@
     return [fontBlock copy];
 }
 
-- (BONChainColor)textColor
+- (BONChainColor)color
 {
     BONChainColor colorBlock = ^(UIColor *color) {
         __typeof(self) newChain = self.copyWithoutNextText;
-        newChain.text.textColor = color;
+        newChain.text.color = color;
         return newChain;
     };
 
@@ -396,6 +396,15 @@
     else {
         prefix.nextText = suffix;
     }
+}
+
+@end
+
+@implementation BONChain (Deprecated)
+
+- (BONChainColor)textColor
+{
+    return self.color;
 }
 
 @end

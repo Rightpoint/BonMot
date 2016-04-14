@@ -22,7 +22,7 @@
         BONChain.new
             .string(@"Hello, testing world")
             .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
-            .textColor([UIColor redColor])
+            .color([UIColor redColor])
             .attributedString;
 
     XCTAssertEqualObjects(attributedString.string, @"Hello, testing world");

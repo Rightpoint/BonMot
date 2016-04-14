@@ -54,7 +54,7 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 
 @property (copy, nonatomic, readonly) BONChainFont font;
 
-@property (copy, nonatomic, readonly) BONChainColor textColor;
+@property (copy, nonatomic, readonly) BONChainColor color;
 @property (copy, nonatomic, readonly) BONChainColor backgroundColor;
 
 // adobeTracking and pointTracking are mutually exclusive: setting one will unset the other
@@ -97,6 +97,12 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 // concatenation
 - (void)appendLink:(id<BONTextable>)link;
 - (void)appendLink:(id<BONTextable>)link separator:(BONNullable NSString *)separator;
+
+@end
+
+@interface BONChain (Deprecated)
+
+@property (copy, nonatomic, readonly) BONChainColor textColor __attribute__((deprecated("use -color instead")));
 
 @end
 

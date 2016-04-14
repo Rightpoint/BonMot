@@ -34,7 +34,7 @@
         BONChain.new
             .string(@"Hello, world")
             .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
-            .textColor([UIColor redColor])
+            .color([UIColor redColor])
             .underlineStyle(NSUnderlineStyleSingle)
             .attributedString;
 
@@ -60,7 +60,7 @@
         BONChain.new
             .string(@"Hello, world")
             .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
-            .textColor([UIColor redColor])
+            .color([UIColor redColor])
             .strikethroughStyle(NSUnderlineStyleSingle)
             .attributedString;
 
@@ -86,7 +86,7 @@
         BONChain.new
             .string(@"Hello, world")
             .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
-            .textColor([UIColor redColor])
+            .color([UIColor redColor])
             .underlineStyle(NSUnderlineStyleSingle)
             .underlineColor([UIColor redColor])
             .attributedString;
@@ -114,7 +114,7 @@
         BONChain.new
             .string(@"Hello, world")
             .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
-            .textColor([UIColor redColor])
+            .color([UIColor redColor])
             .strikethroughStyle(NSUnderlineStyleSingle)
             .strikethroughColor([UIColor greenColor])
             .attributedString;
@@ -142,7 +142,7 @@
         BONChain.new
             .string(@"Hello, world")
             .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
-            .textColor([UIColor redColor])
+            .color([UIColor redColor])
             .underlineStyle(NSUnderlineStyleThick)
             .underlineColor([UIColor blueColor])
             .strikethroughStyle(NSUnderlineStyleDouble | NSUnderlinePatternDashDot)

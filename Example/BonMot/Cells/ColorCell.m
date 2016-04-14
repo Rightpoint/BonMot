@@ -39,14 +39,14 @@
 
     BONChain *baseLineHeight = BONChain.new.lineHeightMultiple(1.2);
 
-    BONChain *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0).textColor([UIColor darkGrayColor]);
+    BONChain *grayFont = baseLineHeight.fontNameAndSize(@"GillSans-Light", 20.0).color([UIColor darkGrayColor]);
 
     BONChain *fancyFont = baseLineHeight.fontNameAndSize(@"SuperClarendon-Black", 20.0);
 
-    BONChain *blackBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
+    BONChain *blackBackground = fancyFont.color([UIColor whiteColor]).backgroundColor([UIColor blackColor]);
 
-    BONChain *redBackground = fancyFont.textColor([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
-    BONChain *redFont = fancyFont.textColor([self.class raizlabsRed]);
+    BONChain *redBackground = fancyFont.color([UIColor whiteColor]).backgroundColor([self.class raizlabsRed]);
+    BONChain *redFont = fancyFont.color([self.class raizlabsRed]);
 
     BONGeneric(NSArray, BONChain *)*chains = @[
         grayFont,

@@ -43,8 +43,8 @@
     // Second Quote
     NSString *secondQuote = @"You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.";
     BONChain *secondBaseTextChain = BONChain.new.fontNameAndSize(@"AvenirNextCondensed-Regular", 18.0);
-    BONChain *secondChain = secondBaseTextChain.string(@"🍑 →").indentSpacer(4.0).textColor([UIColor orangeColor]);
-    [secondChain appendLink:secondBaseTextChain.string(secondQuote).textColor([UIColor darkGrayColor])];
+    BONChain *secondChain = secondBaseTextChain.string(@"🍑 →").indentSpacer(4.0).color([UIColor orangeColor]);
+    [secondChain appendLink:secondBaseTextChain.string(secondQuote).color([UIColor darkGrayColor])];
 
     NSAttributedString *textAttributedString = secondChain.attributedString;
     self.stringPrefixLabel.attributedText = textAttributedString;
