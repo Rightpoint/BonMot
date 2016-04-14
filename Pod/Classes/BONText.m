@@ -250,7 +250,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     }
 
     // Tracking
-    NSAssert(self.adobeTracking == 0 || self.pointTracking == 0.0, @"You may set Adobe tracking or point tracking to nonzero values, but not both");
+    NSAssert(self.adobeTracking == 0 || BONDoublesCloseEnough(self.pointTracking, 0.0), @"You may set Adobe tracking or point tracking to nonzero values, but not both");
 
     CGFloat trackingInPoints = 0.0;
     if (self.adobeTracking != 0) {
@@ -312,9 +312,9 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineSpacing = self.lineSpacing;
     }
-    
+
     // Line Break Mode
-    
+
     if (self.lineBreakMode != NSLineBreakByWordWrapping) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineBreakMode = self.lineBreakMode;
@@ -486,10 +486,10 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 #pragma mark - Utilities
 
-+ (NSAttributedString *)joinAttributedStrings:(BONGeneric(NSArray, NSAttributedString *) *)attributedStrings withSeparator:(BONText *)separator
++ (NSAttributedString *)joinAttributedStrings:(BONGeneric(NSArray, NSAttributedString *) *)attributedStrings withSeparator:(NSAttributedString *)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
     NSParameterAssert(!attributedStrings || [attributedStrings isKindOfClass:[NSArray class]]);
+    NSParameterAssert(!separator || [separator isKindOfClass:[NSAttributedString class]]);
 
     NSAttributedString *resultsString;
 
@@ -503,7 +503,6 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     }
     else {
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
         for (NSUInteger attributedStringIndex = 0; attributedStringIndex < attributedStrings.count; attributedStringIndex++) {
             NSAttributedString *attributedString = attributedStrings[attributedStringIndex];
@@ -513,8 +512,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if (separatorAttributedString.length > 0 && (attributedStringIndex != attributedStrings.count - 1)) {
-                [mutableResult appendAttributedString:separatorAttributedString];
+            if (separator.length > 0 && (attributedStringIndex != attributedStrings.count - 1)) {
+                [mutableResult appendAttributedString:separator];
             }
         }
         resultsString = mutableResult;
@@ -523,41 +522,17 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return resultsString;
 }
 
-+ (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
++ (NSAttributedString *)joinTextables:(BONGeneric(NSArray, id<BONTextable>) *)textables withSeparator:(id<BONTextable>)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
-    NSParameterAssert(!texts || [texts isKindOfClass:[NSArray class]]);
+    BONGeneric(NSMutableArray, NSAttributedString *)*attributedStrings = [NSMutableArray array];
 
-    NSAttributedString *resultString;
-
-    if (texts.count == 0) {
-        resultString = [[NSAttributedString alloc] init];
-    }
-    else if (texts.count == 1) {
-        NSAssert([texts.firstObject isKindOfClass:[BONText class]], @"The only item in the texts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONText class]), [texts.firstObject class], texts.firstObject);
-
-        resultString = [texts.firstObject attributedString];
-    }
-    else {
-        NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.attributedString;
-        // For each iteration, append the string and then the separator
-        for (NSUInteger textIndex = 0; textIndex < texts.count; textIndex++) {
-            BONText *text = texts[textIndex];
-            NSAssert([text isKindOfClass:[BONText class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textIndex), NSStringFromClass([BONText class]), [text class], text);
-
-            [mutableResult appendAttributedString:text.attributedString];
-
-            // If the separator is not the empty string, append it,
-            // unless this is the last component
-            if (separatorAttributedString.length > 0 && (textIndex != texts.count - 1)) {
-                [mutableResult appendAttributedString:separatorAttributedString];
-            }
-        }
-        resultString = mutableResult;
+    for (id<BONTextable> textable in textables) {
+        [attributedStrings addObject:textable.text.attributedString];
     }
 
-    return resultString;
+    NSAttributedString *separatorAttributedString = separator.text.attributedString;
+
+    return [self joinAttributedStrings:attributedStrings withSeparator:separatorAttributedString];
 }
 
 - (NSString *)debugString
@@ -695,11 +670,11 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 @end
 
-@implementation BONText (BONDeprecated)
+@implementation BONText (Deprecated)
 
-- (NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses
++ (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
 {
-    return [self debugStringIncludeImageAddresses:includeImageAddresses];
+    return [self joinTextables:texts withSeparator:separator];
 }
 
 @end

@@ -99,12 +99,12 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 /**
  *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
  *
- *  @param texts     An array of @c BONText objects to join.
- *  @param separator The @c BONText to interpose between the elements of the array. May be @c nil.
+ *  @param textables An array of @c id<BONTextable> objects to join. If this is @c nil or empty, the empty @c NSAttributedString is returned.
+ *  @param separator The @c id<BONTextable> to interpose between the elements of the array. May be @c nil.
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
  */
-+ (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator;
++ (BONNonnull NSAttributedString *)joinTextables:(BONNullable BONGeneric(NSArray, id<BONTextable>) *)textables withSeparator:(BONNullable id<BONTextable>)separator;
 
 /**
  *  Calls [self debugStringIncludeImageAddresses:YES]
@@ -122,15 +122,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @end
 
-@interface BONText (BONDeprecated)
+@interface BONText (Deprecated)
 
-/**
- *  Formerly used by -debugDescription to print the attributed string, one character at a time, with special characters and image attachments described.
- *
- *  @param includeImageAddresses Whether to print the pointer addresses of attached images in the description. Pass @c NO if you are using this method to write unit tests or other cases where the string value must be deterministic.
- *
- *  @return The debug string, using the specified option for including image addresses.
- */
-- (BONNonnull NSString *)debugDescriptionIncludeImageAddresses:(BOOL)includeImageAddresses __attribute((deprecated("use -debugStringIncludingImageAddresses:")));
++ (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator __attribute__((deprecated("use +joinTextables:withSeparator: instead")));
 
 @end

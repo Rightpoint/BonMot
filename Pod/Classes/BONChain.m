@@ -49,7 +49,7 @@
     return self.text.attributedString;
 }
 
-- (NSDictionary *)attributes
+- (BONStringDict *)attributes
 {
     return self.text.attributes;
 }
@@ -206,7 +206,7 @@
         newChain.text.lineBreakMode = lineBreakMode;
         return newChain;
     };
-    
+
     return [lineBreakModeBlock copy];
 }
 
