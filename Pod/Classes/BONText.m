@@ -486,10 +486,10 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 #pragma mark - Utilities
 
-+ (NSAttributedString *)joinAttributedStrings:(BONGeneric(NSArray, NSAttributedString *) *)attributedStrings withSeparator:(BONText *)separator
++ (NSAttributedString *)joinAttributedStrings:(BONGeneric(NSArray, NSAttributedString *) *)attributedStrings withSeparator:(NSAttributedString *)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
     NSParameterAssert(!attributedStrings || [attributedStrings isKindOfClass:[NSArray class]]);
+    NSParameterAssert(!separator || [separator isKindOfClass:[NSAttributedString class]]);
 
     NSAttributedString *resultsString;
 
@@ -503,7 +503,6 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     }
     else {
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.attributedString;
         // For each iteration, append the string and then the separator
         for (NSUInteger attributedStringIndex = 0; attributedStringIndex < attributedStrings.count; attributedStringIndex++) {
             NSAttributedString *attributedString = attributedStrings[attributedStringIndex];
@@ -513,8 +512,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if (separatorAttributedString.length > 0 && (attributedStringIndex != attributedStrings.count - 1)) {
-                [mutableResult appendAttributedString:separatorAttributedString];
+            if (separator.length > 0 && (attributedStringIndex != attributedStrings.count - 1)) {
+                [mutableResult appendAttributedString:separator];
             }
         }
         resultsString = mutableResult;
@@ -525,39 +524,15 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 + (NSAttributedString *)joinTextables:(BONGeneric(NSArray, id<BONTextable>) *)textables withSeparator:(id<BONTextable>)separator
 {
-    NSParameterAssert(!textables || [textables isKindOfClass:[NSArray class]]);
-    NSParameterAssert(!separator || [separator conformsToProtocol:@protocol(BONTextable)]);
+    BONGeneric(NSMutableArray, NSAttributedString *)*attributedStrings = [NSMutableArray array];
 
-    NSAttributedString *resultString;
-
-    if (textables.count == 0) {
-        resultString = [[NSAttributedString alloc] init];
-    }
-    else if (textables.count == 1) {
-        NSAssert([textables.firstObject conformsToProtocol:@protocol(BONTextable)], @"The only item in the textables array does not conform to %@. It is of type %@: %@", NSStringFromProtocol(@protocol(BONTextable)), [textables.firstObject class], textables.firstObject);
-
-        resultString = [textables.firstObject.text attributedString];
-    }
-    else {
-        NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.text.attributedString;
-        // For each iteration, append the string and then the separator
-        for (NSUInteger textableIndex = 0; textableIndex < textables.count; textableIndex++) {
-            id<BONTextable> textable = textables[textableIndex];
-            NSAssert([textable conformsToProtocol:@protocol(BONTextable)], @"Item at index %@ does not conform to %@. It is of type %@: %@", @(textableIndex), NSStringFromProtocol(@protocol(BONTextable)), [textable class], textable);
-
-            [mutableResult appendAttributedString:textable.text.attributedString];
-
-            // If the separator is not the empty string, append it,
-            // unless this is the last component
-            if (separatorAttributedString.length > 0 && (textableIndex != textables.count - 1)) {
-                [mutableResult appendAttributedString:separatorAttributedString];
-            }
-        }
-        resultString = mutableResult;
+    for (id<BONTextable> textable in textables) {
+        [attributedStrings addObject:textable.text.attributedString];
     }
 
-    return resultString;
+    NSAttributedString *separatorAttributedString = separator.text.attributedString;
+
+    return [self joinAttributedStrings:attributedStrings withSeparator:separatorAttributedString];
 }
 
 - (NSString *)debugString
