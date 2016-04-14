@@ -99,7 +99,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 /**
  *  Constructs and returns an @c NSAttributedString object that is the result of interposing a given separator between the elements of the array.
  *
- *  @param textables An array of @c id<BONTextable> objects to join.
+ *  @param textables An array of @c id<BONTextable> objects to join. If this is @c nil or empty, the empty @c NSAttributedString is returned.
  *  @param separator The @c id<BONTextable> to interpose between the elements of the array. May be @c nil.
  *
  *  @return An @c NSAttributedString object that is the result of interposing separator’s attributed string between the attributed strings of the elements of the array. If the array has no elements, returns an @c NSAttributedString object representing an empty string.
