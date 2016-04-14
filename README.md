@@ -100,7 +100,6 @@ BONChain.new // [BONChain new] and [[BONChain alloc] init] also work
 You can also create a local variable or property to save a partially-configured chain. All the chaining methods pass copies of the chain, so you don't have to worry about later changes clobbering earlier properties:
 
 ```objc
-
 // Base Chain
 BONChain *birdChain =
 BONChain.new
