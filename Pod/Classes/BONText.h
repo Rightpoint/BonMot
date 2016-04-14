@@ -121,3 +121,9 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 - (BONNonnull NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
 
 @end
+
+@interface BONText (Deprecated)
+
++ (BONNonnull NSAttributedString *)joinTexts:(BONNullable BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONNullable BONText *)separator __attribute__((deprecated("use +joinTextables:withSeparator: instead")));
+
+@end

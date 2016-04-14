@@ -694,3 +694,12 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 }
 
 @end
+
+@implementation BONText (Deprecated)
+
++ (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
+{
+    return [self joinTextables:texts withSeparator:separator];
+}
+
+@end
