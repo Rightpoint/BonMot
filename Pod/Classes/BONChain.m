@@ -49,7 +49,7 @@
     return self.text.attributedString;
 }
 
-- (NSDictionary *)attributes
+- (BONStringDict *)attributes
 {
     return self.text.attributes;
 }
