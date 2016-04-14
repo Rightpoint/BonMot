@@ -312,9 +312,9 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineSpacing = self.lineSpacing;
     }
-    
+
     // Line Break Mode
-    
+
     if (self.lineBreakMode != NSLineBreakByWordWrapping) {
         populateParagraphStyleIfNecessary();
         paragraphStyle.lineBreakMode = self.lineBreakMode;
@@ -523,34 +523,34 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return resultsString;
 }
 
-+ (NSAttributedString *)joinTexts:(BONGeneric(NSArray, BONText *) *)texts withSeparator:(BONText *)separator
++ (NSAttributedString *)joinTextables:(BONGeneric(NSArray, id<BONTextable>) *)textables withSeparator:(id<BONTextable>)separator
 {
-    NSParameterAssert(!separator || [separator isKindOfClass:[BONText class]]);
-    NSParameterAssert(!texts || [texts isKindOfClass:[NSArray class]]);
+    NSParameterAssert(!textables || [textables isKindOfClass:[NSArray class]]);
+    NSParameterAssert(!separator || [separator conformsToProtocol:@protocol(BONTextable)]);
 
     NSAttributedString *resultString;
 
-    if (texts.count == 0) {
+    if (textables.count == 0) {
         resultString = [[NSAttributedString alloc] init];
     }
-    else if (texts.count == 1) {
-        NSAssert([texts.firstObject isKindOfClass:[BONText class]], @"The only item in the texts array is not an instance of %@. It is of type %@: %@", NSStringFromClass([BONText class]), [texts.firstObject class], texts.firstObject);
+    else if (textables.count == 1) {
+        NSAssert([textables.firstObject conformsToProtocol:@protocol(BONTextable)], @"The only item in the textables array does not conform to %@. It is of type %@: %@", NSStringFromProtocol(@protocol(BONTextable)), [textables.firstObject class], textables.firstObject);
 
-        resultString = [texts.firstObject attributedString];
+        resultString = [textables.firstObject.text attributedString];
     }
     else {
         NSMutableAttributedString *mutableResult = [[NSMutableAttributedString alloc] init];
-        NSAttributedString *separatorAttributedString = separator.attributedString;
+        NSAttributedString *separatorAttributedString = separator.text.attributedString;
         // For each iteration, append the string and then the separator
-        for (NSUInteger textIndex = 0; textIndex < texts.count; textIndex++) {
-            BONText *text = texts[textIndex];
-            NSAssert([text isKindOfClass:[BONText class]], @"Item at index %@ is not an instance of %@. It is of type %@: %@", @(textIndex), NSStringFromClass([BONText class]), [text class], text);
+        for (NSUInteger textableIndex = 0; textableIndex < textables.count; textableIndex++) {
+            id<BONTextable> textable = textables[textableIndex];
+            NSAssert([textable conformsToProtocol:@protocol(BONTextable)], @"Item at index %@ does not conform to %@. It is of type %@: %@", @(textableIndex), NSStringFromProtocol(@protocol(BONTextable)), [textable class], textable);
 
-            [mutableResult appendAttributedString:text.attributedString];
+            [mutableResult appendAttributedString:textable.text.attributedString];
 
             // If the separator is not the empty string, append it,
             // unless this is the last component
-            if (separatorAttributedString.length > 0 && (textIndex != texts.count - 1)) {
+            if (separatorAttributedString.length > 0 && (textableIndex != textables.count - 1)) {
                 [mutableResult appendAttributedString:separatorAttributedString];
             }
         }

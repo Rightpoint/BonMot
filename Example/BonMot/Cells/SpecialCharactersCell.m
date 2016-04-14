@@ -44,7 +44,7 @@
 
     BONChain *baseTextChain = BONChain.new.textColor([UIColor darkGrayColor]);
     BONChain *baseImageChain = BONChain.new.baselineOffset(-10.0);
-    NSMutableArray *chunks = [NSMutableArray array];
+    BONGeneric(NSMutableArray, BONChain *)*chains = [NSMutableArray array];
 
     for (NSUInteger theIndex = 0; theIndex < imageNames.count; theIndex++) {
         UIImage *image = [UIImage imageNamed:imageNames[theIndex]];
@@ -52,11 +52,11 @@
         BONChain *chunk = baseImageChain.image(image);
         [chunk appendLink:baseTextChain.string(words[theIndex]) separator:BONSpecial.noBreakSpace];
 
-        [chunks addObject:chunk.text];
+        [chains addObject:chunk];
     }
 
-    NSAttributedString *finalString = [BONText joinTexts:chunks
-                                           withSeparator:BONChain.new.string(BONSpecial.emSpace).text];
+    NSAttributedString *finalString = [BONText joinTextables:chains
+                                               withSeparator:BONChain.new.string(BONSpecial.emSpace)];
 
     self.label.attributedText = finalString;
 

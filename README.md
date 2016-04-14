@@ -104,16 +104,16 @@ NSAttributedString *blueBirdString = blueBirds.attributedString;
 
 ## Concatenation
 
-You can concatenate an array of `BONText`s:
+You can concatenate an array of `BONChain`s or `BONText`s:
 
 ```objc
-BONText *oneFish = BONChain.new.string(@"one fish").text;
-BONText *twoFish = BONChain.new.string(@"two fish").text;
-BONText *redFish = BONChain.new.string(@"red fish").textColor([UIColor redColor]).text;
-BONText *blueFish = BONChain.new.string(@"blue fish").textColor([UIColor blueColor]).text;
-BONText *separator = BONChain.new.string(@", ").text;
+BONChain *oneFish = BONChain.new.string(@"one fish");
+BONChain *twoFish = BONChain.new.string(@"two fish");
+BONChain *redFish = BONChain.new.string(@"red fish").textColor([UIColor redColor]);
+BONChain *blueFish = BONChain.new.string(@"blue fish").textColor([UIColor blueColor]);
+BONChain *separator = BONChain.new.string(@", ");
 
-NSAttributedString *string = [BONText joinTexts:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
+NSAttributedString *string = [BONText joinTextables:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
 ```
 
 Outputs:
