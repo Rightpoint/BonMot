@@ -474,7 +474,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 - (BOOL)generatesEmptyString
 {
-    return (self.string.length == 0 && (!self.nextText || self.nextText.generatesEmptyString));
+    return (self.string.length == 0 && !self.image && (!self.nextText || self.nextText.generatesEmptyString));
 }
 
 #pragma mark - BONTextable
