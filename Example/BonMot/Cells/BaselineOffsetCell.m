@@ -27,7 +27,7 @@
 
     BONChain *baseChain = BONChain.new.string(@"❤️");
 
-    // Using BONText instead of BONChain just because we can
+    // You can join BONText instead of BONChain, if you want
     BONGeneric(NSMutableArray, BONText *)*wave = [NSMutableArray array];
 
     for (NSUInteger i = 0; i < 50; i++) {
