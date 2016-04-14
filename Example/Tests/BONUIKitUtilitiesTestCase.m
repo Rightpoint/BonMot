@@ -63,18 +63,8 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     label.bonString = @"Hello, world!";
     label.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
-    XCTAssertEqualObjects(label.attributedText.string, @"Hello, world!");
-
-    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
-
-    NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 13) : @{
-            NSParagraphStyleAttributeName : defaultParagraphStyle,
-            NSFontAttributeName : [UIFont systemFontOfSize:16],
-        },
-    };
-
-    BONAssertAttributedStringHasAttributes(label.attributedText, controlAttributes);
+    XCTAssertNotNil(label.bonTextable);
+    XCTAssertEqualObjects(label.attributedText.string, @"");
 }
 
 - (void)testLabelAttributedTextAfterTextable
@@ -97,18 +87,7 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     label.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
     XCTAssertNotNil(label.bonTextable);
-    XCTAssertEqualObjects(label.attributedText.string, @"Hello, world!");
-
-    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
-
-    NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 13) : @{
-            NSParagraphStyleAttributeName : defaultParagraphStyle,
-            NSFontAttributeName : [UIFont systemFontOfSize:16],
-        },
-    };
-
-    BONAssertAttributedStringHasAttributes(label.attributedText, controlAttributes);
+    XCTAssertEqualObjects(label.attributedText.string, @"");
 }
 
 - (void)testLabelTextableWithStringClobbersExistingString
@@ -160,18 +139,8 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     textView.bonString = @"Hello, world!";
     textView.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
-    XCTAssertEqualObjects(textView.attributedText.string, @"Hello, world!");
-
-    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
-
-    NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 13) : @{
-            NSParagraphStyleAttributeName : defaultParagraphStyle,
-            NSFontAttributeName : [UIFont systemFontOfSize:16],
-        },
-    };
-
-    BONAssertAttributedStringHasAttributes(textView.attributedText, controlAttributes);
+    XCTAssertNotNil(textView.bonTextable);
+    XCTAssertEqualObjects(textView.attributedText.string, @"");
 }
 
 - (void)testTextViewAttributedTextAfterTextable
@@ -193,18 +162,8 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     textView.attributedText = [[NSAttributedString alloc] initWithString:@"Hello, world!"];
     textView.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
-    XCTAssertEqualObjects(textView.attributedText.string, @"Hello, world!");
-
-    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
-
-    NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 13) : @{
-            NSParagraphStyleAttributeName : defaultParagraphStyle,
-            NSFontAttributeName : [UIFont systemFontOfSize:16],
-        },
-    };
-
-    BONAssertAttributedStringHasAttributes(textView.attributedText, controlAttributes);
+    XCTAssertNotNil(textView.bonTextable);
+    XCTAssertEqualObjects(textView.attributedText.string, @"");
 }
 
 - (void)testTextViewTextableWithStringClobbersExistingString
@@ -254,16 +213,8 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     textField.bonString = @"Hello, world!";
     textField.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
-    XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
-
-    NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
-    [controlAttributes[BONValueFromRange(0, 13)] addEntriesFromDictionary:@{
-        NSFontAttributeName : [UIFont systemFontOfSize:16],
-    }];
-
-    XCTAssertNotNil(controlAttributes[BONValueFromRange(0, 13)]);
-
-    BONAssertAttributedStringHasAttributes(textField.attributedText, controlAttributes);
+    XCTAssertNotNil(textField.bonTextable);
+    XCTAssertEqualObjects(textField.attributedText.string, @"");
 }
 
 - (void)testTextFieldAttributedTextAfterTextable
@@ -286,16 +237,7 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
     textField.bonTextable = BONChain.new.font([UIFont systemFontOfSize:16]);
 
     XCTAssertNotNil(textField.bonTextable);
-    XCTAssertEqualObjects(textField.attributedText.string, @"Hello, world!");
-
-    NSDictionary *controlAttributes = BONDefaultAttributesForClassWithString([UITextField class], @"Hello, world!");
-    [controlAttributes[BONValueFromRange(0, 13)] addEntriesFromDictionary:@{
-        NSFontAttributeName : [UIFont systemFontOfSize:16],
-    }];
-
-    XCTAssertNotNil(controlAttributes[BONValueFromRange(0, 13)]);
-
-    BONAssertAttributedStringHasAttributes(textField.attributedText, controlAttributes);
+    XCTAssertEqualObjects(textField.attributedText.string, @"");
 }
 
 - (void)testTextFieldTextableWithStringClobbersExistingString
