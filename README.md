@@ -73,10 +73,12 @@ NSString *quote = @"I used to love correcting people’s grammar until\
 // line-wrapped for readability
 NSAttributedString *attributedString =
 BONChain.new // [BONChain new] and [[BONChain alloc] init] also work
-.fontNameAndSize(@"AmericanTypewriter", 17.0)
-.lineHeightMultiple(1.8)
-.string(quote)
-.attributedString;
+    .fontNameAndSize(@"AmericanTypewriter", 17.0)
+    .lineHeightMultiple(1.8)
+    .string(quote)
+    .attributedString; // You can also query .attributes
+                       // and get back a dictionary of attributes
+
 ```
 
 You can also create a local variable or property to save a partially-configured chain. All the chaining methods pass copies of the chain, so you don't have to worry about later changes clobbering earlier properties:
@@ -85,9 +87,9 @@ You can also create a local variable or property to save a partially-configured 
 // Base Chain
 BONChain *birdChain =
 BONChain.new
-.lineHeightMultiple(1.2)
-.font([UIFont systemFontOfSize:17.0])
-.string(@"bird");
+    .lineHeightMultiple(1.2)
+    .font([UIFont systemFontOfSize:17.0])
+    .string(@"bird");
 
 // Two chains with different colors
 // that inherit their parents’ properties
