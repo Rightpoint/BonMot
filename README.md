@@ -118,7 +118,7 @@ Outputs:
 
 <img width=227 src="readme-images/fish-with-black-comma.png" />
 
-You can also append texts directly to each other:
+You can also append chains directly to each other:
 
 ```objc
 NSString *commaSpace = @", ";
