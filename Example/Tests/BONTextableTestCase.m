@@ -16,7 +16,7 @@
 
 @implementation BONTextableTestCase
 
-- (void)testConcatenation
+- (void)testAppending
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
     [chain appendLink:BONChain.new.string(@"world!")];
@@ -36,7 +36,7 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
-- (void)testConcatenationWithSeparator
+- (void)testAppendingWithSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello");
     [chain appendLink:BONChain.new.string(@"world!") separator:@", "];
@@ -56,7 +56,7 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
-- (void)testConcatenationWithNilSeparator
+- (void)testAppendingWithNilSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
     [chain appendLink:BONChain.new.string(@"world!") separator:nil];
@@ -76,7 +76,7 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
-- (void)testConcatenationWithEmptySeparator
+- (void)testAppendingWithEmptySeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
     [chain appendLink:BONChain.new.string(@"world!") separator:@""];
@@ -96,7 +96,7 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
-- (void)testConcatenationWithDifferentAttributes
+- (void)testAppendingWithDifferentAttributes
 {
     BONChain *chain = BONChain.new.string(@"Hello").textColor([UIColor redColor]);
     [chain appendLink:BONChain.new.string(@"world!").textColor([UIColor blueColor]) separator:@", "];
@@ -122,7 +122,7 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
-- (void)testMultipleConcatenations
+- (void)testMultipleAppendings
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
     [chain appendLink:BONChain.new.string(@"world!")];
