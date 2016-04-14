@@ -206,7 +206,7 @@
         newChain.text.lineBreakMode = lineBreakMode;
         return newChain;
     };
-    
+
     return [lineBreakModeBlock copy];
 }
 
