@@ -29,7 +29,7 @@ script:
 - export PATH="${HOME}/.local/bin:${PATH}"
 - set -o pipefail && scan-build --status-bugs xcodebuild analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 
-- pod lib lint
+- bundle exec pod lib lint
 
 after_success:
 - slather
