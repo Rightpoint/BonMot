@@ -184,7 +184,7 @@ BonMot provides several utilities that enhance its interoperability with UIKit.
 
 ### Text UI Elements
 
-BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `bonString` property.
+BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `-setBonString:` method (or `.bonString = ...` in Objective-C).
 
 **Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
 
@@ -194,7 +194,7 @@ UILabel *label = [[UILabel alloc] init];
 BONChain *chain = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book", 18.0f);
 
 label.bonTextable = chain;
-label.bonString = @"Some initial text.";
+[label setBonString:@"Some initial text."];
 ```
 
 Outputs:
@@ -204,7 +204,11 @@ Outputs:
 Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
 
 ```objc
-label.bonString = @"Some updated text.";
+label.bonString = @"Some updated text."; // this shorthand is valid in Obj-C
+```
+
+```swift
+label.setBonString("Some updated text.") // Here’s the Swift equivalent
 ```
 
 Outputs:
