@@ -243,6 +243,26 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 **Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
 
+## Unit Testing helpers
+
+`-[NSAttributedString bon_humanReadableString]` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
+
+```objc
+BONChain *chain = BONChain.new.image(someImage);
+[chain appendLink:BONChain.new.string(BONSpecial.noBreakSpace)];
+[chain appendLink:BONChain.new.string(@"Monday")];
+[chain appendLink:BONChain.new.string(BONSpecial.enDash)];
+[chain appendLink:BONChain.new.string(@"Friday")];
+
+NSLog(@"%@", chain.attributedString.bon_humanReadableString);
+```
+
+Prints this:
+
+```
+{image24x36}{noBreakSpace}Monday{enDash}Friday
+```
+
 ## Contributing
 
 Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) and the included `.clang-format` configuration file.
