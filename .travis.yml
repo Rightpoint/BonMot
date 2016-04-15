@@ -16,18 +16,18 @@ script:
 - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 
 # Run tests on iPhone 6 simulator (64-bit)
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild ONLY_ACTIVE_ARCH=YES test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 
 # "warm" iPhone 4s simulator
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 4s (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
 - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 
 # Run tests on iPhone 4s simulator (32-bit)
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild ONLY_ACTIVE_ARCH=YES test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO | xcpretty
 
 # use scan-build with --status-bugs to fail the build for static analysis warnings per http://jonboydell.blogspot.ca/2013/02/clang-static-analysis.html
 - export PATH="${HOME}/.local/bin:${PATH}"
-- set -o pipefail && scan-build --status-bugs xcodebuild analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && scan-build --status-bugs xcodebuild ONLY_ACTIVE_ARCH=YES analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 
 - bundle exec pod lib lint
 
