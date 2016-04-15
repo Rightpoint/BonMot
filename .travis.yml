@@ -4,7 +4,9 @@
 
 language: objective-c
 osx_image: xcode7.3
+before_install: rvm use $RVM_RUBY_VERSION
 install:
+- bundle install --without=documentation --path ../travis_bundle_dir
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 - export PYTHONUSERBASE=~/.local
 - easy_install --user scan-build
@@ -28,3 +30,7 @@ script:
 - set -o pipefail && scan-build --status-bugs xcodebuild analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 
 - pod lib lint
+
+after_success:
+- slather
+- bash <(curl -s https://codecov.io/bash)
