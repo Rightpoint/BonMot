@@ -1,6 +1,6 @@
 {
   "name": "BonMot",
-  "version": "2.4.1",
+  "version": "3.0.0.beta.1",
   "summary": "An Objective-C attributed string generation library.",
   "description": "BonMot removes all the mystery from creating beautiful, powerful attributed strings on iOS.",
   "homepage": "https://github.com/Raizlabs/BonMot",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/Raizlabs/BonMot.git",
-    "tag": "2.4.1"
+    "tag": "3.0.0.beta.1"
   },
   "social_media_url": "https://twitter.com/ZevEisenberg",
   "platforms": {
