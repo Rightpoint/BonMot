@@ -37,6 +37,15 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
 
 #pragma mark - UILabel
 
+- (void)testNilWithLabel
+{
+    UILabel *label = UILabel.new;
+    XCTAssertNoThrow(label.bonTextable = nil);
+    XCTAssertNoThrow(label.bonString = nil);
+    XCTAssertEqual(label.text.length, 0);
+    XCTAssertEqual(label.attributedText.length, 0);
+}
+
 - (void)testLabelTextAfterTextable
 {
     UILabel *label = UILabel.new;
@@ -113,6 +122,15 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
 
 #pragma mark - UITextView
 
+- (void)testNilWithTextView
+{
+    UITextView *textView = UITextView.new;
+    XCTAssertNoThrow(textView.bonTextable = nil);
+    XCTAssertNoThrow(textView.bonString = nil);
+    XCTAssertEqual(textView.text.length, 0);
+    XCTAssertEqual(textView.attributedText.length, 0);
+}
+
 - (void)testTextViewTextAfterTextable
 {
     UITextView *textView = UITextView.new;
@@ -188,6 +206,15 @@ NSMutableDictionary *BONDefaultAttributesForClassWithString(Class ViewClass, NSS
 }
 
 #pragma mark - UITextField
+
+- (void)testNilWithTextField
+{
+    UITextField *textField = UITextField.new;
+    XCTAssertNoThrow(textField.bonTextable = nil);
+    XCTAssertNoThrow(textField.bonString = nil);
+    XCTAssertEqual(textField.text.length, 0);
+    XCTAssertEqual(textField.attributedText.length, 0);
+}
 
 - (void)testTextFieldTextAfterTextable
 {
