@@ -1,6 +1,6 @@
 <img width=443 src="readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
-[![CI Status](http://img.shields.io/travis/Raizlabs/BonMot.svg?style=flat)](https://travis-ci.org/Raizlabs/BonMot)
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=5723679e7b69200100ba4c35&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/5723679e7b69200100ba4c35/build/latest)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Platform](https://img.shields.io/cocoapods/p/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
