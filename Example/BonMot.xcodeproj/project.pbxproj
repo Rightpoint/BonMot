@@ -64,6 +64,7 @@
 		CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */; };
 		CD78701E1CA5F8EC00B2714F /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */; };
+		EC2F199E1CEA324900D9F1FE /* BONTagDictionaryStylesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2F199C1CEA324300D9F1FE /* BONTagDictionaryStylesTestCase.m */; };
 		EC433DB31C88B7D9001B3ABE /* BONTagStylesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB11C88B65B001B3ABE /* BONTagStylesTestCase.m */; };
 		EC433DB61C88BBDE001B3ABE /* BONUIKitUtilitiesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB41C88BBDB001B3ABE /* BONUIKitUtilitiesTestCase.m */; };
 		EC433DB91C88DE5F001B3ABE /* TagStylesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB81C88DE5F001B3ABE /* TagStylesCell.m */; };
@@ -168,6 +169,7 @@
 		CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUnderlineAndStrikethroughTestCase.m; sourceTree = "<group>"; };
 		CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
+		EC2F199C1CEA324300D9F1FE /* BONTagDictionaryStylesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagDictionaryStylesTestCase.m; sourceTree = "<group>"; };
 		EC433DB11C88B65B001B3ABE /* BONTagStylesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagStylesTestCase.m; sourceTree = "<group>"; };
 		EC433DB41C88BBDB001B3ABE /* BONUIKitUtilitiesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUIKitUtilitiesTestCase.m; sourceTree = "<group>"; };
 		EC433DB71C88DE5F001B3ABE /* TagStylesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagStylesCell.h; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */,
 				CD6DEFDB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m */,
 				EC433DB11C88B65B001B3ABE /* BONTagStylesTestCase.m */,
+				EC2F199C1CEA324300D9F1FE /* BONTagDictionaryStylesTestCase.m */,
 				ECD4DB691CE3EA1F00079675 /* BONTagComplexStylesTestCase.m */,
 				CD6DEFDC1BF6ADF900676E2D /* BONPropertyClobberingTestCase.m */,
 				CD6DEFDD1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m */,
@@ -440,7 +443,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Zev Eisenberg";
 			};
@@ -638,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC2F199E1CEA324900D9F1FE /* BONTagDictionaryStylesTestCase.m in Sources */,
 				EC433DB61C88BBDE001B3ABE /* BONUIKitUtilitiesTestCase.m in Sources */,
 				CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */,
 				CD6DF04B1BF6B37E00676E2D /* DummyAssetClass.m in Sources */,

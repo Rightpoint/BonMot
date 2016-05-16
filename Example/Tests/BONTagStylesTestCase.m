@@ -19,7 +19,7 @@
 - (void)testSingleTagSingleStyle
 {
     BONChain *chain = BONChain.new.string(@"Hello, <i>world</i>!")
-                          .tagStyles(@[ BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
+                          .tagComplexStyles(@[ BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -48,7 +48,7 @@
 - (void)testMultipleTagsSingleStyle
 {
     BONChain *chain = BONChain.new.string(@"<i>Hello</i>, <i>world</i>!")
-                          .tagStyles(@[ BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
+                          .tagComplexStyles(@[ BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -82,7 +82,7 @@
 - (void)testSingleTagMultipleStyles
 {
     BONChain *chain = BONChain.new.string(@"Hello, <b>world</b>!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -114,7 +114,7 @@
 - (void)testMultipleTagsMultipleStyles
 {
     BONChain *chain = BONChain.new.string(@"<b>Hello</b>, <i>world</i>!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -151,7 +151,7 @@
 - (void)testInterleavedTags
 {
     BONChain *chain = BONChain.new.string(@"<b>Hello<i></b>, world</i>!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -179,7 +179,7 @@
 - (void)testNestedTags
 {
     BONChain *chain = BONChain.new.string(@"<b><i>Hello</i></b>, world!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -207,7 +207,7 @@
 - (void)testMixedOrdering
 {
     BONChain *chain = BONChain.new.string(@"<b>Hel</b><i>lo</i>, <b>wor</b><i>ld!</i>")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -250,7 +250,7 @@
 - (void)testEscapedStartTag
 {
     BONChain *chain = BONChain.new.string(@"\\<b><b>Hello</b>, world!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -282,7 +282,7 @@
 - (void)testMultipleEscapedStartTag
 {
     BONChain *chain = BONChain.new.string(@"\\<b><b>Hello</b>\\<b>, world!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -314,7 +314,7 @@
 - (void)testMultipleEscapedEndTag
 {
     BONChain *chain = BONChain.new.string(@"\\</b><b>Hello</b>\\</b>, world!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -346,7 +346,7 @@
 - (void)testNestedEscapedEndTag
 {
     BONChain *chain = BONChain.new.string(@"<b>Hello\\</b></b>, world!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);
@@ -374,7 +374,7 @@
 - (void)testInterleavedEscapedEndTag
 {
     BONChain *chain = BONChain.new.string(@"\\</b>\\</i>\\</b><i>Hello\\</i></i>, world!")
-                          .tagStyles(@[
+                          .tagComplexStyles(@[
                               BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
                               BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
                           ]);

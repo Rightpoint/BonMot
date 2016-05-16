@@ -44,7 +44,8 @@ typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable co
 typedef BONChain *BONCNonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
 typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullable color);
 
-typedef BONChain *BONCNonnull (^BONTagStyles)(BONGeneric(NSArray, BONTag *) * BONCNullable styles);
+typedef BONChain *BONCNonnull (^BONTagStyles)(BONGeneric(NSDictionary, NSString *, id<BONTextable>) * BONCNullable styles);
+typedef BONChain *BONCNonnull (^BONTagComplexStyles)(BONGeneric(NSArray, BONTag *) * BONCNullable styles);
 
 @interface BONChain : NSObject <BONTextable>
 
@@ -103,6 +104,11 @@ typedef BONChain *BONCNonnull (^BONTagStyles)(BONGeneric(NSArray, BONTag *) * BO
  *  attributed string. Nested tagging is not supported.
  */
 @property (copy, nonatomic, readonly) BONTagStyles tagStyles;
+
+/**
+ *  Assign an array of @p BONTags to use in styling substrings.
+ */
+@property (copy, nonatomic, readonly) BONTagComplexStyles tagComplexStyles;
 
 // concatenation
 - (void)appendLink:(id<BONTextable>)link;

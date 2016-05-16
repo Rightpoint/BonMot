@@ -10,6 +10,7 @@
 
 #import "BONText.h"
 #import "BONText_Private.h"
+#import "BONTag.h"
 
 @interface BONChain ()
 
@@ -355,7 +356,18 @@
 
 - (BONTagStyles)tagStyles
 {
-    BONTagStyles tagStylesBlock = ^(NSArray *tagStyles) {
+    BONTagStyles tagStylesBlock = ^(NSDictionary *tagStyles) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.tagStyles = BONTagsFromDictionary(tagStyles);
+        return newChain;
+    };
+
+    return [tagStylesBlock copy];
+}
+
+- (BONTagComplexStyles)tagComplexStyles
+{
+    BONTagComplexStyles tagStylesBlock = ^(NSArray *tagStyles) {
         __typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.tagStyles = tagStyles;
         return newChain;

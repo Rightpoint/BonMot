@@ -85,10 +85,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic, BONNullable) UIColor *strikethroughColor;
 
 /**
- *  Assign @p BONTextables to use in styling substrings surrounded in given tags.
- *  For example, ["b": boldChainable] would apply the @p boldChain
- *  to any substring surrounded by <b></b> and remove the tags from the resulting
- *  attributed string. Nested tagging is not supported.
+ *  Assign an array of @p BONTags to use in styling substrings.
  */
 @property (strong, nonatomic, BONNullable) BONGeneric(NSArray, BONTag *) * tagStyles;
 
