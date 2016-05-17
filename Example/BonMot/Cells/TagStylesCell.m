@@ -29,8 +29,9 @@
     BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15);
 
     BONChain *baseChain = BONChain.new.fontNameAndSize(@"Baskerville", 17)
-                              .tagStyles(@[ BONTagMake(@"bold", boldChain), BONTagMake(@"italic", italicChain) ])
-                              .string(@"<bold>This text is wrapped in a \\<bold> tag.</bold>\n<italic>This text is wrapped in an \\<italic> tag.</italic>");
+                              .tagStyles(@{ @"bold" : boldChain,
+                                            @"italic" : italicChain })
+                              .string(@"<bold>This text</bold> contains a \\<bold> tag.\n<italic>This text</italic> contains an \\<italic> tag.");
 
     self.label.attributedText = baseChain.attributedString;
 

@@ -270,15 +270,15 @@ Prints this:
 
 ## Tag Styles
 
-BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character.
+BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
 
 ```objc
 BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
 BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
 
 BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
-    .tagStyles(@[BONTagMake(@"bold", boldChain), BONTagMake(@"italic", italicChain)])
-    .string(@"<bold>This text is wrapped in a \\<bold> tag.</bold>\n<italic>This text is wrapped in an \\<italic> tag.</italic>");
+    .tagStyles( @{ @"bold": boldChain, @"italic": italicChain } )
+    .string(@"<bold>This text</bold> contains a \\<bold> tag.\n<italic>This text</italic> contains an \\<italic> tag.");
 
 NSAttributedString *string = chain.attributedString;
 ```
@@ -294,7 +294,7 @@ BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
 BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
 
 BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
-.tagStyles(@[BONTagComplexMake(@"~start~", @"!end", @"escape", boldChain)])
+.tagComplexStyles(@[BONTagComplexMake(@"~start~", @"!end", @"escape", boldChain)])
 .string(@"~start~This text is wrapped in a escape~start~ tag.!end");
 
 NSAttributedString *string = chain.attributedString;

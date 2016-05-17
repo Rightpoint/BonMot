@@ -356,7 +356,7 @@
 
 - (BONTagStyles)tagStyles
 {
-    BONTagStyles tagStylesBlock = ^(NSDictionary *tagStyles) {
+    BONTagStyles tagStylesBlock = ^(BONGeneric(NSDictionary, NSString *, id<BONTextable>)*tagStyles) {
         __typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.tagStyles = BONTagsFromDictionary(tagStyles);
         return newChain;
@@ -367,7 +367,7 @@
 
 - (BONTagComplexStyles)tagComplexStyles
 {
-    BONTagComplexStyles tagStylesBlock = ^(NSArray *tagStyles) {
+    BONTagComplexStyles tagStylesBlock = ^(BONGeneric(NSArray, BONTag *)*tagStyles) {
         __typeof(self) newChain = self.copyWithoutNextText;
         newChain.text.tagStyles = tagStyles;
         return newChain;

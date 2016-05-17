@@ -2,8 +2,8 @@
 //  BONTagStylesTestCase.m
 //  BonMot
 //
-//  Created by Nora Trapp on 3/3/16.
-//
+//  Created by Nora Trapp on 5/16/16.
+//  Copyright © 2016 Zev Eisenberg. All rights reserved.
 //
 
 #import "BONBaseTestCase.h"
@@ -19,7 +19,7 @@
 - (void)testSingleTagSingleStyle
 {
     BONChain *chain = BONChain.new.string(@"Hello, <i>world</i>!")
-                          .tagComplexStyles(@[ BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
+                          .tagStyles(@{ @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]) });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -48,7 +48,7 @@
 - (void)testMultipleTagsSingleStyle
 {
     BONChain *chain = BONChain.new.string(@"<i>Hello</i>, <i>world</i>!")
-                          .tagComplexStyles(@[ BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
+                          .tagStyles(@{ @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]) });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -82,10 +82,10 @@
 - (void)testSingleTagMultipleStyles
 {
     BONChain *chain = BONChain.new.string(@"Hello, <b>world</b>!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -114,10 +114,10 @@
 - (void)testMultipleTagsMultipleStyles
 {
     BONChain *chain = BONChain.new.string(@"<b>Hello</b>, <i>world</i>!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -151,10 +151,10 @@
 - (void)testInterleavedTags
 {
     BONChain *chain = BONChain.new.string(@"<b>Hello<i></b>, world</i>!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -179,10 +179,10 @@
 - (void)testNestedTags
 {
     BONChain *chain = BONChain.new.string(@"<b><i>Hello</i></b>, world!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -207,10 +207,10 @@
 - (void)testMixedOrdering
 {
     BONChain *chain = BONChain.new.string(@"<b>Hel</b><i>lo</i>, <b>wor</b><i>ld!</i>")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -250,10 +250,10 @@
 - (void)testEscapedStartTag
 {
     BONChain *chain = BONChain.new.string(@"\\<b><b>Hello</b>, world!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -282,10 +282,10 @@
 - (void)testMultipleEscapedStartTag
 {
     BONChain *chain = BONChain.new.string(@"\\<b><b>Hello</b>\\<b>, world!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -314,10 +314,10 @@
 - (void)testMultipleEscapedEndTag
 {
     BONChain *chain = BONChain.new.string(@"\\</b><b>Hello</b>\\</b>, world!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -346,10 +346,10 @@
 - (void)testNestedEscapedEndTag
 {
     BONChain *chain = BONChain.new.string(@"<b>Hello\\</b></b>, world!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -374,10 +374,10 @@
 - (void)testInterleavedEscapedEndTag
 {
     BONChain *chain = BONChain.new.string(@"\\</b>\\</i>\\</b><i>Hello\\</i></i>, world!")
-                          .tagComplexStyles(@[
-                              BONTagMake(@"i", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
-                              BONTagMake(@"b", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
-                          ]);
+                          .tagStyles(@{
+                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
+                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
+                          });
 
     NSAttributedString *attributedString = chain.attributedString;
 

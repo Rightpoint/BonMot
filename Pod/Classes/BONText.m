@@ -93,18 +93,18 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         }
     }
     else if (string) {
-        // If there is tag styling applied, strip the tags from the string and identify the ranges to apply the tag based chains to.
-        NSArray *rangesPerTag = nil;
+        // If there is tag styling applied, strip the tags from the string and identify the ranges to apply the tag-based chains to.
+        BONGeneric(NSArray, BONTag *)*rangesPerTag = nil;
 
         if (self.tagStyles) {
-            rangesPerTag = [BONTag rangesInString:&string betweenTags:self.tagStyles stripTags:YES];
+            rangesPerTag = [BONTag rangesInString:&string betweenTags:self.tagStyles];
         }
 
         mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:string
                                                                          attributes:self.attributes];
 
         for (BONTag *tag in rangesPerTag) {
-            NSDictionary *attributes = tag.textable.text.attributes;
+            BONStringDict *attributes = tag.textable.text.attributes;
             for (NSValue *value in tag.ranges) {
                 [mutableAttributedString setAttributes:attributes range:value.rangeValue];
             }

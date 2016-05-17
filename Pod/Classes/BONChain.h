@@ -13,7 +13,8 @@
 
 BON_ASSUME_NONNULL_BEGIN
 
-@class BONChain, BONTag;
+@class BONChain;
+@class BONTag;
 
 typedef BONChain *BONCNonnull (^BONChainFontNameAndSize)(NSString *BONCNonnull fontName, CGFloat fontSize);
 typedef BONChain *BONCNonnull (^BONChainFont)(UIFont *BONCNullable font);
@@ -98,8 +99,8 @@ typedef BONChain *BONCNonnull (^BONTagComplexStyles)(BONGeneric(NSArray, BONTag 
 @property (copy, nonatomic, readonly) BONChainStrikethroughColor strikethroughColor;
 
 /**
- *  Assign @p BONTextables to use in styling substrings surrounded in given tags.
- *  For example, ["b": boldTextable] would apply the @p boldChain
+ *  Assign @p BONTextables to use in styling substrings surrounded by given tags.
+ *  For example, ["b": boldChain] would apply the @p boldChain
  *  to any substring surrounded by <b></b> and remove the tags from the resulting
  *  attributed string. Nested tagging is not supported.
  */

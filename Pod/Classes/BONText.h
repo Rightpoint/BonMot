@@ -23,7 +23,8 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
     BONFigureSpacingProportional,
 };
 
-@class BONText, BONTag;
+@class BONText;
+@class BONTag;
 
 @interface BONText : NSObject <BONTextable>
 
@@ -85,7 +86,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (strong, nonatomic, BONNullable) UIColor *strikethroughColor;
 
 /**
- *  Assign an array of @p BONTags to use in styling substrings.
+ *  An array of @p BONTag objects to use in styling substrings.
  */
 @property (strong, nonatomic, BONNullable) BONGeneric(NSArray, BONTag *) * tagStyles;
 

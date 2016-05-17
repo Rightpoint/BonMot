@@ -1,8 +1,8 @@
 //
-//  BONTagDictionaryStylesTestCase.m
+//  BONTagComplexMakeTestCase.m
 //  BonMot
 //
-//  Created by Nora Trapp on 5/16/16.
+//  Created by Nora Trapp on 3/3/16.
 //  Copyright © 2016 Zev Eisenberg. All rights reserved.
 //
 
@@ -10,16 +10,16 @@
 
 @import BonMot;
 
-@interface BONTagDictionaryStylesTestCase : BONBaseTestCase
+@interface BONTagComplexMakeTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONTagDictionaryStylesTestCase
+@implementation BONTagComplexMakeTestCase
 
 - (void)testSingleTagSingleStyle
 {
-    BONChain *chain = BONChain.new.string(@"Hello, <i>world</i>!")
-                          .tagStyles(@{ @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]) });
+    BONChain *chain = BONChain.new.string(@"Hello, [i]world(i)!")
+                          .tagComplexStyles(@[ BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -47,8 +47,8 @@
 
 - (void)testMultipleTagsSingleStyle
 {
-    BONChain *chain = BONChain.new.string(@"<i>Hello</i>, <i>world</i>!")
-                          .tagStyles(@{ @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]) });
+    BONChain *chain = BONChain.new.string(@"[i]Hello(i), [i]world(i)!")
+                          .tagComplexStyles(@[ BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])) ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -81,11 +81,11 @@
 
 - (void)testSingleTagMultipleStyles
 {
-    BONChain *chain = BONChain.new.string(@"Hello, <b>world</b>!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@"Hello, >b<world>b<*!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@">b<", @">b<*", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -113,11 +113,11 @@
 
 - (void)testMultipleTagsMultipleStyles
 {
-    BONChain *chain = BONChain.new.string(@"<b>Hello</b>, <i>world</i>!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@">b<Hello>b<*, [i]world(i)!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@">b<", @">b<*", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -150,15 +150,15 @@
 
 - (void)testInterleavedTags
 {
-    BONChain *chain = BONChain.new.string(@"<b>Hello<i></b>, world</i>!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@">b<Hello[i]>b<*, world(i)!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@">b<", @">b<*", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"Hello<i>, world</i>!");
+    XCTAssertEqualObjects(attributedString.string, @"Hello[i], world(i)!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
@@ -168,7 +168,7 @@
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
 
-        BONValueFromRange(8, 12) : @{
+        BONValueFromRange(8, 11) : @{
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
     };
@@ -178,25 +178,25 @@
 
 - (void)testNestedTags
 {
-    BONChain *chain = BONChain.new.string(@"<b><i>Hello</i></b>, world!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@">b<[i]Hello(i)>b<*, world!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@">b<", @">b<*", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"<i>Hello</i>, world!");
+    XCTAssertEqualObjects(attributedString.string, @"[i]Hello(i), world!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 12) : @{
+        BONValueFromRange(0, 11) : @{
             NSFontAttributeName : [UIFont boldSystemFontOfSize:16],
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
 
-        BONValueFromRange(12, 8) : @{
+        BONValueFromRange(11, 8) : @{
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
     };
@@ -206,11 +206,11 @@
 
 - (void)testMixedOrdering
 {
-    BONChain *chain = BONChain.new.string(@"<b>Hel</b><i>lo</i>, <b>wor</b><i>ld!</i>")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@">b<Hel>b<*[i]lo(i), >b<wor>b<*[i]ld!(i)")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"[i]", @"(i)", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@">b<", @">b<*", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -249,15 +249,15 @@
 
 - (void)testEscapedStartTag
 {
-    BONChain *chain = BONChain.new.string(@"\\<b><b>Hello</b>, world!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@"qwerty(b)(b)Hello[/b], world!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"(i)", @"[/i]", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@"(b)", @"[/b]", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"<b>Hello, world!");
+    XCTAssertEqualObjects(attributedString.string, @"(b)Hello, world!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
@@ -281,15 +281,15 @@
 
 - (void)testMultipleEscapedStartTag
 {
-    BONChain *chain = BONChain.new.string(@"\\<b><b>Hello</b>\\<b>, world!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@"qwerty(b)(b)Hello[/b]qwerty(b), world!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"(i)", @"[/i]", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@"(b)", @"[/b]", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"<b>Hello<b>, world!");
+    XCTAssertEqualObjects(attributedString.string, @"(b)Hello(b), world!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
@@ -313,15 +313,15 @@
 
 - (void)testMultipleEscapedEndTag
 {
-    BONChain *chain = BONChain.new.string(@"\\</b><b>Hello</b>\\</b>, world!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@"qwerty[/b](b)Hello[/b]qwerty[/b], world!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"(i)", @"[/i]", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@"(b)", @"[/b]", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"</b>Hello</b>, world!");
+    XCTAssertEqualObjects(attributedString.string, @"[/b]Hello[/b], world!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
@@ -345,15 +345,15 @@
 
 - (void)testNestedEscapedEndTag
 {
-    BONChain *chain = BONChain.new.string(@"<b>Hello\\</b></b>, world!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@"(b)Helloqwerty[/b][/b], world!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"(i)", @"[/i]", @"qwerty", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@"(b)", @"[/b]", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"Hello</b>, world!");
+    XCTAssertEqualObjects(attributedString.string, @"Hello[/b], world!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
@@ -373,15 +373,15 @@
 
 - (void)testInterleavedEscapedEndTag
 {
-    BONChain *chain = BONChain.new.string(@"\\</b>\\</i>\\</b><i>Hello\\</i></i>, world!")
-                          .tagStyles(@{
-                              @"i" : BONChain.new.font([UIFont italicSystemFontOfSize:16]),
-                              @"b" : BONChain.new.font([UIFont boldSystemFontOfSize:16]),
-                          });
+    BONChain *chain = BONChain.new.string(@"qwerty[/b]asdfgh[/i]qwerty[/b](i)Helloasdfgh[/i][/i], world!")
+                          .tagComplexStyles(@[
+                              BONTagComplexMake(@"(i)", @"[/i]", @"asdfgh", BONChain.new.font([UIFont italicSystemFontOfSize:16])),
+                              BONTagComplexMake(@"(b)", @"[/b]", @"qwerty", BONChain.new.font([UIFont boldSystemFontOfSize:16])),
+                          ]);
 
     NSAttributedString *attributedString = chain.attributedString;
 
-    XCTAssertEqualObjects(attributedString.string, @"</b></i></b>Hello</i>, world!");
+    XCTAssertEqualObjects(attributedString.string, @"[/b][/i][/b]Hello[/i], world!");
 
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
