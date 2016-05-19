@@ -33,7 +33,7 @@
  *
  *  @return A @p BONTag instance representing the tag.
  */
-NS_INLINE BONTag *BONCNonnull BONTagComplexMake(NSString *BONCNonnull startTag, NSString *BONCNonnull endTag, NSString *BONCNonnull escapeString, id<BONTextable> BONCNonnull textable)
+NS_INLINE BONTag *BONCNonnull BONTagComplexMake(NSString *BONCNonnull startTag, NSString *BONCNonnull endTag, NSString *BONCNonnull escapeString, id<BONTextable> BONCNonnull textable) NS_SWIFT_UNAVAILABLE("Use BONTag(startTag:endTag:escapeString:textable:)")
 {
     return [[BONTag alloc] initWithStartTag:startTag endTag:endTag escapeString:escapeString textable:textable];
 }
@@ -50,7 +50,7 @@ NS_INLINE BONTag *BONCNonnull BONTagComplexMake(NSString *BONCNonnull startTag, 
  *
  *  @return A @p BONTag instance representing the tag.
  */
-NS_INLINE BONTag *BONCNonnull BONTagMake(NSString *BONCNonnull tag, id<BONTextable> BONCNonnull textable)
+NS_INLINE BONTag *BONCNonnull BONTagMake(NSString *BONCNonnull tag, id<BONTextable> BONCNonnull textable) NS_SWIFT_UNAVAILABLE("Use BONTag(tag:textable:)")
 {
     return [[BONTag alloc] initWithTag:tag textable:textable];
 }
