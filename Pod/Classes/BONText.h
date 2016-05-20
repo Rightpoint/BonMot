@@ -24,6 +24,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 };
 
 @class BONText;
+@class BONTag;
 
 @interface BONText : NSObject <BONTextable>
 
@@ -83,6 +84,11 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 
 @property (nonatomic) NSUnderlineStyle strikethroughStyle;
 @property (strong, nonatomic, BONNullable) UIColor *strikethroughColor;
+
+/**
+ *  An array of @p BONTag objects to use in styling substrings.
+ */
+@property (strong, nonatomic, BONNullable) BONGeneric(NSArray, BONTag *) * tagStyles;
 
 // Getting Values Out
 

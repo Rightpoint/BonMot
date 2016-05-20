@@ -14,6 +14,7 @@
 BON_ASSUME_NONNULL_BEGIN
 
 @class BONChain;
+@class BONTag;
 
 typedef BONChain *BONCNonnull (^BONChainFontNameAndSize)(NSString *BONCNonnull fontName, CGFloat fontSize);
 typedef BONChain *BONCNonnull (^BONChainFont)(UIFont *BONCNullable font);
@@ -43,6 +44,9 @@ typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable co
 
 typedef BONChain *BONCNonnull (^BONChainStrikethroughStyle)(NSUnderlineStyle style);
 typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullable color);
+
+typedef BONChain *BONCNonnull (^BONTagStyles)(BONGeneric(NSDictionary, NSString *, id<BONTextable>) * BONCNullable styles);
+typedef BONChain *BONCNonnull (^BONTagComplexStyles)(BONGeneric(NSArray, BONTag *) * BONCNullable styles);
 
 @interface BONChain : NSObject <BONTextable>
 
@@ -93,6 +97,19 @@ typedef BONChain *BONCNonnull (^BONChainStrikethroughColor)(UIColor *BONCNullabl
 
 @property (copy, nonatomic, readonly) BONChainStrikethroughStyle strikethroughStyle;
 @property (copy, nonatomic, readonly) BONChainStrikethroughColor strikethroughColor;
+
+/**
+ *  Assign @p BONTextables to use in styling substrings surrounded by given tags.
+ *  For example, ["b": boldChain] would apply the @p boldChain
+ *  to any substring surrounded by <b></b> and remove the tags from the resulting
+ *  attributed string. Nested tagging is not supported.
+ */
+@property (copy, nonatomic, readonly) BONTagStyles tagStyles;
+
+/**
+ *  Assign an array of @p BONTags to use in styling substrings.
+ */
+@property (copy, nonatomic, readonly) BONTagComplexStyles tagComplexStyles;
 
 // concatenation
 - (void)appendLink:(id<BONTextable>)link;

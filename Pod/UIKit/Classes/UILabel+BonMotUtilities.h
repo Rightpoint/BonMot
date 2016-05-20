@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Nora Trapp on 3/2/16.
-//
+//  Copyright © 2015 Zev Eisenberg. All rights reserved.
 //
 
 @import UIKit;

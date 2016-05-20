@@ -10,6 +10,7 @@
 
 #import "BONText.h"
 #import "BONText_Private.h"
+#import "BONTag.h"
 
 @interface BONChain ()
 
@@ -351,6 +352,28 @@
     };
 
     return [strikethroughColorBlock copy];
+}
+
+- (BONTagStyles)tagStyles
+{
+    BONTagStyles tagStylesBlock = ^(BONGeneric(NSDictionary, NSString *, id<BONTextable>)*tagStyles) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.tagStyles = BONTagsFromDictionary(tagStyles);
+        return newChain;
+    };
+
+    return [tagStylesBlock copy];
+}
+
+- (BONTagComplexStyles)tagComplexStyles
+{
+    BONTagComplexStyles tagStylesBlock = ^(BONGeneric(NSArray, BONTag *)*tagStyles) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.tagStyles = tagStyles;
+        return newChain;
+    };
+
+    return [tagStylesBlock copy];
 }
 
 - (void)appendLink:(id<BONTextable>)link

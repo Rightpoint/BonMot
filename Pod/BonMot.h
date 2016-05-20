@@ -10,3 +10,4 @@
 #import "BONChain.h"
 #import "BONSpecial.h"
 #import "UIImage+BonMotUtilities.h"
+#import "BONTag.h"
