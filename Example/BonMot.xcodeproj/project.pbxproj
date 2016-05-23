@@ -17,7 +17,7 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6836AD13A829A45AE2425588 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */; };
+		69EEA9487DE55634FFF1A253 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */; };
 		730361E31C9B5CDD00987809 /* BONHumanReadableStringTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */; };
 		CD64F15E1CA4DAC800042559 /* BONFigureTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */; };
 		CD6DEFE11BF6ADF900676E2D /* BONBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */; };
@@ -64,6 +64,7 @@
 		CD6DF05A1BF6B98500676E2D /* NSDictionary+BONEquality.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DF04F1BF6B53100676E2D /* NSDictionary+BONEquality.m */; };
 		CD78701E1CA5F8EC00B2714F /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CDE658581C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */; };
+		DEDDB0AB21BBBD4F18A795F9 /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */; };
 		EC2F199E1CEA324900D9F1FE /* BONTagStylesTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2F199C1CEA324300D9F1FE /* BONTagStylesTestCase.m */; };
 		EC2F19A11CEBBAF900D9F1FE /* BONTagTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2F199F1CEBBA9E00D9F1FE /* BONTagTestCase.m */; };
 		EC433DB31C88B7D9001B3ABE /* BONTagMakeTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB11C88B65B001B3ABE /* BONTagMakeTestCase.m */; };
@@ -71,7 +72,6 @@
 		EC433DB91C88DE5F001B3ABE /* TagStylesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC433DB81C88DE5F001B3ABE /* TagStylesCell.m */; };
 		EC433DBB1C88DEF7001B3ABE /* TagStylesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC433DBA1C88DEF7001B3ABE /* TagStylesCell.xib */; };
 		ECD4DB6B1CE3EA2700079675 /* BONTagComplexMakeTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD4DB691CE3EA1F00079675 /* BONTagComplexMakeTestCase.m */; };
-		F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,8 +85,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		442D6A6A5BDCDABF372F06F0 /* Pods-BonMot_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		13736C389CD23A02892957FC /* Pods-BonMot_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		149F308CF995E9B97CEE58C6 /* Pods-BonMot_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		1D38C8C9EDB7A60A99FC8FFC /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4AF5C68DE6171D35A3DA3AB3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* BonMot_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonMot_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,10 +102,11 @@
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		730361E11C9B5CD300987809 /* BONHumanReadableStringTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONHumanReadableStringTestCase.m; sourceTree = "<group>"; };
-		8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		84DE7FD256FC66A0A8484C8B /* Pods-BonMot_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8F7BD757BEB762F22E099560 /* BonMot.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BonMot.podspec; path = ../BonMot.podspec; sourceTree = "<group>"; };
 		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD64F15D1CA4DAC800042559 /* BONFigureTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONFigureTestCase.m; sourceTree = "<group>"; };
 		CD6DEFD51BF6ADF900676E2D /* BONBaseTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BONBaseTestCase.h; sourceTree = "<group>"; };
 		CD6DEFD61BF6ADF900676E2D /* BONBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONBaseTestCase.m; sourceTree = "<group>"; };
@@ -168,8 +170,6 @@
 		CD6DF0571BF6B7AF00676E2D /* DashedHairlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DashedHairlineView.h; path = BonMot/DashedHairlineView.h; sourceTree = SOURCE_ROOT; };
 		CD6DF0581BF6B7AF00676E2D /* DashedHairlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DashedHairlineView.m; path = BonMot/DashedHairlineView.m; sourceTree = SOURCE_ROOT; };
 		CDE658571C24ADD8009C7D09 /* BONUnderlineAndStrikethroughTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONUnderlineAndStrikethroughTestCase.m; sourceTree = "<group>"; };
-		CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BonMot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example.release.xcconfig"; sourceTree = "<group>"; };
 		EC2F199C1CEA324300D9F1FE /* BONTagStylesTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagStylesTestCase.m; sourceTree = "<group>"; };
 		EC2F199F1CEBBA9E00D9F1FE /* BONTagTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagTestCase.m; sourceTree = "<group>"; };
 		EC433DB11C88B65B001B3ABE /* BONTagMakeTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BONTagMakeTestCase.m; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				F6E9CEC93164745FB8BEB8FC /* Pods_BonMot_Example.framework in Frameworks */,
+				DEDDB0AB21BBBD4F18A795F9 /* Pods_BonMot_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,24 +199,13 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				6836AD13A829A45AE2425588 /* Pods_BonMot_Tests.framework in Frameworks */,
+				69EEA9487DE55634FFF1A253 /* Pods_BonMot_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0730349BEF864AAD45841AAB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				442D6A6A5BDCDABF372F06F0 /* Pods-BonMot_Example.debug.xcconfig */,
-				EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */,
-				8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */,
-				AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +214,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				0730349BEF864AAD45841AAB /* Pods */,
+				91195AF6968304755F442DD1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,8 +234,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				2E8BB0552A748FFBA2BD0BE4 /* Pods_BonMot_Example.framework */,
-				CFD6D97A946F2FEF294F4BBB /* Pods_BonMot_Tests.framework */,
+				B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */,
+				B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -329,6 +318,17 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		91195AF6968304755F442DD1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13736C389CD23A02892957FC /* Pods-BonMot_Example.debug.xcconfig */,
+				1D38C8C9EDB7A60A99FC8FFC /* Pods-BonMot_Example.release.xcconfig */,
+				84DE7FD256FC66A0A8484C8B /* Pods-BonMot_Tests.debug.xcconfig */,
+				149F308CF995E9B97CEE58C6 /* Pods-BonMot_Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CD6DEFFA1BF6AE7100676E2D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,13 +401,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot_Example" */;
 			buildPhases = (
+				4268B12EE7B1D816700938FE /* 📦 Check Pods Manifest.lock */,
 				737800641C972D380024A42A /* Run BONSpecialGenerator */,
-				6AB594B297DF552235E1CE35 /* Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				1CCC79A4F26B6FE8D650CF95 /* Embed Pods Frameworks */,
-				0837FCE44F293FBB0E772E9E /* Copy Pods Resources */,
+				0283E3871D212637904AA7E7 /* 📦 Embed Pods Frameworks */,
+				A8A0D909E8F2BBC53FBD0E79 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -422,12 +422,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BonMot_Tests" */;
 			buildPhases = (
-				2468AD10DEDC9A5794D1E190 /* Check Pods Manifest.lock */,
+				9650001DE73C43EA0507F7CC /* 📦 Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				A7D8BFF86A740E1DC1EFE8BE /* Embed Pods Frameworks */,
-				063A46423FC0BD2C4AB50D4A /* Copy Pods Resources */,
+				12FCA1315FE483961B3380D8 /* 📦 Embed Pods Frameworks */,
+				E21C95D286A4EF846FFB4D99 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -508,44 +508,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		063A46423FC0BD2C4AB50D4A /* Copy Pods Resources */ = {
+		0283E3871D212637904AA7E7 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0837FCE44F293FBB0E772E9E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1CCC79A4F26B6FE8D650CF95 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,29 +523,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2468AD10DEDC9A5794D1E190 /* Check Pods Manifest.lock */ = {
+		12FCA1315FE483961B3380D8 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6AB594B297DF552235E1CE35 /* Check Pods Manifest.lock */ = {
+		4268B12EE7B1D816700938FE /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,19 +567,49 @@
 			shellPath = /bin/sh;
 			shellScript = "xcrun --sdk macosx swift ../scripts/BONSpecialGenerator.swift\n";
 		};
-		A7D8BFF86A740E1DC1EFE8BE /* Embed Pods Frameworks */ = {
+		9650001DE73C43EA0507F7CC /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A8A0D909E8F2BBC53FBD0E79 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Example/Pods-BonMot_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E21C95D286A4EF846FFB4D99 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot_Tests/Pods-BonMot_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -808,7 +808,7 @@
 		};
 		6003F5C0195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 442D6A6A5BDCDABF372F06F0 /* Pods-BonMot_Example.debug.xcconfig */;
+			baseConfigurationReference = 13736C389CD23A02892957FC /* Pods-BonMot_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -825,7 +825,7 @@
 		};
 		6003F5C1195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EBE7037465B0F6F184875C40 /* Pods-BonMot_Example.release.xcconfig */;
+			baseConfigurationReference = 1D38C8C9EDB7A60A99FC8FFC /* Pods-BonMot_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -841,7 +841,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C5FDEB73602AB6D2BAB82EE /* Pods-BonMot_Tests.debug.xcconfig */;
+			baseConfigurationReference = 84DE7FD256FC66A0A8484C8B /* Pods-BonMot_Tests.debug.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -862,7 +862,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEA43FE0E796D75B40E7EF87 /* Pods-BonMot_Tests.release.xcconfig */;
+			baseConfigurationReference = 149F308CF995E9B97CEE58C6 /* Pods-BonMot_Tests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = "Tests/Tests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";

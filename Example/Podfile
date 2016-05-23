@@ -1,12 +1,17 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'BonMot_Example', :exclusive => true do
-  pod "BonMot", :path => "../"
-  pod "BonMot/UIKit", :path => "../"
-end
+target 'BonMot_Example' do
 
-target 'BonMot_Tests', :exclusive => true do
   pod "BonMot", :path => "../"
   pod "BonMot/UIKit", :path => "../"
+  
+  target 'BonMot_Tests' do
+
+    inherit! :search_paths
+    pod "BonMot", :path => "../"
+    pod "BonMot/UIKit", :path => "../"
+
+  end
+  
 end
