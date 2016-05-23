@@ -8,6 +8,7 @@ install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 - export PYTHONUSERBASE=~/.local
 - easy_install --user scan-build
+- bundle install
 script:
 # "warm" iPhone 6 simulator by pre-launching it so tests don't hang
 - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
@@ -27,4 +28,4 @@ script:
 - export PATH="${HOME}/.local/bin:${PATH}"
 - set -o pipefail && scan-build --status-bugs xcodebuild analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
 
-- pod lib lint
+- bundle exec pod lib lint
