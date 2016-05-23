@@ -304,7 +304,7 @@ Outputs:
 
 <img width=275 height=25 src="readme-images/arbitrary-tag-styling.png" />
 
-**Note:** Tag styles do not support nested or interleaved tags. The first tag matched will be applied, any additional tags between the start end end will be ignored.
+**Note:** Tag styles do not support nested or interleaved tags. The first tag matched will be applied; any additional tags between the start and end will be ignored.
 
 
 ## Contributing
