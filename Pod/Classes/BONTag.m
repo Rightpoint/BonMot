@@ -56,7 +56,7 @@ static NSString *const kBONTagDefaultEscapeString = @"\\";
     tag.endTag = self.endTag;
     tag.escapeString = self.escapeString;
     tag.textable = self.textable;
-    tag.ranges = self.ranges;
+    tag.ranges = self.ranges.mutableCopy;
 
     return tag;
 }
