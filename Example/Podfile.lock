@@ -1,8 +1,8 @@
 PODS:
-  - BonMot (3.1):
-    - BonMot/Core (= 3.1)
-  - BonMot/Core (3.1)
-  - BonMot/UIKit (3.1):
+  - BonMot (3.1.1):
+    - BonMot/Core (= 3.1.1)
+  - BonMot/Core (3.1.1)
+  - BonMot/UIKit (3.1.1):
     - BonMot/Core
 
 DEPENDENCIES:
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BonMot: ff832a7241c8f2faef6d2fe3b08b9f8eb3d76b9f
+  BonMot: 1e6a1b229755a709cad4c6510026a53b46c89375
 
 PODFILE CHECKSUM: ae4abcb634e4918fa15395e23a8db9ca1dccad55
 
