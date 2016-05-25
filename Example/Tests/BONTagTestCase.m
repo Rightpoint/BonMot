@@ -80,4 +80,55 @@
     XCTAssertEqualObjects(resultTag.ranges, tagRanges);
 }
 
+- (void)testReusedChain
+{
+    // Make sure that shared chains don't leak tag ranges between each other: https://github.com/Raizlabs/BonMot/issues/148
+    BONChain *whiteChain = BONChain.new.color([UIColor whiteColor]);
+    BONChain *chain = whiteChain
+                          .font([UIFont preferredFontForTextStyle:UIFontTextStyleBody])
+                          .tagStyles(@{
+                              @"bold" : whiteChain.font([UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]),
+                          });
+
+    NSAttributedString *firstString = chain.string(@"<bold>first</bold> string").attributedString;
+
+    BONAssertEquivalentStrings(firstString, @"first string");
+
+    NSParagraphStyle *controlParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *firstControlAtrributes = @{
+        BONValueFromRange(0, 5) : @{
+            NSForegroundColorAttributeName : [UIColor whiteColor],
+            NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+            NSParagraphStyleAttributeName : controlParagraphStyle,
+        },
+        BONValueFromRange(5, 7) : @{
+            NSForegroundColorAttributeName : [UIColor whiteColor],
+            NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+            NSParagraphStyleAttributeName : controlParagraphStyle,
+        }
+    };
+
+    BONAssertAttributedStringHasAttributes(firstString, firstControlAtrributes);
+
+    NSAttributedString *secondString = chain.string(@"second <bold>string</bold>").attributedString;
+
+    BONAssertEquivalentStrings(secondString, @"second string");
+
+    NSDictionary *secondControlAtrributes = @{
+        BONValueFromRange(0, 7) : @{
+            NSForegroundColorAttributeName : [UIColor whiteColor],
+            NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleBody],
+            NSParagraphStyleAttributeName : controlParagraphStyle,
+        },
+        BONValueFromRange(7, 6) : @{
+            NSForegroundColorAttributeName : [UIColor whiteColor],
+            NSFontAttributeName : [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+            NSParagraphStyleAttributeName : controlParagraphStyle,
+        }
+    };
+
+    BONAssertAttributedStringHasAttributes(secondString, secondControlAtrributes);
+}
+
 @end
