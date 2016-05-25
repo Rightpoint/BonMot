@@ -8,6 +8,7 @@ install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 - export PYTHONUSERBASE=~/.local
 - easy_install --user scan-build
+- gem install bundler --no-rdoc --no-ri
 - bundle install
 script:
 # "warm" iPhone 6 simulator by pre-launching it so tests don't hang
