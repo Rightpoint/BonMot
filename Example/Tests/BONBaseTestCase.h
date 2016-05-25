@@ -49,7 +49,7 @@ OBJC_EXTERN NSValue *BONValueFromRange(NSUInteger location, NSUInteger length);
         NSValue *testRangeValue = [NSValue valueWithRange:range];                                                                                                                                    \
         NSDictionary *controlAttrs = controlAttributes[testRangeValue];                                                                                                                              \
         XCTAssertNotNil(controlAttrs, @"Attributed String had attributes that were not accounted for at %@: %@", NSStringFromRange(range), attrs);                                                   \
-        BONAssertEqualDictionaries(attrs, controlAttrs);                                                                                                                                             \
+        BONAssertEqualDictionaries(attrs, controlAttrs, @"range: %@", NSStringFromRange(range));                                                                                                                                             \
         [mutableControlAttributes removeObjectForKey:testRangeValue]; }]; \
         XCTAssertEqual(mutableControlAttributes.count, 0, @"Some attributes not found in string: %@", mutableControlAttributes);                                                                     \
     } while (0)
