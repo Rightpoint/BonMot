@@ -32,6 +32,7 @@ typedef BONChain *BONCNonnull (^BONChainLineBreakMode)(NSLineBreakMode lineBreak
 typedef BONChain *BONCNonnull (^BONChainParagraphSpacingAfter)(CGFloat paragraphSpacing);
 typedef BONChain *BONCNonnull (^BONChainParagraphSpacingBefore)(CGFloat paragraphSpacingBefore);
 typedef BONChain *BONCNonnull (^BONChainBaselineOffset)(CGFloat baselineOffset);
+typedef BONChain *BONCNonnull (^BONChainHyphenationFactor)(CGFloat hyphenationFactor);
 typedef BONChain *BONCNonnull (^BONChainAlignment)(NSTextAlignment alignment);
 typedef BONChain *BONCNonnull (^BONChainFigureCase)(BONFigureCase figureCase);
 typedef BONChain *BONCNonnull (^BONChainFigureSpacing)(BONFigureSpacing figureSpacing);
@@ -77,6 +78,11 @@ typedef BONChain *BONCNonnull (^BONTagComplexStyles)(BONGeneric(NSArray, BONTag 
 @property (copy, nonatomic, readonly) BONChainParagraphSpacingBefore paragraphSpacingBefore;
 
 @property (copy, nonatomic, readonly) BONChainBaselineOffset baselineOffset;
+
+/**
+ *  Hyphenation is attempted when the ratio of the text width (as broken without hyphenation) to the width of the line fragment is less than the hyphenation factor. When the paragraph’s hyphenation factor is 0.0, the layout manager’s hyphenation factor is used instead. When both are 0.0, hyphenation is disabled.
+ */
+@property (copy, nonatomic, readonly) BONChainHyphenationFactor hyphenationFactor;
 
 @property (copy, nonatomic, readonly) BONChainAlignment alignment;
 
