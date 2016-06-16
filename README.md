@@ -51,6 +51,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Paragraph spacing before
 - Paragraph spacing after
 - Baseline offset
+- Hyphenation factor (the threshold for hyphenating across line breaks)
 - Text alignment
 - Underlining and strikethrough
 - Figure case (uppercase vs. lowercase numbers)
