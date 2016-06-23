@@ -38,6 +38,7 @@ typedef BONChain *BONCNonnull (^BONChainFigureSpacing)(BONFigureSpacing figureSp
 typedef BONChain *BONCNonnull (^BONChainIndentSpacer)(CGFloat indentSpacer);
 typedef BONChain *BONCNonnull (^BONChainString)(NSString *BONCNullable string);
 typedef BONChain *BONCNonnull (^BONChainImage)(UIImage *BONCNullable image);
+typedef BONChain *BONCNonnull (^BONChainLink)(NSURL *BONCNullable link);
 
 typedef BONChain *BONCNonnull (^BONChainUnderlineStyle)(NSUnderlineStyle style);
 typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable color);
@@ -60,6 +61,7 @@ typedef BONChain *BONCNonnull (^BONTagComplexStyles)(BONGeneric(NSArray, BONTag 
 
 @property (copy, nonatomic, readonly) BONChainColor color;
 @property (copy, nonatomic, readonly) BONChainColor backgroundColor;
+@property (copy, nonatomic, readonly) BONChainLink link;
 
 // adobeTracking and pointTracking are mutually exclusive: setting one will unset the other
 @property (copy, nonatomic, readonly) BONChainAdobeTracking adobeTracking;

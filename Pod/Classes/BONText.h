@@ -59,6 +59,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) CGFloat paragraphSpacingBefore;
 
 @property (nonatomic) CGFloat baselineOffset;
+@property (copy, nonatomic, BONNullable) NSURL *link;
 
 /**
  *  Defaults to @c NSTextAlignmentNatural.

@@ -388,7 +388,13 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     if (self.strikethroughColor) {
         attributes[NSStrikethroughColorAttributeName] = self.strikethroughColor;
     }
-
+    
+    // Link
+    
+    if (self.link) {
+        attributes[NSLinkAttributeName] = self.link;
+    }
+    
     return attributes;
 }
 
@@ -418,6 +424,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     text.string = self.string;
     text.image = self.image;
     text.nextText = self.nextText;
+    text.link = self.link;
 
     text.internalIndentSpacer = self.internalIndentSpacer;
 
