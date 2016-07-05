@@ -5,7 +5,6 @@
 language: objective-c
 osx_image: xcode7.3
 install:
-- gem install activesupport -v '5.0.0' # required for Bundler on Travis
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 - export PYTHONUSERBASE=~/.local
 - easy_install --user scan-build
