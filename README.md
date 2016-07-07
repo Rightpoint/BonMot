@@ -172,7 +172,16 @@ Outputs:
 <img width=227 src="readme-images/fish-with-black-comma.png" />
 
 You can also append chains directly to each other:
+```swift
+let commaSpace = ", "
+let chain = BONChain()
+chain.appendLink(BONChain().string("one fish"))
+chain.appendLink(BONChain().string("two fish"), separator: commaSpace)
+chain.appendLink(BONChain().string("red fish").color(.redColor()), separator: commaSpace)
+chain.appendLink(BONChain().string("blue fish").color(.blueColor()), separator: commaSpace)
 
+let string = chain.attributedString
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
