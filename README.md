@@ -102,6 +102,25 @@ BONChain.new // [BONChain new] and [[BONChain alloc] init] also work
 
 You can also create a local variable or property to save a partially-configured chain. All the chaining methods pass copies of the chain, so you don't have to worry about later changes clobbering earlier properties:
 
+```swift
+// Base Chain
+let birdChain = BONChain()
+    .lineHeightMultiple(1.2)
+    .font(UIFont.systemFontOfSize(17.0))
+    .string("bird")
+
+// Two chains with different colors
+// that inherit their parents' properties
+let redBirds = birdChain.color(.redColor())
+let blueBirds = birdChain.color(.blueColor())
+
+// Two different attributed strings with all attributes shared
+// except for text color
+let redBirdString = redBirds.attributedString
+let blueBirdString = blueBirds.attributedString
+```
+<details>
+<summary>Objective-C</summary>
 ```objc
 // Base Chain
 BONChain *birdChain =
@@ -114,6 +133,7 @@ BONChain.new
 // that inherit their parents’ properties
 BONChain *redBirds = birdChain.color([UIColor redColor]);
 BONChain *blueBirds = birdChain.color([UIColor blueColor]);
+</details>
 
 // two different attributed strings with all attributes shared
 // except for text color
