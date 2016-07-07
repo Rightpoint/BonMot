@@ -267,7 +267,14 @@ BonMot provides several utilities that enhance its interoperability with UIKit.
 BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `-setBonString:` method (or `.bonString = ...` in Objective-C).
 
 **Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
+```swift
+let label = UILabel()
 
+let chain = BONChain().adobeTracking(300).fontNameAndSize("Avenir-Book", 18.0)
+
+label.bonTextable = chain
+label.setBonString("Some initial text.")
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
