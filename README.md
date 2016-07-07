@@ -345,7 +345,7 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 ## Unit Testing helpers
 
-`-[NSAttributedString bon_humanReadableString]` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
+NSAttributedString's `bon_humanReadableString` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
 
 <details>
 <summary>Objective-C</summary>
