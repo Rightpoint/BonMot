@@ -145,7 +145,15 @@ NSAttributedString *blueBirdString = blueBirds.attributedString;
 ## Concatenation
 
 You can concatenate an array of `BONChain`s or `BONText`s:
+```swift
+let oneFish = BONChain().string("one fish")
+let twoFish = BONChain().string("two fish")
+let redFish = BONChain().string("red fish").color(.redColor())
+let blueFish = BONChain().string("blue fish").color(.blueColor())
+let separator = BONChain().string(", ")
 
+let string = BONText.joinTextables([oneFish, twoFish, redFish, blueFish], withSeparator: separator)
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -258,6 +266,9 @@ Outputs:
 
 Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
 
+```swift
+label.setBonString("Some updated text.")
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -265,12 +276,6 @@ label.bonString = @"Some updated text."; // this shorthand is valid in Obj-C
 ```
 </details>
 
-<details>
-<summary>Objective-C</summary>
-```swift
-label.setBonString("Some updated text.") // Here’s the Swift equivalent
-```
-</details>
 
 Outputs:
 
