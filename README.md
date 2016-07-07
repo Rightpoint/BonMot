@@ -67,6 +67,20 @@ In any Swift file where you want to use BonMot, simply `import BonMot`. In Objec
 
 The basic object in BonMot is `BONChain`, which allows you quickly construct attributed strings. You can create a chain with a normal `[[BONChain alloc] init]`, but it's easier to just use `[BONChain new]` or the even shorter and technically valid `BONChain.new`:
 
+```swift
+let quote = "I used to love correcting people's grammar until\"" +
+"I realized what I loved more was having friends.\n\"" +
+"-Mara Wilson"
+
+// line-wrapped for readability
+let attributedString =
+BONChain()
+.lineHeightMultiple(1.2)
+.fontNameAndSize("AmericanTypewriter", 17.0)
+.string(quote)
+.attributedString   // You can also query .attributes
+// and get back a dictionary of attributes
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
