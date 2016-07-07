@@ -205,7 +205,12 @@ Outputs:
 ## Image Attachments
 
 BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain:
-
+```swift
+let chain = BONChain()
+chain.appendLink(BONChain().image(someUIImage).baselineOffset(-4.0))
+chain.appendLink(BONChain().string("label with icon"), separator: " ")
+let string = chain.attributedString
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -221,7 +226,13 @@ Outputs:
 <img width=116 height=22 src="readme-images/label-with-icon.png" />
 
 If you need to wrap multiple lines of text after an image, use the `indentSpacer` property to align the whole paragraph after the image:
-
+```swift
+let quote = "This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned"
+let chain = BONChain()
+chain.appendLink(BONChain().image(someUIImage).indentSpacer(10.0))
+chain.appendLink(BONChain().string(quote), separator: " ")
+let string = chain.attributedString
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
