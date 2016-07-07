@@ -140,11 +140,14 @@ BONChain *blueBirds = birdChain.color([UIColor blueColor]);
 NSAttributedString *redBirdString = redBirds.attributedString;
 NSAttributedString *blueBirdString = blueBirds.attributedString;
 ```
+</details>
 
 ## Concatenation
 
 You can concatenate an array of `BONChain`s or `BONText`s:
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 BONChain *oneFish = BONChain.new.string(@"one fish");
 BONChain *twoFish = BONChain.new.string(@"two fish");
@@ -154,6 +157,7 @@ BONChain *separator = BONChain.new.string(@", ");
 
 NSAttributedString *string = [BONText joinTextables:@[ oneFish, twoFish, redFish, blueFish ] withSeparator:separator];
 ```
+</details>
 
 Outputs:
 
@@ -161,6 +165,8 @@ Outputs:
 
 You can also append chains directly to each other:
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 NSString *commaSpace = @", ";
 BONChain *chain = BONChain.new;
@@ -171,6 +177,7 @@ BONChain *chain = BONChain.new;
 
 NSAttributedString *string = chain.attributedString;
 ```
+</details>
 
 Outputs:
 
@@ -182,12 +189,15 @@ Outputs:
 
 BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain:
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 BONChain *chain = BONChain.new;
 [chain appendLink:BONChain.new.image(someUIImage).baselineOffset(-4.0)];
 [chain appendLink:BONChain.new.string(@"label with icon") separator: @" "];
 NSAttributedString *string = chain.attributedString;
 ```
+</details>
 
 Outputs:
 
@@ -195,6 +205,8 @@ Outputs:
 
 If you need to wrap multiple lines of text after an image, use the `indentSpacer` property to align the whole paragraph after the image:
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 NSString *quote = @"This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned";
 BONChain *chain = BONChain.new;
@@ -202,6 +214,7 @@ BONChain *chain = BONChain.new;
 [chain appendLink:BONChain.new.string(quote)];
 NSAttributedString *attributedString = chain.attributedString;
 ```
+</details>
 
 Outputs:
 
@@ -227,6 +240,8 @@ BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UIText
 
 **Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 UILabel *label = [[UILabel alloc] init];
 
@@ -235,6 +250,7 @@ BONChain *chain = BONChain.new.adobeTracking(300).fontNameAndSize(@"Avenir-Book"
 label.bonTextable = chain;
 [label setBonString:@"Some initial text."];
 ```
+</details>
 
 Outputs:
 
@@ -242,13 +258,19 @@ Outputs:
 
 Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 label.bonString = @"Some updated text."; // this shorthand is valid in Obj-C
 ```
+</details>
 
+<details>
+<summary>Objective-C</summary>
 ```swift
 label.setBonString("Some updated text.") // Here’s the Swift equivalent
 ```
+</details>
 
 Outputs:
 
@@ -266,6 +288,8 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTex
 
 You can use `BONTextAlignmentConstraint` programmatically or in Interface Builder. In code, use the convenience initializer:
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 [BONTextAlignmentConstraint constraintWithItem:someLabel
                                      attribute:BONConstraintAttributeCapHeight
@@ -273,6 +297,7 @@ You can use `BONTextAlignmentConstraint` programmatically or in Interface Builde
                                         toItem:someOtherLabel
                                      attribute:BONConstraintAttributeCapHeight].active = YES;
 ```
+</details>
 
 In Interface Builder, start by constraining two views to each other with a `top` constraint. Select the constraint, and in the Identity Inspector, change the class to `BONTextAlignmentConstraint`:
 
@@ -290,6 +315,8 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 `-[NSAttributedString bon_humanReadableString]` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 BONChain *chain = BONChain.new.image(someImage);
 [chain appendLink:BONChain.new.string(BONSpecial.noBreakSpace)];
@@ -299,6 +326,7 @@ BONChain *chain = BONChain.new.image(someImage);
 
 NSLog(@"%@", chain.attributedString.bon_humanReadableString);
 ```
+</details>
 
 Prints this:
 
@@ -310,6 +338,8 @@ Prints this:
 
 BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
 BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
@@ -320,6 +350,7 @@ BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
 
 NSAttributedString *string = chain.attributedString;
 ```
+</details>
 
 Outputs:
 
@@ -327,6 +358,8 @@ Outputs:
 
 BonMot can also style text between any arbitrary start and end strings using any escape string.
 
+<details>
+<summary>Objective-C</summary>
 ```objc
 BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
 BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
@@ -337,6 +370,7 @@ BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
 
 NSAttributedString *string = chain.attributedString;
 ```
+</details>
 
 Outputs:
 
