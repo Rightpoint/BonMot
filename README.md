@@ -73,8 +73,7 @@ let quote = "I used to love correcting people's grammar until" +
             "-Mara Wilson"
 
 // line-wrapped for readability
-let attributedString =
-    BONChain()
+let attributedString = BONChain()
     .lineHeightMultiple(1.2)
     .fontNameAndSize("AmericanTypewriter", 17.0)
     .string(quote)
