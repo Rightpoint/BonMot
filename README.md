@@ -423,7 +423,6 @@ let string = chain.attributedString
 <summary>Objective-C</summary>
 ```objc
 BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
-BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
 
 BONChain *chain = BONChain.new.fontNameAndSize(@"Baskerville", 17.0f)
 .tagComplexStyles(@[BONTagComplexMake(@"~start~", @"!end", @"escape", boldChain)])
