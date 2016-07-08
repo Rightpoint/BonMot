@@ -319,6 +319,13 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTex
 
 You can use `BONTextAlignmentConstraint` programmatically or in Interface Builder. In code, use the convenience initializer:
 
+```swift
+BONTextAlignmentConstraint(item: someLabel,
+                      attribute: BONConstraintAttribute.CapHeight,
+                      relatedBy: .Equal,
+                         toItem: someOtherLabel,
+                      attribute: BONConstraintAttribute.CapHeight).active = true
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -344,8 +351,15 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 ## Unit Testing helpers
 
-NSAttributedString's `bon_humanReadableString` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
-
+The `bon_humanReadableString` category method on `NSAttributedString` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
+```swift
+let chain = BONChain().image(someImage)
+chain.appendLink(BONChain().string(BONSpecial.noBreakSpace()))
+chain.appendLink(BONChain().string("Monday"))
+chain.appendLink(BONChain().string(BONSpecial.enDash()))
+chain.appendLink(BONChain().string("Friday"))
+print(chain.attributedString.bon_humanReadableString)
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -368,7 +382,16 @@ Prints this:
 ## Tag Styles
 
 BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
+```swift
+let boldChain = BONChain().fontNameAndSize("Basketville-Bold", 15.0)
+let italicChain = BONChain().fontNameAndSize("Basketville-Italic", 15.0)
 
+let chain = BONChain().fontNameAndSize("Basketville", 17.0)
+    .tagStyles(["bold": boldChain, "italic": italicChain])
+    .string("<bold>This text</bold> contains a \\<bold> tag.\n" +
+            "<italic>This text</italic> contains a \\<italic> tag.")
+let string = chain.attributedString
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -388,7 +411,14 @@ Outputs:
 <img width=275 height=40 src="readme-images/tag-styling.png" />
 
 BonMot can also style text between any arbitrary start and end strings using any escape string.
+```swift
+let boldChain = BONChain().fontNameAndSize("Basketville-Bold", 15.0)
 
+let chain = BONChain().fontNameAndSize("Basketville", 17.0)
+.tagComplexStyles([BONTag(startTag: "~start", endTag: "!end", escapeString: "escape", textable: boldChain)])
+.string("~start~This text is wrapped in a escape~start~ tag.!end")
+let string = chain.attributedString
+```
 <details>
 <summary>Objective-C</summary>
 ```objc
