@@ -383,10 +383,10 @@ Prints this:
 
 BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
 ```swift
-let boldChain = BONChain().fontNameAndSize("Basketville-Bold", 15.0)
-let italicChain = BONChain().fontNameAndSize("Basketville-Italic", 15.0)
+let boldChain = BONChain().fontNameAndSize("Baskerville-Bold", 15.0)
+let italicChain = BONChain().fontNameAndSize("Baskerville-Italic", 15.0)
 
-let chain = BONChain().fontNameAndSize("Basketville", 17.0)
+let chain = BONChain().fontNameAndSize("Baskerville", 17.0)
     .tagStyles(["bold": boldChain, "italic": italicChain])
     .string("<bold>This text</bold> contains a \\<bold> tag.\n" +
             "<italic>This text</italic> contains a \\<italic> tag.")
@@ -412,11 +412,11 @@ Outputs:
 
 BonMot can also style text between any arbitrary start and end strings using any escape string.
 ```swift
-let boldChain = BONChain().fontNameAndSize("Basketville-Bold", 15.0)
+let boldChain = BONChain().fontNameAndSize("Baskerville-Bold", 15.0)
 
-let chain = BONChain().fontNameAndSize("Basketville", 17.0)
-.tagComplexStyles([BONTag(startTag: "~start", endTag: "!end", escapeString: "escape", textable: boldChain)])
-.string("~start~This text is wrapped in a escape~start~ tag.!end")
+let chain = BONChain().fontNameAndSize("Baskerville", 17.0)
+    .tagComplexStyles([BONTag(startTag: "~start", endTag: "!end", escapeString: "escape", textable: boldChain)])
+    .string("~start~This text is wrapped in a escape~start~ tag.!end")
 let string = chain.attributedString
 ```
 <details>
