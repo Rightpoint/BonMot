@@ -65,7 +65,7 @@ Think something is missing? Please [file an issue](https://github.com/Raizlabs/B
 
 In any Swift file where you want to use BonMot, simply `import BonMot`. In Objective-C, that’s `#import <BonMot/BonMot.h>` or `@import BonMot`.
 
-The basic object in BonMot is `BONChain`, which allows you quickly construct attributed strings. You can create a chain with a normal `BonChain()` in Swift or either `[[BONChain alloc] init]`, `[BONChain new]` or `BONChain.new` in Objective-C:
+The basic object in BonMot is `BONChain`, which allows you quickly construct attributed strings. You can create a chain with a normal `BonChain()` in Swift or either `[[BONChain alloc] init]`, `[BONChain new]`, or `BONChain.new` in Objective-C:
 
 ```swift
 let quote = "I used to love correcting people's grammar until" +
