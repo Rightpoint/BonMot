@@ -398,9 +398,8 @@
         // Recursion!
         [self appendLink:separator]; // add the sparator, with the same properties as self, to the end of the chain.
     }
-    
+
     [self.class appendText:link.text toEndOfText:self.text];
-    
 }
 
 - (NSString *)description
@@ -448,7 +447,7 @@
         // Recursion!
         [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
     }
-    
+
     [self.class appendText:link.text toEndOfText:self.text];
 }
 
