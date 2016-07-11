@@ -36,11 +36,12 @@
 
     NSDictionary *controlAttributes = @{
                                         BONValueFromRange(0, 12) : @{
-                                                NSLinkAttributeName : [NSURL URLWithString:@"https://apple.com"]
+                                                NSLinkAttributeName : [NSURL URLWithString:@"https://apple.com"],
+                                                NSParagraphStyleAttributeName : [[NSParagraphStyle alloc] init]
                                                 },
                                         };
     
-    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
 @end
