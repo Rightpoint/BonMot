@@ -41,15 +41,15 @@
 
     BONChain *wholeString = BONChain.new;
     [wholeString appendLink:twoChain];
-    [wholeString appendLink:beeChain separator:@" "];
-    [wholeString appendLink:oarChain separator:@" "];
-    [wholeString appendLink:knotChain separator:@" "];
+    [wholeString appendLink:beeChain separatorTextable:spaceChain];
+    [wholeString appendLink:oarChain separatorTextable:spaceChain];
+    [wholeString appendLink:knotChain separatorTextable:spaceChain];
 
     // you can also append the space and the chain separately if you prefer
     [wholeString appendLink:spaceChain];
     [wholeString appendLink:twoChain];
 
-    [wholeString appendLink:beeChain separator:@" "];
+    [wholeString appendLink:beeChain separatorTextable:spaceChain];
 
     // You can set the bonTextable directly on the label, instead of having to extract the attributed string
     self.label.bonTextable = wholeString;

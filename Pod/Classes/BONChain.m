@@ -389,17 +389,18 @@
 
 - (void)appendLink:(id<BONTextable>)link
 {
-    [self appendLink:link separator:nil];
+    [self appendLink:link separatorTextable:nil];
 }
 
-- (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
+- (void)appendLink:(id<BONTextable>)link separatorTextable:(id<BONTextable>)separator
 {
-    if (separator.length > 0) {
+    if (separator.text.string.length > 0) {
         // Recursion!
-        [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
+        [self appendLink:separator]; // add the sparator, with the same properties as self, to the end of the chain.
     }
-
+    
     [self.class appendText:link.text toEndOfText:self.text];
+    
 }
 
 - (NSString *)description
@@ -439,6 +440,16 @@
 - (BONChainColor)textColor
 {
     return self.color;
+}
+
+- (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
+{
+    if (separator.length > 0) {
+        // Recursion!
+        [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
+    }
+    
+    [self.class appendText:link.text toEndOfText:self.text];
 }
 
 @end
