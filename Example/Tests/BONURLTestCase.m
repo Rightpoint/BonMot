@@ -1,5 +1,5 @@
 //
-//  BONLinktestCase.m
+//  BONURLTestCase.m
 //  BonMot
 //
 //  Created by Phil Larson on 6/24/16.
@@ -10,11 +10,11 @@
 
 @import BonMot;
 
-@interface BONLinktestCase : BONBaseTestCase
+@interface BONURLTestCase : BONBaseTestCase
 
 @end
 
-@implementation BONLinktestCase
+@implementation BONURLTestCase
 
 - (void)testNeither
 {
@@ -29,7 +29,7 @@
     NSAttributedString *attributedString =
     BONChain.new
     .string(@"Hello, world")
-    .link([NSURL URLWithString:@"https://apple.com"])
+    .url([NSURL URLWithString:@"https://apple.com"])
     .attributedString;
     
     XCTAssertEqualObjects(attributedString.string, @"Hello, world");

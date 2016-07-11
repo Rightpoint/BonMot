@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
 @property (nonatomic) CGFloat paragraphSpacingBefore;
 
 @property (nonatomic) CGFloat baselineOffset;
-@property (copy, nonatomic, BONNullable) NSURL *link;
+@property (copy, nonatomic, BONNullable) NSURL *url;
 
 /**
  *  Hyphenation is attempted when the ratio of the text width (as broken without hyphenation) to the width of the line fragment is less than the hyphenation factor. When the paragraph’s hyphenation factor is 0.0, the layout manager’s hyphenation factor is used instead. When both are 0.0, hyphenation is disabled. Values from 0 to 1 will result in varying levels of hyphenation, with higher values resulting in more aggressive (i.e. more frequent) hyphenation.

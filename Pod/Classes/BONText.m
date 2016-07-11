@@ -398,8 +398,8 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     
     // Link
     
-    if (self.link) {
-        attributes[NSLinkAttributeName] = self.link;
+    if (self.url) {
+        attributes[NSLinkAttributeName] = self.url;
     }
     
     return attributes;
@@ -432,7 +432,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     text.string = self.string;
     text.image = self.image;
     text.nextText = self.nextText;
-    text.link = self.link;
+    text.url = self.url;
 
     text.internalIndentSpacer = self.internalIndentSpacer;
 
