@@ -109,7 +109,7 @@ let birdChain = BONChain()
     .string("bird")
 
 // Two chains with different colors
-// that inherit their parents' properties
+// that inherit their parents’ properties
 let redBirds = birdChain.color(.redColor())
 let blueBirds = birdChain.color(.blueColor())
 
