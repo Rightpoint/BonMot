@@ -255,6 +255,17 @@
     return [baselineOffsetBlock copy];
 }
 
+- (BONChainHyphenationFactor)hyphenationFactor
+{
+    BONChainHyphenationFactor hyphenationFactorBlock = ^(CGFloat hyphenationFactor) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.hyphenationFactor = hyphenationFactor;
+        return newChain;
+    };
+
+    return [hyphenationFactorBlock copy];
+}
+
 - (BONChainAlignment)alignment
 {
     BONChainAlignment alignmentBlock = ^(NSTextAlignment alignment) {

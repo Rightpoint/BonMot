@@ -358,6 +358,13 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         attributes[NSBaselineOffsetAttributeName] = @(self.baselineOffset);
     }
 
+    // Hyphenation Factor
+
+    if (self.hyphenationFactor != 0.0) {
+        populateParagraphStyleIfNecessary();
+        paragraphStyle.hyphenationFactor = self.hyphenationFactor;
+    }
+
     // Text Alignment
 
     if (self.alignment != NSTextAlignmentNatural) {
@@ -418,6 +425,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     text.paragraphSpacingAfter = self.paragraphSpacingAfter;
     text.paragraphSpacingBefore = self.paragraphSpacingBefore;
     text.baselineOffset = self.baselineOffset;
+    text.hyphenationFactor = self.hyphenationFactor;
     text.alignment = self.alignment;
     text.figureCase = self.figureCase;
     text.figureSpacing = self.figureSpacing;
