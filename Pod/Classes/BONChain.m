@@ -394,7 +394,7 @@
 
 - (void)appendLink:(id<BONTextable>)link separatorTextable:(id<BONTextable>)separator
 {
-    if (separator.text.string.length > 0) {
+    if (separator && !separator.text.generatesEmptyString) {
         // Recursion!
         [self appendLink:separator]; // add the sparator, with the same properties as self, to the end of the chain.
     }

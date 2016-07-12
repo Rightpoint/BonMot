@@ -89,7 +89,7 @@
 - (void)testAppendingWithSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello");
-    [chain appendLink:BONChain.new.string(@"world!") separator:@", "];
+    [chain appendLink:BONChain.new.string(@"world!") separatorTextable:BONChain.new.string(@", ")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -129,7 +129,7 @@
 - (void)testAppendingWithNilSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
-    [chain appendLink:BONChain.new.string(@"world!") separator:nil];
+    [chain appendLink:BONChain.new.string(@"world!") separatorTextable:nil];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -149,7 +149,7 @@
 - (void)testAppendingWithEmptySeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
-    [chain appendLink:BONChain.new.string(@"world!") separator:@""];
+    [chain appendLink:BONChain.new.string(@"world!") separatorTextable:BONChain.new.string(@"")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -189,7 +189,7 @@
 - (void)testAppendingWithDifferentAttributes
 {
     BONChain *chain = BONChain.new.string(@"Hello").color([UIColor redColor]);
-    [chain appendLink:BONChain.new.string(@"world!").color([UIColor blueColor]) separator:@", "];
+    [chain appendLink:BONChain.new.string(@"world!").color([UIColor blueColor]) separatorTextable:BONChain.new.string(@", ").color([UIColor greenColor])];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -198,8 +198,12 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 7) : @{
+        BONValueFromRange(0, 5) : @{
             NSForegroundColorAttributeName : [UIColor redColor],
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+        BONValueFromRange(5, 2) : @{
+            NSForegroundColorAttributeName : [UIColor greenColor],
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
         BONValueFromRange(7, 6) : @{
@@ -240,7 +244,7 @@
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
     [chain appendLink:BONChain.new.string(@"world!")];
-    [chain appendLink:BONChain.new.string(@"It really is a lovely day today.") separator:@" "];
+    [chain appendLink:BONChain.new.string(@"It really is a lovely day today.") separatorTextable:BONChain.new.string(@" ")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -274,7 +278,7 @@
     NSAttributedString *textString = textChain.attributedString;
     XCTAssertEqualObjects(textString.string, @"concatenate me!");
 
-    [imageChain appendLink:textChain separator:BONSpecial.noBreakSpace];
+    [imageChain appendLink:textChain separatorTextable:BONChain.new.string(BONSpecial.noBreakSpace)];
 
     NSAttributedString *testString = imageChain.attributedString;
 
