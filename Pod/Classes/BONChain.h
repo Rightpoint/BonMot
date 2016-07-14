@@ -39,7 +39,7 @@ typedef BONChain *BONCNonnull (^BONChainFigureSpacing)(BONFigureSpacing figureSp
 typedef BONChain *BONCNonnull (^BONChainIndentSpacer)(CGFloat indentSpacer);
 typedef BONChain *BONCNonnull (^BONChainString)(NSString *BONCNullable string);
 typedef BONChain *BONCNonnull (^BONChainImage)(UIImage *BONCNullable image);
-typedef BONChain *BONCNonnull (^BONChainURL)(NSURL *BONCNullable link);
+typedef BONChain *BONCNonnull (^BONChainURL)(NSURL *BONCNullable url);
 
 typedef BONChain *BONCNonnull (^BONChainUnderlineStyle)(NSUnderlineStyle style);
 typedef BONChain *BONCNonnull (^BONChainUnderlineColor)(UIColor *BONCNullable color);

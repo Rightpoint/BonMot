@@ -396,7 +396,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         attributes[NSStrikethroughColorAttributeName] = self.strikethroughColor;
     }
     
-    // Link
+    // URL
     
     if (self.url) {
         attributes[NSLinkAttributeName] = self.url;
