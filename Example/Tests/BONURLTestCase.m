@@ -20,28 +20,28 @@
 {
     NSString *quote = @"Hello, world";
     NSDictionary *attributes = BONChain.new.string(quote).attributes;
-    
+
     XCTAssertNil(attributes[NSLinkAttributeName]);
 }
 
-- (void)testLink
+- (void)testURL
 {
     NSAttributedString *attributedString =
-    BONChain.new
-    .string(@"Hello, world")
-    .url([NSURL URLWithString:@"https://apple.com"])
-    .attributedString;
-    
+        BONChain.new
+            .string(@"Hello, world")
+            .url([NSURL URLWithString:@"https://apple.com"])
+            .attributedString;
+
     XCTAssertEqualObjects(attributedString.string, @"Hello, world");
 
     NSDictionary *controlAttributes = @{
-                                        BONValueFromRange(0, 12) : @{
-                                                NSLinkAttributeName : [NSURL URLWithString:@"https://apple.com"],
-                                                NSParagraphStyleAttributeName : [[NSParagraphStyle alloc] init]
-                                                },
-                                        };
-    
-     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+        BONValueFromRange(0, 12) : @{
+            NSLinkAttributeName : [NSURL URLWithString:@"https://apple.com"],
+            NSParagraphStyleAttributeName : [[NSParagraphStyle alloc] init]
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
 @end
