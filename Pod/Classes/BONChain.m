@@ -443,12 +443,7 @@
 
 - (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
 {
-    if (separator.length > 0) {
-        // Recursion!
-        [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
-    }
-
-    [self.class appendText:link.text toEndOfText:self.text];
+    [self appendLink:link separatorTextable:BONChain.new.string(separator)];
 }
 
 @end
