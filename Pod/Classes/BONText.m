@@ -395,13 +395,13 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     if (self.strikethroughColor) {
         attributes[NSStrikethroughColorAttributeName] = self.strikethroughColor;
     }
-    
+
     // URL
-    
+
     if (self.url) {
         attributes[NSLinkAttributeName] = self.url;
     }
-    
+
     return attributes;
 }
 
@@ -575,6 +575,15 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return [self debugStringIncludeImageAddresses:YES];
 }
 
+- (NSString *)debugStringLeftToRight
+{
+    NSString *debugString = [self debugString];
+    NSArray<NSString *> *lines = [debugString componentsSeparatedByString:@"\n"];
+    NSString *separator = [NSString stringWithFormat:@"\n%@", BONSpecial.leftToRightOverride];
+    return [BONSpecial.leftToRightOverride stringByAppendingString:
+                                               [lines componentsJoinedByString:separator]];
+}
+
 - (NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses
 {
     NSAttributedString *originalAttributedString = self.attributedString;
@@ -587,9 +596,6 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         if (substringRange.location != 0) {
             [debugString appendString:@"\n"];
         }
-        
-        //Append left-to-right override special character to start of each line
-        [debugString appendString:@"\u202D"];
 
         if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
             BONStringDict *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
@@ -674,7 +680,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 - (NSString *)description
 {
-    NSString *debugString = [self debugStringIncludeImageAddresses:YES];
+    NSString *debugString = [self debugStringLeftToRight];
     NSString *realString = self.attributedString.string;
     __block NSUInteger composedCharacterCount = 0;
 

@@ -37,6 +37,7 @@ typedef NS_ENUM(unichar, BONCharacter) {
     BONCharacterHorizontalEllipsis = 0x2026,
     BONCharacterLineSeparator = 0x2028,
     BONCharacterParagraphSeparator = 0x2029,
+    BONCharacterLeftToRightOverride = 0x202D,
     BONCharacterNarrowNoBreakSpace = 0x202F,
     BONCharacterWordJoiner = 0x2060,
     BONCharacterMinusSign = 0x2212,
@@ -64,6 +65,7 @@ typedef NS_ENUM(unichar, BONCharacter) {
 + (NSString *)horizontalEllipsis;
 + (NSString *)lineSeparator;
 + (NSString *)paragraphSeparator;
++ (NSString *)leftToRightOverride;
 + (NSString *)narrowNoBreakSpace;
 + (NSString *)wordJoiner;
 + (NSString *)minusSign;
