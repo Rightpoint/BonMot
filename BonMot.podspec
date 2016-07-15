@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BonMot"
-  s.version          = "3.1.1"
+  s.version          = "3.2"
   s.summary          = "An Objective-C attributed string generation library."
   s.description      = <<-DESC
   BonMot removes all the mystery from creating beautiful, powerful attributed strings on iOS.
