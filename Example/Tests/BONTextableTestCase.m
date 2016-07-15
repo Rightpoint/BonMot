@@ -299,11 +299,8 @@
     NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
 
     NSDictionary *controlAttributes = @{
-        BONValueFromRange(0, 5) : @{
+        BONValueFromRange(0, 7) : @{
             NSForegroundColorAttributeName : [UIColor redColor],
-            NSParagraphStyleAttributeName : defaultParagraphStyle,
-        },
-        BONValueFromRange(5, 2) : @{
             NSParagraphStyleAttributeName : defaultParagraphStyle,
         },
         BONValueFromRange(7, 6) : @{

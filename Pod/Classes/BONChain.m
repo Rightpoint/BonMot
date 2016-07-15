@@ -443,7 +443,7 @@
 
 - (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
 {
-    [self appendLink:link separatorTextable:BONChain.new.string(separator)];
+    [self appendLink:link separatorTextable:self.string(separator)];
 }
 
 @end
