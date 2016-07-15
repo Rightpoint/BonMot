@@ -587,6 +587,9 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         if (substringRange.location != 0) {
             [debugString appendString:@"\n"];
         }
+        
+        //Append left-to-right override special character to start of each line
+        [debugString appendString:@"\u202D"];
 
         if ([substring isEqualToString:BONSpecial.objectReplacementCharacter]) {
             BONStringDict *attributes = [originalAttributedString attributesAtIndex:substringRange.location effectiveRange:NULL];
