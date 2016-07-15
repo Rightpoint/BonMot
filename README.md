@@ -56,6 +56,7 @@ BonMot uses attributed strings to give you control over the following typographi
 - Underlining and strikethrough
 - Figure case (uppercase vs. lowercase numbers)
 - Figure spacing (monospace vs. proportional numbers)
+- URLs
 - Inline Images with optional multi-line paragraph alignment
 - Tag parsing (excluding nested tags)
 
