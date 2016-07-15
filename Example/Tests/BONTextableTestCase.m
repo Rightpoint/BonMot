@@ -89,7 +89,30 @@
 - (void)testAppendingWithSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [chain appendLink:BONChain.new.string(@"world!") separator:@", "];
+#pragma clang diagnostic pop
+
+    NSAttributedString *attributedString = chain.attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Hello, world!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testAppendingWithSeparatorTextable
+{
+    BONChain *chain = BONChain.new.string(@"Hello");
+    [chain appendLink:BONChain.new.string(@"world!") separatorTextable:BONChain.new.string(@", ")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -129,7 +152,30 @@
 - (void)testAppendingWithNilSeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [chain appendLink:BONChain.new.string(@"world!") separator:nil];
+#pragma clang diagnostic pop
+
+    NSAttributedString *attributedString = chain.attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Hello, world!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testAppendingWithNilSeparatorTextable
+{
+    BONChain *chain = BONChain.new.string(@"Hello, ");
+    [chain appendLink:BONChain.new.string(@"world!") separatorTextable:nil];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -149,7 +195,30 @@
 - (void)testAppendingWithEmptySeparator
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [chain appendLink:BONChain.new.string(@"world!") separator:@""];
+#pragma clang diagnostic pop
+    
+    NSAttributedString *attributedString = chain.attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Hello, world!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 13) : @{
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
+- (void)testAppendingWithEmptySeparatorTextable
+{
+    BONChain *chain = BONChain.new.string(@"Hello, ");
+    [chain appendLink:BONChain.new.string(@"world!") separatorTextable:BONChain.new.string(@"")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -186,10 +255,42 @@
     BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
 }
 
+- (void)testAppendingWithDifferentAttributesAndTextableSeparator
+{
+    BONChain *chain = BONChain.new.string(@"Hello").color([UIColor redColor]);
+    [chain appendLink:BONChain.new.string(@"world!").color([UIColor blueColor]) separatorTextable:BONChain.new.string(@", ").color([UIColor greenColor])];
+
+    NSAttributedString *attributedString = chain.attributedString;
+
+    XCTAssertEqualObjects(attributedString.string, @"Hello, world!");
+
+    NSParagraphStyle *defaultParagraphStyle = [[NSParagraphStyle alloc] init];
+
+    NSDictionary *controlAttributes = @{
+        BONValueFromRange(0, 5) : @{
+            NSForegroundColorAttributeName : [UIColor redColor],
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+        BONValueFromRange(5, 2) : @{
+            NSForegroundColorAttributeName : [UIColor greenColor],
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+        BONValueFromRange(7, 6) : @{
+            NSForegroundColorAttributeName : [UIColor blueColor],
+            NSParagraphStyleAttributeName : defaultParagraphStyle,
+        },
+    };
+
+    BONAssertAttributedStringHasAttributes(attributedString, controlAttributes);
+}
+
 - (void)testAppendingWithDifferentAttributes
 {
     BONChain *chain = BONChain.new.string(@"Hello").color([UIColor redColor]);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [chain appendLink:BONChain.new.string(@"world!").color([UIColor blueColor]) separator:@", "];
+#pragma clang diagnostic pop
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -240,7 +341,7 @@
 {
     BONChain *chain = BONChain.new.string(@"Hello, ");
     [chain appendLink:BONChain.new.string(@"world!")];
-    [chain appendLink:BONChain.new.string(@"It really is a lovely day today.") separator:@" "];
+    [chain appendLink:BONChain.new.string(@"It really is a lovely day today.") separatorTextable:BONChain.new.string(@" ")];
 
     NSAttributedString *attributedString = chain.attributedString;
 
@@ -274,7 +375,7 @@
     NSAttributedString *textString = textChain.attributedString;
     XCTAssertEqualObjects(textString.string, @"concatenate me!");
 
-    [imageChain appendLink:textChain separator:BONSpecial.noBreakSpace];
+    [imageChain appendLink:textChain separatorTextable:BONChain.new.string(BONSpecial.noBreakSpace)];
 
     NSAttributedString *testString = imageChain.attributedString;
 

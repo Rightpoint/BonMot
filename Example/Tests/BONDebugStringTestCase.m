@@ -101,7 +101,7 @@
     [everything appendLink:BONChain.new.string(@"aluminium")];
     [everything appendLink:BONChain.new.string(@"זְאֵב")];
     [everything appendLink:BONChain.new.string(@"🐺")];
-    [everything appendLink:BONChain.new.string(@"\U000A1337") separator:BONSpecial.figureDash];
+    [everything appendLink:BONChain.new.string(@"\U000A1337") separatorTextable:BONChain.new.string(BONSpecial.figureDash)];
     [everything appendLink:BONChain.new.image(image)];
 
     NSString *controlString = [NSString stringWithFormat:@"a\nl\nu\nm\ni\nn\ni\nu\nm\nזְ(\\N{HEBREW LETTER ZAYIN}\\N{HEBREW POINT SHEVA})\nאֵ(\\N{HEBREW LETTER ALEF}\\N{HEBREW POINT TSERE})\nב(\\N{HEBREW LETTER BET})\n🐺(\\N{WOLF FACE})\n%@(\\N{FIGURE DASH})\n\U000A1337(\\N{<unassigned-A1337>})\n(attached image of size: {36, 36})", BONSpecial.figureDash];

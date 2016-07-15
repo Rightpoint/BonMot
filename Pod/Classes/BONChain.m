@@ -400,14 +400,14 @@
 
 - (void)appendLink:(id<BONTextable>)link
 {
-    [self appendLink:link separator:nil];
+    [self appendLink:link separatorTextable:nil];
 }
 
-- (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
+- (void)appendLink:(id<BONTextable>)link separatorTextable:(id<BONTextable>)separator
 {
-    if (separator.length > 0) {
+    if (separator && !separator.text.generatesEmptyString) {
         // Recursion!
-        [self appendLink:self.string(separator)]; // add the sparator, with the same properties as self, to the end of the chain.
+        [self appendLink:separator]; // add the sparator, with the same properties as self, to the end of the chain.
     }
 
     [self.class appendText:link.text toEndOfText:self.text];
@@ -450,6 +450,11 @@
 - (BONChainColor)textColor
 {
     return self.color;
+}
+
+- (void)appendLink:(id<BONTextable>)link separator:(NSString *)separator
+{
+    [self appendLink:link separatorTextable:self.string(separator)];
 }
 
 @end

@@ -50,7 +50,8 @@
         UIImage *image = [UIImage imageNamed:imageNames[theIndex]];
         NSAssert(image, @"Image must not be nil");
         BONChain *chunk = baseImageChain.image(image);
-        [chunk appendLink:baseTextChain.string(words[theIndex]) separator:BONSpecial.noBreakSpace];
+        BONChain *noBreakSpace = BONChain.new.string(BONSpecial.noBreakSpace);
+        [chunk appendLink:baseTextChain.string(words[theIndex]) separatorTextable:noBreakSpace];
 
         [chains addObject:chunk];
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2BC0521D353164002AD64C /* BONChainEmptyTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD81BF6ADF900676E2D /* BONChainEmptyTestCase.m */; };
+		2D2BC0531D35316C002AD64C /* BONTextableTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6DEFD71BF6ADF900676E2D /* BONTextableTestCase.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -647,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D2BC0531D35316C002AD64C /* BONTextableTestCase.m in Sources */,
 				EC2F199E1CEA324900D9F1FE /* BONTagStylesTestCase.m in Sources */,
 				EC433DB61C88BBDE001B3ABE /* BONUIKitUtilitiesTestCase.m in Sources */,
 				EC2F19A11CEBBAF900D9F1FE /* BONTagTestCase.m in Sources */,
@@ -665,6 +668,7 @@
 				CD6DEFE91BF6ADF900676E2D /* BONDictionaryEqualityTestCase.m in Sources */,
 				CD6DEFEB1BF6ADF900676E2D /* BONIndentSpacerTestCase.m in Sources */,
 				CD6DEFEF1BF6ADF900676E2D /* BONTextAlignmentConstraintTestCase.m in Sources */,
+				2D2BC0521D353164002AD64C /* BONChainEmptyTestCase.m in Sources */,
 				CD6DEFE71BF6ADF900676E2D /* BONDebugStringTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

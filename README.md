@@ -166,25 +166,21 @@ NSAttributedString *string = [BONText joinTextables:@[ oneFish, twoFish, redFish
 ```
 </details>
 
-Outputs:
-
-<img width=227 src="readme-images/fish-with-black-comma.png" />
-
 You can also append chains directly to each other:
 ```swift
-let commaSpace = ", "
+let commaSpace = BONChain().string(", ")
 let chain = BONChain()
 chain.appendLink(BONChain().string("one fish"))
-chain.appendLink(BONChain().string("two fish"), separator: commaSpace)
-chain.appendLink(BONChain().string("red fish").color(.redColor()), separator: commaSpace)
-chain.appendLink(BONChain().string("blue fish").color(.blueColor()), separator: commaSpace)
+chain.appendLink(BONChain().string("two fish"), separatorTextable: commaSpace)
+chain.appendLink(BONChain().string("red fish").color(.redColor()), separatorTextable: commaSpace)
+chain.appendLink(BONChain().string("blue fish").color(.blueColor()), separatorTextable: commaSpace)
 
 let string = chain.attributedString
 ```
 <details>
 <summary>Objective-C</summary>
 ```objc
-NSString *commaSpace = @", ";
+NSString *commaSpace = BONChain.new.string(@", ");
 BONChain *chain = BONChain.new;
 [chain appendLink:BONChain.new.string(@"one fish")];
 [chain appendLink:BONChain.new.string(@"two fish") separator:commaSpace];
@@ -195,27 +191,27 @@ NSAttributedString *string = chain.attributedString;
 ```
 </details>
 
-Outputs:
+Both examples output:
 
-<img width=227 src="readme-images/fish-with-red-comma.png" />
-
-(Notice that the comma after `red fish` is red, but in the previous example, it was not colored. This is the behavior that made the most sense to me, but please open an issue or pull request if you think it should be different.)
+<img width=227 src="readme-images/fish-with-black-comma.png" />
 
 ## Image Attachments
 
 BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain:
 ```swift
+let space = BONChain().string(" ")
 let chain = BONChain()
 chain.appendLink(BONChain().image(someUIImage).baselineOffset(-4.0))
-chain.appendLink(BONChain().string("label with icon"), separator: " ")
+chain.appendLink(BONChain().string("label with icon"), separatorTextable: space)
 let string = chain.attributedString
 ```
 <details>
 <summary>Objective-C</summary>
 ```objc
+BONChain *space = BONChain.new.string(@" ")
 BONChain *chain = BONChain.new;
 [chain appendLink:BONChain.new.image(someUIImage).baselineOffset(-4.0)];
-[chain appendLink:BONChain.new.string(@"label with icon") separator: @" "];
+[chain appendLink:BONChain.new.string(@"label with icon") separatorTextable: space];
 NSAttributedString *string = chain.attributedString;
 ```
 </details>
@@ -227,9 +223,10 @@ Outputs:
 If you need to wrap multiple lines of text after an image, use the `indentSpacer` property to align the whole paragraph after the image:
 ```swift
 let quote = "This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned"
+let space = BONChain().string(" ")
 let chain = BONChain()
 chain.appendLink(BONChain().image(someUIImage).indentSpacer(10.0))
-chain.appendLink(BONChain().string(quote), separator: " ")
+chain.appendLink(BONChain().string(quote), separatorTextable: space)
 let string = chain.attributedString
 ```
 <details>

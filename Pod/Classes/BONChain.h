@@ -121,13 +121,15 @@ typedef BONChain *BONCNonnull (^BONTagComplexStyles)(BONGeneric(NSArray, BONTag 
 
 // concatenation
 - (void)appendLink:(id<BONTextable>)link;
-- (void)appendLink:(id<BONTextable>)link separator:(BONNullable NSString *)separator;
+- (void)appendLink:(id<BONTextable>)link separatorTextable:(BONNullable id<BONTextable>)separator;
 
 @end
 
 @interface BONChain (Deprecated)
 
 @property (copy, nonatomic, readonly) BONChainColor textColor __attribute__((deprecated("use -color instead")));
+
+- (void)appendLink:(id<BONTextable>)link separator:(BONNullable NSString *)separator __attribute__((deprecated("use -appendLink:separatorTextable: instead")));
 
 @end
 
