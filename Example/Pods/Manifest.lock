@@ -11,7 +11,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   BonMot:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   BonMot: 1e6a1b229755a709cad4c6510026a53b46c89375

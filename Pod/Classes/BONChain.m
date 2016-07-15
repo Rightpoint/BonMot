@@ -101,6 +101,17 @@
     return [colorBlock copy];
 }
 
+- (BONChainURL)url
+{
+    BONChainURL urlBlock = ^(NSURL *url) {
+        __typeof(self) newChain = self.copyWithoutNextText;
+        newChain.text.url = url;
+        return newChain;
+    };
+    
+    return [urlBlock copy];
+}
+
 - (BONChainAdobeTracking)adobeTracking
 {
     BONChainAdobeTracking adobeTrackingBlock = ^(NSInteger adobeTracking) {
