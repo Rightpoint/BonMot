@@ -578,7 +578,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 - (NSString *)debugStringLeftToRight
 {
     NSString *debugString = [self debugString];
-    NSArray<NSString *> *lines = [debugString componentsSeparatedByString:@"\n"];
+    BONGeneric(NSArray, NSString*) *lines = [debugString componentsSeparatedByString:@"\n"];
     NSString *separator = [NSString stringWithFormat:@"\n%@", BONSpecial.leftToRightOverride];
     return [BONSpecial.leftToRightOverride stringByAppendingString:
                                                [lines componentsJoinedByString:separator]];
