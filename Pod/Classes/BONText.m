@@ -278,7 +278,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
         paragraphStyle.headIndent = self.headIndent;
     }
 
-    // Head Indent
+    // Tail Indent
 
     if (self.tailIndent != 0.0) {
         populateParagraphStyleIfNecessary();
