@@ -68,6 +68,8 @@ In any Swift file where you want to use BonMot, simply `import BonMot`. In Objec
 
 The basic object in BonMot is `BONChain`, which allows you quickly construct attributed strings. You can create a chain with a normal `BonChain()` in Swift or either `[[BONChain alloc] init]`, `[BONChain new]`, or `BONChain.new` in Objective-C:
 
+<details open>
+<summary>Swift</summary>
 ```swift
 let quote = "I used to love correcting people's grammar until" +
             "I realized what I loved more was having friends.\n" +
@@ -81,6 +83,7 @@ let attributedString = BONChain()
     .attributedString   // You can also query .attributes
                         // and get back a dictionary of attributes
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -102,6 +105,8 @@ BONChain.new // [BONChain new] and [[BONChain alloc] init] also work
 
 You can also create a local variable or property to save a partially-configured chain. All the chaining methods pass copies of the chain, so you don't have to worry about later changes clobbering earlier properties:
 
+<details open>
+<summary>Swift</summary>
 ```swift
 // Base Chain
 let birdChain = BONChain()
@@ -119,6 +124,7 @@ let blueBirds = birdChain.color(.blueColor())
 let redBirdString = redBirds.attributedString
 let blueBirdString = blueBirds.attributedString
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -133,7 +139,6 @@ BONChain.new
 // that inherit their parents’ properties
 BONChain *redBirds = birdChain.color([UIColor redColor]);
 BONChain *blueBirds = birdChain.color([UIColor blueColor]);
-</details>
 
 // two different attributed strings with all attributes shared
 // except for text color
@@ -145,6 +150,8 @@ NSAttributedString *blueBirdString = blueBirds.attributedString;
 ## Concatenation
 
 You can concatenate an array of `BONChain`s or `BONText`s:
+<details open>
+<summary>Swift</summary>
 ```swift
 let oneFish = BONChain().string("one fish")
 let twoFish = BONChain().string("two fish")
@@ -154,6 +161,7 @@ let separator = BONChain().string(", ")
 
 let string = BONText.joinTextables([oneFish, twoFish, redFish, blueFish], withSeparator: separator)
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -168,6 +176,8 @@ NSAttributedString *string = [BONText joinTextables:@[ oneFish, twoFish, redFish
 </details>
 
 You can also append chains directly to each other:
+<details open>
+<summary>Swift</summary>
 ```swift
 let commaSpace = BONChain().string(", ")
 let chain = BONChain()
@@ -178,6 +188,7 @@ chain.appendLink(BONChain().string("blue fish").color(.blueColor()), separatorTe
 
 let string = chain.attributedString
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -199,6 +210,8 @@ Both examples output:
 ## Image Attachments
 
 BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain:
+<details open>
+<summary>Swift</summary>
 ```swift
 let space = BONChain().string(" ")
 let chain = BONChain()
@@ -206,6 +219,7 @@ chain.appendLink(BONChain().image(someUIImage).baselineOffset(-4.0))
 chain.appendLink(BONChain().string("label with icon"), separatorTextable: space)
 let string = chain.attributedString
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -222,6 +236,8 @@ Outputs:
 <img width=116 height=22 src="readme-images/label-with-icon.png" />
 
 If you need to wrap multiple lines of text after an image, use the `indentSpacer` property to align the whole paragraph after the image:
+<details open>
+<summary>Swift</summary>
 ```swift
 let quote = "This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned"
 let space = BONChain().string(" ")
@@ -230,6 +246,7 @@ chain.appendLink(BONChain().image(someUIImage).indentSpacer(10.0))
 chain.appendLink(BONChain().string(quote), separatorTextable: space)
 let string = chain.attributedString
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -264,6 +281,8 @@ BonMot provides several utilities that enhance its interoperability with UIKit.
 BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UITextField` that allows assigning a `BONTextable` object to apply styling to any strings assigned via the `-setBonString:` method (or `.bonString = ...` in Objective-C).
 
 **Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
+<details open>
+<summary>Swift</summary>
 ```swift
 let label = UILabel()
 
@@ -272,6 +291,7 @@ let chain = BONChain().adobeTracking(300).fontNameAndSize("Avenir-Book", 18.0)
 label.bonTextable = chain
 label.setBonString("Some initial text.")
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -290,16 +310,18 @@ Outputs:
 
 Some time later, you can update the text of the label with a plain string, without losing the original styling from the `BONTextable`.
 
+<details open>
+<summary>Swift</summary>
 ```swift
 label.setBonString("Some updated text.")
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
 label.bonString = @"Some updated text."; // this shorthand is valid in Obj-C
 ```
 </details>
-
 
 Outputs:
 
@@ -317,6 +339,8 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `BONTex
 
 You can use `BONTextAlignmentConstraint` programmatically or in Interface Builder. In code, use the convenience initializer:
 
+<details open>
+<summary>Swift</summary>
 ```swift
 BONTextAlignmentConstraint(item: someLabel,
                       attribute: BONConstraintAttribute.CapHeight,
@@ -324,6 +348,7 @@ BONTextAlignmentConstraint(item: someLabel,
                          toItem: someOtherLabel,
                       attribute: BONConstraintAttribute.CapHeight).active = true
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -350,6 +375,8 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 ## Unit Testing helpers
 
 The `bon_humanReadableString` category method on `NSAttributedString` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
+<details open>
+<summary>Swift</summary>
 ```swift
 let chain = BONChain().image(someImage)
 chain.appendLink(BONChain().string(BONSpecial.noBreakSpace()))
@@ -358,6 +385,7 @@ chain.appendLink(BONChain().string(BONSpecial.enDash()))
 chain.appendLink(BONChain().string("Friday"))
 print(chain.attributedString.bon_humanReadableString)
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -380,6 +408,8 @@ Prints this:
 ## Tag Styles
 
 BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
+<details open>
+<summary>Swift</summary>
 ```swift
 let boldChain = BONChain().fontNameAndSize("Baskerville-Bold", 15.0)
 let italicChain = BONChain().fontNameAndSize("Baskerville-Italic", 15.0)
@@ -390,6 +420,7 @@ let chain = BONChain().fontNameAndSize("Baskerville", 17.0)
             "<italic>This text</italic> contains a \\<italic> tag.")
 let string = chain.attributedString
 ```
+</italic>
 <details>
 <summary>Objective-C</summary>
 ```objc
@@ -409,6 +440,8 @@ Outputs:
 <img width=275 height=40 src="readme-images/tag-styling.png" />
 
 BonMot can also style text between any arbitrary start and end strings using any escape string.
+<details open>
+<summary>Swift</summary>
 ```swift
 let boldChain = BONChain().fontNameAndSize("Baskerville-Bold", 15.0)
 
@@ -417,6 +450,7 @@ let chain = BONChain().fontNameAndSize("Baskerville", 17.0)
     .string("~start~This text is wrapped in a escape~start~ tag.!end")
 let string = chain.attributedString
 ```
+</details>
 <details>
 <summary>Objective-C</summary>
 ```objc
