@@ -133,7 +133,6 @@ BONChain.new
 // that inherit their parents’ properties
 BONChain *redBirds = birdChain.color([UIColor redColor]);
 BONChain *blueBirds = birdChain.color([UIColor blueColor]);
-</details>
 
 // two different attributed strings with all attributes shared
 // except for text color
