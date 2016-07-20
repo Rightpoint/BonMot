@@ -299,7 +299,6 @@ label.bonString = @"Some updated text."; // this shorthand is valid in Obj-C
 ```
 </details>
 
-
 Outputs:
 
 <img width=310 src="readme-images/updated-text.png" />
