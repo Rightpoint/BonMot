@@ -312,8 +312,8 @@ let baseFileName = "BONSpecial"
 #if swift(>=3.0)
     let headerFileName = (baseFileName as NSString).appendingPathExtension("h")!
     let implementationFileName = (baseFileName as NSString).appendingPathExtension("m")!
-    let headerFilePath = (classesDirectory as NSString).appendingPathExtension(headerFileName)!
-    let implementationFilePath = (classesDirectory as NSString).appendingPathExtension(implementationFileName)!
+    let headerFilePath = (classesDirectory as NSString).appendingPathComponent(headerFileName)
+    let implementationFilePath = (classesDirectory as NSString).appendingPathComponent(implementationFileName)
 #else
     let headerFileName = (baseFileName as NSString).stringByAppendingPathExtension("h")!
     let implementationFileName = (baseFileName as NSString).stringByAppendingPathExtension("m")!
