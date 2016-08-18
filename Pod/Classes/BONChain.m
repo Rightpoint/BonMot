@@ -415,7 +415,7 @@
 
 - (NSString *)description
 {
-    NSString *debugString = [self.text debugStringIncludeImageAddresses:YES];
+    NSString *debugString = [self.text debugStringLeftToRight];
     NSString *realString = self.attributedString.string;
     __block NSUInteger composedCharacterCount = 0;
 

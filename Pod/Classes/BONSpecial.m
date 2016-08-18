@@ -32,6 +32,7 @@
 + (NSString *)horizontalEllipsis { return @"\u2026"; }
 + (NSString *)lineSeparator { return @"\u2028"; }
 + (NSString *)paragraphSeparator { return @"\u2029"; }
++ (NSString *)leftToRightOverride { return @"\u202D"; }
 + (NSString *)narrowNoBreakSpace { return @"\u202F"; }
 + (NSString *)wordJoiner { return @"\u2060"; }
 + (NSString *)minusSign { return @"\u2212"; }
@@ -60,6 +61,7 @@
         @(BONCharacterHorizontalEllipsis) : @"{horizontalEllipsis}", 
         @(BONCharacterLineSeparator) : @"{lineSeparator}", 
         @(BONCharacterParagraphSeparator) : @"{paragraphSeparator}", 
+        @(BONCharacterLeftToRightOverride) : @"{leftToRightOverride}", 
         @(BONCharacterNarrowNoBreakSpace) : @"{narrowNoBreakSpace}", 
         @(BONCharacterWordJoiner) : @"{wordJoiner}", 
         @(BONCharacterMinusSign) : @"{minusSign}", 

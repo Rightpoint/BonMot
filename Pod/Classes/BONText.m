@@ -395,13 +395,13 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     if (self.strikethroughColor) {
         attributes[NSStrikethroughColorAttributeName] = self.strikethroughColor;
     }
-    
+
     // URL
-    
+
     if (self.url) {
         attributes[NSLinkAttributeName] = self.url;
     }
-    
+
     return attributes;
 }
 
@@ -575,6 +575,15 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
     return [self debugStringIncludeImageAddresses:YES];
 }
 
+- (NSString *)debugStringLeftToRight
+{
+    NSString *debugString = [self debugString];
+    BONGeneric(NSArray, NSString*) *lines = [debugString componentsSeparatedByString:@"\n"];
+    NSString *separator = [NSString stringWithFormat:@"\n%@", BONSpecial.leftToRightOverride];
+    return [BONSpecial.leftToRightOverride stringByAppendingString:
+                                               [lines componentsJoinedByString:separator]];
+}
+
 - (NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses
 {
     NSAttributedString *originalAttributedString = self.attributedString;
@@ -671,7 +680,7 @@ static inline BOOL BONDoublesCloseEnough(CGFloat float1, CGFloat float2)
 
 - (NSString *)description
 {
-    NSString *debugString = [self debugStringIncludeImageAddresses:YES];
+    NSString *debugString = [self debugStringLeftToRight];
     NSString *realString = self.attributedString.string;
     __block NSUInteger composedCharacterCount = 0;
 

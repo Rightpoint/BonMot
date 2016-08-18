@@ -132,6 +132,11 @@ typedef NS_ENUM(NSUInteger, BONFigureSpacing) {
  */
 - (BONNonnull NSString *)debugStringIncludeImageAddresses:(BOOL)includeImageAddresses;
 
+/**
+ *  Calls [self debugString], overriding the behavior of right-to-left script characters to ensure that they appear before their description. Use this version of debugString for more readable output if you expect to be printing right-to-left characters, such as Arabic or Hebrew.
+ */
+- (BONNonnull NSString *)debugStringLeftToRight;
+
 @end
 
 @interface BONText (Deprecated)
