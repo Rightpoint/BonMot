@@ -70,6 +70,7 @@ The basic object in BonMot is `BONChain`, which allows you quickly construct att
 
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let quote = "I used to love correcting people's grammar until" +
             "I realized what I loved more was having friends.\n" +
@@ -86,6 +87,7 @@ let attributedString = BONChain()
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 NSString *quote = @"I used to love correcting people’s grammar until\
  I realized what I loved more was having friends.\n\
@@ -107,6 +109,7 @@ You can also create a local variable or property to save a partially-configured 
 
 <details open>
 <summary>Swift</summary>
+
 ```swift
 // Base Chain
 let birdChain = BONChain()
@@ -127,6 +130,7 @@ let blueBirdString = blueBirds.attributedString
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 // Base Chain
 BONChain *birdChain =
@@ -152,6 +156,7 @@ NSAttributedString *blueBirdString = blueBirds.attributedString;
 You can concatenate an array of `BONChain`s or `BONText`s:
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let oneFish = BONChain().string("one fish")
 let twoFish = BONChain().string("two fish")
@@ -164,6 +169,7 @@ let string = BONText.joinTextables([oneFish, twoFish, redFish, blueFish], withSe
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 BONChain *oneFish = BONChain.new.string(@"one fish");
 BONChain *twoFish = BONChain.new.string(@"two fish");
@@ -178,6 +184,7 @@ NSAttributedString *string = [BONText joinTextables:@[ oneFish, twoFish, redFish
 You can also append chains directly to each other:
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let commaSpace = BONChain().string(", ")
 let chain = BONChain()
@@ -191,6 +198,7 @@ let string = chain.attributedString
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 NSString *commaSpace = BONChain.new.string(@", ");
 BONChain *chain = BONChain.new;
@@ -212,6 +220,7 @@ Both examples output:
 BonMot uses `NSTextAttachment` to embed images in strings. Simply use the `.image` property of a chain:
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let space = BONChain().string(" ")
 let chain = BONChain()
@@ -222,6 +231,7 @@ let string = chain.attributedString
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 BONChain *space = BONChain.new.string(@" ")
 BONChain *chain = BONChain.new;
@@ -238,6 +248,7 @@ Outputs:
 If you need to wrap multiple lines of text after an image, use the `indentSpacer` property to align the whole paragraph after the image:
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let quote = "This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned"
 let space = BONChain().string(" ")
@@ -249,6 +260,7 @@ let string = chain.attributedString
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 NSString *quote = @"This is some text that goes on and on and spans multiple lines, and it all ends up left-aligned";
 BONChain *chain = BONChain.new;
@@ -283,6 +295,7 @@ BonMot provides a `bonTextable` property on `UILabel`, `UITextView`, and `UIText
 **Note:** to use these utilities, add `pod 'BonMot/UIKit'` to your Podfile.
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let label = UILabel()
 
@@ -294,6 +307,7 @@ label.setBonString("Some initial text.")
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 UILabel *label = [[UILabel alloc] init];
 
@@ -312,12 +326,14 @@ Some time later, you can update the text of the label with a plain string, witho
 
 <details open>
 <summary>Swift</summary>
+
 ```swift
 label.setBonString("Some updated text.")
 ```
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 label.bonString = @"Some updated text."; // this shorthand is valid in Obj-C
 ```
@@ -341,6 +357,7 @@ You can use `BONTextAlignmentConstraint` programmatically or in Interface Builde
 
 <details open>
 <summary>Swift</summary>
+
 ```swift
 BONTextAlignmentConstraint(item: someLabel,
                       attribute: BONConstraintAttribute.CapHeight,
@@ -351,6 +368,7 @@ BONTextAlignmentConstraint(item: someLabel,
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 [BONTextAlignmentConstraint constraintWithItem:someLabel
                                      attribute:BONConstraintAttributeCapHeight
@@ -377,6 +395,7 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 The `bon_humanReadableString` category method on `NSAttributedString` expands special characters out into human-readable strings. This is useful for writing unit tests where you need to compare a BonMot-generated string with an example string which may contain invisible or hard-to-read characters. For example, here’s a string with an embedded image, a non-breaking space, and some text that contains an en dash:
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let chain = BONChain().image(someImage)
 chain.appendLink(BONChain().string(BONSpecial.noBreakSpace()))
@@ -388,6 +407,7 @@ print(chain.attributedString.bon_humanReadableString)
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 BONChain *chain = BONChain.new.image(someImage);
 [chain appendLink:BONChain.new.string(BONSpecial.noBreakSpace)];
@@ -410,6 +430,7 @@ Prints this:
 BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let boldChain = BONChain().fontNameAndSize("Baskerville-Bold", 15.0)
 let italicChain = BONChain().fontNameAndSize("Baskerville-Italic", 15.0)
@@ -423,6 +444,7 @@ let string = chain.attributedString
 </italic>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
 BONChain *italicChain = BONChain.new.fontNameAndSize(@"Baskerville-Italic", 15.0f);
@@ -442,6 +464,7 @@ Outputs:
 BonMot can also style text between any arbitrary start and end strings using any escape string.
 <details open>
 <summary>Swift</summary>
+
 ```swift
 let boldChain = BONChain().fontNameAndSize("Baskerville-Bold", 15.0)
 
@@ -453,6 +476,7 @@ let string = chain.attributedString
 </details>
 <details>
 <summary>Objective-C</summary>
+
 ```objc
 BONChain *boldChain = BONChain.new.fontNameAndSize(@"Baskerville-Bold", 15.0f);
 
