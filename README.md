@@ -427,7 +427,7 @@ Prints this:
 
 ## Tag Styles
 
-BonMot can style text between arbirtrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
+BonMot can style text between arbitrary tags using a `<tag></tag>` format and `\` as an escape character. This allows you to apply styles to substrings of localized strings, whose position, order, and even existence may change from language to language.
 <details open>
 <summary>Swift</summary>
 
