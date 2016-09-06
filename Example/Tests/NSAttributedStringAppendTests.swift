@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import FinePrint
+import BonMot
 
 let imageForTest = UIImage(named: "robot",
                         inBundle: NSBundle(forClass: NSAttributedStringAppendTests.self),

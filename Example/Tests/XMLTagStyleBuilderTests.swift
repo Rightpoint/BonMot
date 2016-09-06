@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import FinePrint
+import BonMot
 
 class XMLTagStyleBuilderTests: XCTestCase {
 

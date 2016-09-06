@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import FinePrint
+@testable import BonMot
 
 class UIKitBonMotTests: XCTestCase {
     let expectedFont = adaptiveStyle.font!

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import FinePrint
+import BonMot
 
 func FPAssertKey<T: Equatable>(dictionary: StyleAttributes, key: String, value: T, file: StaticString = #file, line: UInt = #line) {
     if let dictionaryValue = dictionary[key] as? T {

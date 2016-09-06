@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import FinePrint
+import BonMot
 
 class NSAttributedStringDebugTests: XCTestCase {
 

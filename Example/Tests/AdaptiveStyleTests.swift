@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import FinePrint
+import BonMot
 
 @available(iOS 10.0, *)
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)

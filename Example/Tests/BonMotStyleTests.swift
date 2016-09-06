@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import FinePrint
+import BonMot
 
 class StyleAttributeProviderTests: XCTestCase {
 

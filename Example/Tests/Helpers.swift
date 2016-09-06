@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FinePrint
+import BonMot
 
 extension UIColor {
     static var colorA: UIColor {

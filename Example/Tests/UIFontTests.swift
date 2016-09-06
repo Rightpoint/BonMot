@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import FinePrint
+@testable import BonMot
 
 class UIFontTests: XCTestCase {
 
