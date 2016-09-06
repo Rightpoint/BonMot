@@ -38,7 +38,6 @@
 		AB511A8E1D7F3FEC00D8FC62 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A681D7F3F1F00D8FC62 /* AssertHelpers.swift */; };
 		AB511A911D7F425A00D8FC62 /* UIApplication+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A8F1D7F425A00D8FC62 /* UIApplication+Testing.swift */; };
 		AB511A921D7F425A00D8FC62 /* UIFont+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A901D7F425A00D8FC62 /* UIFont+Testing.swift */; };
-		CD6DF03F1BF6AFAA00676E2D /* EB Garamond License.txt in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03D1BF6AFAA00676E2D /* EB Garamond License.txt */; };
 		CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CD6DF0461BF6B24300676E2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */; };
@@ -96,10 +95,10 @@
 		AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AB511A8F1D7F425A00D8FC62 /* UIApplication+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Testing.swift"; sourceTree = "<group>"; };
 		AB511A901D7F425A00D8FC62 /* UIFont+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Testing.swift"; sourceTree = "<group>"; };
+		AB5E1FEE1D7F5D5400AC3F56 /* Example Licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Example Licenses.txt"; sourceTree = "<group>"; };
 		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD6DF03D1BF6AFAA00676E2D /* EB Garamond License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EB Garamond License.txt"; sourceTree = "<group>"; };
 		CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +187,7 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AB5E1FEE1D7F5D5400AC3F56 /* Example Licenses.txt */,
 				CD6DF03C1BF6AFAA00676E2D /* Fonts */,
 				6003F595195388D20070C39A /* BonMot-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
@@ -249,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */,
-				CD6DF03D1BF6AFAA00676E2D /* EB Garamond License.txt */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -340,7 +339,6 @@
 			files = (
 				CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				CD6DF03F1BF6AFAA00676E2D /* EB Garamond License.txt in Resources */,
 				AB511A841D7F3F7500D8FC62 /* Main.storyboard in Resources */,
 				CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
