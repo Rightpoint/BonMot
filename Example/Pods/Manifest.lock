@@ -1,21 +1,18 @@
 PODS:
-  - BonMot (3.2):
-    - BonMot/Core (= 3.2)
-  - BonMot/Core (3.2)
-  - BonMot/UIKit (3.2):
-    - BonMot/Core
+  - BonMot (4.0-beta1):
+    - BonMot/Core (= 4.0-beta1)
+  - BonMot/Core (4.0-beta1)
 
 DEPENDENCIES:
   - BonMot (from `../`)
-  - BonMot/UIKit (from `../`)
 
 EXTERNAL SOURCES:
   BonMot:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BonMot: 039d91a9f7e408ed21e8627bb093a926e34553e0
+  BonMot: b36197c866ab3cffab1c16f1fc4c213d07f3a566
 
-PODFILE CHECKSUM: ae4abcb634e4918fa15395e23a8db9ca1dccad55
+PODFILE CHECKSUM: 47d8ac46df2a51c03a6cc74e5281702451940d6a
 
 COCOAPODS: 1.0.1
