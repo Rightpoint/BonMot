@@ -54,24 +54,24 @@ enum DemoStrings {
     static let proportionalStrings: [NSAttributedString] = [
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
-            .fontFeature(FigureSpacing.Proportional),
-            .fontFeature(FigureCase.Lining)
-            ).append(string: "Proportional Lining\n1111111111\n0123456789"),
+            .fontFeature(NumberSpacing.proportional),
+            .fontFeature(NumberCase.upper)
+            ).append(string: "Proportional Uppercase\n1111111111\n0123456789"),
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
-            .fontFeature(FigureSpacing.Proportional),
-            .fontFeature(FigureCase.Oldstyle)
-            ).append(string: "Proportional Oldstyle\n1111111111\n0123456789"),
+            .fontFeature(NumberSpacing.proportional),
+            .fontFeature(NumberCase.lower)
+            ).append(string: "Proportional Lowercase\n1111111111\n0123456789"),
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
-            .fontFeature(FigureSpacing.Tabular),
-            .fontFeature(FigureCase.Lining)
-            ).append(string: "Tabular Lining\n1111111111\n0123456789"),
+            .fontFeature(NumberSpacing.monospaced),
+            .fontFeature(NumberCase.upper)
+            ).append(string: "Monospaced Uppercase\n1111111111\n0123456789"),
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
-            .fontFeature(FigureSpacing.Tabular),
-            .fontFeature(FigureCase.Oldstyle)
-            ).append(string: "Tabular Oldstyle\n1111111111\n0123456789"),
+            .fontFeature(NumberSpacing.monospaced),
+            .fontFeature(NumberCase.lower)
+            ).append(string: "Monospaced Lowercase\n1111111111\n0123456789"),
         ]
 
     static let indentationStrings: [NSAttributedString] = [

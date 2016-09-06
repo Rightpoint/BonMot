@@ -25,26 +25,26 @@ public extension UIFont {
 }
 
 /// An enumeration representing the kNumberCaseType features.
-public enum FigureCase: FontFeatureProvider {
-    case Lining, Oldstyle
+public enum NumberCase: FontFeatureProvider {
+    case upper, lower
     public func featureSettings() -> (Int, Int) {
         switch self {
-        case .Lining:
+        case .upper:
             return (kNumberCaseType, kUpperCaseNumbersSelector)
-        case .Oldstyle:
+        case .lower:
             return (kNumberCaseType, kLowerCaseNumbersSelector)
         }
     }
 }
 
 /// An enumeration representing the kNumberSpacingType features.
-public enum FigureSpacing: FontFeatureProvider {
-    case Tabular, Proportional
+public enum NumberSpacing: FontFeatureProvider {
+    case monospaced, proportional
     public func featureSettings() -> (Int, Int) {
         switch self {
-        case .Tabular:
+        case .monospaced:
             return (kNumberSpacingType, kMonospacedNumbersSelector)
-        case .Proportional:
+        case .proportional:
             return (kNumberSpacingType, kProportionalNumbersSelector)
         }
     }

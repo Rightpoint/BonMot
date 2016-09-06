@@ -60,7 +60,7 @@ class StyleAttributeProviderTests: XCTestCase {
 
     func testFontFeatureStyle() {
         EBGarandLoader.loadFontIfNeeded()
-        let features: [FontFeatureProvider] = [FigureCase.Lining, FigureCase.Oldstyle, FigureSpacing.Proportional, FigureSpacing.Tabular]
+        let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
             let attributes = BonMot(.font(UIFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).styleAttributes()
             XCTAssertEqual(attributes.count, 2)
