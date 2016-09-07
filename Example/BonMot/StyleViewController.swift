@@ -62,6 +62,8 @@ extension StyleViewController {
             }
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
 }

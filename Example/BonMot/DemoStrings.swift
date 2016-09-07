@@ -130,7 +130,7 @@ enum DemoStrings {
         // Embed an attribute for the storyboard identifier to link to. This is
         // a good example of custom attributes, even if this might not be the best
         // UIKit design pattern.
-        return BonMot(.initialAttributes(["Storyboard": "CatalogViewController"]))
+        return BonMot(.initialAttributes(["Storyboard": identifier]))
     }
 
     static let dynamcTypeUIKit = DemoStrings.CustomStoryboard("CatalogViewController")
