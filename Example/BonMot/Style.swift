@@ -54,6 +54,12 @@ extension Style: StyleAttributeProvider {
 
 }
 
+extension UIColor {
+    static var raizlabsRed: UIColor {
+        return UIColor(red: 0.927, green: 0.352, blue: 0.303, alpha: 1.0)
+    }
+}
+
 extension UIFont {
 
     static func appFontOfSize(pointSize: CGFloat) -> UIFont {

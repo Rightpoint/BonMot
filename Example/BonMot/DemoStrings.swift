@@ -24,10 +24,10 @@ enum DemoStrings {
 
     static let redBG = lineHeight.configure(
         .textColor(.whiteColor()),
-        .backgroundColor(.redColor())
+        .backgroundColor(.raizlabsRed)
     )
     static let redTxt = lineHeight.configure(
-        .textColor(.redColor())
+        .textColor(.raizlabsRed)
     )
 
     static let colorString = NSAttributedString(attributedStrings: [
@@ -36,7 +36,7 @@ enum DemoStrings {
         gray.append(string: " I want to be wearing "),
         redBG.append(string: " red. \n"),
         redTxt.append(string: "Maria Sharapova "),
-        BonMot(.baselineOffset(-4.0), .textColor(.redColor())).append(image: UIImage(named: "Tennis Racket")!)
+        BonMot(.baselineOffset(-4.0), .textColor(.raizlabsRed)).append(image: UIImage(named: "Tennis Racket")!)
         ])
 
 
