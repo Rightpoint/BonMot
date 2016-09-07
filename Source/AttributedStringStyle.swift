@@ -6,7 +6,7 @@
 //
 // NOTE: Keep attributes in order to help reviewability.
 
-public func BonMotZ(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
     var style = AttributedStringStyle()
     configure(&style)
     return style
