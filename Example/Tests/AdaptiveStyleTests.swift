@@ -1,6 +1,5 @@
 //
 //  AdaptiveStyleTests.swift
-//  FinePrint
 //
 //  Created by Brian King on 9/2/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -9,6 +8,7 @@
 import XCTest
 import BonMot
 
+#if swift(>=2.3)
 @available(iOS 10.0, *)
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)
 
@@ -102,3 +102,5 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
 }
+
+#endif

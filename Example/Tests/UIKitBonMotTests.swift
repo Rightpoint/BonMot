@@ -1,6 +1,5 @@
 //
 //  UIKitBonMotTests.swift
-//  FinePrint
 //
 //  Created by Brian King on 9/3/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -8,6 +7,8 @@
 
 import XCTest
 @testable import BonMot
+
+#if swift(>=2.3)
 
 class UIKitBonMotTests: XCTestCase {
     let expectedFont = adaptiveStyle.font!
@@ -115,3 +116,5 @@ class UIKitBonMotTests: XCTestCase {
     func writeTestBarButtonItem() {}
 
 }
+
+#endif

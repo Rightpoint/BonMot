@@ -1,6 +1,5 @@
 //
 //  AssertHelpers.swift
-//  FinePrint
 //
 //  Created by Brian King on 9/1/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.

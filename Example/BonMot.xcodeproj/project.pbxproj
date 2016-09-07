@@ -17,6 +17,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		69EEA9487DE55634FFF1A253 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */; };
+		AB33C6761D7FA63C00E068DD /* UIApplication+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A8F1D7F425A00D8FC62 /* UIApplication+Testing.swift */; };
 		AB511A7C1D7F3F7500D8FC62 /* DemoStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A731D7F3F7500D8FC62 /* DemoStrings.swift */; };
 		AB511A7D1D7F3F7500D8FC62 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A741D7F3F7500D8FC62 /* Style.swift */; };
 		AB511A7F1D7F3F7500D8FC62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A761D7F3F7500D8FC62 /* AppDelegate.swift */; };
@@ -454,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB33C6761D7FA63C00E068DD /* UIApplication+Testing.swift in Sources */,
 				AB511A891D7F3FEC00D8FC62 /* NSAttributedStringAppendTests.swift in Sources */,
 				AB511A8A1D7F3FEC00D8FC62 /* UIKitBonMotTests.swift in Sources */,
 				AB511A851D7F3FEC00D8FC62 /* BonMotStyleTests.swift in Sources */,
