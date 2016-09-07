@@ -8,7 +8,7 @@
 import BonMot
 
 enum DemoStrings {
-    static let lineHeight = BonMotZ({ style in
+    static let lineHeight = BonMotC({ style in
         style.font = UIFont(name: "SuperClarendon-Black", size: 20)!
         style.lineHeightMultiple = 1.8
     })
@@ -125,4 +125,16 @@ enum DemoStrings {
         return BonMot(.baselineOffset(offset)).append(string: "❤️")
     })
 
+
+    static func CustomStoryboard(identifier: String) -> AttributedStringStyle {
+        // Embed an attribute for the storyboard identifier to link to. This is
+        // a good example of custom attributes, even if this might not be the best
+        // UIKit design pattern.
+        return BonMot(.initialAttributes(["Storyboard": "CatalogViewController"]))
+    }
+
+    static let dynamcTypeUIKit = DemoStrings.CustomStoryboard("CatalogViewController")
+        .append(string: "Dynamic UIKit elements with custom fonts")
+    static let preferredFonts = DemoStrings.CustomStoryboard("PreferredFonts")
+        .append(string: "Preferred Fonts")
 }

@@ -52,7 +52,7 @@ let styleBi = BonMotI(
     tailIndent: 10
 )
 
-let styleBz = BonMotZ { style in
+let styleBz = BonMotC { style in
     style.font = .fontB
     style.textColor = .colorB
     style.headIndent = 10

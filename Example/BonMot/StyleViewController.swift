@@ -8,6 +8,11 @@
 import UIKit
 import BonMot
 
+// UITableViewCell built in labels are re-created when the content size category changes so we use a proper cell subclass.
+class MasterTableViewCell: UITableViewCell {
+    @IBOutlet var titleLabel: UILabel?
+}
+
 class StyleViewController: UITableViewController {
     var styles: [(String, [NSAttributedString])] = [
         ("Color", [DemoStrings.colorString]),
@@ -16,6 +21,7 @@ class StyleViewController: UITableViewController {
         ("Figure Style", DemoStrings.proportionalStrings),
         ("Tracking", [DemoStrings.trackingString]),
         ("Line Height", [DemoStrings.lineHeightString]),
+        ("Dynamic Type", [DemoStrings.dynamcTypeUIKit, DemoStrings.preferredFonts]),
     ]
 
     override func viewDidLoad() {
@@ -40,11 +46,22 @@ extension StyleViewController {
         }
         let attributedText = styles[indexPath.section].1[indexPath.row]
         cell.titleLabel?.attributedText = attributedText
-        print("[\(indexPath.section):\(indexPath.row)] = \(attributedText.debugRepresentation)")
+        cell.accessoryType = attributedText.attribute("Storyboard", atIndex: 0, effectiveRange: nil) == nil ? .None : .DisclosureIndicator
         return cell
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return styles[section].0
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let attributedText = styles[indexPath.section].1[indexPath.row]
+        if let storyboardIdentifier = attributedText.attribute("Storyboard", atIndex: 0, effectiveRange: nil) as? String {
+            guard let nextVC = storyboard?.instantiateViewControllerWithIdentifier(storyboardIdentifier) else {
+                fatalError("No Storyboard identifier \(storyboardIdentifier)")
+            }
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

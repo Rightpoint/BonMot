@@ -19,10 +19,7 @@
 		69EEA9487DE55634FFF1A253 /* Pods_BonMot_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */; };
 		AB511A7C1D7F3F7500D8FC62 /* DemoStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A731D7F3F7500D8FC62 /* DemoStrings.swift */; };
 		AB511A7D1D7F3F7500D8FC62 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A741D7F3F7500D8FC62 /* Style.swift */; };
-		AB511A7E1D7F3F7500D8FC62 /* Commentary.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A751D7F3F7500D8FC62 /* Commentary.swift */; };
 		AB511A7F1D7F3F7500D8FC62 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A761D7F3F7500D8FC62 /* AppDelegate.swift */; };
-		AB511A801D7F3F7500D8FC62 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A771D7F3F7500D8FC62 /* MasterViewController.swift */; };
-		AB511A811D7F3F7500D8FC62 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A781D7F3F7500D8FC62 /* DetailViewController.swift */; };
 		AB511A821D7F3F7500D8FC62 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A791D7F3F7500D8FC62 /* CatalogViewController.swift */; };
 		AB511A831D7F3F7500D8FC62 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A7A1D7F3F7500D8FC62 /* StyleViewController.swift */; };
 		AB511A841D7F3F7500D8FC62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */; };
@@ -36,8 +33,6 @@
 		AB511A8C1D7F3FEC00D8FC62 /* UIKitBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A661D7F3F1F00D8FC62 /* UIKitBehaviorTests.swift */; };
 		AB511A8D1D7F3FEC00D8FC62 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A671D7F3F1F00D8FC62 /* Helpers.swift */; };
 		AB511A8E1D7F3FEC00D8FC62 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A681D7F3F1F00D8FC62 /* AssertHelpers.swift */; };
-		AB511A911D7F425A00D8FC62 /* UIApplication+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A8F1D7F425A00D8FC62 /* UIApplication+Testing.swift */; };
-		AB511A921D7F425A00D8FC62 /* UIFont+Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A901D7F425A00D8FC62 /* UIFont+Testing.swift */; };
 		CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CD6DF0461BF6B24300676E2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */; };
@@ -86,15 +81,11 @@
 		AB511A681D7F3F1F00D8FC62 /* AssertHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertHelpers.swift; sourceTree = "<group>"; };
 		AB511A731D7F3F7500D8FC62 /* DemoStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoStrings.swift; sourceTree = "<group>"; };
 		AB511A741D7F3F7500D8FC62 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		AB511A751D7F3F7500D8FC62 /* Commentary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commentary.swift; sourceTree = "<group>"; };
 		AB511A761D7F3F7500D8FC62 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB511A771D7F3F7500D8FC62 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		AB511A781D7F3F7500D8FC62 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		AB511A791D7F3F7500D8FC62 /* CatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		AB511A7A1D7F3F7500D8FC62 /* StyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AB511A8F1D7F425A00D8FC62 /* UIApplication+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Testing.swift"; sourceTree = "<group>"; };
-		AB511A901D7F425A00D8FC62 /* UIFont+Testing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Testing.swift"; sourceTree = "<group>"; };
 		AB5E1FEE1D7F5D5400AC3F56 /* Example Licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Example Licenses.txt"; sourceTree = "<group>"; };
 		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,14 +159,10 @@
 			children = (
 				AB511A731D7F3F7500D8FC62 /* DemoStrings.swift */,
 				AB511A741D7F3F7500D8FC62 /* Style.swift */,
-				AB511A751D7F3F7500D8FC62 /* Commentary.swift */,
 				AB511A761D7F3F7500D8FC62 /* AppDelegate.swift */,
-				AB511A771D7F3F7500D8FC62 /* MasterViewController.swift */,
-				AB511A781D7F3F7500D8FC62 /* DetailViewController.swift */,
 				AB511A791D7F3F7500D8FC62 /* CatalogViewController.swift */,
 				AB511A7A1D7F3F7500D8FC62 /* StyleViewController.swift */,
 				AB511A8F1D7F425A00D8FC62 /* UIApplication+Testing.swift */,
-				AB511A901D7F425A00D8FC62 /* UIFont+Testing.swift */,
 				AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -456,11 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB511A831D7F3F7500D8FC62 /* StyleViewController.swift in Sources */,
-				AB511A911D7F425A00D8FC62 /* UIApplication+Testing.swift in Sources */,
-				AB511A801D7F3F7500D8FC62 /* MasterViewController.swift in Sources */,
-				AB511A921D7F425A00D8FC62 /* UIFont+Testing.swift in Sources */,
-				AB511A811D7F3F7500D8FC62 /* DetailViewController.swift in Sources */,
-				AB511A7E1D7F3F7500D8FC62 /* Commentary.swift in Sources */,
 				AB511A7F1D7F3F7500D8FC62 /* AppDelegate.swift in Sources */,
 				AB511A821D7F3F7500D8FC62 /* CatalogViewController.swift in Sources */,
 				AB511A7C1D7F3F7500D8FC62 /* DemoStrings.swift in Sources */,
