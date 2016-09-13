@@ -37,12 +37,7 @@ extension UITextView {
         set {
             // If the text property is not and has not been set, the font property is nil.
             // Configure an empty space if this happens. 
-            #if swift(>=3.0)
-                let length = text.lengthOfBytes(using: String.Encoding.utf8)
-            #else
-                let length = text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
-            #endif
-            if font == nil && length == 0 {
+            if font == nil && text.lengthOfBytes(using: String.Encoding.utf8) == 0 {
                 text = "\(Special.zeroWidthSpace)"
             }
             guard let font = font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }

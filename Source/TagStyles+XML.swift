@@ -69,13 +69,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
             string :
             "\(XMLTagStyleBuilder.xmlHeader)<\(XMLTagStyleBuilder.internalTopLevelElement)>\(string)</\(XMLTagStyleBuilder.internalTopLevelElement)>")
 
-        #if swift(>=3.0)
-            let optionalData = xml.data(using: String.Encoding.utf8)
-        #else
-            let optionalData = xml.dataUsingEncoding(NSUTF8StringEncoding)
-        #endif
-
-        guard let data = optionalData else {
+        guard let data = xml.data(using: String.Encoding.utf8) else {
             fatalError("Unable to convert to UTF8")
         }
         self.traitCollection = traitCollection
@@ -142,6 +136,9 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         attributedString.append(newAttributedString)
     }
     #else
+    typealias XMLParser = NSXMLParser
+    typealias XMLParserDelegate = NSXMLParserDelegate
+
     @objc private func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         parse(elementNamed: elementName, attributeDict: attributeDict)
     }

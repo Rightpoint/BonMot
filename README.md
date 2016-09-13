@@ -10,29 +10,6 @@ BonMot (pronounced *Bon Mo*, French for *good word*) is an iOS attributed string
 
 To run the example project, run `pod try BonMot`, or clone the repo and open `Example/BonMot.xcworkspace`.
 
-## Installation with CocoaPods
-
-BonMot is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'BonMot'
-```
-
-If you want to use the [UIKit Utilities](#uikit-utilities), add:
-
-```ruby
-pod 'BonMot/UIKit'
-```
-
-## Installation with Carthage
-
-BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
-
-```ogdl
-github "Raizlabs/BonMot"
-```
-
 ## Supported Text Features
 
 BonMot uses attributed strings to give you control over the following typographical features:
@@ -64,7 +41,7 @@ Think something is missing? Please [file an issue](https://github.com/Raizlabs/B
 
 ## Usage
 
-In any Swift file where you want to use BonMot, simply `import BonMot`. In Objective-C, that’s `#import <BonMot/BonMot.h>` or `@import BonMot`.
+In any Swift file where you want to use BonMot, simply `import BonMot`. 
 
 The basic object in BonMot is `BONChain`, which allows you quickly construct attributed strings. You can create a chain with a normal `BonChain()` in Swift or either `[[BONChain alloc] init]`, `[BONChain new]`, or `BONChain.new` in Objective-C:
 
@@ -494,6 +471,29 @@ Outputs:
 
 **Note:** Tag styles do not support nested or interleaved tags. The first tag matched will be applied; any additional tags between the start and end will be ignored.
 
+
+## Installation with CocoaPods
+
+BonMot is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'BonMot'
+```
+
+If you want to use the [UIKit Utilities](#uikit-utilities), add:
+
+```ruby
+pod 'BonMot/UIKit'
+```
+
+## Installation with Carthage
+
+BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
+
+```ogdl
+github "Raizlabs/BonMot"
+```
 
 ## Contributing
 

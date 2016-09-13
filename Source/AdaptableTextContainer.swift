@@ -93,6 +93,21 @@ extension UIButton: AdaptableTextContainer {
 
 extension UISegmentedControl: AdaptableTextContainer {
 
+    // UISegmentedControl has terrible generics on titleTextAttributes so use a helper in Swift 3.0
+    #if swift(>=3.0)
+    @nonobjc final func bon_titleTextAttributes(for state: UIControlState) -> StyleAttributes {
+        let attributes = titleTextAttributes(for: state) ?? [:]
+        var result: StyleAttributes = [:]
+        for value in attributes {
+            guard let string = value.key as? String else {
+                fatalError("Can not convert key \(value.key) to String")
+            }
+            result[string] = value
+        }
+        return result
+    }
+    #endif
+
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         for state: UIControlState in UIControlState.allStates {

@@ -78,13 +78,3 @@ extension UIView {
         }
     }
 }
-extension UIFont {
-
-    final func font(familyName theFamilyName: String) -> UIFont {
-        var attributes = bon_fontDescriptor.bon_fontAttributes
-        attributes[UIFontDescriptorFamilyAttribute] = fontName
-        let descriptor = UIFontDescriptor(fontAttributes: attributes)
-        return UIFont(descriptor: descriptor, size: pointSize)
-    }
-
-}

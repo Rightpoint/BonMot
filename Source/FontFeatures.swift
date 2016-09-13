@@ -14,7 +14,7 @@ public extension UIFont {
     /// Create a new UIFont and attempt to enable the specified font features. The returned font will have all
     /// features enabled that are supported by the font.
     public func font(withFeatures featureProviders: [FontFeatureProvider]) -> UIFont {
-        var fontAttributes = bon_fontDescriptor.bon_fontAttributes
+        var fontAttributes = fontDescriptor.fontAttributes
         var features = fontAttributes[UIFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
         let newFeatures = featureProviders.map() { $0.featureAttribute() }
         features.append(contentsOf: newFeatures)

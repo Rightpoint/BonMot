@@ -83,33 +83,18 @@ extension NSAttributedString {
             fatalError("Force cast of mutable copy failed.")
         }
         // Apply the embedded style
-        #if swift(>=3.0)
-            let unstyledIndexes = NSMutableIndexSet(indexesIn: wholeRange)
-            newString.enumerateAttribute(StyleAttributeProviderAttributeName, in: wholeRange, options: []) { attr, range, stopPtr in
-                if let holder = attr as? StyleAttributeProviderHolder {
-                    newString.apply(style: holder.style, range: range, traitCollection: traitCollection, embedStyle: true)
-                    unstyledIndexes.remove(in: range)
-                }
+        let unstyledIndexes = NSMutableIndexSet(indexesIn: wholeRange)
+        newString.enumerateAttribute(StyleAttributeProviderAttributeName, in: wholeRange, options: []) { attr, range, stopPtr in
+            if let holder = attr as? StyleAttributeProviderHolder {
+                newString.apply(style: holder.style, range: range, traitCollection: traitCollection, embedStyle: true)
+                unstyledIndexes.remove(in: range)
             }
-            if let defaultStyle = defaultStyle {
-                unstyledIndexes.enumerateRanges(options: []) { range, stop in
-                    newString.apply(style: defaultStyle, range: range, traitCollection: traitCollection)
-                }
+        }
+        if let defaultStyle = defaultStyle {
+            unstyledIndexes.enumerateRanges(options: []) { range, stop in
+                newString.apply(style: defaultStyle, range: range, traitCollection: traitCollection)
             }
-        #else
-            let unstyledIndexes = NSMutableIndexSet(indexesInRange: wholeRange)
-            newString.enumerateAttribute(StyleAttributeProviderAttributeName, inRange: wholeRange, options: []) { attr, range, stopPtr in
-                if let holder = attr as? StyleAttributeProviderHolder {
-                    newString.apply(style: holder.style, range: range, traitCollection: traitCollection, embedStyle: true)
-                    unstyledIndexes.removeIndexesInRange(range)
-                }
-            }
-            if let defaultStyle = defaultStyle {
-                unstyledIndexes.enumerateRangesUsingBlock() { range, stop in
-                    newString.apply(style: defaultStyle, range: range, traitCollection: traitCollection)
-                }
-            }
-        #endif
+        }
         return newString
     }
 
@@ -149,20 +134,11 @@ extension NSAttributedString {
         for character in debug.string.characters {
             let utf16LengthOfCharacter = String(character).utf16.count
             let original = String(character) as NSString
-            #if swift(>=3.0)
-                let transformed = original.applyingTransform(StringTransform.toUnicodeName, reverse: false)
-            #else
-                let transformed = original.stringByApplyingTransform(NSStringTransformToUnicodeName, reverse: false)
-            #endif
+            let transformed = original.applyingTransform(StringTransform.toUnicodeName, reverse: false)
             if let transformed = transformed {
                 if transformed.hasPrefix(unassignedPrefix) && transformed.hasSuffix(">}") {
                     let range = NSRange(location: currentIndex, length: utf16LengthOfCharacter)
-
-                    #if swift(>=3.0)
-                        let newString = transformed.replacingOccurrences(of: unassignedPrefix, with: unassignedReplacement)
-                    #else
-                        let newString = transformed.stringByReplacingOccurrencesOfString(unassignedPrefix, withString: unassignedReplacement)
-                    #endif
+                    let newString = transformed.replacingOccurrences(of: unassignedPrefix, with: unassignedReplacement)
                     replacements.append((range, newString))
                 }
             }
@@ -215,27 +191,17 @@ extension NSMutableAttributedString {
     /// - return: The current attributed string
     @objc(bon_appendTabStopWithSpacer:shiftHeadIndent:)
     public func append(tabStopWithSpacer spacer: CGFloat, shiftHeadIndent: Bool = true) -> NSMutableAttributedString {
-        #if swift(>=3.0)
-            let max = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
-            let width = boundingRect(with: max, options: .usesLineFragmentOrigin, context: nil).width
-            let alignment: NSTextAlignment = .natural
-            let defaults = NSParagraphStyle.default
-        #else
-            let max = CGSize(width: CGFloat.max, height: .max)
-            let width = boundingRectWithSize(max, options: .UsesLineFragmentOrigin, context: nil).width
-            let alignment: NSTextAlignment = .Natural
-            let defaults = NSParagraphStyle.defaultParagraphStyle()
-        #endif
-
+        let max = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
+        let width = boundingRect(with: max, options: .usesLineFragmentOrigin, context: nil).width
         let tabSize = spacer + ceil(width)
-        var effectiveRange: NSRange = NSRange(location: 0, length: length)
         let lastIndex = length - (length > 0 ? 1 : 0)
+        var effectiveRange = NSRange(location: 0, length: length)
         var attributes = length > 0 ? self.attributes(at: lastIndex, effectiveRange: &effectiveRange) : [:]
         let paragraph = NSMutableParagraphStyle.from(object: attributes[NSParagraphStyleAttributeName])
-        if paragraph.tabStops == defaults.tabStops {
+        if paragraph.tabStops == NSParagraphStyle.bon_default.tabStops {
             paragraph.tabStops = []
         }
-        paragraph.addTabStop(NSTextTab(textAlignment: alignment, location: tabSize, options: [:]))
+        paragraph.addTabStop(NSTextTab(textAlignment: .natural, location: tabSize, options: [:]))
         if shiftHeadIndent {
             paragraph.headIndent = tabSize
         }

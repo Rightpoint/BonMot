@@ -138,11 +138,8 @@ extension AttributedStringStyle: StyleAttributeProvider {
         paragraph.lineHeightMultiple = lineHeightMultiple ?? paragraph.lineHeightMultiple
         paragraph.paragraphSpacingBefore = paragraphSpacingBefore ?? paragraph.paragraphSpacingBefore
         paragraph.hyphenationFactor = hyphenationFactor ?? paragraph.hyphenationFactor
-        #if swift(>=3.0)
-            let defaults = NSParagraphStyle.default
-        #else
-            let defaults = NSParagraphStyle.defaultParagraphStyle()
-        #endif
+
+        let defaults = NSParagraphStyle.bon_default
 
         if paragraph != defaults {
             theAttributes.update(possibleValue: paragraph, forKey: NSParagraphStyleAttributeName)

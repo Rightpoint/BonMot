@@ -21,7 +21,7 @@ class UIFontTests: XCTestCase {
      * UIFont's are unique objects, and the swift API obscured that fact.
      */
     func testUIFont() {
-        var attributes = UIFont(name: "Avenir-Roman", size: 10)!.bon_fontDescriptor.bon_fontAttributes
+        var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[UIFontDescriptorFeatureSettingsAttribute] = [
             [
                 UIFontFeatureTypeIdentifierKey: 1,
@@ -29,16 +29,16 @@ class UIFontTests: XCTestCase {
             ],
         ]
         attributes[UIFontDescriptorTextStyleAttribute] = "Test"
-        let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).bon_fontDescriptor.bon_fontAttributes
+        let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).fontDescriptor.fontAttributes
         XCTAssertEqual(newAttributes.count, 2)
         XCTAssertEqual(newAttributes["NSFontNameAttribute"] as? String, "Avenir-Roman")
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)
     }
 
     func testTextStyleWithOtherFont() {
-        var attributes = UIFont(name: "Avenir-Roman", size: 10)!.bon_fontDescriptor.bon_fontAttributes
+        var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[UIFontDescriptorTextStyleAttribute] = UIFontTextStyleTitle3
-        let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).bon_fontDescriptor.bon_fontAttributes
+        let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).fontDescriptor.fontAttributes
         XCTAssertEqual(newAttributes.count, 2)
         XCTAssertEqual(newAttributes["NSCTFontUIUsageAttribute"] as? String, UIFontTextStyleTitle3)
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)

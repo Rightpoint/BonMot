@@ -14,123 +14,143 @@ import Foundation
 #if swift(>=3.0)
     public typealias BonMotTextStyle = UIFontTextStyle
     public typealias BonMotContentSizeCategory = UIContentSizeCategory
+
+    extension NSParagraphStyle {
+        // This method has to be prefixed since default is not a valid variable in Swift 2.3
+        static var bon_default: NSParagraphStyle {
+            return default
+        }
+    }
+
 #else
     public typealias BonMotTextStyle = String
     public typealias BonMotContentSizeCategory = String
-#endif
-
-#if swift(>=3.0)
-    extension UIFont {
-        static func bon_preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
-            if #available(iOS 10.0, *) {
-                return preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)
-            }
-            else {
-                return preferredFont(forTextStyle: textStyle)
-            }
-        }
-
-        final var bon_fontDescriptor: UIFontDescriptor {
-            return fontDescriptor
-        }
-
-        final var bon_textStyle: UIFontTextStyle? {
-            guard let textStyle = bon_fontDescriptor.bon_fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
-                return nil
-            }
-            return UIFontTextStyle(rawValue: textStyle)
-        }
-    }
-
-    extension UIFontDescriptor {
-        final var bon_fontAttributes: StyleAttributes {
-            return fontAttributes
-        }
-    }
-
-    extension UISegmentedControl {
-        final func bon_titleTextAttributes(for state: UIControlState) -> StyleAttributes {
-            let attributes = titleTextAttributes(for: state) ?? [:]
-            var result: StyleAttributes = [:]
-            for value in attributes {
-                guard let string = value.key as? String else {
-                    fatalError("Can not convert key \(value.key) to String")
-                }
-                result[string] = value
-            }
-            return result
-        }
-    }
-#else
     typealias OptionSet = OptionSetType
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
+    typealias BonMotStringTransform = String
+
+    struct StringTransform {
+        static let toUnicodeName = NSStringTransformToUnicodeName
+    }
 
     extension UIApplication {
-        static var shared: UIApplication {
+        @nonobjc static var shared: UIApplication {
             return sharedApplication()
         }
     }
 
     extension UIFont {
-        static func bon_preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
-            #if swift(>=2.3)
-            if #available(iOS 10.0, *) {
-                return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
-            }
-            #endif
+
+        @available(iOS 10.0, *)
+        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
+        #if swift(>=2.3)
+            return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
+        #else
+            fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
+        #endif
+        }
+
+        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
             return preferredFontForTextStyle(textStyle)
         }
 
-        final var bon_fontDescriptor: UIFontDescriptor {
+        @nonobjc final var fontDescriptor: UIFontDescriptor {
             return fontDescriptor()
         }
 
-        final var bon_textStyle: String? {
-            guard let textStyle = bon_fontDescriptor.bon_fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
-                return nil
-            }
-            return textStyle
-        }
-
-        final func withSize(size: CGFloat) -> UIFont {
+        @nonobjc final func withSize(size: CGFloat) -> UIFont {
             return fontWithSize(size)
         }
     }
 
     extension UIFontDescriptor {
-        final var bon_fontAttributes: StyleAttributes {
+        @nonobjc final var fontAttributes: StyleAttributes {
             return fontAttributes()
         }
     }
+
+    extension CGFloat {
+        static var greatestFiniteMagnitude = CGFloat.max
+    }
+
     extension NSAttributedString {
-        func attributes(at location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
+        @nonobjc final func attributes(at location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
             return attributesAtIndex(location, effectiveRange: range)
         }
-        func attribute(attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
+        @nonobjc final func attribute(attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
             return self.attribute(attribute, atIndex: location, effectiveRange: range)
+        }
+        @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+            self.enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
+        }
+
+        @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
+            return boundingRectWithSize(size, options: options, context: context)
         }
 
     }
+
+    extension NSStringDrawingOptions {
+        @nonobjc static var usesLineFragmentOrigin = UsesLineFragmentOrigin
+        @nonobjc static var usesFontLeading = UsesFontLeading
+        @nonobjc static var usesDeviceMetrics = UsesDeviceMetrics
+        @nonobjc static var truncatesLastVisibleLine = TruncatesLastVisibleLine
+    }
+
+    extension NSTextAlignment {
+        @nonobjc static var natural = NSTextAlignment.Natural
+    }
+
     extension NSMutableAttributedString {
-        final func append(string: NSAttributedString) {
+        @nonobjc final func append(string: NSAttributedString) {
             appendAttributedString(string)
         }
 
-        func replaceCharacters(in range: NSRange, with str: String) {
+        @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {
             replaceCharactersInRange(range, withString: str)
         }
     }
 
     extension NSString {
-        final func lowercased() -> String {
+        @nonobjc final func lowercased() -> String {
             return lowercaseString
         }
+
+        @nonobjc final func applyingTransform(transform: String, reverse: Bool) -> NSString? {
+            return stringByApplyingTransform(transform, reverse: reverse)
+        }
+
+        @nonobjc final func replacingOccurrences(of string: String, with replacement: String) -> String {
+            return stringByReplacingOccurrencesOfString(string, withString: replacement)
+        }
+
     }
 
     extension NSMutableString {
-        func replacingOccurrences(of target: String, with string: String, options: NSStringCompareOptions, range: NSRange) {
+        @nonobjc final func replacingOccurrences(of target: String, with string: String, options: NSStringCompareOptions, range: NSRange) {
             replaceOccurrencesOfString(target, withString: string, options: options, range: range)
+        }
+    }
+
+    extension NSIndexSet {
+        @nonobjc convenience init(indexesIn: NSRange) {
+            self.init(indexesInRange: indexesIn)
+        }
+        @nonobjc final func enumerateRanges(options theOptions: NSEnumerationOptions = [], @noescape block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+            enumerateRanges(options: theOptions, block: block)
+        }
+    }
+
+    extension NSMutableIndexSet {
+        @nonobjc final func remove(in range: NSRange) {
+            removeIndexesInRange(range)
+        }
+    }
+
+    extension NSParagraphStyle {
+        static var bon_default: NSParagraphStyle {
+            return defaultParagraphStyle()
         }
     }
 
@@ -142,39 +162,27 @@ import Foundation
 
     extension SequenceType {
         @warn_unused_result
-        public func enumerated() -> EnumerateSequence<Self> {
+        func enumerated() -> EnumerateSequence<Self> {
             return enumerate()
         }
     }
 
     extension CollectionType where Index : RandomAccessIndexType {
         @warn_unused_result
-        public func reversed() -> ReverseRandomAccessCollection<Self> {
+        func reversed() -> ReverseRandomAccessCollection<Self> {
             return reverse()
         }
     }
 
-#endif
-
-extension UITraitCollection {
-
-    /// Obtain the preferredContentSizeCategory for the trait collection. This is compatible with iOS 9.x
-    /// and will use the UIApplication preferredContentSizeCategory if the trait collections
-    /// preferredContentSizeCategory is UIContentSizeCategoryUnspecified.
-    public var bon_preferredContentSizeCategory: BonMotContentSizeCategory {
-        #if swift(>=3.0)
-            if #available(iOS 10.0, *) {
-                if preferredContentSizeCategory != .unspecified {
-                    return preferredContentSizeCategory
-                }
-            }
-        #elseif swift(>=2.3)
-            if #available(iOS 10.0, *) {
-                if preferredContentSizeCategory != UIContentSizeCategoryUnspecified {
-                    return preferredContentSizeCategory
-                }
-            }
-        #endif
-        return UIApplication.shared.preferredContentSizeCategory
+    extension String {
+        struct Encoding {
+            static let utf8 = NSUTF8StringEncoding
+        }
+        func lengthOfBytes(using encoding: NSStringEncoding) -> Int {
+            return lengthOfBytesUsingEncoding(encoding)
+        }
+        func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
+            return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
+        }
     }
-}
+#endif

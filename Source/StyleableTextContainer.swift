@@ -108,6 +108,7 @@ extension UIButton: StyleableTextContainer {
             setAttributedTitle(styledAttributedString(forText: text), forState: state)
         #endif
     }
+
 }
 
 extension UISegmentedControl: StyleableTextContainer {
