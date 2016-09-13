@@ -18,7 +18,7 @@ import Foundation
     extension NSParagraphStyle {
         // This method has to be prefixed since default is not a valid variable in Swift 2.3
         static var bon_default: NSParagraphStyle {
-            return default
+            return NSParagraphStyle.default
         }
     }
 
@@ -138,7 +138,7 @@ import Foundation
             self.init(indexesInRange: indexesIn)
         }
         @nonobjc final func enumerateRanges(options theOptions: NSEnumerationOptions = [], @noescape block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            enumerateRanges(options: theOptions, block: block)
+            enumerateRangesWithOptions(theOptions, usingBlock: block)
         }
     }
 
