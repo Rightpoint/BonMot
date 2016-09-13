@@ -13,9 +13,9 @@ class StyleAttributeProviderTests: XCTestCase {
     func testBasicAssertionUtilities() {
         let attributes = BonMot(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB)).styleAttributes()
         XCTAssertEqual(attributes.count, 4)
-        FPAssertKey(attributes, key: NSFontAttributeName, value: UIFont.fontA)
-        FPAssertKey(attributes, key: NSForegroundColorAttributeName, value: UIColor.colorA)
-        FPAssertKey(attributes, key: NSBackgroundColorAttributeName, value: UIColor.colorB)
+        BONAssert(attributes: attributes, key: NSFontAttributeName, value: UIFont.fontA)
+        BONAssert(attributes: attributes, key: NSForegroundColorAttributeName, value: UIColor.colorA)
+        BONAssert(attributes: attributes, key: NSBackgroundColorAttributeName, value: UIColor.colorB)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
@@ -23,7 +23,7 @@ class StyleAttributeProviderTests: XCTestCase {
         let url = NSURL(string: "http://apple.com/")!
         let attributes = BonMot(.link(url)).styleAttributes()
         XCTAssertEqual(attributes.count, 2)
-        FPAssertKey(attributes, key: NSLinkAttributeName, value: url)
+        BONAssert(attributes: attributes, key: NSLinkAttributeName, value: url)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
@@ -31,30 +31,30 @@ class StyleAttributeProviderTests: XCTestCase {
         let attributes = BonMot(.strikethrough(.ByWord, .colorA)).styleAttributes()
 
         XCTAssertEqual(attributes.count, 3)
-        FPAssertKey(attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.ByWord.rawValue)
-        FPAssertKey(attributes, key: NSStrikethroughColorAttributeName, value: UIColor.colorA)
+        BONAssert(attributes: attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.ByWord.rawValue)
+        BONAssert(attributes: attributes, key: NSStrikethroughColorAttributeName, value: UIColor.colorA)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testUnderlineStyle() {
         let attributes = BonMot(.underline(.ByWord, .colorA)).styleAttributes()
         XCTAssertEqual(attributes.count, 3)
-        FPAssertKey(attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.ByWord.rawValue)
-        FPAssertKey(attributes, key: NSUnderlineColorAttributeName, value: UIColor.colorA)
+        BONAssert(attributes: attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.ByWord.rawValue)
+        BONAssert(attributes: attributes, key: NSUnderlineColorAttributeName, value: UIColor.colorA)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testBaselineStyle() {
         let attributes = BonMot(.baselineOffset(15)).styleAttributes()
         XCTAssertEqual(attributes.count, 2)
-        FPAssertKey(attributes, key: NSBaselineOffsetAttributeName, value: 15)
+        BONAssert(attributes: attributes, key: NSBaselineOffsetAttributeName, value: 15)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testAlignmentStyle() {
         let attributes = BonMot(.alignment(.Center)).styleAttributes()
         XCTAssertEqual(attributes.count, 2)
-        FPAssertParagraphStyle(attributes, query: { $0.alignment }, value: .Center)
+        BONAssert(attributes: attributes, query: { $0.alignment }, value: .Center)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
@@ -84,7 +84,7 @@ class StyleAttributeProviderTests: XCTestCase {
         let style = BonMot(.font(inputFont), .adapt(.control))
         let attributes = style.styleAttributes()
         XCTAssertEqual(attributes.count, 2)
-        FPAssertKey(attributes, key: NSFontAttributeName, value: inputFont)
+        BONAssert(attributes: attributes, key: NSFontAttributeName, value: inputFont)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
@@ -120,11 +120,11 @@ class StyleAttributeProviderTests: XCTestCase {
             ).styleAttributes()
         for (index, check) in StyleAttributeProviderTests.tens.enumerate() {
             let line = UInt(StyleAttributeProviderTests.tensLine + 2 + index)
-            FPAssertParagraphStyle(attributes, query: check, float: 10, accuracy: 0.001, line: line)
+            BONAssert(attributes: attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
-        FPAssertParagraphStyle(attributes, query: { $0.alignment }, value: .Center)
-        FPAssertParagraphStyle(attributes, query: { $0.lineBreakMode }, value: .ByClipping)
-        FPAssertParagraphStyle(attributes, query: { $0.baseWritingDirection }, value: .LeftToRight)
+        BONAssert(attributes: attributes, query: { $0.alignment }, value: .Center)
+        BONAssert(attributes: attributes, query: { $0.lineBreakMode }, value: .ByClipping)
+        BONAssert(attributes: attributes, query: { $0.baseWritingDirection }, value: .LeftToRight)
     }
 
     func testParagraphStyleAdd() {
@@ -161,11 +161,11 @@ class StyleAttributeProviderTests: XCTestCase {
         let attributes = chain.styleAttributes()
         for (index, check) in StyleAttributeProviderTests.tens.enumerate() {
             let line = UInt(StyleAttributeProviderTests.tensLine + 2 + index)
-            FPAssertParagraphStyle(attributes, query: check, float: 10, accuracy: 0.001, line: line)
+            BONAssert(attributes: attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
-        FPAssertParagraphStyle(attributes, query: { $0.alignment }, value: .Center)
-        FPAssertParagraphStyle(attributes, query: { $0.lineBreakMode }, value: .ByClipping)
-        FPAssertParagraphStyle(attributes, query: { $0.baseWritingDirection }, value: .LeftToRight)
+        BONAssert(attributes: attributes, query: { $0.alignment }, value: .Center)
+        BONAssert(attributes: attributes, query: { $0.lineBreakMode }, value: .ByClipping)
+        BONAssert(attributes: attributes, query: { $0.baseWritingDirection }, value: .LeftToRight)
     }
 
     func testAdobeTracking() {

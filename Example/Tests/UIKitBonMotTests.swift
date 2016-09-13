@@ -41,7 +41,7 @@ class UIKitBonMotTests: XCTestCase {
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
             label.updateText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryExtraLarge))
-            FPAssertFont(label.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
+            BONAssert(attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
         }
     }
 
@@ -62,7 +62,7 @@ class UIKitBonMotTests: XCTestCase {
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
             textField.updateText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryExtraLarge))
-            FPAssertFont(textField.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
+            BONAssert(attributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
         }
     }
 
@@ -83,7 +83,7 @@ class UIKitBonMotTests: XCTestCase {
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
             textView.updateText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryExtraLarge))
-            FPAssertFont(textView.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
+            BONAssert(attributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
         }
     }
 
@@ -105,7 +105,7 @@ class UIKitBonMotTests: XCTestCase {
         if #available(iOS 10.0, *) {
             button.updateText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryExtraLarge))
             attributes = button.attributedTitleForState(.Normal)?.attributes(at: 0, effectiveRange: nil)
-            FPAssertFont(attributes, query: { $0.pointSize }, float: expectedFont.pointSize + 2)
+            BONAssert(attributes: attributes, query: { $0.pointSize }, float: expectedFont.pointSize + 2)
         }
     }
 

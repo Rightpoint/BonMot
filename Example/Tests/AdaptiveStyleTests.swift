@@ -15,7 +15,7 @@ let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIC
 // These tests rely on iOS 10.0 APIs. Test method needs to be updated to run on iOS 9.0
 
 // This is not used because it doesn't appear that xctest on the command line respects them.
-//@available(iOS 10.0, *)
+// @available(iOS 10.0, *)
 class AdaptiveStyleTests: XCTestCase {
 
     func testFontControlSizeAdaption() {
@@ -25,17 +25,17 @@ class AdaptiveStyleTests: XCTestCase {
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
             return style.styleAttributes(traitCollection: UITraitCollection(preferredContentSizeCategory: contentSizeCategory))
         }
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
-        FPAssertFont(testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
-        FPAssertFont(testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
-        FPAssertFont(testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
 
         // Ensure the accessibility ranges are capped at XXXL
         for size in [UIContentSizeCategoryAccessibilityMedium, UIContentSizeCategoryAccessibilityLarge, UIContentSizeCategoryAccessibilityExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraExtraLarge] {
-            FPAssertFont(testAttributes(size), query: { $0.pointSize }, float: 34)
+            BONAssert(attributes: testAttributes(size), query: { $0.pointSize }, float: 34)
         }
     }
 
@@ -46,20 +46,20 @@ class AdaptiveStyleTests: XCTestCase {
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
             return style.styleAttributes(traitCollection: UITraitCollection(preferredContentSizeCategory: contentSizeCategory))
         }
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
-        FPAssertFont(testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
-        FPAssertFont(testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
-        FPAssertFont(testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
 
         // Ensure body keeps growing
-        FPAssertFont(testAttributes(UIContentSizeCategoryAccessibilityMedium), query: { $0.pointSize }, float: 39)
-        FPAssertFont(testAttributes(UIContentSizeCategoryAccessibilityLarge), query: { $0.pointSize }, float: 44)
-        FPAssertFont(testAttributes(UIContentSizeCategoryAccessibilityExtraLarge), query: { $0.pointSize }, float: 51)
-        FPAssertFont(testAttributes(UIContentSizeCategoryAccessibilityExtraExtraLarge), query: { $0.pointSize }, float: 58)
-        FPAssertFont(testAttributes(UIContentSizeCategoryAccessibilityExtraExtraExtraLarge), query: { $0.pointSize }, float: 64)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryAccessibilityMedium), query: { $0.pointSize }, float: 39)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryAccessibilityLarge), query: { $0.pointSize }, float: 44)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryAccessibilityExtraLarge), query: { $0.pointSize }, float: 51)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryAccessibilityExtraExtraLarge), query: { $0.pointSize }, float: 58)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryAccessibilityExtraExtraExtraLarge), query: { $0.pointSize }, float: 64)
     }
 
     func testPreferredFontDoesNotAdapt() {
@@ -70,8 +70,8 @@ class AdaptiveStyleTests: XCTestCase {
             return style.styleAttributes(traitCollection: UITraitCollection(preferredContentSizeCategory: contentSizeCategory))
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: font.pointSize)
-        FPAssertFont(testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: font.pointSize)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: font.pointSize)
+        BONAssert(attributes: testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: font.pointSize)
     }
 
     func testTextStyleAdapt() {
@@ -83,13 +83,13 @@ class AdaptiveStyleTests: XCTestCase {
             return style.styleAttributes(traitCollection: UITraitCollection(preferredContentSizeCategory: contentSizeCategory))
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
-        FPAssertFont(testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
-        FPAssertFont(testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
-        FPAssertFont(testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
     }
 
     func testPreferredFontWithPreferredAdaptation() {
@@ -101,13 +101,13 @@ class AdaptiveStyleTests: XCTestCase {
             return style.styleAttributes(traitCollection: UITraitCollection(preferredContentSizeCategory: contentSizeCategory))
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
-        FPAssertFont(testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
-        FPAssertFont(testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
-        FPAssertFont(testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
-        FPAssertFont(testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraSmall), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategorySmall), query: { $0.pointSize }, float: 26)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryMedium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryLarge), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraLarge), query: { $0.pointSize }, float: 32)
+        BONAssert(attributes: testAttributes(UIContentSizeCategoryExtraExtraExtraLarge), query: { $0.pointSize }, float: 34)
     }
 
 }
