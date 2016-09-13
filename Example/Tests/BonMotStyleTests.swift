@@ -175,10 +175,10 @@ class StyleAttributeProviderTests: XCTestCase {
             let attributes = chain.styleAttributes(attributes: [NSFontAttributeName: font], traitCollection: nil)
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
         }
-        XCTAssertEqual(testKernAttribute(20), 6)
-        XCTAssertEqual(testKernAttribute(30), 9)
-        XCTAssertEqual(testKernAttribute(40), 12)
-        XCTAssertEqual(testKernAttribute(50), 15)
+        XCTAssertEqualWithAccuracy(testKernAttribute(20), 6, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAttribute(30), 9, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAttribute(40), 12, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAttribute(50), 15, accuracy: 0.0001)
     }
 
     func testPointTracking() {
@@ -188,10 +188,10 @@ class StyleAttributeProviderTests: XCTestCase {
             let attributes = chain.styleAttributes(attributes: [NSFontAttributeName: font], traitCollection: nil)
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
         }
-        XCTAssertEqual(testKernAttribute(20), 10)
-        XCTAssertEqual(testKernAttribute(30), 10)
-        XCTAssertEqual(testKernAttribute(40), 10)
-        XCTAssertEqual(testKernAttribute(50), 10)
+        XCTAssertEqualWithAccuracy(testKernAttribute(20), 10, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAttribute(30), 10, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAttribute(40), 10, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAttribute(50), 10, accuracy: 0.0001)
     }
 
 }
