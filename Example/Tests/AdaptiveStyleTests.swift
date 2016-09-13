@@ -13,10 +13,13 @@ import BonMot
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)
 
 // These tests rely on iOS 10.0 APIs. Test method needs to be updated to run on iOS 9.0
-@available(iOS 10.0, *)
+
+// This is not used because it doesn't appear that xctest on the command line respects them.
+//@available(iOS 10.0, *)
 class AdaptiveStyleTests: XCTestCase {
 
     func testFontControlSizeAdaption() {
+        guard #available(iOS 10.0, *) else { return }
         let inputFont = UIFont.systemFontOfSize(28)
         let style = BonMot(.font(inputFont), .adapt(.control))
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
@@ -37,6 +40,7 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testFontBodySizeAdaption() {
+        guard #available(iOS 10.0, *) else { return }
         let inputFont = UIFont.systemFontOfSize(28)
         let style = BonMot(.font(inputFont), .adapt(.body))
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
@@ -59,6 +63,7 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testPreferredFontDoesNotAdapt() {
+        guard #available(iOS 10.0, *) else { return }
         let font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1, compatibleWithTraitCollection: defaultTraitCollection)
         let style = BonMot(.font(font))
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
@@ -70,6 +75,8 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testTextStyleAdapt() {
+        guard #available(iOS 10.0, *) else { return }
+
         let font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1, compatibleWithTraitCollection: defaultTraitCollection)
         let style = BonMot(.textStyle(UIFontTextStyleTitle1))
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
@@ -86,6 +93,8 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testPreferredFontWithPreferredAdaptation() {
+        guard #available(iOS 10.0, *) else { return }
+
         let font = UIFont.preferredFontForTextStyle(UIFontTextStyleTitle1, compatibleWithTraitCollection: defaultTraitCollection)
         let style = BonMot(.font(font), .adapt(.preferred))
         func testAttributes(contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes {
