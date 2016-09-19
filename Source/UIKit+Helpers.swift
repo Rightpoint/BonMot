@@ -53,7 +53,11 @@ extension UITraitCollection {
             return UIApplication.shared.preferredContentSizeCategory
         }
         else {
-            return UIContentSizeCategory.large
+            #if swift(>=3.0)
+                return UIContentSizeCategory.large
+            #else
+                return UIContentSizeCategoryLarge
+            #endif
         }
     }
 }

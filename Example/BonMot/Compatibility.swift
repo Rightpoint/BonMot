@@ -32,25 +32,25 @@ import BonMot
             return blackColor()
         }
     }
+
     extension UIFont {
         @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
             return systemFontOfSize(pointSize)
         }
-    }
 
-    @available(iOS 10.0, *)
-    @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
-    #if swift(>=2.3)
-    return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
-    #else
-    fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
-    #endif
-    }
+        @available(iOS 10.0, *)
+        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
+            #if swift(>=2.3)
+                return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
+            #else
+                fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
+            #endif
+        }
 
-    @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
-    return preferredFontForTextStyle(textStyle)
+        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
+            return preferredFontForTextStyle(textStyle)
+        }
     }
-
 
     struct UIContentSizeCategory {
         var rawValue: String
