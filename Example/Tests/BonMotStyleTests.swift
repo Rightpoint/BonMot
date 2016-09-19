@@ -82,7 +82,7 @@ class StyleAttributeProviderTests: XCTestCase {
         }
         let inputFont = UIFont.systemFont(ofSize: 30)
         let style = BonMot(.font(inputFont), .adapt(.control))
-        let attributes = style.styleAttributes(attributes: [:], traitCollection: UITraitCollection(preferredContentSizeCategory: .large))
+        let attributes = style.styleAttributes(attributes: [:], traitCollection: largeTraitCollection)
         XCTAssertEqual(attributes.count, 2)
         BONAssert(attributes: attributes, key: NSFontAttributeName, value: inputFont)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)

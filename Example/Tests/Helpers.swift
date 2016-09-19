@@ -7,6 +7,7 @@
 
 import UIKit
 import BonMot
+import XCTest
 
 #if swift(>=3.0)
     extension UIColor {
@@ -18,6 +19,8 @@ import BonMot
         }
     }
     let titleTextStyle = UIFontTextStyle.title1
+    @available(iOS 10.0, *)
+    let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #else
     extension UIColor {
         static var colorA: UIColor {
@@ -28,6 +31,8 @@ import BonMot
         }
     }
     let titleTextStyle = UIFontTextStyleTitle1
+    @available(iOS 10.0, *)
+    let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)
 #endif
 
 extension UIFont {
@@ -143,3 +148,12 @@ extension NSAttributedString {
     }
 
 }
+
+#if swift(>=3.0)
+#else
+extension XCTestCase {
+    func measure(block: () -> Void) {
+        measureBlock(block)
+    }
+}
+#endif

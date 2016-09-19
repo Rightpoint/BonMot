@@ -8,9 +8,8 @@
 import XCTest
 import BonMot
 
-let imageForTest = UIImage(named: "robot",
-                           in: Bundle(for: NSAttributedStringAppendTests.self),
-                           compatibleWith: nil)!
+let testBundle = Bundle(for: NSAttributedStringAppendTests.self)
+let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
 
 class NSAttributedStringAppendTests: XCTestCase {
 

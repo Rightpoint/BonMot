@@ -17,7 +17,7 @@ import Foundation
 
     extension NSParagraphStyle {
         // This method has to be prefixed since default is not a valid variable in Swift 2.3
-        static var bon_default: NSParagraphStyle {
+        @nonobjc static var bon_default: NSParagraphStyle {
             return NSParagraphStyle.default
         }
     }
@@ -149,7 +149,7 @@ import Foundation
     }
 
     extension NSParagraphStyle {
-        static var bon_default: NSParagraphStyle {
+        @nonobjc static var bon_default: NSParagraphStyle {
             return defaultParagraphStyle()
         }
     }

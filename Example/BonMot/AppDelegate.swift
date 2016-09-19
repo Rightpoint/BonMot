@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : UIApplicationLaunchOptionsValue]? = nil) -> Bool {
         style()
         window?.makeKeyAndVisible()
         application.enableAdaptiveContentSizeMonitor()
