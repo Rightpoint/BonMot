@@ -28,18 +28,18 @@ class StyleAttributeProviderTests: XCTestCase {
     }
 
     func testStrikethroughStyle() {
-        let attributes = BonMot(.strikethrough(.ByWord, .colorA)).styleAttributes()
+        let attributes = BonMot(.strikethrough(.byWord, .colorA)).styleAttributes()
 
         XCTAssertEqual(attributes.count, 3)
-        BONAssert(attributes: attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.ByWord.rawValue)
+        BONAssert(attributes: attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
         BONAssert(attributes: attributes, key: NSStrikethroughColorAttributeName, value: UIColor.colorA)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testUnderlineStyle() {
-        let attributes = BonMot(.underline(.ByWord, .colorA)).styleAttributes()
+        let attributes = BonMot(.underline(.byWord, .colorA)).styleAttributes()
         XCTAssertEqual(attributes.count, 3)
-        BONAssert(attributes: attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.ByWord.rawValue)
+        BONAssert(attributes: attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
         BONAssert(attributes: attributes, key: NSUnderlineColorAttributeName, value: UIColor.colorA)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
@@ -47,14 +47,14 @@ class StyleAttributeProviderTests: XCTestCase {
     func testBaselineStyle() {
         let attributes = BonMot(.baselineOffset(15)).styleAttributes()
         XCTAssertEqual(attributes.count, 2)
-        BONAssert(attributes: attributes, key: NSBaselineOffsetAttributeName, value: 15)
+        BONAssert(attributes: attributes, key: NSBaselineOffsetAttributeName, float: CGFloat(15), accuracy: 0.001)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testAlignmentStyle() {
-        let attributes = BonMot(.alignment(.Center)).styleAttributes()
+        let attributes = BonMot(.alignment(.center)).styleAttributes()
         XCTAssertEqual(attributes.count, 2)
-        BONAssert(attributes: attributes, query: { $0.alignment }, value: .Center)
+        BONAssert(attributes: attributes, query: { $0.alignment }, value: .center)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
@@ -66,7 +66,7 @@ class StyleAttributeProviderTests: XCTestCase {
             XCTAssertEqual(attributes.count, 2)
             let font = attributes[NSFontAttributeName] as? UIFont
             XCTAssertNotNil(font)
-            let fontAttributes = font?.fontDescriptor().fontAttributes()
+            let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
             let featureAttribute = fontAttributes?[UIFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
@@ -80,9 +80,9 @@ class StyleAttributeProviderTests: XCTestCase {
             print("Can not test adaptive style pre iOS 10.0. Update this test.")
             return
         }
-        let inputFont = UIFont.systemFontOfSize(30)
+        let inputFont = UIFont.systemFont(ofSize: 30)
         let style = BonMot(.font(inputFont), .adapt(.control))
-        let attributes = style.styleAttributes()
+        let attributes = style.styleAttributes(attributes: [:], traitCollection: UITraitCollection(preferredContentSizeCategory: .large))
         XCTAssertEqual(attributes.count, 2)
         BONAssert(attributes: attributes, key: NSFontAttributeName, value: inputFont)
         XCTAssertNotNil(StyleAttributeProviderAttributeName)
@@ -106,39 +106,39 @@ class StyleAttributeProviderTests: XCTestCase {
         let attributes = BonMotI(
             lineSpacing: 10,
             paragraphSpacingAfter: 10,
-            alignment: .Center,
+            alignment: .center,
+            firstLineHeadIndent: 10,
             headIndent: 10,
             tailIndent: 10,
-            firstLineHeadIndent: 10,
+            lineBreakMode: .byClipping,
             minimumLineHeight: 10,
             maximumLineHeight: 10,
-            lineBreakMode: .ByClipping,
-            baseWritingDirection: .LeftToRight,
+            baseWritingDirection: .leftToRight,
             lineHeightMultiple: 10,
             paragraphSpacingBefore: 10,
             hyphenationFactor: 10
             ).styleAttributes()
-        for (index, check) in StyleAttributeProviderTests.tens.enumerate() {
+        for (index, check) in StyleAttributeProviderTests.tens.enumerated() {
             let line = UInt(StyleAttributeProviderTests.tensLine + 2 + index)
             BONAssert(attributes: attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
-        BONAssert(attributes: attributes, query: { $0.alignment }, value: .Center)
-        BONAssert(attributes: attributes, query: { $0.lineBreakMode }, value: .ByClipping)
-        BONAssert(attributes: attributes, query: { $0.baseWritingDirection }, value: .LeftToRight)
+        BONAssert(attributes: attributes, query: { $0.alignment }, value: .center)
+        BONAssert(attributes: attributes, query: { $0.lineBreakMode }, value: .byClipping)
+        BONAssert(attributes: attributes, query: { $0.baseWritingDirection }, value: .leftToRight)
     }
 
     func testParagraphStyleAdd() {
         var chain = BonMotI(
             lineSpacing: 1,
             paragraphSpacingAfter: 1,
-            alignment: .Left,
+            alignment: .left,
+            firstLineHeadIndent: 1,
             headIndent: 1,
             tailIndent: 1,
-            firstLineHeadIndent: 1,
+            lineBreakMode: .byWordWrapping,
             minimumLineHeight: 1,
             maximumLineHeight: 1,
-            lineBreakMode: .ByWordWrapping,
-            baseWritingDirection: .Natural,
+            baseWritingDirection: .natural,
             lineHeightMultiple: 1,
             paragraphSpacingBefore: 1,
             hyphenationFactor: 1
@@ -146,31 +146,31 @@ class StyleAttributeProviderTests: XCTestCase {
         chain.add(attributedStringStyle: BonMotI(
             lineSpacing: 10,
             paragraphSpacingAfter: 10,
-            alignment: .Center,
+            alignment: .center,
+            firstLineHeadIndent: 10,
             headIndent: 10,
             tailIndent: 10,
-            firstLineHeadIndent: 10,
+            lineBreakMode: .byClipping,
             minimumLineHeight: 10,
             maximumLineHeight: 10,
-            lineBreakMode: .ByClipping,
-            baseWritingDirection: .LeftToRight,
+            baseWritingDirection: .leftToRight,
             lineHeightMultiple: 10,
             paragraphSpacingBefore: 10,
             hyphenationFactor: 10
             ))
         let attributes = chain.styleAttributes()
-        for (index, check) in StyleAttributeProviderTests.tens.enumerate() {
+        for (index, check) in StyleAttributeProviderTests.tens.enumerated() {
             let line = UInt(StyleAttributeProviderTests.tensLine + 2 + index)
             BONAssert(attributes: attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
-        BONAssert(attributes: attributes, query: { $0.alignment }, value: .Center)
-        BONAssert(attributes: attributes, query: { $0.lineBreakMode }, value: .ByClipping)
-        BONAssert(attributes: attributes, query: { $0.baseWritingDirection }, value: .LeftToRight)
+        BONAssert(attributes: attributes, query: { $0.alignment }, value: .center)
+        BONAssert(attributes: attributes, query: { $0.lineBreakMode }, value: .byClipping)
+        BONAssert(attributes: attributes, query: { $0.baseWritingDirection }, value: .leftToRight)
     }
 
     func testAdobeTracking() {
-        var chain = BonMotI(tracking: Tracking.adobe(300))
-        func testKernAttribute(fontSize: CGFloat) -> CGFloat {
+        let chain = BonMotI(tracking: Tracking.adobe(300))
+        let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
             let font = UIFont(name: "Avenir-Book", size: fontSize)!
             let attributes = chain.styleAttributes(attributes: [NSFontAttributeName: font], traitCollection: nil)
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
@@ -182,8 +182,8 @@ class StyleAttributeProviderTests: XCTestCase {
     }
 
     func testPointTracking() {
-        var chain = BonMotI(tracking: Tracking.point(10))
-        func testKernAttribute(fontSize: CGFloat) -> CGFloat {
+        let chain = BonMotI(tracking: Tracking.point(10))
+        let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
             let font = UIFont(name: "Avenir-Book", size: fontSize)!
             let attributes = chain.styleAttributes(attributes: [NSFontAttributeName: font], traitCollection: nil)
             return attributes[NSKernAttributeName] as? CGFloat ?? 0

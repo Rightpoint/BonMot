@@ -85,6 +85,9 @@ extension AdaptiveStyle: StyleAttributeProvider {
             print("No font to adapt, ignoring adaptive style")
             return theAttributes
         }
+        guard traitCollection != nil || UIApplication.shared.delegate != nil else {
+            fatalError("Must supply a trait collection or have a valid UIApplication to fall back on")
+        }
         let contentSizeCategory = traitCollection?.bon_preferredContentSizeCategory
             ?? UIApplication.shared.preferredContentSizeCategory
 

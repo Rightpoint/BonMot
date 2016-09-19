@@ -8,6 +8,12 @@
 import XCTest
 @testable import BonMot
 
+#if swift(>=3.0)
+    let testTextStyle = UIFontTextStyle.title3
+#else
+    let testTextStyle = UIFontTextStyleTitle3
+#endif
+
 class UIFontTests: XCTestCase {
 
     /**
@@ -37,15 +43,11 @@ class UIFontTests: XCTestCase {
 
     func testTextStyleWithOtherFont() {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
-        attributes[UIFontDescriptorTextStyleAttribute] = UIFontTextStyleTitle3
+        attributes[UIFontDescriptorTextStyleAttribute] = testTextStyle
         let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).fontDescriptor.fontAttributes
         XCTAssertEqual(newAttributes.count, 2)
-        XCTAssertEqual(newAttributes["NSCTFontUIUsageAttribute"] as? String, UIFontTextStyleTitle3)
+        XCTAssertEqual(newAttributes["NSCTFontUIUsageAttribute"] as? BonMotTextStyle, testTextStyle)
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)
-    }
-
-    func testPreferredFontInfo() {
-        UIFontTests.generateGNUPlots()
     }
 
 
@@ -61,9 +63,16 @@ class UIFontTests: XCTestCase {
 }
 
 // Some code to generate plots exploring UIFont.preferredFont
+#if swift(>=3.0)
+#else
 extension UIFontTests {
 
-    static func calculateDifference(preferredFont: UIFont, getter: UIFont -> CGFloat) -> String {
+    func testPreferredFontInfo() {
+        UIFontTests.generateGNUPlots()
+    }
+
+
+    static func calculateDifference(preferredFont: UIFont, getter: (UIFont) -> CGFloat) -> String {
         let font = UIFont(name: preferredFont.fontName, size: preferredFont.pointSize)!
         let difference = getter(preferredFont) - getter(font)
         return "\(difference)"
@@ -72,7 +81,7 @@ extension UIFontTests {
     static func generateGNUPlots() {
         let originalSize = UIApplication.sharedApplication().preferredContentSizeCategory
 
-        let plots: [(String, UIFont -> String, [String])] = [
+        let plots: [(String, (UIFont) -> String, [String])] = [
             ("Point Size", { "\($0.pointSize)" }, ["set yrange [5:60]"]),
             // This font name varies between SFUIText-XXX and SFUIDisplay-XXX. Nothing we can do to easily mimic this behavior.
             // Commented out because gnuplot-ing strings is a bit tricker, and the grunt work is not worth the chart.
@@ -119,10 +128,10 @@ extension UIFontTests {
             "set title  '\(title) by Content Size Category'",
             "set xtic rotate",
             ]
-        lines.appendContentsOf(configuration)
+        lines.append(contentsOf: configuration)
         lines.append("")
         lines.append("plot \\")
-        for (index, font) in UIFont.allStyleFonts.enumerate() {
+        for (index, font) in UIFont.allStyleFonts.enumerated() {
             let line = "'\(data)' u 2:\(index + 3):xtic(1) w lp title '\(font.textStyleName)', \\"
             lines.append(line)
         }
@@ -131,7 +140,7 @@ extension UIFontTests {
         return lines.joinWithSeparator("\n")
     }
 
-    static func dumpGNUPlotData(capture: UIFont -> String) -> String {
+    static func dumpGNUPlotData(capture: (UIFont) -> String) -> String {
         // Generate Header
         var lines = ["# Content Size, \(UIFont.allStyleFonts.map() {$0.textStyleName }.joinWithSeparator(", "))"]
         for (index,size) in UIApplication.contentSizeCategoriesToTest.enumerate() {
@@ -156,3 +165,5 @@ extension UIFontTests {
     }
 
 }
+
+#endif

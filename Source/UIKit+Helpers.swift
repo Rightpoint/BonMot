@@ -48,7 +48,13 @@ extension UITraitCollection {
                 }
             }
         #endif
-        return UIApplication.shared.preferredContentSizeCategory
+        // UIApplication is not a valid object in the unit tests. Fallback to a default value if the delegate is nil
+        if UIApplication.shared.delegate != nil {
+            return UIApplication.shared.preferredContentSizeCategory
+        }
+        else {
+            return UIContentSizeCategory.large
+        }
     }
 }
 

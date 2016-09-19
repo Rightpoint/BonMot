@@ -15,15 +15,14 @@ enum DemoStrings {
 
     static let gray = lineHeight.configure { style in
         style.font = UIFont(name: "GillSans-Light", size: 20)!
-        style.textColor = .darkGrayColor()
+        style.textColor = .darkGray
     }
     static let blackBG = lineHeight.configure(
-        .textColor(.whiteColor()),
-        .backgroundColor(.blackColor())
+        .textColor(.white),
+        .backgroundColor(.black)
     )
-
     static let redBG = lineHeight.configure(
-        .textColor(.whiteColor()),
+        .textColor(.white),
         .backgroundColor(.raizlabsRed)
     )
     static let redTxt = lineHeight.configure(
@@ -81,7 +80,7 @@ enum DemoStrings {
             .append(string: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
             ,
         BonMot(.font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!),
-            .textColor(.darkGrayColor())
+            .textColor(.darkGray)
             ).append(string: "🍑 →")
             .append(tabStopWithSpacer: 4.0)
             .append(string: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."),
@@ -101,8 +100,8 @@ enum DemoStrings {
     ], separator: imageStyle.append(string: " "))
 
     static let noSpaceStyle = BonMot(
-        .font(.systemFontOfSize(17)),
-        .textColor(.darkGrayColor())
+        .font(.systemFont(ofSize: 17)),
+        .textColor(.darkGray)
     )
     static let noSpaceImageStyle = BonMot(.baselineOffset(-10))
 
@@ -120,21 +119,21 @@ enum DemoStrings {
             return noSpaceImageStyle.append(image: image).append(string: text, style: noSpaceStyle)
         }, separator: noSpaceStyle.append(string: "\u{2003}"))
 
-    static let heartsString = NSMutableAttributedString(attributedStrings: (0..<20).generate().map() { i in
+    static let heartsString = NSMutableAttributedString(attributedStrings: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
         return BonMot(.baselineOffset(offset)).append(string: "❤️")
     })
 
 
-    static func CustomStoryboard(identifier: String) -> AttributedStringStyle {
+    static func CustomStoryboard(identifier theIdentifier: String) -> AttributedStringStyle {
         // Embed an attribute for the storyboard identifier to link to. This is
         // a good example of custom attributes, even if this might not be the best
         // UIKit design pattern.
-        return BonMot(.initialAttributes(["Storyboard": identifier]))
+        return BonMot(.initialAttributes(["Storyboard": theIdentifier]))
     }
 
-    static let dynamcTypeUIKit = DemoStrings.CustomStoryboard("CatalogViewController")
+    static let dynamcTypeUIKit = DemoStrings.CustomStoryboard(identifier: "CatalogViewController")
         .append(string: "Dynamic UIKit elements with custom fonts")
-    static let preferredFonts = DemoStrings.CustomStoryboard("PreferredFonts")
+    static let preferredFonts = DemoStrings.CustomStoryboard(identifier: "PreferredFonts")
         .append(string: "Preferred Fonts")
 }

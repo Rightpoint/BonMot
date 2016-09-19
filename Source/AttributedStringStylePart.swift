@@ -59,6 +59,15 @@ extension AttributedStringStyle {
         return style
     }
 
+    #if swift(>=3.0)
+    public func configure(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
+        var style = self
+        for part in parts {
+            style.add(attributedStringStylePart: part)
+        }
+        return style
+    }
+    #else
     public func configure(parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = self
         for part in parts {
@@ -66,6 +75,7 @@ extension AttributedStringStyle {
         }
         return style
     }
+    #endif
 
 }
 

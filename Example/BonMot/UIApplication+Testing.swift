@@ -14,9 +14,17 @@ extension UIApplication {
 
     func fakeContentSizeCategory(contentSizeCategory: String) {
         #if swift(>=2.3)
+            #if swift(>=3.0)
+                let notificationCenter = NotificationCenter.default
+                let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
+            #else
+                let notificationCenter = NSNotificationCenter.defaultCenter()
+                let notificationName = UIContentSizeCategoryDidChangeNotification
+            #endif
+
             let traitCollection = bon_topTraitEnvironment.traitCollection.bon_duplicateTraitCollection(preferredContentSizeCategory: contentSizeCategory)
             (bon_topTraitEnvironment as! NSObject).setValue(traitCollection, forKey: "traitCollection")
-            NSNotificationCenter.defaultCenter().postNotificationName(UIContentSizeCategoryDidChangeNotification, object: bon_topTraitEnvironment, userInfo: [UIContentSizeCategoryNewValueKey: contentSizeCategory])
+            notificationCenter.postNotificationName(notificationName, object: bon_topTraitEnvironment, userInfo: [UIContentSizeCategoryNewValueKey: contentSizeCategory])
         #else
             setValue(contentSizeCategory, forKey: "preferredContentSizeCategory")
         #endif
@@ -40,18 +48,18 @@ extension UIApplication {
     }
 
     @nonobjc static var contentSizeCategoriesToTest = [
-        UIContentSizeCategoryExtraSmall,
-        UIContentSizeCategorySmall,
-        UIContentSizeCategoryMedium,
-        UIContentSizeCategoryLarge,
-        UIContentSizeCategoryExtraLarge,
-        UIContentSizeCategoryExtraExtraLarge,
-        UIContentSizeCategoryExtraExtraExtraLarge,
-        UIContentSizeCategoryAccessibilityMedium,
-        UIContentSizeCategoryAccessibilityLarge,
-        UIContentSizeCategoryAccessibilityExtraLarge,
-        UIContentSizeCategoryAccessibilityExtraExtraLarge,
-        UIContentSizeCategoryAccessibilityExtraExtraExtraLarge
+        UIContentSizeCategory.extraSmall,
+        UIContentSizeCategory.small,
+        UIContentSizeCategory.medium,
+        UIContentSizeCategory.large,
+        UIContentSizeCategory.extraLarge,
+        UIContentSizeCategory.extraExtraLarge,
+        UIContentSizeCategory.extraExtraExtraLarge,
+        UIContentSizeCategory.accessibilityMedium,
+        UIContentSizeCategory.accessibilityLarge,
+        UIContentSizeCategory.accessibilityExtraLarge,
+        UIContentSizeCategory.accessibilityExtraExtraLarge,
+        UIContentSizeCategory.accessibilityExtraExtraExtraLarge
     ]
 
     func nextContentSizeCategory() -> String {

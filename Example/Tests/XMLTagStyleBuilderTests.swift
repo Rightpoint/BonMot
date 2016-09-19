@@ -19,9 +19,9 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
         var hugeString = ""
         for _ in 0..<100 {
-            hugeString.appendContentsOf("This is <A>A style</A> test for <B>B Style</B>.")
+            hugeString.append("This is <A>A style</A> test for <B>B Style</B>.")
         }
-        measureBlock() {
+        measure() {
             XCTAssertNotNil(try? styles.attributedString(fromXMLFragment: hugeString))
         }
     }
@@ -37,10 +37,10 @@ class XMLTagStyleBuilderTests: XCTestCase {
             return
         }
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
-        var ranges = Array<NSRange>()
+        var ranges: [NSRange] = Array()
         attributedString.enumerateAttribute(
             StyleAttributeProviderAttributeName,
-            inRange: NSRange(location: 0, length: attributedString.length),
+            in: NSRange(location: 0, length: attributedString.length),
             options: []) { obj, range, stop in
                 ranges.append(range)
         }
@@ -51,9 +51,16 @@ class XMLTagStyleBuilderTests: XCTestCase {
             NSRange(location: 25, length: 7),
             NSRange(location: 32, length: 1),
         ]
-        XCTAssertEqual(expected, ranges)
+        #if swift(>=3.0)
+            for (exp, actual) in zip(expected, ranges) {
+                XCTAssertEqual(exp.location, actual.location)
+                XCTAssertEqual(exp.length, actual.length)
+            }
+        #else
+            XCTAssertEqual(expected, ranges)
+        #endif
 
-        let fonts: [String: UIFont] = attributedString.attributeValuesByRanges(NSFontAttributeName)
+        let fonts: [String: UIFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
         XCTAssertEqual(UIFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"])
         XCTAssertEqual(UIFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"])
         XCTAssert(fonts.count == 2)
@@ -90,8 +97,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
             "11:9": styleA.font!,
             "22:5": styleB.font!,
         ]
-        XCTAssertEqual(expectedFonts, attributedString.attributeValuesByRanges(NSFontAttributeName))
-        XCTAssertEqual(["5:4": NSURL(string: "http://raizlabs.com/")!], attributedString.attributeValuesByRanges(NSLinkAttributeName))
+        XCTAssertEqual(expectedFonts, attributedString.rangesFor(attribute: NSFontAttributeName))
+        XCTAssertEqual(["5:4": NSURL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSLinkAttributeName))
     }
 
     /// Ensure that the singleton is configured with some adaptive styles for easy Dynamic Type support.

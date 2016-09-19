@@ -9,8 +9,8 @@ import XCTest
 import BonMot
 
 let imageForTest = UIImage(named: "robot",
-                        inBundle: NSBundle(forClass: NSAttributedStringAppendTests.self),
-                        compatibleWithTraitCollection: nil)!
+                           in: Bundle(for: NSAttributedStringAppendTests.self),
+                           compatibleWith: nil)!
 
 class NSAttributedStringAppendTests: XCTestCase {
 
@@ -33,7 +33,7 @@ class NSAttributedStringAppendTests: XCTestCase {
             .append(image: imageForTest)
             .append(string: "Test")
 
-        let attributes = chainString.attributesAtIndex(chainString.length - 1, effectiveRange: nil)
+        let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
 
         XCTAssertEqual(attributes["test"] as? String, "test")
     }
@@ -57,11 +57,11 @@ class NSAttributedStringAppendTests: XCTestCase {
             ((stringWidth + 10 + imageForTest.size.width) * 2,
                 multiTabLine)
         ]
-        for (index, (expectedWidth, string)) in stringsWithTabStops.enumerate() {
+        for (index, (expectedWidth, string)) in stringsWithTabStops.enumerated() {
             let line = UInt(#line - 2 - (stringsWithTabStops.count * 2) + (index * 2))
-            let width = string.boundingRectWithSize(CGSize(width: CGFloat.max, height: .max),
-                                                    options: .UsesLineFragmentOrigin,
-                                                    context: nil
+            let width = string.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude),
+                                            options: .usesLineFragmentOrigin,
+                                            context: nil
                 ).width
 
             XCTAssertEqualWithAccuracy(expectedWidth, width, accuracy: 1.0, line: line)
@@ -70,10 +70,10 @@ class NSAttributedStringAppendTests: XCTestCase {
 
     func testInitialParagraphStyle() {
         let string = NSMutableAttributedString(string: "Test", attributes: [NSParagraphStyleAttributeName: NSParagraphStyle()])
-        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, atIndex: 0, effectiveRange: nil) as? NSParagraphStyle)
+        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle)
         string.append(tabStopWithSpacer: 10)
         string.append(string: "ParagraphStyle mutable promotion")
-        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, atIndex: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
+        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
 
     /// NSCoding support for StyleAttributeProvider implementations will do nothing, but basic support is present
@@ -84,16 +84,16 @@ class NSAttributedStringAppendTests: XCTestCase {
             .append(tabStopWithSpacer: 10)
             .append(image: imageForTest)
 
-        let data = NSKeyedArchiver.archivedDataWithRootObject(string)
+        let data = NSKeyedArchiver.archivedData(withRootObject: string)
         var warningTriggerCount = 0
         StyleAttributeProviderHolder.supportWarningClosure = {
             warningTriggerCount += 1
         }
-        let unarchivedString = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+        let unarchivedString = NSKeyedUnarchiver.unarchiveObject(with: data) as? NSAttributedString
         XCTAssertNotNil(unarchivedString)
-        let attributes = unarchivedString?.attributesAtIndex(0, effectiveRange: nil)
+        let attributes = unarchivedString?.attributes(at: 0, effectiveRange: nil)
         XCTAssertNotNil(attributes)
-        let secondUnarchivedString = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+        let secondUnarchivedString = NSKeyedUnarchiver.unarchiveObject(with: data)
         XCTAssertNotNil(secondUnarchivedString)
         XCTAssertEqual(warningTriggerCount, 1)
     }

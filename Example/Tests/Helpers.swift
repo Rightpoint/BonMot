@@ -8,14 +8,27 @@
 import UIKit
 import BonMot
 
-extension UIColor {
-    static var colorA: UIColor {
-        return redColor()
+#if swift(>=3.0)
+    extension UIColor {
+        static var colorA: UIColor {
+            return red
+        }
+        static var colorB: UIColor {
+            return red
+        }
     }
-    static var colorB: UIColor {
-        return redColor()
+    let titleTextStyle = UIFontTextStyle.title1
+#else
+    extension UIColor {
+        static var colorA: UIColor {
+            return redColor()
+        }
+        static var colorB: UIColor {
+            return redColor()
+        }
     }
-}
+    let titleTextStyle = UIFontTextStyleTitle1
+#endif
 
 extension UIFont {
     static var fontA: UIFont {
@@ -25,7 +38,6 @@ extension UIFont {
         return UIFont(name: "Avenir-Roman", size: 20)!
     }
 }
-
 
 let styleA = BonMot(
     .font(.fontA),
@@ -60,43 +72,69 @@ let styleBz = BonMotC { style in
 }
 
 class EBGarandLoader: NSObject {
-    static var token: dispatch_once_t = 0
+
+    static func loadFontIfNeeded() {
+        let _ = loadFont
+    }
 
     // Can't include font the normal (Plist) way for logic tests, so load it the hard way
     // Source: http://stackoverflow.com/questions/14735522/can-i-embed-a-custom-font-in-a-bundle-and-access-it-from-an-ios-framework
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
-    static func loadFontIfNeeded() {
-        dispatch_once(&token) {
+    static var loadFont: Void = {
+        #if swift(>=3.0)
+        guard let path = Bundle(for: EBGarandLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
+            let data = NSData(contentsOfFile: path)
+            else {
+                fatalError("Can not load EBGaramond12")
+        }
+        guard let provider = CGDataProvider(data: data) else {
+            fatalError("Can not create provider")
+        }
+
+        #if swift(>=2.3)
+            let fontRef = CGFont(provider)
+        #else
+            guard let fontRef = CGFontCreateWithDataProvider(provider) else {
+            fatalError("Can not create CGFont")
+            }
+        #endif
+        var error: Unmanaged<CFError>?
+        CTFontManagerRegisterGraphicsFont(fontRef, &error)
+        if let error = error {
+            fatalError("Unable to load font: \(error)")
+        }
+        #else
             guard let path = NSBundle(forClass: EBGarandLoader.self).pathForResource("EBGaramond12-Regular", ofType: "otf"),
-                let data = NSData(contentsOfFile: path)
-                else {
-                    fatalError("Can not load EBGaramond12")
+            let data = NSData(contentsOfFile: path)
+            else {
+            fatalError("Can not load EBGaramond12")
             }
             guard let provider = CGDataProviderCreateWithCFData(data) else {
-                fatalError("Can not create provider")
+            fatalError("Can not create provider")
             }
 
             #if swift(>=2.3)
-                let fontRef = CGFontCreateWithDataProvider(provider)
+            let fontRef = CGFontCreateWithDataProvider(provider)
             #else
-                guard let fontRef = CGFontCreateWithDataProvider(provider) else {
-                    fatalError("Can not create CGFont")
-                }
+            guard let fontRef = CGFontCreateWithDataProvider(provider) else {
+            fatalError("Can not create CGFont")
+            }
             #endif
             var error: Unmanaged<CFError>?
             CTFontManagerRegisterGraphicsFont(fontRef, &error)
             if let error = error {
-                fatalError("Unable to load font: \(error)")
+            fatalError("Unable to load font: \(error)")
             }
-        }
-    }
+        #endif
+        return ()
+    }()
 }
 
 extension NSAttributedString {
 
-    func attributeValuesByRanges<T>(name: String) -> [String: T] {
+    func rangesFor<T>(attribute name: String) -> [String: T] {
         var attributesByRange: [String: T] = [:]
-        enumerateAttribute(name, inRange: NSRange(location: 0, length: length), options: []) { value, range, stop in
+        enumerateAttribute(name, in: NSRange(location: 0, length: length), options: []) { value, range, stop in
             if let object = value as? T {
                 attributesByRange["\(range.location):\(range.length)"] = object
             }

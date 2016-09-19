@@ -21,7 +21,7 @@ class NSAttributedStringDebugTests: XCTestCase {
             ("\u{000A1338}A\u{000A1339}", "{unassignedUnicode<A1338>}A{unassignedUnicode<A1339>}"),
             ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲{unassignedUnicode<A1338>}₫{unassignedUnicode<A1339>}"),
         ]
-        for (index, testCase) in testCases.enumerate() {
+        for (index, testCase) in testCases.enumerated() {
             let line = UInt(#line - testCases.count - 2 + index)
             let debugString = NSAttributedString(string: testCase.0).debugRepresentation.string
             XCTAssertEqual(testCase.1, debugString, line: line)
@@ -29,7 +29,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     }
 
     func testImageRepresentationHasSize() {
-        guard let image = UIImage(named: "robot", inBundle: NSBundle(forClass: NSAttributedStringDebugTests.self), compatibleWithTraitCollection: nil) else {
+        guard let image = UIImage(named: "robot", in: Bundle(for: NSAttributedStringDebugTests.self), compatibleWith: nil) else {
             fatalError()
         }
         XCTAssertEqual(NSAttributedString(image: image).debugRepresentation.string, "{image36x36}")
@@ -43,7 +43,7 @@ class NSAttributedStringDebugTests: XCTestCase {
         XCTAssertEqual(string.utf16.count, 3)
         let mutableAttributedString = NSMutableAttributedString(string: string)
         XCTAssertEqual(mutableAttributedString.string, string)
-        mutableAttributedString.replaceCharactersInRange(NSMakeRange(0, 2), withString: "foo")
+        mutableAttributedString.replaceCharacters(in: NSMakeRange(0, 2), with: "foo")
         XCTAssertEqual(mutableAttributedString.string, "fooA")
     }
 

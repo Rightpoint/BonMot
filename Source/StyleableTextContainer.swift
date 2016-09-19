@@ -40,9 +40,9 @@ internal enum StyleableSupport {
 
 extension StyleableTextContainer {
 
-    internal final func styledAttributedString(forText text: String?) -> NSAttributedString? {
+    internal final func styledAttributedString(forText text: String?, traitCollection: UITraitCollection?) -> NSAttributedString? {
         if let text = text {
-            return (bonMotStyle ?? BonMot()).append(string: text)
+            return (bonMotStyle ?? BonMot()).append(string: text, traitCollection: traitCollection)
         }
         else {
             return nil
@@ -60,7 +60,7 @@ extension UILabel: StyleableTextContainer {
 
     @objc(bon_styledText)
     public var styledText: String? {
-        set { attributedText = styledAttributedString(forText: newValue) }
+        set { attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection) }
         get { return attributedText?.string }
     }
 }
@@ -74,7 +74,7 @@ extension UITextField: StyleableTextContainer {
 
     @objc(bon_styledText)
     public var styledText: String? {
-        set { attributedText = styledAttributedString(forText: newValue) }
+        set { attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection) }
         get { return attributedText?.string }
     }
 }
@@ -88,7 +88,7 @@ extension UITextView: StyleableTextContainer {
 
     @objc(bon_styledText)
     public var styledText: String? {
-        set { attributedText = styledAttributedString(forText: newValue) }
+        set { attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection) }
         get { return attributedText?.string }
     }
 }
@@ -100,14 +100,17 @@ extension UIButton: StyleableTextContainer {
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
 
+    #if swift(>=3.0)
+    @objc(bon_setStyledText:for:)
+    public func setStyledText(_ text: String, forState state: UIControlState) {
+        setAttributedTitle(styledAttributedString(forText: text, traitCollection: traitCollection), for: state)
+    }
+    #else
     @objc(bon_setStyledText:forState:)
     public func setStyledText(text: String, forState state: UIControlState) {
-        #if swift(>=3.0)
-            setAttributedTitle(styledAttributedString(forText: text), for: state)
-        #else
-            setAttributedTitle(styledAttributedString(forText: text), forState: state)
-        #endif
+        setAttributedTitle(styledAttributedString(forText: text), forState: state)
     }
+    #endif
 
 }
 

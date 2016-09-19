@@ -18,11 +18,11 @@ class UIKitBehaviorTests: XCTestCase {
 
         // Ensure font information is mirrored in attributed string
         let attributedText = label.attributedText!
-        let attributeFont = attributedText.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as? UIFont
+        let attributeFont = attributedText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
         XCTAssertEqual(attributeFont, largeFont)
 
         // Change the font in the attributed string
-        var attributes = attributedText.attributesAtIndex(0, effectiveRange: nil)
+        var attributes = attributedText.attributes(at: 0, effectiveRange: nil)
         attributes[NSFontAttributeName] = smallFont
         label.attributedText = NSAttributedString(string: "Testing", attributes: attributes)
         // Note that the font property is updated.
@@ -87,7 +87,7 @@ class UIKitBehaviorTests: XCTestCase {
         label.attributedText = NSAttributedString(string: "", attributes: ["TestAttribute": true])
         label.text = "New Text"
         label.font = UIFont(name: "Avenir-Roman", size: 10)
-        let attributes = label.attributedText?.attributesAtIndex(0, effectiveRange: nil)
+        let attributes = label.attributedText?.attributes(at: 0, effectiveRange: nil)
         XCTAssertNotNil(attributes)
         XCTAssertNil(attributes?["TestAttribute"])
     }

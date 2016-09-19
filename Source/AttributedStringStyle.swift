@@ -6,11 +6,20 @@
 //
 // NOTE: Keep attributes in order to help reviewability.
 
-public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+#if swift(>=3.0)
+    public func BonMotC(_ configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+        var style = AttributedStringStyle()
+        configure(&style)
+        return style
+    }
+#else
+    public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
     var style = AttributedStringStyle()
     configure(&style)
     return style
-}
+    }
+#endif
+
 public typealias BonMotI = AttributedStringStyle
 
 public struct AttributedStringStyle {

@@ -14,18 +14,18 @@ struct Style {
     //
     // Only the title of the navigation bar uses this font function.
     static let wwdcFontScalingTable: [String: (pointSize: CGFloat, styleName: String, leading: CGFloat,  tracking: CGFloat)] = [
-        UIContentSizeCategoryExtraSmall:                        (10.0, "Heavy",   3.0,  0.6),
-        UIContentSizeCategorySmall:                             (12.0, "Heavy",   2.0,  0.4),
-        UIContentSizeCategoryMedium:                            (14.0, "Roman",   1.0,  0.2),
-        UIContentSizeCategoryLarge:                             (16.0, "Roman",   0.0,  0.0),
-        UIContentSizeCategoryExtraLarge:                        (17.0, "Roman",   0.0,  0.0),
-        UIContentSizeCategoryExtraExtraLarge:                   (18.0, "Roman",   0.0,  0.0),
-        UIContentSizeCategoryExtraExtraExtraLarge:              (19.0, "Light",  -2.0, -0.1),
-        UIContentSizeCategoryAccessibilityMedium:               (20.0, "Light",  -3.0, -0.2),
-        UIContentSizeCategoryAccessibilityLarge:                (21.0, "Light",  -4.0, -0.2),
-        UIContentSizeCategoryAccessibilityExtraLarge:           (22.0, "Light",  -4.0, -0.2),
-        UIContentSizeCategoryAccessibilityExtraExtraLarge:      (23.0, "Light",  -4.0, -0.2),
-        UIContentSizeCategoryAccessibilityExtraExtraExtraLarge: (24.0, "Light",  -4.0, -0.2),
+        UIContentSizeCategory.extraSmall.rawValue:                        (10.0, "Heavy",   3.0,  0.6),
+        UIContentSizeCategory.small.rawValue:                             (12.0, "Heavy",   2.0,  0.4),
+        UIContentSizeCategory.medium.rawValue:                            (14.0, "Roman",   1.0,  0.2),
+        UIContentSizeCategory.large.rawValue:                             (16.0, "Roman",   0.0,  0.0),
+        UIContentSizeCategory.extraLarge.rawValue:                        (17.0, "Roman",   0.0,  0.0),
+        UIContentSizeCategory.extraExtraLarge.rawValue:                   (18.0, "Roman",   0.0,  0.0),
+        UIContentSizeCategory.extraExtraExtraLarge.rawValue:              (19.0, "Light",  -2.0, -0.1),
+        UIContentSizeCategory.accessibilityMedium.rawValue:               (20.0, "Light",  -3.0, -0.2),
+        UIContentSizeCategory.accessibilityLarge.rawValue:                (21.0, "Light",  -4.0, -0.2),
+        UIContentSizeCategory.accessibilityExtraLarge.rawValue:           (22.0, "Light",  -4.0, -0.2),
+        UIContentSizeCategory.accessibilityExtraExtraLarge.rawValue:      (23.0, "Light",  -4.0, -0.2),
+        UIContentSizeCategory.accessibilityExtraExtraExtraLarge.rawValue: (24.0, "Light",  -4.0, -0.2),
         ]
 
 
@@ -47,8 +47,12 @@ extension Style: StyleAttributeProvider {
 
     func style(attributes theAttributes: StyleAttributes, traitCollection: UITraitCollection?) -> StyleAttributes {
         var theAttributes = theAttributes
-        let contentSizeCategory = traitCollection?.bon_preferredContentSizeCategory ?? UIApplication.sharedApplication().preferredContentSizeCategory
-        theAttributes[NSFontAttributeName] = Style.wwdcFontScalingFunction(contentSizeCategory)
+        let contentSizeCategory = traitCollection?.bon_preferredContentSizeCategory ?? UIApplication.shared.preferredContentSizeCategory
+        #if swift(>=3.0)
+            theAttributes[NSFontAttributeName] = Style.wwdcFontScalingFunction(contentSizeCategory: contentSizeCategory.rawValue)
+        #else
+            theAttributes[NSFontAttributeName] = Style.wwdcFontScalingFunction(contentSizeCategory)
+        #endif
         return theAttributes
     }
 
@@ -62,7 +66,7 @@ extension UIColor {
 
 extension UIFont {
 
-    static func appFontOfSize(pointSize: CGFloat) -> UIFont {
+    static func appFont(ofSize pointSize: CGFloat) -> UIFont {
         return UIFont(name: "Avenir-Roman", size: pointSize)!
     }
 
