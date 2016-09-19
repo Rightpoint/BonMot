@@ -8,6 +8,7 @@
 
 import UIKit
 import BonMot
+
 #if swift(>=3.0)
     typealias UIApplicationLaunchOptionsValue = Any
     extension UIContentSizeCategory {
@@ -15,13 +16,6 @@ import BonMot
             return self
         }
     }
-    extension NSParagraphStyle {
-        // This method has to be prefixed since default is not a valid variable in Swift 2.3
-        @nonobjc static var bon_default: NSParagraphStyle {
-            return NSParagraphStyle.default
-        }
-    }
-
 #else
     typealias IndexPath = NSIndexPath
     typealias Bundle = NSBundle
@@ -33,12 +27,6 @@ import BonMot
             self.init(forClass: aClass)
         }
     }
-    extension UIApplication {
-        @nonobjc static var shared: UIApplication {
-            return sharedApplication()
-        }
-    }
-
     extension UIImage {
         convenience init?(named: String, in bundle: Bundle, compatibleWith traitCollection: UITraitCollection?) {
             self.init(named: named, inBundle: bundle, compatibleWithTraitCollection: traitCollection)
@@ -46,36 +34,8 @@ import BonMot
     }
 
     extension UIFont {
-
-        @available(iOS 10.0, *)
-        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
-            #if swift(>=2.3)
-                return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
-            #else
-                fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
-            #endif
-        }
-
-        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
-            return preferredFontForTextStyle(textStyle)
-        }
-
-        @nonobjc final var fontDescriptor: UIFontDescriptor {
-            return fontDescriptor()
-        }
-
-        @nonobjc final func withSize(size: CGFloat) -> UIFont {
-            return fontWithSize(size)
-        }
-
         @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
             return systemFontOfSize(pointSize)
-        }
-    }
-
-    extension UIFontDescriptor {
-        @nonobjc final var fontAttributes: StyleAttributes {
-            return fontAttributes()
         }
     }
 
@@ -163,12 +123,6 @@ import BonMot
         }
     }
 
-    extension Range {
-        func makeIterator() -> RangeGenerator<Element> {
-            return generate()
-        }
-    }
-
     extension NSUnderlineStyle {
         @nonobjc static var byWord = NSUnderlineStyle.ByWord
     }
@@ -188,48 +142,46 @@ import BonMot
         @nonobjc static var natural = NSWritingDirection.Natural
     }
 
+    extension NSKeyedArchiver {
+        @nonobjc static func archivedData(withRootObject rootObject: AnyObject) -> NSData {
+            return archivedDataWithRootObject(rootObject)
+        }
+    }
+    extension NSKeyedUnarchiver {
+        @nonobjc static func unarchiveObject(with data: NSData) -> AnyObject? {
+            return unarchiveObjectWithData(data)
+        }
+    }
+
+    extension Range {
+        func makeIterator() -> RangeGenerator<Element> {
+            return generate()
+        }
+    }
+
+    extension String {
+        mutating func append(string: String) {
+            appendContentsOf(string)
+        }
+    }
+#endif
+
+// FIXME: This is a copy of BonMot's Compatibility.swift because project reasons.
+
+/// Standard Library + Foundation
+#if swift(>=3.0)
+#else
+    typealias OptionSet = OptionSetType
+    typealias XMLParser = NSXMLParser
+    typealias XMLParserDelegate = NSXMLParserDelegate
+    typealias BonMotStringTransform = String
+
     struct StringTransform {
         static let toUnicodeName = NSStringTransformToUnicodeName
     }
 
     extension CGFloat {
         static var greatestFiniteMagnitude = CGFloat.max
-    }
-
-    extension NSAttributedString {
-        @nonobjc final func attributes(at location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
-            return attributesAtIndex(location, effectiveRange: range)
-        }
-        @nonobjc final func attribute(attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
-            return self.attribute(attribute, atIndex: location, effectiveRange: range)
-        }
-        @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            self.enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
-        }
-        @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
-            return boundingRectWithSize(size, options: options, context: context)
-        }
-    }
-
-    extension NSStringDrawingOptions {
-        @nonobjc static var usesLineFragmentOrigin = UsesLineFragmentOrigin
-        @nonobjc static var usesFontLeading = UsesFontLeading
-        @nonobjc static var usesDeviceMetrics = UsesDeviceMetrics
-        @nonobjc static var truncatesLastVisibleLine = TruncatesLastVisibleLine
-    }
-
-    extension NSTextAlignment {
-        @nonobjc static var natural = NSTextAlignment.Natural
-    }
-
-    extension NSMutableAttributedString {
-        @nonobjc final func append(string: NSAttributedString) {
-            appendAttributedString(string)
-        }
-
-        @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {
-            replaceCharactersInRange(range, withString: str)
-        }
     }
 
     extension NSString {
@@ -268,12 +220,6 @@ import BonMot
         }
     }
 
-    extension NSParagraphStyle {
-        @nonobjc static var bon_default: NSParagraphStyle {
-            return defaultParagraphStyle()
-        }
-    }
-
     extension Array {
         mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
             appendContentsOf(newElements)
@@ -294,17 +240,6 @@ import BonMot
         }
     }
 
-    extension NSKeyedArchiver {
-        @nonobjc static func archivedData(withRootObject rootObject: AnyObject) -> NSData {
-            return archivedDataWithRootObject(rootObject)
-        }
-    }
-    extension NSKeyedUnarchiver {
-        @nonobjc static func unarchiveObject(with data: NSData) -> AnyObject? {
-            return unarchiveObjectWithData(data)
-        }
-    }
-
     extension String {
         struct Encoding {
             static let utf8 = NSUTF8StringEncoding
@@ -315,9 +250,99 @@ import BonMot
         func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
             return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
         }
-        mutating func append(string: String) {
-            appendContentsOf(string)
+    }
+#endif
+
+/// Shared text objects (AppKit + UIKit)
+#if swift(>=3.0)
+    extension NSParagraphStyle {
+        // This method has to be prefixed since default is not a valid variable in Swift 2.3
+        @nonobjc static var bon_default: NSParagraphStyle {
+            return NSParagraphStyle.default
+        }
+    }
+#else
+    extension NSAttributedString {
+        @nonobjc final func attributes(at location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
+            return attributesAtIndex(location, effectiveRange: range)
+        }
+        @nonobjc final func attribute(attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
+            return self.attribute(attribute, atIndex: location, effectiveRange: range)
+        }
+        @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+            self.enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
+        }
+        @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
+            return boundingRectWithSize(size, options: options, context: context)
+        }
+    }
+
+    extension NSMutableAttributedString {
+        @nonobjc final func append(string: NSAttributedString) {
+            appendAttributedString(string)
+        }
+        @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {
+            replaceCharactersInRange(range, withString: str)
+        }
+    }
+
+    extension NSStringDrawingOptions {
+        @nonobjc static var usesLineFragmentOrigin = UsesLineFragmentOrigin
+        @nonobjc static var usesFontLeading = UsesFontLeading
+        @nonobjc static var usesDeviceMetrics = UsesDeviceMetrics
+        @nonobjc static var truncatesLastVisibleLine = TruncatesLastVisibleLine
+    }
+
+    extension NSTextAlignment {
+        @nonobjc static var natural = NSTextAlignment.Natural
+    }
+
+    extension NSParagraphStyle {
+        @nonobjc static var bon_default: NSParagraphStyle {
+            return defaultParagraphStyle()
+        }
+    }
+
+#endif
+
+
+/// UIKit Only
+#if os(iOS) || os(watchOS) || os(tvOS)
+#if swift(>=3.0)
+#else
+
+    extension UIApplication {
+        @nonobjc static var shared: UIApplication {
+            return sharedApplication()
+        }
+    }
+
+    extension UIFont {
+        @available(iOS 10.0, *)
+        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
+            #if swift(>=2.3)
+                return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
+            #else
+                fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
+            #endif
+        }
+        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
+            return preferredFontForTextStyle(textStyle)
+        }
+        @nonobjc final var fontDescriptor: UIFontDescriptor {
+            return fontDescriptor()
+        }
+        @nonobjc final func withSize(size: CGFloat) -> UIFont {
+            return fontWithSize(size)
+        }
+    }
+
+    extension UIFontDescriptor {
+        @nonobjc final var fontAttributes: StyleAttributes {
+            return fontAttributes()
         }
     }
 #endif
+#endif
+
 
