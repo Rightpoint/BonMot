@@ -116,7 +116,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
             }
         }
         if let namedStyle = namedStyle {
-            style.add(attributedStringStyle: namedStyle)
+            style.update(attributedStringStyle: namedStyle)
         }
         styles.append(style)
     }

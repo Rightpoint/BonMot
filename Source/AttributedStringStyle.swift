@@ -101,7 +101,7 @@ public struct AttributedStringStyle {
         self.hyphenationFactor = hyphenationFactor
     }
 
-    public func configure(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+    public func derive(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
         var style = self
         configureBlock(&style)
         return style
@@ -175,14 +175,14 @@ extension AttributedStringStyle: StyleAttributeProvider {
 
 extension AttributedStringStyle {
 
-    public mutating func add(attributes theAttributes: StyleAttributes) {
+    public mutating func update(attributes theAttributes: StyleAttributes) {
         for (key, value) in theAttributes {
             initialAttributes[key] = value
         }
     }
 
-    public mutating func add(attributedStringStyle stringStyle: AttributedStringStyle) {
-        add(attributes: stringStyle.initialAttributes)
+    public mutating func update(attributedStringStyle stringStyle: AttributedStringStyle) {
+        update(attributes: stringStyle.initialAttributes)
         font = stringStyle.font ?? font
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor

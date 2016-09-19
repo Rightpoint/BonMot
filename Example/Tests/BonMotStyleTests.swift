@@ -143,7 +143,7 @@ class StyleAttributeProviderTests: XCTestCase {
             paragraphSpacingBefore: 1,
             hyphenationFactor: 1
             )
-        chain.add(attributedStringStyle: BonMotI(
+        chain.update(attributedStringStyle: BonMotI(
             lineSpacing: 10,
             paragraphSpacingAfter: 10,
             alignment: .center,

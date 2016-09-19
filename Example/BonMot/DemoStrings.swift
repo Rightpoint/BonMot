@@ -13,19 +13,19 @@ enum DemoStrings {
         style.lineHeightMultiple = 1.8
     })
 
-    static let gray = lineHeight.configure { style in
+    static let gray = lineHeight.derive { style in
         style.font = UIFont(name: "GillSans-Light", size: 20)!
         style.textColor = .darkGray
     }
-    static let blackBG = lineHeight.configure(
+    static let blackBG = lineHeight.derive(
         .textColor(.white),
         .backgroundColor(.black)
     )
-    static let redBG = lineHeight.configure(
+    static let redBG = lineHeight.derive(
         .textColor(.white),
         .backgroundColor(.raizlabsRed)
     )
-    static let redTxt = lineHeight.configure(
+    static let redTxt = lineHeight.derive(
         .textColor(.raizlabsRed)
     )
 

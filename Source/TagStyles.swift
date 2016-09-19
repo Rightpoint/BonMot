@@ -40,7 +40,7 @@ public class TagStyles: NSObject {
     /// - return: the configured style, or nil if none is found
     public func style(forName name: String?, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
         guard let name = name, var style = styles[name] else { return nil }
-        style.add(attributes: initialAttributes)
+        style.update(attributes: initialAttributes)
         return style
     }
 
