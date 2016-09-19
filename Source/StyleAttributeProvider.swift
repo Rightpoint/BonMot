@@ -35,12 +35,12 @@ public extension StyleAttributeProvider {
         return attributes
     }
 
-    public func append(string theString: String, attributes: StyleAttributes = [:], traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+    public func attributedString(from theString: String, attributes: StyleAttributes = [:], traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
         let attributes = styleAttributes(attributes: attributes, traitCollection: traitCollection)
         return NSMutableAttributedString(string: theString, attributes: attributes)
     }
 
-    public func append(image theImage: UIImage, attributes: StyleAttributes = [:], traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+    public func attributedString(from theImage: UIImage, attributes: StyleAttributes = [:], traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
         let attributes = styleAttributes(attributes: attributes, traitCollection: traitCollection)
         return NSMutableAttributedString(image: theImage, attributes: attributes)
     }

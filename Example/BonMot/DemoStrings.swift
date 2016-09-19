@@ -30,12 +30,12 @@ enum DemoStrings {
     )
 
     static let colorString = NSAttributedString(attributedStrings: [
-        gray.append(string: "I want to be different. If everyone is wearing "),
-        blackBG.append(string: " black, "),
-        gray.append(string: " I want to be wearing "),
-        redBG.append(string: " red. \n"),
-        redTxt.append(string: "Maria Sharapova "),
-        BonMot(.baselineOffset(-4.0), .textColor(.raizlabsRed)).append(image: UIImage(named: "Tennis Racket")!)
+        gray.attributedString(from: "I want to be different. If everyone is wearing "),
+        blackBG.attributedString(from: " black, "),
+        gray.attributedString(from: " I want to be wearing "),
+        redBG.attributedString(from: " red. \n"),
+        redTxt.attributedString(from: "Maria Sharapova "),
+        BonMot(.baselineOffset(-4.0), .textColor(.raizlabsRed)).attributedString(from: UIImage(named: "Tennis Racket")!)
         ])
 
 
@@ -43,38 +43,38 @@ enum DemoStrings {
         .tracking(.adobe(300)),
         .font(UIFont(name: "Avenir-Book", size: 18)!)
         )
-        .append(string: "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone")
+        .attributedString(from: "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone")
 
     static let lineHeightString = BonMot(
         .font(UIFont(name: "AmericanTypewriter", size: 17.0)!),
         .lineHeightMultiple(1.8)
-        ).append(string: "I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson")
+        ).attributedString(from: "I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson")
 
     static let proportionalStrings: [NSAttributedString] = [
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .fontFeature(NumberSpacing.proportional),
             .fontFeature(NumberCase.upper)
-            ).append(string: "Proportional Uppercase\n1111111111\n0123456789"),
+            ).attributedString(from: "Proportional Uppercase\n1111111111\n0123456789"),
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .fontFeature(NumberSpacing.proportional),
             .fontFeature(NumberCase.lower)
-            ).append(string: "Proportional Lowercase\n1111111111\n0123456789"),
+            ).attributedString(from: "Proportional Lowercase\n1111111111\n0123456789"),
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .fontFeature(NumberSpacing.monospaced),
             .fontFeature(NumberCase.upper)
-            ).append(string: "Monospaced Uppercase\n1111111111\n0123456789"),
+            ).attributedString(from: "Monospaced Uppercase\n1111111111\n0123456789"),
         BonMot(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .fontFeature(NumberSpacing.monospaced),
             .fontFeature(NumberCase.lower)
-            ).append(string: "Monospaced Lowercase\n1111111111\n0123456789"),
+            ).attributedString(from: "Monospaced Lowercase\n1111111111\n0123456789"),
         ]
-
     static let indentationStrings: [NSAttributedString] = [
-        BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!)
+/*
+         BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!)
             ).append(image: UIImage(named: "robot")!)
             .append(tabStopWithSpacer: 4.0)
             .append(string: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
@@ -84,6 +84,7 @@ enum DemoStrings {
             ).append(string: "🍑 →")
             .append(tabStopWithSpacer: 4.0)
             .append(string: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."),
+ */
     ]
     static let imageStyle = BonMot(
         .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
@@ -91,13 +92,13 @@ enum DemoStrings {
     )
 
     static let imageString = NSMutableAttributedString(attributedStrings: [
-        imageStyle.append(string: "2"),
+        imageStyle.attributedString(from: "2"),
         NSAttributedString(image: UIImage(named: "bee")!),
         NSAttributedString(image: UIImage(named: "oar")!),
         NSAttributedString(image: UIImage(named: "knot")!),
-        imageStyle.append(string: "2"),
+        imageStyle.attributedString(from: "2"),
         NSAttributedString(image: UIImage(named: "bee")!),
-    ], separator: imageStyle.append(string: " "))
+    ], separator: imageStyle.attributedString(from: " "))
 
     static let noSpaceStyle = BonMot(
         .font(.systemFont(ofSize: 17)),
@@ -116,12 +117,14 @@ enum DemoStrings {
         (UIImage(named: "pin")!, "no-break"),
         (UIImage(named: "robot")!, "spaces"),
         ].map() { image, text in
-            return noSpaceImageStyle.append(image: image).append(string: text, style: noSpaceStyle)
-        }, separator: noSpaceStyle.append(string: "\u{2003}"))
+            let string = noSpaceImageStyle.attributedString(from: image)
+            string.append(string: text, style: noSpaceStyle)
+            return string
+        }, separator: noSpaceStyle.attributedString(from: "\u{2003}"))
 
     static let heartsString = NSMutableAttributedString(attributedStrings: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
-        return BonMot(.baselineOffset(offset)).append(string: "❤️")
+        return BonMot(.baselineOffset(offset)).attributedString(from: "❤️")
     })
 
 
@@ -133,7 +136,7 @@ enum DemoStrings {
     }
 
     static let dynamcTypeUIKit = DemoStrings.CustomStoryboard(identifier: "CatalogViewController")
-        .append(string: "Dynamic UIKit elements with custom fonts")
+        .attributedString(from: "Dynamic UIKit elements with custom fonts")
     static let preferredFonts = DemoStrings.CustomStoryboard(identifier: "PreferredFonts")
-        .append(string: "Preferred Fonts")
+        .attributedString(from: "Preferred Fonts")
 }

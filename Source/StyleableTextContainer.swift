@@ -42,7 +42,7 @@ extension StyleableTextContainer {
 
     internal final func styledAttributedString(forText text: String?, traitCollection: UITraitCollection?) -> NSAttributedString? {
         if let text = text {
-            return (bonMotStyle ?? BonMot()).append(string: text, traitCollection: traitCollection)
+            return (bonMotStyle ?? BonMot()).attributedString(from: text, traitCollection: traitCollection)
         }
         else {
             return nil

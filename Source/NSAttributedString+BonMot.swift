@@ -164,9 +164,8 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func append(string theString: String, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+    public final func append(string theString: String, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
         append(NSAttributedString(string: theString, attributes: attributesToAppend(withStyle: style, traitCollection: traitCollection)))
-        return self
     }
 
     /// Append the image to the end of the attributed string. Apply the specified style on top of the attributes at
@@ -177,9 +176,8 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func append(image theImage: UIImage, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+    public final func append(image theImage: UIImage, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
         append(NSAttributedString(image: theImage, attributes: attributesToAppend(withStyle: style, traitCollection: traitCollection)))
-        return self
     }
 
     /// Append a tab stop to the attributed string, and configure the tab to end `tabStopWithSpacer` points after the
@@ -190,7 +188,7 @@ extension NSMutableAttributedString {
     /// - parameter shiftHeadIndent: Shift the head indent to the tab stop so that any word wrapping will be aligned with the tab stop. This defaults to true since it's usually the desired behavior.
     /// - return: The current attributed string
     @objc(bon_appendTabStopWithSpacer:shiftHeadIndent:)
-    public func append(tabStopWithSpacer spacer: CGFloat, shiftHeadIndent: Bool = true) -> NSMutableAttributedString {
+    public func append(tabStopWithSpacer spacer: CGFloat, shiftHeadIndent: Bool = true) {
         let max = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
         let width = boundingRect(with: max, options: .usesLineFragmentOrigin, context: nil).width
         let tabSize = spacer + ceil(width)
@@ -208,7 +206,6 @@ extension NSMutableAttributedString {
         addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: effectiveRange)
         attributes[NSParagraphStyleAttributeName] = paragraph
         append(NSAttributedString(string: "\t", attributes: attributes))
-        return self
     }
 
     /// Helper function to determine the attributes to use when appending content.
@@ -267,10 +264,9 @@ extension NSMutableAttributedString {
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
     @objc(bon_appendString:styleNamed:traitCollection:)
-    public final func append(string theString: String, styleNamed name: String? = nil, traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+    public final func append(string theString: String, styleNamed name: String? = nil, traitCollection: UITraitCollection? = nil) {
         let style = TagStyles.shared.style(forName: name)
         append(NSAttributedString(string: theString, attributes: attributesToAppend(withStyle: style, traitCollection: traitCollection)))
-        return self
     }
 
     /// Append the image to the end of the attributed string with the attributes at the end of the attributed string.
@@ -280,9 +276,8 @@ extension NSMutableAttributedString {
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
     @objc(bon_appendImage:traitCollection:)
-    public final func append(image theImage: UIImage, traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+    public final func append(image theImage: UIImage, traitCollection: UITraitCollection? = nil) {
         append(NSAttributedString(image: theImage, attributes: attributesToAppend(withStyle: nil, traitCollection: traitCollection)))
-        return self
     }
 
 }

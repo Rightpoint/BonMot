@@ -14,9 +14,9 @@
     }
 #else
     public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-    var style = AttributedStringStyle()
-    configure(&style)
-    return style
+        var style = AttributedStringStyle()
+        configure(&style)
+        return style
     }
 #endif
 

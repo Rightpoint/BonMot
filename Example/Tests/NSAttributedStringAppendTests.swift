@@ -25,12 +25,11 @@ class NSAttributedStringAppendTests: XCTestCase {
         XCTAssertEqual("A-B-C", string.string)
     }
 
-    func testAttributesArePassedAlongChain() {
-        let chainString = BonMot(.initialAttributes(["test": "test"]))
-            .append(image: imageForTest)
-            .append(string: "Test")
-            .append(image: imageForTest)
-            .append(string: "Test")
+    func testAttributesArePassedAlongAppend() {
+        let chainString = BonMot(.initialAttributes(["test": "test"])).attributedString(from: imageForTest)
+        chainString.append(string: "Test")
+        chainString.append(image: imageForTest)
+        chainString.append(string: "Test")
 
         let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
 
@@ -40,24 +39,27 @@ class NSAttributedStringAppendTests: XCTestCase {
     func testTabStopsWithSpacer() {
         let stringWidth = CGFloat(115)
 
-        let multiTabLine = BonMot()
-            .append(string: "astringwithsomewidth")
-            .append(tabStopWithSpacer: 10)
-            .append(image: imageForTest)
-            .append(tabStopWithSpacer: 10)
-            .append(string: "astringwithsomewidth")
-            .append(image: imageForTest)
+        let multiTabLine = NSMutableAttributedString()
+        multiTabLine.append(string: "astringwithsomewidth")
+        multiTabLine.append(tabStopWithSpacer: 10)
+        multiTabLine.append(image: imageForTest)
+        multiTabLine.append(tabStopWithSpacer: 10)
+        multiTabLine.append(string: "astringwithsomewidth")
+        multiTabLine.append(image: imageForTest)
+
+        let stringTab = NSMutableAttributedString(string: "astringwithsomewidth")
+        stringTab.append(tabStopWithSpacer: 10)
+
+        let imageTab = NSMutableAttributedString(image: imageForTest)
+        imageTab.append(tabStopWithSpacer: 10)
 
         let stringsWithTabStops: [(CGFloat, NSAttributedString)] = [
-            (imageForTest.size.width + 10,
-                BonMot().append(image: imageForTest).append(tabStopWithSpacer: 10)),
-            (stringWidth + 10,
-                BonMot().append(string: "astringwithsomewidth").append(tabStopWithSpacer: 10)),
-            ((stringWidth + 10 + imageForTest.size.width) * 2,
-                multiTabLine)
+            (imageForTest.size.width + 10, imageTab),
+            (stringWidth + 10, stringTab),
+            ((stringWidth + 10 + imageForTest.size.width) * 2, multiTabLine)
         ]
         for (index, (expectedWidth, string)) in stringsWithTabStops.enumerated() {
-            let line = UInt(#line - 2 - (stringsWithTabStops.count * 2) + (index * 2))
+            let line = UInt(#line - 2 - stringsWithTabStops.count + index)
             let width = string.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude),
                                             options: .usesLineFragmentOrigin,
                                             context: nil
@@ -78,10 +80,9 @@ class NSAttributedStringAppendTests: XCTestCase {
     /// NSCoding support for StyleAttributeProvider implementations will do nothing, but basic support is present
     /// so NSKeyedArchiver does not throw an exception.
     func testDisappointingNSCodingSupport() {
-        let string = styleA
-            .append(string: "astringwithsomewidth")
-            .append(tabStopWithSpacer: 10)
-            .append(image: imageForTest)
+        let string = styleA.attributedString(from: "astringwithsomewidth")
+        string.append(tabStopWithSpacer: 10)
+        string.append(image: imageForTest)
 
         let data = NSKeyedArchiver.archivedData(withRootObject: string)
         var warningTriggerCount = 0

@@ -24,8 +24,8 @@ public class StyleAttributeProviderHolder: NSObject {
         return supportWarningClosure()
     }()
 
-    public func encodeWithCoder(_ aCoder: NSCoder) {
-    }
+    public func encodeWithCoder(_ aCoder: NSCoder) {}
+
     required public init?(coder aDecoder: NSCoder) {
         self.style = BonMot()
         super.init()
