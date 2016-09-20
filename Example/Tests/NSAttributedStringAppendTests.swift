@@ -76,25 +76,4 @@ class NSAttributedStringAppendTests: XCTestCase {
         string.extend(with: "ParagraphStyle mutable promotion")
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
-
-    /// NSCoding support for StyleAttributeProvider implementations will do nothing, but basic support is present
-    /// so NSKeyedArchiver does not throw an exception.
-    func testDisappointingNSCodingSupport() {
-        let string = styleA.attributedString(from: "astringwithsomewidth")
-        string.extend(withTabSpacer: 10)
-        string.extend(with: imageForTest)
-
-        let data = NSKeyedArchiver.archivedData(withRootObject: string)
-        var warningTriggerCount = 0
-        StyleAttributeProviderHolder.supportWarningClosure = {
-            warningTriggerCount += 1
-        }
-        let unarchivedString = NSKeyedUnarchiver.unarchiveObject(with: data) as? NSAttributedString
-        XCTAssertNotNil(unarchivedString)
-        let attributes = unarchivedString?.attributes(at: 0, effectiveRange: nil)
-        XCTAssertNotNil(attributes)
-        let secondUnarchivedString = NSKeyedUnarchiver.unarchiveObject(with: data)
-        XCTAssertNotNil(secondUnarchivedString)
-        XCTAssertEqual(warningTriggerCount, 1)
-    }
 }

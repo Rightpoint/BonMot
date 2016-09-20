@@ -52,53 +52,7 @@ extension NSAttributedString {
         self.init(attributedString: result)
     }
 
-    /// Adapt a set of attributes to the specified trait collection. This will use the style object defined in the attributes or use the default style object specified.
-    ///
-    /// - parameter attributes: The attributes to transform
-    /// - parameter traitCollection: The trait collection to transform the attributes too
-    /// - parameter defaultStyle: The style to apply if there is no style specified in the attributes
-    /// - returns: Attributes with fonts updated to the specified content size category.
-    public static func adapt(attributes theAttributes: StyleAttributes, toTraitCollection traitCollection: UITraitCollection, defaultStyle: StyleAttributeProvider?) -> StyleAttributes {
-        var attributes = theAttributes
-        if let styleHolder = attributes[StyleAttributeProviderAttributeName] as? StyleAttributeProviderHolder {
-            attributes = styleHolder.style.styleAttributes(attributes: attributes, traitCollection: traitCollection)
-        }
-        else if let style = defaultStyle {
-            attributes = style.styleAttributes(attributes: attributes, traitCollection: traitCollection)
-        }
-
-        return attributes
-    }
-
-    /// Create a new NSAttributedString adapted to the new trait collection. This will re-apply the embedded style 
-    /// objects or apply the defaultStyle object if no styles are present.
-    ///
-    /// - parameter toTraitCollection: The trait collection containing the attribute string to be transformed.
-    /// - parameter defaultStyle: The style to apply if there is no style specified in the attributes
-    ///
-    /// - returns: A new NSAttributedString with the style updated to the new trait collection.
-    public final func adapt(toTraitCollection traitCollection: UITraitCollection, defaultStyle: StyleAttributeProvider?) -> NSMutableAttributedString {
-        let wholeRange = NSRange(location: 0, length: length)
-        guard let newString = mutableCopy() as? NSMutableAttributedString else {
-            fatalError("Force cast of mutable copy failed.")
-        }
-        // Apply the embedded style
-        let unstyledIndexes = NSMutableIndexSet(indexesIn: wholeRange)
-        newString.enumerateAttribute(StyleAttributeProviderAttributeName, in: wholeRange, options: []) { attr, range, stopPtr in
-            if let holder = attr as? StyleAttributeProviderHolder {
-                newString.apply(style: holder.style, range: range, traitCollection: traitCollection, embedStyle: true)
-                unstyledIndexes.remove(in: range)
-            }
-        }
-        if let defaultStyle = defaultStyle {
-            unstyledIndexes.enumerateRanges(options: []) { range, stop in
-                newString.apply(style: defaultStyle, range: range, traitCollection: traitCollection)
-            }
-        }
-        return newString
-    }
-
-    /// Create a new attributed string based on the current string, but replace characters in the Special enumeration, 
+    /// Create a new attributed string based on the current string, but replace characters in the Special enumeration,
     /// images, and unassigned unicode characters with a visual string.
     @objc(bon_debugRepresentation)
     public var debugRepresentation: NSAttributedString {
@@ -164,11 +118,11 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func extend(with string: String, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
-        append(NSAttributedString(string: string, attributes: extendingAttributes(with: style, traitCollection: traitCollection)))
+    public final func extend(with string: String, style: StyleAttributeTransformation?) {
+        append(NSAttributedString(string: string, attributes: extendingAttributes(with: style)))
     }
 
-    public final func extend(with attributedString: NSAttributedString, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
+    public final func extend(with attributedString: NSAttributedString, style: StyleAttributeTransformation?) {
         // Grab the last attributes in the string to extend into the specified attributed string
         let lastIndex = length - (length > 0 ? 1 : 0)
         let extendingAttributes = length > 0 ? attributes(at: lastIndex, effectiveRange: nil) : [:]
@@ -179,7 +133,7 @@ extension NSMutableAttributedString {
             var extendingAttributes = extendingAttributes
             attributes.forEach() { extendingAttributes.updateValue($1, forKey: $0) }
             // Apply the style to the attributes to extend
-            let newStyle = style?.style(attributes: extendingAttributes, traitCollection: traitCollection) ?? extendingAttributes
+            let newStyle = style?.style(attributes: extendingAttributes) ?? extendingAttributes
             // Add the string with the extended attributes
             append(NSAttributedString(string: substring.string, attributes: newStyle))
         }
@@ -193,8 +147,8 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func extend(with image: UIImage, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
-        append(NSAttributedString(image: image, attributes: extendingAttributes(with: style, traitCollection: traitCollection)))
+    public final func extend(with image: UIImage, style: StyleAttributeTransformation?) {
+        append(NSAttributedString(image: image, attributes: extendingAttributes(with: style)))
     }
 
     /// Append a tab stop to the attributed string, and configure the tab to end `tabStopWithSpacer` points after the
@@ -212,7 +166,7 @@ extension NSMutableAttributedString {
         let lastIndex = length - (length > 0 ? 1 : 0)
         var effectiveRange = NSRange(location: 0, length: length)
         var attributes = length > 0 ? self.attributes(at: lastIndex, effectiveRange: &effectiveRange) : [:]
-        let paragraph = NSMutableParagraphStyle.from(object: attributes[NSParagraphStyleAttributeName])
+        let paragraph = StyleAttributeHelpers.paragraph(from: attributes)
         if paragraph.tabStops == NSParagraphStyle.bon_default.tabStops {
             paragraph.tabStops = []
         }
@@ -226,48 +180,19 @@ extension NSMutableAttributedString {
     }
 
     /// Helper function to determine the attributes to use when appending content.
-    internal final func extendingAttributes(with style: StyleAttributeProvider?, traitCollection: UITraitCollection?) -> StyleAttributes {
+    internal final func extendingAttributes(with style: StyleAttributeTransformation?) -> StyleAttributes {
         let lastIndex = length - (length > 0 ? 1 : 0)
         let finalAttributes = length > 0 ? attributes(at: lastIndex, effectiveRange: nil) : [:]
-        return style?.style(attributes: finalAttributes, traitCollection: traitCollection) ?? finalAttributes
+        return style?.style(attributes: finalAttributes) ?? finalAttributes
     }
 
     /// Helper function to apply a style to a range of a trait collection
-    internal final func apply(style theStyle: StyleAttributeProvider, range: NSRange, traitCollection: UITraitCollection?, embedStyle: Bool = false) {
+    internal final func apply(style theStyle: StyleAttributeTransformation, range: NSRange) {
         let attributes = self.attributes(at: range.location, effectiveRange: nil)
-        var newAttributes = theStyle.style(attributes: attributes, traitCollection: traitCollection)
-        if embedStyle {
-            newAttributes[StyleAttributeProviderAttributeName] = StyleAttributeProviderHolder(style: theStyle)
-        }
+        let newAttributes = theStyle.style(attributes: attributes)
         setAttributes(newAttributes, range: range)
     }
 
-}
-
-/// Objective-C Compatibility
-extension NSAttributedString {
-
-    /// Create a new NSAttributedString adapted to the new trait collection. This will re-apply the embedded style objects in the attributed string and is compatible with Obj-C.
-    ///
-    /// - parameter toTraitCollection: The trait collection containing the attribute string to be transformed.
-    ///
-    /// - returns: A new NSAttributedString with the style updated to the new trait collection.
-    @objc(bon_adaptToTraitCollection:)
-    public final func adapt(toTraitCollection traitCollection: UITraitCollection) -> NSMutableAttributedString {
-        return adapt(toTraitCollection: traitCollection, defaultStyle: nil)
-    }
-
-    /// Adapt a set of attributes to the specified trait collection. This will use the style object defined in the attributes dictionary and is compatible with Obj-C.
-    ///
-    /// - parameter attributes: The attributes to transform
-    /// - parameter traitCollection: The trait collection to transform the attributes too
-    ///
-    /// - returns: Attributes with fonts updated to the specified content size category.
-    @objc(bon_adaptAttributes:toTraitCollection:)
-    public static func adapt(attributes theAttributes: StyleAttributes, toTraitCollection traitCollection: UITraitCollection) -> StyleAttributes {
-        return adapt(attributes: theAttributes, toTraitCollection: traitCollection, defaultStyle: nil)
-    }
-    
 }
 
 extension NSMutableAttributedString {
@@ -280,10 +205,10 @@ extension NSMutableAttributedString {
     /// - parameter styleNamed: The style name registered in the shared TagStyle object to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    @objc(bon_extendWithString:styleNamed:traitCollection:)
-    public final func extend(with string: String, styleNamed name: String? = nil, traitCollection: UITraitCollection? = nil) {
+    @objc(bon_extendWithString:styleNamed:)
+    public final func extend(with string: String, styleNamed name: String? = nil) {
         let style = TagStyles.shared.style(forName: name)
-        append(NSAttributedString(string: string, attributes: extendingAttributes(with: style, traitCollection: traitCollection)))
+        append(NSAttributedString(string: string, attributes: extendingAttributes(with: style)))
     }
 
     /// Append the image to the end of the attributed string with the attributes at the end of the attributed string.
@@ -292,9 +217,9 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    @objc(bon_extendWithImage:traitCollection:)
-    public final func extend(with image: UIImage, traitCollection: UITraitCollection? = nil) {
-        append(NSAttributedString(image: image, attributes: extendingAttributes(with: nil, traitCollection: traitCollection)))
+    @objc(bon_extendWithImage:)
+    public final func extend(with image: UIImage) {
+        append(NSAttributedString(image: image, attributes: extendingAttributes(with: nil)))
     }
 
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 extension UIFont {
+
     @nonobjc static func bon_preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
         if #available(iOS 10.0, *) {
             return preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)

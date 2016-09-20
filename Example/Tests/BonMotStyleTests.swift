@@ -1,5 +1,5 @@
 //
-//  StyleAttributeProviderTests.swift
+//  StyleAttributeTransformationTests.swift
 //
 //  Created by Brian King on 8/20/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -8,84 +8,63 @@
 import XCTest
 import BonMot
 
-class StyleAttributeProviderTests: XCTestCase {
+class StyleAttributeTransformationTests: XCTestCase {
 
     func testBasicAssertionUtilities() {
-        let attributes = BonMot(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB)).styleAttributes()
-        XCTAssertEqual(attributes.count, 4)
+        let attributes = BonMot(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB)).attributes()
+        XCTAssertEqual(attributes.count, 3)
         BONAssert(attributes: attributes, key: NSFontAttributeName, value: UIFont.fontA)
         BONAssert(attributes: attributes, key: NSForegroundColorAttributeName, value: UIColor.colorA)
         BONAssert(attributes: attributes, key: NSBackgroundColorAttributeName, value: UIColor.colorB)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testURL() {
         let url = NSURL(string: "http://apple.com/")!
-        let attributes = BonMot(.link(url)).styleAttributes()
-        XCTAssertEqual(attributes.count, 2)
+        let attributes = BonMot(.link(url)).attributes()
+        XCTAssertEqual(attributes.count, 1)
         BONAssert(attributes: attributes, key: NSLinkAttributeName, value: url)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testStrikethroughStyle() {
-        let attributes = BonMot(.strikethrough(.byWord, .colorA)).styleAttributes()
+        let attributes = BonMot(.strikethrough(.byWord, .colorA)).attributes()
 
-        XCTAssertEqual(attributes.count, 3)
+        XCTAssertEqual(attributes.count, 2)
         BONAssert(attributes: attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
         BONAssert(attributes: attributes, key: NSStrikethroughColorAttributeName, value: UIColor.colorA)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testUnderlineStyle() {
-        let attributes = BonMot(.underline(.byWord, .colorA)).styleAttributes()
-        XCTAssertEqual(attributes.count, 3)
+        let attributes = BonMot(.underline(.byWord, .colorA)).attributes()
+        XCTAssertEqual(attributes.count, 2)
         BONAssert(attributes: attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
         BONAssert(attributes: attributes, key: NSUnderlineColorAttributeName, value: UIColor.colorA)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testBaselineStyle() {
-        let attributes = BonMot(.baselineOffset(15)).styleAttributes()
-        XCTAssertEqual(attributes.count, 2)
+        let attributes = BonMot(.baselineOffset(15)).attributes()
+        XCTAssertEqual(attributes.count, 1)
         BONAssert(attributes: attributes, key: NSBaselineOffsetAttributeName, float: CGFloat(15), accuracy: 0.001)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testAlignmentStyle() {
-        let attributes = BonMot(.alignment(.center)).styleAttributes()
-        XCTAssertEqual(attributes.count, 2)
+        let attributes = BonMot(.alignment(.center)).attributes()
+        XCTAssertEqual(attributes.count, 1)
         BONAssert(attributes: attributes, query: { $0.alignment }, value: .center)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     func testFontFeatureStyle() {
         EBGarandLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let attributes = BonMot(.font(UIFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).styleAttributes()
-            XCTAssertEqual(attributes.count, 2)
+            let attributes = BonMot(.font(UIFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes()
+            XCTAssertEqual(attributes.count, 1)
             let font = attributes[NSFontAttributeName] as? UIFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
             let featureAttribute = fontAttributes?[UIFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
-            // Not sure what to check here.
-            XCTAssertNotNil(StyleAttributeProviderAttributeName)
         }
-    }
-
-    func testFontAdaptStyle() {
-        guard #available(iOS 10.0, *) else {
-            print("Can not test adaptive style pre iOS 10.0. Update this test.")
-            return
-        }
-        let inputFont = UIFont.systemFont(ofSize: 30)
-        let style = BonMot(.font(inputFont), .adapt(.control))
-        let attributes = style.styleAttributes(attributes: [:], traitCollection: largeTraitCollection)
-        XCTAssertEqual(attributes.count, 2)
-        BONAssert(attributes: attributes, key: NSFontAttributeName, value: inputFont)
-        XCTAssertNotNil(StyleAttributeProviderAttributeName)
     }
 
     static let tensLine = #line
@@ -117,9 +96,9 @@ class StyleAttributeProviderTests: XCTestCase {
             lineHeightMultiple: 10,
             paragraphSpacingBefore: 10,
             hyphenationFactor: 10
-            ).styleAttributes()
-        for (index, check) in StyleAttributeProviderTests.tens.enumerated() {
-            let line = UInt(StyleAttributeProviderTests.tensLine + 2 + index)
+            ).attributes()
+        for (index, check) in StyleAttributeTransformationTests.tens.enumerated() {
+            let line = UInt(StyleAttributeTransformationTests.tensLine + 2 + index)
             BONAssert(attributes: attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
         BONAssert(attributes: attributes, query: { $0.alignment }, value: .center)
@@ -158,9 +137,9 @@ class StyleAttributeProviderTests: XCTestCase {
             paragraphSpacingBefore: 10,
             hyphenationFactor: 10
             ))
-        let attributes = chain.styleAttributes()
-        for (index, check) in StyleAttributeProviderTests.tens.enumerated() {
-            let line = UInt(StyleAttributeProviderTests.tensLine + 2 + index)
+        let attributes = chain.attributes()
+        for (index, check) in StyleAttributeTransformationTests.tens.enumerated() {
+            let line = UInt(StyleAttributeTransformationTests.tensLine + 2 + index)
             BONAssert(attributes: attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
         BONAssert(attributes: attributes, query: { $0.alignment }, value: .center)
@@ -172,7 +151,7 @@ class StyleAttributeProviderTests: XCTestCase {
         let chain = BonMotI(tracking: Tracking.adobe(300))
         let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
             let font = UIFont(name: "Avenir-Book", size: fontSize)!
-            let attributes = chain.styleAttributes(attributes: [NSFontAttributeName: font], traitCollection: nil)
+            let attributes = chain.style(attributes: [NSFontAttributeName: font])
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
         }
         XCTAssertEqualWithAccuracy(testKernAttribute(20), 6, accuracy: 0.0001)
@@ -185,7 +164,7 @@ class StyleAttributeProviderTests: XCTestCase {
         let chain = BonMotI(tracking: Tracking.point(10))
         let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
             let font = UIFont(name: "Avenir-Book", size: fontSize)!
-            let attributes = chain.styleAttributes(attributes: [NSFontAttributeName: font], traitCollection: nil)
+            let attributes = chain.style(attributes: [NSFontAttributeName: font])
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
         }
         XCTAssertEqualWithAccuracy(testKernAttribute(20), 10, accuracy: 0.0001)

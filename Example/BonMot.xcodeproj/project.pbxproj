@@ -24,7 +24,6 @@
 		AB511A831D7F3F7500D8FC62 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A7A1D7F3F7500D8FC62 /* StyleViewController.swift */; };
 		AB511A841D7F3F7500D8FC62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */; };
 		AB511A851D7F3FEC00D8FC62 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A5F1D7F3F1F00D8FC62 /* BonMotStyleTests.swift */; };
-		AB511A861D7F3FEC00D8FC62 /* AdaptiveStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A601D7F3F1F00D8FC62 /* AdaptiveStyleTests.swift */; };
 		AB511A871D7F3FEC00D8FC62 /* XMLTagStyleBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A611D7F3F1F00D8FC62 /* XMLTagStyleBuilderTests.swift */; };
 		AB511A881D7F3FEC00D8FC62 /* NSAttributedStringDebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A621D7F3F1F00D8FC62 /* NSAttributedStringDebugTests.swift */; };
 		AB511A891D7F3FEC00D8FC62 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A631D7F3F1F00D8FC62 /* NSAttributedStringAppendTests.swift */; };
@@ -33,6 +32,7 @@
 		AB511A8C1D7F3FEC00D8FC62 /* UIKitBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A661D7F3F1F00D8FC62 /* UIKitBehaviorTests.swift */; };
 		AB511A8D1D7F3FEC00D8FC62 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A671D7F3F1F00D8FC62 /* Helpers.swift */; };
 		AB511A8E1D7F3FEC00D8FC62 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A681D7F3F1F00D8FC62 /* AssertHelpers.swift */; };
+		AB7E11751D91CEF100E6AB57 /* AdaptiveStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A601D7F3F1F00D8FC62 /* AdaptiveStyleTests.swift */; };
 		ABC54F141D88834B002896DB /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC54F131D88834B002896DB /* Compatibility.swift */; };
 		ABC54F151D888BC3002896DB /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC54F131D88834B002896DB /* Compatibility.swift */; };
 		CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
@@ -465,7 +465,7 @@
 				AB511A871D7F3FEC00D8FC62 /* XMLTagStyleBuilderTests.swift in Sources */,
 				AB511A8D1D7F3FEC00D8FC62 /* Helpers.swift in Sources */,
 				AB511A8C1D7F3FEC00D8FC62 /* UIKitBehaviorTests.swift in Sources */,
-				AB511A861D7F3FEC00D8FC62 /* AdaptiveStyleTests.swift in Sources */,
+				AB7E11751D91CEF100E6AB57 /* AdaptiveStyleTests.swift in Sources */,
 				ABC54F151D888BC3002896DB /* Compatibility.swift in Sources */,
 				AB511A8E1D7F3FEC00D8FC62 /* AssertHelpers.swift in Sources */,
 				AB511A8B1D7F3FEC00D8FC62 /* UIFontTests.swift in Sources */,

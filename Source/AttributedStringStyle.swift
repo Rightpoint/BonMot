@@ -33,7 +33,7 @@ public struct AttributedStringStyle {
     public var strikethrough: (NSUnderlineStyle, UIColor?)?
     public var baselineOffset: CGFloat?
     public var fontFeatureProviders: [FontFeatureProvider]
-    public var adaptations: [StyleAttributeProvider]
+    public var adaptations: [StyleAttributeTransformation]
     public var tracking: Tracking?
 
     public var lineSpacing: CGFloat?
@@ -59,7 +59,7 @@ public struct AttributedStringStyle {
                 strikethrough: (NSUnderlineStyle, UIColor?)? = nil,
                 baselineOffset: CGFloat? = nil,
                 fontFeatureProviders: [FontFeatureProvider] = [],
-                adaptations: [StyleAttributeProvider] = [],
+                adaptations: [StyleAttributeTransformation] = [],
                 tracking: Tracking? = nil,
                 lineSpacing: CGFloat? = nil,
                 paragraphSpacingAfter: CGFloat? = nil,
@@ -109,9 +109,9 @@ public struct AttributedStringStyle {
 
 }
 
-extension AttributedStringStyle: StyleAttributeProvider {
+extension AttributedStringStyle: StyleAttributeTransformation {
 
-    public func style(attributes theAttributes: StyleAttributes, traitCollection: UITraitCollection?) -> StyleAttributes {
+    public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
         // Apply all of the style properties to the StyleAttributes
         var theAttributes = theAttributes
         for (key, value) in initialAttributes {
@@ -120,7 +120,7 @@ extension AttributedStringStyle: StyleAttributeProvider {
         var font = self.font
         if let textStyle = textStyle {
             if font == nil {
-                font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)
+                font = UIFont.preferredFont(forTextStyle: textStyle)
             }
         }
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
@@ -133,7 +133,7 @@ extension AttributedStringStyle: StyleAttributeProvider {
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
 
-        let paragraph = NSMutableParagraphStyle.from(object: theAttributes[NSParagraphStyleAttributeName])
+        let paragraph = StyleAttributeHelpers.paragraph(from: theAttributes)
         paragraph.lineSpacing = lineSpacing ?? paragraph.lineSpacing
         paragraph.paragraphSpacing = paragraphSpacingAfter ?? paragraph.paragraphSpacing
         paragraph.alignment = alignment ?? paragraph.alignment
@@ -161,7 +161,7 @@ extension AttributedStringStyle: StyleAttributeProvider {
 
         // Apply any adaptations
         for adaptation in adaptations {
-            theAttributes = adaptation.style(attributes: theAttributes, traitCollection: traitCollection)
+            theAttributes = adaptation.style(attributes: theAttributes)
         }
 
         // Apply tracking once the final font is known

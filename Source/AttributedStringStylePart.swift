@@ -18,7 +18,7 @@ public enum AttributedStringStylePart {
     case alignment(NSTextAlignment)
     case fontFeature(FontFeatureProvider)
     case adapt(AdaptiveStyle)
-    case style(StyleAttributeProvider)
+    case style(StyleAttributeTransformation)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
     case paragraphSpacingAfter(CGFloat)

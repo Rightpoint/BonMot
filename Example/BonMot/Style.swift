@@ -43,16 +43,18 @@ struct Style {
 
 }
 
-extension Style: StyleAttributeProvider {
+extension Style: StyleAttributeTransformation {
 
-    func style(attributes theAttributes: StyleAttributes, traitCollection: UITraitCollection?) -> StyleAttributes {
+    func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
         var theAttributes = theAttributes
+        /*
         let contentSizeCategory = traitCollection?.bon_preferredContentSizeCategory ?? UIApplication.shared.preferredContentSizeCategory
         #if swift(>=3.0)
             theAttributes[NSFontAttributeName] = Style.wwdcFontScalingFunction(contentSizeCategory: contentSizeCategory.rawValue)
         #else
             theAttributes[NSFontAttributeName] = Style.wwdcFontScalingFunction(contentSizeCategory)
         #endif
+ */
         return theAttributes
     }
 

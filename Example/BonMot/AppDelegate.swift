@@ -21,13 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func style() {
-        let traitCollection = UIApplication.shared.keyWindow?.traitCollection
         // Use UIAppearance to configure the font scaling table approach showcased in WWDC 2016 Session 803
 
-        UINavigationBar.appearance().titleTextAttributes = Style().styleAttributes(traitCollection: traitCollection)
+        UINavigationBar.appearance().titleTextAttributes = Style().attributes()
 
         let barStyle = BonMot(.font(UIFont.appFont(ofSize: 17)), .adapt(.control))
-        UIBarButtonItem.appearance().setTitleTextAttributes(barStyle.styleAttributes(traitCollection: traitCollection), for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(barStyle.attributes(), for: .normal)
     }
 
 }

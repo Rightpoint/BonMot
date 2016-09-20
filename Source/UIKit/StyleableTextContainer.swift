@@ -10,22 +10,22 @@
 public protocol StyleableTextContainer: AnyObject {
 
     /// The style to use for this container. The containers is updated when this property is set if the container conforms to AdaptableTextContainer
-    var bonMotStyle: StyleAttributeProvider? { get set }
+    var bonMotStyle: StyleAttributeTransformation? { get set }
 
 }
 
 internal enum StyleableSupport {
     static var containerHandle: UInt8 = 0
 
-    static func getStyle(object theObject: NSObject) -> StyleAttributeProvider? {
-        let adaptiveFunctionContainer = objc_getAssociatedObject(theObject, &containerHandle) as? StyleAttributeProviderHolder
+    static func getStyle(object theObject: NSObject) -> StyleAttributeTransformation? {
+        let adaptiveFunctionContainer = objc_getAssociatedObject(theObject, &containerHandle) as? StyleAttributeTransformationHolder
         return adaptiveFunctionContainer?.style
     }
 
-    static func setStyle(object theObject: NSObject, bonMotStyle: StyleAttributeProvider?) {
-        var adaptiveFunction: StyleAttributeProviderHolder? = nil
+    static func setStyle(object theObject: NSObject, bonMotStyle: StyleAttributeTransformation?) {
+        var adaptiveFunction: StyleAttributeTransformationHolder? = nil
         if let bonMotStyle = bonMotStyle {
-            adaptiveFunction = StyleAttributeProviderHolder(style: bonMotStyle)
+            adaptiveFunction = StyleAttributeTransformationHolder(style: bonMotStyle)
         }
         objc_setAssociatedObject(
             theObject, &containerHandle,
@@ -38,11 +38,24 @@ internal enum StyleableSupport {
     }
 }
 
+@objc(BONStyleAttributeTransformationHolder)
+class StyleAttributeTransformationHolder: NSObject {
+
+    let style: StyleAttributeTransformation
+    init(style: StyleAttributeTransformation) {
+        self.style = style
+    }
+}
+
 extension StyleableTextContainer {
 
     internal final func styledAttributedString(forText text: String?, traitCollection: UITraitCollection?) -> NSAttributedString? {
         if let text = text {
-            return (bonMotStyle ?? BonMot()).attributedString(from: text, traitCollection: traitCollection)
+            var string = (bonMotStyle ?? BonMot()).attributedString(from: text)
+            if let traitCollection = traitCollection {
+                string = string.adapt(to: traitCollection)
+            }
+            return string
         }
         else {
             return nil
@@ -53,7 +66,7 @@ extension StyleableTextContainer {
 
 extension UILabel: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
@@ -67,7 +80,7 @@ extension UILabel: StyleableTextContainer {
 
 extension UITextField: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
@@ -81,7 +94,7 @@ extension UITextField: StyleableTextContainer {
 
 extension UITextView: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
@@ -95,7 +108,7 @@ extension UITextView: StyleableTextContainer {
 
 extension UIButton: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
@@ -116,7 +129,7 @@ extension UIButton: StyleableTextContainer {
 
 extension UISegmentedControl: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
@@ -125,7 +138,7 @@ extension UISegmentedControl: StyleableTextContainer {
 
 extension UIBarItem: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }
@@ -134,7 +147,7 @@ extension UIBarItem: StyleableTextContainer {
 
 extension UINavigationBar: StyleableTextContainer {
 
-    public final var bonMotStyle: StyleAttributeProvider? {
+    public final var bonMotStyle: StyleAttributeTransformation? {
         get { return StyleableSupport.getStyle(object: self) }
         set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
     }

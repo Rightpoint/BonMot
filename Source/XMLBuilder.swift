@@ -19,14 +19,13 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///s
     /// - returns: An NSAttributedString
-    public convenience init(fromXML fragment: String, styles: TagStyles? = nil, insertions: TagInsertions? = nil, forTraitCollection traitCollection: UITraitCollection? = nil, options: XMLParsingOptions = []) throws {
+    public convenience init(fromXML fragment: String, styles: TagStyles? = nil, insertions: TagInsertions? = nil, options: XMLParsingOptions = []) throws {
 
         let builder = XMLTagStyleBuilder(
             string: fragment,
             namedStyles: styles ?? TagStyles.shared,
             tagInsertions: insertions ?? TagInsertions.shared,
-            options: options,
-            traitCollection: traitCollection
+            options: options
         )
         let attributedString = try builder.parseAttributedString()
         self.init(attributedString: attributedString)
@@ -78,7 +77,6 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
     let namedStyles: TagStyles
     let tagInsertions: TagInsertions?
     let options: XMLParsingOptions
-    let traitCollection: UITraitCollection?
     var attributedString: NSMutableAttributedString
     var styles: [AttributedStringStyle]
 
@@ -91,7 +89,6 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
          namedStyles: TagStyles,
          tagInsertions: TagInsertions?,
          options: XMLParsingOptions,
-         traitCollection: UITraitCollection? = nil,
          topStyle: AttributedStringStyle = AttributedStringStyle()) {
         let xml = (options.contains(.doNotWrapXML) ?
             string :
@@ -100,7 +97,6 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         guard let data = xml.data(using: String.Encoding.utf8) else {
             fatalError("Unable to convert to UTF8")
         }
-        self.traitCollection = traitCollection
         self.attributedString = NSMutableAttributedString()
         self.parser = XMLParser(data: data)
         self.styles = [topStyle]
@@ -175,7 +171,8 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
     }
 
     @objc fileprivate func parser(_ parser: XMLParser, foundCharacters string: String) {
-        attributedString.extend(with: string, style: topStyle, traitCollection: traitCollection)
+        let newAttributedString = topStyle.attributedString(from: string)
+        attributedString.append(newAttributedString)
     }
     #else
     typealias XMLParser = NSXMLParser
@@ -193,7 +190,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
     }
 
     @objc private func parser(parser: XMLParser, foundCharacters string: String) {
-        let newAttributedString = topStyle.attributedString(from: string, traitCollection: traitCollection)
+        let newAttributedString = topStyle.attributedString(from: string)
         attributedString.append(newAttributedString)
     }
     #endif
