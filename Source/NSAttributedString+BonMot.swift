@@ -135,7 +135,7 @@ extension NSMutableAttributedString {
             // Apply the style to the attributes to extend
             let newStyle = style?.style(attributes: extendingAttributes) ?? extendingAttributes
             // Add the string with the extended attributes
-            append(NSAttributedString(string: substring.string, attributes: newStyle))
+            self.append(NSAttributedString(string: substring.string, attributes: newStyle))
         }
     }
 

@@ -160,7 +160,7 @@ import BonMot
     }
 
     extension String {
-        mutating func extend(with: String) {
+        mutating func append(string: String) {
             appendContentsOf(string)
         }
     }
@@ -278,8 +278,8 @@ import BonMot
     }
 
     extension NSMutableAttributedString {
-        @nonobjc final func extend(with: NSAttributedString) {
-            appendAttributedString(string)
+        @nonobjc final func append(attributedString: NSAttributedString) {
+            appendAttributedString(attributedString)
         }
         @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {
             replaceCharactersInRange(range, withString: str)

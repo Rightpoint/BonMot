@@ -113,15 +113,21 @@ import Foundation
             return self.attribute(attribute, atIndex: location, effectiveRange: range)
         }
         @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            self.enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
+            enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
+        }
+        @nonobjc final func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: ([String: AnyObject], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+            enumerateAttributesInRange(enumerationRange, options: opts, usingBlock: block)
         }
         @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
             return boundingRectWithSize(size, options: options, context: context)
         }
+        @nonobjc final func attributedSubstring(from range: NSRange) -> NSAttributedString {
+            return attributedSubstringFromRange(range)
+        }
     }
 
     extension NSMutableAttributedString {
-        @nonobjc final func extend(with: NSAttributedString) {
+        @nonobjc final func append(string: NSAttributedString) {
             appendAttributedString(string)
         }
         @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {

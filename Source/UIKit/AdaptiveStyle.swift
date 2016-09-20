@@ -159,9 +159,9 @@ extension StyleAttributeHelpers {
         static let designatedFont = "DesignatedFont"
         static let adaptions = "Adaptions"
     }
-    static func add(designedFont: UIFont, to styleAttributes: StyleAttributes) -> StyleAttributes {
+    static func add(designedFont font: UIFont, to styleAttributes: StyleAttributes) -> StyleAttributes {
         var styleAttributes = styleAttributes
-        styleAttributes[AttributeName.designatedFont] = designedFont
+        styleAttributes[AttributeName.designatedFont] = font
         return styleAttributes
     }
 

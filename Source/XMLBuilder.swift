@@ -62,11 +62,11 @@ public class TagInsertions {
 
     public static var shared = TagInsertions()
     public init() {}
-    public func insert(attributedString: NSAttributedString, whenEntering elementName: String) {
-        entering[elementName] = attributedString
+    public func insert(attributedString string: NSAttributedString, whenEntering elementName: String) {
+        entering[elementName] = string
     }
-    public func insert(attributedString: NSAttributedString, whenExiting elementName: String) {
-        exiting[elementName] = attributedString
+    public func insert(attributedString string: NSAttributedString, whenExiting elementName: String) {
+        exiting[elementName] = string
     }
 }
 
