@@ -86,7 +86,7 @@ extension AdaptiveStyle: StyleAttributeProvider {
             return theAttributes
         }
         guard traitCollection != nil || UIApplication.shared.delegate != nil else {
-            fatalError("Must supply a trait collection or have a valid UIApplication to fall back on")
+            fatalError("Must supply a trait collection or have a valid UIApplication to fall back on. Are you in a non-hosted Unit Test?")
         }
         let contentSizeCategory = traitCollection?.bon_preferredContentSizeCategory
             ?? UIApplication.shared.preferredContentSizeCategory
