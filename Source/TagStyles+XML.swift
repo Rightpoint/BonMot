@@ -132,7 +132,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
     }
 
     @objc fileprivate func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let newAttributedString = topStyle.attributedString(from: string, attributes: [:], traitCollection: traitCollection)
+        let newAttributedString = topStyle.attributedString(from: string, traitCollection: traitCollection)
         attributedString.append(newAttributedString)
     }
     #else

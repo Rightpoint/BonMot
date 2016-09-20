@@ -35,18 +35,18 @@ public extension StyleAttributeProvider {
         return attributes
     }
 
-    public func attributedString(from theString: String, attributes: StyleAttributes = [:], traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
-        let attributes = styleAttributes(attributes: attributes, traitCollection: traitCollection)
+    public func attributedString(from theString: String, traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+        let attributes = styleAttributes(attributes: [:], traitCollection: traitCollection)
         return NSMutableAttributedString(string: theString, attributes: attributes)
     }
 
-    public func attributedString(from theImage: UIImage, attributes: StyleAttributes = [:], traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
-        let attributes = styleAttributes(attributes: attributes, traitCollection: traitCollection)
+    public func attributedString(from theImage: UIImage, traitCollection: UITraitCollection? = nil) -> NSMutableAttributedString {
+        let attributes = styleAttributes(attributes: [:], traitCollection: traitCollection)
         return NSMutableAttributedString(image: theImage, attributes: attributes)
     }
 
-    func font(attributes theAttributes: StyleAttributes = [:], traitCollection theTraitCollection: UITraitCollection? = nil) -> UIFont {
-        let attributes = styleAttributes(attributes: theAttributes, traitCollection: theTraitCollection)
+    func font(traitCollection theTraitCollection: UITraitCollection? = nil) -> UIFont {
+        let attributes = styleAttributes(attributes: [:], traitCollection: theTraitCollection)
         guard let font = attributes[NSFontAttributeName] as? UIFont else {
             fatalError("Requesting font from a style that has no font.")
         }
