@@ -72,20 +72,24 @@ enum DemoStrings {
             .fontFeature(NumberCase.lower)
             ).attributedString(from: "Monospaced Lowercase\n1111111111\n0123456789"),
         ]
+
     static let indentationStrings: [NSAttributedString] = [
-/*
-         BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!)
-            ).append(image: UIImage(named: "robot")!)
-            .append(tabStopWithSpacer: 4.0)
-            .append(string: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
-            ,
-        BonMot(.font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!),
-            .textColor(.darkGray)
-            ).append(string: "🍑 →")
-            .append(tabStopWithSpacer: 4.0)
-            .append(string: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."),
- */
+        {
+            let style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!))
+            let string = style.attributedString(from: UIImage(named: "robot")!)
+            string.append(tabStopWithSpacer: 4.0)
+            string.append(string: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
+            return string
+        }(),
+        {
+            let style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!), .textColor(.darkGray))
+            let string = style.attributedString(from: "🍑 →")
+            string.append(tabStopWithSpacer: 4.0)
+            string.append(string: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.")
+            return string
+        }(),
     ]
+
     static let imageStyle = BonMot(
         .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
         .baselineOffset(8)
