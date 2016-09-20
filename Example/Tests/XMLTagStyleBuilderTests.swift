@@ -22,7 +22,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
             hugeString.append("This is <A>A style</A> test for <B>B Style</B>.")
         }
         measure() {
-            XCTAssertNotNil(try? styles.attributedString(fromXMLFragment: hugeString))
+            XCTAssertNotNil(try? NSAttributedString(fromXML: hugeString, styles: styles))
         }
     }
 
@@ -32,7 +32,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         styles.registerStyle(forName: "A", style: styleA)
         styles.registerStyle(forName: "B", style: styleB)
 
-        guard let attributedString = try? styles.attributedString(fromXMLFragment: "This is <A>A style</A> test for <B>B Style</B>.") else {
+        guard let attributedString = try? NSAttributedString(fromXML: "This is <A>A style</A> test for <B>B Style</B>.", styles: styles) else {
             XCTFail("No attributed string")
             return
         }
@@ -71,15 +71,15 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let styles = TagStyles()
         styles.registerStyle(forName: "A", style: styleA)
 
-        XCTAssertNotNil(try? styles.attributedString(fromXMLFragment: "This <A>style</A> is valid"))
-        XCTAssertNil(try? styles.attributedString(fromXMLFragment: "This <B>style</B> is not registered and throws an error"))
-        XCTAssertNotNil(try? styles.attributedString(fromXMLFragment: "This <B>style</B> is not registered but is allowed", options: [.allowUnregisteredElements]))
+        XCTAssertNotNil(try? NSAttributedString(fromXML: "This <A>style</A> is valid", styles: styles))
+        XCTAssertNil(try? NSAttributedString(fromXML: "This <B>style</B> is not registered and throws an error", styles: styles))
+        XCTAssertNotNil(try? NSAttributedString(fromXML: "This <B>style</B> is not registered but is allowed", styles: styles, options: [.allowUnregisteredElements]))
     }
 
     /// Verify that the string is read when fully contained
     func testFullXML() {
         let styles = TagStyles()
-        XCTAssertNotNil(try? styles.attributedString(fromXMLFragment: "<Top>This is fully contained</Top>", options: [.allowUnregisteredElements, .doNotWrapXML]))
+        XCTAssertNotNil(try? NSAttributedString(fromXML: "<Top>This is fully contained</Top>", styles: styles, options: [.allowUnregisteredElements, .doNotWrapXML]))
     }
 
     /// Basic test on some HTML-like behavior.
@@ -88,7 +88,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         tagStyles.registerStyle(forName: "a", style: styleA)
         tagStyles.registerStyle(forName: "p", style: styleA)
         tagStyles.registerStyle(forName: "p:foo", style: styleB)
-        guard let attributedString = try? tagStyles.attributedString(fromXMLFragment: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", options: [.HTMLish]) else {
+        guard let attributedString = try? NSAttributedString(fromXML: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styles: tagStyles, options: [.HTMLish]) else {
             XCTFail("No attributed string")
             return
         }

@@ -164,8 +164,25 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func append(string theString: String, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
-        append(NSAttributedString(string: theString, attributes: attributesToAppend(withStyle: style, traitCollection: traitCollection)))
+    public final func extend(with string: String, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
+        append(NSAttributedString(string: string, attributes: extendingAttributes(with: style, traitCollection: traitCollection)))
+    }
+
+    public final func extend(with attributedString: NSAttributedString, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
+        // Grab the last attributes in the string to extend into the specified attributed string
+        let lastIndex = length - (length > 0 ? 1 : 0)
+        let extendingAttributes = length > 0 ? attributes(at: lastIndex, effectiveRange: nil) : [:]
+        let range = NSRange(location: 0, length: attributedString.length)
+        attributedString.enumerateAttributes(in: range, options: []) { (attributes, range, stop) in
+            let substring = attributedString.attributedSubstring(from: range)
+            // Update the attributes to extend with the attributes in the current range
+            var extendingAttributes = extendingAttributes
+            attributes.forEach() { extendingAttributes.updateValue($1, forKey: $0) }
+            // Apply the style to the attributes to extend
+            let newStyle = style?.style(attributes: extendingAttributes, traitCollection: traitCollection) ?? extendingAttributes
+            // Add the string with the extended attributes
+            append(NSAttributedString(string: substring.string, attributes: newStyle))
+        }
     }
 
     /// Append the image to the end of the attributed string. Apply the specified style on top of the attributes at
@@ -176,8 +193,8 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func append(image theImage: UIImage, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
-        append(NSAttributedString(image: theImage, attributes: attributesToAppend(withStyle: style, traitCollection: traitCollection)))
+    public final func extend(with image: UIImage, style: StyleAttributeProvider?, traitCollection: UITraitCollection? = nil) {
+        append(NSAttributedString(image: image, attributes: extendingAttributes(with: style, traitCollection: traitCollection)))
     }
 
     /// Append a tab stop to the attributed string, and configure the tab to end `tabStopWithSpacer` points after the
@@ -187,8 +204,8 @@ extension NSMutableAttributedString {
     /// - parameter tabStopWithSpacer: Points to add to the end of the current string
     /// - parameter shiftHeadIndent: Shift the head indent to the tab stop so that any word wrapping will be aligned with the tab stop. This defaults to true since it's usually the desired behavior.
     /// - return: The current attributed string
-    @objc(bon_appendTabStopWithSpacer:shiftHeadIndent:)
-    public func append(tabStopWithSpacer spacer: CGFloat, shiftHeadIndent: Bool = true) {
+    @objc(bon_extendWithTabSpacer:shiftHeadIndent:)
+    public func extend(withTabSpacer spacer: CGFloat, shiftHeadIndent: Bool = true) {
         let max = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
         let width = boundingRect(with: max, options: .usesLineFragmentOrigin, context: nil).width
         let tabSize = spacer + ceil(width)
@@ -209,20 +226,20 @@ extension NSMutableAttributedString {
     }
 
     /// Helper function to determine the attributes to use when appending content.
-    internal final func attributesToAppend(withStyle style: StyleAttributeProvider?, traitCollection: UITraitCollection?) -> StyleAttributes {
+    internal final func extendingAttributes(with style: StyleAttributeProvider?, traitCollection: UITraitCollection?) -> StyleAttributes {
         let lastIndex = length - (length > 0 ? 1 : 0)
         let finalAttributes = length > 0 ? attributes(at: lastIndex, effectiveRange: nil) : [:]
-        return style?.styleAttributes(attributes: finalAttributes, traitCollection: traitCollection) ?? finalAttributes
+        return style?.style(attributes: finalAttributes, traitCollection: traitCollection) ?? finalAttributes
     }
 
     /// Helper function to apply a style to a range of a trait collection
     internal final func apply(style theStyle: StyleAttributeProvider, range: NSRange, traitCollection: UITraitCollection?, embedStyle: Bool = false) {
         let attributes = self.attributes(at: range.location, effectiveRange: nil)
-        let newAttributes = theStyle.styleAttributes(attributes: attributes, traitCollection: traitCollection)
-        setAttributes(newAttributes, range: range)
+        var newAttributes = theStyle.style(attributes: attributes, traitCollection: traitCollection)
         if embedStyle {
-            addAttribute(StyleAttributeProviderAttributeName, value: StyleAttributeProviderHolder(style: theStyle), range: range)
+            newAttributes[StyleAttributeProviderAttributeName] = StyleAttributeProviderHolder(style: theStyle)
         }
+        setAttributes(newAttributes, range: range)
     }
 
 }
@@ -263,10 +280,10 @@ extension NSMutableAttributedString {
     /// - parameter styleNamed: The style name registered in the shared TagStyle object to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    @objc(bon_appendString:styleNamed:traitCollection:)
-    public final func append(string theString: String, styleNamed name: String? = nil, traitCollection: UITraitCollection? = nil) {
+    @objc(bon_extendWithString:styleNamed:traitCollection:)
+    public final func extend(with string: String, styleNamed name: String? = nil, traitCollection: UITraitCollection? = nil) {
         let style = TagStyles.shared.style(forName: name)
-        append(NSAttributedString(string: theString, attributes: attributesToAppend(withStyle: style, traitCollection: traitCollection)))
+        append(NSAttributedString(string: string, attributes: extendingAttributes(with: style, traitCollection: traitCollection)))
     }
 
     /// Append the image to the end of the attributed string with the attributes at the end of the attributed string.
@@ -275,9 +292,9 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    @objc(bon_appendImage:traitCollection:)
-    public final func append(image theImage: UIImage, traitCollection: UITraitCollection? = nil) {
-        append(NSAttributedString(image: theImage, attributes: attributesToAppend(withStyle: nil, traitCollection: traitCollection)))
+    @objc(bon_extendWithImage:traitCollection:)
+    public final func extend(with image: UIImage, traitCollection: UITraitCollection? = nil) {
+        append(NSAttributedString(image: image, attributes: extendingAttributes(with: nil, traitCollection: traitCollection)))
     }
 
 }

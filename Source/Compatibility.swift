@@ -121,7 +121,7 @@ import Foundation
     }
 
     extension NSMutableAttributedString {
-        @nonobjc final func append(string: NSAttributedString) {
+        @nonobjc final func extend(with: NSAttributedString) {
             appendAttributedString(string)
         }
         @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {

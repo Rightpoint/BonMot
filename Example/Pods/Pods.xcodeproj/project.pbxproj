@@ -30,7 +30,7 @@
 		D076E691A184B9926919D697749CA985 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547F69ECC86C4928B23E445BF2F9AB4D /* AdaptiveStyle.swift */; };
 		D61841B32DC2C5E4893D180DDCDF87B7 /* AttributedStringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6082DDF47634A8106BDA81BEFC97439 /* AttributedStringStylePart.swift */; };
 		E21BD13F45637F7B14B3ADF3D0591292 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D7C738498612368F29249DD7D8FBB7 /* NSAttributedString+BonMot.swift */; };
-		E6856F616F5A48A93DFA41C27C0C55BB /* TagStyles+XML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00F5E1C0BC4D6F4A253024A0043A29 /* TagStyles+XML.swift */; };
+		E6856F616F5A48A93DFA41C27C0C55BB /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D00F5E1C0BC4D6F4A253024A0043A29 /* XMLBuilder.swift */; };
 		F8605D0668B17670B3F491DD2B735666 /* Pods-BonMot_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E40A36D2E548722345E1738CFBAB4824 /* Pods-BonMot_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8C47F2EE4C10C320F8BF8A8F8366EB0 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9632D30AF28B21CDE3DCEEADCB3E4 /* Compatibility.swift */; };
 		FF2E9B5A24DC01F6460BC26279B8E175 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD345F1B174D761CD179D9684E231C9 /* Special.swift */; };
@@ -81,7 +81,7 @@
 		81D67FFAA26FDD3926B2EB4A763E4FC5 /* StyleAttributeProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StyleAttributeProvider.swift; sourceTree = "<group>"; };
 		8739767BB16DF9743F090F02DF557285 /* NSParagraphStyle+BonMot.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+BonMot.swift"; sourceTree = "<group>"; };
 		8AD345F1B174D761CD179D9684E231C9 /* Special.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Special.swift; sourceTree = "<group>"; };
-		8D00F5E1C0BC4D6F4A253024A0043A29 /* TagStyles+XML.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TagStyles+XML.swift"; sourceTree = "<group>"; };
+		8D00F5E1C0BC4D6F4A253024A0043A29 /* XMLBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = XMLBuilder.swift; sourceTree = "<group>"; };
 		914AB6D3FCFA584EA8F2384D2AE662A1 /* UIKit+AdaptableTextContainerSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIKit+AdaptableTextContainerSupport.swift"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C1F97DF2CEFB95E5F07ADC857D8C1FA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 				092AB998D865547C06B94ECE42F3C82F /* StyleAttributeProviderHolder.swift */,
 				DBBBDF4D4BB0DE9C0B5D6BB679425DB0 /* TagStyles.swift */,
 				DF3DCEEB775BA5BDDFDC34188420E203 /* TagStyles+IBInspectable.swift */,
-				8D00F5E1C0BC4D6F4A253024A0043A29 /* TagStyles+XML.swift */,
+				8D00F5E1C0BC4D6F4A253024A0043A29 /* XMLBuilder.swift */,
 				914AB6D3FCFA584EA8F2384D2AE662A1 /* UIKit+AdaptableTextContainerSupport.swift */,
 				AB07659F1D878ADA000041DF /* UIKit+Helpers.swift */,
 			);
@@ -428,7 +428,7 @@
 				7AF8B972ABCBEEC3C7322BF40714215D /* StyleAttributeProvider.swift in Sources */,
 				78AF2A2AA5AB6D43FE84A17D424F1517 /* StyleAttributeProviderHolder.swift in Sources */,
 				23EBA86F5C4D0500E060EF0044C3CA9F /* TagStyles+IBInspectable.swift in Sources */,
-				E6856F616F5A48A93DFA41C27C0C55BB /* TagStyles+XML.swift in Sources */,
+				E6856F616F5A48A93DFA41C27C0C55BB /* XMLBuilder.swift in Sources */,
 				7B674407C4DB4CB00E3A15F58CDE4852 /* TagStyles.swift in Sources */,
 				A518F7D7326A240E81D89422B67F44CC /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
 			);

@@ -27,9 +27,9 @@ class NSAttributedStringAppendTests: XCTestCase {
 
     func testAttributesArePassedAlongAppend() {
         let chainString = BonMot(.initialAttributes(["test": "test"])).attributedString(from: imageForTest)
-        chainString.append(string: "Test")
-        chainString.append(image: imageForTest)
-        chainString.append(string: "Test")
+        chainString.extend(with: "Test")
+        chainString.extend(with: imageForTest)
+        chainString.extend(with: "Test")
 
         let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
 
@@ -40,18 +40,18 @@ class NSAttributedStringAppendTests: XCTestCase {
         let stringWidth = CGFloat(115)
 
         let multiTabLine = NSMutableAttributedString()
-        multiTabLine.append(string: "astringwithsomewidth")
-        multiTabLine.append(tabStopWithSpacer: 10)
-        multiTabLine.append(image: imageForTest)
-        multiTabLine.append(tabStopWithSpacer: 10)
-        multiTabLine.append(string: "astringwithsomewidth")
-        multiTabLine.append(image: imageForTest)
+        multiTabLine.extend(with: "astringwithsomewidth")
+        multiTabLine.extend(withTabSpacer: 10)
+        multiTabLine.extend(with: imageForTest)
+        multiTabLine.extend(withTabSpacer: 10)
+        multiTabLine.extend(with: "astringwithsomewidth")
+        multiTabLine.extend(with: imageForTest)
 
         let stringTab = NSMutableAttributedString(string: "astringwithsomewidth")
-        stringTab.append(tabStopWithSpacer: 10)
+        stringTab.extend(withTabSpacer: 10)
 
         let imageTab = NSMutableAttributedString(image: imageForTest)
-        imageTab.append(tabStopWithSpacer: 10)
+        imageTab.extend(withTabSpacer: 10)
 
         let stringsWithTabStops: [(CGFloat, NSAttributedString)] = [
             (imageForTest.size.width + 10, imageTab),
@@ -72,8 +72,8 @@ class NSAttributedStringAppendTests: XCTestCase {
     func testInitialParagraphStyle() {
         let string = NSMutableAttributedString(string: "Test", attributes: [NSParagraphStyleAttributeName: NSParagraphStyle()])
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle)
-        string.append(tabStopWithSpacer: 10)
-        string.append(string: "ParagraphStyle mutable promotion")
+        string.extend(withTabSpacer: 10)
+        string.extend(with: "ParagraphStyle mutable promotion")
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
 
@@ -81,8 +81,8 @@ class NSAttributedStringAppendTests: XCTestCase {
     /// so NSKeyedArchiver does not throw an exception.
     func testDisappointingNSCodingSupport() {
         let string = styleA.attributedString(from: "astringwithsomewidth")
-        string.append(tabStopWithSpacer: 10)
-        string.append(image: imageForTest)
+        string.extend(withTabSpacer: 10)
+        string.extend(with: imageForTest)
 
         let data = NSKeyedArchiver.archivedData(withRootObject: string)
         var warningTriggerCount = 0

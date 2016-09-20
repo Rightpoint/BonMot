@@ -5,25 +5,31 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-/// An extension to generate formatted markup based on the registered names
-extension TagStyles {
+extension NSAttributedString {
 
-    /// Generate an attributedString by parsing `fromXMLFragment` and applying the style in the specified trait collection.
-    /// The string `fromXMLFragment will be wrapped in `<?xml>` and a top level element to ensure it is valid XML, unless `doNotWrapXML` is specified as an option.
+    /// Generate an attributedString by parsing `fromXML` and applying the style in the specified trait collection.
+    /// The string `fromXML will be wrapped in `<?xml>` and a top level element to ensure it is valid XML, unless `doNotWrapXML` is specified as an option.
     /// If the XML is not valid an exception will be thrown.
-    /// Any XML element in the string will apply the style registered for the element name.
+    /// As the XML is parsed, an NSAttributedString can be specified to be inserted when entering or exiting the XML node using TagInsertions, and the style to apply to the content of the XML node can be specified using TagStyles.
     ///
-    /// - parameter fromXMLFragment: The string containing the markup.
+    /// - parameter fromXML: The string containing the markup.
+    /// - parameter styles: The TagStyles object to use to determine the style to apply to the content of an XML node
+    /// - parameter insertions: The TagInsertions object to insert content when entering or exiting an XML node.
     /// - parameter traitCollection: The traitCollection to adapt the style to
+    /// - parameter options: XML parsing options
+    ///s
     /// - returns: An NSAttributedString
-    public func attributedString(fromXMLFragment string: String, forTraitCollection traitCollection: UITraitCollection? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public convenience init(fromXML fragment: String, styles: TagStyles? = nil, insertions: TagInsertions? = nil, forTraitCollection traitCollection: UITraitCollection? = nil, options: XMLParsingOptions = []) throws {
+
         let builder = XMLTagStyleBuilder(
-            string: string,
-            namedStyles: self,
+            string: fragment,
+            namedStyles: styles ?? TagStyles.shared,
+            tagInsertions: insertions ?? TagInsertions.shared,
             options: options,
             traitCollection: traitCollection
         )
-        return try builder.parseAttributedString()
+        let attributedString = try builder.parseAttributedString()
+        self.init(attributedString: attributedString)
     }
 }
 
@@ -44,12 +50,33 @@ public struct XMLParsingOptions : OptionSet {
     public static let allowUnregisteredElements = XMLParsingOptions(rawValue: 4)
 }
 
+public class TagInsertions {
+    var entering: [String: NSAttributedString] = [:]
+    var exiting: [String: NSAttributedString] = [:]
+    func attributedString(forEnteringElement elementName: String) -> NSAttributedString? {
+        return entering[elementName]
+    }
+
+    func attributedString(forExitingElement elementName: String) -> NSAttributedString? {
+        return exiting[elementName]
+    }
+
+    public static var shared = TagInsertions()
+    public init() {}
+    public func insert(attributedString: NSAttributedString, whenEntering elementName: String) {
+        entering[elementName] = attributedString
+    }
+    public func insert(attributedString: NSAttributedString, whenExiting elementName: String) {
+        exiting[elementName] = attributedString
+    }
+}
+
 private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
-    static let xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-    static let internalTopLevelElement = "XMLTagStyleBuilderElement"
+    static let internalTopLevelElement = "BonMotTopLevelContainer"
 
     let parser: XMLParser
     let namedStyles: TagStyles
+    let tagInsertions: TagInsertions?
     let options: XMLParsingOptions
     let traitCollection: UITraitCollection?
     var attributedString: NSMutableAttributedString
@@ -62,12 +89,13 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
 
     init(string: String,
          namedStyles: TagStyles,
+         tagInsertions: TagInsertions?,
          options: XMLParsingOptions,
          traitCollection: UITraitCollection? = nil,
          topStyle: AttributedStringStyle = AttributedStringStyle()) {
         let xml = (options.contains(.doNotWrapXML) ?
             string :
-            "\(XMLTagStyleBuilder.xmlHeader)<\(XMLTagStyleBuilder.internalTopLevelElement)>\(string)</\(XMLTagStyleBuilder.internalTopLevelElement)>")
+            "<\(XMLTagStyleBuilder.internalTopLevelElement)>\(string)</\(XMLTagStyleBuilder.internalTopLevelElement)>")
 
         guard let data = xml.data(using: String.Encoding.utf8) else {
             fatalError("Unable to convert to UTF8")
@@ -78,6 +106,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         self.styles = [topStyle]
         self.options = options
         self.namedStyles = namedStyles
+        self.tagInsertions = tagInsertions
         super.init()
         self.parser.shouldProcessNamespaces = false
         self.parser.shouldReportNamespacePrefixes = false
@@ -121,19 +150,32 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         styles.append(style)
     }
 
+    func enter(element elementName: String) {
+        if let insertion = tagInsertions?.attributedString(forEnteringElement: elementName) {
+            attributedString.extend(with: insertion, style: topStyle)
+        }
+    }
+
+    func exit(element elementName: String) {
+        if let insertion = tagInsertions?.attributedString(forExitingElement: elementName) {
+            attributedString.extend(with: insertion, style: topStyle)
+        }
+    }
+
     #if swift(>=3.0)
     @objc fileprivate func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         parse(elementNamed: elementName, attributeDict: attributeDict)
+        enter(element: elementName)
     }
 
     @objc fileprivate func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
         guard elementName != XMLTagStyleBuilder.internalTopLevelElement else { return }
+        exit(element: elementName)
         styles.removeLast()
     }
 
     @objc fileprivate func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let newAttributedString = topStyle.attributedString(from: string, traitCollection: traitCollection)
-        attributedString.append(newAttributedString)
+        attributedString.extend(with: string, style: topStyle, traitCollection: traitCollection)
     }
     #else
     typealias XMLParser = NSXMLParser
@@ -141,10 +183,12 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
 
     @objc private func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         parse(elementNamed: elementName, attributeDict: attributeDict)
+        enter(element: elementName)
     }
 
     @objc private func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
         guard elementName != XMLTagStyleBuilder.internalTopLevelElement else { return }
+        exit(element: elementName)
         styles.removeLast()
     }
 

@@ -77,17 +77,34 @@ enum DemoStrings {
         {
             let style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!))
             let string = style.attributedString(from: UIImage(named: "robot")!)
-            string.append(tabStopWithSpacer: 4.0)
-            string.append(string: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
+            string.extend(withTabSpacer: 4.0)
+            string.extend(with: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
             return string
         }(),
         {
             let style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!), .textColor(.darkGray))
             let string = style.attributedString(from: "🍑 →")
-            string.append(tabStopWithSpacer: 4.0)
-            string.append(string: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.")
+            string.extend(withTabSpacer: 4.0)
+            string.extend(with: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.")
             return string
         }(),
+        {
+            let style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!))
+            let appleBullet = style.attributedString(from: "🍑 →")
+            appleBullet.extend(withTabSpacer: 4.0)
+
+            let insertions = TagInsertions()
+            insertions.insert(attributedString: appleBullet, whenEntering: "li")
+            insertions.insert(attributedString: NSAttributedString(string: "\n"), whenExiting: "li")
+
+            let styles = TagStyles()
+            styles.registerStyle(forName: "li", style: style)
+            let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
+            guard let string = try? NSAttributedString(fromXML: xml, styles: styles, insertions: insertions) else {
+                fatalError("Unable to load XML \(xml)")
+            }
+            return string
+        }()
     ]
 
     static let imageStyle = BonMot(
@@ -122,7 +139,7 @@ enum DemoStrings {
         (UIImage(named: "robot")!, "spaces"),
         ].map() { image, text in
             let string = noSpaceImageStyle.attributedString(from: image)
-            string.append(string: text, style: noSpaceStyle)
+            string.extend(with: text, style: noSpaceStyle)
             return string
         }, separator: noSpaceStyle.attributedString(from: "\u{2003}"))
 
@@ -130,7 +147,6 @@ enum DemoStrings {
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
         return BonMot(.baselineOffset(offset)).attributedString(from: "❤️")
     })
-
 
     static func CustomStoryboard(identifier theIdentifier: String) -> AttributedStringStyle {
         // Embed an attribute for the storyboard identifier to link to. This is
