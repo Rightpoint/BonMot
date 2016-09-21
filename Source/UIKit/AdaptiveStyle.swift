@@ -13,6 +13,96 @@ public enum AdaptiveStyle {
     case below(size: CGFloat, family: String)
 }
 
+/// Adaptive styles conform to `StyleAttributeTransformation` to add the 'adaptations' 
+/// to the StyleAttributes when styled, but the transformation is only triggered once
+/// the string or StyleAttributes are adapted to a trait collection.
+extension AdaptiveStyle: StyleAttributeTransformation {
+
+    public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
+        guard let font = theAttributes[NSFontAttributeName] as? UIFont else {
+            print("No font to adapt, ignoring adaptive style")
+            return theAttributes
+        }
+        var attributes = theAttributes
+        attributes = AdaptiveAttributeHelpers.add(designedFont: font, to: attributes)
+        attributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: self, to: attributes)
+        return attributes
+    }
+
+}
+
+extension AdaptiveStyle: AdaptiveStyleTransformation {
+
+    func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
+        guard var font = theAttributes[AdaptiveAttributeHelpers.AttributeName.designatedFont] as? UIFont else {
+            fatalError("The designated font is set when the adaptive style is added")
+        }
+        let pointSize = font.pointSize
+        let contentSizeCategory = traitCollection.bon_preferredContentSizeCategory
+        var styleAttributes = theAttributes
+        switch self {
+        case .control:
+            font = font.withSize(AdaptiveStyle.adapt(designatedSize: pointSize, for: contentSizeCategory))
+        case .body:
+            font = font.withSize(AdaptiveStyle.adaptBody(designatedSize: pointSize, for: contentSizeCategory))
+        case .preferred:
+            if let textStyle = font.bon_textStyle {
+                font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)
+            }
+            else {
+                print("No text style in the font, can not adapt")
+            }
+        case .above(let size, let family):
+            font = pointSize > size ? font.font(familyName: family) : font
+        case .below(let size, let family):
+            font = pointSize < size ? font.font(familyName: family) : font
+        }
+        styleAttributes[NSFontAttributeName] = font
+        return styleAttributes
+    }
+
+    var representation: StyleAttributes {
+        switch self {
+        case let .above(size, family):
+            return [
+                "type": "above",
+                "size": size,
+                "family": family,
+            ]
+        case let .below(size, family):
+            return [
+                "type": "below",
+                "size": size,
+                "family": family,
+            ]
+        case .control:
+            return ["type": "control"]
+        case .body:
+            return ["type": "body"]
+        case .preferred:
+            return ["type": "preferred"]
+        }
+    }
+
+    static func from(representation dictionary: [String: StyleAttributeValue]) -> AdaptiveStyleTransformation? {
+        switch (dictionary["type"] as? String, dictionary["size"] as? CGFloat, dictionary["family"] as? String)  {
+        case ("control"?, nil, nil):
+            return AdaptiveStyle.control
+        case ("body"?, nil, nil):
+            return AdaptiveStyle.body
+        case ("preferred"?, nil, nil):
+            return AdaptiveStyle.preferred
+        case let ("above"?, size?, family?):
+            return AdaptiveStyle.above(size: size, family: family)
+        case let ("below"?, size?, family?):
+            return AdaptiveStyle.below(size: size, family: family)
+        default:
+            return nil
+        }
+    }
+
+}
+
 extension AdaptiveStyle {
     /// An internal lookup table defining the font shift to use for each content size category
     static var shiftTable: [BonMotContentSizeCategory: CGFloat] {
@@ -54,10 +144,10 @@ extension AdaptiveStyle {
     /// This function will not create larger values for content size category values in 'Accessibility Content Size Category Constants'.
     ///
     /// - parameter contentSizeCategory: The contentSizeCategory to scale to
-    /// - parameter sizeAtLarge: The size the font was designed for at UIContentSizeCategoryLarge
-    /// - parameter minimiumSize: The smallest size the font can be. Defaults to 11 or sizeAtLarge if it is under 11.
+    /// - parameter designatedSize: The size the font was designed for at UIContentSizeCategoryLarge
+    /// - parameter minimiumSize: The smallest size the font can be. Defaults to 11 or designatedSize if it is under 11.
     /// - returns: The new pointSize scaled to the specified contentSize
-    public static func adapt(sizeAtLarge size: CGFloat, forContentSizeCategory contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
+    public static func adapt(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
         let shift = min(shiftTable[contentSizeCategory] ?? 0, CGFloat(6))
         let minSize = min(minimiumSize, size)
         return max(size + shift, minSize)
@@ -67,156 +157,13 @@ extension AdaptiveStyle {
     /// for content size category values in 'Accessibility Content Size Category Constants'
     ///
     /// - parameter contentSizeCategory: The contentSizeCategory to scale to
-    /// - parameter sizeAtLarge: The size the font was designed for at UIContentSizeCategoryLarge
+    /// - parameter designatedSize: The size the font was designed for at UIContentSizeCategoryLarge
     /// - parameter minimiumSize: The smallest size the font can be. Defaults to 11.
     /// - returns: The new pointSize scaled to the specified contentSize
-    public static func adaptBody(sizeAtLarge size: CGFloat, forContentSizeCategory contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
+    public static func adaptBody(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
         let shift = shiftTable[contentSizeCategory] ?? 0
         let minSize = min(minimiumSize, size)
         return max(size + shift, minSize)
     }
 
-}
-
-extension AdaptiveStyle {
-    typealias Representation = StyleAttributes
-
-    var representation: Representation {
-        let representation: Representation
-        switch self {
-        case .control:
-            representation = ["adapt": "control"]
-        case .body:
-            representation = ["adapt": "body"]
-        case .preferred:
-            representation = ["adapt": "preferred"]
-        case .above(let size, let family):
-            representation = [
-                "adapt": ">",
-                "size": size,
-                "family": family,
-            ]
-        case .below(let size, let family):
-            representation = [
-                "adapt": "<",
-                "size": size,
-                "family": family,
-            ]
-        }
-        return representation
-    }
-
-    static func from(representation dictionary: StyleAttributes) -> AdaptiveStyle? {
-        let adaptiveStyle: AdaptiveStyle?
-        guard let adapt = dictionary["adapt"] as? String else {
-            return nil
-        }
-        switch adapt {
-        case "control":
-            adaptiveStyle = .control
-        case "body":
-            adaptiveStyle = .body
-        case "preferred":
-            adaptiveStyle = .preferred
-        case ">":
-            guard let size = dictionary["size"] as? CGFloat,
-                let family = dictionary["family"] as? String else {
-                    return nil
-            }
-            adaptiveStyle = .above(size: size, family: family)
-        case "<":
-            guard let size = dictionary["size"] as? CGFloat,
-                let family = dictionary["family"] as? String else {
-                    return nil
-            }
-            adaptiveStyle = .above(size: size, family: family)
-        default:
-            adaptiveStyle = nil
-        }
-        return adaptiveStyle
-    }
-
-}
-
-extension AdaptiveStyle: StyleAttributeTransformation {
-
-
-    public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
-        guard let font = theAttributes[NSFontAttributeName] as? UIFont else {
-            print("No font to adapt, ignoring adaptive style")
-            return theAttributes
-        }
-        var attributes = theAttributes
-        attributes = StyleAttributeHelpers.add(designedFont: font, to: attributes)
-        attributes = StyleAttributeHelpers.add(adaptiveStyle: self, to: attributes)
-        return attributes
-    }
-
-}
-
-extension StyleAttributeHelpers {
-    enum AttributeName {
-        static let designatedFont = "DesignatedFont"
-        static let adaptions = "Adaptions"
-    }
-    static func add(designedFont font: UIFont, to styleAttributes: StyleAttributes) -> StyleAttributes {
-        var styleAttributes = styleAttributes
-        styleAttributes[AttributeName.designatedFont] = font
-        return styleAttributes
-    }
-
-    static func add(adaptiveStyle style: AdaptiveStyle, to styleAttributes: StyleAttributes) -> StyleAttributes {
-        var styleAttributes = styleAttributes
-        var adaptions = styleAttributes[AttributeName.adaptions] as? Array<AdaptiveStyle.Representation> ?? []
-        adaptions.append(style.representation)
-        styleAttributes[AttributeName.adaptions] = adaptions
-        return styleAttributes
-    }
-
-    static func adaptions(from styleAttributes: StyleAttributes) -> [AdaptiveStyle]? {
-        let representations = styleAttributes[AttributeName.adaptions] as? Array<AdaptiveStyle.Representation>
-        return representations?.map({ AdaptiveStyle.from(representation: $0) }).flatMap({ $0 })
-    }
-
-    static func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
-        guard var font = theAttributes[AttributeName.designatedFont] as? UIFont,
-            let adaptations = StyleAttributeHelpers.adaptions(from: theAttributes) else {
-                return nil
-        }
-        let contentSizeCategory = traitCollection.bon_preferredContentSizeCategory
-        var styleAttributes = theAttributes
-        for adaptiveStyle in adaptations {
-            switch adaptiveStyle {
-            case .control:
-                let adaptedSize = AdaptiveStyle.adapt(sizeAtLarge: font.pointSize, forContentSizeCategory: contentSizeCategory)
-                font = font.withSize(adaptedSize)
-            case .body:
-                let adaptedSize = AdaptiveStyle.adaptBody(sizeAtLarge: font.pointSize, forContentSizeCategory: contentSizeCategory)
-                font = font.withSize(adaptedSize)
-            case .preferred:
-                if let textStyle = font.bon_textStyle {
-                    font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)
-                }
-                else {
-                    print("No text style in the font, can not adapt")
-                }
-            case .above(let size, let family):
-                font = font.pointSize > size ? font.font(familyName: family) : font
-            case .below(let size, let family):
-                font = font.pointSize < size ? font.font(familyName: family) : font
-            }
-        }
-        styleAttributes[NSFontAttributeName] = font
-        return styleAttributes
-    }
-
-    static func adapt(string attributedString: NSMutableAttributedString, to traitCollection: UITraitCollection) {
-        let wholeRange = NSRange(location: 0, length: attributedString.length)
-
-        attributedString.enumerateAttributes(in: wholeRange, options: []) { (attributes, range, stop) in
-            if let adapted = adapt(attributes: attributes, to: traitCollection) {
-                attributedString.setAttributes(adapted, range: range)
-            }
-        }
-    }
 }

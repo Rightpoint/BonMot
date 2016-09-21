@@ -15,7 +15,7 @@ extension NSAttributedString {
     /// - returns: Attributes with fonts updated to the specified content size category.
     public static func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes {
 
-        let attributes = StyleAttributeHelpers.adapt(attributes: theAttributes, to: traitCollection) ?? theAttributes
+        let attributes = AdaptiveAttributeHelpers.adapt(attributes: theAttributes, to: traitCollection) ?? theAttributes
         return attributes
     }
 
@@ -30,7 +30,7 @@ extension NSAttributedString {
         guard let newString = mutableCopy() as? NSMutableAttributedString else {
             fatalError("Force cast of mutable copy failed.")
         }
-        StyleAttributeHelpers.adapt(string: newString, to: traitCollection)
+        AdaptiveAttributeHelpers.adapt(string: newString, to: traitCollection)
         return newString
     }
 

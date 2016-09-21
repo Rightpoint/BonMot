@@ -27,7 +27,7 @@ extension UILabel: AdaptableTextContainer {
         // See UIKitTests.testLabelFontPropertyBehavior for interesting behavior.
 
         if let bonMotStyle = bonMotStyle {
-            font = StyleAttributeHelpers.font(from: bonMotStyle.attributes())
+            font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
         }
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapt(to: traitCollection)
@@ -57,7 +57,7 @@ extension UITextField: AdaptableTextContainer {
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let bonMotStyle = bonMotStyle {
-            font = StyleAttributeHelpers.font(from: bonMotStyle.attributes())
+            font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
         }
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapt(to: traitCollection)
@@ -77,7 +77,7 @@ extension UIButton: AdaptableTextContainer {
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let bonMotStyle = bonMotStyle, let titleLabel = titleLabel {
-            titleLabel.font = StyleAttributeHelpers.font(from: bonMotStyle.attributes())
+            titleLabel.font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
         }
         for state: UIControlState in UIControlState.allStates {
             #if swift(>=3.0)

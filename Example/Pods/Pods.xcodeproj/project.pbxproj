@@ -26,6 +26,9 @@
 		AB7E11711D91BA1000E6AB57 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E116A1D91BA1000E6AB57 /* UIKit+AdaptableTextContainerSupport.swift */; };
 		AB7E11721D91BA1000E6AB57 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E116B1D91BA1000E6AB57 /* UIKit+Helpers.swift */; };
 		AB7E11741D91BB1200E6AB57 /* StyleAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E11731D91BB1200E6AB57 /* StyleAttributes.swift */; };
+		AB7E11771D91F96200E6AB57 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E11761D91F96200E6AB57 /* AdaptiveStyleTransformation.swift */; };
+		AB7E11791D92040800E6AB57 /* AdaptiveAttributeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7E11781D92040800E6AB57 /* AdaptiveAttributeHelpers.swift */; };
+		ABF42D5E1D9215260007695B /* InternalAdaptations.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF42D5D1D9215260007695B /* InternalAdaptations.swift */; };
 		AD7F66E2902C754C5283A37C57B89708 /* BonMot-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 74DAB63B85E4AB017288F8A60D81C79B /* BonMot-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BCBBDCA8E73C33003D78B1C28B469041 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B61D356C07DEA456B186A2AE72300 /* AttributedStringStyle.swift */; };
 		D61841B32DC2C5E4893D180DDCDF87B7 /* AttributedStringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6082DDF47634A8106BDA81BEFC97439 /* AttributedStringStylePart.swift */; };
@@ -91,6 +94,9 @@
 		AB7E116A1D91BA1000E6AB57 /* UIKit+AdaptableTextContainerSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+AdaptableTextContainerSupport.swift"; sourceTree = "<group>"; };
 		AB7E116B1D91BA1000E6AB57 /* UIKit+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Helpers.swift"; sourceTree = "<group>"; };
 		AB7E11731D91BB1200E6AB57 /* StyleAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleAttributes.swift; sourceTree = "<group>"; };
+		AB7E11761D91F96200E6AB57 /* AdaptiveStyleTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveStyleTransformation.swift; sourceTree = "<group>"; };
+		AB7E11781D92040800E6AB57 /* AdaptiveAttributeHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveAttributeHelpers.swift; sourceTree = "<group>"; };
+		ABF42D5D1D9215260007695B /* InternalAdaptations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalAdaptations.swift; sourceTree = "<group>"; };
 		C7008BD5F4245F12DCD72A0FC7BCC83C /* Pods-BonMot_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BonMot_Tests-umbrella.h"; sourceTree = "<group>"; };
 		CB2FD0FB92AFB48BF4840DB66DE560C8 /* Pods-BonMot_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BonMot_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D0FDE2C7008028D72D6FB445DF416ABD /* Pods-BonMot_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BonMot_Example-dummy.m"; sourceTree = "<group>"; };
@@ -248,7 +254,10 @@
 			children = (
 				AB7E11681D91BA1000E6AB57 /* StyleableTextContainer.swift */,
 				AB7E11691D91BA1000E6AB57 /* TagStyles+IBInspectable.swift */,
+				AB7E11761D91F96200E6AB57 /* AdaptiveStyleTransformation.swift */,
 				AB7E11661D91BA1000E6AB57 /* AdaptiveStyle.swift */,
+				ABF42D5D1D9215260007695B /* InternalAdaptations.swift */,
+				AB7E11781D92040800E6AB57 /* AdaptiveAttributeHelpers.swift */,
 				AB7E11671D91BA1000E6AB57 /* NSAttributedString+Adapt.swift */,
 				AB7E11651D91BA1000E6AB57 /* AdaptableTextContainer.swift */,
 				AB7E116A1D91BA1000E6AB57 /* UIKit+AdaptableTextContainerSupport.swift */,
@@ -421,8 +430,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF42D5E1D9215260007695B /* InternalAdaptations.swift in Sources */,
 				BCBBDCA8E73C33003D78B1C28B469041 /* AttributedStringStyle.swift in Sources */,
 				AB7E116D1D91BA1000E6AB57 /* AdaptiveStyle.swift in Sources */,
+				AB7E11791D92040800E6AB57 /* AdaptiveAttributeHelpers.swift in Sources */,
 				D61841B32DC2C5E4893D180DDCDF87B7 /* AttributedStringStylePart.swift in Sources */,
 				1325B308D8422DB5F4FF453B9849E729 /* BonMot-dummy.m in Sources */,
 				AB7E116E1D91BA1000E6AB57 /* NSAttributedString+Adapt.swift in Sources */,
@@ -433,6 +444,7 @@
 				E21BD13F45637F7B14B3ADF3D0591292 /* NSAttributedString+BonMot.swift in Sources */,
 				AB7E11721D91BA1000E6AB57 /* UIKit+Helpers.swift in Sources */,
 				AB7E116F1D91BA1000E6AB57 /* StyleableTextContainer.swift in Sources */,
+				AB7E11771D91F96200E6AB57 /* AdaptiveStyleTransformation.swift in Sources */,
 				AB7E11741D91BB1200E6AB57 /* StyleAttributes.swift in Sources */,
 				AB7E11711D91BA1000E6AB57 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
 				FF2E9B5A24DC01F6460BC26279B8E175 /* Special.swift in Sources */,

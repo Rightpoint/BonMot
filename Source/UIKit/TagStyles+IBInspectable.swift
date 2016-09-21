@@ -5,8 +5,6 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import UIKit
-
 extension UILabel {
     /// Configure the view with the specified style based on the currently configured font.
     @IBInspectable

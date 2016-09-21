@@ -164,9 +164,13 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             theAttributes = adaptation.style(attributes: theAttributes)
         }
 
-        // Apply tracking once the final font is known
-        let styledFont = theAttributes[NSFontAttributeName] as? UIFont
-        theAttributes.update(possibleValue: tracking?.kerning(forFont: styledFont), forKey: NSKernAttributeName)
+        if let tracking = tracking {
+            // Apply tracking
+            let styledFont = theAttributes[NSFontAttributeName] as? UIFont
+            theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
+            // Add the tracking as an adaptation
+            theAttributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: tracking, to: theAttributes)
+        }
 
         return theAttributes
     }

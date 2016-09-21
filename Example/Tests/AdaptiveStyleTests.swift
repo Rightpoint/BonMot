@@ -109,4 +109,20 @@ class AdaptiveStyleTests: XCTestCase {
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge.compatible), query: { $0.pointSize }, float: 34)
     }
 
+    func testAdobeAdaptiveTracking() {
+        let font = UIFont(name: "Avenir-Book", size: 30)!
+        let chain = BonMotI(font: font, adaptations: [AdaptiveStyle.control], tracking: Tracking.adobe(300))
+        let attributes = chain.style(attributes: [NSFontAttributeName: font])
+
+        let testKernAdaption = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
+            let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
+            let adaptedAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
+            return adaptedAttributes[NSKernAttributeName] as? CGFloat ?? 0
+        }
+
+        XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraSmall.compatible), 8.1, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.large.compatible), 9, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraExtraExtraLarge.compatible), 10.8, accuracy: 0.0001)
+    }
+
 }

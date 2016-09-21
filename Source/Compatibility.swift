@@ -5,8 +5,6 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import Foundation
-
 /// The purpose of this file is to declare extensions to UIKit objects to provide a compatible API between 2.x and 3.0.
 /// All methods should be non-public and static or final to ensure they do not add selectors or methods to the external namespace.
 /// The bon_ prefix is used in some cases because it would conflict with the original implementation  in 2.x or 3.x.

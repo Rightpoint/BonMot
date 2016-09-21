@@ -5,8 +5,6 @@
 //
 //
 
-import Foundation
-
 extension UIFont {
 
     @nonobjc static func bon_preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
