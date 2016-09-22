@@ -20,8 +20,8 @@ extension UIApplication {
             let notificationCenter = NotificationCenter.default
             let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
         #else
-            let notificationCenter = NSNotificationCenter.defaultCenter()
-            let notificationName = UIContentSizeCategoryDidChangeNotification
+            let notificationCenter = NotificationCenter.default
+            let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
         #endif
         notificationCenter.addObserver(
             self,
@@ -31,7 +31,7 @@ extension UIApplication {
     }
 
     /// Notify the view controller hierarchy. This is an internal method.
-    @objc func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: NSNotification) {
+    @objc func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: Notification) {
         // First notify the app delegate if it conforms to AdaptableTextContainer.
         if let container = self.delegate as? AdaptableTextContainer, let traitCollection = self.delegate?.window??.traitCollection {
             container.updateText(forTraitCollection: traitCollection)

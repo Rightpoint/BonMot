@@ -8,10 +8,10 @@
 /// TagStyles stores styles, and allows them to be looked up by name. This is primarily used for supporting
 /// Interface builder and styling markup.
 @objc(BONTagStyles)
-public class TagStyles: NSObject {
+open class TagStyles: NSObject {
 
     /// A shared repository of styles. The shared TagStyle is used by the Interface Builder bonMotStyleName property.
-    public static var shared = TagStyles(
+    open static var shared = TagStyles(
         styles: [
             "control": BonMot(.adapt(.control)),
             "body": BonMot(.adapt(.body)),
@@ -23,9 +23,9 @@ public class TagStyles: NSObject {
         self.styles = styles
     }
 
-    private var styles: [String: AttributedStringStyle]
+    fileprivate var styles: [String: AttributedStringStyle]
 
-    public func registerStyle(forName name: String, style: AttributedStringStyle) {
+    open func registerStyle(forName name: String, style: AttributedStringStyle) {
         styles[name] = style
     }
 
@@ -38,7 +38,7 @@ public class TagStyles: NSObject {
     /// - parameter name: The name of the style to lookup
     /// - initialAttributes: The initial attributes to pass to the style chain
     /// - return: the configured style, or nil if none is found
-    public func style(forName name: String?, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
+    open func style(forName name: String?, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
         guard let name = name, var style = styles[name] else { return nil }
         style.update(attributes: initialAttributes)
         return style

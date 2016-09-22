@@ -49,7 +49,7 @@ public struct XMLParsingOptions : OptionSet {
     public static let allowUnregisteredElements = XMLParsingOptions(rawValue: 4)
 }
 
-public class TagInsertions {
+open class TagInsertions {
     var entering: [String: NSAttributedString] = [:]
     var exiting: [String: NSAttributedString] = [:]
     func attributedString(forEnteringElement elementName: String) -> NSAttributedString? {
@@ -60,12 +60,12 @@ public class TagInsertions {
         return exiting[elementName]
     }
 
-    public static var shared = TagInsertions()
+    open static var shared = TagInsertions()
     public init() {}
-    public func insert(attributedString string: NSAttributedString, whenEntering elementName: String) {
+    open func insert(attributedString string: NSAttributedString, whenEntering elementName: String) {
         entering[elementName] = string
     }
-    public func insert(attributedString string: NSAttributedString, whenExiting elementName: String) {
+    open func insert(attributedString string: NSAttributedString, whenExiting elementName: String) {
         exiting[elementName] = string
     }
 }
@@ -132,7 +132,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
                 namedStyle = self.namedStyles.style(forName: "\(elementName):\(htmlClass)") ?? namedStyle
             }
             if elementName.lowercased() == "a" {
-                if let href = attributeDict["href"], let url = NSURL(string: href) {
+                if let href = attributeDict["href"], let url = URL(string: href) {
                     style.link = url
                 }
                 else {
@@ -175,21 +175,21 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         attributedString.append(newAttributedString)
     }
     #else
-    typealias XMLParser = NSXMLParser
-    typealias XMLParserDelegate = NSXMLParserDelegate
+    typealias XMLParser = Foundation.XMLParser
+    typealias XMLParserDelegate = Foundation.XMLParserDelegate
 
-    @objc private func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    @objc fileprivate func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         parse(elementNamed: elementName, attributeDict: attributeDict)
         enter(element: elementName)
     }
 
-    @objc private func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
+    @objc fileprivate func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
         guard elementName != XMLTagStyleBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
         styles.removeLast()
     }
 
-    @objc private func parser(parser: XMLParser, foundCharacters string: String) {
+    @objc fileprivate func parser(_ parser: XMLParser, foundCharacters string: String) {
         let newAttributedString = topStyle.attributedString(from: string)
         attributedString.append(newAttributedString)
     }

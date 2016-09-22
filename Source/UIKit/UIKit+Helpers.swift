@@ -57,7 +57,7 @@ extension UITraitCollection {
             #if swift(>=3.0)
                 return UIContentSizeCategory.large
             #else
-                return UIContentSizeCategoryLarge
+                return UIContentSizeCategory.large
             #endif
         }
     }

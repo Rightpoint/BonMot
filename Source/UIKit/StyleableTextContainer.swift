@@ -120,8 +120,8 @@ extension UIButton: StyleableTextContainer {
     }
     #else
     @objc(bon_setStyledText:forState:)
-    public func setStyledText(text: String, forState state: UIControlState) {
-        setAttributedTitle(styledAttributedString(forText: text, traitCollection: traitCollection), forState: state)
+    public func setStyledText(_ text: String, forState state: UIControlState) {
+        setAttributedTitle(styledAttributedString(forText: text, traitCollection: traitCollection), for: state)
     }
     #endif
 

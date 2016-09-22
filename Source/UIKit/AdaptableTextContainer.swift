@@ -84,8 +84,8 @@ extension UIButton: AdaptableTextContainer {
                 let attributedText = attributedTitle(for: state)?.adapt(to: traitCollection)
                 setAttributedTitle(attributedText, for: state)
             #else
-                let attributedText = attributedTitleForState(state)?.adapt(to: traitCollection)
-                setAttributedTitle(attributedText, forState: state)
+                let attributedText = attributedTitle(for: state)?.adapt(to: traitCollection)
+                setAttributedTitle(attributedText, for: state)
             #endif
         }
     }
@@ -117,9 +117,9 @@ extension UISegmentedControl: AdaptableTextContainer {
                 let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
                 setTitleTextAttributes(newAttributes, for: state)
             #else
-                if let attributes = titleTextAttributesForState(state) as? StyleAttributes {
+                if let attributes = titleTextAttributes(for: state) as? StyleAttributes {
                     let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-                    setTitleTextAttributes(newAttributes, forState: state)
+                    setTitleTextAttributes(newAttributes, for: state)
                 }
             #endif
         }
@@ -185,9 +185,9 @@ extension UIBarItem {
                 let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
                 setTitleTextAttributes(newAttributes, for: state)
             #else
-                let attributes = titleTextAttributesForState(state) ?? [:]
+                let attributes = titleTextAttributes(for: state) ?? [:]
                 let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-                setTitleTextAttributes(newAttributes, forState: state)
+                setTitleTextAttributes(newAttributes, for: state)
             #endif
         }
     }
@@ -200,7 +200,7 @@ extension UIControlState {
         #if swift(>=3.0)
             return [.normal, .highlighted, .disabled]
         #else
-            return [.Normal, .Highlighted, .Disabled]
+            return [.highlighted, .disabled]
         #endif
     }
 

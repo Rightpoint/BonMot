@@ -33,18 +33,18 @@ extension AdaptiveStyle {
             ]
         #else
             return [
-                UIContentSizeCategoryExtraSmall: -3,
-                UIContentSizeCategorySmall: -2,
-                UIContentSizeCategoryMedium: -1,
-                UIContentSizeCategoryLarge: 0,
-                UIContentSizeCategoryExtraLarge: 2,
-                UIContentSizeCategoryExtraExtraLarge: 4,
-                UIContentSizeCategoryExtraExtraExtraLarge: 6,
-                UIContentSizeCategoryAccessibilityMedium: 11,
-                UIContentSizeCategoryAccessibilityLarge: 16,
-                UIContentSizeCategoryAccessibilityExtraLarge: 23,
-                UIContentSizeCategoryAccessibilityExtraExtraLarge: 30,
-                UIContentSizeCategoryAccessibilityExtraExtraExtraLarge: 36,
+                UIContentSizeCategory.extraSmall: -3,
+                UIContentSizeCategory.small: -2,
+                UIContentSizeCategory.medium: -1,
+                UIContentSizeCategory.large: 0,
+                UIContentSizeCategory.extraLarge: 2,
+                UIContentSizeCategory.extraExtraLarge: 4,
+                UIContentSizeCategory.extraExtraExtraLarge: 6,
+                UIContentSizeCategory.accessibilityMedium: 11,
+                UIContentSizeCategory.accessibilityLarge: 16,
+                UIContentSizeCategory.accessibilityExtraLarge: 23,
+                UIContentSizeCategory.accessibilityExtraExtraLarge: 30,
+                UIContentSizeCategory.accessibilityExtraExtraExtraLarge: 36,
             ]
         #endif
     }
