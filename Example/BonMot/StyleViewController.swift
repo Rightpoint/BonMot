@@ -35,10 +35,11 @@ class StyleViewController: UITableViewController {
             fatalError("Misconfigured VC")
         }
         let attributedText = styles[indexPath.section].1[indexPath.row]
-        cell.titleLabel?.attributedText = attributedText
+        cell.titleLabel?.attributedText = attributedText.adapt(to: traitCollection)
         cell.accessoryType = attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) == nil ? .none : .disclosureIndicator
         return cell
     }
+
     func selectRow(at indexPath: IndexPath) {
         let attributedText = styles[indexPath.section].1[indexPath.row]
         if let storyboardIdentifier = attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) as? String {
