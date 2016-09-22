@@ -16,7 +16,7 @@ let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIC
 class AdaptiveStyleTests: XCTestCase {
 
     func testFontControlSizeAdaption() {
-        let inputFont = UIFont.systemFont(ofSize: 28)
+        let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = BonMot(.font(inputFont), .adapt(.control))
         print(style.attributes())
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
@@ -42,7 +42,7 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testFontBodySizeAdaption() {
-        let inputFont = UIFont.systemFont(ofSize: 28)
+        let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = BonMot(.font(inputFont), .adapt(.body))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
