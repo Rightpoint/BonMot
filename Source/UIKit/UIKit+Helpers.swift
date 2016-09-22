@@ -63,6 +63,7 @@ extension UITraitCollection {
 
 extension UIFont {
 
+    /// Return a font with the same attributes as the current font, but change the familyName
     final func font(familyName theFamilyName: String) -> UIFont {
         var attributes = fontDescriptor.fontAttributes
         attributes[UIFontDescriptorFamilyAttribute] = fontName

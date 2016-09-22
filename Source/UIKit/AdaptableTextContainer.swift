@@ -11,7 +11,8 @@
 @objc(BONAdaptableTextContainer)
 public protocol AdaptableTextContainer {
 
-    /// Update any text style contained by the object.
+    /// Update the text style contained by the object in response to a trait collection change
+    ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     func updateText(forTraitCollection traitCollection: UITraitCollection)
@@ -19,6 +20,9 @@ public protocol AdaptableTextContainer {
 
 extension UILabel: AdaptableTextContainer {
 
+    /// Update the attributedText adapted to the specified UITraitCollection
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         
@@ -38,6 +42,9 @@ extension UILabel: AdaptableTextContainer {
 
 extension UITextView: AdaptableTextContainer {
 
+    /// Update the attributedText and typingAttributes adapted to the specified UITraitCollection
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let attributedText = attributedText {
@@ -54,6 +61,9 @@ extension UITextView: AdaptableTextContainer {
 
 extension UITextField: AdaptableTextContainer {
 
+    /// Update the attributedText, attributedPlaceholder and typingAttributes adapted to the specified UITraitCollection
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let bonMotStyle = bonMotStyle {
@@ -74,6 +84,9 @@ extension UITextField: AdaptableTextContainer {
 
 extension UIButton: AdaptableTextContainer {
 
+    /// Update the attributedTitle in all control states, adapted to the specified UITraitCollection
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let bonMotStyle = bonMotStyle, let titleLabel = titleLabel {
@@ -109,6 +122,9 @@ extension UISegmentedControl: AdaptableTextContainer {
     }
     #endif
 
+    /// Update the attributedTitle in all control states, adapted to the specified UITraitCollection
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         for state: UIControlState in UIControlState.allStates {
@@ -129,18 +145,15 @@ extension UISegmentedControl: AdaptableTextContainer {
 
 extension UINavigationBar: AdaptableTextContainer {
 
+    /// Update the titleTextAttributes, adapted to the specified UITraitCollection
+    ///
+    /// NOTE: This does not update the bar button items. These should be updated through the containing view controller.
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let titleTextAttributes = titleTextAttributes {
             self.titleTextAttributes = NSAttributedString.adapt(attributes: titleTextAttributes, to: traitCollection)
-        }
-        for navigationItem in items ?? [] {
-            for item in navigationItem.allBarItems {
-                item.updateText(forTraitCollection: traitCollection)
-            }
-            if let backBarButtonItem = navigationItem.backBarButtonItem {
-                backBarButtonItem.updateText(forTraitCollection: traitCollection)
-            }
         }
     }
 
@@ -148,6 +161,11 @@ extension UINavigationBar: AdaptableTextContainer {
 
 extension UIToolbar: AdaptableTextContainer {
 
+    /// Update all bar items, adapted to the specified UITraitCollection.
+    ///
+    /// NOTE: This will only update bar items that are contained on the screen at the time.
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         for item in items ?? [] {
@@ -159,6 +177,9 @@ extension UIToolbar: AdaptableTextContainer {
 
 extension UIViewController: AdaptableTextContainer {
 
+    /// Update the bar items in the navigation item or in the toolbar, adapted to the specified UITraitCollection
+    ///
+    /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         for item in navigationItem.allBarItems {
@@ -176,7 +197,9 @@ extension UIViewController: AdaptableTextContainer {
 
 extension UIBarItem {
 
-    // This does not conform to AdaptableTextContainer since it is not a view or view controller
+    /// Update the titleTextAttributes, adapted to the specified UITraitCollection.
+    ///
+    /// NOTE: This does not conform to AdaptableTextContainer since it is not a view or view controller.
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         for state in UIControlState.allStates {
@@ -194,7 +217,7 @@ extension UIBarItem {
 
 }
 
-extension UIControlState {
+internal extension UIControlState {
 
     @nonobjc static var allStates: [UIControlState] {
         #if swift(>=3.0)
@@ -206,7 +229,7 @@ extension UIControlState {
 
 }
 
-extension UINavigationItem {
+internal extension UINavigationItem {
 
     final var allBarItems: [UIBarButtonItem] {
         var allBarItems = leftBarButtonItems ?? []

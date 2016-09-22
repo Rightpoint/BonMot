@@ -6,7 +6,7 @@
 //
 
 extension UILabel {
-    /// Configure the view with the specified style based on the currently configured font.
+    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
@@ -15,8 +15,9 @@ extension UILabel {
 }
 
 extension UITextField {
-    /// Configure the view with the specified style based on the currently configured font. Note that the style is applied to both
-    /// the text and placeholder text. If you plan on styling them differently, use attributed strings.
+    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
+    ///
+    /// NOTE: he style is applied to both the text and placeholder text. If you plan on styling them differently, use attributed strings.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
@@ -28,7 +29,9 @@ extension UITextField {
 }
 
 extension UITextView {
-    /// Configure the view with the specified style based on the currently configured font.
+    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
+    ///
+    /// NOTE: This will configure a zero width space in the text property if the font has never been set to obtain the default font behavior. See UIKitTests.testTextFieldPropertyBehavior for more information.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
@@ -45,7 +48,7 @@ extension UITextView {
 }
 
 extension UIButton {
-    /// Configure the view with the specified style based on the currently configured font.
+    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }

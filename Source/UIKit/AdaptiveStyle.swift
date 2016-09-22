@@ -33,6 +33,20 @@ extension AdaptiveStyle: StyleAttributeTransformation {
 
 extension AdaptiveStyle: AdaptiveStyleTransformation {
 
+    enum Key {
+        static let type = "type"
+        static let size = "size"
+        static let family = "family"
+
+        enum Value {
+            static let control = "control"
+            static let body = "body"
+            static let preferred = "preferred"
+            static let above = "above"
+            static let below = "below"
+        }
+    }
+
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
         guard var font = theAttributes[AdaptiveAttributeHelpers.AttributeName.designatedFont] as? UIFont else {
             fatalError("The designated font is set when the adaptive style is added")
@@ -65,36 +79,36 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         switch self {
         case let .above(size, family):
             return [
-                "type": "above",
-                "size": size,
-                "family": family,
+                Key.type: Key.Value.above,
+                Key.size: size,
+                Key.family: family,
             ]
         case let .below(size, family):
             return [
-                "type": "below",
-                "size": size,
-                "family": family,
+                Key.type: Key.Value.below,
+                Key.size: size,
+                Key.family: family,
             ]
         case .control:
-            return ["type": "control"]
+            return [Key.type: Key.Value.control]
         case .body:
-            return ["type": "body"]
+            return [Key.type: Key.Value.body]
         case .preferred:
-            return ["type": "preferred"]
+            return [Key.type: Key.Value.preferred]
         }
     }
 
     static func from(representation dictionary: [String: StyleAttributeValue]) -> AdaptiveStyleTransformation? {
-        switch (dictionary["type"] as? String, dictionary["size"] as? CGFloat, dictionary["family"] as? String)  {
-        case ("control"?, nil, nil):
+        switch (dictionary[Key.type] as? String, dictionary[Key.size] as? CGFloat, dictionary[Key.family] as? String)  {
+        case (Key.Value.control?, nil, nil):
             return AdaptiveStyle.control
-        case ("body"?, nil, nil):
+        case (Key.Value.control?, nil, nil):
             return AdaptiveStyle.body
-        case ("preferred"?, nil, nil):
+        case (Key.Value.preferred?, nil, nil):
             return AdaptiveStyle.preferred
-        case let ("above"?, size?, family?):
+        case let (Key.Value.above?, size?, family?):
             return AdaptiveStyle.above(size: size, family: family)
-        case let ("below"?, size?, family?):
+        case let (Key.Value.below?, size?, family?):
             return AdaptiveStyle.below(size: size, family: family)
         default:
             return nil

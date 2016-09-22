@@ -1,13 +1,12 @@
 //
 //  AdaptiveAttributeHelpers.swift
-//  Pods
 //
 //  Created by Brian King on 9/20/16.
 //
 //
 
 /// Internal helper functions for managing keys in the StyleAttributes related to adaptive functionality.
-enum AdaptiveAttributeHelpers {
+internal enum AdaptiveAttributeHelpers {
     enum AttributeName {
         static let designatedFont = "BonMotDesignatedFont"
         static let adaptions = "BonMotAdaptions"

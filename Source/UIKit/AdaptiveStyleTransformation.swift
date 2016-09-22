@@ -14,11 +14,17 @@
 /// value types can be used.
 protocol AdaptiveStyleTransformation {
 
+    /// Change any of theAttributes as desired to the specified traitCollection and return a new StyleAttributes dictionary.
+    ///
+    /// - parameter theAttributes: The input attributes
+    /// - parameter to: The trait collection to adapt to
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes?
+
+    /// Return a plist compatible dictionary of any state that's needed to persist the adaption
+    var representation: StyleAttributes { get }
 
     /// This factory method is used to take the adaptations dictionary and create an array of AdaptiveStyleTransformation.
     /// To register a new adaptive transformation, add the type to AdaptiveAttributeHelpers.adaptiveTransformationTypes.
     static func from(representation dictionary: StyleAttributes) -> AdaptiveStyleTransformation?
 
-    var representation: StyleAttributes { get }
 }

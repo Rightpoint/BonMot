@@ -1,6 +1,5 @@
 //
 //  InternalAdaptations.swift
-//  Pods
 //
 //  Created by Brian King on 9/20/16.
 //
@@ -9,6 +8,15 @@
 import Foundation
 
 extension Tracking: AdaptiveStyleTransformation {
+
+    enum Key {
+        static let type = "type"
+        static let size = "size"
+
+        enum Value {
+            static let adobeTracking = "adobe-tracking"
+        }
+    }
 
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
         if case .adobe = self {
@@ -23,7 +31,7 @@ extension Tracking: AdaptiveStyleTransformation {
     }
 
     static func from(representation dictionary: StyleAttributes) -> AdaptiveStyleTransformation? {
-        if case let ("adobe-tracking"?, size?) = (dictionary["type"] as? String, dictionary["size"] as? CGFloat) {
+        if case let (Key.Value.adobeTracking?, size?) = (dictionary[Key.type] as? String, dictionary[Key.size] as? CGFloat) {
             return Tracking.adobe(size)
         }
         return nil
@@ -31,7 +39,7 @@ extension Tracking: AdaptiveStyleTransformation {
 
     var representation: StyleAttributes {
         if case let .adobe(size) = self {
-            return ["type": "adobe-tracking", "size": size]
+            return [Key.type: Key.Value.adobeTracking, Key.size: size]
         }
         else {
             // We don't need to persist regular tracking as it does not depend on the font size.
