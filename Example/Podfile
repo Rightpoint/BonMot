@@ -4,11 +4,13 @@ use_frameworks!
 target 'BonMot_Example' do
 
   pod "BonMot", :path => "../"
-  
+  pod "BonMot/UIKit", :path => "../"
+
   target 'BonMot_Tests' do
 
     inherit! :search_paths
     pod "BonMot", :path => "../"
+    pod "BonMot/UIKit", :path => "../"
 
   end
   
