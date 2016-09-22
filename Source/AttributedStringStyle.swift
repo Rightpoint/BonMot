@@ -13,7 +13,7 @@
         return style
     }
 #else
-    public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+    public func BonMotC(_ configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
         var style = AttributedStringStyle()
         configure(&style)
         return style
@@ -26,7 +26,7 @@ public struct AttributedStringStyle {
     public var initialAttributes: StyleAttributes
     public var font: UIFont?
     public var textStyle: BonMotTextStyle?
-    public var link: NSURL?
+    public var link: URL?
     public var backgroundColor: UIColor?
     public var textColor: UIColor?
     public var underline: (NSUnderlineStyle, UIColor?)?
@@ -52,7 +52,7 @@ public struct AttributedStringStyle {
 
     public init(initialAttributes: StyleAttributes = [:],
                 font: UIFont? = nil,
-                link: NSURL? = nil,
+                link: URL? = nil,
                 backgroundColor: UIColor? = nil,
                 textColor: UIColor? = nil,
                 underline: (NSUnderlineStyle, UIColor?)? = nil,
@@ -101,7 +101,7 @@ public struct AttributedStringStyle {
         self.hyphenationFactor = hyphenationFactor
     }
 
-    public func derive(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+    public func derive(_ configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
         var style = self
         configureBlock(&style)
         return style

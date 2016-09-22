@@ -9,7 +9,7 @@ public enum AttributedStringStylePart {
     case initialAttributes(StyleAttributes)
     case font(UIFont)
     case textStyle(BonMotTextStyle)
-    case link(NSURL)
+    case link(URL)
     case backgroundColor(UIColor)
     case textColor(UIColor)
     case underline(NSUnderlineStyle, UIColor?)
@@ -37,17 +37,17 @@ public enum AttributedStringStylePart {
 
 #if swift(>=3.0)
     public func BonMot(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        return AttributedStringStyle.from(parts: parts)
+        return AttributedStringStyle.from(parts)
     }
 #else
-    public func BonMot(parts: AttributedStringStylePart...) -> AttributedStringStyle {
+    public func BonMot(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
         return AttributedStringStyle.from(parts)
     }
 #endif
 
 extension AttributedStringStyle {
 
-    public static func from(parts: [AttributedStringStylePart]) -> AttributedStringStyle {
+    public static func from(_ parts: [AttributedStringStylePart]) -> AttributedStringStyle {
         var style = AttributedStringStyle()
         for part in parts {
             style.update(attributedStringStylePart: part)
@@ -64,7 +64,7 @@ extension AttributedStringStyle {
         return style
     }
     #else
-    public func derive(parts: AttributedStringStylePart...) -> AttributedStringStyle {
+    public func derive(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = self
         for part in parts {
             style.update(attributedStringStylePart: part)

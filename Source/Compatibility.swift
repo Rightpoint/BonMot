@@ -14,13 +14,13 @@ import Foundation
 /// Standard Library + Foundation
 #if swift(>=3.0)
 #else
-    typealias OptionSet = OptionSetType
-    typealias XMLParser = NSXMLParser
-    typealias XMLParserDelegate = NSXMLParserDelegate
+    typealias OptionSet = Swift.OptionSet
+    typealias XMLParser = Foundation.XMLParser
+    typealias XMLParserDelegate = Foundation.XMLParserDelegate
     typealias BonMotStringTransform = String
 
     struct StringTransform {
-        static let toUnicodeName = NSStringTransformToUnicodeName
+        static let toUnicodeName = StringTransform.toUnicodeName
     }
 
     extension CGFloat {
@@ -29,69 +29,69 @@ import Foundation
 
     extension NSString {
         @nonobjc final func lowercased() -> String {
-            return lowercaseString
+            return lowercased
         }
 
-        @nonobjc final func applyingTransform(transform: String, reverse: Bool) -> NSString? {
-            return stringByApplyingTransform(transform, reverse: reverse)
+        @nonobjc final func applyingTransform(_ transform: String, reverse: Bool) -> NSString? {
+            return self.applyingTransform(transform, reverse: reverse)
         }
 
         @nonobjc final func replacingOccurrences(of string: String, with replacement: String) -> String {
-            return stringByReplacingOccurrencesOfString(string, withString: replacement)
+            return self.replacingOccurrences(of: string, with: replacement)
         }
 
     }
 
     extension NSMutableString {
-        @nonobjc final func replacingOccurrences(of target: String, with string: String, options: NSStringCompareOptions, range: NSRange) {
-            replaceOccurrencesOfString(target, withString: string, options: options, range: range)
+        @nonobjc final func replacingOccurrences(of target: String, with string: String, options: NSString.CompareOptions, range: NSRange) {
+            replaceOccurrences(of: target, with: string, options: options, range: range)
         }
     }
 
-    extension NSIndexSet {
+    extension IndexSet {
         @nonobjc convenience init(indexesIn: NSRange) {
-            self.init(indexesInRange: indexesIn)
+            (self as NSIndexSet).init(integersIn: indexesIn.toRange() ?? 0..<0)
         }
         @nonobjc final func enumerateRanges(options theOptions: NSEnumerationOptions = [], @noescape block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            enumerateRangesWithOptions(theOptions, usingBlock: block)
+            self.enumerateRanges(options: theOptions, using: block)
         }
     }
 
     extension NSMutableIndexSet {
         @nonobjc final func remove(in range: NSRange) {
-            removeIndexesInRange(range)
+            self.remove(in: range)
         }
     }
 
     extension Array {
-        mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
-            appendContentsOf(newElements)
+        mutating func append<S : Sequence where S.Iterator.Element == Element>(contentsOf newElements: S) {
+            self.append(contentsOf: newElements)
         }
     }
 
-    extension SequenceType {
+    extension Sequence {
         @warn_unused_result
-        func enumerated() -> EnumerateSequence<Self> {
-            return enumerate()
+        func enumerated() -> EnumeratedSequence<Self> {
+            return self.enumerated()
         }
     }
 
-    extension CollectionType where Index : RandomAccessIndexType {
+    extension Collection where Index : RandomAccessIndexType {
         @warn_unused_result
         func reversed() -> ReverseRandomAccessCollection<Self> {
-            return reverse()
+            return self.reversed()
         }
     }
 
     extension String {
         struct Encoding {
-            static let utf8 = NSUTF8StringEncoding
+            static let utf8 = String.Encoding.utf8
         }
-        func lengthOfBytes(using encoding: NSStringEncoding) -> Int {
-            return lengthOfBytesUsingEncoding(encoding)
+        func lengthOfBytes(using encoding: String.Encoding) -> Int {
+            return self.lengthOfBytes(using: encoding)
         }
-        func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
-            return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
+        func data(using encoding: String.Encoding, allowLossyConversion: Bool = false) -> Data? {
+            return self.data(using: encoding, allowLossyConversion: allowLossyConversion)
         }
     }
 #endif
@@ -107,48 +107,48 @@ import Foundation
 #else
     extension NSAttributedString {
         @nonobjc final func attributes(at location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
-            return attributesAtIndex(location, effectiveRange: range)
+            return self.attributes(at: location, effectiveRange: range)
         }
-        @nonobjc final func attribute(attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
-            return self.attribute(attribute, atIndex: location, effectiveRange: range)
+        @nonobjc final func attribute(_ attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
+            return self.attribute(attribute, at: location, effectiveRange: range)
         }
-        @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
+        @nonobjc final func enumerateAttribute(_ attrName: String, in enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+            enumerateAttribute(attrName, in: enumerationRange, options: opts, using: block)
         }
-        @nonobjc final func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: ([String: AnyObject], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            enumerateAttributesInRange(enumerationRange, options: opts, usingBlock: block)
+        @nonobjc final func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedString.EnumerationOptions, usingBlock block: ([String: AnyObject], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+            self.enumerateAttributes(in: enumerationRange, options: opts, using: block)
         }
         @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
-            return boundingRectWithSize(size, options: options, context: context)
+            return self.boundingRect(with: size, options: options, context: context)
         }
         @nonobjc final func attributedSubstring(from range: NSRange) -> NSAttributedString {
-            return attributedSubstringFromRange(range)
+            return self.attributedSubstring(from: range)
         }
     }
 
     extension NSMutableAttributedString {
-        @nonobjc final func append(string: NSAttributedString) {
-            appendAttributedString(string)
+        @nonobjc final func append(_ string: NSAttributedString) {
+            self.append(string)
         }
         @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {
-            replaceCharactersInRange(range, withString: str)
+            self.replaceCharacters(in: range, with: str)
         }
     }
 
     extension NSStringDrawingOptions {
-        @nonobjc static var usesLineFragmentOrigin = UsesLineFragmentOrigin
-        @nonobjc static var usesFontLeading = UsesFontLeading
-        @nonobjc static var usesDeviceMetrics = UsesDeviceMetrics
-        @nonobjc static var truncatesLastVisibleLine = TruncatesLastVisibleLine
+        @nonobjc static var usesLineFragmentOrigin = usesLineFragmentOrigin
+        @nonobjc static var usesFontLeading = usesFontLeading
+        @nonobjc static var usesDeviceMetrics = usesDeviceMetrics
+        @nonobjc static var truncatesLastVisibleLine = truncatesLastVisibleLine
     }
 
     extension NSTextAlignment {
-        @nonobjc static var natural = NSTextAlignment.Natural
+        @nonobjc static var natural = NSTextAlignment.natural
     }
 
     extension NSParagraphStyle {
         @nonobjc static var bon_default: NSParagraphStyle {
-            return defaultParagraphStyle()
+            return `default`
         }
     }
 
@@ -166,7 +166,7 @@ import Foundation
 
     extension UIApplication {
         @nonobjc static var shared: UIApplication {
-            return sharedApplication()
+            return shared
         }
     }
 
@@ -180,19 +180,19 @@ import Foundation
             #endif
         }
         @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
-            return preferredFontForTextStyle(textStyle)
+            return self.preferredFont(forTextStyle: textStyle)
         }
         @nonobjc final var fontDescriptor: UIFontDescriptor {
-            return fontDescriptor()
+            return fontDescriptor
         }
-        @nonobjc final func withSize(size: CGFloat) -> UIFont {
-            return fontWithSize(size)
+        @nonobjc final func withSize(_ size: CGFloat) -> UIFont {
+            return self.withSize(size)
         }
     }
 
     extension UIFontDescriptor {
         @nonobjc final var fontAttributes: StyleAttributes {
-            return fontAttributes()
+            return fontAttributes
         }
     }
 #endif
