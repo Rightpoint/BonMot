@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import BonMot
+import BonMot
 
 #if swift(>=3.0)
     let testTextStyle = UIFontTextStyle.title3
