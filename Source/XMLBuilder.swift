@@ -19,16 +19,55 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///s
     /// - returns: An NSAttributedString
-    public convenience init(fromXML fragment: String, styles: TagStyles? = nil, insertions: TagInsertions? = nil, options: XMLParsingOptions = []) throws {
-
-        let builder = XMLTagStyleBuilder(
+    public convenience init(fromXML fragment: String, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws {
+        let builder = XMLBuilder(
             string: fragment,
-            namedStyles: styles ?? TagStyles.shared,
-            tagInsertions: insertions ?? TagInsertions.shared,
+            styler: styler ?? SimpleXMLStyler(tagStyles: TagStyles.shared),
             options: options
         )
         let attributedString = try builder.parseAttributedString()
         self.init(attributedString: attributedString)
+    }
+}
+
+/// This contract is used to transform an XML string into an attributed string.
+public protocol XMLStyler {
+    /// Return the style to apply for to the contents of the element. The style is sadded onto the current style
+    func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle?
+
+    /// Return a string to extend into the string being built. This is done after the style for the element has been applied, but before the contents of the element.
+    func prefix(forElement name: String, attributes: [String: String]) -> NSAttributedString?
+
+    /// Return a string to extend into the string being built when leaving the element. This is done before the style of the element is removed.
+    func suffix(forElement name: String) -> NSAttributedString?
+}
+
+/// This is a simple XMLStyler implementation
+public struct SimpleXMLStyler: XMLStyler {
+    let tagStyles: TagStyles
+    var entering: [String: NSAttributedString] = [:]
+    var exiting: [String: NSAttributedString] = [:]
+
+    public init(tagStyles: TagStyles) {
+        self.tagStyles = tagStyles
+    }
+
+    public mutating func add(prefix string: NSAttributedString, forElement elementName: String) {
+        entering[elementName] = string
+    }
+    public mutating func add(suffix string: NSAttributedString, forElement elementName: String) {
+        exiting[elementName] = string
+    }
+
+    public func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle? {
+        return tagStyles.style(forName: name)
+    }
+
+    public func prefix(forElement name: String, attributes: [String: String]) -> NSAttributedString? {
+        return entering[name]
+    }
+    public func suffix(forElement name: String) -> NSAttributedString? {
+        return exiting[name]
     }
 }
 
@@ -40,42 +79,15 @@ public struct XMLParsingOptions : OptionSet {
     /// Do not wrap the fragment with `<?xml>` and a top level element
     public static let doNotWrapXML = XMLParsingOptions(rawValue: 1)
 
-    /// Adopt certain HTML behavior:
-    /// - Lookup the style with `elementName:htmlClass`, then `elementName`
-    /// - Add the NSLinkAttributeName key for `<a href=''></a>` tags.
-    public static let HTMLish = XMLParsingOptions(rawValue: 2)
-
     /// Allow XML elements that are not registered. No style will be used for these elements.
-    public static let allowUnregisteredElements = XMLParsingOptions(rawValue: 4)
+    public static let allowUnregisteredElements = XMLParsingOptions(rawValue: 2)
 }
 
-public class TagInsertions {
-    var entering: [String: NSAttributedString] = [:]
-    var exiting: [String: NSAttributedString] = [:]
-    func attributedString(forEnteringElement elementName: String) -> NSAttributedString? {
-        return entering[elementName]
-    }
-
-    func attributedString(forExitingElement elementName: String) -> NSAttributedString? {
-        return exiting[elementName]
-    }
-
-    public static var shared = TagInsertions()
-    public init() {}
-    public func insert(attributedString string: NSAttributedString, whenEntering elementName: String) {
-        entering[elementName] = string
-    }
-    public func insert(attributedString string: NSAttributedString, whenExiting elementName: String) {
-        exiting[elementName] = string
-    }
-}
-
-private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
+private class XMLBuilder: NSObject, XMLParserDelegate {
     static let internalTopLevelElement = "BonMotTopLevelContainer"
 
     let parser: XMLParser
-    let namedStyles: TagStyles
-    let tagInsertions: TagInsertions?
+    let styler: XMLStyler
     let options: XMLParsingOptions
     var attributedString: NSMutableAttributedString
     var styles: [AttributedStringStyle]
@@ -86,13 +98,12 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
     }
 
     init(string: String,
-         namedStyles: TagStyles,
-         tagInsertions: TagInsertions?,
+         styler: XMLStyler,
          options: XMLParsingOptions,
          topStyle: AttributedStringStyle = AttributedStringStyle()) {
         let xml = (options.contains(.doNotWrapXML) ?
             string :
-            "<\(XMLTagStyleBuilder.internalTopLevelElement)>\(string)</\(XMLTagStyleBuilder.internalTopLevelElement)>")
+            "<\(XMLBuilder.internalTopLevelElement)>\(string)</\(XMLBuilder.internalTopLevelElement)>")
 
         guard let data = xml.data(using: String.Encoding.utf8) else {
             fatalError("Unable to convert to UTF8")
@@ -101,8 +112,7 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         self.parser = XMLParser(data: data)
         self.styles = [topStyle]
         self.options = options
-        self.namedStyles = namedStyles
-        self.tagInsertions = tagInsertions
+        self.styler = styler
         super.init()
         self.parser.shouldProcessNamespaces = false
         self.parser.shouldReportNamespacePrefixes = false
@@ -118,54 +128,41 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
     }
 
     func parse(elementNamed elementName: String, attributeDict: [String: String]) {
-        guard elementName != XMLTagStyleBuilder.internalTopLevelElement else { return }
-        var namedStyle = namedStyles.style(forName: elementName)
-        var style = self.topStyle
+        guard elementName != XMLBuilder.internalTopLevelElement else { return }
+        let namedStyle = styler.style(forElement: elementName, attributes: attributeDict)
         if namedStyle == nil && !options.contains(.allowUnregisteredElements) {
             parser.abortParsing()
             print("No registered style name for element \(elementName)")
             return
         }
 
-        if options.contains([.HTMLish]) {
-            if let htmlClass = attributeDict["class"] {
-                namedStyle = self.namedStyles.style(forName: "\(elementName):\(htmlClass)") ?? namedStyle
-            }
-            if elementName.lowercased() == "a" {
-                if let href = attributeDict["href"], let url = NSURL(string: href) {
-                    style.link = url
-                }
-                else {
-                    print("Ignoring invalid <a href='\(attributeDict["href"])'>")
-                }
-            }
-        }
+        var newStyle = self.topStyle
         if let namedStyle = namedStyle {
-            style.update(attributedStringStyle: namedStyle)
+            newStyle.update(attributedStringStyle: namedStyle)
         }
-        styles.append(style)
+        styles.append(newStyle)
     }
 
-    func enter(element elementName: String) {
-        if let insertion = tagInsertions?.attributedString(forEnteringElement: elementName) {
-            attributedString.extend(with: insertion, style: topStyle)
+    func enter(element elementName: String, attributes: [String: String]) {
+        if let prefix = styler.prefix(forElement: elementName, attributes: attributes) {
+            attributedString.extend(with: prefix, style: topStyle)
         }
     }
 
     func exit(element elementName: String) {
-        if let insertion = tagInsertions?.attributedString(forExitingElement: elementName) {
-            attributedString.extend(with: insertion, style: topStyle)
+        if let suffix = styler.suffix(forElement: elementName) {
+            attributedString.extend(with: suffix, style: topStyle)
         }
     }
 
     #if swift(>=3.0)
     @objc fileprivate func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         parse(elementNamed: elementName, attributeDict: attributeDict)
-        enter(element: elementName)
+        enter(element: elementName, attributes: attributeDict)
     }
 
     @objc fileprivate func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
-        guard elementName != XMLTagStyleBuilder.internalTopLevelElement else { return }
+        guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
         styles.removeLast()
     }
@@ -175,16 +172,13 @@ private class XMLTagStyleBuilder: NSObject, XMLParserDelegate {
         attributedString.append(newAttributedString)
     }
     #else
-    typealias XMLParser = NSXMLParser
-    typealias XMLParserDelegate = NSXMLParserDelegate
-
     @objc private func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         parse(elementNamed: elementName, attributeDict: attributeDict)
-        enter(element: elementName)
+        enter(element: elementName, attributes: attributeDict)
     }
 
     @objc private func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
-        guard elementName != XMLTagStyleBuilder.internalTopLevelElement else { return }
+        guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
         styles.removeLast()
     }

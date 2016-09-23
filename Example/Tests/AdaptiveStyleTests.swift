@@ -46,7 +46,8 @@ class AdaptiveStyleTests: XCTestCase {
         let style = BonMot(.font(inputFont), .adapt(.body))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
-            return NSAttributedString.adapt(attributes: style.attributes(), to: traitCollection)
+            let attributes = style.attributes()
+            return NSAttributedString.adapt(attributes: attributes, to: traitCollection)
         }
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.small.compatible), query: { $0.pointSize }, float: 26)

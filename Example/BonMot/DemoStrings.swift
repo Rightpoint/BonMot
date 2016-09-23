@@ -99,14 +99,12 @@ enum DemoStrings {
             let appleBullet = style.attributedString(from: "🍑 →")
             appleBullet.extend(withTabSpacer: 4.0)
 
-            let insertions = TagInsertions()
-            insertions.insert(attributedString: appleBullet, whenEntering: "li")
-            insertions.insert(attributedString: NSAttributedString(string: "\n"), whenExiting: "li")
+            var styler = SimpleXMLStyler(tagStyles: TagStyles(styles: ["li": style]))
+            styler.add(prefix: appleBullet, forElement: "li")
+            styler.add(suffix: NSAttributedString(string: "\n"), forElement: "li")
 
-            let styles = TagStyles()
-            styles.registerStyle(forName: "li", style: style)
             let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
-            guard let string = try? NSAttributedString(fromXML: xml, styles: styles, insertions: insertions) else {
+            guard let string = try? NSAttributedString(fromXML: xml, styler: styler) else {
                 fatalError("Unable to load XML \(xml)")
             }
             return string
