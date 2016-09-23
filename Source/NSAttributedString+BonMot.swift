@@ -14,7 +14,7 @@ extension NSAttributedString {
     /// - parameter attributes: The Attributes to embed in the image.
     /// - parameter baselineOffset: Convenience property to embed NSBaselineOffsetAttributeName in the attributes
     @objc(initBonMotWithImage:attributes:baselineOffset:)
-    public convenience init(image: UIImage, attributes: StyleAttributes = [:], baselineOffset: CGFloat = 0) {
+    public convenience init(image: BONImage, attributes: StyleAttributes = [:], baselineOffset: CGFloat = 0) {
         // The baseline attachment key doesn't always work for text attachments. Shift the y of the bounds of the attachment instead.
         let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? baselineOffset
         let attachment = NSTextAttachment()
@@ -146,7 +146,7 @@ extension NSMutableAttributedString {
     /// - parameter style: The style to apply to the string.
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
-    public final func extend(with image: UIImage, style: StyleAttributeTransformation?) {
+    public final func extend(with image: BONImage, style: StyleAttributeTransformation?) {
         append(NSAttributedString(image: image, attributes: extendingAttributes(with: style)))
     }
 
@@ -227,7 +227,7 @@ extension NSMutableAttributedString {
     /// - parameter traitCollection: The trait collection to use when applying the style.
     /// - return: The current attributed string
     @objc(bon_extendWithImage:)
-    public final func extend(with image: UIImage) {
+    public final func extend(with image: BONImage) {
         append(NSAttributedString(image: image, attributes: extendingAttributes(with: nil)))
     }
 

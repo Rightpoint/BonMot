@@ -6,31 +6,15 @@
 //
 // NOTE: Keep attributes in order to help reviewability.
 
-#if swift(>=3.0)
-    public func BonMotC(_ configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = AttributedStringStyle()
-        configure(&style)
-        return style
-    }
-#else
-    public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = AttributedStringStyle()
-        configure(&style)
-        return style
-    }
-#endif
-
-public typealias BonMotI = AttributedStringStyle
-
 public struct AttributedStringStyle {
     public var initialAttributes: StyleAttributes
-    public var font: UIFont?
+    public var font: BONFont?
     public var textStyle: BonMotTextStyle?
     public var link: NSURL?
-    public var backgroundColor: UIColor?
-    public var textColor: UIColor?
-    public var underline: (NSUnderlineStyle, UIColor?)?
-    public var strikethrough: (NSUnderlineStyle, UIColor?)?
+    public var backgroundColor: BONColor?
+    public var textColor: BONColor?
+    public var underline: (NSUnderlineStyle, BONColor?)?
+    public var strikethrough: (NSUnderlineStyle, BONColor?)?
     public var baselineOffset: CGFloat?
     public var fontFeatureProviders: [FontFeatureProvider]
     public var adaptations: [StyleAttributeTransformation]
@@ -51,12 +35,12 @@ public struct AttributedStringStyle {
     public var hyphenationFactor: Float?
 
     public init(initialAttributes: StyleAttributes = [:],
-                font: UIFont? = nil,
+                font: BONFont? = nil,
                 link: NSURL? = nil,
-                backgroundColor: UIColor? = nil,
-                textColor: UIColor? = nil,
-                underline: (NSUnderlineStyle, UIColor?)? = nil,
-                strikethrough: (NSUnderlineStyle, UIColor?)? = nil,
+                backgroundColor: BONColor? = nil,
+                textColor: BONColor? = nil,
+                underline: (NSUnderlineStyle, BONColor?)? = nil,
+                strikethrough: (NSUnderlineStyle, BONColor?)? = nil,
                 baselineOffset: CGFloat? = nil,
                 fontFeatureProviders: [FontFeatureProvider] = [],
                 adaptations: [StyleAttributeTransformation] = [],
@@ -118,11 +102,13 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             theAttributes[key] = value
         }
         var font = self.font
-        if let textStyle = textStyle {
-            if font == nil {
-                font = UIFont.preferredFont(forTextStyle: textStyle)
+        #if os(iOS) || os(watchOS) || os(TVOS)
+            if let textStyle = textStyle {
+                if font == nil {
+                    font = UIFont.preferredFont(forTextStyle: textStyle)
+                }
             }
-        }
+        #endif
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
         theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
         theAttributes.update(possibleValue: backgroundColor, forKey: NSBackgroundColorAttributeName)
@@ -155,7 +141,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
         }
 
         // Apply the features to the font present
-        let preFeaturedFont = theAttributes[NSFontAttributeName] as? UIFont
+        let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
         let featuredFont = preFeaturedFont?.font(withFeatures: fontFeatureProviders)
         theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
 
@@ -166,7 +152,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
 
         if let tracking = tracking {
             // Apply tracking
-            let styledFont = theAttributes[NSFontAttributeName] as? UIFont
+            let styledFont = theAttributes[NSFontAttributeName] as? BONFont
             theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
             // Add the tracking as an adaptation
             theAttributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: tracking, to: theAttributes)

@@ -17,7 +17,7 @@ internal enum AdaptiveAttributeHelpers {
         Tracking.self,
     ]
 
-    static func add(designedFont font: UIFont, to styleAttributes: StyleAttributes) -> StyleAttributes {
+    static func add(designedFont font: BONFont, to styleAttributes: StyleAttributes) -> StyleAttributes {
         var styleAttributes = styleAttributes
         styleAttributes[AttributeName.designatedFont] = font
         return styleAttributes

@@ -32,8 +32,8 @@ internal enum StyleAttributeHelpers {
         return result
     }
 
-    static func font(from styleAttributes: StyleAttributes) -> UIFont {
-        guard let font = styleAttributes[NSFontAttributeName] as? UIFont else {
+    static func font(from styleAttributes: StyleAttributes) -> BONFont {
+        guard let font = styleAttributes[NSFontAttributeName] as? BONFont else {
             fatalError("Requesting font from a style that has no font.")
         }
         return font

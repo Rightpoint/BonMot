@@ -10,17 +10,17 @@ public protocol FontFeatureProvider {
     func featureSettings() -> (Int, Int)
 }
 
-public extension UIFont {
+public extension BONFont {
     /// Create a new UIFont and attempt to enable the specified font features. The returned font will have all
     /// features enabled that are supported by the font.
-    public func font(withFeatures featureProviders: [FontFeatureProvider]) -> UIFont {
+    public func font(withFeatures featureProviders: [FontFeatureProvider]) -> BONFont {
         var fontAttributes = fontDescriptor.fontAttributes
-        var features = fontAttributes[UIFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
+        var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
         let newFeatures = featureProviders.map() { $0.featureAttribute() }
         features.append(contentsOf: newFeatures)
-        fontAttributes[UIFontDescriptorFeatureSettingsAttribute] = features
-        let descriptor = UIFontDescriptor(fontAttributes: fontAttributes)
-        return UIFont(descriptor: descriptor, size: pointSize)
+        fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
+        let descriptor = BONFontDescriptor(fontAttributes: fontAttributes)
+        return BONFont(descriptor: descriptor, size: pointSize)
     }
 }
 
@@ -55,7 +55,7 @@ public enum Tracking {
     case point(CGFloat)
     case adobe(CGFloat)
 
-    func kerning(forFont font: UIFont?) -> CGFloat {
+    func kerning(forFont font: BONFont?) -> CGFloat {
         switch self {
         case .point(let kernValue):
             return kernValue
@@ -75,8 +75,8 @@ extension FontFeatureProvider {
     func featureAttribute() -> StyleAttributes {
         let featureSettings = self.featureSettings()
         return [
-            UIFontFeatureTypeIdentifierKey: featureSettings.0,
-            UIFontFeatureSelectorIdentifierKey: featureSettings.1
+            BONFontFeatureTypeIdentifierKey: featureSettings.0,
+            BONFontFeatureSelectorIdentifierKey: featureSettings.1
         ]
     }
 }

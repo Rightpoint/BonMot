@@ -156,12 +156,7 @@
 /// UIKit Only
 #if os(iOS) || os(watchOS) || os(tvOS)
 #if swift(>=3.0)
-    public typealias BonMotTextStyle = UIFontTextStyle
-    public typealias BonMotContentSizeCategory = UIContentSizeCategory
 #else
-    public typealias BonMotTextStyle = String
-    public typealias BonMotContentSizeCategory = String
-
     extension UIApplication {
         @nonobjc static var shared: UIApplication {
             return sharedApplication()

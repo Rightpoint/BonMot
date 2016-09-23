@@ -7,13 +7,13 @@
 
 public enum AttributedStringStylePart {
     case initialAttributes(StyleAttributes)
-    case font(UIFont)
+    case font(BONFont)
     case textStyle(BonMotTextStyle)
     case link(NSURL)
-    case backgroundColor(UIColor)
-    case textColor(UIColor)
-    case underline(NSUnderlineStyle, UIColor?)
-    case strikethrough(NSUnderlineStyle, UIColor?)
+    case backgroundColor(BONColor)
+    case textColor(BONColor)
+    case underline(NSUnderlineStyle, BONColor?)
+    case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
     case alignment(NSTextAlignment)
     case fontFeature(FontFeatureProvider)
@@ -34,16 +34,6 @@ public enum AttributedStringStylePart {
     case hyphenationFactor(Float)
 
 }
-
-#if swift(>=3.0)
-    public func BonMot(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        return AttributedStringStyle.from(parts: parts)
-    }
-#else
-    public func BonMot(parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        return AttributedStringStyle.from(parts)
-    }
-#endif
 
 extension AttributedStringStyle {
 

@@ -19,7 +19,7 @@ public enum AdaptiveStyle {
 extension AdaptiveStyle: StyleAttributeTransformation {
 
     public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
-        guard let font = theAttributes[NSFontAttributeName] as? UIFont else {
+        guard let font = theAttributes[NSFontAttributeName] as? BONFont else {
             print("No font to adapt, ignoring adaptive style")
             return theAttributes
         }
@@ -48,7 +48,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
     }
 
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
-        guard var font = theAttributes[AdaptiveAttributeHelpers.AttributeName.designatedFont] as? UIFont else {
+        guard var font = theAttributes[AdaptiveAttributeHelpers.AttributeName.designatedFont] as? BONFont else {
             fatalError("The designated font is set when the adaptive style is added")
         }
         let pointSize = font.pointSize

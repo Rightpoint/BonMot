@@ -26,7 +26,7 @@ public extension StyleAttributeTransformation {
         return NSMutableAttributedString(string: theString, attributes: attributes)
     }
 
-    public func attributedString(from theImage: UIImage) -> NSMutableAttributedString {
+    public func attributedString(from theImage: BONImage) -> NSMutableAttributedString {
         let attributes = style(attributes: [:])
         return NSMutableAttributedString(image: theImage, attributes: attributes)
     }
