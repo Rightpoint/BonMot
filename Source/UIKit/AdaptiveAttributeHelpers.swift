@@ -8,7 +8,7 @@
 /// Internal helper functions for managing keys in the StyleAttributes related to adaptive functionality.
 internal enum AdaptiveAttributeHelpers {
     enum AttributeName {
-        static let designatedFont = "BonMotDesignatedFont"
+        static let nonAdaptedFont = "BonMotNonAdaptedFont"
         static let adaptions = "BonMotAdaptions"
     }
 
@@ -19,7 +19,7 @@ internal enum AdaptiveAttributeHelpers {
 
     static func add(designedFont font: BONFont, to styleAttributes: StyleAttributes) -> StyleAttributes {
         var styleAttributes = styleAttributes
-        styleAttributes[AttributeName.designatedFont] = font
+        styleAttributes[AttributeName.nonAdaptedFont] = font
         return styleAttributes
     }
 
