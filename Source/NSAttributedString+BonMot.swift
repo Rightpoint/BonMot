@@ -46,8 +46,7 @@ extension NSAttributedString {
             }
         }
         if removeTrailingKerning {
-            let lastCharacterRange = NSRange(location: result.length - 1, length: 1)
-            result.removeAttribute(NSKernAttributeName, range: lastCharacterRange)
+            result.trimTrailingKernAttribute()
         }
         self.init(attributedString: result)
     }
@@ -177,6 +176,16 @@ extension NSMutableAttributedString {
         addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: effectiveRange)
         attributes[NSParagraphStyleAttributeName] = paragraph
         append(NSAttributedString(string: "\t", attributes: attributes))
+    }
+
+    /// If you are centering text and the NSKernAttributeName attribute is specified, UIKit will incorrectly
+    /// pad the string.
+    @objc(bon_trimTrailingKernAttribute)
+    public func trimTrailingKernAttribute() {
+        if length > 0 {
+            let lastCharacterRange = NSRange(location: length - 1, length: 1)
+            removeAttribute(NSKernAttributeName, range: lastCharacterRange)
+        }
     }
 
     /// Helper function to determine the attributes to use when appending content.
