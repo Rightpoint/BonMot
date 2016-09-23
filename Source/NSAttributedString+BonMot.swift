@@ -13,10 +13,10 @@ extension NSAttributedString {
     /// - parameter image: The Image name to use
     /// - parameter attributes: The Attributes to embed in the image.
     /// - parameter baselineOffset: Convenience property to embed NSBaselineOffsetAttributeName in the attributes
-    @objc(initBonMotWithImage:attributes:baselineOffset:)
-    public convenience init(image: BONImage, attributes: StyleAttributes = [:], baselineOffset: CGFloat = 0) {
+    @objc(initBonMotWithImage:attributes:)
+    public convenience init(image: BONImage, attributes: StyleAttributes = [:]) {
         // The baseline attachment key doesn't always work for text attachments. Shift the y of the bounds of the attachment instead.
-        let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? baselineOffset
+        let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? 0
         let attachment = NSTextAttachment()
         attachment.image = image
         attachment.bounds = CGRect(origin: CGPoint(x: 0, y: baselinesOffsetForAttachment), size: image.size)
