@@ -102,7 +102,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         switch (dictionary[Key.type] as? String, dictionary[Key.size] as? CGFloat, dictionary[Key.family] as? String)  {
         case (Key.Value.control?, nil, nil):
             return AdaptiveStyle.control
-        case (Key.Value.control?, nil, nil):
+        case (Key.Value.body?, nil, nil):
             return AdaptiveStyle.body
         case (Key.Value.preferred?, nil, nil):
             return AdaptiveStyle.preferred
