@@ -28,6 +28,24 @@ extension NSAttributedString {
         self.init(attributedString: string)
     }
 
+    /// Helper function for the constructor above to improve legibility.
+    #if swift(>=3.0)
+    public static func image(_ image: BONImage, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
+        return NSAttributedString(image: image, attributes: style.style(attributes: attributes))
+    }
+    public static func text(_ string: String, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
+        return NSAttributedString(string: string, attributes: style.style(attributes: attributes))
+    }
+    #else
+    public static func image(image: BONImage, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
+        return NSAttributedString(image: image, attributes: style.style(attributes: attributes))
+    }
+    public static func text(string: String, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
+        return NSAttributedString(string: string, attributes: style.style(attributes: attributes))
+    }
+    #endif
+
+
     /// Convenience initializer to join a collection of attributed strings with a separator attributed string.
     ///
     /// - parameter attributedStrings: A collection of attributed strings to join

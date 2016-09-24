@@ -13,6 +13,7 @@
 
 public typealias StyleAttributes = [String: StyleAttributeValue]
 
+// An internal namespace of helper functions for managing the contents of StyleAttributes
 internal enum StyleAttributeHelpers {
 
     /// A function to coerce an NSMutableParagraphStyle from a value in an attributes dictionary. This will

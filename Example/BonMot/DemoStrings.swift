@@ -78,24 +78,29 @@ enum DemoStrings {
 
     static let indentationStrings: [NSAttributedString] = [
         {
-            var style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!))
-            style.adaptations.append(AdaptiveStyle.control)
-            let string = style.attributedString(from: UIImage(named: "robot")!)
+            let string = BonMot(
+                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
+                .adapt(AdaptiveStyle.control)
+            ).attributedString(from: UIImage(named: "robot")!)
             string.extend(withTabSpacer: 4.0)
             string.extend(with: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
             return string
         }(),
         {
-            var style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!), .textColor(.darkGray))
-            style.adaptations.append(AdaptiveStyle.control)
-            let string = style.attributedString(from: "🍑 →")
+            let string = BonMot(
+                .font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!),
+                .textColor(.darkGray),
+                .adapt(AdaptiveStyle.control)
+            ).attributedString(from: "🍑 →")
             string.extend(withTabSpacer: 4.0)
             string.extend(with: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.")
             return string
         }(),
         {
-            var style = BonMot(.font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!))
-            style.adaptations.append(AdaptiveStyle.control)
+            let style = BonMot(
+                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
+                .adapt(AdaptiveStyle.control)
+            )
             let appleBullet = style.attributedString(from: "🍑 →")
             appleBullet.extend(withTabSpacer: 4.0)
 
@@ -118,12 +123,13 @@ enum DemoStrings {
     )
 
     static let imageString = NSMutableAttributedString(attributedStrings: [
-        imageStyle.attributedString(from: "2"),
-        NSAttributedString(image: UIImage(named: "bee")!),
-        NSAttributedString(image: UIImage(named: "oar")!),
-        NSAttributedString(image: UIImage(named: "knot")!),
-        imageStyle.attributedString(from: "2"),
-        NSAttributedString(image: UIImage(named: "bee")!),
+        .text("2", style: imageStyle),
+        .image(UIImage(named: "bee")!),
+        .image(UIImage(named: "oar")!),
+        .image(UIImage(named: "knot")!),
+        .text("2", style: imageStyle),
+        .text("2", style: imageStyle),
+        .image(UIImage(named: "bee")!),
     ], separator: imageStyle.attributedString(from: " "))
 
     static let noSpaceStyle = BonMot(
@@ -131,23 +137,21 @@ enum DemoStrings {
         .adapt(.control),
         .textColor(.darkGray)
     )
-    static let noSpaceImageStyle = BonMot(.baselineOffset(-10))
-
     static let noSpaceString = NSMutableAttributedString(attributedStrings: [
-        (UIImage(named: "barn")!, "This"),
-        (UIImage(named: "bee")!, "string"),
-        (UIImage(named: "bug")!, "is"),
-        (UIImage(named: "circuit")!, "separated"),
-        (UIImage(named: "cut")!, "by"),
-        (UIImage(named: "discount")!, "images"),
-        (UIImage(named: "gift")!, "and"),
-        (UIImage(named: "pin")!, "no-break"),
-        (UIImage(named: "robot")!, "spaces"),
-        ].map() { image, text in
-            let string = noSpaceImageStyle.attributedString(from: image)
+        ("barn", "This"),
+        ("bee", "string"),
+        ("bug", "is"),
+        ("circuit", "separated"),
+        ("cut", "by"),
+        ("discount", "images"),
+        ("gift", "and"),
+        ("pin", "no-break"),
+        ("robot", "spaces"),
+        ].map() { imageName, text in
+            let string = BonMot(.baselineOffset(-10)).attributedString(from: UIImage(named: imageName)!)
             string.extend(with: text, style: noSpaceStyle)
             return string
-        }, separator: noSpaceStyle.attributedString(from: "\u{2003}"))
+    }, separator: .text(Special.noBreakSpace.description))
 
     static let heartsString = NSMutableAttributedString(attributedStrings: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
