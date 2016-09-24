@@ -19,11 +19,11 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |sp|
-    sp.source_files = 'Source/*.swift'
+    sp.source_files = 'Sources/*.swift'
   end
 
   s.subspec 'UIKit' do |sp|
-    sp.source_files = 'Source/UIKit/*.swift'
+    sp.source_files = 'Sources/UIKit/*.swift'
   end
 
 end
