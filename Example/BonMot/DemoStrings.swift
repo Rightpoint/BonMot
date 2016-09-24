@@ -128,7 +128,6 @@ enum DemoStrings {
         .image(UIImage(named: "oar")!),
         .image(UIImage(named: "knot")!),
         .text("2", style: imageStyle),
-        .text("2", style: imageStyle),
         .image(UIImage(named: "bee")!),
     ], separator: imageStyle.attributedString(from: " "))
 
