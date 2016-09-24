@@ -108,7 +108,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             theAttributes[key] = value
         }
         var font = self.font
-        #if os(iOS) || os(watchOS) || os(TVOS)
+        #if os(iOS) || os(watchOS) || os(tvOS)
             if let textStyle = textStyle {
                 if font == nil {
                     font = UIFont.preferredFont(forTextStyle: textStyle)

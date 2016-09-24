@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABCBFD5E1D96E61100FAD37A"
-               BuildableName = "BonMot-iOSTests.xctest"
-               BlueprintName = "BonMot-iOSTests"
+               BlueprintIdentifier = "ABCD3DEE1D96F6E200273936"
+               BuildableName = "BonMot-tvOSTests.xctest"
+               BlueprintName = "BonMot-tvOSTests"
                ReferencedContainer = "container:BonMot.xcodeproj">
             </BuildableReference>
          </TestableReference>

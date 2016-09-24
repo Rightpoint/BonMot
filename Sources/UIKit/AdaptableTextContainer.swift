@@ -161,6 +161,8 @@ extension UINavigationBar: AdaptableTextContainer {
 
 }
 
+#if os(tvOS)
+#else
 extension UIToolbar: AdaptableTextContainer {
 
     /// Update all bar items, adapted to the specified UITraitCollection.
@@ -176,6 +178,7 @@ extension UIToolbar: AdaptableTextContainer {
     }
 
 }
+#endif
 
 extension UIViewController: AdaptableTextContainer {
 
@@ -187,12 +190,15 @@ extension UIViewController: AdaptableTextContainer {
         for item in navigationItem.allBarItems {
             item.updateText(forTraitCollection: traitCollection)
         }
-        for item in toolbarItems ?? [] {
-            item.updateText(forTraitCollection: traitCollection)
-        }
-        if let backBarButtonItem = navigationItem.backBarButtonItem {
-            backBarButtonItem.updateText(forTraitCollection: traitCollection)
-        }
+        #if os(tvOS)
+        #else
+            for item in toolbarItems ?? [] {
+                item.updateText(forTraitCollection: traitCollection)
+            }
+            if let backBarButtonItem = navigationItem.backBarButtonItem {
+                backBarButtonItem.updateText(forTraitCollection: traitCollection)
+            }
+        #endif
     }
 
 }
