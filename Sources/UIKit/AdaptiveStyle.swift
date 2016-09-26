@@ -58,9 +58,9 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         var styleAttributes = theAttributes
         switch self {
         case .control:
-            font = font.withSize(AdaptiveStyle.adapt(designatedSize: pointSize, for: contentSizeCategory))
+            font = UIFont(descriptor: font.fontDescriptor, size: AdaptiveStyle.adapt(designatedSize: pointSize, for: contentSizeCategory))
         case .body:
-            font = font.withSize(AdaptiveStyle.adaptBody(designatedSize: pointSize, for: contentSizeCategory))
+            font = UIFont(descriptor: font.fontDescriptor, size: AdaptiveStyle.adaptBody(designatedSize: pointSize, for: contentSizeCategory))
         case .preferred:
             if let textStyle = font.bon_textStyle {
                 font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)

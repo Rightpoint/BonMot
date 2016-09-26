@@ -129,6 +129,47 @@ class AdaptiveStyleTests: XCTestCase {
         XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraExtraExtraLarge.compatible), 10.8, accuracy: 0.0001)
     }
 
+    /// Test that font feature settings overrides persist through
+    /// Dynamic Type adaptation
+    func testFeatureSettingsAdaptation() {
+        EBGaramondLoader.loadFontIfNeeded()
+        let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
+        for feature in features {
+            let originalAttributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature), .adapt(.control)).attributes()
+            let adaptedAttributes = NSAttributedString.adapt(attributes: originalAttributes, to: UITraitCollection(preferredContentSizeCategory: .extraSmall))
+
+            XCTAssertEqual(originalAttributes.count, 3)
+            XCTAssertEqual(adaptedAttributes.count, 3)
+
+            let originalFont = originalAttributes[NSFontAttributeName] as? BONFont
+            let adaptedFont = adaptedAttributes[NSFontAttributeName] as? BONFont
+
+            XCTAssertNotNil(originalFont)
+            XCTAssertNotNil(adaptedFont)
+
+            let originalDescriptorAttributes = originalFont?.fontDescriptor.fontAttributes
+            let adaptedDescriptorAttributes = adaptedFont?.fontDescriptor.fontAttributes
+
+            let originalFeatureAttributeArray = originalDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
+            let adaptedFeatureAttributeArray = adaptedDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
+
+            XCTAssertNotNil(originalFeatureAttributeArray)
+            XCTAssertNotNil(adaptedFeatureAttributeArray)
+
+            XCTAssertEqual(originalFeatureAttributeArray?.count, 1)
+            XCTAssertEqual(adaptedFeatureAttributeArray?.count, 1)
+
+            let originalFeatureAttributes = originalFeatureAttributeArray?.firstObject as? [String: Int]
+            let adaptedFeatureAttributes = adaptedFeatureAttributeArray?.firstObject as? [String: Int]
+
+            XCTAssertNotNil(originalFeatureAttributes)
+            XCTAssertNotNil(adaptedFeatureAttributes)
+
+            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureTypeIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureTypeIdentifierKey])
+            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureSelectorIdentifierKey])
+        }
+    }
+
 }
 
 #endif
