@@ -1,6 +1,0 @@
-framework module Pods_BonMot_Example {
-  umbrella header "Pods-BonMot_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
