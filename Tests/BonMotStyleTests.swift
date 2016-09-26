@@ -13,9 +13,9 @@ class StyleAttributeTransformationTests: XCTestCase {
     func testBasicAssertionUtilities() {
         let attributes = BonMot(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB)).attributes()
         XCTAssertEqual(attributes.count, 3)
-        BONAssert(attributes: attributes, key: NSFontAttributeName, value: UIFont.fontA)
-        BONAssert(attributes: attributes, key: NSForegroundColorAttributeName, value: UIColor.colorA)
-        BONAssert(attributes: attributes, key: NSBackgroundColorAttributeName, value: UIColor.colorB)
+        BONAssert(attributes: attributes, key: NSFontAttributeName, value: BONFont.fontA)
+        BONAssert(attributes: attributes, key: NSForegroundColorAttributeName, value: BONColor.colorA)
+        BONAssert(attributes: attributes, key: NSBackgroundColorAttributeName, value: BONColor.colorB)
     }
 
     func testURL() {
@@ -30,14 +30,14 @@ class StyleAttributeTransformationTests: XCTestCase {
 
         XCTAssertEqual(attributes.count, 2)
         BONAssert(attributes: attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
-        BONAssert(attributes: attributes, key: NSStrikethroughColorAttributeName, value: UIColor.colorA)
+        BONAssert(attributes: attributes, key: NSStrikethroughColorAttributeName, value: BONColor.colorA)
     }
 
     func testUnderlineStyle() {
         let attributes = BonMot(.underline(.byWord, .colorA)).attributes()
         XCTAssertEqual(attributes.count, 2)
         BONAssert(attributes: attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
-        BONAssert(attributes: attributes, key: NSUnderlineColorAttributeName, value: UIColor.colorA)
+        BONAssert(attributes: attributes, key: NSUnderlineColorAttributeName, value: BONColor.colorA)
     }
 
     func testBaselineStyle() {
@@ -56,13 +56,13 @@ class StyleAttributeTransformationTests: XCTestCase {
         EBGarandLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let attributes = BonMot(.font(UIFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes()
+            let attributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes()
             XCTAssertEqual(attributes.count, 1)
-            let font = attributes[NSFontAttributeName] as? UIFont
+            let font = attributes[NSFontAttributeName] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
-            let featureAttribute = fontAttributes?[UIFontDescriptorFeatureSettingsAttribute]
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
         }
     }
@@ -150,7 +150,7 @@ class StyleAttributeTransformationTests: XCTestCase {
     func testAdobeTracking() {
         let chain = BonMotI(tracking: Tracking.adobe(300))
         let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
-            let font = UIFont(name: "Avenir-Book", size: fontSize)!
+            let font = BONFont(name: "Avenir-Book", size: fontSize)!
             let attributes = chain.style(attributes: [NSFontAttributeName: font])
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
         }
@@ -163,7 +163,7 @@ class StyleAttributeTransformationTests: XCTestCase {
     func testPointTracking() {
         let chain = BonMotI(tracking: Tracking.point(10))
         let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
-            let font = UIFont(name: "Avenir-Book", size: fontSize)!
+            let font = BONFont(name: "Avenir-Book", size: fontSize)!
             let attributes = chain.style(attributes: [NSFontAttributeName: font])
             return attributes[NSKernAttributeName] as? CGFloat ?? 0
         }

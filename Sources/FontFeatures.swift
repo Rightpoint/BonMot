@@ -26,7 +26,11 @@ public extension BONFont {
         features.append(contentsOf: newFeatures)
         fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
         let descriptor = BONFontDescriptor(fontAttributes: fontAttributes)
-        return BONFont(descriptor: descriptor, size: pointSize)
+        #if os(OSX)
+            return BONFont(descriptor: descriptor, size: pointSize)!
+        #else
+            return BONFont(descriptor: descriptor, size: pointSize)
+        #endif
     }
 }
 

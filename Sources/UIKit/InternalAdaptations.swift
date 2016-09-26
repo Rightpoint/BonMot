@@ -9,11 +9,11 @@ import UIKit
 
 extension Tracking: AdaptiveStyleTransformation {
 
-    enum Key {
+    struct Key {
         static let type = "type"
         static let size = "size"
 
-        enum Value {
+        struct Value {
             static let adobeTracking = "adobe-tracking"
         }
     }

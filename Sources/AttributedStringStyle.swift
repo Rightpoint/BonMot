@@ -160,8 +160,11 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             // Apply tracking
             let styledFont = theAttributes[NSFontAttributeName] as? BONFont
             theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
-            // Add the tracking as an adaptation
-            theAttributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: tracking, to: theAttributes)
+            #if os(OSX)
+            #else
+                // Add the tracking as an adaptation
+                theAttributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: tracking, to: theAttributes)
+            #endif
         }
 
         return theAttributes

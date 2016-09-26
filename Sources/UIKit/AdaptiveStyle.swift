@@ -35,12 +35,12 @@ extension AdaptiveStyle: StyleAttributeTransformation {
 
 extension AdaptiveStyle: AdaptiveStyleTransformation {
 
-    enum Key {
+    struct Key {
         static let type = "type"
         static let size = "size"
         static let family = "family"
 
-        enum Value {
+        struct Value {
             static let control = "control"
             static let body = "body"
             static let preferred = "preferred"

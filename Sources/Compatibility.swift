@@ -56,7 +56,7 @@
         @nonobjc convenience init(indexesIn: NSRange) {
             self.init(indexesInRange: indexesIn)
         }
-        @nonobjc final func enumerateRanges(options theOptions: NSEnumerationOptions = [], @noescape block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+        @nonobjc final func enumerateRanges(options theOptions: NSEnumerationOptions = [], block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
             enumerateRangesWithOptions(theOptions, usingBlock: block)
         }
     }
@@ -105,7 +105,11 @@
     extension NSParagraphStyle {
         // This method has to be prefixed since default is not a valid variable in Swift 2.3
         @nonobjc static var bon_default: NSParagraphStyle {
-            return NSParagraphStyle.default
+            #if os(OSX)
+                return NSParagraphStyle.default()
+            #else
+                return NSParagraphStyle.default
+            #endif
         }
     }
 #else

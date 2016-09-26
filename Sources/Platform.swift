@@ -12,7 +12,7 @@
 
     public typealias BONFont = NSFont
     public typealias BONFontDescriptor = NSFontDescriptor
-    let BONFontDescriptorFeatureSettingsAttribute = NSFontDescriptorFeatureSettingsAttribute
+    let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
     let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
     let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
 

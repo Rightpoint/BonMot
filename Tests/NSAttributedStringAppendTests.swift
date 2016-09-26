@@ -9,7 +9,11 @@ import XCTest
 import BonMot
 
 let testBundle = Bundle(for: NSAttributedStringAppendTests.self)
+#if os(OSX)
+let imageForTest = NSImage(named: "robot")!
+#else
 let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
+#endif
 
 class NSAttributedStringAppendTests: XCTestCase {
 

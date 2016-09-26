@@ -7,6 +7,14 @@
 
 import XCTest
 
+#if os(iOS)
+let defaultTextFieldFontSize: CGFloat = 17
+let defaultTextViewFontSize: CGFloat = 12
+#elseif os(tvOS)
+let defaultTextFieldFontSize: CGFloat = 38
+let defaultTextViewFontSize: CGFloat = 38
+#endif
+
 class UIKitBehaviorTests: XCTestCase {
 
     func testLabelPropertyBehavior() {
@@ -44,7 +52,7 @@ class UIKitBehaviorTests: XCTestCase {
         textField.text = "Testing"
         // By default the font is not nil, size 17 (Not 12 as stated in header)
         XCTAssertNotNil(textField.font)
-        XCTAssertEqual(textField.font?.pointSize, 17)
+        XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
 
         textField.font = largeFont
         XCTAssertEqual(textField.font?.pointSize, 20)
@@ -54,16 +62,21 @@ class UIKitBehaviorTests: XCTestCase {
         XCTAssertNotNil(textField.font)
         XCTAssertEqual(textField.font?.pointSize, 17)
     }
-    
+
     func testTextViewFontPropertyBehavior() {
         let largeFont = UIFont(name: "Avenir-Roman", size: 20)
         let textField = UITextView()
-        // Note that the font *is* nil before the text property is set.
-        XCTAssertNil(textField.font)
+        #if os(iOS)
+            // Note that the font *is* nil before the text property is set.
+            XCTAssertNil(textField.font)
+        #elseif os(tvOS)
+            // Note that the font size is not nil on tvOS.
+            XCTAssertNotNil(textField.font)
+        #endif
         textField.text = "Testing"
         // By default the font is nil
         XCTAssertNotNil(textField.font)
-        XCTAssertEqual(textField.font?.pointSize, 12)
+        XCTAssertEqual(textField.font?.pointSize, defaultTextViewFontSize)
 
         textField.font = largeFont
         XCTAssertEqual(textField.font?.pointSize, 20)
@@ -72,7 +85,7 @@ class UIKitBehaviorTests: XCTestCase {
         // Note that font is not re-set like TextField()
         XCTAssertNil(textField.font)
     }
-    
+
     func testButtonFontPropertyBehavior() {
         let button = UIButton()
 

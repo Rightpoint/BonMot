@@ -31,7 +31,8 @@ internal enum AdaptiveAttributeHelpers {
         var adaptions = styleAttributes[AttributeName.adaptions] as? [StyleAttributes] ?? []
 
         // Only add the adaption once.
-        if !adaptions.contains(where: { NSDictionary(dictionary: $0) == NSDictionary(dictionary: representation) }) {
+        let contains = adaptions.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: representation) }
+        if !contains {
             adaptions.append(representation)
         }
         styleAttributes[AttributeName.adaptions] = adaptions

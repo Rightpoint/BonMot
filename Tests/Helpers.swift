@@ -5,42 +5,51 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import UIKit
 import BonMot
 import XCTest
 
+#if os(OSX)
+#else
+    import UIKit
 #if swift(>=3.0)
-    extension UIColor {
-        static var colorA: UIColor {
-            return red
-        }
-        static var colorB: UIColor {
-            return red
-        }
-    }
     let titleTextStyle = UIFontTextStyle.title1
     @available(iOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
-#else
-    extension UIColor {
-        static var colorA: UIColor {
-            return redColor()
-        }
-        static var colorB: UIColor {
-            return redColor()
-        }
-    }
+#elseif swift(>=2.3)
     let titleTextStyle = UIFontTextStyleTitle1
     @available(iOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)
+#else
+    let titleTextStyle = UIFontTextStyleTitle1
+ #endif
 #endif
 
-extension UIFont {
-    static var fontA: UIFont {
-        return UIFont(name: "Avenir-Roman", size: 30)!
+#if swift(>=3.0)
+    extension BONColor {
+        static var colorA: BONColor {
+            return red
+        }
+        static var colorB: BONColor {
+            return red
+        }
     }
-    static var fontB: UIFont {
-        return UIFont(name: "Avenir-Roman", size: 20)!
+#else
+    extension BONColor {
+        static var colorA: BONColor {
+            return redColor()
+        }
+        static var colorB: BONColor {
+            return redColor()
+        }
+    }
+#endif
+
+extension BONFont {
+    static var fontA: BONFont {
+        return BONFont(name: "Avenir-Roman", size: 30)!
+    }
+    static var fontB: BONFont {
+        return BONFont(name: "Avenir-Roman", size: 20)!
     }
 }
 
@@ -56,11 +65,14 @@ let styleB = BonMot(
     .tailIndent(10)
 )
 
+#if os(OSX)
+#else
 let adaptiveStyle = BonMot(
     .font(.fontA),
     .textColor(.colorA),
     .adapt(.body)
 )
+#endif
 
 let styleBi = BonMotI(
     font: .fontB,

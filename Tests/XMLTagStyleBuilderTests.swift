@@ -37,9 +37,9 @@ class XMLTagStyleBuilderTests: XCTestCase {
             return
         }
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
-        let fonts: [String: UIFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
-        XCTAssertEqual(UIFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"])
-        XCTAssertEqual(UIFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"])
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"])
+        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"])
         XCTAssert(fonts.count == 2)
     }
 
@@ -97,7 +97,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
             "11:9": styleA.font!,
             "22:5": styleB.font!,
         ]
-        let actualFonts: [String: UIFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        let actualFonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
         XCTAssertEqual(expectedFonts, actualFonts)
         XCTAssertEqual(["5:4": NSURL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSLinkAttributeName))
     }

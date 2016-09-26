@@ -23,7 +23,10 @@ public enum AttributedStringStylePart {
     case baselineOffset(CGFloat)
     case alignment(NSTextAlignment)
     case fontFeature(FontFeatureProvider)
+    #if os(OSX)
+    #else
     case adapt(AdaptiveStyle)
+    #endif
     case style(StyleAttributeTransformation)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
@@ -96,8 +99,6 @@ extension AttributedStringStyle {
             self.alignment = alignment
         case let .fontFeature(featureProvider):
             self.fontFeatureProviders.append(featureProvider)
-        case let .adapt(style):
-            self.adaptations.append(style)
         case let .style(style):
             self.adaptations.append(style)
         case let .tracking(tracking):
@@ -126,6 +127,14 @@ extension AttributedStringStyle {
             self.paragraphSpacingBefore = paragraphSpacingBefore
         case let .hyphenationFactor(hyphenationFactor):
             self.hyphenationFactor = hyphenationFactor
+        default:
+            #if os(OSX)
+            #else
+                if case let .adapt(style) = stylePart {
+                    self.adaptations.append(style)
+                }
+            #endif
+
         }
     }
 }

@@ -24,8 +24,8 @@ func BONAssert(attributes dictionary: StyleAttributes?, key: String, float: CGFl
     XCTAssertEqualWithAccuracy(dictionaryValue, float, accuracy: accuracy, file: file, line: line)
 }
 
-func BONAssert(attributes dictionary: StyleAttributes?, query: (UIFont) -> CGFloat, float: CGFloat, accuracy: CGFloat = 0.001, file: StaticString = #file, line: UInt = #line) {
-    guard let font = dictionary?[NSFontAttributeName] as? UIFont else {
+func BONAssert(attributes dictionary: StyleAttributes?, query: (BONFont) -> CGFloat, float: CGFloat, accuracy: CGFloat = 0.001, file: StaticString = #file, line: UInt = #line) {
+    guard let font = dictionary?[NSFontAttributeName] as? BONFont else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }
