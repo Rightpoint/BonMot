@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
+		AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
+		AB9C18DA1D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
+		AB9C18DB1D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
+		AB9C18DC1D9975FE00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
+		AB9C18DD1D9975FE00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
 		ABCBFD601D96E61100FAD37A /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCBFDA01D96E7F300FAD37A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
 		ABCD3D6B1D96F02F00273936 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
@@ -37,8 +43,6 @@
 		ABCD3DB41D96F06800273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
 		ABCD3DB51D96F06800273936 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */; };
 		ABCD3DB61D96F06800273936 /* NSAttributedStringDebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA71D96F06800273936 /* NSAttributedStringDebugTests.swift */; };
-		ABCD3DB71D96F06800273936 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DA91D96F06800273936 /* EBGaramond12-Regular.otf */; };
-		ABCD3DB81D96F06800273936 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DAA1D96F06800273936 /* Images.xcassets */; };
 		ABCD3DBA1D96F06800273936 /* UIFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAC1D96F06800273936 /* UIFontTests.swift */; };
 		ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */; };
 		ABCD3DBC1D96F06800273936 /* UIKitBonMotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */; };
@@ -77,8 +81,6 @@
 		ABCD3DFB1D96F6E200273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
 		ABCD3DFC1D96F6E200273936 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
 		ABCD3DFE1D96F6E200273936 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
-		ABCD3E001D96F6E200273936 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DA91D96F06800273936 /* EBGaramond12-Regular.otf */; };
-		ABCD3E011D96F6E200273936 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DAA1D96F06800273936 /* Images.xcassets */; };
 		ABCD3E0B1D980E4900273936 /* StyleAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5C1D96F02F00273936 /* StyleAttributes.swift */; };
 		ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
 		ABCD3E111D980E4900273936 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
@@ -98,8 +100,6 @@
 		ABCD3E341D980E5500273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
 		ABCD3E351D980E5500273936 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
 		ABCD3E371D980E5500273936 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
-		ABCD3E391D980E5500273936 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DA91D96F06800273936 /* EBGaramond12-Regular.otf */; };
-		ABCD3E3A1D980E5500273936 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DAA1D96F06800273936 /* Images.xcassets */; };
 		ABCD3E411D99558000273936 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCD3E401D99558000273936 /* AppKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +128,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB167C8F1D997A2C0084808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB9C18D11D9975CE00A54787 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
+		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ABCBFD571D96E61000FAD37A /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCBFD5F1D96E61100FAD37A /* BonMot-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -138,7 +142,6 @@
 		ABCD3D561D96F02F00273936 /* FontFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontFeatures.swift; sourceTree = "<group>"; };
 		ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BonMot.swift"; sourceTree = "<group>"; };
 		ABCD3D581D96F02F00273936 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
-		ABCD3D5A1D96F02F00273936 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABCD3D5B1D96F02F00273936 /* Special.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Special.swift; sourceTree = "<group>"; };
 		ABCD3D5C1D96F02F00273936 /* StyleAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleAttributes.swift; sourceTree = "<group>"; };
 		ABCD3D5D1D96F02F00273936 /* StyleAttributeTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleAttributeTransformation.swift; sourceTree = "<group>"; };
@@ -161,9 +164,6 @@
 		ABCD3DA51D96F06800273936 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringAppendTests.swift; sourceTree = "<group>"; };
 		ABCD3DA71D96F06800273936 /* NSAttributedStringDebugTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringDebugTests.swift; sourceTree = "<group>"; };
-		ABCD3DA91D96F06800273936 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
-		ABCD3DAA1D96F06800273936 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		ABCD3DAB1D96F06800273936 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ABCD3DAC1D96F06800273936 /* UIFontTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFontTests.swift; sourceTree = "<group>"; };
 		ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitBehaviorTests.swift; sourceTree = "<group>"; };
 		ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIKitBonMotTests.swift; sourceTree = "<group>"; };
@@ -230,11 +230,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB9C18D31D9975EE00A54787 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */,
+				AB9C18D51D9975EE00A54787 /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		ABCBFD2E1D96E41D00FAD37A = {
 			isa = PBXGroup;
 			children = (
 				ABCD3D511D96F02F00273936 /* Sources */,
 				ABCD3DA01D96F06800273936 /* Tests */,
+				AB9C18D31D9975EE00A54787 /* Resources */,
 				ABCD3DC61D96F56400273936 /* README.md */,
 				ABCD3DC51D96F56400273936 /* BonMot.podspec */,
 				ABCD3DC71D96F56400273936 /* LICENSE */,
@@ -281,17 +291,9 @@
 				ABCD3D5E1D96F02F00273936 /* TagStyles.swift */,
 				ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */,
 				ABCD3D5F1D96F02F00273936 /* UIKit */,
-				ABCD3D591D96F02F00273936 /* Resources */,
+				AB9C18D11D9975CE00A54787 /* Info.plist */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		ABCD3D591D96F02F00273936 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				ABCD3D5A1D96F02F00273936 /* Info.plist */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		ABCD3D5F1D96F02F00273936 /* UIKit */ = {
@@ -325,19 +327,9 @@
 				ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */,
 				ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */,
 				ABCD3DAF1D96F06800273936 /* XMLTagStyleBuilderTests.swift */,
-				ABCD3DA81D96F06800273936 /* Resources */,
+				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		ABCD3DA81D96F06800273936 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				ABCD3DA91D96F06800273936 /* EBGaramond12-Regular.otf */,
-				ABCD3DAA1D96F06800273936 /* Images.xcassets */,
-				ABCD3DAB1D96F06800273936 /* Info.plist */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,8 +521,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCD3DB71D96F06800273936 /* EBGaramond12-Regular.otf in Resources */,
-				ABCD3DB81D96F06800273936 /* Images.xcassets in Resources */,
+				AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */,
+				AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,8 +537,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCD3E001D96F6E200273936 /* EBGaramond12-Regular.otf in Resources */,
-				ABCD3E011D96F6E200273936 /* Images.xcassets in Resources */,
+				AB9C18DA1D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */,
+				AB9C18DB1D9975FD00A54787 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,8 +553,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCD3E391D980E5500273936 /* EBGaramond12-Regular.otf in Resources */,
-				ABCD3E3A1D980E5500273936 /* Images.xcassets in Resources */,
+				AB9C18DC1D9975FE00A54787 /* EBGaramond12-Regular.otf in Resources */,
+				AB9C18DD1D9975FE00A54787 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +752,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -803,6 +796,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -817,8 +811,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Resources/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOS";
 				PRODUCT_NAME = BonMot;
@@ -835,8 +830,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Sources/Resources/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOS";
 				PRODUCT_NAME = BonMot;
@@ -849,7 +845,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -861,7 +858,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -877,7 +875,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ./Sources/Resources/Info.plist;
+				INFOPLIST_FILE = ./Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOS";
@@ -895,7 +893,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ./Sources/Resources/Info.plist;
+				INFOPLIST_FILE = ./Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOS";
@@ -909,7 +907,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = ./Tests/Resources/Info.plist;
+				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -921,7 +919,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = ./Tests/Resources/Info.plist;
+				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -936,9 +934,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ./Sources/Resources/Info.plist;
+				INFOPLIST_FILE = ./Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSX";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = macosx;
@@ -953,9 +952,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ./Sources/Resources/Info.plist;
+				INFOPLIST_FILE = ./Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSX";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = macosx;
@@ -967,7 +967,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = ./Tests/Resources/Info.plist;
+				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -979,7 +979,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = ./Tests/Resources/Info.plist;
+				INFOPLIST_FILE = ./Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -17,9 +17,9 @@
 		AB511A821D7F3F7500D8FC62 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A791D7F3F7500D8FC62 /* CatalogViewController.swift */; };
 		AB511A831D7F3F7500D8FC62 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB511A7A1D7F3F7500D8FC62 /* StyleViewController.swift */; };
 		AB511A841D7F3F7500D8FC62 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */; };
-		ABCD3DBF1D96F26700273936 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DBE1D96F26700273936 /* Images.xcassets */; };
+		AB9C18E11D99762E00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18DF1D99762E00A54787 /* EBGaramond12-Regular.otf */; };
+		AB9C18E21D99762E00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18E01D99762E00A54787 /* Images.xcassets */; };
 		ABCD3DC21D96F48E00273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DC11D96F48E00273936 /* Compatibility.swift */; };
-		ABCD3DC41D96F4FD00273936 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABCD3DC31D96F4FD00273936 /* EBGaramond12-Regular.otf */; };
 		CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF03E1BF6AFAA00676E2D /* EBGaramond12-Regular.otf */; };
 		CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD6DF04C1BF6B50800676E2D /* Launch Screen.xib */; };
 		DEDDB0AB21BBBD4F18A795F9 /* Pods_BonMot_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */; };
@@ -46,9 +46,9 @@
 		AB511A7A1D7F3F7500D8FC62 /* StyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		AB511A7B1D7F3F7500D8FC62 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AB5E1FEE1D7F5D5400AC3F56 /* Example Licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Example Licenses.txt"; sourceTree = "<group>"; };
-		ABCD3DBE1D96F26700273936 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../Tests/Resources/Images.xcassets; sourceTree = "<group>"; };
+		AB9C18DF1D99762E00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
+		AB9C18E01D99762E00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ABCD3DC11D96F48E00273936 /* Compatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compatibility.swift; path = ../../Tests/Compatibility.swift; sourceTree = "<group>"; };
-		ABCD3DC31D96F4FD00273936 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "EBGaramond12-Regular.otf"; path = "../../Tests/Resources/EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		AD71A3A4149F5274009A4C2F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B443E5AC583BDA9604398E21 /* Pods_BonMot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6389DCE3A27CBCE74FD0558 /* Pods_BonMot_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BonMot_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +106,7 @@
 		6003F593195388D20070C39A /* Example for BonMot */ = {
 			isa = PBXGroup;
 			children = (
+				AB9C18DE1D99762E00A54787 /* Resources */,
 				ABCD3DC01D96F45100273936 /* From Tests */,
 				AB511A731D7F3F7500D8FC62 /* DemoStrings.swift */,
 				AB511A741D7F3F7500D8FC62 /* Style.swift */,
@@ -152,12 +153,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AB9C18DE1D99762E00A54787 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AB9C18DF1D99762E00A54787 /* EBGaramond12-Regular.otf */,
+				AB9C18E01D99762E00A54787 /* Images.xcassets */,
+			);
+			name = Resources;
+			path = ../../Resources;
+			sourceTree = "<group>";
+		};
 		ABCD3DC01D96F45100273936 /* From Tests */ = {
 			isa = PBXGroup;
 			children = (
-				ABCD3DC31D96F4FD00273936 /* EBGaramond12-Regular.otf */,
 				ABCD3DC11D96F48E00273936 /* Compatibility.swift */,
-				ABCD3DBE1D96F26700273936 /* Images.xcassets */,
 			);
 			name = "From Tests";
 			sourceTree = "<group>";
@@ -233,9 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD6DF0401BF6AFAA00676E2D /* EBGaramond12-Regular.otf in Resources */,
+				AB9C18E11D99762E00A54787 /* EBGaramond12-Regular.otf in Resources */,
 				AB511A841D7F3F7500D8FC62 /* Main.storyboard in Resources */,
-				ABCD3DBF1D96F26700273936 /* Images.xcassets in Resources */,
-				ABCD3DC41D96F4FD00273936 /* EBGaramond12-Regular.otf in Resources */,
+				AB9C18E21D99762E00A54787 /* Images.xcassets in Resources */,
 				CD6DF04D1BF6B50800676E2D /* Launch Screen.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
