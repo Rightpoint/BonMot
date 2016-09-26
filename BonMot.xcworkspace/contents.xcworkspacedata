@@ -5,7 +5,7 @@
       location = "group:Playground/Features.playground">
    </FileRef>
    <FileRef
-      location = "absolute:/Users/brianking/sandbox/BonMot/BonMot.xcodeproj">
+      location = "group:BonMot.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Playground/APIFeedback.playground">
