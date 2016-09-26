@@ -53,7 +53,7 @@ class StyleAttributeTransformationTests: XCTestCase {
     }
 
     func testFontFeatureStyle() {
-        EBGarandLoader.loadFontIfNeeded()
+        EBGaramondLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
             let attributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes()

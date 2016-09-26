@@ -88,7 +88,7 @@ let styleBz = BonMotC { style in
     style.tailIndent = 10
 }
 
-class EBGarandLoader: NSObject {
+class EBGaramondLoader: NSObject {
 
     static func loadFontIfNeeded() {
         let _ = loadFont
@@ -99,7 +99,7 @@ class EBGarandLoader: NSObject {
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
     static var loadFont: Void = {
         #if swift(>=3.0)
-        guard let path = Bundle(for: EBGarandLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
+        guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
             let data = NSData(contentsOfFile: path)
             else {
                 fatalError("Can not load EBGaramond12")
@@ -121,7 +121,7 @@ class EBGarandLoader: NSObject {
             fatalError("Unable to load font: \(error)")
         }
         #else
-            guard let path = NSBundle(forClass: EBGarandLoader.self).pathForResource("EBGaramond12-Regular", ofType: "otf"),
+            guard let path = NSBundle(forClass: EBGaramondLoader.self).pathForResource("EBGaramond12-Regular", ofType: "otf"),
             let data = NSData(contentsOfFile: path)
             else {
             fatalError("Can not load EBGaramond12")
