@@ -166,14 +166,14 @@ import BonMot
 /// Shared text objects (AppKit + UIKit)
 #if swift(>=3.0)
     extension NSParagraphStyle {
-    // This method has to be prefixed since default is not a valid variable in Swift 2.3
-    @nonobjc static var bon_default: NSParagraphStyle {
-    #if os(OSX)
-    return NSParagraphStyle.default()
-    #else
-    return NSParagraphStyle.default
-    #endif
-    }
+        // This method has to be prefixed since default is not a valid variable in Swift 2.3
+        @nonobjc static var bon_default: NSParagraphStyle {
+            #if os(OSX)
+                return NSParagraphStyle.default()
+            #else
+                return NSParagraphStyle.default
+            #endif
+        }
     }
 #else
     extension NSAttributedString {

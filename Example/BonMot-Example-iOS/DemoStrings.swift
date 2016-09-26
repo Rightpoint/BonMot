@@ -131,10 +131,11 @@ enum DemoStrings {
         .image(UIImage(named: "bee")!),
     ], separator: imageStyle.attributedString(from: " "))
 
-    static let noSpaceStyle = BonMot(
+    static let noSpaceTextStyle = BonMot(
         .font(.systemFont(ofSize: 17)),
         .adapt(.control),
-        .textColor(.darkGray)
+        .textColor(.darkGray),
+        .baselineOffset(10)
     )
     static let noSpaceString = NSMutableAttributedString(attributedStrings: [
         ("barn", "This"),
@@ -147,10 +148,11 @@ enum DemoStrings {
         ("pin", "no-break"),
         ("robot", "spaces"),
         ].map() { imageName, text in
-            let string = BonMot(.baselineOffset(-10)).attributedString(from: UIImage(named: imageName)!)
-            string.extend(with: text, style: noSpaceStyle)
+            let string = BonMot().attributedString(from: UIImage(named: imageName)!)
+            string.extend(with: Special.noBreakSpace.description, style: noSpaceTextStyle)
+            string.extend(with: text, style: noSpaceTextStyle)
             return string
-    }, separator: .text(Special.noBreakSpace.description))
+    }, separator: .text(" "))
 
     static let heartsString = NSMutableAttributedString(attributedStrings: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))

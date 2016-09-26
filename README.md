@@ -8,7 +8,7 @@
 
 BonMot (pronounced *Bon Mo*, French for *good word*) is an iOS attributed string generation library. It abstracts away the advanced iOS typography tools, freeing you to focus on making your text beautiful.
 
-To run the example project, run `pod try BonMot`, or clone the repo and open `Example/BonMot.xcworkspace`.
+To run the example project, run `pod try BonMot`, or clone the repo and open `Example/BonMot-Example.xcworkspace`.
 
 ## Supported Text Features
 

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Playground/Features.playground">
+   </FileRef>
+   <FileRef
       location = "absolute:/Users/brianking/sandbox/BonMot/BonMot.xcodeproj">
    </FileRef>
    <FileRef
