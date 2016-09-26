@@ -97,7 +97,7 @@ class EBGaramondLoader: NSObject {
     // Can't include font the normal (Plist) way for logic tests, so load it the hard way
     // Source: http://stackoverflow.com/questions/14735522/can-i-embed-a-custom-font-in-a-bundle-and-access-it-from-an-ios-framework
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
-    static var loadFont: Void = {
+    private static var loadFont: Void = {
         #if swift(>=3.0)
         guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
             let data = NSData(contentsOfFile: path)
