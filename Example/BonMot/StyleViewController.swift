@@ -77,22 +77,23 @@ extension StyleViewController {
     }
     #else
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return styles.count
+        return styles.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return styles[section].1.count
+        return styles[section].1.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    return cell(at: indexPath)
+        return cell(at: indexPath)
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return styles[section].0
+        return styles[section].0
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectRow(at: indexPath)
     }
     #endif
 }
