@@ -34,8 +34,8 @@ enum DemoStrings {
         gray.attributedString(from: "I want to be different. If everyone is wearing "),
         blackBG.attributedString(from: " black, "),
         gray.attributedString(from: " I want to be wearing "),
-        redBG.attributedString(from: " red. \n"),
-        redTxt.attributedString(from: "Maria Sharapova "),
+        redBG.attributedString(from: " red. "),
+        redTxt.attributedString(from: "\nMaria Sharapova "),
         BonMot(.baselineOffset(-4.0), .textColor(.raizlabsRed)).attributedString(from: UIImage(named: "Tennis Racket")!)
         ])
 
