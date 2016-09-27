@@ -164,9 +164,10 @@
 
 
 /// UIKit Only
-#if os(iOS) || os(watchOS) || os(tvOS)
 #if swift(>=3.0)
 #else
+
+#if os(iOS) || os(tvOS)
     extension UIApplication {
         @nonobjc static var shared: UIApplication {
             return sharedApplication()
@@ -185,6 +186,11 @@
         @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
             return preferredFontForTextStyle(textStyle)
         }
+    }
+#endif
+
+#if os(iOS) || os(watchOS) || os(tvOS)
+    extension UIFont {
         @nonobjc final var fontDescriptor: UIFontDescriptor {
             return fontDescriptor()
         }
