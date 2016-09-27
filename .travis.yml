@@ -42,7 +42,7 @@ matrix:
         - brew update 1> /dev/null 2> /dev/null
         - brew outdated carthage || brew upgrade carthage
         - carthage build --no-skip-current
-        - for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/PrettyColors.framework || exit 1; done
+        - for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 git:
   submodules: false
 before_install:
