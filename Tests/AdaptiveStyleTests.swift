@@ -115,7 +115,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testAdobeAdaptiveTracking() {
         let font = UIFont(name: "Avenir-Book", size: 30)!
-        let chain = BonMotI(font: font, adaptations: [AdaptiveStyle.control], tracking: Tracking.adobe(300))
+        let chain = BonMot(.font(font), .adapt(.control), .tracking(.adobe(300)))
         let attributes = chain.style(attributes: [NSFontAttributeName: font])
 
         let testKernAdaption = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in

@@ -82,20 +82,20 @@ class StyleAttributeTransformationTests: XCTestCase {
     ]
 
     func testParagraphStyles() {
-        let attributes = BonMotI(
-            lineSpacing: 10,
-            paragraphSpacingAfter: 10,
-            alignment: .center,
-            firstLineHeadIndent: 10,
-            headIndent: 10,
-            tailIndent: 10,
-            lineBreakMode: .byClipping,
-            minimumLineHeight: 10,
-            maximumLineHeight: 10,
-            baseWritingDirection: .leftToRight,
-            lineHeightMultiple: 10,
-            paragraphSpacingBefore: 10,
-            hyphenationFactor: 10
+        let attributes = BonMot(
+            .lineSpacing(10),
+            .paragraphSpacingAfter(10),
+            .alignment(.center),
+            .firstLineHeadIndent(10),
+            .headIndent(10),
+            .tailIndent(10),
+            .lineBreakMode(.byClipping),
+            .minimumLineHeight(10),
+            .maximumLineHeight(10),
+            .baseWritingDirection(.leftToRight),
+            .lineHeightMultiple(10),
+            .paragraphSpacingBefore(10),
+            .hyphenationFactor(10)
             ).attributes()
         for (index, check) in StyleAttributeTransformationTests.tens.enumerated() {
             let line = UInt(StyleAttributeTransformationTests.tensLine + 2 + index)
@@ -107,35 +107,35 @@ class StyleAttributeTransformationTests: XCTestCase {
     }
 
     func testParagraphStyleAdd() {
-        var chain = BonMotI(
-            lineSpacing: 1,
-            paragraphSpacingAfter: 1,
-            alignment: .left,
-            firstLineHeadIndent: 1,
-            headIndent: 1,
-            tailIndent: 1,
-            lineBreakMode: .byWordWrapping,
-            minimumLineHeight: 1,
-            maximumLineHeight: 1,
-            baseWritingDirection: .natural,
-            lineHeightMultiple: 1,
-            paragraphSpacingBefore: 1,
-            hyphenationFactor: 1
+        var chain = BonMot(
+            .lineSpacing(1),
+            .paragraphSpacingAfter(1),
+            .alignment(.left),
+            .firstLineHeadIndent(1),
+            .headIndent(1),
+            .tailIndent(1),
+            .lineBreakMode(.byWordWrapping),
+            .minimumLineHeight(1),
+            .maximumLineHeight(1),
+            .baseWritingDirection(.natural),
+            .lineHeightMultiple(1),
+            .paragraphSpacingBefore(1),
+            .hyphenationFactor(1)
             )
-        chain.update(attributedStringStyle: BonMotI(
-            lineSpacing: 10,
-            paragraphSpacingAfter: 10,
-            alignment: .center,
-            firstLineHeadIndent: 10,
-            headIndent: 10,
-            tailIndent: 10,
-            lineBreakMode: .byClipping,
-            minimumLineHeight: 10,
-            maximumLineHeight: 10,
-            baseWritingDirection: .leftToRight,
-            lineHeightMultiple: 10,
-            paragraphSpacingBefore: 10,
-            hyphenationFactor: 10
+        chain.update(attributedStringStyle: BonMot(
+            .lineSpacing(10),
+            .paragraphSpacingAfter(10),
+            .alignment(.center),
+            .firstLineHeadIndent(10),
+            .headIndent(10),
+            .tailIndent(10),
+            .lineBreakMode(.byClipping),
+            .minimumLineHeight(10),
+            .maximumLineHeight(10),
+            .baseWritingDirection(.leftToRight),
+            .lineHeightMultiple(10),
+            .paragraphSpacingBefore(10),
+            .hyphenationFactor(10)
             ))
         let attributes = chain.attributes()
         for (index, check) in StyleAttributeTransformationTests.tens.enumerated() {
@@ -148,7 +148,7 @@ class StyleAttributeTransformationTests: XCTestCase {
     }
 
     func testAdobeTracking() {
-        let chain = BonMotI(tracking: Tracking.adobe(300))
+        let chain = BonMot(.tracking(.adobe(300)))
         let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
             let font = BONFont(name: "Avenir-Book", size: fontSize)!
             let attributes = chain.style(attributes: [NSFontAttributeName: font])
@@ -161,7 +161,7 @@ class StyleAttributeTransformationTests: XCTestCase {
     }
 
     func testPointTracking() {
-        let chain = BonMotI(tracking: Tracking.point(10))
+        let chain = BonMot(.tracking(.point(10)))
         let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
             let font = BONFont(name: "Avenir-Book", size: fontSize)!
             let attributes = chain.style(attributes: [NSFontAttributeName: font])
