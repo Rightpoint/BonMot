@@ -21,15 +21,6 @@ public enum AttributedStringStylePart {
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
     case alignment(NSTextAlignment)
-    #if os(iOS) || os(tvOS) || os(OSX)
-    case fontFeature(FontFeatureProvider)
-    #endif
-    #if os(iOS) || os(tvOS)
-    case textStyle(BonMotTextStyle)
-    #endif
-    #if os(iOS) || os(tvOS)
-    case adapt(AdaptiveStyle)
-    #endif
     case style(StyleAttributeTransformation)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
@@ -44,6 +35,15 @@ public enum AttributedStringStylePart {
     case lineHeightMultiple(CGFloat)
     case paragraphSpacingBefore(CGFloat)
     case hyphenationFactor(Float)
+    #if os(iOS) || os(tvOS) || os(OSX)
+    case fontFeature(FontFeatureProvider)
+    #endif
+    #if os(iOS) || os(tvOS)
+    case textStyle(BonMotTextStyle)
+    #endif
+    #if os(iOS) || os(tvOS)
+    case adapt(AdaptiveStyle)
+    #endif
 
 }
 
@@ -124,17 +124,19 @@ extension AttributedStringStyle {
             self.lineHeightMultiple = lineHeightMultiple
         case let .paragraphSpacingBefore(paragraphSpacingBefore):
             self.paragraphSpacingBefore = paragraphSpacingBefore
-        case let .hyphenationFactor(hyphenationFactor):
-            self.hyphenationFactor = hyphenationFactor
         default:
+            // #if and enum's are disapointing. I'm moving one case into the default catch all to remove a warning that default won't be accessed on some platforms.
+            if case let .hyphenationFactor(hyphenationFactor) = stylePart {
+                self.hyphenationFactor = hyphenationFactor
+            }
             #if os(iOS) || os(tvOS)
                 if case let .adapt(style) = stylePart {
                     self.adaptations.append(style)
                 }
-                if case let .fontFeature(featureProvider) = stylePart {
+                else if case let .fontFeature(featureProvider) = stylePart {
                     self.fontFeatureProviders.append(featureProvider)
                 }
-                if case let .textStyle(textStyle) = stylePart {
+                else if case let .textStyle(textStyle) = stylePart {
                     self.textStyle = textStyle
                 }
             #endif
