@@ -1,34 +1,66 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
-
-language: objective-c
-rvm:
-  - 2.2.4
-osx_image: xcode8
-install:
-- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-- export PYTHONUSERBASE=~/.local
-- easy_install --user scan-build
-- gem install bundler --no-rdoc --no-ri
-- bundle install
+# References:
+# - https://github.com/jdhealy/PrettyColors/blob/development/.travis.yml
+env:
+  global:
+    - LC_CTYPE=en_US.UTF-8
+os: osx
+language: c
+matrix:
+  exclude:
+    # Note: Workaround travis-ci/travis-ci#4681
+    # Exclude default job which lacks our included environment variables.
+    - os: osx
+  include:
+    - osx_image: xcode8
+      env:
+        - XCODE_SDK=macosx
+          XCODE_ACTION=build
+	  XCODE_SCHEME=BonMot-OSX
+          XCODE_DESTINATION="arch=x86_64"
+    - osx_image: xcode8
+      env:
+        - XCODE_SDK=iphonesimulator
+          XCODE_ACTION="build-for-testing test-without-building"
+	  XCODE_SCHEME=BonMot-iOS
+          XCODE_DESTINATION="name=iPhone 6s"
+    - osx_image: xcode8
+      env:
+        - XCODE_SDK=appletvsimulator
+          XCODE_ACTION="build-for-testing test-without-building"
+ 	  XCODE_SCHEME=BonMot-tvOS
+          XCODE_DESTINATION="name=Apple TV 1080p"
+    - osx_image: xcode8
+      env:
+        - XCODE_SDK=watchsimulator
+          XCODE_ACTION=build
+ 	  XCODE_SCHEME=BonMot-watchOS
+          XCODE_DESTINATION="name=Apple Watch - 38mm"
+    - osx_image: xcode8
+      env:
+        - JOB=CARTHAGE
+      script:
+        - brew update 1> /dev/null 2> /dev/null
+        - brew outdated carthage || brew upgrade carthage
+        - carthage build --no-skip-current
+        - for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/PrettyColors.framework || exit 1; done
+git:
+  submodules: false
+before_install:
+  - git submodule update --init --recursive
 script:
-# "warm" iPhone 6 simulator by pre-launching it so tests don't hang
-- export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
-- open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
-
-# Run tests on iPhone 6 simulator (64-bit)
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
-
-# "warm" iPhone 4s simulator
-- export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 4s (9.3" | awk -F '[\[]' '{print $2}' | awk -F '[\]]' '{print $1}'`
-- open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
-
-# Run tests on iPhone 4s simulator (32-bit)
-- set -o pipefail && xcodebuild test -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 4s' ONLY_ACTIVE_ARCH=NO | xcpretty
-
-# use scan-build with --status-bugs to fail the build for static analysis warnings per http://jonboydell.blogspot.ca/2013/02/clang-static-analysis.html
-- export PATH="${HOME}/.local/bin:${PATH}"
-- set -o pipefail && scan-build --status-bugs xcodebuild analyze -workspace Example/BonMot.xcworkspace -scheme BonMot-Example -destination 'name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
-
-- bundle exec pod lib lint
+  - xcodebuild ${XCODE_ACTION}
+      -project BonMot.xcodeproj
+      -scheme ${XCODE_SCHEME}
+      -sdk ${XCODE_SDK}
+      -destination "${XCODE_DESTINATION}"
+      CODE_SIGNING_REQUIRED=NO
+      CODE_SIGN_IDENTITY=
+  - TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild ${XCODE_ACTION}
+      -project BonMot.xcodeproj
+      -scheme ${XCODE_SCHEME}
+      -sdk ${XCODE_SDK}
+      -destination "${XCODE_DESTINATION}"
+      CODE_SIGNING_REQUIRED=NO
+      CODE_SIGN_IDENTITY=      
+notifications:
+  email: false
