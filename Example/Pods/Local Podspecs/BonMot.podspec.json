@@ -13,20 +13,23 @@
     "tag": "4.0-beta1"
   },
   "social_media_url": "https://twitter.com/ZevEisenberg",
-  "platforms": {
-    "ios": "9.0"
-  },
   "requires_arc": true,
-  "frameworks": "UIKit",
-  "default_subspecs": "Core",
-  "subspecs": [
-    {
-      "name": "Core",
-      "source_files": "Sources/*.swift"
-    },
-    {
-      "name": "UIKit",
-      "source_files": "Sources/UIKit/*.swift"
-    }
-  ]
+  "platforms": {
+    "ios": "9.0",
+    "tvos": "9.0",
+    "osx": "10.11",
+    "watchos": "2.2"
+  },
+  "ios": {
+    "source_files": "Sources/**/*.swift"
+  },
+  "tvos": {
+    "source_files": "Sources/**/*.swift"
+  },
+  "osx": {
+    "source_files": "Sources/*.swift"
+  },
+  "watchos": {
+    "source_files": "Sources/*.swift"
+  }
 }

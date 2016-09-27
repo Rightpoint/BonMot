@@ -4,6 +4,5 @@ use_frameworks!
 target 'BonMot-Example-iOS' do
 
   pod "BonMot", :path => "../"
-  pod "BonMot/UIKit", :path => "../"
 
 end
