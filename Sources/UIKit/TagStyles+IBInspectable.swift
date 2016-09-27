@@ -38,8 +38,11 @@ extension UITextView {
     public var styleName: String? {
         get { return nil }
         set {
-            var font = self.font
-            if font == nil {
+            let font: UIFont
+            if let configuredFont = self.font {
+                font = configuredFont
+            }
+            else {
                 // If the text property is not and has not been set, the font property is nil. Use the platform specific default values here
                 // See UIKitTests.testTextFieldPropertyBehavior
                 #if os(iOS)

@@ -197,6 +197,9 @@
         @nonobjc final func withSize(size: CGFloat) -> UIFont {
             return fontWithSize(size)
         }
+        @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
+            return systemFontOfSize(pointSize)
+        }
     }
 
     extension UIFontDescriptor {
