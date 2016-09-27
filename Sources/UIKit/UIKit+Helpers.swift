@@ -10,7 +10,7 @@ import UIKit
 extension UIFont {
 
     @nonobjc static func bon_preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
-        if #available(iOS 10.0, *) {
+        if #available(iOS 10.0, tvOS 10.0, *) {
             return preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)
         }
         else {
@@ -38,7 +38,7 @@ extension UITraitCollection {
     /// preferredContentSizeCategory is UIContentSizeCategoryUnspecified.
     public var bon_preferredContentSizeCategory: BonMotContentSizeCategory {
         #if swift(>=3.0)
-            if #available(iOS 10.0, *) {
+            if #available(iOS 10.0, tvOS 10.0, *) {
                 if preferredContentSizeCategory != .unspecified {
                     return preferredContentSizeCategory
                 }
