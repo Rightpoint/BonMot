@@ -20,6 +20,7 @@ class StyleAttributeTransformationTests: XCTestCase {
         }
     }
 
+    #if os(iOS) || os(tvOS)
     func testTextStyle() {
         let style = BonMot(.textStyle(titleTextStyle))
         for (style, fullStyle) in checks(for: style) {
@@ -30,6 +31,7 @@ class StyleAttributeTransformationTests: XCTestCase {
             print(fontTextStyle, titleTextStyle)
         }
     }
+    #endif
 
     func testURL() {
         let url = NSURL(string: "http://apple.com/")!
@@ -229,7 +231,7 @@ class StyleAttributeTransformationTests: XCTestCase {
     static var fullStyle: AttributedStringStyle = {
         let terribleValue = CGFloat(1000000)
         var fullStyle = AttributedStringStyle()
-        fullStyle.font = UIFont(name: "Copperplate", size: 20)
+        fullStyle.font = BONFont(name: "Copperplate", size: 20)
         fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
         fullStyle.backgroundColor = .colorC
         fullStyle.textColor = .colorC
