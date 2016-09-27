@@ -33,7 +33,7 @@
 		ABA75DF71D99E10F00B64705 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */; };
 		ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */; };
 		ABA75DF91D99E10F00B64705 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
-		ABA75DFA1D99E10F00B64705 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
+		ABA75DFA1D99E10F00B64705 /* StyleAttributeTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */; };
 		ABA75DFC1D99E10F00B64705 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABA75DFE1D99E10F00B64705 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		ABA75DFF1D99E10F00B64705 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
@@ -66,7 +66,7 @@
 		ABCD3D811D96F02F00273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABCD3DB01D96F06800273936 /* AdaptiveStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA11D96F06800273936 /* AdaptiveStyleTests.swift */; };
 		ABCD3DB11D96F06800273936 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA21D96F06800273936 /* AssertHelpers.swift */; };
-		ABCD3DB21D96F06800273936 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
+		ABCD3DB21D96F06800273936 /* StyleAttributeTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */; };
 		ABCD3DB31D96F06800273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA41D96F06800273936 /* Compatibility.swift */; };
 		ABCD3DB41D96F06800273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
 		ABCD3DB51D96F06800273936 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */; };
@@ -107,7 +107,7 @@
 		ABCD3DF91D96F6E200273936 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */; };
 		ABCD3DFA1D96F6E200273936 /* UIKitBonMotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */; };
 		ABCD3DFB1D96F6E200273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
-		ABCD3DFC1D96F6E200273936 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
+		ABCD3DFC1D96F6E200273936 /* StyleAttributeTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */; };
 		ABCD3DFE1D96F6E200273936 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCD3E0B1D980E4900273936 /* StyleAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5C1D96F02F00273936 /* StyleAttributes.swift */; };
 		ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
@@ -126,7 +126,7 @@
 		ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA21D96F06800273936 /* AssertHelpers.swift */; };
 		ABCD3E321D980E5500273936 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */; };
 		ABCD3E341D980E5500273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
-		ABCD3E351D980E5500273936 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
+		ABCD3E351D980E5500273936 /* StyleAttributeTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */; };
 		ABCD3E371D980E5500273936 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCD3E411D99558000273936 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCD3E401D99558000273936 /* AppKit.framework */; };
 /* End PBXBuildFile section */
@@ -197,7 +197,7 @@
 		ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLBuilder.swift; sourceTree = "<group>"; };
 		ABCD3DA11D96F06800273936 /* AdaptiveStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptiveStyleTests.swift; sourceTree = "<group>"; };
 		ABCD3DA21D96F06800273936 /* AssertHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssertHelpers.swift; sourceTree = "<group>"; };
-		ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonMotStyleTests.swift; sourceTree = "<group>"; };
+		ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleAttributeTransformationTests.swift; sourceTree = "<group>"; };
 		ABCD3DA41D96F06800273936 /* Compatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
 		ABCD3DA51D96F06800273936 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringAppendTests.swift; sourceTree = "<group>"; };
@@ -375,7 +375,7 @@
 			children = (
 				ABCD3DA11D96F06800273936 /* AdaptiveStyleTests.swift */,
 				ABCD3DA21D96F06800273936 /* AssertHelpers.swift */,
-				ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */,
+				ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */,
 				ABCD3DA41D96F06800273936 /* Compatibility.swift */,
 				ABCD3DA51D96F06800273936 /* Helpers.swift */,
 				ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */,
@@ -710,7 +710,7 @@
 				ABA75DF71D99E10F00B64705 /* NSAttributedStringAppendTests.swift in Sources */,
 				ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */,
 				ABA75DF91D99E10F00B64705 /* Helpers.swift in Sources */,
-				ABA75DFA1D99E10F00B64705 /* BonMotStyleTests.swift in Sources */,
+				ABA75DFA1D99E10F00B64705 /* StyleAttributeTransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,7 +757,7 @@
 				ABCD3DB51D96F06800273936 /* NSAttributedStringAppendTests.swift in Sources */,
 				ABCD3DBC1D96F06800273936 /* UIKitBonMotTests.swift in Sources */,
 				ABCD3DB41D96F06800273936 /* Helpers.swift in Sources */,
-				ABCD3DB21D96F06800273936 /* BonMotStyleTests.swift in Sources */,
+				ABCD3DB21D96F06800273936 /* StyleAttributeTransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,7 +804,7 @@
 				ABCD3DF91D96F6E200273936 /* NSAttributedStringAppendTests.swift in Sources */,
 				ABCD3DFA1D96F6E200273936 /* UIKitBonMotTests.swift in Sources */,
 				ABCD3DFB1D96F6E200273936 /* Helpers.swift in Sources */,
-				ABCD3DFC1D96F6E200273936 /* BonMotStyleTests.swift in Sources */,
+				ABCD3DFC1D96F6E200273936 /* StyleAttributeTransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,7 +837,7 @@
 				ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */,
 				ABCD3E321D980E5500273936 /* NSAttributedStringAppendTests.swift in Sources */,
 				ABCD3E341D980E5500273936 /* Helpers.swift in Sources */,
-				ABCD3E351D980E5500273936 /* BonMotStyleTests.swift in Sources */,
+				ABCD3E351D980E5500273936 /* StyleAttributeTransformationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
