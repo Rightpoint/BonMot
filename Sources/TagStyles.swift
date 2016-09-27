@@ -14,9 +14,7 @@ public class TagStyles: NSObject {
 
     /// A shared repository of styles. The shared TagStyle is used by the Interface Builder bonMotStyleName property.
     /// This singleton is per-populated with 3 values for Dynamic Text. "control", "body", and "preferred"
-    #if os(OSX)
-    public static var shared = TagStyles()
-    #else
+    #if os(iOS) || os(tvOS)
     public static var shared = TagStyles(
         styles: [
             "control": BonMot(.adapt(.control)),
@@ -24,6 +22,8 @@ public class TagStyles: NSObject {
             "preferred": BonMot(.adapt(.preferred)) ,
         ]
     )
+    #else
+    public static var shared = TagStyles()
     #endif
 
     public init(styles: [String: AttributedStringStyle] = [:]) {

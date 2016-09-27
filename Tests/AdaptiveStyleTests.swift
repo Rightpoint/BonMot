@@ -9,7 +9,7 @@ import XCTest
 import UIKit
 import BonMot
 
-#if swift(>=2.3)
+#if swift(>=2.3) && os(iOS)
 
 @available(iOS 10.0, *)
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.large.compatible)

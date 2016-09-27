@@ -15,14 +15,12 @@
 public struct AttributedStringStyle {
     public var initialAttributes: StyleAttributes
     public var font: BONFont?
-    public var textStyle: BonMotTextStyle?
     public var link: NSURL?
     public var backgroundColor: BONColor?
     public var textColor: BONColor?
     public var underline: (NSUnderlineStyle, BONColor?)?
     public var strikethrough: (NSUnderlineStyle, BONColor?)?
     public var baselineOffset: CGFloat?
-    public var fontFeatureProviders: [FontFeatureProvider]
     public var adaptations: [StyleAttributeTransformation]
     public var tracking: Tracking?
 
@@ -40,57 +38,28 @@ public struct AttributedStringStyle {
     public var paragraphSpacingBefore: CGFloat?
     public var hyphenationFactor: Float?
 
-    public init(initialAttributes: StyleAttributes = [:],
-                font: BONFont? = nil,
-                link: NSURL? = nil,
-                backgroundColor: BONColor? = nil,
-                textColor: BONColor? = nil,
-                underline: (NSUnderlineStyle, BONColor?)? = nil,
-                strikethrough: (NSUnderlineStyle, BONColor?)? = nil,
-                baselineOffset: CGFloat? = nil,
-                fontFeatureProviders: [FontFeatureProvider] = [],
-                adaptations: [StyleAttributeTransformation] = [],
-                tracking: Tracking? = nil,
-                lineSpacing: CGFloat? = nil,
-                paragraphSpacingAfter: CGFloat? = nil,
-                alignment: NSTextAlignment? = nil,
-                firstLineHeadIndent: CGFloat? = nil,
-                headIndent: CGFloat? = nil,
-                tailIndent: CGFloat? = nil,
-                lineBreakMode: NSLineBreakMode? = nil,
-                minimumLineHeight: CGFloat? = nil,
-                maximumLineHeight: CGFloat? = nil,
-                baseWritingDirection: NSWritingDirection? = nil,
-                lineHeightMultiple: CGFloat? = nil,
-                paragraphSpacingBefore: CGFloat? = nil,
-                hyphenationFactor: Float? = nil) {
+    #if os(iOS)
+    public var textStyle: BonMotTextStyle?
+    public var fontFeatureProviders: [FontFeatureProvider]
+    #elseif os(tvOS)
+    public var textStyle: BonMotTextStyle?
+    public var fontFeatureProviders: [FontFeatureProvider]
+    #elseif os(OSX)
+    public var fontFeatureProviders: [FontFeatureProvider]
+    #endif
 
-        self.initialAttributes = initialAttributes
-        self.font = font
-        self.link = link
-        self.backgroundColor = backgroundColor
-        self.textColor = textColor
-        self.underline = underline
-        self.strikethrough = strikethrough
-        self.baselineOffset = baselineOffset
-        self.fontFeatureProviders = fontFeatureProviders
-        self.adaptations = adaptations
-        self.tracking = tracking
-        self.lineSpacing = lineSpacing
-        self.paragraphSpacingAfter = paragraphSpacingAfter
-        self.alignment = alignment
-        self.firstLineHeadIndent = firstLineHeadIndent
-        self.headIndent = headIndent
-        self.tailIndent = tailIndent
-        self.lineBreakMode = lineBreakMode
-        self.minimumLineHeight = minimumLineHeight
-        self.maximumLineHeight = maximumLineHeight
-        self.baseWritingDirection = baseWritingDirection
-        self.lineHeightMultiple = lineHeightMultiple
-        self.paragraphSpacingBefore = paragraphSpacingBefore
-        self.hyphenationFactor = hyphenationFactor
+    public init() {
+        initialAttributes = [:]
+        adaptations = []
+        #if os(iOS) || os(tvOS)
+        textStyle = nil
+        #endif
+        #if os(iOS) || os(tvOS) || os(OSX)
+        fontFeatureProviders = []
+        #endif
+        (font, link, backgroundColor, textColor, underline, strikethrough, baselineOffset, tracking, lineSpacing, paragraphSpacingAfter, alignment, firstLineHeadIndent, headIndent, tailIndent, minimumLineHeight, maximumLineHeight, lineHeightMultiple, paragraphSpacingBefore) =
+            (nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
     }
-
     public func derive(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
         var style = self
         configureBlock(&style)
@@ -108,7 +77,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             theAttributes[key] = value
         }
         var font = self.font
-        #if os(iOS) || os(watchOS) || os(tvOS)
+        #if os(iOS) || os(tvOS)
             if let textStyle = textStyle {
                 if font == nil {
                     font = UIFont.preferredFont(forTextStyle: textStyle)
@@ -146,10 +115,12 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             theAttributes.update(possibleValue: paragraph, forKey: NSParagraphStyleAttributeName)
         }
 
-        // Apply the features to the font present
-        let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
-        let featuredFont = preFeaturedFont?.font(withFeatures: fontFeatureProviders)
-        theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
+        #if os(iOS) || os(tvOS) || os(OSX)
+            // Apply the features to the font present
+            let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
+            let featuredFont = preFeaturedFont?.font(withFeatures: fontFeatureProviders)
+            theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
+        #endif
 
         // Apply any adaptations
         for adaptation in adaptations {
@@ -160,8 +131,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             // Apply tracking
             let styledFont = theAttributes[NSFontAttributeName] as? BONFont
             theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
-            #if os(OSX)
-            #else
+            #if os(iOS) || os(tvOS)
                 // Add the tracking as an adaptation
                 theAttributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: tracking, to: theAttributes)
             #endif
@@ -207,7 +177,9 @@ extension AttributedStringStyle {
         paragraphSpacingBefore = stringStyle.paragraphSpacingBefore ?? paragraphSpacingBefore
         hyphenationFactor = stringStyle.hyphenationFactor ?? hyphenationFactor
 
+        #if os(iOS) || os(tvOS) || os(OSX)
         fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)
+        #endif
         adaptations.append(contentsOf: stringStyle.adaptations)
         tracking = stringStyle.tracking ?? tracking
     }

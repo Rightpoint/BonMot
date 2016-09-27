@@ -32,9 +32,11 @@ public extension StyleAttributeTransformation {
         return NSMutableAttributedString(string: theString, attributes: attributes)
     }
 
+    #if os(iOS) || os(tvOS) || os(OSX)
     public func attributedString(from theImage: BONImage) -> NSMutableAttributedString {
         let attributes = style(attributes: [:])
         return NSMutableAttributedString(image: theImage, attributes: attributes)
     }
+    #endif
 
 }

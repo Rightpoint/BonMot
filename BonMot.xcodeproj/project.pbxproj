@@ -13,6 +13,34 @@
 		AB9C18DB1D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
 		AB9C18DC1D9975FE00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18DD1D9975FE00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
+		ABA75DD01D99E10400B64705 /* StyleAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5C1D96F02F00273936 /* StyleAttributes.swift */; };
+		ABA75DD21D99E10400B64705 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
+		ABA75DD61D99E10400B64705 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
+		ABA75DD81D99E10400B64705 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
+		ABA75DD91D99E10400B64705 /* TagStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* TagStyles.swift */; };
+		ABA75DDB1D99E10400B64705 /* AttributedStringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */; };
+		ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
+		ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
+		ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
+		ABA75DE01D99E10400B64705 /* StyleAttributeTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5D1D96F02F00273936 /* StyleAttributeTransformation.swift */; };
+		ABA75DE41D99E10400B64705 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
+		ABA75DF01D99E10F00B64705 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA41D96F06800273936 /* Compatibility.swift */; };
+		ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */; };
+		ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAF1D96F06800273936 /* XMLTagStyleBuilderTests.swift */; };
+		ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA71D96F06800273936 /* NSAttributedStringDebugTests.swift */; };
+		ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA21D96F06800273936 /* AssertHelpers.swift */; };
+		ABA75DF61D99E10F00B64705 /* UIFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAC1D96F06800273936 /* UIFontTests.swift */; };
+		ABA75DF71D99E10F00B64705 /* NSAttributedStringAppendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* NSAttributedStringAppendTests.swift */; };
+		ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */; };
+		ABA75DF91D99E10F00B64705 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
+		ABA75DFA1D99E10F00B64705 /* BonMotStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* BonMotStyleTests.swift */; };
+		ABA75DFC1D99E10F00B64705 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
+		ABA75DFE1D99E10F00B64705 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
+		ABA75DFF1D99E10F00B64705 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
+		ABA75E0A1D99E43300B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		ABA75E0E1D99F9D500B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
 		ABCBFD601D96E61100FAD37A /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCBFDA01D96E7F300FAD37A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
 		ABCD3D6B1D96F02F00273936 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
@@ -118,6 +146,13 @@
 			remoteGlobalIDString = ABCD3DCB1D96F6A500273936;
 			remoteInfo = "BonMot-tvOS";
 		};
+		ABA75E051D99E12800B64705 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABCBFD2F1D96E41D00FAD37A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABA75DCC1D99E10400B64705;
+			remoteInfo = "BonMot-watchOS";
+		};
 		ABCBFD611D96E61100FAD37A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ABCBFD2F1D96E41D00FAD37A /* Project object */;
@@ -132,6 +167,9 @@
 		AB9C18D11D9975CE00A54787 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		ABA75DEA1D99E10400B64705 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABA75E031D99E10F00B64705 /* BonMot-watchOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-watchOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABA75E091D99E43300B64705 /* Tracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		ABCBFD571D96E61000FAD37A /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCBFD5F1D96E61100FAD37A /* BonMot-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -179,6 +217,22 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		ABA75DE31D99E10400B64705 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA75DE41D99E10400B64705 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABA75DFB1D99E10F00B64705 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA75DFC1D99E10F00B64705 /* BonMot.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABCBFD531D96E61000FAD37A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,6 +316,8 @@
 				ABCD3E051D96F6E200273936 /* BonMot-tvOSTests.xctest */,
 				ABCD3E251D980E4900273936 /* BonMot.framework */,
 				ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */,
+				ABA75DEA1D99E10400B64705 /* BonMot.framework */,
+				ABA75E031D99E10F00B64705 /* BonMot-watchOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,6 +341,7 @@
 				ABCD3D5D1D96F02F00273936 /* StyleAttributeTransformation.swift */,
 				ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
+				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				ABCD3D581D96F02F00273936 /* Platform.swift */,
 				ABCD3D551D96F02F00273936 /* Compatibility.swift */,
 				ABCD3D5B1D96F02F00273936 /* Special.swift */,
@@ -335,6 +392,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		ABA75DE51D99E10400B64705 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABCBFD541D96E61000FAD37A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,6 +423,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		ABA75DCC1D99E10400B64705 /* BonMot-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABA75DE71D99E10400B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOS" */;
+			buildPhases = (
+				ABA75DCD1D99E10400B64705 /* Sources */,
+				ABA75DE31D99E10400B64705 /* Frameworks */,
+				ABA75DE51D99E10400B64705 /* Headers */,
+				ABA75DE61D99E10400B64705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BonMot-watchOS";
+			productName = "BonMot-iOS";
+			productReference = ABA75DEA1D99E10400B64705 /* BonMot.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ABA75DEC1D99E10F00B64705 /* BonMot-watchOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABA75E001D99E10F00B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOSTests" */;
+			buildPhases = (
+				ABA75DEF1D99E10F00B64705 /* Sources */,
+				ABA75DFB1D99E10F00B64705 /* Frameworks */,
+				ABA75DFD1D99E10F00B64705 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABA75E061D99E12800B64705 /* PBXTargetDependency */,
+			);
+			name = "BonMot-watchOSTests";
+			productName = "BonMot-iOSTests";
+			productReference = ABA75E031D99E10F00B64705 /* BonMot-watchOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ABCBFD561D96E61000FAD37A /* BonMot-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABCBFD681D96E61100FAD37A /* Build configuration list for PBXNativeTarget "BonMot-iOS" */;
@@ -505,11 +605,29 @@
 				ABCD3DEE1D96F6E200273936 /* BonMot-tvOSTests */,
 				ABCD3E071D980E4900273936 /* BonMot-OSX */,
 				ABCD3E271D980E5500273936 /* BonMot-OSXTests */,
+				ABA75DCC1D99E10400B64705 /* BonMot-watchOS */,
+				ABA75DEC1D99E10F00B64705 /* BonMot-watchOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		ABA75DE61D99E10400B64705 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABA75DFD1D99E10F00B64705 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA75DFE1D99E10F00B64705 /* EBGaramond12-Regular.otf in Resources */,
+				ABA75DFF1D99E10F00B64705 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABCBFD551D96E61000FAD37A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -561,6 +679,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		ABA75DCD1D99E10400B64705 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA75DD01D99E10400B64705 /* StyleAttributes.swift in Sources */,
+				ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */,
+				ABA75DD21D99E10400B64705 /* Platform.swift in Sources */,
+				ABA75DD61D99E10400B64705 /* AttributedStringStyle.swift in Sources */,
+				ABA75DD81D99E10400B64705 /* Special.swift in Sources */,
+				ABA75DD91D99E10400B64705 /* TagStyles.swift in Sources */,
+				ABA75DDB1D99E10400B64705 /* AttributedStringStylePart.swift in Sources */,
+				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
+				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
+				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
+				ABA75DE01D99E10400B64705 /* StyleAttributeTransformation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABA75DEF1D99E10F00B64705 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA75DF01D99E10F00B64705 /* Compatibility.swift in Sources */,
+				ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */,
+				ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */,
+				ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */,
+				ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */,
+				ABA75DF61D99E10F00B64705 /* UIFontTests.swift in Sources */,
+				ABA75DF71D99E10F00B64705 /* NSAttributedStringAppendTests.swift in Sources */,
+				ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */,
+				ABA75DF91D99E10F00B64705 /* Helpers.swift in Sources */,
+				ABA75DFA1D99E10F00B64705 /* BonMotStyleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ABCBFD521D96E61000FAD37A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -577,6 +730,7 @@
 				ABCD3D7B1D96F02F00273936 /* InternalAdaptations.swift in Sources */,
 				ABCD3D731D96F02F00273936 /* Special.swift in Sources */,
 				ABCD3D761D96F02F00273936 /* TagStyles.swift in Sources */,
+				ABA75E0A1D99E43300B64705 /* Tracking.swift in Sources */,
 				ABCD3D781D96F02F00273936 /* AdaptiveAttributeHelpers.swift in Sources */,
 				ABCD3D6C1D96F02F00273936 /* AttributedStringStylePart.swift in Sources */,
 				ABCD3D801D96F02F00273936 /* UIKit+Helpers.swift in Sources */,
@@ -623,6 +777,7 @@
 				ABCD3DD61D96F6A500273936 /* InternalAdaptations.swift in Sources */,
 				ABCD3DD71D96F6A500273936 /* Special.swift in Sources */,
 				ABCD3DD81D96F6A500273936 /* TagStyles.swift in Sources */,
+				ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */,
 				ABCD3DD91D96F6A500273936 /* AdaptiveAttributeHelpers.swift in Sources */,
 				ABCD3DDA1D96F6A500273936 /* AttributedStringStylePart.swift in Sources */,
 				ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */,
@@ -657,6 +812,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA75E0E1D99F9D500B64705 /* Tracking.swift in Sources */,
 				ABCD3E0B1D980E4900273936 /* StyleAttributes.swift in Sources */,
 				ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */,
 				ABCD3E111D980E4900273936 /* AttributedStringStyle.swift in Sources */,
@@ -698,6 +854,11 @@
 			target = ABCD3DCB1D96F6A500273936 /* BonMot-tvOS */;
 			targetProxy = AB9C18CF1D9965B100A54787 /* PBXContainerItemProxy */;
 		};
+		ABA75E061D99E12800B64705 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABA75DCC1D99E10400B64705 /* BonMot-watchOS */;
+			targetProxy = ABA75E051D99E12800B64705 /* PBXContainerItemProxy */;
+		};
 		ABCBFD621D96E61100FAD37A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABCBFD561D96E61000FAD37A /* BonMot-iOS */;
@@ -706,6 +867,66 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		ABA75DE81D99E10400B64705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ./Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		ABA75DE91D99E10400B64705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = ./Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		ABA75E011D99E10F00B64705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = ./Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+			};
+			name = Debug;
+		};
+		ABA75E021D99E10F00B64705 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = ./Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+			};
+			name = Release;
+		};
 		ABCBFD4A1D96E41D00FAD37A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -992,6 +1213,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		ABA75DE71D99E10400B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABA75DE81D99E10400B64705 /* Debug */,
+				ABA75DE91D99E10400B64705 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABA75E001D99E10F00B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABA75E011D99E10F00B64705 /* Debug */,
+				ABA75E021D99E10F00B64705 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ABCBFD321D96E41D00FAD37A /* Build configuration list for PBXProject "BonMot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

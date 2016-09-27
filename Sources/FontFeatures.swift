@@ -60,26 +60,6 @@ public enum NumberSpacing: FontFeatureProvider {
     }
 }
 
-/// An enumeration representing the tracking to be applied.
-public enum Tracking {
-    case point(CGFloat)
-    case adobe(CGFloat)
-
-    func kerning(forFont font: BONFont?) -> CGFloat {
-        switch self {
-        case .point(let kernValue):
-            return kernValue
-        case .adobe(let adobeTracking):
-            let AdobeTrackingDivisor: CGFloat = 1000.0
-            if font == nil {
-                print("Can not apply tracking to style when no font is defined, using 0 instead")
-            }
-            let pointSize = font?.pointSize ?? 0
-            return pointSize * (adobeTracking / AdobeTrackingDivisor)
-        }
-    }
-}
-
 extension FontFeatureProvider {
     /// Return a dictionary representing one feature for the attributes key in the font attributes
     func featureAttribute() -> StyleAttributes {

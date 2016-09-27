@@ -13,6 +13,7 @@
 
 extension NSAttributedString {
 
+    #if os(iOS) || os(tvOS) || os(OSX)
     /// Convenience initializer to embed an image in an attributed string. The passed in attributes will be added
     /// to the attributedString so the style can pass through, even if the attributes do not effect the image.
     ///
@@ -33,19 +34,22 @@ extension NSAttributedString {
         string.addAttributes(attributes, range: NSRange(location: 0, length: string.length))
         self.init(attributedString: string)
     }
-
-    /// Helper function for the constructor above to improve legibility.
     #if swift(>=3.0)
     public static func image(_ image: BONImage, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
         return NSAttributedString(image: image, attributes: style.style(attributes: attributes))
-    }
-    public static func text(_ string: String, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
-        return NSAttributedString(string: string, attributes: style.style(attributes: attributes))
     }
     #else
     public static func image(image: BONImage, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
         return NSAttributedString(image: image, attributes: style.style(attributes: attributes))
     }
+    #endif
+    #endif
+
+    #if swift(>=3.0)
+    public static func text(_ string: String, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
+        return NSAttributedString(string: string, attributes: style.style(attributes: attributes))
+    }
+    #else
     public static func text(string: String, attributes: StyleAttributes = [:], style: AttributedStringStyle = BonMot()) -> NSAttributedString {
         return NSAttributedString(string: string, attributes: style.style(attributes: attributes))
     }
@@ -90,10 +94,14 @@ extension NSAttributedString {
             case .space:
                 continue // substituting {space} for " " makes strings hard to read
             case .objectReplacementCharacter:
-                if let attribute = self.attribute(NSAttachmentAttributeName, at: index, effectiveRange: nil) as? NSTextAttachment,
-                    let image = attribute.image {
-                    replacementString = String(format: "image%.3gx%.3g", image.size.width, image.size.height)
-                }
+                #if os(iOS) || os(tvOS) || os(OSX)
+                    if let attribute = self.attribute(NSAttachmentAttributeName, at: index, effectiveRange: nil) as? NSTextAttachment,
+                        let image = attribute.image {
+                        replacementString = String(format: "image%.3gx%.3g", image.size.width, image.size.height)
+                    }
+                #else
+                    break
+                #endif
             default:
                 break
             }
@@ -162,6 +170,7 @@ extension NSMutableAttributedString {
         }
     }
 
+    #if os(iOS) || os(tvOS) || os(OSX)
     /// Append the image to the end of the attributed string. Apply the specified style on top of the attributes at
     /// the end of the attributed string if style is specified, otherwise just use the attributes at the end of the
     /// attributed string.
@@ -173,6 +182,7 @@ extension NSMutableAttributedString {
     public final func extend(with image: BONImage, style: StyleAttributeTransformation?) {
         append(NSAttributedString(image: image, attributes: extendingAttributes(with: style)))
     }
+    #endif
 
     /// Append a tab stop to the attributed string, and configure the tab to end `tabStopWithSpacer` points after the
     /// end of the current attributed string. If the tabStops are the default tab stops, the tab stops will be cleared out
@@ -244,6 +254,7 @@ extension NSMutableAttributedString {
         append(NSAttributedString(string: string, attributes: extendingAttributes(with: style)))
     }
 
+    #if os(iOS) || os(tvOS) || os(OSX)
     /// Append the image to the end of the attributed string with the attributes at the end of the attributed string.
     ///
     /// - parameter image: The image to append.
@@ -254,6 +265,6 @@ extension NSMutableAttributedString {
     public final func extend(with image: BONImage) {
         append(NSAttributedString(image: image, attributes: extendingAttributes(with: nil)))
     }
-
+    #endif
 }
 

@@ -8,14 +8,14 @@
 
 #if os(OSX)
     import AppKit
-let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
-let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
-let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
+    let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
+    let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
+    let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
 #else
     import UIKit
-let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
-let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
-let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
+    let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
+    let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
 #endif
 import BonMot
 

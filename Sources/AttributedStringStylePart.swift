@@ -14,7 +14,6 @@
 public enum AttributedStringStylePart {
     case initialAttributes(StyleAttributes)
     case font(BONFont)
-    case textStyle(BonMotTextStyle)
     case link(NSURL)
     case backgroundColor(BONColor)
     case textColor(BONColor)
@@ -22,9 +21,13 @@ public enum AttributedStringStylePart {
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
     case alignment(NSTextAlignment)
+    #if os(iOS) || os(tvOS) || os(OSX)
     case fontFeature(FontFeatureProvider)
-    #if os(OSX)
-    #else
+    #endif
+    #if os(iOS) || os(tvOS)
+    case textStyle(BonMotTextStyle)
+    #endif
+    #if os(iOS) || os(tvOS)
     case adapt(AdaptiveStyle)
     #endif
     case style(StyleAttributeTransformation)
@@ -81,8 +84,6 @@ extension AttributedStringStyle {
             self.initialAttributes = attributes
         case let .font(font):
             self.font = font
-        case let .textStyle(textStyle):
-            self.textStyle = textStyle
         case let .link(link):
             self.link = link
         case let .backgroundColor(backgroundColor):
@@ -97,8 +98,6 @@ extension AttributedStringStyle {
             self.baselineOffset = baselineOffset
         case let .alignment(alignment):
             self.alignment = alignment
-        case let .fontFeature(featureProvider):
-            self.fontFeatureProviders.append(featureProvider)
         case let .style(style):
             self.adaptations.append(style)
         case let .tracking(tracking):
@@ -128,13 +127,17 @@ extension AttributedStringStyle {
         case let .hyphenationFactor(hyphenationFactor):
             self.hyphenationFactor = hyphenationFactor
         default:
-            #if os(OSX)
-            #else
+            #if os(iOS) || os(tvOS)
                 if case let .adapt(style) = stylePart {
                     self.adaptations.append(style)
                 }
+                if case let .fontFeature(featureProvider) = stylePart {
+                    self.fontFeatureProviders.append(featureProvider)
+                }
+                if case let .textStyle(textStyle) = stylePart {
+                    self.textStyle = textStyle
+                }
             #endif
-
         }
     }
 }

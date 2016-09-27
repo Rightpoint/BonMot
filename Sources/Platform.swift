@@ -15,9 +15,6 @@
     let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
     let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
     let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
-
-    // All BonMotTextStyle references should be #if'd.
-    public typealias BonMotTextStyle = String
 #else
     import UIKit
     public typealias BONColor = UIColor
@@ -28,6 +25,9 @@
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
     let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
     let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+#endif
+
+#if os(iOS) || os(tvOS)
 #if swift(>=3.0)
     public typealias BonMotTextStyle = UIFontTextStyle
     public typealias BonMotContentSizeCategory = UIContentSizeCategory
@@ -35,7 +35,6 @@
     public typealias BonMotTextStyle = String
     public typealias BonMotContentSizeCategory = String
 #endif
-
 #endif
 
 #if swift(>=3.0)
@@ -59,5 +58,3 @@
         return style
     }
 #endif
-
-public typealias BonMotI = AttributedStringStyle
