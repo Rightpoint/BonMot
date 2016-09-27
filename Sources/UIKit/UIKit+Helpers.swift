@@ -18,7 +18,8 @@ extension UIFont {
         }
     }
 
-    @nonobjc final var bon_textStyle: BonMotTextStyle? {
+    @objc(bon_textStyle)
+    public final var textStyle: BonMotTextStyle? {
         guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
             return nil
         }

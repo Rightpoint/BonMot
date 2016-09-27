@@ -62,7 +62,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         case .body:
             font = UIFont(descriptor: font.fontDescriptor, size: AdaptiveStyle.adaptBody(designatedSize: pointSize, for: contentSizeCategory))
         case .preferred:
-            if let textStyle = font.bon_textStyle {
+            if let textStyle = font.textStyle {
                 font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: traitCollection)
             }
             else {

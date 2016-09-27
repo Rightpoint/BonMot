@@ -45,10 +45,12 @@ import BonMot
     extension NSLineBreakMode {
         @nonobjc static var byClipping = NSLineBreakMode.ByClipping
         @nonobjc static var byWordWrapping = NSLineBreakMode.ByWordWrapping
+        @nonobjc static var byTruncatingMiddle = NSLineBreakMode.ByTruncatingMiddle
     }
 
     extension NSWritingDirection {
         @nonobjc static var leftToRight = NSWritingDirection.LeftToRight
+        @nonobjc static var rightToLeft = NSWritingDirection.RightToLeft
         @nonobjc static var natural = NSWritingDirection.Natural
     }
 
