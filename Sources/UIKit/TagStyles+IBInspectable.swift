@@ -9,8 +9,8 @@ import UIKit
 
 extension UILabel {
     /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
-    @IBInspectable
-    public var bonMotStyleName: String? {
+    @IBInspectable @objc(bon_styleName)
+    public var styleName: String? {
         get { return nil }
         set { bonMotStyle = TagStyles.shared.style(forName:newValue, initialAttributes: [NSFontAttributeName: font]) }
     }
@@ -20,8 +20,8 @@ extension UITextField {
     /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
     ///
     /// NOTE: he style is applied to both the text and placeholder text. If you plan on styling them differently, use attributed strings.
-    @IBInspectable
-    public var bonMotStyleName: String? {
+    @IBInspectable @objc(bon_styleName)
+    public var styleName: String? {
         get { return nil }
         set {
             guard let font = font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }
@@ -34,8 +34,8 @@ extension UITextView {
     /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
     ///
     /// NOTE: This will configure a zero width space in the text property if the font has never been set to obtain the default font behavior. See UIKitTests.testTextFieldPropertyBehavior for more information.
-    @IBInspectable
-    public var bonMotStyleName: String? {
+    @IBInspectable @objc(bon_styleName)
+    public var styleName: String? {
         get { return nil }
         set {
             // If the text property is not and has not been set, the font property is nil.
@@ -51,8 +51,8 @@ extension UITextView {
 
 extension UIButton {
     /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
-    @IBInspectable
-    public var bonMotStyleName: String? {
+    @IBInspectable @objc(bon_styleName)
+    public var styleName: String? {
         get { return nil }
         set {
             guard let font = titleLabel?.font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }

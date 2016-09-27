@@ -12,7 +12,7 @@ import Foundation
 @objc(BONTagStyles)
 public class TagStyles: NSObject {
 
-    /// A shared repository of styles. The shared TagStyle is used by the Interface Builder bonMotStyleName property.
+    /// A shared repository of styles. The shared TagStyle is used by the Interface Builder styleName property.
     /// This singleton is per-populated with 3 values for Dynamic Text. "control", "body", and "preferred"
     #if os(iOS) || os(tvOS)
     public static var shared = TagStyles(
