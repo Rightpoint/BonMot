@@ -38,12 +38,18 @@ extension UITextView {
     public var styleName: String? {
         get { return nil }
         set {
-            // If the text property is not and has not been set, the font property is nil.
-            // Configure an empty space if this happens. 
-            if font == nil && text.lengthOfBytes(using: String.Encoding.utf8) == 0 {
-                text = "\(Special.zeroWidthSpace)"
+            var font = self.font
+            if font == nil {
+                // If the text property is not and has not been set, the font property is nil. Use the platform specific default values here
+                // See UIKitTests.testTextFieldPropertyBehavior
+                #if os(iOS)
+                    font = UIFont.systemFont(ofSize: 12)
+                #elseif os(tvOS)
+                    font = UIFont.systemFont(ofSize: 38)
+                #else
+                    fatalError("Unsupported Mystery Platform")
+                #endif
             }
-            guard let font = font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }
             bonMotStyle = TagStyles.shared.style(forName:newValue, initialAttributes: [NSFontAttributeName: font])
         }
     }
