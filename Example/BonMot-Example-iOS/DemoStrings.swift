@@ -30,7 +30,7 @@ enum DemoStrings {
         .textColor(.raizlabsRed)
     )
 
-    static let colorString = NSAttributedString(attributedStrings: [
+    static let colorString = NSAttributedString.joined([
         gray.attributedString(from: "I want to be different. If everyone is wearing "),
         blackBG.attributedString(from: " black, "),
         gray.attributedString(from: " I want to be wearing "),
@@ -122,7 +122,7 @@ enum DemoStrings {
         .baselineOffset(8)
     )
 
-    static let imageString = NSMutableAttributedString(attributedStrings: [
+    static let imageString = NSAttributedString.joined([
         .text("2", style: imageStyle),
         .image(UIImage(named: "bee")!),
         .image(UIImage(named: "oar")!),
@@ -137,7 +137,7 @@ enum DemoStrings {
         .textColor(.darkGray),
         .baselineOffset(10)
     )
-    static let noSpaceString = NSMutableAttributedString(attributedStrings: [
+    static let noSpaceString = NSAttributedString.joined([
         ("barn", "This"),
         ("bee", "string"),
         ("bug", "is"),
@@ -154,7 +154,7 @@ enum DemoStrings {
             return string
     }, separator: .text(" "))
 
-    static let heartsString = NSMutableAttributedString(attributedStrings: (0..<20).makeIterator().map() { i in
+    static let heartsString = NSAttributedString.joined((0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
         return BonMot(.baselineOffset(offset)).attributedString(from: "❤️")
     })

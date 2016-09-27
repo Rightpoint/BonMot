@@ -25,7 +25,7 @@ class NSAttributedStringAppendTests: XCTestCase {
 
     func testBasicJoin() {
         let parts = [NSAttributedString(string: "A"), NSAttributedString(string: "B"), NSAttributedString(string: "C")]
-        let string = NSAttributedString(attributedStrings: parts, separator: NSAttributedString(string: "-"))
+        let string = NSAttributedString.joined(parts, separator: NSAttributedString(string: "-"))
         XCTAssertEqual("A-B-C", string.string)
     }
 

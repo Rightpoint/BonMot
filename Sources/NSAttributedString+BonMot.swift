@@ -55,6 +55,16 @@ extension NSAttributedString {
     }
     #endif
 
+    #if swift(>=3.0)
+    public static func joined(_ attributedStrings: [NSAttributedString], separator: NSAttributedString? = nil, removeTrailingKerning: Bool = true) -> NSAttributedString {
+        return NSAttributedString(attributedStrings: attributedStrings, separator: separator, removeTrailingKerning: removeTrailingKerning)
+    }
+    #else
+    public static func joined(attributedStrings: [NSAttributedString], separator: NSAttributedString? = nil, removeTrailingKerning: Bool = true) -> NSAttributedString {
+        return NSAttributedString(attributedStrings: attributedStrings, separator: separator, removeTrailingKerning: removeTrailingKerning)
+    }
+    #endif
+
 
     /// Convenience initializer to join a collection of attributed strings with a separator attributed string.
     ///
