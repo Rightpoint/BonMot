@@ -137,7 +137,7 @@ extension AttributedStringStyle {
                     self.fontFeatureProviders.append(featureProvider)
                 }
                 else if case let .textStyle(textStyle) = stylePart {
-                    self.textStyle = textStyle
+                    self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
                 }
             #endif
         }

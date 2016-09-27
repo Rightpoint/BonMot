@@ -13,53 +13,36 @@
 #endif
 
 public struct AttributedStringStyle {
-    public var initialAttributes: StyleAttributes
-    public var font: BONFont?
-    public var link: NSURL?
-    public var backgroundColor: BONColor?
-    public var textColor: BONColor?
-    public var underline: (NSUnderlineStyle, BONColor?)?
-    public var strikethrough: (NSUnderlineStyle, BONColor?)?
-    public var baselineOffset: CGFloat?
-    public var adaptations: [StyleAttributeTransformation]
-    public var tracking: Tracking?
+    public var initialAttributes: StyleAttributes = [:]
+    public var font: BONFont? = nil
+    public var link: NSURL? = nil
+    public var backgroundColor: BONColor? = nil
+    public var textColor: BONColor? = nil
+    public var underline: (NSUnderlineStyle, BONColor?)? = nil
+    public var strikethrough: (NSUnderlineStyle, BONColor?)? = nil
+    public var baselineOffset: CGFloat? = nil
 
-    public var lineSpacing: CGFloat?
-    public var paragraphSpacingAfter: CGFloat?
-    public var alignment: NSTextAlignment?
-    public var firstLineHeadIndent: CGFloat?
-    public var headIndent: CGFloat?
-    public var tailIndent: CGFloat?
-    public var lineBreakMode: NSLineBreakMode?
-    public var minimumLineHeight: CGFloat?
-    public var maximumLineHeight: CGFloat?
-    public var baseWritingDirection: NSWritingDirection?
-    public var lineHeightMultiple: CGFloat?
-    public var paragraphSpacingBefore: CGFloat?
-    public var hyphenationFactor: Float?
+    public var lineSpacing: CGFloat? = nil
+    public var paragraphSpacingAfter: CGFloat? = nil
+    public var alignment: NSTextAlignment? = nil
+    public var firstLineHeadIndent: CGFloat? = nil
+    public var headIndent: CGFloat? = nil
+    public var tailIndent: CGFloat? = nil
+    public var lineBreakMode: NSLineBreakMode? = nil
+    public var minimumLineHeight: CGFloat? = nil
+    public var maximumLineHeight: CGFloat? = nil
+    public var baseWritingDirection: NSWritingDirection? = nil
+    public var lineHeightMultiple: CGFloat? = nil
+    public var paragraphSpacingBefore: CGFloat? = nil
+    public var hyphenationFactor: Float? = nil
 
-    #if os(iOS)
-    public var textStyle: BonMotTextStyle?
-    public var fontFeatureProviders: [FontFeatureProvider]
-    #elseif os(tvOS)
-    public var textStyle: BonMotTextStyle?
-    public var fontFeatureProviders: [FontFeatureProvider]
-    #elseif os(OSX)
-    public var fontFeatureProviders: [FontFeatureProvider]
+    #if os(OSX) || os(iOS) || os(tvOS)
+    public var fontFeatureProviders: [FontFeatureProvider] = []
     #endif
+    public var adaptations: [StyleAttributeTransformation] = []
+    public var tracking: Tracking? = nil
 
-    public init() {
-        initialAttributes = [:]
-        adaptations = []
-        #if os(iOS) || os(tvOS)
-        textStyle = nil
-        #endif
-        #if os(iOS) || os(tvOS) || os(OSX)
-        fontFeatureProviders = []
-        #endif
-        (font, link, backgroundColor, textColor, underline, strikethrough, baselineOffset, tracking, lineSpacing, paragraphSpacingAfter, alignment, firstLineHeadIndent, headIndent, tailIndent, minimumLineHeight, maximumLineHeight, lineHeightMultiple, paragraphSpacingBefore) =
-            (nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil)
-    }
+    public init() {}
     public func derive(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
         var style = self
         configureBlock(&style)
@@ -76,14 +59,6 @@ extension AttributedStringStyle: StyleAttributeTransformation {
         for (key, value) in initialAttributes {
             theAttributes[key] = value
         }
-        var font = self.font
-        #if os(iOS) || os(tvOS)
-            if let textStyle = textStyle {
-                if font == nil {
-                    font = UIFont.preferredFont(forTextStyle: textStyle)
-                }
-            }
-        #endif
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
         theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
         theAttributes.update(possibleValue: backgroundColor, forKey: NSBackgroundColorAttributeName)
@@ -178,7 +153,7 @@ extension AttributedStringStyle {
         hyphenationFactor = stringStyle.hyphenationFactor ?? hyphenationFactor
 
         #if os(iOS) || os(tvOS) || os(OSX)
-        fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)
+            fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)
         #endif
         adaptations.append(contentsOf: stringStyle.adaptations)
         tracking = stringStyle.tracking ?? tracking

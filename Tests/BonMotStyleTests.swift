@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import BonMot
+@testable import BonMot
 
 class StyleAttributeTransformationTests: XCTestCase {
 
@@ -21,13 +21,13 @@ class StyleAttributeTransformationTests: XCTestCase {
     }
 
     func testTextStyle() {
-        let font = UIFont.preferredFont(forTextStyle: titleTextStyle)
         let style = BonMot(.textStyle(titleTextStyle))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes().count == 1)
-            BONAssert(attributes: style.attributes(), query: { $0.alignment }, value: .center)
-
-            BONAssert(attributes: style.attributes(), key: NSFontAttributeName, value: font)
+            let font = style.attributes()[NSFontAttributeName] as? UIFont
+            let fontTextStyle = font?.bon_textStyle
+            XCTAssertEqual(fontTextStyle, titleTextStyle)
+            print(fontTextStyle, titleTextStyle)
         }
     }
 
@@ -229,9 +229,6 @@ class StyleAttributeTransformationTests: XCTestCase {
     static var fullStyle: AttributedStringStyle = {
         let terribleValue = CGFloat(1000000)
         var fullStyle = AttributedStringStyle()
-        #if os(iOS) || os(tvOS)
-            fullStyle.textStyle = differentTextStyle
-        #endif
         fullStyle.font = UIFont.italicSystemFont(ofSize: 88)
         fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
         fullStyle.backgroundColor = .colorC
