@@ -15,25 +15,25 @@ matrix:
       env:
         - XCODE_SDK=macosx
           XCODE_ACTION=build
-	  XCODE_SCHEME=BonMot-OSX
+          XCODE_SCHEME=BonMot-OSX
           XCODE_DESTINATION="arch=x86_64"
     - osx_image: xcode8
       env:
         - XCODE_SDK=iphonesimulator
           XCODE_ACTION="build-for-testing test-without-building"
-	  XCODE_SCHEME=BonMot-iOS
+          XCODE_SCHEME=BonMot-iOS
           XCODE_DESTINATION="name=iPhone 6s"
     - osx_image: xcode8
       env:
         - XCODE_SDK=appletvsimulator
           XCODE_ACTION="build-for-testing test-without-building"
- 	  XCODE_SCHEME=BonMot-tvOS
+          XCODE_SCHEME=BonMot-tvOS
           XCODE_DESTINATION="name=Apple TV 1080p"
     - osx_image: xcode8
       env:
         - XCODE_SDK=watchsimulator
           XCODE_ACTION=build
- 	  XCODE_SCHEME=BonMot-watchOS
+          XCODE_SCHEME=BonMot-watchOS
           XCODE_DESTINATION="name=Apple Watch - 38mm"
     - osx_image: xcode8
       env:
