@@ -11,6 +11,9 @@
     import UIKit
 #endif
 
+// This is not supported by watchOS
+#if os(iOS) || os(tvOS) || os(OSX)
+
 /// Protocol to provide values to be used by UIFontFeatureTypeIdentifierKey and UIFontFeatureSelectorIdentifierKey.
 public protocol FontFeatureProvider {
     func featureSettings() -> (Int, Int)
@@ -70,3 +73,5 @@ extension FontFeatureProvider {
         ]
     }
 }
+
+#endif

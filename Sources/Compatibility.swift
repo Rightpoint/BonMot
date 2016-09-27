@@ -175,7 +175,7 @@
     }
 
     extension UIFont {
-        @available(iOS 10.0, *)
+        @available(iOS 10.0, tvOS 10.0, *)
         @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
             #if swift(>=2.3)
                 return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)

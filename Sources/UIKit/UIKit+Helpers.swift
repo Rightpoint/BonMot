@@ -44,7 +44,7 @@ extension UITraitCollection {
                 }
             }
         #elseif swift(>=2.3)
-            if #available(iOS 10.0, *) {
+            if #available(iOS 10.0, tvOS 10.0, *) {
                 if preferredContentSizeCategory != UIContentSizeCategoryUnspecified {
                     return preferredContentSizeCategory
                 }

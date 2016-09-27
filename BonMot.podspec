@@ -10,20 +10,18 @@ Pod::Spec.new do |s|
   s.author           = { "Zev Eisenberg" => "zev.eisenberg@raizlabs.com" }
   s.source           = { :git => "https://github.com/Raizlabs/BonMot.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/ZevEisenberg'
-
-  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
-  s.frameworks = 'UIKit'
+  s.ios.deployment_target = '9.0'
+  s.ios.source_files = 'Sources/**/*.swift'
 
-  s.default_subspec = 'Core'
+  s.tvos.deployment_target = '9.0'
+  s.tvos.source_files = 'Sources/**/*.swift'
 
-  s.subspec 'Core' do |sp|
-    sp.source_files = 'Sources/*.swift'
-  end
+  s.osx.deployment_target = '10.11'
+  s.osx.source_files = 'Sources/*.swift'  
 
-  s.subspec 'UIKit' do |sp|
-    sp.source_files = 'Sources/UIKit/*.swift'
-  end
-
-end
+  s.watchos.deployment_target = '2.2'
+  s.watchos.source_files = 'Sources/*.swift'
+ 
+ end
