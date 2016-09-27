@@ -13,14 +13,17 @@ import XCTest
     import UIKit
 #if swift(>=3.0)
     let titleTextStyle = UIFontTextStyle.title1
+    let differentTextStyle = UIFontTextStyle.title2
     @available(iOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #elseif swift(>=2.3)
     let titleTextStyle = UIFontTextStyleTitle1
+    let differentTextStyle = UIFontTextStyleTitle2
     @available(iOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)
 #else
     let titleTextStyle = UIFontTextStyleTitle1
+    let differentTextStyle = UIFontTextStyleTitle2
  #endif
 #endif
 
@@ -30,7 +33,10 @@ import XCTest
             return red
         }
         static var colorB: BONColor {
-            return red
+            return blue
+        }
+        static var colorC: BONColor {
+            return purple
         }
     }
 #else
@@ -39,7 +45,10 @@ import XCTest
             return redColor()
         }
         static var colorB: BONColor {
-            return redColor()
+            return blueColor()
+        }
+        static var colorC: BONColor {
+            return purpleColor()
         }
     }
 #endif
