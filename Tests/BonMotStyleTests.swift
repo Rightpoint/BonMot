@@ -20,6 +20,17 @@ class StyleAttributeTransformationTests: XCTestCase {
         }
     }
 
+    func testTextStyle() {
+        let font = UIFont.preferredFont(forTextStyle: titleTextStyle)
+        let style = BonMot(.textStyle(titleTextStyle))
+        for (style, fullStyle) in checks(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes().count == 1)
+            BONAssert(attributes: style.attributes(), query: { $0.alignment }, value: .center)
+
+            BONAssert(attributes: style.attributes(), key: NSFontAttributeName, value: font)
+        }
+    }
+
     func testURL() {
         let url = NSURL(string: "http://apple.com/")!
         let style = BonMot(.link(url))
@@ -32,7 +43,6 @@ class StyleAttributeTransformationTests: XCTestCase {
 
     func testStrikethroughStyle() {
         let style = BonMot(.strikethrough(.byWord, .colorA))
-
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes().count == 2)
             BONAssert(attributes: style.attributes(), key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
