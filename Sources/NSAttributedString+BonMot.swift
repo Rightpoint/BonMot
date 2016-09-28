@@ -27,7 +27,7 @@ extension NSAttributedString {
         let attachment = NSTextAttachment()
         attachment.image = image
         attachment.bounds = CGRect(origin: CGPoint(x: 0, y: baselinesOffsetForAttachment), size: image.size)
-        let string = NSAttributedString(attachment: attachment).mutableCopy() as! NSMutableAttributedString
+        let string = NSAttributedString(attachment: attachment).bonMutableCopy
         var attributes = attributes
         // Remove the baseline offset from the attributes so it isn't applied twice
         attributes[NSBaselineOffsetAttributeName] = nil

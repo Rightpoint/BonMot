@@ -130,6 +130,10 @@
 		ABCD3E351D980E5500273936 /* StyleAttributeTransformationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* StyleAttributeTransformationTests.swift */; };
 		ABCD3E371D980E5500273936 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCD3E411D99558000273936 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCD3E401D99558000273936 /* AppKit.framework */; };
+		CDF7E97F1D9C612800FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +219,7 @@
 		ABCD3E251D980E4900273936 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCD3E401D99558000273936 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +350,7 @@
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				ABCD3D581D96F02F00273936 /* Platform.swift */,
 				ABCD3D551D96F02F00273936 /* Compatibility.swift */,
+				CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */,
 				ABCD3D5B1D96F02F00273936 /* Special.swift */,
 				ABCD3D5E1D96F02F00273936 /* TagStyles.swift */,
 				ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */,
@@ -818,6 +824,7 @@
 				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
 				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
 				ABA75DE01D99E10400B64705 /* StyleAttributeTransformation.swift in Sources */,
+				CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */,
 				AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -849,6 +856,7 @@
 				ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */,
 				ABCD3D711D96F02F00273936 /* Platform.swift in Sources */,
 				ABCD3D7E1D96F02F00273936 /* TagStyles+IBInspectable.swift in Sources */,
+				CDF7E97F1D9C612800FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3D7D1D96F02F00273936 /* StyleableTextContainer.swift in Sources */,
 				ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */,
 				ABCD3D6B1D96F02F00273936 /* AttributedStringStyle.swift in Sources */,
@@ -896,6 +904,7 @@
 				ABCD3DD01D96F6A500273936 /* AdaptiveStyle.swift in Sources */,
 				ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */,
 				ABCD3DD21D96F6A500273936 /* TagStyles+IBInspectable.swift in Sources */,
+				CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3DD31D96F6A500273936 /* StyleableTextContainer.swift in Sources */,
 				ABCD3DD41D96F6A500273936 /* AdaptableTextContainer.swift in Sources */,
 				ABCD3DD51D96F6A500273936 /* AttributedStringStyle.swift in Sources */,
@@ -948,6 +957,7 @@
 				ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */,
 				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,
 				ABCD3E1B1D980E4900273936 /* StyleAttributeTransformation.swift in Sources */,
+				CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3E1D1D980E4900273936 /* FontFeatures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
