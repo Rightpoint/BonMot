@@ -39,14 +39,14 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         static let type = "type"
         static let size = "size"
         static let family = "family"
+    }
 
-        struct Value {
-            static let control = "control"
-            static let body = "body"
-            static let preferred = "preferred"
-            static let above = "above"
-            static let below = "below"
-        }
+    struct Value {
+        static let control = "control"
+        static let body = "body"
+        static let preferred = "preferred"
+        static let above = "above"
+        static let below = "below"
     }
 
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
@@ -81,36 +81,36 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         switch self {
         case let .above(size, family):
             return [
-                Key.type: Key.Value.above,
+                Key.type: Value.above,
                 Key.size: size,
                 Key.family: family,
             ]
         case let .below(size, family):
             return [
-                Key.type: Key.Value.below,
+                Key.type: Value.below,
                 Key.size: size,
                 Key.family: family,
             ]
         case .control:
-            return [Key.type: Key.Value.control]
+            return [Key.type: Value.control]
         case .body:
-            return [Key.type: Key.Value.body]
+            return [Key.type: Value.body]
         case .preferred:
-            return [Key.type: Key.Value.preferred]
+            return [Key.type: Value.preferred]
         }
     }
 
     static func from(representation dictionary: [String: StyleAttributeValue]) -> AdaptiveStyleTransformation? {
         switch (dictionary[Key.type] as? String, dictionary[Key.size] as? CGFloat, dictionary[Key.family] as? String)  {
-        case (Key.Value.control?, nil, nil):
+        case (Value.control?, nil, nil):
             return AdaptiveStyle.control
-        case (Key.Value.body?, nil, nil):
+        case (Value.body?, nil, nil):
             return AdaptiveStyle.body
-        case (Key.Value.preferred?, nil, nil):
+        case (Value.preferred?, nil, nil):
             return AdaptiveStyle.preferred
-        case let (Key.Value.above?, size?, family?):
+        case let (Value.above?, size?, family?):
             return AdaptiveStyle.above(size: size, family: family)
-        case let (Key.Value.below?, size?, family?):
+        case let (Value.below?, size?, family?):
             return AdaptiveStyle.below(size: size, family: family)
         default:
             return nil
