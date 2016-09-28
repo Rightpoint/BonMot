@@ -1,0 +1,12 @@
+disabled_rules: # rule identifiers to exclude from running
+  - line_length
+  - variable_name
+
+statement_position:
+  statement_mode: uncuddled_else
+
+function_body_length:
+  - 50 # warning
+
+opt_in_rules:
+  - vertical_whitespace

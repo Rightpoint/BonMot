@@ -159,6 +159,7 @@
 			buildPhases = (
 				8C68FCB88A2099FC0ED0C459 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
+				CD4B2FD41D9B0B61007CF808 /* SwiftLint */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				73383AEA4ED2E87C93EC9D83 /* [CP] Embed Pods Frameworks */,
@@ -267,6 +268,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BonMot-Example-iOS/Pods-BonMot-Example-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		CD4B2FD41D9B0B61007CF808 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
