@@ -29,7 +29,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     }
 
     func testImageRepresentationHasSize() {
-        XCTAssertEqual(NSAttributedString(image: imageForTest).debugRepresentation.string, "{image36x36}")
+        XCTAssertEqual(imageForTest.attributedString().debugRepresentation.string, "{image36x36}")
     }
 
     func testThatNSAttributedStringSpeaksUTF16() {

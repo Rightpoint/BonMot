@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
 		AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
@@ -169,6 +170,7 @@
 
 /* Begin PBXFileReference section */
 		AB167C8F1D997A2C0084808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
 		AB9C18D11D9975CE00A54787 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */,
 				ABCD3D5C1D96F02F00273936 /* StyleAttributes.swift */,
 				ABCD3D5D1D96F02F00273936 /* StyleAttributeTransformation.swift */,
+				AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */,
 				ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
@@ -366,11 +369,11 @@
 				ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */,
 				ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */,
 				ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */,
+				ABCD3D611D96F02F00273936 /* AdaptiveAttributeHelpers.swift */,
+				ABCD3D641D96F02F00273936 /* InternalAdaptations.swift */,
 				ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */,
 				ABCD3D661D96F02F00273936 /* StyleableTextContainer.swift */,
 				ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */,
-				ABCD3D611D96F02F00273936 /* AdaptiveAttributeHelpers.swift */,
-				ABCD3D641D96F02F00273936 /* InternalAdaptations.swift */,
 				ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */,
 				ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */,
 			);
@@ -852,6 +855,7 @@
 			files = (
 				ABCD3D7A1D96F02F00273936 /* AdaptiveStyleTransformation.swift in Sources */,
 				ABCD3D7F1D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
+				AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */,
 				ABCD3D741D96F02F00273936 /* StyleAttributes.swift in Sources */,
 				ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */,
 				ABCD3D711D96F02F00273936 /* Platform.swift in Sources */,

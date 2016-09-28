@@ -18,23 +18,20 @@ let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
 class NSAttributedStringAppendTests: XCTestCase {
 
     func testImageConstructor() {
-        let imageString = NSAttributedString(image: imageForTest)
+        let imageString = imageForTest.attributedString()
         let string = "\(Special.objectReplacementCharacter)"
         XCTAssertEqual(imageString.string, string)
     }
 
     func testBasicJoin() {
-        let parts = [NSAttributedString(string: "A"), NSAttributedString(string: "B"), NSAttributedString(string: "C")]
-        let string = NSAttributedString.joined(parts, separator: NSAttributedString(string: "-"))
+        let string = NSAttributedString.compose(with: ["A", "B", "C"], separator: NSAttributedString(string: "-"))
         XCTAssertEqual("A-B-C", string.string)
     }
 
-    func testAttributesArePassedAlongAppend() {
-        let chainString = BonMot(.initialAttributes(["test": "test"])).attributedString(from: imageForTest)
-        chainString.extend(with: "Test")
-        chainString.extend(with: imageForTest)
-        chainString.extend(with: "Test")
+    func testAttributesArePassedAlongExtend() {
+        let style = BonMot(.initialAttributes(["test": "test"]))
 
+        let chainString = NSAttributedString.compose(with: [imageForTest, "Test", imageForTest], style: style).attributedString()
         let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
 
         XCTAssertEqual(attributes["test"] as? String, "test")
@@ -43,19 +40,19 @@ class NSAttributedStringAppendTests: XCTestCase {
     func testTabStopsWithSpacer() {
         let stringWidth = CGFloat(115)
 
-        let multiTabLine = NSMutableAttributedString()
-        multiTabLine.extend(with: "astringwithsomewidth")
-        multiTabLine.extend(withTabSpacer: 10)
-        multiTabLine.extend(with: imageForTest)
-        multiTabLine.extend(withTabSpacer: 10)
-        multiTabLine.extend(with: "astringwithsomewidth")
-        multiTabLine.extend(with: imageForTest)
+        let multiTabLine = NSAttributedString.compose(with: [
+            "astringwithsomewidth",
+            Text.spacer(ofWidth: 10),
+            imageForTest,
+            Text.spacer(ofWidth: 10),
+            "astringwithsomewidth",
+            imageForTest,
+            ]).attributedString()
 
-        let stringTab = NSMutableAttributedString(string: "astringwithsomewidth")
-        stringTab.extend(withTabSpacer: 10)
 
-        let imageTab = NSMutableAttributedString(image: imageForTest)
-        imageTab.extend(withTabSpacer: 10)
+        let stringTab = NSAttributedString.compose(with: ["astringwithsomewidth", Text.shiftHeadIndent(after: 10)])
+
+        let imageTab = NSAttributedString.compose(with: [imageForTest, Text.shiftHeadIndent(after: 10)])
 
         let stringsWithTabStops: [(CGFloat, NSAttributedString)] = [
             (imageForTest.size.width + 10, imageTab),
@@ -74,10 +71,33 @@ class NSAttributedStringAppendTests: XCTestCase {
     }
 
     func testInitialParagraphStyle() {
-        let string = NSMutableAttributedString(string: "Test", attributes: [NSParagraphStyleAttributeName: NSParagraphStyle()])
-        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle)
-        string.extend(withTabSpacer: 10)
-        string.extend(with: "ParagraphStyle mutable promotion")
+        let style = BonMot(.initialAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
+
+        let string = NSAttributedString.compose(with: [Text.shiftHeadIndent(after: 10), "ParagraphStyle mutable promotion"], style: style)
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
+
+
+    func testCompositionWithChangingParagraphStyles() {
+        let string = NSAttributedString.compose(with: [
+            " lineSpacing "
+                .styled(with: .lineSpacing(1.8)),
+            " headIndent "
+                .styled(with: .headIndent(10)),
+            ], style: BonMot(.firstLineHeadIndent(5)))
+        guard let paragraphStart = string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
+            XCTFail("No paragraph style at start")
+            return
+        }
+        XCTAssertEqual(paragraphStart.lineSpacing, 1.8)
+        XCTAssertEqual(paragraphStart.firstLineHeadIndent, 5)
+
+        guard let paragraphEnd = string.attribute(NSParagraphStyleAttributeName, at: string.length - 1, effectiveRange: nil) as? NSParagraphStyle else {
+            XCTFail("No paragraph style at end")
+            return
+        }
+        XCTAssertEqual(paragraphEnd.headIndent, 10)
+        XCTAssertEqual(paragraphEnd.firstLineHeadIndent, 5)
+    }
+
 }

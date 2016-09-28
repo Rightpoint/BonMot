@@ -8,37 +8,26 @@
 import BonMot
 
 enum DemoStrings {
-    static let lineHeight = BonMotC({ style in
-        style.font = UIFont(name: "SuperClarendon-Black", size: 20)!
-        style.lineHeightMultiple = 1.8
-        style.adaptations.append(AdaptiveStyle.control)
-    })
-
-    static let gray = lineHeight.derive { style in
+    static let gray = BonMotC({ style in
         style.font = UIFont(name: "GillSans-Light", size: 20)!
+        style.lineHeightMultiple = 1.8
         style.textColor = .darkGray
-    }
-    static let blackBG = lineHeight.derive(
-        .textColor(.white),
-        .backgroundColor(.black)
-    )
-    static let redBG = lineHeight.derive(
-        .textColor(.white),
-        .backgroundColor(.raizlabsRed)
-    )
-    static let redTxt = lineHeight.derive(
-        .textColor(.raizlabsRed)
-    )
-
-    static let colorString = NSAttributedString.joined([
-        gray.attributedString(from: "I want to be different. If everyone is wearing "),
-        blackBG.attributedString(from: " black, "),
-        gray.attributedString(from: " I want to be wearing "),
-        redBG.attributedString(from: " red. "),
-        redTxt.attributedString(from: "\nMaria Sharapova "),
-        BonMot(.baselineOffset(-4.0), .textColor(.raizlabsRed)).attributedString(from: UIImage(named: "Tennis Racket")!)
-        ])
-
+    })
+    static let colorString = NSAttributedString.compose(with: [
+        "I want to be different. If everyone is wearing ",
+        " black, ".styled(with: .textColor(.white),
+                          .backgroundColor(.black),
+                          .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
+        " I want to be wearing ",
+        " red. ".styled(with: .textColor(.white),
+                        .backgroundColor(.raizlabsRed),
+                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
+        "\nMaria Sharapova ".styled(with: .textColor(.raizlabsRed),
+                                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!),
+                                    .headIndent(10)),
+        UIImage(named: "Tennis Racket")!.styled(with:
+            .textColor(.raizlabsRed), .baselineOffset(-4.0))
+    ], style: gray)
 
     static let trackingString = BonMot(
         .tracking(.adobe(300)),
@@ -77,36 +66,31 @@ enum DemoStrings {
         ]
 
     static let indentationStrings: [NSAttributedString] = [
-        {
-            let string = BonMot(
+        NSAttributedString.compose(with: [
+            UIImage(named: "robot")!,
+            Text.shiftHeadIndent(after: 4.0),
+            "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”"
+            ], style: BonMot(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
-            ).attributedString(from: UIImage(named: "robot")!)
-            string.extend(withTabSpacer: 4.0)
-            string.extend(with: "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”")
-            return string
-        }(),
-        {
-            let string = BonMot(
-                .font(UIFont(name: "AvenirNextCondensed-Regular", size: 18.0)!),
+        )),
+        NSAttributedString.compose(with: [
+            "🍑 →",
+            Text.shiftHeadIndent(after: 4.0),
+            "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
+            ], style: BonMot(
+                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .textColor(.darkGray),
                 .adapt(AdaptiveStyle.control)
-            ).attributedString(from: "🍑 →")
-            string.extend(withTabSpacer: 4.0)
-            string.extend(with: "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount.")
-            return string
-        }(),
+        )),
         {
             let style = BonMot(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
             )
-            let appleBullet = style.attributedString(from: "🍑 →")
-            appleBullet.extend(withTabSpacer: 4.0)
-
             var styler = SimpleXMLStyler(tagStyles: TagStyles(styles: ["li": style]))
-            styler.add(prefix: appleBullet, forElement: "li")
-            styler.add(suffix: NSAttributedString(string: "\n"), forElement: "li")
+            styler.add(prefix: .compose(with: ["🍑 →", Text.shiftHeadIndent(after: 4.0)], style: style), forElement: "li")
+            styler.add(suffix: .compose(with: ["\n"]), forElement: "li")
 
             let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
             guard let string = try? NSAttributedString(fromXML: xml, styler: styler) else {
@@ -118,18 +102,17 @@ enum DemoStrings {
 
     static let imageStyle = BonMot(
         .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
-        .adapt(.control),
-        .baselineOffset(8)
+        .adapt(.control)
     )
+    static let imageString = NSAttributedString.compose(with: [
+        "2".styled(with: .baselineOffset(8)),
+        UIImage(named: "bee")!,
+        UIImage(named: "oar")!,
+        UIImage(named: "knot")!,
+        "2".styled(with: .baselineOffset(8)),
+        UIImage(named: "bee")!
+        ], style: imageStyle, separator: " ")
 
-    static let imageString = NSAttributedString.joined([
-        .text("2", style: imageStyle),
-        .image(UIImage(named: "bee")!),
-        .image(UIImage(named: "oar")!),
-        .image(UIImage(named: "knot")!),
-        .text("2", style: imageStyle),
-        .image(UIImage(named: "bee")!),
-    ], separator: imageStyle.attributedString(from: " "))
 
     static let noSpaceTextStyle = BonMot(
         .font(.systemFont(ofSize: 17)),
@@ -137,7 +120,7 @@ enum DemoStrings {
         .textColor(.darkGray),
         .baselineOffset(10)
     )
-    static let noSpaceString = NSAttributedString.joined([
+    static let noSpaceString = NSAttributedString.compose(with: [
         ("barn", "This"),
         ("bee", "string"),
         ("bug", "is"),
@@ -147,16 +130,12 @@ enum DemoStrings {
         ("gift", "and"),
         ("pin", "no-break"),
         ("robot", "spaces"),
-        ].map() { imageName, text in
-            let string = BonMot().attributedString(from: UIImage(named: imageName)!)
-            string.extend(with: Special.noBreakSpace.description, style: noSpaceTextStyle)
-            string.extend(with: text, style: noSpaceTextStyle)
-            return string
-    }, separator: .text(" "))
+        ].map() { NSAttributedString.compose(with: [UIImage(named: $0)!, $1.styled(with: noSpaceTextStyle)], separator: Special.noBreakSpace) }
+        , separator: " ")
 
-    static let heartsString = NSAttributedString.joined((0..<20).makeIterator().map() { i in
+    static let heartsString = NSAttributedString.compose(with: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
-        return BonMot(.baselineOffset(offset)).attributedString(from: "❤️")
+        return "❤️".styled(with: .baselineOffset(offset))
     })
 
     static func CustomStoryboard(identifier theIdentifier: String) -> AttributedStringStyle {
@@ -170,4 +149,5 @@ enum DemoStrings {
         .attributedString(from: "Dynamic UIKit elements with custom fonts")
     static let preferredFonts = DemoStrings.CustomStoryboard(identifier: "PreferredFonts")
         .attributedString(from: "Preferred Fonts")
+
 }
