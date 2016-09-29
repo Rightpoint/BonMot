@@ -16,8 +16,14 @@ extension NSAttributedString {
     /// - parameter defaultStyle: The style to apply if there is no style specified in the attributes
     /// - returns: Attributes with fonts updated to the specified content size category.
     public static func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes {
-        let attributes = AdaptiveAttributeHelpers.adapt(attributes: theAttributes, to: traitCollection) ?? theAttributes
-        return attributes
+        guard let adaptations: [AdaptiveStyleTransformation] = EmbededTransformationHelpers.transformations(from: theAttributes) else {
+            return theAttributes
+        }
+        var styleAttributes = theAttributes
+        for adaptiveStyle in adaptations {
+            styleAttributes = adaptiveStyle.adapt(attributes: styleAttributes, to: traitCollection) ?? styleAttributes
+        }
+        return styleAttributes
     }
 
     /// Create a new NSAttributedString adapted to the new trait collection. This will re-apply the embedded style
@@ -31,8 +37,27 @@ extension NSAttributedString {
         guard let newString = mutableCopy() as? NSMutableAttributedString else {
             fatalError("Force cast of mutable copy failed.")
         }
-        AdaptiveAttributeHelpers.adapt(string: newString, to: traitCollection)
+        let wholeRange = NSRange(location: 0, length: length)
+        enumerateAttributes(in: wholeRange, options: []) { (attributes, range, stop) in
+            newString.setAttributes(NSAttributedString.adapt(attributes: attributes, to: traitCollection), range: range)
+        }
+        newString.applyEmbeddedTransformations()
         return newString
     }
 
+}
+
+extension NSMutableAttributedString {
+    @nonobjc final func applyEmbeddedTransformations() {
+        let wholeRange = NSRange(location: 0, length: length)
+
+        enumerateAttributes(in: wholeRange, options: []) { (attributes, range, stop) in
+            guard let transformations: [AttributedStringTransformation] = EmbededTransformationHelpers.transformations(from: attributes) else {
+                return
+            }
+            for transformation in transformations {
+                transformation.update(string: self, in: range, with: attributes)
+            }
+        }
+    }
 }

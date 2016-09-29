@@ -19,6 +19,9 @@ public enum AdaptiveStyle {
 /// to the StyleAttributes when styled, but the transformation is only triggered once
 /// the string or StyleAttributes are adapted to a trait collection.
 extension AdaptiveStyle: StyleAttributeTransformation {
+    enum AttributeName {
+        static let nonAdaptedFont = "BonMotNonAdaptedFont"
+    }
 
     public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
         guard let font = theAttributes[NSFontAttributeName] as? BONFont else {
@@ -26,8 +29,8 @@ extension AdaptiveStyle: StyleAttributeTransformation {
             return theAttributes
         }
         var attributes = theAttributes
-        attributes = AdaptiveAttributeHelpers.add(designedFont: font, to: attributes)
-        attributes = AdaptiveAttributeHelpers.add(adaptiveTransformation: self, to: attributes)
+        attributes[AttributeName.nonAdaptedFont] = font
+        attributes = EmbededTransformationHelpers.embed(transformation: self, to: attributes)
         return attributes
     }
 
@@ -35,22 +38,8 @@ extension AdaptiveStyle: StyleAttributeTransformation {
 
 extension AdaptiveStyle: AdaptiveStyleTransformation {
 
-    struct Key {
-        static let type = "type"
-        static let size = "size"
-        static let family = "family"
-    }
-
-    struct Value {
-        static let control = "control"
-        static let body = "body"
-        static let preferred = "preferred"
-        static let above = "above"
-        static let below = "below"
-    }
-
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
-        guard var font = theAttributes[AdaptiveAttributeHelpers.AttributeName.nonAdaptedFont] as? BONFont else {
+        guard var font = theAttributes[AttributeName.nonAdaptedFont] as? BONFont else {
             fatalError("The designated font is set when the adaptive style is added")
         }
         let pointSize = font.pointSize
@@ -77,31 +66,49 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         return styleAttributes
     }
 
+}
+
+extension AdaptiveStyle: EmbededTransformation {
+
+    struct Key {
+        static let family = "family"
+    }
+
+    struct Value {
+        static let control = "control"
+        static let body = "body"
+        static let preferred = "preferred"
+        static let above = "above"
+        static let below = "below"
+    }
+
     var representation: StyleAttributes {
         switch self {
         case let .above(size, family):
             return [
-                Key.type: Value.above,
-                Key.size: size,
+                EmbededTransformationHelpers.Key.type: Value.above,
+                EmbededTransformationHelpers.Key.size: size,
                 Key.family: family,
             ]
         case let .below(size, family):
             return [
-                Key.type: Value.below,
-                Key.size: size,
+                EmbededTransformationHelpers.Key.type: Value.below,
+                EmbededTransformationHelpers.Key.size: size,
                 Key.family: family,
             ]
         case .control:
-            return [Key.type: Value.control]
+            return [EmbededTransformationHelpers.Key.type: Value.control]
         case .body:
-            return [Key.type: Value.body]
+            return [EmbededTransformationHelpers.Key.type: Value.body]
         case .preferred:
-            return [Key.type: Value.preferred]
+            return [EmbededTransformationHelpers.Key.type: Value.preferred]
         }
     }
 
-    static func from(representation dictionary: [String: StyleAttributeValue]) -> AdaptiveStyleTransformation? {
-        switch (dictionary[Key.type] as? String, dictionary[Key.size] as? CGFloat, dictionary[Key.family] as? String)  {
+    static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbededTransformation? {
+        switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
+                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat,
+                dictionary[Key.family] as? String)  {
         case (Value.control?, nil, nil):
             return AdaptiveStyle.control
         case (Value.body?, nil, nil):

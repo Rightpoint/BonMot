@@ -39,7 +39,7 @@
 
 #if swift(>=3.0)
     public func BonMot(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        return AttributedStringStyle.from(parts: parts)
+        return AttributedStringStyle.from(parts)
     }
 
     public func BonMotC(_ configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {

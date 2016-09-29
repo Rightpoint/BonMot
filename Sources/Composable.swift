@@ -6,10 +6,14 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+    import AppKit
+#else
+    import UIKit
+#endif
 
 public protocol Composable {
-    func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle)
+    func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle)
 }
 
 public extension Composable {
@@ -20,47 +24,71 @@ public extension Composable {
 
     public func styled(with style: AttributedStringStyle) -> Composable {
         let string = NSMutableAttributedString()
-        self.append(to: string, style: style)
+        self.append(to: string, baseStyle: style)
         return string
     }
 
     public func styled(with parts: AttributedStringStylePart...) -> Composable {
-        return styled(with: AttributedStringStyle.from(parts: parts))
+        return styled(with: AttributedStringStyle.from(parts))
     }
 
 }
 
 public extension NSAttributedString {
 
-    static func compose(with textables: [Composable], style: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
+    @nonobjc public static func compose(with composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
-        for (index, textable) in textables.enumerated() {
-            textable.append(to: string, style: style)
+        for (index, textable) in composables.enumerated() {
+            textable.append(to: string, baseStyle: baseStyle)
             if let separator = separator {
-                if index != textables.indices.last {
-                    separator.append(to: string, style: style)
+                if index != composables.indices.last {
+                    separator.append(to: string, baseStyle: baseStyle)
                 }
             }
         }
         string.endEditing()
         return string
     }
+
+    /**
+     * Return a Composable that will add only the attributed string, and will ignore the containing style
+     */
+    public static func only(attributedString string: NSAttributedString) -> Composable {
+        return AttributedStringIgnoringStyle(string: string)
+    }
+}
+
+extension NSAttributedString: Composable {
+
+    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+        attributedString.extend(with: self, style: baseStyle)
+    }
     
+}
+
+struct AttributedStringIgnoringStyle: Composable {
+    let string: NSAttributedString
+
+    func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+        attributedString.append(string)
+    }
 }
 
 extension String: Composable {
 
-    public func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle) {
-        attributedString.append(style.attributedString(from: self))
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+        attributedString.append(baseStyle.attributedString(from: self))
     }
 
 }
 
+#if os(iOS) || os(tvOS) || os(OSX)
 extension BONImage: Composable {
 
-    public func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle) {
-        var attributes = attributedString.extendingAttributes(with: style, effectiveRange: nil)
+    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+        var range = NSRange()
+        var attributes = attributedString.extendingAttributes(with: baseStyle, effectiveRange: &range)
         let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? 0
         let attachment = NSTextAttachment()
         attachment.image = self
@@ -75,84 +103,12 @@ extension BONImage: Composable {
     }
 
 }
+#endif
 
 extension Special: Composable {
 
-    public func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle) {
-        attributedString.append(NSAttributedString(string: description, attributes: style.attributes()))
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+        attributedString.append(NSAttributedString(string: description, attributes: baseStyle.attributes()))
     }
 
-}
-
-extension NSAttributedString: Composable {
-
-    public func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle) {
-        attributedString.extend(with: self, style: style)
-    }
-
-}
-
-enum TabHelpers: Composable {
-    case spacer(CGFloat)
-    case headIndent(CGFloat)
-
-    var padding: CGFloat {
-        switch self {
-        case let .spacer(padding): return padding
-        case let .headIndent(padding): return padding
-        }
-    }
-
-    func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle) {
-        // Get the paragraph
-        var effectiveRange = NSRange(location: 0, length: 0)
-        var attributes = attributedString.extendingAttributes(with: style, effectiveRange: &effectiveRange)
-        let paragraph = StyleAttributeHelpers.paragraph(from: attributes)
-        attributes[NSParagraphStyleAttributeName] = paragraph
-
-        // Calculate the tab stop
-        let max = CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude)
-        let contentWidth = attributedString.boundingRect(with: max, options: .usesLineFragmentOrigin, context: nil).width
-        let tabStop = contentWidth + padding
-
-        if paragraph.tabStops == NSParagraphStyle.bon_default.tabStops {
-            paragraph.tabStops = []
-        }
-        if case .headIndent = self {
-            paragraph.headIndent = tabStop
-        }
-
-        paragraph.addTabStop(NSTextTab(textAlignment: .natural, location: tabStop, options: [:]))
-
-        // Append the string and update the effective range
-        attributedString.append(NSAttributedString(string: "\t"))
-        effectiveRange.length += 1
-        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: effectiveRange)
-    }
-}
-
-struct AttributedStringIgnoringStyle: Composable {
-    let string: NSAttributedString
-
-    func append(to attributedString: NSMutableAttributedString, style: AttributedStringStyle) {
-        attributedString.append(string)
-    }
-}
-
-public struct Text {
-
-    public static func spacer(ofWidth width: CGFloat) -> Composable {
-        return TabHelpers.spacer(width)
-    }
-
-    public static func shiftHeadIndent(after width: CGFloat) -> Composable {
-        return TabHelpers.headIndent(width)
-    }
-
-    /**
-     * Return a Composable that will add only the attributed string, and will ignore the containing style
-     */
-    public static func only(attributedString string: NSAttributedString) -> Composable {
-        return AttributedStringIgnoringStyle(string: string)
-    }
 }

@@ -49,7 +49,8 @@ public enum AttributedStringStylePart {
 
 extension AttributedStringStyle {
 
-    public static func from(parts: [AttributedStringStylePart]) -> AttributedStringStyle {
+    #if swift(>=3.0)
+    public static func from(_ parts: [AttributedStringStylePart]) -> AttributedStringStyle {
         var style = AttributedStringStyle()
         for part in parts {
             style.update(attributedStringStylePart: part)
@@ -57,7 +58,6 @@ extension AttributedStringStyle {
         return style
     }
 
-    #if swift(>=3.0)
     public func derive(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = self
         for part in parts {
@@ -66,6 +66,14 @@ extension AttributedStringStyle {
         return style
     }
     #else
+    public static func from(parts: [AttributedStringStylePart]) -> AttributedStringStyle {
+        var style = AttributedStringStyle()
+        for part in parts {
+            style.update(attributedStringStylePart: part)
+        }
+        return style
+    }
+
     public func derive(parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = self
         for part in parts {

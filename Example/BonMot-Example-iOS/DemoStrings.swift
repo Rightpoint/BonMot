@@ -27,7 +27,7 @@ enum DemoStrings {
                                     .headIndent(10)),
         UIImage(named: "Tennis Racket")!.styled(with:
             .textColor(.raizlabsRed), .baselineOffset(-4.0))
-    ], style: gray)
+    ], baseStyle: gray)
 
     static let trackingString = BonMot(
         .tracking(.adobe(300)),
@@ -68,17 +68,17 @@ enum DemoStrings {
     static let indentationStrings: [NSAttributedString] = [
         NSAttributedString.compose(with: [
             UIImage(named: "robot")!,
-            Text.shiftHeadIndent(after: 4.0),
+            Tab.headIndent(4.0),
             "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”"
-            ], style: BonMot(
+            ], baseStyle: BonMot(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
         )),
         NSAttributedString.compose(with: [
             "🍑 →",
-            Text.shiftHeadIndent(after: 4.0),
+            Tab.headIndent(4.0),
             "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
-            ], style: BonMot(
+            ], baseStyle: BonMot(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .textColor(.darkGray),
                 .adapt(AdaptiveStyle.control)
@@ -89,7 +89,7 @@ enum DemoStrings {
                 .adapt(AdaptiveStyle.control)
             )
             var styler = SimpleXMLStyler(tagStyles: TagStyles(styles: ["li": style]))
-            styler.add(prefix: .compose(with: ["🍑 →", Text.shiftHeadIndent(after: 4.0)], style: style), forElement: "li")
+            styler.add(prefix: .compose(with: ["🍑 →", Tab.headIndent(4.0)], baseStyle: style), forElement: "li")
             styler.add(suffix: .compose(with: ["\n"]), forElement: "li")
 
             let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
@@ -111,7 +111,7 @@ enum DemoStrings {
         UIImage(named: "knot")!,
         "2".styled(with: .baselineOffset(8)),
         UIImage(named: "bee")!
-        ], style: imageStyle, separator: " ")
+        ], baseStyle: imageStyle, separator: " ")
 
 
     static let noSpaceTextStyle = BonMot(
@@ -130,7 +130,7 @@ enum DemoStrings {
         ("gift", "and"),
         ("pin", "no-break"),
         ("robot", "spaces"),
-        ].map() { NSAttributedString.compose(with: [UIImage(named: $0)!, $1.styled(with: noSpaceTextStyle)], separator: Special.noBreakSpace) }
+        ].map() { NSAttributedString.compose(with: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) }
         , separator: " ")
 
     static let heartsString = NSAttributedString.compose(with: (0..<20).makeIterator().map() { i in

@@ -22,6 +22,7 @@
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias BonMotStringTransform = String
+    typealias CharacterSet = NSCharacterSet
 
     struct StringTransform {
         static let toUnicodeName = NSStringTransformToUnicodeName
@@ -35,20 +36,35 @@
         @nonobjc final func lowercased() -> String {
             return lowercaseString
         }
-
         @nonobjc final func applyingTransform(transform: String, reverse: Bool) -> NSString? {
             return stringByApplyingTransform(transform, reverse: reverse)
         }
-
         @nonobjc final func replacingOccurrences(of string: String, with replacement: String) -> String {
+
             return stringByReplacingOccurrencesOfString(string, withString: replacement)
         }
-
+        @nonobjc final func rangeOfCharacter(from characterSet: CharacterSet, options: NSStringCompareOptions, range: NSRange) -> NSRange {
+            return rangeOfCharacterFromSet(characterSet, options: options, range: range)
+        }
+        @nonobjc final func range(of string: String, options: NSStringCompareOptions, range: NSRange) -> NSRange {
+            return rangeOfString(string, options: options, range: range)
+        }
     }
 
     extension NSMutableString {
         @nonobjc final func replacingOccurrences(of target: String, with string: String, options: NSStringCompareOptions, range: NSRange) {
             replaceOccurrencesOfString(target, withString: string, options: options, range: range)
+        }
+    }
+    extension NSStringCompareOptions {
+        @nonobjc static var backwards: NSStringCompareOptions {
+            return .BackwardsSearch
+        }
+    }
+
+    extension NSCharacterSet {
+        @nonobjc static var newlines: NSCharacterSet {
+            return newlineCharacterSet()
         }
     }
 

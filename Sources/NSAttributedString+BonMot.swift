@@ -72,7 +72,7 @@ extension NSAttributedString {
     }
 
     /// Helper function to determine the attributes to use when appending content.
-    internal final func extendingAttributes(with style: StyleAttributeTransformation?, effectiveRange range: NSRangePointer?) -> StyleAttributes {
+    internal final func extendingAttributes(with style: StyleAttributeTransformation?, effectiveRange range: NSRangePointer) -> StyleAttributes {
         let lastIndex = length - (length > 0 ? 1 : 0)
         let finalAttributes = length > 0 ? attributes(at: lastIndex, effectiveRange: range) : [:]
         return style?.style(attributes: finalAttributes) ?? finalAttributes
