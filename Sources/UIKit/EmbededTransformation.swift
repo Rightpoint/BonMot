@@ -97,7 +97,7 @@ extension Tab: EmbededTransformation {
 
     struct Value {
         static let spacer = "spacer"
-        static let headIndent = "spacer"
+        static let headIndent = "headIndent"
     }
 
     static func from(representation dictionary: StyleAttributes) -> EmbededTransformation? {
