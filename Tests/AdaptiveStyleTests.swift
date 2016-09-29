@@ -170,6 +170,24 @@ class AdaptiveStyleTests: XCTestCase {
         }
     }
 
+    func testTabAdaptation() {
+        func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {
+            guard let paragraph = string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
+                XCTFail("Unable to get paragraph")
+                return 0
+            }
+            return paragraph.tabStops[0].location
+        }
+        EBGaramondLoader.loadFontIfNeeded()
+        let style = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .fontFeature(NumberSpacing.monospaced), .adapt(.control))
+        let tabTestL = NSAttributedString.compose(with: ["Q", Tab.headIndent(10)], baseStyle: style)
+        XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestL), 26.12, accuracy: 0.01)
+        let tabTestXS = tabTestL.adapt(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
+        XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXS), 23.70, accuracy: 0.01)
+        let tabTestXXXL = tabTestL.adapt(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraExtraExtraLarge.compatible))
+        XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXXXL), 30.95, accuracy: 0.01)
+    }
+
 }
 
 #endif

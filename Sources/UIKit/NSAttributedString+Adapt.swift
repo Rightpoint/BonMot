@@ -34,14 +34,13 @@ extension NSAttributedString {
     ///
     /// - returns: A new NSAttributedString with the style updated to the new trait collection.
     public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
-        guard let newString = mutableCopy() as? NSMutableAttributedString else {
-            fatalError("Force cast of mutable copy failed.")
-        }
-        let wholeRange = NSRange(location: 0, length: length)
-        enumerateAttributes(in: wholeRange, options: []) { (attributes, range, stop) in
+        let newString = mutableStringCopy()
+        newString.beginEditing()
+        enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, stop) in
             newString.setAttributes(NSAttributedString.adapt(attributes: attributes, to: traitCollection), range: range)
         }
         newString.applyEmbeddedTransformations()
+        newString.endEditing()
         return newString
     }
 
@@ -49,9 +48,7 @@ extension NSAttributedString {
 
 extension NSMutableAttributedString {
     @nonobjc final func applyEmbeddedTransformations() {
-        let wholeRange = NSRange(location: 0, length: length)
-
-        enumerateAttributes(in: wholeRange, options: []) { (attributes, range, stop) in
+        enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, stop) in
             guard let transformations: [AttributedStringTransformation] = EmbededTransformationHelpers.transformations(from: attributes) else {
                 return
             }
