@@ -17,9 +17,7 @@ extension NSAttributedString {
     /// images, and unassigned unicode characters with a visual string.
     @objc(bon_debugRepresentation)
     public var debugRepresentation: NSAttributedString {
-        guard let debug = self.mutableCopy() as? NSMutableAttributedString else {
-            fatalError("Bad copy")
-        }
+        let debug = self.mutableStringCopy()
         var replacements = Array<(range: NSRange, string: String)>()
         for (index, unicode) in string.unicodeScalars.enumerated() {
             guard let special = Special(rawValue: unicode) else { continue }

@@ -31,7 +31,7 @@ internal enum StyleAttributeHelpers {
             result = paragraphStyle
         }
         else if let paragraphStyle = theObject as? NSParagraphStyle {
-            result = paragraphStyle.mutableParagraphStyle()
+            result = paragraphStyle.mutableParagraphStyleCopy()
         }
         else {
             result = NSMutableParagraphStyle()

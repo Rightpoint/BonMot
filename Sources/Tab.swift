@@ -74,7 +74,7 @@ extension Tab: AttributedStringTransformation {
             paragraph = existingParagraph
         }
         else if let existingParagraph = paragraphAttribute as? NSParagraphStyle {
-            paragraph = existingParagraph.mutableParagraphStyle()
+            paragraph = existingParagraph.mutableParagraphStyleCopy()
         }
         else {
             fatalError("Non paragraphStyle held in NSParagraphStyleAttributeName.")

@@ -16,7 +16,8 @@ import Foundation
 
 
 internal extension NSAttributedString {
-    @nonobjc func mutableString() -> NSMutableAttributedString {
+
+    @nonobjc func mutableStringCopy() -> NSMutableAttributedString {
         guard let copy = mutableCopy() as? NSMutableAttributedString else {
             fatalError("Failed to mutableCopy() \(self)")
         }
@@ -25,7 +26,7 @@ internal extension NSAttributedString {
 }
 
 internal extension NSParagraphStyle {
-    @nonobjc func mutableParagraphStyle() -> NSMutableParagraphStyle {
+    @nonobjc func mutableParagraphStyleCopy() -> NSMutableParagraphStyle {
         guard let copy = mutableCopy() as? NSMutableParagraphStyle else {
             fatalError("Failed to mutableCopy() \(self)")
         }
