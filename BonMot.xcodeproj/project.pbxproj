@@ -21,8 +21,6 @@
 		AB30D5121D9D9439006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB30D51D1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
 		AB30D51E1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
-		AB30D51F1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
-		AB30D5201D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
 		AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
 		AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
@@ -862,7 +860,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB30D5121D9D9439006ADC9D /* Composable.swift in Sources */,
-				AB30D5201D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */,
 				ABA75DD01D99E10400B64705 /* StyleAttributes.swift in Sources */,
 				ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */,
 				ABA75DD21D99E10400B64705 /* Platform.swift in Sources */,
@@ -1003,7 +1000,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB30D5111D9D9438006ADC9D /* Composable.swift in Sources */,
-				AB30D51F1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */,
 				ABA75E0E1D99F9D500B64705 /* Tracking.swift in Sources */,
 				ABCD3E0B1D980E4900273936 /* StyleAttributes.swift in Sources */,
 				ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */,
