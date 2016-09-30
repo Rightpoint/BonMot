@@ -20,8 +20,10 @@ public protocol FontFeatureProvider {
 }
 
 public extension BONFont {
-    /// Create a new UIFont and attempt to enable the specified font features. The returned font will have all
+    /// Create a new font and attempt to enable the specified font features. The returned font will have all
     /// features enabled that are supported by the font.
+    /// - parameter withFeatures: the features to attempt to enable on the font
+    /// - returns: a new font with the specified features enabled
     public func font(withFeatures featureProviders: [FontFeatureProvider]) -> BONFont {
         var fontAttributes = fontDescriptor.fontAttributes
         var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
@@ -64,7 +66,8 @@ public enum NumberSpacing: FontFeatureProvider {
 }
 
 extension FontFeatureProvider {
-    /// Return a dictionary representing one feature for the attributes key in the font attributes
+
+    /// - returns: a dictionary representing one feature for the attributes key in the font attributes
     func featureAttribute() -> StyleAttributes {
         let featureSettings = self.featureSettings()
         return [

@@ -14,8 +14,8 @@ extension UIApplication {
     /// and floods the change notification to the UIViewController hierarchy, which by
     /// default floods the view managed by the UIViewController.
     ///
-    /// The UIApplication delegate is also checked for conformance to AdaptableTextContainer, 
-    /// which can be a good place to update appearance proxies and invalidate any hard-wired 
+    /// The UIApplication delegate is also checked for conformance to AdaptableTextContainer,
+    /// which can be a good place to update appearance proxies and invalidate any hard-wired
     /// caches that less responsive code may have.
     public final func enableAdaptiveContentSizeMonitor() {
         #if swift(>=3.0)
@@ -32,7 +32,7 @@ extension UIApplication {
             object: nil)
     }
 
-    /// Notify the view controller hierarchy. This is an internal method.
+    // Notify the view controller hierarchy. This is an internal method.
     @objc func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: NSNotification) {
         // First notify the app delegate if it conforms to AdaptableTextContainer.
         if let container = self.delegate as? AdaptableTextContainer, let traitCollection = self.delegate?.window??.traitCollection {
@@ -51,7 +51,7 @@ extension UIApplication {
 
 extension UIViewController {
 
-    /// If the view is loaded and not installed in the view hierarchy, notify the views. 
+    /// If the view is loaded and not installed in the view hierarchy, notify the views.
     /// If the view is in the view hierarchy, it has already been notified, and do not notify again
     /// Then notify all child view controllers, then the presented view controller, if any.
     final func notifyContainedAdaptiveContentSizeContainers() {

@@ -93,5 +93,5 @@ extension NSMutableAttributedString {
         }
 
     }
-    
+
 }

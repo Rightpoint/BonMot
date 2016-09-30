@@ -14,7 +14,6 @@ let style = BonMotC() { style in
     style.textColor = .darkGray
 }
 
-
 let quote = style.attributedString(from: "I want to be different.")
 //: Extend this attributed string. This will reuse the style at the end of the string, unlike append
 quote.extend(with: " If everyone is wearing ")

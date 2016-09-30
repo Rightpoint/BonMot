@@ -15,12 +15,15 @@ public enum AdaptiveStyle {
     case below(size: CGFloat, family: String)
 }
 
-/// Adaptive styles conform to `StyleAttributeTransformation` to add the 'adaptations' 
+/// Adaptive styles conform to `StyleAttributeTransformation` to add the 'adaptations'
 /// to the StyleAttributes when styled, but the transformation is only triggered once
 /// the string or StyleAttributes are adapted to a trait collection.
 extension AdaptiveStyle: StyleAttributeTransformation {
+
     enum AttributeName {
+
         static let nonAdaptedFont = "BonMotNonAdaptedFont"
+
     }
 
     public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
@@ -71,15 +74,19 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
 extension AdaptiveStyle: EmbededTransformation {
 
     struct Key {
+
         static let family = "family"
+
     }
 
     struct Value {
+
         static let control = "control"
         static let body = "body"
         static let preferred = "preferred"
         static let above = "above"
         static let below = "below"
+
     }
 
     var representation: StyleAttributes {
@@ -108,7 +115,7 @@ extension AdaptiveStyle: EmbededTransformation {
     static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbededTransformation? {
         switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
                 dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat,
-                dictionary[Key.family] as? String)  {
+                dictionary[Key.family] as? String) {
         case (Value.control?, nil, nil):
             return AdaptiveStyle.control
         case (Value.body?, nil, nil):

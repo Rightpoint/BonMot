@@ -70,7 +70,7 @@ public enum XMLStyleRule {
     case enter(element: String, insert: Composable)
     case exit(element: String, insert: Composable)
 
-    /// The shared XMLStyleRules will be used whenever rules are not specified. 
+    /// The shared XMLStyleRules will be used whenever rules are not specified.
     /// By default, XML will be styled with the name in the shared TagStyles object.
     static var shared: [XMLStyleRule] = [.styles(TagStyles.shared)]
 }
@@ -88,7 +88,7 @@ public protocol XMLStyler {
 }
 
 /// An option set to control the behavior of the XML parsing behavior
-public struct XMLParsingOptions : OptionSet {
+public struct XMLParsingOptions: OptionSet {
     public let rawValue: Int
     public init(rawValue: Int) { self.rawValue = rawValue }
 
@@ -222,7 +222,7 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         enter(element: elementName, attributes: attributeDict)
     }
 
-    @objc fileprivate func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
+    @objc fileprivate func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
         styles.removeLast()
@@ -238,7 +238,7 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         enter(element: elementName, attributes: attributeDict)
     }
 
-    @objc private func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
+    @objc private func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
         styles.removeLast()

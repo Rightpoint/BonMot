@@ -65,6 +65,7 @@ public extension NSAttributedString {
 
         return AttributedStringIgnoringStyle(string: string)
     }
+
 }
 
 extension NSAttributedString: Composable {
@@ -72,7 +73,7 @@ extension NSAttributedString: Composable {
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
         attributedString.extend(with: self, style: baseStyle)
     }
-    
+
 }
 
 extension String: Composable {
@@ -94,7 +95,7 @@ extension BONImage: Composable {
         attachment.image = self
         attachment.bounds = CGRect(origin: CGPoint(x: 0, y: baselinesOffsetForAttachment), size: size)
 
-        let attachmentString = NSAttributedString(attachment: attachment).mutableCopy() as! NSMutableAttributedString
+        let attachmentString = NSAttributedString(attachment: attachment).mutableStringCopy()
         // Remove the baseline offset from the attributes so it isn't applied twice
         attributes[NSBaselineOffsetAttributeName] = nil
         attachmentString.addAttributes(attributes, range: NSRange(location: 0, length: attachmentString.length))

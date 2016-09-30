@@ -40,7 +40,7 @@ class NSAttributedStringDebugTests: XCTestCase {
         XCTAssertEqual(string.utf16.count, 3)
         let mutableAttributedString = NSMutableAttributedString(string: string)
         XCTAssertEqual(mutableAttributedString.string, string)
-        mutableAttributedString.replaceCharacters(in: NSMakeRange(0, 2), with: "foo")
+        mutableAttributedString.replaceCharacters(in: NSRange(location: 0, length: 2), with: "foo")
         XCTAssertEqual(mutableAttributedString.string, "fooA")
     }
 

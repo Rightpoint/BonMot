@@ -84,7 +84,7 @@
     }
 
     extension Array {
-        mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
+        mutating func append<S: SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
             appendContentsOf(newElements)
         }
     }
@@ -178,7 +178,6 @@
 
 #endif
 
-
 /// UIKit Only
 #if swift(>=3.0)
 #else
@@ -225,4 +224,3 @@
     }
 #endif
 #endif
-

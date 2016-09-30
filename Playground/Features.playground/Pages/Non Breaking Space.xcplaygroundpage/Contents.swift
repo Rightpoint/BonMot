@@ -1,6 +1,6 @@
 /*:
  # Non Breaking Space
- A non breaking space is a text character that appears like a space, but that word wrapping will not break. 
+ A non breaking space is a text character that appears like a space, but that word wrapping will not break.
 
  The example below uses this feature in conjunction with inline images to represent a collection of paired images and text.
  */

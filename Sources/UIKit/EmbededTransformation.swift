@@ -64,7 +64,7 @@ internal enum EmbededTransformationHelpers {
         }
         return results?.flatMap({ $0 })
     }
-    
+
 }
 
 extension Tracking: EmbededTransformation {
@@ -90,7 +90,7 @@ extension Tracking: EmbededTransformation {
             return [:]
         }
     }
-    
+
 }
 
 extension Tab: EmbededTransformation {
@@ -102,7 +102,7 @@ extension Tab: EmbededTransformation {
 
     static func from(representation dictionary: StyleAttributes) -> EmbededTransformation? {
         switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
-                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat)  {
+                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat) {
         case (Value.spacer?, let width?):
             return Tab.spacer(width)
         case (Value.headIndent?, let width?):
@@ -123,5 +123,5 @@ extension Tab: EmbededTransformation {
                     EmbededTransformationHelpers.Key.size: size]
         }
     }
-    
+
 }

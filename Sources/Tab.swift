@@ -48,7 +48,7 @@ extension Tab: AttributedStringTransformation {
     func update(string attributedString: NSMutableAttributedString, in range: NSRange, with attributes: StyleAttributes) {
         let string = attributedString.string as NSString
 
-        // Lookup the range this paragraph is operating on. 
+        // Lookup the range this paragraph is operating on.
         // This is the range from `range` to the preceeding newline or the start of the string.
         let precedingRange = NSRange(location: 0, length: NSMaxRange(range))
         var leadingNewline = string.rangeOfCharacter(from: CharacterSet.newlines, options: [.backwards], range: precedingRange).location
@@ -112,5 +112,5 @@ extension Tab: AttributedStringTransformation {
             tabIndex += 1
         }
     }
-    
+
 }

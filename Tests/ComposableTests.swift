@@ -52,7 +52,6 @@ class NSAttributedStringAppendTests: XCTestCase {
             "astringwithsomewidth",
             ]).attributedString()
 
-
         let imageTab = NSAttributedString.compose(with: [imageForTest, Tab.headIndent(10)])
         let stringTab = NSAttributedString.compose(with: ["astringwithsomewidth", Tab.headIndent(10)])
         let tabtabtab = NSAttributedString.compose(with: [
@@ -109,7 +108,7 @@ class NSAttributedStringAppendTests: XCTestCase {
             XCTFail("No paragraph style at end")
             return
         }
-        let addParagraphMergeSupport = true
+
         XCTAssertEqual(paragraphStart.lineSpacing, 1.8)
 //        XCTAssertEqual(paragraphStart.firstLineHeadIndent, 5)
 

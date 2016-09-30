@@ -19,7 +19,6 @@
 #endif
 import BonMot
 
-
 #if swift(>=3.0)
 #else
     typealias IndexPath = NSIndexPath
@@ -133,7 +132,7 @@ import BonMot
     }
 
     extension Array {
-        mutating func append<S : SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
+        mutating func append<S: SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
             appendContentsOf(newElements)
         }
     }
@@ -220,7 +219,6 @@ import BonMot
     }
 
 #endif
-
 
 /// UIKit Only
 #if os(iOS) || os(watchOS) || os(tvOS)
@@ -356,13 +354,11 @@ import BonMot
         static var accessibilityExtraLarge = { return UIContentSizeCategory(rawValue: UIContentSizeCategoryAccessibilityExtraLarge) }()
         static var accessibilityExtraExtraLarge = { return UIContentSizeCategory(rawValue: UIContentSizeCategoryAccessibilityExtraExtraLarge) }()
         static var accessibilityExtraExtraExtraLarge = { return UIContentSizeCategory(rawValue: UIContentSizeCategoryAccessibilityExtraExtraExtraLarge) }()
-        
+
         var compatible: BonMotContentSizeCategory {
             return rawValue
         }
     }
-    
+
 #endif
 #endif
-
-

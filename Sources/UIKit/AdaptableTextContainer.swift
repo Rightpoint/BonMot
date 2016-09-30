@@ -27,7 +27,7 @@ extension UILabel: AdaptableTextContainer {
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
-        
+
         // Update the font, then the attributed string. If the font doesn't keep in sync when
         // not using attributedText, weird things happen so update it first.
         // See UIKitTests.testLabelFontPropertyBehavior for interesting behavior.
@@ -205,9 +205,10 @@ extension UIViewController: AdaptableTextContainer {
 
 extension UIBarItem {
 
-    /// Update the titleTextAttributes, adapted to the specified UITraitCollection.
+    /// Update the `titleTextAttributes`, adapted to the specified `UITraitCollection`.
     ///
-    /// NOTE: This does not conform to AdaptableTextContainer since it is not a view or view controller.
+    /// - note: This extension does not conform to `AdaptableTextContainer` since `UIBarIterm` is not a view or view controller.
+    /// - parameter forTraitCollection: the trait collection to use when updating the text
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         for state in UIControlState.allStates {

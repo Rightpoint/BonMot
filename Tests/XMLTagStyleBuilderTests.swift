@@ -102,5 +102,5 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssertNotNil(TagStyles.shared.style(forName: "control"))
         XCTAssertNotNil(TagStyles.shared.style(forName: "preferred"))
     }
-    
+
 }

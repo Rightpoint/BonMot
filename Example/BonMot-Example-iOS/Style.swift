@@ -13,7 +13,8 @@ struct Style {
     // pretty cumbersome to implement app wide.
     //
     // Only the title of the navigation bar uses this font function.
-    static let wwdcFontScalingTable: [String: (pointSize: CGFloat, styleName: String, leading: CGFloat,  tracking: CGFloat)] = [
+    // swiftlint:disable comma
+    static let wwdcFontScalingTable: [String: (pointSize: CGFloat, styleName: String, leading: CGFloat, tracking: CGFloat)] = [
         UIContentSizeCategory.extraSmall.rawValue:                        (10.0, "Heavy",   3.0,  0.6),
         UIContentSizeCategory.small.rawValue:                             (12.0, "Heavy",   2.0,  0.4),
         UIContentSizeCategory.medium.rawValue:                            (14.0, "Roman",   1.0,  0.2),
@@ -26,8 +27,8 @@ struct Style {
         UIContentSizeCategory.accessibilityExtraLarge.rawValue:           (22.0, "Light",  -4.0, -0.2),
         UIContentSizeCategory.accessibilityExtraExtraLarge.rawValue:      (23.0, "Light",  -4.0, -0.2),
         UIContentSizeCategory.accessibilityExtraExtraExtraLarge.rawValue: (24.0, "Light",  -4.0, -0.2),
-        ]
-
+        // swiftlint:enable comma
+    ]
 
     static func wwdcFontScalingFunction(contentSizeCategory: String) -> UIFont {
         guard let info = wwdcFontScalingTable[contentSizeCategory] else {

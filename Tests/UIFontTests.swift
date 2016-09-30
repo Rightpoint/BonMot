@@ -50,7 +50,6 @@ class UIFontTests: XCTestCase {
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)
     }
 
-
 //    func testPreferredFont() {
 //        let font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
 //        let pointSize = font.pointSize
@@ -61,4 +60,3 @@ class UIFontTests: XCTestCase {
 //        }
 //    }
 }
-

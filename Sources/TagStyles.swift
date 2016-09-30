@@ -42,9 +42,9 @@ public class TagStyles: NSObject {
     /// The primary purpose of this is so the style name can be set to 'control' or 'body' and whatever font is
     /// in the chain can be adapted.
     ///
-    /// - parameter name: The name of the style to lookup
-    /// - initialAttributes: The initial attributes to pass to the style chain
-    /// - return: the configured style, or nil if none is found
+    /// - parameter forName: The name of the style to lookup
+    /// - parameter initialAttributes: The initial attributes to pass to the style chain
+    /// - returns: the configured style, or nil if none is found
     public func style(forName name: String?, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
         guard let name = name, var style = styles[name] else { return nil }
         style.update(attributes: initialAttributes)

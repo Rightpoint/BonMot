@@ -7,7 +7,7 @@
 
 import UIKit
 
-/// A StyleableTextContainer is a protocol that a text container can conform to to represent text that can be styled. This is 
+/// A StyleableTextContainer is a protocol that a text container can conform to to represent text that can be styled. This is
 /// usually a UIView subclass or an "Item" view model.
 public protocol StyleableTextContainer: AnyObject {
 
@@ -64,7 +64,7 @@ extension StyleableTextContainer {
             return nil
         }
     }
-    
+
 }
 
 extension UILabel: StyleableTextContainer {

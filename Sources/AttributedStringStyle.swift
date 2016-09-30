@@ -114,7 +114,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
 
         return theAttributes
     }
-    
+
 }
 
 extension AttributedStringStyle {

@@ -33,9 +33,9 @@ extension UIFont {
 
 extension UITraitCollection {
 
-    /// Obtain the preferredContentSizeCategory for the trait collection. This is compatible with iOS 9.x
-    /// and will use the UIApplication preferredContentSizeCategory if the trait collections
-    /// preferredContentSizeCategory is UIContentSizeCategoryUnspecified.
+    /// Obtain the `preferredContentSizeCategory` for the trait collection. This is compatible with iOS 9.x
+    /// and will use the `UIApplication` `preferredContentSizeCategory` if the trait collection's
+    /// `preferredContentSizeCategory` is `UIContentSizeCategoryUnspecified`.
     public var bon_preferredContentSizeCategory: BonMotContentSizeCategory {
         #if swift(>=3.0)
             if #available(iOS 10.0, tvOS 10.0, *) {
@@ -66,12 +66,13 @@ extension UITraitCollection {
 
 extension UIFont {
 
-    /// Return a font with the same attributes as the current font, but change the familyName
+    /// - parameter familyName: the family name to use in place of the receiver's family name
+    /// - returns: a font with the same attributes as the current font, but change the `familyName`
     final func font(familyName theFamilyName: String) -> UIFont {
         var attributes = fontDescriptor.fontAttributes
         attributes[UIFontDescriptorFamilyAttribute] = fontName
         let descriptor = UIFontDescriptor(fontAttributes: attributes)
         return UIFont(descriptor: descriptor, size: pointSize)
     }
-    
+
 }

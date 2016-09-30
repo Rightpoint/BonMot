@@ -27,7 +27,7 @@ enum DemoStrings {
                                     .headIndent(10)),
         UIImage(named: "Tennis Racket")!.styled(with:
             .textColor(.raizlabsRed), .baselineOffset(-4.0))
-    ], baseStyle: gray)
+        ], baseStyle: gray)
 
     static let trackingString = BonMot(
         .tracking(.adobe(300)),
@@ -83,7 +83,7 @@ enum DemoStrings {
                 .textColor(.darkGray),
                 .adapt(AdaptiveStyle.control)
         )),
-        {
+        ({
             let style = BonMot(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
@@ -99,7 +99,7 @@ enum DemoStrings {
                 fatalError("Unable to load XML \(xml)")
             }
             return string
-        }()
+        })()
     ]
 
     static let imageStyle = BonMot(
@@ -115,25 +115,25 @@ enum DemoStrings {
         UIImage(named: "bee")!
         ], baseStyle: imageStyle, separator: " ")
 
-
     static let noSpaceTextStyle = BonMot(
         .font(.systemFont(ofSize: 17)),
         .adapt(.control),
         .textColor(.darkGray),
         .baselineOffset(10)
     )
-    static let noSpaceString = NSAttributedString.compose(with: [
-        ("barn", "This"),
-        ("bee", "string"),
-        ("bug", "is"),
-        ("circuit", "separated"),
-        ("cut", "by"),
-        ("discount", "images"),
-        ("gift", "and"),
-        ("pin", "no-break"),
-        ("robot", "spaces"),
-        ].map() { NSAttributedString.compose(with: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) }
-        , separator: " ")
+    static let noSpaceString = NSAttributedString.compose(
+        with: [
+            ("barn", "This"),
+            ("bee", "string"),
+            ("bug", "is"),
+            ("circuit", "separated"),
+            ("cut", "by"),
+            ("discount", "images"),
+            ("gift", "and"),
+            ("pin", "no-break"),
+            ("robot", "spaces"),
+            ].map() { NSAttributedString.compose(with: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) },
+        separator: " ")
 
     static let heartsString = NSAttributedString.compose(with: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))

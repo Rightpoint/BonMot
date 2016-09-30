@@ -94,6 +94,7 @@ class StyleAttributeTransformationTests: XCTestCase {
 
     static let tensLine = #line
     static let tens: [(NSParagraphStyle) -> CGFloat] = [
+        // swiftlint:disable opening_brace
         { $0.lineSpacing },
         { $0.paragraphSpacing },
         { $0.headIndent },
@@ -104,6 +105,7 @@ class StyleAttributeTransformationTests: XCTestCase {
         { $0.lineHeightMultiple },
         { $0.paragraphSpacingBefore },
         { CGFloat($0.hyphenationFactor) },
+        // swiftlint:enable opening_brace
     ]
 
     func testParagraphStyles() {
@@ -181,7 +183,8 @@ class StyleAttributeTransformationTests: XCTestCase {
                     var style = style
                     style.font = font
                     attributes = style.attributes()
-                } else {
+                }
+                else {
                     attributes = style.style(attributes: [NSFontAttributeName: font])
                 }
                 return attributes[NSKernAttributeName] as? CGFloat ?? 0
@@ -208,10 +211,13 @@ class StyleAttributeTransformationTests: XCTestCase {
         }
     }
 
-    /// Return all the supported transfromations of the given style. It will return:
-    /// - The passed style object
-    /// - An empty style object that is updated by the passed style object
-    /// - A fully populated style object that is updated by the passed style object
+    // Note: avoiding triple-slash comment because SwiftLint doesn't like the formatting of this method for some reason.
+    // Return all the supported transfromations of the given style.
+    // - parameter for: the style to check
+    // - returns: One of the following
+    //   - the passed style object
+    //   - an empty style object that is updated by the passed style object
+    //   - a fully populated style object that is updated by the passed style object
     func checks(for style: AttributedStringStyle) -> [(style: AttributedStringStyle, fullStyle: Bool)] {
         let derived = BonMot().derive { derived in
             // Not sure why but if this line is commented out, the line after is a compilation error.

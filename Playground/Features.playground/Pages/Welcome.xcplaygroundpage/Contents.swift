@@ -5,5 +5,4 @@
  - [Extending NSMutableAttributedString](Extending%NSMutableAttributedString)
  */
 
-
 //: [Next](@next)

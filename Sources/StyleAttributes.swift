@@ -22,8 +22,9 @@ public typealias StyleAttributes = [String: StyleAttributeValue]
 // An internal namespace of helper functions for managing the contents of StyleAttributes
 internal enum StyleAttributeHelpers {
 
-    /// A function to coerce an NSMutableParagraphStyle from a value in an attributes dictionary. This will
-    /// return a mutable copy of a NSParagraphStyle, or a new NSMutableParagraphStyle if the value is nil.
+    /// A function to coerce an `NSMutableParagraphStyle` from a value in an attributes dictionary.
+    /// - parameter from: the attributes dictionary from which to extract the paragraph style
+    /// - returns: a mutable copy of an `NSParagraphStyle`, or a new `NSMutableParagraphStyle` if the value is `nil`.
     static func paragraph(from styleAttributes: StyleAttributes) -> NSMutableParagraphStyle {
         let theObject = styleAttributes[NSParagraphStyleAttributeName]
         let result: NSMutableParagraphStyle
