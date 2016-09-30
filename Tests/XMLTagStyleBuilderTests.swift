@@ -45,14 +45,13 @@ class XMLTagStyleBuilderTests: XCTestCase {
         styles.registerStyle(forName: "A", style: styleA)
 
         XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <A>style</A> is valid", rules: [.styles(styles)]))
-        XCTAssertNil(try? NSAttributedString.compose(xml: "This <B>style</B> is not registered and throws an error", rules: [.styles(styles)]))
-        XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <B>style</B> is not registered but is allowed", rules: [.styles(styles)], options: [.allowUnregisteredElements]))
+        XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <B>style</B> is not registered but that's OK", rules: [.styles(styles)]))
     }
 
     /// Verify that the string is read when fully contained
     func testFullXML() {
         let styles = TagStyles()
-        XCTAssertNotNil(try? NSAttributedString.compose(xml: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.allowUnregisteredElements, .doNotWrapXML]))
+        XCTAssertNotNil(try? NSAttributedString.compose(xml: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.doNotWrapXML]))
     }
 
     /// Basic test on some HTML-like behavior.
@@ -101,6 +100,27 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssertNotNil(TagStyles.shared.style(forName: "body"))
         XCTAssertNotNil(TagStyles.shared.style(forName: "control"))
         XCTAssertNotNil(TagStyles.shared.style(forName: "preferred"))
+    }
+
+    /// Test the line and column information returned in the error. Note that this is just testing our adapting of the column for the root node insertion.
+    func testErrorLocation() {
+        func errorLocation(forXML xml: String) -> (line: Int, column: Int) {
+            do {
+                let attributedString = try NSAttributedString.compose(xml: xml)
+                XCTFail("compose should of thrown, got \(attributedString)")
+            }
+            catch let error as XMLBuilderError {
+                return (error.line, error.column)
+            }
+            catch {
+                XCTFail("Did not get an XMLError")
+            }
+            return (0,0)
+        }
+        XCTAssertEqual(errorLocation(forXML: "Text <a ").line, 1)
+        XCTAssertEqual(errorLocation(forXML: "Text <a ").column, 7)
+        XCTAssertEqual(errorLocation(forXML: "Text \r\n <a ").line, 2)
+        XCTAssertEqual(errorLocation(forXML: "Text \r\n <a ").column, 3)
     }
 
 }

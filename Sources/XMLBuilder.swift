@@ -92,11 +92,8 @@ public struct XMLParsingOptions: OptionSet {
     public let rawValue: Int
     public init(rawValue: Int) { self.rawValue = rawValue }
 
-    /// Do not wrap the fragment with `<?xml>` and a top level element
+    /// Do not wrap the fragment with a top level element. Wrapping the XML will cause a copy, for very large strings it is recommended that you include the root node an and pass this option.
     public static let doNotWrapXML = XMLParsingOptions(rawValue: 1)
-
-    /// Allow XML elements that are not registered. No style will be used for these elements.
-    public static let allowUnregisteredElements = XMLParsingOptions(rawValue: 2)
 }
 
 /// This is a XMLStyler implementation for the StyleRules
@@ -144,6 +141,12 @@ private struct XMLRuleStyler: XMLStyler {
 
 }
 
+public struct XMLBuilderError: Error {
+    public let parserError: Error
+    public let line: Int
+    public let column: Int
+}
+
 private class XMLBuilder: NSObject, XMLParserDelegate {
     static let internalTopLevelElement = "BonMotTopLevelContainer"
 
@@ -183,7 +186,12 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
 
     func parseAttributedString() throws -> NSAttributedString {
         guard parser.parse() else {
-            throw parser.parserError!
+            let line = parser.lineNumber
+            let shiftColumn = (line == 1 && options.contains(.doNotWrapXML) == false)
+            let shiftSize = XMLBuilder.internalTopLevelElement.lengthOfBytes(using: String.Encoding.utf8) + 2
+            let column = parser.columnNumber - (shiftColumn ? shiftSize : 0)
+
+            throw XMLBuilderError(parserError: parser.parserError!, line: line, column: column)
         }
         return attributedString
     }
@@ -191,12 +199,6 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
     func parse(elementNamed elementName: String, attributeDict: [String: String]) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         let namedStyle = styler.style(forElement: elementName, attributes: attributeDict)
-        if namedStyle == nil && !options.contains(.allowUnregisteredElements) {
-            parser.abortParsing()
-            print("No registered style name for element \(elementName)")
-            return
-        }
-
         var newStyle = self.topStyle
         if let namedStyle = namedStyle {
             newStyle.update(attributedStringStyle: namedStyle)
