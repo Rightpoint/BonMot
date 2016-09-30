@@ -18,10 +18,10 @@ class StyleViewController: UITableViewController {
         ("Color", [DemoStrings.colorString]),
         ("Images", [DemoStrings.imageString, DemoStrings.noSpaceString, DemoStrings.heartsString]),
         ("Indentation", DemoStrings.indentationStrings),
-        ("Figure Style", DemoStrings.proportionalStrings),
         ("Tracking", [DemoStrings.trackingString]),
         ("Line Height", [DemoStrings.lineHeightString]),
         ("Dynamic Type", [DemoStrings.dynamcTypeUIKit, DemoStrings.preferredFonts]),
+        ("Figure Style", DemoStrings.proportionalStrings),
     ]
 
     override func viewDidLoad() {
