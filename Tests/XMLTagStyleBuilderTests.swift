@@ -115,7 +115,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
             catch {
                 XCTFail("Did not get an XMLError")
             }
-            return (0,0)
+            return (0, 0)
         }
         XCTAssertEqual(errorLocation(forXML: "Text <a ").line, 1)
         XCTAssertEqual(errorLocation(forXML: "Text <a ").column, 7)
