@@ -104,7 +104,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     /// Test the line and column information returned in the error. Note that this is just testing our adapting of the column for the root node insertion.
     func testErrorLocation() {
-        func errorLocation(forXML xml: String) -> (line: Int, column: Int) {
+        func errorLocation(forXML xml: String, _ options: XMLParsingOptions = []) -> (line: Int, column: Int) {
             do {
                 let attributedString = try NSAttributedString.compose(xml: xml)
                 XCTFail("compose should of thrown, got \(attributedString)")
@@ -121,6 +121,11 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssertEqual(errorLocation(forXML: "Text <a ").column, 7)
         XCTAssertEqual(errorLocation(forXML: "Text \r\n <a ").line, 2)
         XCTAssertEqual(errorLocation(forXML: "Text \r\n <a ").column, 3)
-    }
+
+        XCTAssertEqual(errorLocation(forXML: "<ex> <a ", [.doNotWrapXML]).line, 1)
+        XCTAssertEqual(errorLocation(forXML: "<ex> <a ", [.doNotWrapXML]).column, 7)
+        XCTAssertEqual(errorLocation(forXML: "<ex> \r\n <a ", [.doNotWrapXML]).line, 2)
+        XCTAssertEqual(errorLocation(forXML: "<ex> \r\n <a ", [.doNotWrapXML]).column, 3)
+}
 
 }
