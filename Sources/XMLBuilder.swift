@@ -26,10 +26,10 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///
     /// - returns: An NSAttributedString
-    public static func compose(xml fragment: String, styler: XMLStyler, options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public static func compose(xml fragment: String, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
-            styler: styler,
+            styler: styler ?? NSAttributedString.defaultXMLStyler,
             options: options
         )
         let attributedString = try builder.parseAttributedString()
@@ -51,15 +51,20 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///
     /// - returns: An NSAttributedString
-    public static func compose(xml fragment: String, rules: [XMLStyleRule]? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public static func compose(xml fragment: String, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
-            styler: XMLRuleStyler(rules: rules ?? XMLStyleRule.shared),
+            styler: XMLRuleStyler(rules: rules),
             options: options
         )
         let attributedString = try builder.parseAttributedString()
         return attributedString
     }
+
+    /// The default XMLStyler to use. By default this styler will look element styles in the shared TagStyler.
+    @nonobjc public static var defaultXMLStyler: XMLStyler = {
+        return XMLRuleStyler(rules: [.styles(TagStyles.shared)])
+    }()
 
 }
 
@@ -69,10 +74,6 @@ public enum XMLStyleRule {
     case style(String, AttributedStringStyle)
     case enter(element: String, insert: Composable)
     case exit(element: String, insert: Composable)
-
-    /// The shared XMLStyleRules will be used whenever rules are not specified.
-    /// By default, XML will be styled with the name in the shared TagStyles object.
-    static var shared: [XMLStyleRule] = [.styles(TagStyles.shared)]
 }
 
 /// This contract is used to transform an XML string into an attributed string.
