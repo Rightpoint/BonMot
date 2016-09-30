@@ -30,7 +30,7 @@ public class TagStyles: NSObject {
         self.styles = styles
     }
 
-    private var styles: [String: AttributedStringStyle]
+    public var styles: [String: AttributedStringStyle]
 
     public func registerStyle(forName name: String, style: AttributedStringStyle) {
         styles[name] = style

@@ -305,6 +305,7 @@
 		AB30D5021D9CB2D4006ADC9D /* Style */ = {
 			isa = PBXGroup;
 			children = (
+				ABCD3D5E1D96F02F00273936 /* TagStyles.swift */,
 				ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */,
 				ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */,
 				ABCD3D5C1D96F02F00273936 /* StyleAttributes.swift */,
@@ -318,8 +319,10 @@
 		AB30D5031D9CB2F2006ADC9D /* Composable */ = {
 			isa = PBXGroup;
 			children = (
+				ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */,
 				AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */,
 				AB30D5061D9CB4D2006ADC9D /* AttributedStringTransformation.swift */,
+				ABCD3D5B1D96F02F00273936 /* Special.swift */,
 				AB30D50B1D9CB4FE006ADC9D /* Tab.swift */,
 			);
 			name = Composable;
@@ -398,9 +401,6 @@
 			isa = PBXGroup;
 			children = (
 				ABCD3D541D96F02F00273936 /* BonMot.h */,
-				ABCD3D5B1D96F02F00273936 /* Special.swift */,
-				ABCD3D5E1D96F02F00273936 /* TagStyles.swift */,
-				ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */,
 				AB30D5031D9CB2F2006ADC9D /* Composable */,
 				AB30D5021D9CB2D4006ADC9D /* Style */,
 				AB30D5041D9CB33B006ADC9D /* Helpers */,

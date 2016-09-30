@@ -88,12 +88,14 @@ enum DemoStrings {
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
             )
-            var styler = SimpleXMLStyler(tagStyles: TagStyles(styles: ["li": style]))
-            styler.add(prefix: .compose(with: ["🍑 →", Tab.headIndent(4.0)], baseStyle: style), forElement: "li")
-            styler.add(suffix: .compose(with: ["\n"]), forElement: "li")
+            let rules: [XMLStyleRule] = [
+                .style("li", style),
+                .enter(element: "li", insert: NSAttributedString.compose(with: ["🍑 →", Tab.headIndent(4.0)])),
+                .exit(element: "li", insert: "\n")
+            ]
 
             let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
-            guard let string = try? NSAttributedString(fromXML: xml, styler: styler) else {
+            guard let string = try? NSAttributedString.compose(xml: xml, rules: rules) else {
                 fatalError("Unable to load XML \(xml)")
             }
             return string

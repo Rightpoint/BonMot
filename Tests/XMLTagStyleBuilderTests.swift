@@ -13,26 +13,22 @@ class XMLTagStyleBuilderTests: XCTestCase {
     /// There has been concerns about NSXMLParser performance. This is a baseline test,
     /// but doesn't mean much without a comparision
     func testBasicParserPerformance() {
-        let styles = TagStyles()
-        styles.registerStyle(forName: "A", style: styleA)
-        styles.registerStyle(forName: "B", style: styleB)
+        let styles = TagStyles(styles: ["A": styleA, "B": styleB])
 
         var hugeString = ""
         for _ in 0..<100 {
             hugeString.append("This is <A>A style</A> test for <B>B Style</B>.")
         }
         measure() {
-            XCTAssertNotNil(try? NSAttributedString(fromXML: hugeString, styler: SimpleXMLStyler(tagStyles: styles)))
+            XCTAssertNotNil(try? NSAttributedString.compose(xml: hugeString, rules: [.styles(styles)]))
         }
     }
 
     /// Test that the ranges of the composed attributed string match what is expected
     func testComposition() {
-        let styles = TagStyles()
-        styles.registerStyle(forName: "A", style: styleA)
-        styles.registerStyle(forName: "B", style: styleB)
+        let styles = TagStyles(styles: ["A": styleA, "B": styleB])
 
-        guard let attributedString = try? NSAttributedString(fromXML: "This is <A>A style</A> test for <B>B Style</B>.", styler: SimpleXMLStyler(tagStyles: styles)) else {
+        guard let attributedString = try? NSAttributedString.compose(xml: "This is <A>A style</A> test for <B>B Style</B>.", rules: [.styles(styles)]) else {
             XCTFail("No attributed string")
             return
         }
@@ -48,26 +44,28 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let styles = TagStyles()
         styles.registerStyle(forName: "A", style: styleA)
 
-        XCTAssertNotNil(try? NSAttributedString(fromXML: "This <A>style</A> is valid", styler: SimpleXMLStyler(tagStyles: styles)))
-        XCTAssertNil(try? NSAttributedString(fromXML: "This <B>style</B> is not registered and throws an error", styler: SimpleXMLStyler(tagStyles: styles)))
-        XCTAssertNotNil(try? NSAttributedString(fromXML: "This <B>style</B> is not registered but is allowed", styler: SimpleXMLStyler(tagStyles: styles), options: [.allowUnregisteredElements]))
+        XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <A>style</A> is valid", rules: [.styles(styles)]))
+        XCTAssertNil(try? NSAttributedString.compose(xml: "This <B>style</B> is not registered and throws an error", rules: [.styles(styles)]))
+        XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <B>style</B> is not registered but is allowed", rules: [.styles(styles)], options: [.allowUnregisteredElements]))
     }
 
     /// Verify that the string is read when fully contained
     func testFullXML() {
         let styles = TagStyles()
-        XCTAssertNotNil(try? NSAttributedString(fromXML: "<Top>This is fully contained</Top>", styler: SimpleXMLStyler(tagStyles: styles), options: [.allowUnregisteredElements, .doNotWrapXML]))
+        XCTAssertNotNil(try? NSAttributedString.compose(xml: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.allowUnregisteredElements, .doNotWrapXML]))
     }
 
     /// Basic test on some HTML-like behavior.
     func testHTMLish() {
         struct HTMLishStyleBuilder: XMLStyler {
-            let tagStyles: TagStyles
+            let tagStyles = ["a": styleA,
+                             "p": styleA,
+                             "p:foo": styleB]
 
             func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle? {
-                var namedStyle = tagStyles.style(forName: name) ?? AttributedStringStyle()
+                var namedStyle = tagStyles[name] ?? AttributedStringStyle()
                 if let htmlClass = attributes["class"] {
-                    namedStyle = tagStyles.style(forName: "\(name):\(htmlClass)") ?? namedStyle
+                    namedStyle = tagStyles["\(name):\(htmlClass)"] ?? namedStyle
                 }
                 if name.lowercased() == "a" {
                     if let href = attributes["href"], let url = NSURL(string: href) {
@@ -83,12 +81,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
             func suffix(forElement name: String) -> NSAttributedString? { return nil }
         }
 
-        let tagStyles = TagStyles(styles: ["a": styleA,
-                                           "p": styleA,
-                                           "p:foo": styleB,
-                                           ])
-        let styler = HTMLishStyleBuilder(tagStyles: tagStyles)
-        guard let attributedString = try? NSAttributedString(fromXML: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styler: styler) else {
+        let styler = HTMLishStyleBuilder()
+        guard let attributedString = try? NSAttributedString.compose(xml: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styler: styler) else {
             XCTFail("No attributed string")
             return
         }

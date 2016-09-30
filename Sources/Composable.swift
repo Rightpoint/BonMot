@@ -55,6 +55,14 @@ public extension NSAttributedString {
      * Return a Composable that will add only the attributed string, and will ignore the containing style
      */
     public static func only(attributedString string: NSAttributedString) -> Composable {
+        struct AttributedStringIgnoringStyle: Composable {
+            let string: NSAttributedString
+
+            func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+                attributedString.append(string)
+            }
+        }
+
         return AttributedStringIgnoringStyle(string: string)
     }
 }
@@ -65,14 +73,6 @@ extension NSAttributedString: Composable {
         attributedString.extend(with: self, style: baseStyle)
     }
     
-}
-
-struct AttributedStringIgnoringStyle: Composable {
-    let string: NSAttributedString
-
-    func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        attributedString.append(string)
-    }
 }
 
 extension String: Composable {
