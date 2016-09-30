@@ -26,6 +26,12 @@ public class TagStyles: NSObject {
     public static var shared = TagStyles()
     #endif
 
+    /// Define a closure to be invoked when an unregistered style is requested. By default
+    /// an error is printed.
+    public static var unregisteredStyleClosure: (String) -> Void = { name in
+        print("Requesting unregistered style \(name)")
+    }
+
     public init(styles: [String: AttributedStringStyle] = [:]) {
         self.styles = styles
     }
@@ -45,8 +51,11 @@ public class TagStyles: NSObject {
     /// - parameter forName: The name of the style to lookup
     /// - parameter initialAttributes: The initial attributes to pass to the style chain
     /// - returns: the configured style, or nil if none is found
-    public func style(forName name: String?, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
-        guard let name = name, var style = styles[name] else { return nil }
+    public func style(forName name: String, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
+        guard var style = styles[name] else {
+            TagStyles.unregisteredStyleClosure(name)
+            return nil
+        }
         style.update(attributes: initialAttributes)
         return style
     }

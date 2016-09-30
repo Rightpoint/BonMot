@@ -7,12 +7,19 @@
 
 import UIKit
 
+func lookupSharedStyle(for name: String?, font: UIFont) -> AttributedStringStyle? {
+    guard let name = name else {
+        return nil
+    }
+    return TagStyles.shared.style(forName:name, initialAttributes: [NSFontAttributeName: font])
+}
+
 extension UILabel {
     /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
     @IBInspectable @objc(bon_styleName)
     public var styleName: String? {
         get { return nil }
-        set { bonMotStyle = TagStyles.shared.style(forName:newValue, initialAttributes: [NSFontAttributeName: font]) }
+        set { bonMotStyle = lookupSharedStyle(for: newValue, font: font) }
     }
 }
 
@@ -25,7 +32,7 @@ extension UITextField {
         get { return nil }
         set {
             guard let font = font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }
-            bonMotStyle = TagStyles.shared.style(forName:newValue, initialAttributes: [NSFontAttributeName: font])
+            bonMotStyle = lookupSharedStyle(for: newValue, font: font)
         }
     }
 }
@@ -53,7 +60,7 @@ extension UITextView {
                     fatalError("Unsupported Mystery Platform")
                 #endif
             }
-            bonMotStyle = TagStyles.shared.style(forName:newValue, initialAttributes: [NSFontAttributeName: font])
+            bonMotStyle = lookupSharedStyle(for: newValue, font: font)
         }
     }
 }
@@ -65,7 +72,7 @@ extension UIButton {
         get { return nil }
         set {
             guard let font = titleLabel?.font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }
-            bonMotStyle = TagStyles.shared.style(forName:newValue, initialAttributes: [NSFontAttributeName: font])
+            bonMotStyle = lookupSharedStyle(for: newValue, font: font)
         }
     }
 }
