@@ -15,7 +15,6 @@
 		ABBFB3CF1D998C4600881842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFB3C11D998C4600881842 /* AppDelegate.swift */; };
 		ABBFB3D11D998C4600881842 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFB3C31D998C4600881842 /* CatalogViewController.swift */; };
 		ABBFB3D21D998C4600881842 /* DemoStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFB3C51D998C4600881842 /* DemoStrings.swift */; };
-		ABBFB3D81D998C4600881842 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFB3CD1D998C4600881842 /* Style.swift */; };
 		ABBFB3D91D998C4600881842 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBFB3CE1D998C4600881842 /* StyleViewController.swift */; };
 		ABCD3DC21D96F48E00273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DC11D96F48E00273936 /* Compatibility.swift */; };
 		ABE89F0B1D99923E0083A1D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABE89F061D99923E0083A1D8 /* InfoPlist.strings */; };
@@ -37,7 +36,6 @@
 		ABBFB3C11D998C4600881842 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABBFB3C31D998C4600881842 /* CatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 		ABBFB3C51D998C4600881842 /* DemoStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoStrings.swift; sourceTree = "<group>"; };
-		ABBFB3CD1D998C4600881842 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		ABBFB3CE1D998C4600881842 /* StyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
 		ABCD3DC11D96F48E00273936 /* Compatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Compatibility.swift; path = ../Tests/Compatibility.swift; sourceTree = SOURCE_ROOT; };
 		ABE89F051D99923E0083A1D8 /* BonMot-Example-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BonMot-Example-Info.plist"; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				ABBFB3C11D998C4600881842 /* AppDelegate.swift */,
 				ABBFB3C31D998C4600881842 /* CatalogViewController.swift */,
 				ABBFB3C51D998C4600881842 /* DemoStrings.swift */,
-				ABBFB3CD1D998C4600881842 /* Style.swift */,
 				ABBFB3CE1D998C4600881842 /* StyleViewController.swift */,
 				ABE89F041D99923E0083A1D8 /* Resources */,
 				ABCD3DC01D96F45100273936 /* From Tests */,
@@ -295,7 +292,6 @@
 				ABBFB3CF1D998C4600881842 /* AppDelegate.swift in Sources */,
 				ABCD3DC21D96F48E00273936 /* Compatibility.swift in Sources */,
 				ABBFB3D91D998C4600881842 /* StyleViewController.swift in Sources */,
-				ABBFB3D81D998C4600881842 /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

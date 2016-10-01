@@ -9,7 +9,7 @@ import UIKit
 import BonMot
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -21,12 +21,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func style() {
-        // Use UIAppearance to configure the font scaling table approach showcased in WWDC 2016 Session 803
-
-        UINavigationBar.appearance().titleTextAttributes = Style().attributes()
-
+        guard let traitCollection = window?.traitCollection else {
+            fatalError("There should be a traitCollection available before calling this method.")
+        }
+        let titleStyle = BonMot(.font(UIFont.appFont(ofSize: 20)), .adapt(.control))
+        UINavigationBar.appearance().titleTextAttributes = titleStyle.attributes(adaptedTo: traitCollection)
         let barStyle = BonMot(.font(UIFont.appFont(ofSize: 17)), .adapt(.control))
-        UIBarButtonItem.appearance().setTitleTextAttributes(barStyle.attributes(), for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes(barStyle.attributes(adaptedTo: traitCollection), for: .normal)
+    }
+
+}
+
+extension UIColor {
+    static var raizlabsRed: UIColor {
+        return UIColor(red: 0.927, green: 0.352, blue: 0.303, alpha: 1.0)
+    }
+}
+
+extension UIFont {
+
+    static func appFont(ofSize pointSize: CGFloat) -> UIFont {
+        return UIFont(name: "Avenir-Roman", size: pointSize)!
     }
 
 }

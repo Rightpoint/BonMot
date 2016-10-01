@@ -13,5 +13,5 @@ protocol AttributedStringTransformation {
 }
 
 extension Tab: AttributedStringTransformation {
-    // Implementation is already defined and used even if the conformance is not needed.
+    // Just declare conformance. Implementation is already defined and used even if adaptive code is not included in the target.
 }

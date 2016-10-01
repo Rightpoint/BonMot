@@ -24,6 +24,13 @@ internal protocol AdaptiveStyleTransformation {
 
 }
 
+extension StyleAttributeTransformation {
+
+    public func attributes(adaptedTo traitCollection: UITraitCollection) -> StyleAttributes {
+        return NSAttributedString.adapt(attributes: attributes(), to: traitCollection)
+    }
+}
+
 extension Tracking: AdaptiveStyleTransformation {
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
         if case .adobe = self {
