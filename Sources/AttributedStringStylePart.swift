@@ -87,7 +87,7 @@ extension AttributedStringStyle {
 
 extension AttributedStringStyle {
 
-    // swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable:next cyclomatic_complexity
     mutating func update(attributedStringStylePart stylePart: AttributedStringStylePart) {
         switch stylePart {
         case let .initialAttributes(attributes):
@@ -151,6 +151,5 @@ extension AttributedStringStyle {
                 }
             #endif
         }
-        // swiftlint:enable cyclomatic_complexity
     }
 }
