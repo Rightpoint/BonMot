@@ -44,4 +44,19 @@ class NSAttributedStringDebugTests: XCTestCase {
         XCTAssertEqual(mutableAttributedString.string, "fooA")
     }
 
+    // ParagraphStyles are a bit interesting, as tabs behave over a line, but multiple paragraph styles can be applied on that line.
+    // I'm not sure how a multi-paragrah line would behave, but this confirms that NSAttributedString doesn't do any coalescing
+    func testParagraphStyleBehavior() {
+        let style1 = NSMutableParagraphStyle()
+        style1.lineSpacing = 1000
+        let style2 = NSMutableParagraphStyle()
+        style2.headIndent = 1000
+        let string1 = NSMutableAttributedString(string: "first part ", attributes: [NSParagraphStyleAttributeName: style1])
+        let string2 = NSAttributedString(string: "second part.\n", attributes: [NSParagraphStyleAttributeName: style2])
+        string1.append(string2)
+        let p1 = string1.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle
+        let p2 = string1.attribute(NSParagraphStyleAttributeName, at: string1.length - 1, effectiveRange: nil) as? NSParagraphStyle
+        XCTAssertNotEqual(p1, p2)
+    }
+
 }
