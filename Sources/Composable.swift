@@ -51,9 +51,9 @@ public extension NSAttributedString {
         return string
     }
 
-    /**
-     * Return a Composable that will add only the attributed string, and will ignore the containing style
-     */
+    /// Return a Composable that will add only the attributed string, and will ignore the containing style
+    /// - parameter attributedString: The attributed string to compose without the baseStyle.
+    /// - returns: A Composable that returns the attributedString without the baseStyle.
     public static func only(attributedString string: NSAttributedString) -> Composable {
         struct AttributedStringIgnoringStyle: Composable {
             let string: NSAttributedString

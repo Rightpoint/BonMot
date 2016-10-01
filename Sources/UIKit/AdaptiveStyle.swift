@@ -21,9 +21,7 @@ public enum AdaptiveStyle {
 extension AdaptiveStyle: StyleAttributeTransformation {
 
     enum AttributeName {
-
         static let nonAdaptedFont = "BonMotNonAdaptedFont"
-
     }
 
     public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
@@ -67,68 +65,6 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         }
         styleAttributes[NSFontAttributeName] = font
         return styleAttributes
-    }
-
-}
-
-extension AdaptiveStyle: EmbededTransformation {
-
-    struct Key {
-
-        static let family = "family"
-
-    }
-
-    struct Value {
-
-        static let control = "control"
-        static let body = "body"
-        static let preferred = "preferred"
-        static let above = "above"
-        static let below = "below"
-
-    }
-
-    var representation: StyleAttributes {
-        switch self {
-        case let .above(size, family):
-            return [
-                EmbededTransformationHelpers.Key.type: Value.above,
-                EmbededTransformationHelpers.Key.size: size,
-                Key.family: family,
-            ]
-        case let .below(size, family):
-            return [
-                EmbededTransformationHelpers.Key.type: Value.below,
-                EmbededTransformationHelpers.Key.size: size,
-                Key.family: family,
-            ]
-        case .control:
-            return [EmbededTransformationHelpers.Key.type: Value.control]
-        case .body:
-            return [EmbededTransformationHelpers.Key.type: Value.body]
-        case .preferred:
-            return [EmbededTransformationHelpers.Key.type: Value.preferred]
-        }
-    }
-
-    static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbededTransformation? {
-        switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
-                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat,
-                dictionary[Key.family] as? String) {
-        case (Value.control?, nil, nil):
-            return AdaptiveStyle.control
-        case (Value.body?, nil, nil):
-            return AdaptiveStyle.body
-        case (Value.preferred?, nil, nil):
-            return AdaptiveStyle.preferred
-        case let (Value.above?, size?, family?):
-            return AdaptiveStyle.above(size: size, family: family)
-        case let (Value.below?, size?, family?):
-            return AdaptiveStyle.below(size: size, family: family)
-        default:
-            return nil
-        }
     }
 
 }

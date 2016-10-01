@@ -192,22 +192,20 @@ class AdaptiveStyleTests: XCTestCase {
         let string = NSAttributedString.compose(with: [
             "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
             ], baseStyle: BonMot(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
-        let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? Array<Any>
+        let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? Array<StyleAttributeValue>
         XCTAssertEqual(attributes?.count, 2)
     }
 
     func testComplexAdaptiveComposition() {
-        // This does not work, since .tracking is applied to a string, but no font exists (yet).
         let string = NSAttributedString.compose(with: [
             "Hello".styled(with: .tracking(.adobe(3.0))),
             Tab.headIndent(10)
             ], baseStyle: BonMot(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
 
-        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? Array<Any>
-        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? Array<Any>
+        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? Array<StyleAttributeValue>
+        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? Array<StyleAttributeValue>
         XCTAssertEqual(attributes1?.count, 2)
         XCTAssertEqual(attributes2?.count, 2)
-
     }
 
 }

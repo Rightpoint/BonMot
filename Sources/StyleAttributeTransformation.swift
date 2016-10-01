@@ -37,14 +37,19 @@ public extension StyleAttributeTransformation {
     ///
     /// If any of the values support in the StyleAttributes dictionary should be merged that behavior should be
     /// performed here. This includes NSParagraphStyle and the embedded attributes.
+    ///
+    /// - parameter defaultsFor: The object to over-write the defaults with
+    /// - returns: The new attributes
     func supply(defaultsFor attributes: StyleAttributes) -> StyleAttributes {
         var attributes = attributes
         for (key, value) in self.attributes() {
             switch (key, value, attributes[key]) {
             case (NSParagraphStyleAttributeName, let paragraph as NSParagraphStyle, let otherParagraph as NSParagraphStyle):
                 attributes[NSParagraphStyleAttributeName] = paragraph.supply(defaultsFor: otherParagraph)
-            case (BonMotTransformationsAttributeName, var transformations as Array<Any>, let otherTransformations as Array<Any>):
-                transformations.insert(contentsOf: otherTransformations, at: 0)
+            case (BonMotTransformationsAttributeName,
+                var transformations as Array<StyleAttributeValue>,
+                let otherTransformations as Array<StyleAttributeValue>):
+                transformations.append(contentsOf: otherTransformations)
                 attributes[BonMotTransformationsAttributeName] = transformations
             case let (key, value, nil):
                 attributes.update(possibleValue: value, forKey: key)

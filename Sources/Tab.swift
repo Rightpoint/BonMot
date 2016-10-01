@@ -17,21 +17,18 @@ public enum Tab: Composable {
     case headIndent(CGFloat)
 
     public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        // Get the attributes
-        var effectiveRange = NSRange(location: 0, length: 0)
-        let attributes = attributedString.extendingAttributes(with: baseStyle, effectiveRange: &effectiveRange)
-
-        // Add the tab character and this Tab as a AttributedStringTransformation
+        let attributes = baseStyle.attributes()
         #if os(iOS)
-            let tabAttributes = EmbededTransformationHelpers.embed(transformation: self, to: [:])
+            // Embed the tab in the attributes
+            let tabAttributes = EmbededTransformationHelpers.embed(transformation: self, to: attributes)
         #else
-            let tabAttributes: StyleAttributes = [:]
+            let tabAttributes: StyleAttributes = attributes
         #endif
         let tabRange = NSRange(location: attributedString.length, length: 1)
         attributedString.append(NSAttributedString(string: "\t", attributes: tabAttributes))
 
-        // Trigger the AttributedStringTransformation on the tab character to calculate the tab
-        update(string: attributedString, in: tabRange, with: attributes)
+        // Calculate the tab spacing
+        update(string: attributedString, in: tabRange)
     }
 
     var padding: CGFloat {
@@ -43,9 +40,9 @@ public enum Tab: Composable {
 
 }
 
-extension Tab: AttributedStringTransformation {
+extension Tab {
 
-    func update(string attributedString: NSMutableAttributedString, in range: NSRange, with attributes: StyleAttributes) {
+    func update(string attributedString: NSMutableAttributedString, in range: NSRange) {
         let string = attributedString.string as NSString
 
         // Lookup the range this paragraph is operating on.
@@ -79,7 +76,6 @@ extension Tab: AttributedStringTransformation {
         else {
             fatalError("Non paragraphStyle held in NSParagraphStyleAttributeName.")
         }
-        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: paragraphRange)
 
         // Enumerate tabs over the range of the paragraph, keeping count of the tabs.
         var enumerationRange = paragraphRange
@@ -111,6 +107,7 @@ extension Tab: AttributedStringTransformation {
             enumerationRange.location = NSMaxRange(tabRange)
             tabIndex += 1
         }
+        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: paragraphRange)
     }
 
 }

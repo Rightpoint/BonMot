@@ -13,8 +13,8 @@ import UIKit
 ///
 /// Since NSAttributedString includes NSCoding support, AdaptiveStyleTransformation is embedded
 /// in the StyleAttributes via a simple dictionary encoding strategy. NSCoding was avoided so
-/// value types can be used.
-protocol AdaptiveStyleTransformation {
+/// value types can be used. See EmbededTransformation for more info.
+internal protocol AdaptiveStyleTransformation {
 
     /// Change any of theAttributes as desired to the specified traitCollection and return a new StyleAttributes dictionary.
     ///

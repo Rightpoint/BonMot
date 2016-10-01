@@ -15,9 +15,7 @@ extension NSAttributedString {
     /// - parameter to: The trait collection to transform the attributes too
     /// - returns: Attributes with fonts updated to the specified content size category.
     public static func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes {
-        guard let adaptations: [AdaptiveStyleTransformation] = EmbededTransformationHelpers.transformations(from: theAttributes) else {
-            return theAttributes
-        }
+        let adaptations: [AdaptiveStyleTransformation] = EmbededTransformationHelpers.transformations(from: theAttributes)
         var styleAttributes = theAttributes
         for adaptiveStyle in adaptations {
             styleAttributes = adaptiveStyle.adapt(attributes: styleAttributes, to: traitCollection) ?? styleAttributes
@@ -34,24 +32,22 @@ extension NSAttributedString {
         let newString = mutableStringCopy()
         newString.beginEditing()
         enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, stop) in
+            var styleAttributes = attributes
+
+            // Adapt any AdaptiveStyleTransformation embedded in the attributes.
+            let adaptiveStyles: [AdaptiveStyleTransformation] = EmbededTransformationHelpers.transformations(from: attributes)
+            for adaptiveStyle in adaptiveStyles {
+                styleAttributes = adaptiveStyle.adapt(attributes: styleAttributes, to: traitCollection) ?? styleAttributes
+            }
+            // Apply any AttributedStringTransformation embedded in the attributes.
+            let transformations: [AttributedStringTransformation] = EmbededTransformationHelpers.transformations(from: attributes)
+            for transformation in transformations {
+                transformation.update(string: newString, in: range)
+            }
             newString.setAttributes(NSAttributedString.adapt(attributes: attributes, to: traitCollection), range: range)
         }
-        newString.applyEmbeddedTransformations()
         newString.endEditing()
         return newString
     }
 
-}
-
-extension NSMutableAttributedString {
-    @nonobjc final func applyEmbeddedTransformations() {
-        enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, stop) in
-            guard let transformations: [AttributedStringTransformation] = EmbededTransformationHelpers.transformations(from: attributes) else {
-                return
-            }
-            for transformation in transformations {
-                transformation.update(string: self, in: range, with: attributes)
-            }
-        }
-    }
 }

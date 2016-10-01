@@ -94,7 +94,7 @@ class ComposableTests: XCTestCase {
             let value = string.attributes(at: 0, effectiveRange: nil)[attribute] as? T
             XCTAssertEqual(value, expected, line: line)
         }
-        let font = BONFont.systemFont(ofSize: 20)
+        let font = BONFont(name: "Avenir-Book", size: 28)!
         check(forPart: .textColor(.colorA), NSForegroundColorAttributeName, BONColor.colorA)
         check(forPart: .backgroundColor(.colorA), NSBackgroundColorAttributeName, BONColor.colorA)
         check(forPart: .font(font), NSFontAttributeName, font)
@@ -121,7 +121,7 @@ class ComposableTests: XCTestCase {
         check(forPart: .firstLineHeadIndent(10), { $0.firstLineHeadIndent }, 10)
         check(forPart: .headIndent(10), { $0.headIndent }, 10)
         check(forPart: .tailIndent(10), { $0.tailIndent }, 10)
-        check(forPart: .lineBreakMode(.byTruncatingHead), { $0.lineBreakMode }, .byTruncatingHead)
+        check(forPart: .lineBreakMode(.byClipping), { $0.lineBreakMode }, .byClipping)
         check(forPart: .minimumLineHeight(10), { $0.minimumLineHeight }, 10)
         check(forPart: .maximumLineHeight(10), { $0.maximumLineHeight }, 10)
         check(forPart: .baseWritingDirection(.leftToRight), { $0.baseWritingDirection }, .leftToRight)

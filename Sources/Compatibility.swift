@@ -19,6 +19,7 @@
 #if swift(>=3.0)
 #else
     typealias OptionSet = OptionSetType
+    public typealias Error = ErrorType
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias BonMotStringTransform = String
