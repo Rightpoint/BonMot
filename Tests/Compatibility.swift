@@ -77,8 +77,6 @@ import BonMot
     }
 #endif
 
-// FIXME: This is a copy of BonMot's Compatibility.swift because project reasons.
-
 /// Standard Library + Foundation
 #if swift(>=3.0)
 #else
