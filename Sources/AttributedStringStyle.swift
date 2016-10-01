@@ -84,9 +84,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
         paragraph.paragraphSpacingBefore = paragraphSpacingBefore ?? paragraph.paragraphSpacingBefore
         paragraph.hyphenationFactor = hyphenationFactor ?? paragraph.hyphenationFactor
 
-        let defaults = NSParagraphStyle.bon_default
-
-        if paragraph != defaults {
+        if paragraph != NSParagraphStyle.bon_default {
             theAttributes.update(possibleValue: paragraph, forKey: NSParagraphStyleAttributeName)
         }
 
