@@ -39,8 +39,8 @@ public extension NSAttributedString {
     @nonobjc public static func compose(with composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
-        for (index, textable) in composables.enumerated() {
-            textable.append(to: string, baseStyle: baseStyle)
+        for (index, composable) in composables.enumerated() {
+            composable.append(to: string, baseStyle: baseStyle)
             if let separator = separator {
                 if index != composables.indices.last {
                     separator.append(to: string, baseStyle: baseStyle)
