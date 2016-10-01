@@ -32,28 +32,24 @@ internal enum EmbededTransformationHelpers {
         static let size = "size"
     }
 
-    enum AttributeName {
-        static let transformations = "BonMotTransformations"
-    }
-
     static var embededTransformationTypes: [EmbededTransformation.Type] = [AdaptiveStyle.self, Tracking.self, Tab.self]
 
     static func embed(transformation theTransformation: EmbededTransformation, to styleAttributes: StyleAttributes) -> StyleAttributes {
         let representation = theTransformation.representation
         var styleAttributes = styleAttributes
-        var adaptions = styleAttributes[AttributeName.transformations] as? [StyleAttributes] ?? []
+        var adaptions = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
 
         // Only add the transformation once.
         let contains = adaptions.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: representation) }
         if !contains {
             adaptions.append(representation)
         }
-        styleAttributes[AttributeName.transformations] = adaptions
+        styleAttributes[BonMotTransformationsAttributeName] = adaptions
         return styleAttributes
     }
 
     static func transformations<T>(from styleAttributes: StyleAttributes) -> [T]? {
-        let representations = styleAttributes[AttributeName.transformations] as? [StyleAttributes]
+        let representations = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes]
         let results: [T?]? = representations?.map { representation in
             for type in embededTransformationTypes {
                 if let transformation = type.from(representation: representation) as? T {

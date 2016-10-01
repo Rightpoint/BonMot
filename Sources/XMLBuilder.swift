@@ -209,13 +209,13 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
 
     func enter(element elementName: String, attributes: [String: String]) {
         if let prefix = styler.prefix(forElement: elementName, attributes: attributes) {
-            attributedString.extend(with: prefix, style: topStyle)
+            attributedString.append(attributedString: prefix, withBaseStyle: topStyle)
         }
     }
 
     func exit(element elementName: String) {
         if let suffix = styler.suffix(forElement: elementName) {
-            attributedString.extend(with: suffix, style: topStyle)
+            attributedString.append(attributedString: suffix, withBaseStyle: topStyle)
         }
     }
 

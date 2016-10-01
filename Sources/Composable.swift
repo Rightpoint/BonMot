@@ -71,7 +71,7 @@ public extension NSAttributedString {
 extension NSAttributedString: Composable {
 
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        attributedString.extend(with: self, style: baseStyle)
+        attributedString.append(attributedString: self, withBaseStyle: baseStyle)
     }
 
 }

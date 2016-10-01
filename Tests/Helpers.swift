@@ -97,6 +97,42 @@ let styleBz = BonMotC { style in
     style.tailIndent = 10
 }
 
+let fullStyle: AttributedStringStyle = {
+    let terribleValue = CGFloat(1000000)
+    var fullStyle = AttributedStringStyle()
+    fullStyle.font = BONFont(name: "Copperplate", size: 20)
+    fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
+    fullStyle.backgroundColor = .colorC
+    fullStyle.textColor = .colorC
+
+    fullStyle.underline = (.byWord, .colorC)
+    fullStyle.strikethrough = (.byWord, .colorC)
+
+    fullStyle.baselineOffset = terribleValue
+
+    fullStyle.lineSpacing = terribleValue
+
+    fullStyle.paragraphSpacingAfter = terribleValue
+    fullStyle.alignment = .left
+    fullStyle.firstLineHeadIndent = terribleValue
+    fullStyle.headIndent = terribleValue
+    fullStyle.tailIndent = terribleValue
+    fullStyle.lineBreakMode = .byTruncatingMiddle
+    fullStyle.minimumLineHeight = terribleValue
+    fullStyle.maximumLineHeight = terribleValue
+    fullStyle.baseWritingDirection = .rightToLeft
+    fullStyle.lineHeightMultiple = terribleValue
+    fullStyle.paragraphSpacingBefore = terribleValue
+    fullStyle.hyphenationFactor = Float(terribleValue)
+
+    #if os(iOS) || os(tvOS) || os(OSX)
+        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberCase.upper, NumberCase.upper, NumberCase.upper]
+    #endif
+    fullStyle.adaptations = [BonMot(), BonMot(), BonMot(), BonMot()]
+    fullStyle.tracking = .adobe(terribleValue)
+    return fullStyle
+}()
+
 class EBGaramondLoader: NSObject {
 
     static func loadFontIfNeeded() {

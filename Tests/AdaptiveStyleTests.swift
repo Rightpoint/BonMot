@@ -7,7 +7,7 @@
 
 import XCTest
 import UIKit
-import BonMot
+@testable import BonMot
 
 #if swift(>=2.3) && os(iOS)
 
@@ -186,6 +186,28 @@ class AdaptiveStyleTests: XCTestCase {
         XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXS), 23.70, accuracy: 0.01)
         let tabTestXXXL = tabTestL.adapt(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraExtraExtraLarge.compatible))
         XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXXXL), 30.95, accuracy: 0.01)
+    }
+
+    func testMergingEmbeddedTransformations() {
+        let string = NSAttributedString.compose(with: [
+            "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
+            ], baseStyle: BonMot(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
+        let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? Array<Any>
+        XCTAssertEqual(attributes?.count, 2)
+    }
+
+    func testComplexAdaptiveComposition() {
+        // This does not work, since .tracking is applied to a string, but no font exists (yet).
+        let string = NSAttributedString.compose(with: [
+            "Hello".styled(with: .tracking(.adobe(3.0))),
+            Tab.headIndent(10)
+            ], baseStyle: BonMot(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
+
+        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? Array<Any>
+        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? Array<Any>
+        XCTAssertEqual(attributes1?.count, 2)
+        XCTAssertEqual(attributes2?.count, 2)
+
     }
 
 }

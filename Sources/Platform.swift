@@ -58,3 +58,6 @@
         return style
     }
 #endif
+
+// This key is defined here because it needs to be used in non adaptive code.
+let BonMotTransformationsAttributeName = "BonMotTransformations"

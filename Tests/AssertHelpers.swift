@@ -48,7 +48,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
         return
     }
     let actualValue = query(paragraphStyle)
-    XCTAssertEqual(value, actualValue)
+    XCTAssertEqual(value, actualValue, file: file, line: line)
 }
 
 #if swift(>=3.0)
@@ -58,7 +58,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
             return
         }
         let actualValue = query(paragraphStyle)
-        XCTAssertEqual(value.rawValue, actualValue.rawValue)
+        XCTAssertEqual(value.rawValue, actualValue.rawValue, file: file, line: line)
     }
 #else
     func BONAssert<T: RawRepresentable where T.RawValue: Equatable>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, value: T, file: StaticString = #file, line: UInt = #line) {
@@ -67,6 +67,6 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
             return
         }
         let actualValue = query(paragraphStyle)
-        XCTAssertEqual(value.rawValue, actualValue.rawValue)
+        XCTAssertEqual(value.rawValue, actualValue.rawValue, file: file, line: line)
     }
 #endif

@@ -226,7 +226,7 @@ class StyleAttributeTransformationTests: XCTestCase {
             derived.update(attributedStringStyle: style)
         }
         // Bizarre, this works:
-        var updated = StyleAttributeTransformationTests.fullStyle
+        var updated = fullStyle
         updated.update(attributedStringStyle: style)
 
         return [(style: style, fullStyle: false), (style: derived, fullStyle: false), (style: updated, fullStyle: true)]
@@ -234,40 +234,5 @@ class StyleAttributeTransformationTests: XCTestCase {
 
     // A fully populated style object that is updated to ensure that update over-writes all values correctly.
     // Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
-    static var fullStyle: AttributedStringStyle = {
-        let terribleValue = CGFloat(1000000)
-        var fullStyle = AttributedStringStyle()
-        fullStyle.font = BONFont(name: "Copperplate", size: 20)
-        fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
-        fullStyle.backgroundColor = .colorC
-        fullStyle.textColor = .colorC
-
-        fullStyle.underline = (.byWord, .colorC)
-        fullStyle.strikethrough = (.byWord, .colorC)
-
-        fullStyle.baselineOffset = terribleValue
-
-        fullStyle.lineSpacing = terribleValue
-
-        fullStyle.paragraphSpacingAfter = terribleValue
-        fullStyle.alignment = .left
-        fullStyle.firstLineHeadIndent = terribleValue
-        fullStyle.headIndent = terribleValue
-        fullStyle.tailIndent = terribleValue
-        fullStyle.lineBreakMode = .byTruncatingMiddle
-        fullStyle.minimumLineHeight = terribleValue
-        fullStyle.maximumLineHeight = terribleValue
-        fullStyle.baseWritingDirection = .rightToLeft
-        fullStyle.lineHeightMultiple = terribleValue
-        fullStyle.paragraphSpacingBefore = terribleValue
-        fullStyle.hyphenationFactor = Float(terribleValue)
-
-        #if os(iOS) || os(tvOS) || os(OSX)
-            fullStyle.fontFeatureProviders = [NumberCase.upper, NumberCase.upper, NumberCase.upper, NumberCase.upper]
-        #endif
-        fullStyle.adaptations = [BonMot(), BonMot(), BonMot(), BonMot()]
-        fullStyle.tracking = .adobe(terribleValue)
-        return fullStyle
-    }()
 
 }
