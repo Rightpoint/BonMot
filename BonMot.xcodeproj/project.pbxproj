@@ -16,10 +16,16 @@
 		AB30D5111D9D9438006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB30D5121D9D9439006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB30D51D1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
-		AB30D51E1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
 		AB560A061D9F692000100D15 /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */; };
 		AB560A081DA0C14000100D15 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */; };
 		AB560A0A1DA0C17800100D15 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */; };
+		AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */; };
+		AB8497B11DA16DAE00FE3414 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
+		AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */; };
+		AB8497B31DA16DAE00FE3414 /* EmbededTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */; };
+		AB8497B41DA16DAE00FE3414 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
+		AB8497B51DA16DAE00FE3414 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */; };
+		AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */; };
 		AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
 		AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
@@ -83,9 +89,7 @@
 		ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */; };
 		ABCD3DBC1D96F06800273936 /* UIKitBonMotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */; };
 		ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAF1D96F06800273936 /* XMLTagStyleBuilderTests.swift */; };
-		ABCD3DCD1D96F6A500273936 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
 		ABCD3DCE1D96F6A500273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */; };
-		ABCD3DD01D96F6A500273936 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
 		ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
 		ABCD3DD21D96F6A500273936 /* TagStyles+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */; };
 		ABCD3DD31D96F6A500273936 /* StyleableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableTextContainer.swift */; };
@@ -98,7 +102,6 @@
 		ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABCD3DDD1D96F6A500273936 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
 		ABCD3DDE1D96F6A500273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
-		ABCD3DE01D96F6A500273936 /* NSAttributedString+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */; };
 		ABCD3DE21D96F6A500273936 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
 		ABCD3DE41D96F6A500273936 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
 		ABCD3DF21D96F6E200273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA41D96F06800273936 /* Compatibility.swift */; };
@@ -936,27 +939,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABCD3DCD1D96F6A500273936 /* AdaptiveStyleTransformation.swift in Sources */,
 				ABCD3DCE1D96F6A500273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
-				ABCD3DD01D96F6A500273936 /* AdaptiveStyle.swift in Sources */,
 				ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */,
 				ABCD3DD21D96F6A500273936 /* TagStyles+IBInspectable.swift in Sources */,
 				CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3DD31D96F6A500273936 /* StyleableTextContainer.swift in Sources */,
 				AB30D5101D9D9438006ADC9D /* Composable.swift in Sources */,
 				ABCD3DD41D96F6A500273936 /* AdaptableTextContainer.swift in Sources */,
+				AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */,
 				ABCD3DD51D96F6A500273936 /* AttributedStringStyle.swift in Sources */,
 				ABCD3DD71D96F6A500273936 /* Special.swift in Sources */,
+				AB8497B31DA16DAE00FE3414 /* EmbededTransformation.swift in Sources */,
+				AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */,
 				ABCD3DD81D96F6A500273936 /* TagStyles.swift in Sources */,
+				AB8497B11DA16DAE00FE3414 /* AdaptiveStyleTransformation.swift in Sources */,
+				AB8497B51DA16DAE00FE3414 /* Tab+Adaptive.swift in Sources */,
 				ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */,
 				ABCD3DDA1D96F6A500273936 /* AttributedStringStylePart.swift in Sources */,
 				ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */,
 				ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */,
+				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adapt.swift in Sources */,
 				ABCD3DDD1D96F6A500273936 /* NSAttributedString+BonMot.swift in Sources */,
-				AB30D51E1D9D95F5006ADC9D /* EmbededTransformation.swift in Sources */,
 				ABCD3DDE1D96F6A500273936 /* Compatibility.swift in Sources */,
+				AB8497B41DA16DAE00FE3414 /* AdaptiveStyle.swift in Sources */,
 				AB30D50D1D9CB4FE006ADC9D /* Tab.swift in Sources */,
-				ABCD3DE01D96F6A500273936 /* NSAttributedString+Adapt.swift in Sources */,
 				ABCD3DE21D96F6A500273936 /* FontFeatures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
