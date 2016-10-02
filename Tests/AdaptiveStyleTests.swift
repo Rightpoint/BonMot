@@ -20,7 +20,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testFontControlSizeAdaption() {
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
-        let style = BonMot(.font(inputFont), .adapt(.control))
+        let style = AttributedStringStyle.style(.font(inputFont), .adapt(.control))
         print(style.attributes)
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
@@ -46,7 +46,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testFontBodySizeAdaption() {
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
-        let style = BonMot(.font(inputFont), .adapt(.body))
+        let style = AttributedStringStyle.style(.font(inputFont), .adapt(.body))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             let attributes = style.attributes
@@ -70,7 +70,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testPreferredFontDoesNotAdapt() {
         let font = UIFont.preferredFont(forTextStyle: titleTextStyle, compatibleWith: defaultTraitCollection)
-        let style = BonMot(.font(font))
+        let style = AttributedStringStyle.style(.font(font))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
@@ -81,7 +81,7 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testTextStyleAdapt() {
-        let style = BonMot(.textStyle(titleTextStyle), .adapt(.preferred))
+        let style = AttributedStringStyle.style(.textStyle(titleTextStyle), .adapt(.preferred))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
@@ -98,7 +98,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testPreferredFontWithPreferredAdaptation() {
         let font = UIFont.preferredFont(forTextStyle: titleTextStyle, compatibleWith: defaultTraitCollection)
-        let style = BonMot(.font(font), .adapt(.preferred))
+        let style = AttributedStringStyle.style(.font(font), .adapt(.preferred))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
@@ -115,7 +115,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testAdobeAdaptiveTracking() {
         let font = UIFont(name: "Avenir-Book", size: 30)!
-        let chain = BonMot(.font(font), .adapt(.control), .tracking(.adobe(300)))
+        let chain = AttributedStringStyle.style(.font(font), .adapt(.control), .tracking(.adobe(300)))
         let attributes = chain.attributes
 
         let testKernAdaption = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
@@ -135,7 +135,7 @@ class AdaptiveStyleTests: XCTestCase {
         EBGaramondLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let originalAttributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature), .adapt(.control)).attributes
+            let originalAttributes = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature), .adapt(.control)).attributes
             let adaptedAttributes = NSAttributedString.adapt(attributes: originalAttributes, to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
 
             XCTAssertEqual(originalAttributes.count, 3)
@@ -179,7 +179,7 @@ class AdaptiveStyleTests: XCTestCase {
             return paragraph.tabStops[0].location
         }
         EBGaramondLoader.loadFontIfNeeded()
-        let style = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .fontFeature(NumberSpacing.monospaced), .adapt(.control))
+        let style = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .fontFeature(NumberSpacing.monospaced), .adapt(.control))
         let tabTestL = NSAttributedString.compose(with: ["Q", Tab.headIndent(10)], baseStyle: style)
         XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestL), 26.12, accuracy: 0.01)
         let tabTestXS = tabTestL.adapt(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
@@ -191,7 +191,7 @@ class AdaptiveStyleTests: XCTestCase {
     func testMergingEmbeddedTransformations() {
         let string = NSAttributedString.compose(with: [
             "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
-            ], baseStyle: BonMot(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
+            ], baseStyle: AttributedStringStyle.style(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
         let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? Array<StyleAttributeValue>
         XCTAssertEqual(attributes?.count, 2)
     }
@@ -200,7 +200,7 @@ class AdaptiveStyleTests: XCTestCase {
         let string = NSAttributedString.compose(with: [
             "Hello".styled(with: .tracking(.adobe(3.0))),
             Tab.headIndent(10)
-            ], baseStyle: BonMot(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
+            ], baseStyle: AttributedStringStyle.style(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
 
         let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? Array<StyleAttributeValue>
         let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? Array<StyleAttributeValue>
