@@ -190,7 +190,7 @@ public extension AttributedStringStyle {
     /// Supply the contained attributes as default values for the passed in StyleAttributes. This will also
     /// perform some merging of values. This includes NSParagraphStyle and the embedded attributes.
     ///
-    /// - parameter defaultsFor: The object to over-write the defaults with
+    /// - parameter for: The object to over-write the defaults with
     /// - returns: The new attributes
     func supplyDefaults(for attributes: StyleAttributes) -> StyleAttributes {
         var attributes = attributes

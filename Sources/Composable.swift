@@ -57,6 +57,7 @@ public extension NSAttributedString {
     /// - parameter with: An array of Composable to create an NSAttributedString from.
     /// - parameter baseStyle: The baseStyle to apply to every Composable. If no baseStyle is supplied, no additional styling will be added.
     /// - parameter separator: The separator to join `composables` with.
+    /// - returns: A new NSAttributedString
     @nonobjc public static func compose(with composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
