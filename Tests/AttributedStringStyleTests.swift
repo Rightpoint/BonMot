@@ -214,7 +214,7 @@ class AttributedStringStyleTests: XCTestCase {
         let derived = BonMot().derive { derived in
             // Not sure why but if this line is commented out, the line after is a compilation error.
             // Feels like a swift bug or an Xcode bug that will disappear in a few days. ><
-            derived.update(attributes: [:])
+            derived.update(initialAttributes: [:])
             derived.update(attributedStringStyle: style)
         }
         // Bizarre, this works:

@@ -5,6 +5,7 @@
 //
 //
 
+// This file contains defines used across BonMot, and a few global functions
 #if os(OSX)
     import AppKit
     public typealias BONColor = NSColor

@@ -12,8 +12,9 @@
     import UIKit
 #endif
 
-// BonMot embeds transformation objects inside NSAttributedString attributes to do adaptive styling.
-// To simplify NSAttributedString NSCoding support, these transformations get embedded using plist compatible objects
+/// BonMot embeds transformation objects inside NSAttributedString attributes to do adaptive styling.
+/// To simplify NSAttributedString NSCoding support, these transformations get embedded using plist compatible objects
+/// This protocol defines a contract to simplify this. NSCoding is not used so value types can be used.
 internal protocol EmbededTransformation {
 
     /// Return a plist compatible dictionary of any state that's needed to persist the adaption
@@ -25,7 +26,7 @@ internal protocol EmbededTransformation {
 
 }
 
-/// Internal helper functions for managing keys in the StyleAttributes related to adaptive functionality.
+// Internal helper functions for managing keys in the StyleAttributes related to adaptive functionality.
 internal enum EmbededTransformationHelpers {
     struct Key {
         static let type = "type"

@@ -76,8 +76,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
                 }
                 return namedStyle
             }
-            func prefix(forElement name: String, attributes: [String: String]) -> NSAttributedString? { return nil }
-            func suffix(forElement name: String) -> NSAttributedString? { return nil }
+            func prefix(forElement name: String, attributes: [String: String]) -> Composable? { return nil }
+            func suffix(forElement name: String) -> Composable? { return nil }
         }
 
         let styler = HTMLishStyleBuilder()

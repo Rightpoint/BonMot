@@ -38,6 +38,7 @@ public enum Special: UnicodeScalar {
 
 extension Special: CustomStringConvertible {
 
+    /// A String with the UnicodeScalar rawValue
     public var description: String {
         return String(rawValue)
     }
@@ -46,6 +47,7 @@ extension Special: CustomStringConvertible {
 
 extension Special {
 
+    /// A developer-facing string for this UnicodeValue
     public var name: String {
         switch self {
         case .tab: return "tab"

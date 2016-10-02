@@ -88,9 +88,10 @@ enum DemoStrings {
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
             )
+            let bullet = NSAttributedString.compose(with: ["🍑 →", Tab.headIndent(4.0)])
             let rules: [XMLStyleRule] = [
                 .style("li", style),
-                .enter(element: "li", insert: NSAttributedString.compose(with: ["🍑 →", Tab.headIndent(4.0)])),
+                .enter(element: "li", insert: bullet),
                 .exit(element: "li", insert: "\n")
             ]
 

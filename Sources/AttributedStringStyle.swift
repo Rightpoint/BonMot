@@ -12,8 +12,12 @@
     import UIKit
 #endif
 
-/// This is the primary style container for BonMot. It is responsible for encapsulating
-/// any attributes that are intended to be used with NSAttributedString.
+/// The primary style container for BonMot responsible for encapsulating any attributes that are intended
+/// to be used with NSAttributedString.
+///
+/// NOTE: This was originally envisioned with a more functional closure implementation. However, the order of application
+///  is very important, and the API was confusing with a priority integer, and forcing the user to use the right order wasn't
+///  acceptable.
 public struct AttributedStringStyle {
     public var initialAttributes: StyleAttributes = [:]
     public var font: BONFont? = nil
@@ -52,6 +56,7 @@ public struct AttributedStringStyle {
 
 extension AttributedStringStyle {
 
+    /// Obtain a StyleAttributes representing the current style
     public var attributes: StyleAttributes {
         var theAttributes = initialAttributes
 
@@ -115,14 +120,22 @@ extension AttributedStringStyle {
 
 extension AttributedStringStyle {
 
-    public mutating func update(attributes theAttributes: StyleAttributes) {
-        for (key, value) in theAttributes {
+    /// Update the initialAttributes in the style object. This is used to provide the default
+    /// values configured in UI elements, which the style can override.
+    ///
+    /// - parameter initialAttributes: The attributes to add to the style before applying the other properties.
+    public mutating func update(initialAttributes attributes: StyleAttributes) {
+        for (key, value) in attributes {
             initialAttributes[key] = value
         }
     }
 
+    /// Update the style with values specified in `attributedStringStyle`. Any value configured in attributedStringStyle
+    /// will over-write the values specified in this AttributedStringStyle.
+    ///
+    /// - parameter attributedStringStyle: The style to update this style with.
     public mutating func update(attributedStringStyle stringStyle: AttributedStringStyle) {
-        update(attributes: stringStyle.initialAttributes)
+        update(initialAttributes: stringStyle.initialAttributes)
         font = stringStyle.font ?? font
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor

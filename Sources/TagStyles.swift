@@ -59,7 +59,7 @@ public class TagStyles: NSObject {
             TagStyles.unregisteredStyleClosure(name)
             return nil
         }
-        style.update(attributes: initialAttributes)
+        style.update(initialAttributes: initialAttributes)
         return style
     }
 

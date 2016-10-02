@@ -12,7 +12,7 @@
     import UIKit
 #endif
 
-/// A Composable that creates a Tab with a calculated space to the beginning of the line.
+/// A Composable that creates a tab character with a calculated space from the beginning of the line.
 public enum Tab {
     /// A spacer Tab will introduce a tab of the specified amount from the current position in the String
     case spacer(CGFloat)
@@ -20,13 +20,6 @@ public enum Tab {
     /// A headIndent Tab will introduce a tab of the specified amount from the current position in the String, and update the
     /// headIndent value in the containing NSParagraphStyle
     case headIndent(CGFloat)
-
-    var padding: CGFloat {
-        switch self {
-        case let .spacer(padding): return padding
-        case let .headIndent(padding): return padding
-        }
-    }
 
 }
 
@@ -41,7 +34,8 @@ extension Tab: Composable {
             let tabAttributes: StyleAttributes = attributes
         #endif
         let tabRange = NSRange(location: attributedString.length, length: 1)
-        attributedString.append(NSAttributedString(string: "\t", attributes: tabAttributes))
+
+        attributedString.append(NSAttributedString(string: Special.tab.description, attributes: tabAttributes))
 
         // Calculate the tab spacing
         update(string: attributedString, in: tabRange)
@@ -51,8 +45,11 @@ extension Tab: Composable {
 
 extension Tab {
 
-    /// Update the tab calculation for the tabs in `range`. This implementation conforms to the `AttributedStringTransformation` protocol, but
-    /// since this is also used when the adaptive code is not included, the conformance is not declared here.
+    /// Update the tab calculation for the tabs in `range`. This will create a NSTabStop in the paragraph style with the specified padding
+    /// from the beginning of the line. This supports multiple tabs in one line, and multiple lines.
+    ///
+    /// This implementation conforms to `AttributedStringTransformation`, but since this is used when the adaptive code may not be included, the
+    /// conformance is not declared here.
     ///
     /// - parameter string: The attributedString to update
     /// - parameter in: The range to perform the tab calculations on
@@ -122,6 +119,13 @@ extension Tab {
             tabIndex += 1
         }
         attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: paragraphRange)
+    }
+
+    var padding: CGFloat {
+        switch self {
+        case let .spacer(padding): return padding
+        case let .headIndent(padding): return padding
+        }
     }
 
 }

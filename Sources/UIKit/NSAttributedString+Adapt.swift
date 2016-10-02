@@ -24,9 +24,9 @@ extension NSAttributedString {
     }
 
     /// Create a new `NSAttributedString` adapted to the new trait collection. This will re-apply the embedded style
-    /// objects or apply the defaultStyle object if no styles are present.
+    /// objects
     ///
-    /// - parameter to: The trait collection containing the attribute string to be transformed.
+    /// - parameter to: The trait collection to adapt to
     /// - returns: A new `NSAttributedString` with the style updated to the new trait collection.
     public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
         let newString = mutableStringCopy()

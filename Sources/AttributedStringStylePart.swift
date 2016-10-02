@@ -12,7 +12,7 @@
 #endif
 
 /// AttributedStringStylePart encapsulates one setting in AttributedStringStyle. It is used
-/// as a DSL for building AttributedStringStyle across BonMot
+/// as a DSL for building AttributedStringStyle across BonMot, but it is just syntactic sugar.
 public enum AttributedStringStylePart {
     case initialAttributes(StyleAttributes)
     case font(BONFont)
@@ -50,17 +50,13 @@ public enum AttributedStringStylePart {
 
 extension AttributedStringStyle {
 
+    /// Create an AttributedStringStyle from an array of parts
+    ///
+    /// - parameter parts: An array of AttributedStringStylePart
+    /// - returns: A newly configured AttributedStringStyle
     #if swift(>=3.0)
     public static func from(_ parts: [AttributedStringStylePart]) -> AttributedStringStyle {
         var style = AttributedStringStyle()
-        for part in parts {
-            style.update(attributedStringStylePart: part)
-        }
-        return style
-    }
-
-    public func derive(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        var style = self
         for part in parts {
             style.update(attributedStringStylePart: part)
         }
@@ -75,6 +71,21 @@ extension AttributedStringStyle {
         return style
     }
 
+    #endif
+
+    /// Derive a new AttributedStringStyle based on this style, updated with an array of AttributedStringStylePart.
+    ///
+    /// - parameter parts: An array of AttributedStringStylePart
+    /// - returns: A newly configured AttributedStringStyle
+    #if swift(>=3.0)
+    public func derive(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
+        var style = self
+        for part in parts {
+            style.update(attributedStringStylePart: part)
+        }
+        return style
+    }
+    #else
     public func derive(parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = self
         for part in parts {
@@ -88,6 +99,8 @@ extension AttributedStringStyle {
 
 extension AttributedStringStyle {
 
+    /// Update the style with the specified style part.
+    ///
     // swiftlint:disable:next cyclomatic_complexity
     mutating func update(attributedStringStylePart stylePart: AttributedStringStylePart) {
         switch stylePart {
@@ -134,7 +147,7 @@ extension AttributedStringStyle {
         case let .paragraphSpacingBefore(paragraphSpacingBefore):
             self.paragraphSpacingBefore = paragraphSpacingBefore
         default:
-            // #if and enum's are disapointing. I'm moving one case into the default catch all to remove a warning that default won't be accessed on some platforms.
+            // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {
                 self.hyphenationFactor = hyphenationFactor
             }

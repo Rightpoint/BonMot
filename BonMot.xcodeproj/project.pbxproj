@@ -328,13 +328,13 @@
 		AB30D5051D9CB3D2006ADC9D /* Adaptive */ = {
 			isa = PBXGroup;
 			children = (
+				ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */,
 				ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */,
 				AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */,
 				AB30D51C1D9D95F5006ADC9D /* EmbededTransformation.swift */,
 				ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */,
 				AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */,
 				AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */,
-				ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */,
 			);
 			name = Adaptive;
 			sourceTree = "<group>";

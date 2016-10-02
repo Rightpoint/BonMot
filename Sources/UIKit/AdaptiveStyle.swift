@@ -7,10 +7,15 @@
 
 import UIKit
 
+/// AdaptiveStyle defines a few default scaling behaviors and allows the font to be scaled.
 public enum AdaptiveStyle {
+    /// Scale the font up and down based on the Dynamic Type slider, but do not grow in the Accessibility ranges.
     case control
+    /// Scale the font up and down based on the Dynamic Type slider, including Accessibility sizes.
     case body
+    /// Enable automatic scaling of preferred fonts
     case preferred
+
     case above(size: CGFloat, family: String)
     case below(size: CGFloat, family: String)
 }

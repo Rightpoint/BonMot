@@ -70,20 +70,3 @@ extension NSAttributedString {
     }
 
 }
-
-extension NSMutableAttributedString {
-
-    /// Extend the current string by appending the supplied attributed string with defaults supplied from the specified style.
-    /// - parameter attributedString: The attributed string to append
-    /// - parameter withBaseStyle: The default style to use
-    internal final func append(attributedString theAttributedString: NSAttributedString, withBaseStyle style: AttributedStringStyle) {
-        let range = NSRange(location: 0, length: theAttributedString.length)
-        theAttributedString.enumerateAttributes(in: range, options: []) { (attributes, range, _) in
-            let substring = theAttributedString.attributedSubstring(from: range)
-            // Add the string with the defaults supplied by the style
-            let newAttributes = style.supplyDefaults(for: attributes)
-            self.append(NSAttributedString(string: substring.string, attributes: newAttributes))
-        }
-    }
-
-}

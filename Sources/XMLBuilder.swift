@@ -84,10 +84,10 @@ public protocol XMLStyler {
     func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle?
 
     /// Return a string to extend into the string being built. This is done after the style for the element has been applied, but before the contents of the element.
-    func prefix(forElement name: String, attributes: [String: String]) -> NSAttributedString?
+    func prefix(forElement name: String, attributes: [String: String]) -> Composable?
 
     /// Return a string to extend into the string being built when leaving the element. This is done before the style of the element is removed.
-    func suffix(forElement name: String) -> NSAttributedString?
+    func suffix(forElement name: String) -> Composable?
 }
 
 /// An option set to control the behavior of the XML parsing behavior
@@ -130,22 +130,22 @@ private struct XMLRuleStyler: XMLStyler {
         return nil
     }
 
-    func prefix(forElement name: String, attributes: [String: String]) -> NSAttributedString? {
+    func prefix(forElement name: String, attributes: [String: String]) -> Composable? {
         for rule in rules {
             switch rule {
             case let .enter(string, composable) where string == name:
-                return composable.attributedString()
+                return composable
             default: break
             }
         }
         return nil
     }
 
-    func suffix(forElement name: String) -> NSAttributedString? {
+    func suffix(forElement name: String) -> Composable? {
         for rule in rules {
             switch rule {
             case let .exit(string, composable) where string == name:
-                return composable.attributedString()
+                return composable
             default: break
             }
         }
@@ -215,13 +215,13 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
 
     func enter(element elementName: String, attributes: [String: String]) {
         if let prefix = styler.prefix(forElement: elementName, attributes: attributes) {
-            attributedString.append(attributedString: prefix, withBaseStyle: topStyle)
+            prefix.append(to: attributedString, baseStyle: topStyle)
         }
     }
 
     func exit(element elementName: String) {
         if let suffix = styler.suffix(forElement: elementName) {
-            attributedString.append(attributedString: suffix, withBaseStyle: topStyle)
+            suffix.append(to: attributedString, baseStyle: topStyle)
         }
     }
 

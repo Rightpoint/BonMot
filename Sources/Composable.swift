@@ -12,8 +12,8 @@
     import UIKit
 #endif
 
-/// This protocol drives the string composition API. A key factor is asking objects
-/// to append rather than fetching an attributed string to append. This is required for more
+/// The protocol that drives the string composition API. The protocol will request that the object
+/// append rather than fetching an attributed string to append. This allows more
 /// complex operations (like tab calculations)
 public protocol Composable {
     func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle)
@@ -50,6 +50,13 @@ public extension Composable {
 
 public extension NSAttributedString {
 
+    /// Compose an NSAttributedString with by appending every item in `composables` with the `baseStyle` applied. The `separator` will be
+    /// appended after every item. `baseStyle` will act as the default style, and will only apply to the Composable item if the Composable
+    /// does not have a style value configured.
+    ///
+    /// - parameter with: An array of Composable to create an NSAttributedString from.
+    /// - parameter baseStyle: The baseStyle to apply to every Composable. If no baseStyle is supplied, no additional styling will be added.
+    /// - parameter separator: The separator to join `composables` with.
     @nonobjc public static func compose(with composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
@@ -65,7 +72,8 @@ public extension NSAttributedString {
         return string
     }
 
-    /// Return a Composable that will add only the attributed string, and will ignore the containing style
+    /// Return a Composable that will add only the attributed string, and will ignore the containing baseStyle.
+    ///
     /// - parameter attributedString: The attributed string to compose without the baseStyle.
     /// - returns: A Composable that returns the attributedString without the baseStyle.
     public static func only(attributedString string: NSAttributedString) -> Composable {
@@ -84,14 +92,31 @@ public extension NSAttributedString {
 
 extension NSAttributedString: Composable {
 
+    /// Append this NSAttributedString to `attributedString`, with `baseStyle` applied as default values. This method will
+    /// enumerate all attribute ranges in this attributed string and use `baseStyle` to supply defaults for the attributes. This
+    /// will effectively merge baseStyle and the embedded attributes, with preference going to the embedded attributes.
+    /// See baseStyle.supplyDefaults(for:) for more details.
+    ///
+    /// - parameter to: The attributed string to append to
+    /// - parameter baseStyle: The baseStyle that is over-ridden by this string.
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        attributedString.append(attributedString: self, withBaseStyle: baseStyle)
+        let range = NSRange(location: 0, length: length)
+        enumerateAttributes(in: range, options: []) { (attributes, range, _) in
+            let substring = attributedSubstring(from: range)
+            // Add the string with the defaults supplied by the style
+            let newAttributes = baseStyle.supplyDefaults(for: attributes)
+            attributedString.append(NSAttributedString(string: substring.string, attributes: newAttributes))
+        }
     }
 
 }
 
 extension String: Composable {
 
+    /// Append this String to `attributedString`, with `baseStyle` applied. Since String has no style, baseStyle is the style.
+    ///
+    /// - parameter to: The attributed string to append to.
+    /// - parameter baseStyle: The style to use for this string.
     public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
         attributedString.append(baseStyle.attributedString(from: self))
     }
@@ -101,6 +126,15 @@ extension String: Composable {
 #if os(iOS) || os(tvOS) || os(OSX)
 extension BONImage: Composable {
 
+    /// Append this Image to `attributedString`, with `baseStyle` applied. Only a few properties in baseStyle are relevant when appending
+    /// images. These include baselineOffset, and textColor for template images. All attributes are stored in the range of the image for consistency
+    /// inside the attributed string.
+    ///
+    /// NOTE: the NSBaselineOffsetAttributeName value is used as the `y` value for the text attachment and is removed from the attributes dictionary to fix an issue with UIKit.
+    /// NOTE: NSTextAttachment is not available on watchOS.
+    ///
+    /// - parameter to: The attributed string to append to.
+    /// - parameter baseStyle: The style to use.
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
         var attributes = baseStyle.attributes
         let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? 0
@@ -121,8 +155,12 @@ extension BONImage: Composable {
 
 extension Special: Composable {
 
+    /// Relay this call to the description property and use the String behavior on unicode value.
+    ///
+    /// - parameter to: The attributed string to append to.
+    /// - parameter baseStyle: The style to use.
     public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        attributedString.append(NSAttributedString(string: description, attributes: baseStyle.attributes))
+        description.append(to: attributedString, baseStyle: baseStyle)
     }
 
 }
