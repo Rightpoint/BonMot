@@ -83,19 +83,12 @@ let adaptiveStyle = BonMot(
 )
 #endif
 
-//let styleBi = BonMotI(
-//    font: .fontB,
-//    textColor: .colorB,
-//    headIndent: 10,
-//    tailIndent: 10
-//)
-
-let styleBz = BonMotC { style in
-    style.font = .fontB
-    style.textColor = .colorB
-    style.headIndent = 10
-    style.tailIndent = 10
-}
+let styleBz = BonMot(
+    .font(.fontB),
+    .textColor(.colorB),
+    .headIndent(10),
+    .tailIndent(10)
+)
 
 let fullStyle: AttributedStringStyle = {
     let terribleValue = CGFloat(1000000)

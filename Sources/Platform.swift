@@ -50,21 +50,9 @@ public typealias StyleAttributes = [String: StyleAttributeValue]
     public func BonMot(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
         return AttributedStringStyle.from(parts)
     }
-
-    public func BonMotC(_ configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = AttributedStringStyle()
-        configure(&style)
-        return style
-    }
 #else
     public func BonMot(parts: AttributedStringStylePart...) -> AttributedStringStyle {
         return AttributedStringStyle.from(parts)
-    }
-
-    public func BonMotC(configure: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = AttributedStringStyle()
-        configure(&style)
-        return style
     }
 #endif
 
