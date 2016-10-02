@@ -11,6 +11,8 @@
     import UIKit
 #endif
 
+/// AttributedStringStylePart encapsulates one setting in AttributedStringStyle. It is used
+/// as a DSL for building AttributedStringStyle across BonMot
 public enum AttributedStringStylePart {
     case initialAttributes(StyleAttributes)
     case font(BONFont)
@@ -21,7 +23,6 @@ public enum AttributedStringStylePart {
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
     case alignment(NSTextAlignment)
-    case style(StyleAttributeTransformation)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
     case paragraphSpacingAfter(CGFloat)
@@ -108,8 +109,6 @@ extension AttributedStringStyle {
             self.baselineOffset = baselineOffset
         case let .alignment(alignment):
             self.alignment = alignment
-        case let .style(style):
-            self.adaptations.append(style)
         case let .tracking(tracking):
             self.tracking = tracking
         case let .lineSpacing(lineSpacing):

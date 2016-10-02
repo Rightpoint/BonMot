@@ -32,10 +32,13 @@ public class TagStyles: NSObject {
         print("Requesting unregistered style \(name)")
     }
 
+    /// Create a new TagStyles object with the specified name to style mapping
+    /// - parameter styles: A dictionary containing the name to style mapping
     public init(styles: [String: AttributedStringStyle] = [:]) {
         self.styles = styles
     }
 
+    /// The contained name to style mapping
     public var styles: [String: AttributedStringStyle]
 
     public func registerStyle(forName name: String, style: AttributedStringStyle) {

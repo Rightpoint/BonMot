@@ -128,7 +128,9 @@ let fullStyle: AttributedStringStyle = {
     #if os(iOS) || os(tvOS) || os(OSX)
         fullStyle.fontFeatureProviders = [NumberCase.upper, NumberCase.upper, NumberCase.upper, NumberCase.upper]
     #endif
-    fullStyle.adaptations = [BonMot(), BonMot(), BonMot(), BonMot()]
+    #if os(iOS) || os(tvOS)
+        fullStyle.adaptations = [.preferred, .control, .body]
+    #endif
     fullStyle.tracking = .adobe(terribleValue)
     return fullStyle
 }()

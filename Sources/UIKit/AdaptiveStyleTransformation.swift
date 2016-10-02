@@ -23,24 +23,3 @@ internal protocol AdaptiveStyleTransformation {
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes?
 
 }
-
-extension StyleAttributeTransformation {
-
-    public func attributes(adaptedTo traitCollection: UITraitCollection) -> StyleAttributes {
-        return NSAttributedString.adapt(attributes: attributes(), to: traitCollection)
-    }
-}
-
-extension Tracking: AdaptiveStyleTransformation {
-    func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
-        if case .adobe = self {
-            var attributes = theAttributes
-            let styledFont = theAttributes[NSFontAttributeName] as? UIFont
-            attributes.update(possibleValue: kerning(forFont: styledFont), forKey: NSKernAttributeName)
-            return attributes
-        }
-        else {
-            return nil
-        }
-    }
-}

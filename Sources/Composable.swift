@@ -12,23 +12,37 @@
     import UIKit
 #endif
 
+/// This protocol drives the string composition API. A key factor is asking objects
+/// to append rather than fetching an attributed string to append. This is required for more
+/// complex operations (like tab calculations)
 public protocol Composable {
     func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle)
 }
 
 public extension Composable {
 
+    /// Create an attributed string with only this composable content, and no base style.
+    ///
+    /// - returns: a new NSAttributedString
     public func attributedString() -> NSAttributedString {
         return .compose(with: [self])
     }
 
-    public func styled(with style: AttributedStringStyle) -> Composable {
+    /// Create a new NSAttributedString with the base style specified.
+    ///
+    /// - parameter style: The style to decorate with
+    /// - returns: A new NSAttributedString
+    public func styled(with style: AttributedStringStyle) -> NSAttributedString {
         let string = NSMutableAttributedString()
         self.append(to: string, baseStyle: style)
         return string
     }
 
-    public func styled(with parts: AttributedStringStylePart...) -> Composable {
+    /// Create a new NSAttributedString with the style parts specified
+    ///
+    /// - parameter parts: The style parts to decorate with
+    /// - returns: A new NSAttributedString
+    public func styled(with parts: AttributedStringStylePart...) -> NSAttributedString {
         return styled(with: AttributedStringStyle.from(parts))
     }
 
@@ -88,8 +102,7 @@ extension String: Composable {
 extension BONImage: Composable {
 
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        var range = NSRange()
-        var attributes = attributedString.extendingAttributes(with: baseStyle, effectiveRange: &range)
+        var attributes = baseStyle.attributes
         let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? 0
         let attachment = NSTextAttachment()
         attachment.image = self
@@ -109,7 +122,7 @@ extension BONImage: Composable {
 extension Special: Composable {
 
     public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        attributedString.append(NSAttributedString(string: description, attributes: baseStyle.attributes()))
+        attributedString.append(NSAttributedString(string: description, attributes: baseStyle.attributes))
     }
 
 }

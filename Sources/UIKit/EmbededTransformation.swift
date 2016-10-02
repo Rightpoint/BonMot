@@ -12,7 +12,7 @@
     import UIKit
 #endif
 
-// BonMot embeds transformation objects inside NSAttributedString attributes to do adaptive styling
+// BonMot embeds transformation objects inside NSAttributedString attributes to do adaptive styling.
 // To simplify NSAttributedString NSCoding support, these transformations get embedded using plist compatible objects
 internal protocol EmbededTransformation {
 
@@ -59,123 +59,6 @@ internal enum EmbededTransformationHelpers {
             return nil
         }
         return results.flatMap({ $0 })
-    }
-
-}
-
-extension AdaptiveStyle: EmbededTransformation {
-
-    struct Key {
-        static let family = "family"
-    }
-
-    struct Value {
-        static let control = "control"
-        static let body = "body"
-        static let preferred = "preferred"
-        static let above = "above"
-        static let below = "below"
-    }
-
-    var representation: StyleAttributes {
-        switch self {
-        case let .above(size, family):
-            return [
-                EmbededTransformationHelpers.Key.type: Value.above,
-                EmbededTransformationHelpers.Key.size: size,
-                Key.family: family,
-            ]
-        case let .below(size, family):
-            return [
-                EmbededTransformationHelpers.Key.type: Value.below,
-                EmbededTransformationHelpers.Key.size: size,
-                Key.family: family,
-            ]
-        case .control:
-            return [EmbededTransformationHelpers.Key.type: Value.control]
-        case .body:
-            return [EmbededTransformationHelpers.Key.type: Value.body]
-        case .preferred:
-            return [EmbededTransformationHelpers.Key.type: Value.preferred]
-        }
-    }
-
-    static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbededTransformation? {
-        switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
-                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat,
-                dictionary[Key.family] as? String) {
-        case (Value.control?, nil, nil):
-            return AdaptiveStyle.control
-        case (Value.body?, nil, nil):
-            return AdaptiveStyle.body
-        case (Value.preferred?, nil, nil):
-            return AdaptiveStyle.preferred
-        case let (Value.above?, size?, family?):
-            return AdaptiveStyle.above(size: size, family: family)
-        case let (Value.below?, size?, family?):
-            return AdaptiveStyle.below(size: size, family: family)
-        default:
-            return nil
-        }
-    }
-
-}
-
-extension Tracking: EmbededTransformation {
-
-    struct Value {
-        static let adobeTracking = "adobe-tracking"
-    }
-
-    static func from(representation dictionary: StyleAttributes) -> EmbededTransformation? {
-        if case let (Value.adobeTracking?, size?) = (dictionary[EmbededTransformationHelpers.Key.type] as? String, dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat) {
-            return Tracking.adobe(size)
-        }
-        return nil
-    }
-
-    var representation: StyleAttributes {
-        if case let .adobe(size) = self {
-            return [EmbededTransformationHelpers.Key.type: Value.adobeTracking,
-                    EmbededTransformationHelpers.Key.size: size]
-        }
-        else {
-            // We don't need to persist regular tracking as it does not depend on the font size.
-            return [:]
-        }
-    }
-
-}
-
-extension Tab: EmbededTransformation {
-
-    struct Value {
-        static let spacer = "spacer"
-        static let headIndent = "headIndent"
-    }
-
-    static func from(representation dictionary: StyleAttributes) -> EmbededTransformation? {
-        switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
-                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat) {
-        case (Value.spacer?, let width?):
-            return Tab.spacer(width)
-        case (Value.headIndent?, let width?):
-            return Tab.headIndent(width)
-        default:
-            return nil
-        }
-    }
-
-    var representation: StyleAttributes {
-        switch self {
-        case let .spacer(size):
-            return [EmbededTransformationHelpers.Key.type: Value.spacer,
-                    EmbededTransformationHelpers.Key.size: size]
-
-        case let .headIndent(size):
-            return [EmbededTransformationHelpers.Key.type: Value.headIndent,
-                    EmbededTransformationHelpers.Key.size: size]
-        }
     }
 
 }

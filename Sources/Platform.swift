@@ -27,6 +27,14 @@
     let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
 #endif
 
+#if swift(>=3.0)
+    public typealias StyleAttributeValue = Any
+#else
+    public typealias StyleAttributeValue = AnyObject
+#endif
+
+public typealias StyleAttributes = [String: StyleAttributeValue]
+
 #if os(iOS) || os(tvOS)
 #if swift(>=3.0)
     public typealias BonMotTextStyle = UIFontTextStyle

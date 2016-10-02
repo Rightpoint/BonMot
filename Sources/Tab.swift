@@ -12,12 +12,28 @@
     import UIKit
 #endif
 
-public enum Tab: Composable {
+/// A Composable that creates a Tab with a calculated space to the beginning of the line.
+public enum Tab {
+    /// A spacer Tab will introduce a tab of the specified amount from the current position in the String
     case spacer(CGFloat)
+
+    /// A headIndent Tab will introduce a tab of the specified amount from the current position in the String, and update the
+    /// headIndent value in the containing NSParagraphStyle
     case headIndent(CGFloat)
 
+    var padding: CGFloat {
+        switch self {
+        case let .spacer(padding): return padding
+        case let .headIndent(padding): return padding
+        }
+    }
+
+}
+
+extension Tab: Composable {
+
     public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        let attributes = baseStyle.attributes()
+        let attributes = baseStyle.attributes
         #if os(iOS)
             // Embed the tab in the attributes
             let tabAttributes = EmbededTransformationHelpers.embed(transformation: self, to: attributes)
@@ -31,17 +47,15 @@ public enum Tab: Composable {
         update(string: attributedString, in: tabRange)
     }
 
-    var padding: CGFloat {
-        switch self {
-        case let .spacer(padding): return padding
-        case let .headIndent(padding): return padding
-        }
-    }
-
 }
 
 extension Tab {
 
+    /// Update the tab calculation for the tabs in `range`. This implementation conforms to the `AttributedStringTransformation` protocol, but
+    /// since this is also used when the adaptive code is not included, the conformance is not declared here.
+    ///
+    /// - parameter string: The attributedString to update
+    /// - parameter in: The range to perform the tab calculations on
     func update(string attributedString: NSMutableAttributedString, in range: NSRange) {
         let string = attributedString.string as NSString
 

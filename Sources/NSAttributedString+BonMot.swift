@@ -69,24 +69,19 @@ extension NSAttributedString {
         return debug
     }
 
-    /// Helper function to determine the attributes to use when appending content.
-    internal final func extendingAttributes(with style: StyleAttributeTransformation?, effectiveRange range: NSRangePointer) -> StyleAttributes {
-        let lastIndex = length - (length > 0 ? 1 : 0)
-        let finalAttributes = length > 0 ? attributes(at: lastIndex, effectiveRange: range) : [:]
-        return style?.style(attributes: finalAttributes) ?? finalAttributes
-    }
-
 }
 
 extension NSMutableAttributedString {
 
     /// Extend the current string by appending the supplied attributed string with defaults supplied from the specified style.
-    internal final func append(attributedString theAttributedString: NSAttributedString, withBaseStyle style: StyleAttributeTransformation) {
+    /// - parameter attributedString: The attributed string to append
+    /// - parameter withBaseStyle: The default style to use
+    internal final func append(attributedString theAttributedString: NSAttributedString, withBaseStyle style: AttributedStringStyle) {
         let range = NSRange(location: 0, length: theAttributedString.length)
         theAttributedString.enumerateAttributes(in: range, options: []) { (attributes, range, _) in
             let substring = theAttributedString.attributedSubstring(from: range)
             // Add the string with the defaults supplied by the style
-            let newAttributes = style.supply(defaultsFor: attributes)
+            let newAttributes = style.supplyDefaults(for: attributes)
             self.append(NSAttributedString(string: substring.string, attributes: newAttributes))
         }
     }

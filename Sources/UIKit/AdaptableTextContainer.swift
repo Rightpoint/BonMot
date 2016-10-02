@@ -33,7 +33,8 @@ extension UILabel: AdaptableTextContainer {
         // See UIKitTests.testLabelFontPropertyBehavior for interesting behavior.
 
         if let bonMotStyle = bonMotStyle {
-            font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
+            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
+            font = attributes[NSFontAttributeName] as? BONFont
         }
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapt(to: traitCollection)
@@ -55,7 +56,8 @@ extension UITextView: AdaptableTextContainer {
 
         self.typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
         if let bonMotStyle = bonMotStyle {
-            font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
+            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
+            font = attributes[NSFontAttributeName] as? BONFont
         }
     }
 
@@ -69,7 +71,8 @@ extension UITextField: AdaptableTextContainer {
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let bonMotStyle = bonMotStyle {
-            font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
+            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
+            font = attributes[NSFontAttributeName] as? BONFont
         }
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapt(to: traitCollection)
@@ -92,7 +95,8 @@ extension UIButton: AdaptableTextContainer {
     @objc(bon_updateTextForTraitCollection:)
     public func updateText(forTraitCollection traitCollection: UITraitCollection) {
         if let bonMotStyle = bonMotStyle, let titleLabel = titleLabel {
-            titleLabel.font = StyleAttributeHelpers.font(from: NSAttributedString.adapt(attributes: bonMotStyle.attributes(), to: traitCollection))
+            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
+            titleLabel.font = attributes[NSFontAttributeName] as? BONFont
         }
         for state: UIControlState in UIControlState.allStates {
             #if swift(>=3.0)
@@ -226,7 +230,7 @@ extension UIBarItem {
 
 }
 
-internal extension UIControlState {
+extension UIControlState {
 
     @nonobjc static var allStates: [UIControlState] {
         #if swift(>=3.0)
@@ -238,7 +242,7 @@ internal extension UIControlState {
 
 }
 
-internal extension UINavigationItem {
+extension UINavigationItem {
 
     final var allBarItems: [UIBarButtonItem] {
         var allBarItems = leftBarButtonItems ?? []

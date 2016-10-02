@@ -12,6 +12,8 @@
     import UIKit
 #endif
 
+/// This is the primary style container for BonMot. It is responsible for encapsulating
+/// any attributes that are intended to be used with NSAttributedString.
 public struct AttributedStringStyle {
     public var initialAttributes: StyleAttributes = [:]
     public var font: BONFont? = nil
@@ -39,26 +41,20 @@ public struct AttributedStringStyle {
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
     #endif
-    public var adaptations: [StyleAttributeTransformation] = []
+    #if os(iOS) || os(tvOS)
+    public var adaptations: [AdaptiveStyle] = []
+    #endif
     public var tracking: Tracking? = nil
 
     public init() {}
-    public func derive(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = self
-        configureBlock(&style)
-        return style
-    }
 
 }
 
-extension AttributedStringStyle: StyleAttributeTransformation {
+extension AttributedStringStyle {
 
-    public func style(attributes theAttributes: StyleAttributes) -> StyleAttributes {
-        // Apply all of the style properties to the StyleAttributes
-        var theAttributes = theAttributes
-        for (key, value) in initialAttributes {
-            theAttributes[key] = value
-        }
+    public var attributes: StyleAttributes {
+        var theAttributes = initialAttributes
+
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
         theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
         theAttributes.update(possibleValue: backgroundColor, forKey: NSBackgroundColorAttributeName)
@@ -69,7 +65,7 @@ extension AttributedStringStyle: StyleAttributeTransformation {
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
 
-        let paragraph = StyleAttributeHelpers.paragraph(from: theAttributes)
+        let paragraph = AttributedStringStyle.paragraph(from: theAttributes)
         paragraph.lineSpacing = lineSpacing ?? paragraph.lineSpacing
         paragraph.paragraphSpacing = paragraphSpacingAfter ?? paragraph.paragraphSpacing
         paragraph.alignment = alignment ?? paragraph.alignment
@@ -95,13 +91,15 @@ extension AttributedStringStyle: StyleAttributeTransformation {
             theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
         #endif
 
-        // Apply any adaptations
-        for adaptation in adaptations {
-            theAttributes = adaptation.style(attributes: theAttributes)
-        }
+        #if os(iOS) || os(tvOS)
+            // Apply any adaptations
+            for adaptation in adaptations {
+                theAttributes = adaptation.embed(in: theAttributes)
+            }
+        #endif
 
+        // Apply tracking
         if let tracking = tracking {
-            // Apply tracking
             let styledFont = theAttributes[NSFontAttributeName] as? BONFont
             theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
             #if os(iOS) || os(tvOS)
@@ -136,7 +134,6 @@ extension AttributedStringStyle {
         baselineOffset = stringStyle.baselineOffset ?? baselineOffset
 
         lineSpacing = stringStyle.lineSpacing ?? lineSpacing
-
         paragraphSpacingAfter = stringStyle.paragraphSpacingAfter ?? paragraphSpacingAfter
         alignment = stringStyle.alignment ?? alignment
         firstLineHeadIndent = stringStyle.firstLineHeadIndent ?? firstLineHeadIndent
@@ -153,8 +150,98 @@ extension AttributedStringStyle {
         #if os(iOS) || os(tvOS) || os(OSX)
             fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)
         #endif
-        adaptations.append(contentsOf: stringStyle.adaptations)
+        #if os(iOS) || os(tvOS)
+            adaptations.append(contentsOf: stringStyle.adaptations)
+        #endif
         tracking = stringStyle.tracking ?? tracking
+    }
+
+    public func derive(configureBlock: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+        var style = self
+        configureBlock(&style)
+        return style
+    }
+
+}
+
+/// An extension to provide UIKit interaction helpers to the style object
+public extension AttributedStringStyle {
+
+    /// Create an NSMutableAttributedString from the specified string.
+    /// - parameter from: The String
+    /// - returns: A new NSMutableAttributedString
+    public func attributedString(from theString: String) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: theString, attributes: attributes)
+    }
+
+    /// Supply the contained attributes as default values for the passed in StyleAttributes. This will also
+    /// perform some merging of values. This includes NSParagraphStyle and the embedded attributes.
+    ///
+    /// - parameter defaultsFor: The object to over-write the defaults with
+    /// - returns: The new attributes
+    func supplyDefaults(for attributes: StyleAttributes) -> StyleAttributes {
+        var attributes = attributes
+        for (key, value) in self.attributes {
+            switch (key, value, attributes[key]) {
+            case (NSParagraphStyleAttributeName, let paragraph as NSParagraphStyle, let otherParagraph as NSParagraphStyle):
+                attributes[NSParagraphStyleAttributeName] = paragraph.supplyDefaults(for: otherParagraph)
+            case (BonMotTransformationsAttributeName,
+                var transformations as Array<StyleAttributeValue>,
+                let otherTransformations as Array<StyleAttributeValue>):
+                transformations.append(contentsOf: otherTransformations)
+                attributes[BonMotTransformationsAttributeName] = transformations
+            case let (key, value, nil):
+                attributes.update(possibleValue: value, forKey: key)
+            default:
+                break
+            }
+        }
+        return attributes
+    }
+
+    /// A helper function to coerce an `NSMutableParagraphStyle` from a value in an attributes dictionary.
+    /// - parameter from: the attributes dictionary from which to extract the paragraph style
+    /// - returns: a mutable copy of an `NSParagraphStyle`, or a new `NSMutableParagraphStyle` if the value is `nil`.
+    static func paragraph(from styleAttributes: StyleAttributes) -> NSMutableParagraphStyle {
+        let theObject = styleAttributes[NSParagraphStyleAttributeName]
+        let result: NSMutableParagraphStyle
+        if let paragraphStyle = theObject as? NSMutableParagraphStyle {
+            result = paragraphStyle
+        }
+        else if let paragraphStyle = theObject as? NSParagraphStyle {
+            result = paragraphStyle.mutableParagraphStyleCopy()
+        }
+        else {
+            result = NSMutableParagraphStyle()
+        }
+        return result
+    }
+
+ }
+
+extension NSParagraphStyle {
+
+    /// Update the supplied NSParagraphStyle properties with the value in this ParagraphStyle if the supplied
+    /// ParagraphStyle property is the default value.
+    // swiftlint:disable:next cyclomatic_complexity
+    func supplyDefaults(for paragraphStyle: NSParagraphStyle) -> NSMutableParagraphStyle {
+        let defaults = NSParagraphStyle.bon_default
+        let paragraph = paragraphStyle.mutableParagraphStyleCopy()
+        if paragraph.lineSpacing == defaults.lineSpacing { paragraph.lineSpacing = lineSpacing }
+        if paragraph.paragraphSpacing == defaults.paragraphSpacing { paragraph.paragraphSpacing = paragraphSpacing }
+        if paragraph.alignment == defaults.alignment { paragraph.alignment = alignment }
+        if paragraph.firstLineHeadIndent == defaults.firstLineHeadIndent { paragraph.firstLineHeadIndent = firstLineHeadIndent }
+        if paragraph.headIndent == defaults.headIndent { paragraph.headIndent = headIndent }
+        if paragraph.tailIndent == defaults.tailIndent { paragraph.tailIndent = tailIndent }
+        if paragraph.lineBreakMode == defaults.lineBreakMode { paragraph.lineBreakMode = lineBreakMode }
+        if paragraph.minimumLineHeight == defaults.minimumLineHeight { paragraph.minimumLineHeight = minimumLineHeight }
+        if paragraph.maximumLineHeight == defaults.maximumLineHeight { paragraph.maximumLineHeight = maximumLineHeight }
+        if paragraph.baseWritingDirection == defaults.baseWritingDirection { paragraph.baseWritingDirection = baseWritingDirection }
+        if paragraph.lineHeightMultiple == defaults.lineHeightMultiple { paragraph.lineHeightMultiple = lineHeightMultiple }
+        if paragraph.paragraphSpacingBefore == defaults.paragraphSpacingBefore { paragraph.paragraphSpacingBefore = paragraphSpacingBefore }
+        if paragraph.hyphenationFactor == defaults.hyphenationFactor { paragraph.hyphenationFactor = hyphenationFactor }
+        if paragraph.tabStops == defaults.tabStops { paragraph.tabStops = tabStops }
+        return paragraph
     }
 
 }

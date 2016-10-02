@@ -21,10 +21,10 @@ class AdaptiveStyleTests: XCTestCase {
     func testFontControlSizeAdaption() {
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = BonMot(.font(inputFont), .adapt(.control))
-        print(style.attributes())
+        print(style.attributes)
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
-            return NSAttributedString.adapt(attributes: style.attributes(), to: traitCollection)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.small.compatible), query: { $0.pointSize }, float: 26)
@@ -49,7 +49,7 @@ class AdaptiveStyleTests: XCTestCase {
         let style = BonMot(.font(inputFont), .adapt(.body))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
-            let attributes = style.attributes()
+            let attributes = style.attributes
             return NSAttributedString.adapt(attributes: attributes, to: traitCollection)
         }
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
@@ -73,7 +73,7 @@ class AdaptiveStyleTests: XCTestCase {
         let style = BonMot(.font(font))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
-            return NSAttributedString.adapt(attributes: style.attributes(), to: traitCollection)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: font.pointSize)
@@ -84,7 +84,7 @@ class AdaptiveStyleTests: XCTestCase {
         let style = BonMot(.textStyle(titleTextStyle), .adapt(.preferred))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
-            return NSAttributedString.adapt(attributes: style.attributes(), to: traitCollection)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
@@ -101,7 +101,7 @@ class AdaptiveStyleTests: XCTestCase {
         let style = BonMot(.font(font), .adapt(.preferred))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
-            return NSAttributedString.adapt(attributes: style.attributes(), to: traitCollection)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
@@ -116,7 +116,7 @@ class AdaptiveStyleTests: XCTestCase {
     func testAdobeAdaptiveTracking() {
         let font = UIFont(name: "Avenir-Book", size: 30)!
         let chain = BonMot(.font(font), .adapt(.control), .tracking(.adobe(300)))
-        let attributes = chain.style(attributes: [NSFontAttributeName: font])
+        let attributes = chain.attributes
 
         let testKernAdaption = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
@@ -135,7 +135,7 @@ class AdaptiveStyleTests: XCTestCase {
         EBGaramondLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let originalAttributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature), .adapt(.control)).attributes()
+            let originalAttributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature), .adapt(.control)).attributes
             let adaptedAttributes = NSAttributedString.adapt(attributes: originalAttributes, to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
 
             XCTAssertEqual(originalAttributes.count, 3)

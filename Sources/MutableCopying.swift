@@ -14,7 +14,7 @@ import Foundation
     import AppKit
 #endif
 
-internal extension NSAttributedString {
+extension NSAttributedString {
 
     @nonobjc func mutableStringCopy() -> NSMutableAttributedString {
         guard let copy = mutableCopy() as? NSMutableAttributedString else {
@@ -25,7 +25,7 @@ internal extension NSAttributedString {
 
 }
 
-internal extension NSParagraphStyle {
+extension NSParagraphStyle {
 
     @nonobjc func mutableParagraphStyleCopy() -> NSMutableParagraphStyle {
         guard let copy = mutableCopy() as? NSMutableParagraphStyle else {

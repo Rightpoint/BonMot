@@ -5,6 +5,7 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
+/// Special encapsulates interesting Unicode values for use creating strings.
 public enum Special: UnicodeScalar {
     // Keep the cases sorted by unichar value when adding new cases.
     case tab = "\u{0009}"
