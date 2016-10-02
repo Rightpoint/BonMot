@@ -102,7 +102,7 @@ extension NSAttributedString: Composable {
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
         let range = NSRange(location: 0, length: length)
         enumerateAttributes(in: range, options: []) { (attributes, range, _) in
-            let substring = attributedSubstring(from: range)
+            let substring = self.attributedSubstring(from: range)
             // Add the string with the defaults supplied by the style
             let newAttributes = baseStyle.supplyDefaults(for: attributes)
             attributedString.append(NSAttributedString(string: substring.string, attributes: newAttributes))
