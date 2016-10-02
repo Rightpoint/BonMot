@@ -11,7 +11,7 @@ import BonMot
 class AttributedStringStyleTests: XCTestCase {
 
     func testBasicAssertionUtilities() {
-        let style = BonMot(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB))
+        let style = AttributedStringStyle.style(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
             BONAssert(attributes: style.attributes, key: NSFontAttributeName, value: BONFont.fontA)
@@ -22,7 +22,7 @@ class AttributedStringStyleTests: XCTestCase {
 
     #if os(iOS) || os(tvOS)
     func testTextStyle() {
-        let style = BonMot(.textStyle(titleTextStyle))
+        let style = AttributedStringStyle.style(.textStyle(titleTextStyle))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             let font = style.attributes[NSFontAttributeName] as? UIFont
@@ -35,7 +35,7 @@ class AttributedStringStyleTests: XCTestCase {
 
     func testURL() {
         let url = NSURL(string: "http://apple.com/")!
-        let style = BonMot(.link(url))
+        let style = AttributedStringStyle.style(.link(url))
 
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
@@ -44,7 +44,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testStrikethroughStyle() {
-        let style = BonMot(.strikethrough(.byWord, .colorA))
+        let style = AttributedStringStyle.style(.strikethrough(.byWord, .colorA))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
             BONAssert(attributes: style.attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
@@ -53,7 +53,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testUnderlineStyle() {
-        let style = BonMot(.underline(.byWord, .colorA))
+        let style = AttributedStringStyle.style(.underline(.byWord, .colorA))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
             BONAssert(attributes: style.attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
@@ -62,7 +62,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testBaselineStyle() {
-        let style = BonMot(.baselineOffset(15))
+        let style = AttributedStringStyle.style(.baselineOffset(15))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, key: NSBaselineOffsetAttributeName, float: CGFloat(15), accuracy: 0.001)
@@ -70,7 +70,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testAlignmentStyle() {
-        let style = BonMot(.alignment(.center))
+        let style = AttributedStringStyle.style(.alignment(.center))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
@@ -81,7 +81,7 @@ class AttributedStringStyleTests: XCTestCase {
         EBGaramondLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let attributes = BonMot(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
+            let attributes = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
             XCTAssertEqual(attributes.count, 1)
             let font = attributes[NSFontAttributeName] as? BONFont
             XCTAssertNotNil(font)
@@ -109,7 +109,7 @@ class AttributedStringStyleTests: XCTestCase {
     ]
 
     func testParagraphStyles() {
-        let style = BonMot(
+        let style = AttributedStringStyle.style(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -134,7 +134,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testParagraphStyleAdd() {
-        var style = BonMot(
+        var style = AttributedStringStyle.style(
             .lineSpacing(1),
             .paragraphSpacingAfter(1),
             .alignment(.left),
@@ -149,7 +149,7 @@ class AttributedStringStyleTests: XCTestCase {
             .paragraphSpacingBefore(1),
             .hyphenationFactor(1)
             )
-        style.update(attributedStringStyle: BonMot(
+        style.update(attributedStringStyle: AttributedStringStyle.style(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -174,7 +174,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testAdobeTracking() {
-        let style = BonMot(.tracking(.adobe(300)))
+        let style = AttributedStringStyle.style(.tracking(.adobe(300)))
         for (style, _) in checks(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
@@ -189,7 +189,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testPointTracking() {
-        let style = BonMot(.tracking(.point(10)))
+        let style = AttributedStringStyle.style(.tracking(.point(10)))
         for (style, _) in checks(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
@@ -211,7 +211,7 @@ class AttributedStringStyleTests: XCTestCase {
     //   - an empty style object that is updated by the passed style object
     //   - a fully populated style object that is updated by the passed style object
     func checks(for style: AttributedStringStyle) -> [(style: AttributedStringStyle, fullStyle: Bool)] {
-        let derived = BonMot().derive { derived in
+        let derived = AttributedStringStyle.style().derive { derived in
             // Not sure why but if this line is commented out, the line after is a compilation error.
             // Feels like a swift bug or an Xcode bug that will disappear in a few days. ><
             derived.update(initialAttributes: [:])

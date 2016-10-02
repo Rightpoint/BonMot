@@ -62,12 +62,12 @@ extension BONFont {
     }
 }
 
-let styleA = BonMot(
+let styleA = AttributedStringStyle.style(
     .font(.fontA),
     .textColor(.colorA)
 )
 
-let styleB = BonMot(
+let styleB = AttributedStringStyle.style(
     .font(.fontB),
     .textColor(.colorB),
     .headIndent(10),
@@ -76,14 +76,14 @@ let styleB = BonMot(
 
 #if os(OSX)
 #else
-let adaptiveStyle = BonMot(
+let adaptiveStyle = AttributedStringStyle.style(
     .font(.fontA),
     .textColor(.colorA),
     .adapt(.body)
 )
 #endif
 
-let styleBz = BonMot(
+let styleBz = AttributedStringStyle.style(
     .font(.fontB),
     .textColor(.colorB),
     .headIndent(10),

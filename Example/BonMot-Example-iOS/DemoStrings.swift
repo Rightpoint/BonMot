@@ -8,11 +8,11 @@
 import BonMot
 
 enum DemoStrings {
-    static let gray = BonMotC({ style in
-        style.font = UIFont(name: "GillSans-Light", size: 20)!
-        style.lineHeightMultiple = 1.8
-        style.textColor = .darkGray
-    })
+    static let gray = AttributedStringStyle.style(
+        .font(UIFont(name: "GillSans-Light", size: 20)!),
+        .lineHeightMultiple(1.8),
+        .textColor(.darkGray)
+    )
     static let colorString = NSAttributedString.compose(with: [
         "I want to be different. If everyone is wearing ",
         " black, ".styled(with: .textColor(.white),
@@ -29,40 +29,35 @@ enum DemoStrings {
             .textColor(.raizlabsRed), .baselineOffset(-4.0))
         ], baseStyle: gray)
 
-    static let trackingString = BonMot(
-        .tracking(.adobe(300)),
-        .font(UIFont(name: "Avenir-Book", size: 18)!),
-        .adapt(.control)
-        ).attributedString(from: "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone")
+    static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
+        .styled(with: .tracking(.adobe(300)),
+                .font(UIFont(name: "Avenir-Book", size: 18)!),
+                .adapt(.control))
 
-    static let lineHeightString = BonMot(
-        .font(UIFont(name: "AmericanTypewriter", size: 17.0)!),
-        .lineHeightMultiple(1.8),
-        .adapt(.control)
-        ).attributedString(from: "I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson")
+    static let lineHeightString = "I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson"
+        .styled(with: .font(UIFont(name: "AmericanTypewriter", size: 17.0)!),
+                .lineHeightMultiple(1.8),
+                .adapt(.control)
+    )
 
-    static let proportionalStyle = BonMot(
+    static let proportionalStyle = AttributedStringStyle.style(
         .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
         .adapt(.control)
     )
 
     static let proportionalStrings: [NSAttributedString] = [
-        proportionalStyle.derive(
+        "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
             .fontFeature(NumberSpacing.proportional),
-            .fontFeature(NumberCase.upper)
-            ).attributedString(from: "Proportional Uppercase\n1111111111\n0123456789"),
-        proportionalStyle.derive(
+            .fontFeature(NumberCase.upper))),
+        "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
             .fontFeature(NumberSpacing.proportional),
-            .fontFeature(NumberCase.lower)
-            ).attributedString(from: "Proportional Lowercase\n1111111111\n0123456789"),
-        proportionalStyle.derive(
+            .fontFeature(NumberCase.lower))),
+        "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
             .fontFeature(NumberSpacing.monospaced),
-            .fontFeature(NumberCase.upper)
-            ).attributedString(from: "Monospaced Uppercase\n1111111111\n0123456789"),
-        proportionalStyle.derive(
+            .fontFeature(NumberCase.upper))),
+        "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
             .fontFeature(NumberSpacing.monospaced),
-            .fontFeature(NumberCase.lower)
-            ).attributedString(from: "Monospaced Lowercase\n1111111111\n0123456789"),
+            .fontFeature(NumberCase.lower))),
         ]
 
     static let indentationStrings: [NSAttributedString] = [
@@ -70,7 +65,7 @@ enum DemoStrings {
             UIImage(named: "robot")!,
             Tab.headIndent(4.0),
             "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”"
-            ], baseStyle: BonMot(
+            ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
         )),
@@ -78,13 +73,13 @@ enum DemoStrings {
             "🍑 →",
             Tab.headIndent(4.0),
             "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
-            ], baseStyle: BonMot(
+            ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .textColor(.darkGray),
                 .adapt(AdaptiveStyle.control)
         )),
         ({
-            let style = BonMot(
+            let style = AttributedStringStyle.style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
             )
@@ -103,10 +98,6 @@ enum DemoStrings {
         })()
     ]
 
-    static let imageStyle = BonMot(
-        .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
-        .adapt(.control)
-    )
     static let imageString = NSAttributedString.compose(with: [
         "2".styled(with: .baselineOffset(8)),
         UIImage(named: "bee")!,
@@ -114,9 +105,12 @@ enum DemoStrings {
         UIImage(named: "knot")!,
         "2".styled(with: .baselineOffset(8)),
         UIImage(named: "bee")!
-        ], baseStyle: imageStyle, separator: " ")
+        ], baseStyle: .style(
+            .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
+            .adapt(.control)
+        ))
 
-    static let noSpaceTextStyle = BonMot(
+    static let noSpaceTextStyle = AttributedStringStyle.style(
         .font(.systemFont(ofSize: 17)),
         .adapt(.control),
         .textColor(.darkGray),
@@ -133,7 +127,8 @@ enum DemoStrings {
             ("gift", "and"),
             ("pin", "no-break"),
             ("robot", "spaces"),
-            ].map() { NSAttributedString.compose(with: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) },
+            ].map() {
+                return NSAttributedString.compose(with: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) },
         separator: " ")
 
     static let heartsString = NSAttributedString.compose(with: (0..<20).makeIterator().map() { i in
@@ -145,7 +140,7 @@ enum DemoStrings {
         // Embed an attribute for the storyboard identifier to link to. This is
         // a good example of custom attributes, even if this might not be the best
         // UIKit design pattern.
-        return BonMot(.initialAttributes(["Storyboard": theIdentifier]))
+        return AttributedStringStyle.style(.initialAttributes(["Storyboard": theIdentifier]))
     }
 
     static let dynamcTypeUIKit = DemoStrings.CustomStoryboard(identifier: "CatalogViewController")

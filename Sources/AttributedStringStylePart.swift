@@ -55,7 +55,7 @@ extension AttributedStringStyle {
     /// - parameter parts: An array of AttributedStringStylePart
     /// - returns: A newly configured AttributedStringStyle
     #if swift(>=3.0)
-    public static func from(_ parts: [AttributedStringStylePart]) -> AttributedStringStyle {
+    public static func style(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = AttributedStringStyle()
         for part in parts {
             style.update(attributedStringStylePart: part)
@@ -63,7 +63,7 @@ extension AttributedStringStyle {
         return style
     }
     #else
-    public static func from(parts: [AttributedStringStylePart]) -> AttributedStringStyle {
+    public static func style(parts: AttributedStringStylePart...) -> AttributedStringStyle {
         var style = AttributedStringStyle()
         for part in parts {
             style.update(attributedStringStylePart: part)

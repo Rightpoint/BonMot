@@ -17,9 +17,9 @@ public class TagStyles: NSObject {
     #if os(iOS) || os(tvOS)
     public static var shared = TagStyles(
         styles: [
-            "control": BonMot(.adapt(.control)),
-            "body": BonMot(.adapt(.body)),
-            "preferred": BonMot(.adapt(.preferred)) ,
+            "control": .style(.adapt(.control)),
+            "body": .style(.adapt(.body)),
+            "preferred": .style(.adapt(.preferred)) ,
         ]
     )
     #else

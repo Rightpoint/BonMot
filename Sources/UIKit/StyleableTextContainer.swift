@@ -54,7 +54,7 @@ extension StyleableTextContainer {
 
     internal final func styledAttributedString(forText text: String?, traitCollection: UITraitCollection?) -> NSAttributedString? {
         if let text = text {
-            let string = (bonMotStyle ?? BonMot()).attributedString(from: text)
+            let string = (bonMotStyle ?? AttributedStringStyle()).attributedString(from: text)
             if let traitCollection = traitCollection {
                 return string.adapt(to: traitCollection)
             }

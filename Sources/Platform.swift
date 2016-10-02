@@ -46,15 +46,5 @@ public typealias StyleAttributes = [String: StyleAttributeValue]
 #endif
 #endif
 
-#if swift(>=3.0)
-    public func BonMot(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        return AttributedStringStyle.from(parts)
-    }
-#else
-    public func BonMot(parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        return AttributedStringStyle.from(parts)
-    }
-#endif
-
 // This key is defined here because it needs to be used in non adaptive code.
 let BonMotTransformationsAttributeName = "BonMotTransformations"

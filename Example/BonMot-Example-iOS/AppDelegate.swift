@@ -24,9 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let traitCollection = window?.traitCollection else {
             fatalError("There should be a traitCollection available before calling this method.")
         }
-        let titleStyle = BonMot(.font(UIFont.appFont(ofSize: 20)), .adapt(.control))
+        let titleStyle = AttributedStringStyle.style(
+            .font(UIFont.appFont(ofSize: 20)),
+            .adapt(.control)
+        )
         UINavigationBar.appearance().titleTextAttributes = titleStyle.attributes(adaptedTo: traitCollection)
-        let barStyle = BonMot(.font(UIFont.appFont(ofSize: 17)), .adapt(.control))
+        let barStyle = AttributedStringStyle.style(
+            .font(UIFont.appFont(ofSize: 17)),
+            .adapt(.control)
+        )
         UIBarButtonItem.appearance().setTitleTextAttributes(barStyle.attributes(adaptedTo: traitCollection), for: .normal)
     }
 
