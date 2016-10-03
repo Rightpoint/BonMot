@@ -11,9 +11,9 @@ import BonMot
 func dataFromImage(image theImage: BONImage) -> Data {
     assert(theImage.size != .zero)
     #if os(OSX)
-        let cgImgRef = theImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
-        let bmpImgRef = NSBitmapImageRep(cgImage: cgImgRef!)
-        let pngData = bmpImgRef.representation(using: .PNG, properties: [:])!
+        let cgImageRef = theImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef!)
+        let pngData = bitmapImageRep.representation(using: .PNG, properties: [:])!
         return pngData
     #else
         return UIImagePNGRepresentation(theImage)!
