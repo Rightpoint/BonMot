@@ -59,4 +59,49 @@ class ImageTintingTests: XCTestCase {
         #endif
     }
 
+    #if os(OSX)
+    #else
+    func testDemonstrateUIKitTintingBug() {
+        let attachment = NSTextAttachment()
+
+        // image must be set to Template rendering mode
+        attachment.image = UIImage(named: "discount", in: testBundle, compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
+
+        let withNBSP = NSMutableAttributedString(string: BonMot.Special.noBreakSpace.description)
+        let withoutNBSP = NSMutableAttributedString(string: "")
+
+        let attachmentString = NSAttributedString(attachment: attachment)
+
+        withNBSP.append(attachmentString)
+        withoutNBSP.append(attachmentString)
+
+        withNBSP.addAttribute(NSForegroundColorAttributeName, value: UIColor.orange, range: NSRange(location: 0, length: withNBSP.length))
+        withoutNBSP.addAttribute(NSForegroundColorAttributeName, value: UIColor.orange, range: NSRange(location: 0, length: withoutNBSP.length))
+
+        let images = [withNBSP, withoutNBSP].map { attrString -> BONImage in
+            let label = UILabel()
+            label.attributedText = attrString
+            label.sizeToFit()
+            label.backgroundColor = .white
+            return ImageTintingTests.image(of: label)
+        }
+
+        // Demonstrate that UIKit will tint the image, but only if there is
+        // at least one character in the string before the attachment.
+        // See details at https://github.com/Raizlabs/BonMot/issues/105
+        BONAssertNotEqualImages(images[0], images[1])
+
+        // Uncomment these lines and enter your username to see the images for yourself:
+//        let username = "your-username-goes-here"
+//
+//        do {
+//            try UIImagePNGRepresentation(images[0])!.write(to: URL(fileURLWithPath: "/Users/\(username)/Desktop/withNBSP.png"))
+//            try UIImagePNGRepresentation(images[1])!.write(to: URL(fileURLWithPath: "/Users/\(username)/Desktop/withoutNBSP.png"))
+//        }
+//        catch {
+//            XCTFail("failed to write images. Did you remember to put the name of your home folder in the path? \(error)")
+//        }
+    }
+    #endif
+
 }

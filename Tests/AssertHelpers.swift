@@ -78,6 +78,12 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
         let data2 = dataFromImage(image: image2)
         XCTAssertEqual(data1, data2, file: file, line: line)
     }
+
+    func BONAssertNotEqualImages(_ image1: BONImage, _ image2: BONImage, file: StaticString = #file, line: UInt = #line) {
+        let data1 = dataFromImage(image: image1)
+        let data2 = dataFromImage(image: image2)
+        XCTAssertNotEqual(data1, data2, file: file, line: line)
+    }
 #else
     func BONAssert<T: RawRepresentable where T.RawValue: Equatable>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, value: T, file: StaticString = #file, line: UInt = #line) {
         guard let paragraphStyle = dictionary?[NSParagraphStyleAttributeName] as? NSParagraphStyle else {
@@ -92,5 +98,11 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
         let data1 = dataFromImage(image: image1)
         let data2 = dataFromImage(image: image2)
         XCTAssertEqual(data1, data2, file: file, line: line)
+    }
+
+    func BONAssertNotEqualImages(image1: BONImage, _ image2: BONImage, file: StaticString = #file, line: UInt = #line) {
+        let data1 = dataFromImage(image: image1)
+        let data2 = dataFromImage(image: image2)
+        XCTAssertNotEqual(data1, data2, file: file, line: line)
     }
 #endif
