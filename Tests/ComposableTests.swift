@@ -10,7 +10,7 @@ import BonMot
 
 let testBundle = Bundle(for: ComposableTests.self)
 #if os(OSX)
-let imageForTest = NSImage(named: "robot")!
+let imageForTest = testBundle.image(forResource: "robot")!
 #else
 let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
 #endif
