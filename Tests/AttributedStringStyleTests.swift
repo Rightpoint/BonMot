@@ -11,7 +11,7 @@ import BonMot
 class AttributedStringStyleTests: XCTestCase {
 
     func testBasicAssertionUtilities() {
-        let style = AttributedStringStyle.style(.font(.fontA), .textColor(.colorA), .backgroundColor(.colorB))
+        let style = AttributedStringStyle.style(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
             BONAssert(attributes: style.attributes, key: NSFontAttributeName, value: BONFont.fontA)

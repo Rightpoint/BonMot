@@ -23,7 +23,7 @@ public struct AttributedStringStyle {
     public var font: BONFont? = nil
     public var link: NSURL? = nil
     public var backgroundColor: BONColor? = nil
-    public var textColor: BONColor? = nil
+    public var color: BONColor? = nil
     public var underline: (NSUnderlineStyle, BONColor?)? = nil
     public var strikethrough: (NSUnderlineStyle, BONColor?)? = nil
     public var baselineOffset: CGFloat? = nil
@@ -63,7 +63,7 @@ extension AttributedStringStyle {
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
         theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
         theAttributes.update(possibleValue: backgroundColor, forKey: NSBackgroundColorAttributeName)
-        theAttributes.update(possibleValue: textColor, forKey: NSForegroundColorAttributeName)
+        theAttributes.update(possibleValue: color, forKey: NSForegroundColorAttributeName)
         theAttributes.update(possibleValue: underline?.0.rawValue, forKey: NSUnderlineStyleAttributeName)
         theAttributes.update(possibleValue: underline?.1, forKey: NSUnderlineColorAttributeName)
         theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: NSStrikethroughStyleAttributeName)
@@ -139,7 +139,7 @@ extension AttributedStringStyle {
         font = stringStyle.font ?? font
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor
-        textColor = stringStyle.textColor ?? textColor
+        color = stringStyle.color ?? color
 
         underline = stringStyle.underline ?? underline
         strikethrough = stringStyle.strikethrough ?? strikethrough

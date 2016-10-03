@@ -95,7 +95,7 @@ class ComposableTests: XCTestCase {
             XCTAssertEqual(value, expected, line: line)
         }
         let font = BONFont(name: "Avenir-Book", size: 28)!
-        check(forPart: .textColor(.colorA), NSForegroundColorAttributeName, BONColor.colorA)
+        check(forPart: .color(.colorA), NSForegroundColorAttributeName, BONColor.colorA)
         check(forPart: .backgroundColor(.colorA), NSBackgroundColorAttributeName, BONColor.colorA)
         check(forPart: .font(font), NSFontAttributeName, font)
         check(forPart: .baselineOffset(10), NSBaselineOffsetAttributeName, CGFloat(10))

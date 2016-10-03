@@ -132,7 +132,7 @@ extension String: Composable {
 extension BONImage: Composable {
 
     /// Append this Image to `attributedString`, with `baseStyle` applied. Only a few properties in baseStyle are relevant when appending
-    /// images. These include baselineOffset, and textColor for template images. All attributes are stored in the range of the image for consistency
+    /// images. These include baselineOffset, and color for template images. All attributes are stored in the range of the image for consistency
     /// inside the attributed string.
     ///
     /// NOTE: the NSBaselineOffsetAttributeName value is used as the `y` value for the text attachment and is removed from the attributes dictionary to fix an issue with UIKit.

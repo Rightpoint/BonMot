@@ -24,7 +24,7 @@ let noSpaceString = NSMutableAttributedString(attributedStrings: [
         // Create a style for the text and shift the baseline up by 10 to align with the images
         let textStyle = BonMot(
             .font(.systemFont(ofSize: 17)),
-            .textColor(.darkGray),
+            .color(.darkGray),
             .baselineOffset(10)
         )
         // Add the non breaking space

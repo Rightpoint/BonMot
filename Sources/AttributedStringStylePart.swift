@@ -18,7 +18,7 @@ public enum AttributedStringStylePart {
     case font(BONFont)
     case link(NSURL)
     case backgroundColor(BONColor)
-    case textColor(BONColor)
+    case color(BONColor)
     case underline(NSUnderlineStyle, BONColor?)
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
@@ -112,8 +112,8 @@ extension AttributedStringStyle {
             self.link = link
         case let .backgroundColor(backgroundColor):
             self.backgroundColor = backgroundColor
-        case let .textColor(textColor):
-            self.textColor = textColor
+        case let .color(color):
+            self.color = color
         case let .underline(underline):
             self.underline = underline
         case let .strikethrough(strikethrough):

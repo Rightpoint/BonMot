@@ -64,12 +64,12 @@ extension BONFont {
 
 let styleA = AttributedStringStyle.style(
     .font(.fontA),
-    .textColor(.colorA)
+    .color(.colorA)
 )
 
 let styleB = AttributedStringStyle.style(
     .font(.fontB),
-    .textColor(.colorB),
+    .color(.colorB),
     .headIndent(10),
     .tailIndent(10)
 )
@@ -78,14 +78,14 @@ let styleB = AttributedStringStyle.style(
 #else
 let adaptiveStyle = AttributedStringStyle.style(
     .font(.fontA),
-    .textColor(.colorA),
+    .color(.colorA),
     .adapt(.body)
 )
 #endif
 
 let styleBz = AttributedStringStyle.style(
     .font(.fontB),
-    .textColor(.colorB),
+    .color(.colorB),
     .headIndent(10),
     .tailIndent(10)
 )
@@ -96,7 +96,7 @@ let fullStyle: AttributedStringStyle = {
     fullStyle.font = BONFont(name: "Copperplate", size: 20)
     fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
     fullStyle.backgroundColor = .colorC
-    fullStyle.textColor = .colorC
+    fullStyle.color = .colorC
 
     fullStyle.underline = (.byWord, .colorC)
     fullStyle.strikethrough = (.byWord, .colorC)
