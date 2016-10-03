@@ -44,6 +44,7 @@ public typealias StyleAttributes = [String: StyleAttributeValue]
     public typealias BonMotTextStyle = String
     public typealias BonMotContentSizeCategory = String
 #endif
-    // This key is defined here because it needs to be used in non adaptive code.
-    public let BonMotTransformationsAttributeName = "BonMotTransformations"
 #endif
+
+// This key is defined here because it needs to be used in non adaptive code.
+public let BonMotTransformationsAttributeName = "BonMotTransformations"
