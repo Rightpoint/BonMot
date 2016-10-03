@@ -7,7 +7,7 @@ statement_position:
   statement_mode: uncuddled_else
 
 function_body_length:
-  - 60 # warning
+  - 75 # warning
 
 opt_in_rules:
   - vertical_whitespace

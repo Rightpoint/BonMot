@@ -75,8 +75,9 @@ class ImageTintingTests: XCTestCase {
         withNBSP.append(attachmentString)
         withoutNBSP.append(attachmentString)
 
-        withNBSP.addAttribute(NSForegroundColorAttributeName, value: UIColor.orange, range: NSRange(location: 0, length: withNBSP.length))
-        withoutNBSP.addAttribute(NSForegroundColorAttributeName, value: UIColor.orange, range: NSRange(location: 0, length: withoutNBSP.length))
+        let color = UIColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 1.0)
+        withNBSP.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: withNBSP.length))
+        withoutNBSP.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: withoutNBSP.length))
 
         let images = [withNBSP, withoutNBSP].map { attrString -> BONImage in
             let label = UILabel()

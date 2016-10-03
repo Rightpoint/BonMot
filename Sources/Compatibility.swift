@@ -34,6 +34,43 @@
         static var greatestFiniteMagnitude = CGFloat.max
     }
 
+    extension CGContext {
+        @nonobjc func translateBy(x dx: CGFloat, y ty: CGFloat) {
+            CGContextTranslateCTM(self, dx, ty)
+        }
+
+        @nonobjc func scaleBy(x dx: CGFloat, y dy: CGFloat) {
+            CGContextScaleCTM(self, dx, dy)
+        }
+
+        @nonobjc func setBlendMode(blendMode: CGBlendMode) {
+            CGContextSetBlendMode(self, blendMode)
+        }
+
+        @nonobjc func draw(image: CGImage, in rect: CGRect) {
+            CGContextDrawImage(self, rect, image)
+        }
+
+        @nonobjc func setFillColor(color: CGColor) {
+            CGContextSetFillColorWithColor(self, color)
+        }
+
+        @nonobjc func fill(rect: CGRect) {
+            CGContextFillRect(self, rect)
+        }
+
+    }
+
+    extension CGBlendMode {
+        static var normal: CGBlendMode {
+            return .Normal
+        }
+
+        static var sourceIn: CGBlendMode {
+            return .SourceIn
+        }
+    }
+
     extension NSString {
         @nonobjc final func lowercased() -> String {
             return lowercaseString
@@ -118,7 +155,7 @@
     }
 #endif
 
-/// Shared text objects (AppKit + UIKit)
+/// Shared (AppKit + UIKit)
 #if swift(>=3.0)
     extension NSParagraphStyle {
         // This method has to be prefixed since default is not a valid variable in Swift 2.3
@@ -178,6 +215,11 @@
         }
     }
 
+    extension BONColor {
+        @nonobjc var cgColor: CGColorRef {
+            return self.CGColor
+        }
+    }
 #endif
 
 /// UIKit Only
@@ -222,6 +264,52 @@
     extension UIFontDescriptor {
         @nonobjc final var fontAttributes: StyleAttributes {
             return fontAttributes()
+        }
+    }
+
+    extension UIImage {
+        @nonobjc func withAlignmentRectInsets(insets: UIEdgeInsets) -> UIImage {
+            return imageWithAlignmentRectInsets(insets)
+        }
+
+        @nonobjc func resizableImage(withCapInsets capInsets: UIEdgeInsets, resizingMode: UIImageResizingMode) -> UIImage {
+            return resizableImageWithCapInsets(capInsets, resizingMode: resizingMode)
+        }
+
+        @nonobjc var cgImage: CGImageRef? {
+            return self.CGImage
+        }
+    }
+#endif
+#endif
+
+/// AppKit Only
+#if swift(>=3.0)
+#else
+
+#if os(OSX)
+    extension NSImage {
+        @nonobjc var isTemplate: Bool {
+            set {
+                template = newValue
+            }
+            get {
+                return template
+            }
+        }
+
+        @nonobjc func cgImage(forProposedRect rect: UnsafeMutablePointer<NSRect>, context: NSGraphicsContext?, hints: [String: AnyObject]?) -> CGImageRef? {
+            return CGImageForProposedRect(rect, context: context, hints: hints)
+        }
+    }
+
+    extension NSGraphicsContext {
+        @nonobjc class func current() -> NSGraphicsContext? {
+            return currentContext()
+        }
+
+        @nonobjc var cgContext: CGContextRef {
+            return CGContext
         }
     }
 #endif

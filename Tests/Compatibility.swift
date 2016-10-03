@@ -6,6 +6,7 @@
 //  Copyright © 2016 Zev Eisenberg. All rights reserved.
 //
 
+// swiftlint:disable file_length
 #if os(OSX)
     import AppKit
     let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
@@ -30,7 +31,37 @@ import BonMot
         convenience init(for aClass: AnyClass) {
             self.init(forClass: aClass)
         }
+
+        #if os(OSX)
+            @nonobjc func image(forResource resourceName: String) -> NSImage? {
+                return imageForResource(resourceName)
+            }
+        #endif
     }
+
+    #if os(OSX)
+        extension NSView {
+            @nonobjc func dataWithPDF(inside rect: NSRect) -> NSData {
+                return dataWithPDFInsideRect(bounds)
+            }
+        }
+
+        extension NSImage {
+            @nonobjc func cgImage(forProposedRect rect: UnsafeMutablePointer<NSRect>, context: NSGraphicsContext?, hints: [String: AnyObject]?) -> CGImageRef? {
+                return CGImageForProposedRect(rect, context: context, hints: hints)
+            }
+        }
+
+        extension NSBitmapImageRep {
+            convenience init(cgImage: CGImageRef) {
+                self.init(CGImage: cgImage)
+            }
+
+            @nonobjc func representation(using type: NSBitmapImageFileType, properties: [String: AnyObject]) -> NSData? {
+                return representationUsingType(type, properties: properties)
+            }
+        }
+    #endif
 
     extension NSUnderlineStyle {
         @nonobjc static var byWord = NSUnderlineStyle.ByWord
@@ -75,6 +106,12 @@ import BonMot
             appendContentsOf(string)
         }
     }
+
+    extension CALayer {
+        @nonobjc func render(in context: CGContextRef) {
+            renderInContext(context)
+        }
+    }
 #endif
 
 /// Standard Library + Foundation
@@ -84,6 +121,7 @@ import BonMot
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias BonMotStringTransform = String
+    typealias Data = NSData
 
     struct StringTransform {
         static let toUnicodeName = NSStringTransformToUnicodeName
@@ -162,7 +200,7 @@ import BonMot
     }
 #endif
 
-/// Shared text objects (AppKit + UIKit)
+/// Shared (AppKit + UIKit)
 #if swift(>=3.0)
     extension NSParagraphStyle {
         // This method has to be prefixed since default is not a valid variable in Swift 2.3
@@ -266,6 +304,16 @@ import BonMot
         convenience init?(named: String, in bundle: Bundle, compatibleWith traitCollection: UITraitCollection?) {
             self.init(named: named, inBundle: bundle, compatibleWithTraitCollection: traitCollection)
         }
+
+        func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {
+            return imageWithRenderingMode(renderingMode)
+        }
+    }
+
+    extension UIImageRenderingMode {
+        @nonobjc static var alwaysTemplate: UIImageRenderingMode {
+            return .AlwaysTemplate
+        }
     }
 
     extension UIFont {
@@ -283,6 +331,17 @@ import BonMot
     extension UIViewController {
         @nonobjc final func present(viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
             presentViewController(viewController, animated: animated, completion: completion)
+        }
+    }
+
+    extension UIView {
+        @nonobjc var isOpaque: Bool {
+            set {
+                opaque = newValue
+            }
+            get {
+                return opaque
+            }
         }
     }
 
@@ -360,3 +419,4 @@ import BonMot
 
 #endif
 #endif
+// swiftlint:enable file_length
