@@ -15,7 +15,6 @@
 #endif
 
 import XCTest
-
 import BonMot
 
 class ImageTintingTests: XCTestCase {
