@@ -24,6 +24,7 @@
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias BonMotStringTransform = String
     typealias CharacterSet = NSCharacterSet
+    typealias Data = NSData
 
     struct StringTransform {
         static let toUnicodeName = NSStringTransformToUnicodeName
