@@ -27,6 +27,9 @@ import XCTest
      #endif
 #endif
 
+class DummyClassForTests {}
+let testBundle = Bundle(for: DummyClassForTests.self)
+
 #if swift(>=3.0)
     extension BONColor {
         static var colorA: BONColor {

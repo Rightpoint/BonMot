@@ -8,14 +8,13 @@
 import XCTest
 import BonMot
 
-let testBundle = Bundle(for: ComposableTests.self)
-#if os(OSX)
-let imageForTest = testBundle.image(forResource: "robot")!
-#else
-let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
-#endif
-
 class ComposableTests: XCTestCase {
+
+    #if os(OSX)
+        let imageForTest = testBundle.image(forResource: "robot")!
+    #else
+        let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
+    #endif
 
     func testImageConstructor() {
         let imageString = imageForTest.attributedString()
