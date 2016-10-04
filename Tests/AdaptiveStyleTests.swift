@@ -180,7 +180,7 @@ class AdaptiveStyleTests: XCTestCase {
         }
         EBGaramondLoader.loadFontIfNeeded()
         let style = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .fontFeature(NumberSpacing.monospaced), .adapt(.control))
-        let tabTestL = NSAttributedString.compose(with: ["Q", Tab.headIndent(10)], baseStyle: style)
+        let tabTestL = NSAttributedString.composed(of: ["Q", Tab.headIndent(10)], baseStyle: style)
         XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestL), 26.12, accuracy: 0.01)
         let tabTestXS = tabTestL.adapt(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
         XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXS), 23.70, accuracy: 0.01)
@@ -189,7 +189,7 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testMergingEmbeddedTransformations() {
-        let string = NSAttributedString.compose(with: [
+        let string = NSAttributedString.composed(of: [
             "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
             ], baseStyle: AttributedStringStyle.style(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
         let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? Array<StyleAttributeValue>
@@ -197,7 +197,7 @@ class AdaptiveStyleTests: XCTestCase {
     }
 
     func testComplexAdaptiveComposition() {
-        let string = NSAttributedString.compose(with: [
+        let string = NSAttributedString.composed(of: [
             "Hello".styled(with: .tracking(.adobe(3.0))),
             Tab.headIndent(10)
             ], baseStyle: AttributedStringStyle.style(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))

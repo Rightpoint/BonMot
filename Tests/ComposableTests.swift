@@ -24,14 +24,14 @@ class ComposableTests: XCTestCase {
     }
 
     func testBasicJoin() {
-        let string = NSAttributedString.compose(with: ["A", "B", "C"], separator: NSAttributedString(string: "-"))
+        let string = NSAttributedString.composed(of: ["A", "B", "C"], separator: NSAttributedString(string: "-"))
         XCTAssertEqual("A-B-C", string.string)
     }
 
     func testAttributesArePassedAlongExtend() {
         let style = AttributedStringStyle.style(.initialAttributes(["test": "test"]))
 
-        let chainString = NSAttributedString.compose(with: [imageForTest, "Test", imageForTest], baseStyle: style).attributedString()
+        let chainString = NSAttributedString.composed(of: [imageForTest, "Test", imageForTest], baseStyle: style).attributedString()
         let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
 
         XCTAssertEqual(attributes["test"] as? String, "test")
@@ -40,7 +40,7 @@ class ComposableTests: XCTestCase {
     func testTabStopsWithSpacer() {
         let stringWidth = CGFloat(115)
 
-        let multiLineWithTabs = NSAttributedString.compose(with: [
+        let multiLineWithTabs = NSAttributedString.composed(of: [
             "astringwithsomewidth",
             Tab.spacer(10),
             "astringwithsomewidth",
@@ -52,14 +52,14 @@ class ComposableTests: XCTestCase {
             "astringwithsomewidth",
             ]).attributedString()
 
-        let imageTab = NSAttributedString.compose(with: [imageForTest, Tab.headIndent(10)])
-        let stringTab = NSAttributedString.compose(with: ["astringwithsomewidth", Tab.headIndent(10)])
-        let tabtabtab = NSAttributedString.compose(with: [
+        let imageTab = NSAttributedString.composed(of: [imageForTest, Tab.headIndent(10)])
+        let stringTab = NSAttributedString.composed(of: ["astringwithsomewidth", Tab.headIndent(10)])
+        let tabtabtab = NSAttributedString.composed(of: [
             Tab.spacer(10),
             Tab.spacer(10),
             Tab.headIndent(10),
             ])
-        let multiTabLine = NSAttributedString.compose(with: [
+        let multiTabLine = NSAttributedString.composed(of: [
             "astringwithsomewidth",
             Tab.spacer(10),
             imageForTest,
@@ -88,7 +88,7 @@ class ComposableTests: XCTestCase {
 
     func testBaseStyleIsOverridden() {
         func check<T: Equatable>(forPart thePart: AttributedStringStylePart, _ attribute: String, _ expected: T, line: UInt = #line) {
-            let string = NSAttributedString.compose(with: [
+            let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart)
                 ], baseStyle: fullStyle)
             let value = string.attributes(at: 0, effectiveRange: nil)[attribute] as? T
@@ -105,7 +105,7 @@ class ComposableTests: XCTestCase {
 
     func testBaseParagraphStyleIsOverridden() {
         func check<T: Equatable>(forPart thePart: AttributedStringStylePart, _ getter: (NSParagraphStyle) -> T, _ expected: T, line: UInt = #line) {
-            let string = NSAttributedString.compose(with: [
+            let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart)
                 ], baseStyle: fullStyle)
             guard let paragraphStyle = string.attributes(at: 0, effectiveRange: nil)[NSParagraphStyleAttributeName] as? NSParagraphStyle else {
@@ -133,12 +133,12 @@ class ComposableTests: XCTestCase {
     func testInitialParagraphStyle() {
         let style = AttributedStringStyle.style(.initialAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
 
-        let string = NSAttributedString.compose(with: [Tab.headIndent(10), "ParagraphStyle mutable promotion"], baseStyle: style)
+        let string = NSAttributedString.composed(of: [Tab.headIndent(10), "ParagraphStyle mutable promotion"], baseStyle: style)
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
 
     func testCompositionWithChangingParagraphStyles() {
-        let string = NSAttributedString.compose(with: [
+        let string = NSAttributedString.composed(of: [
             " lineSpacing "
                 .styled(with: .lineSpacing(1.8)),
             " headIndent "

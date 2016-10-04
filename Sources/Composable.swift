@@ -25,7 +25,7 @@ public extension Composable {
     ///
     /// - returns: a new NSAttributedString
     public func attributedString() -> NSAttributedString {
-        return .compose(with: [self])
+        return .composed(of: [self])
     }
 
     /// Create a new NSAttributedString with the base style specified.
@@ -62,7 +62,7 @@ public extension NSAttributedString {
     /// - parameter baseStyle: The baseStyle to apply to every Composable. If no baseStyle is supplied, no additional styling will be added.
     /// - parameter separator: The separator to join `composables` with.
     /// - returns: A new NSAttributedString
-    @nonobjc public static func compose(with composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
+    @nonobjc public static func composed(of composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
         for (index, composable) in composables.enumerated() {
