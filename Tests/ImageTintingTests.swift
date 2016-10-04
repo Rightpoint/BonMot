@@ -43,20 +43,6 @@ class ImageTintingTests: XCTestCase {
         BONAssertEqualImages(controlTintedImage, testTintedImage)
     }
 
-    static func image(of view: BONView) -> BONImage {
-        #if os(OSX)
-            let dataOfView = view.dataWithPDF(inside: view.bounds)
-            let image = NSImage(data: dataOfView)!
-            return image
-        #else
-            UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
-            view.layer.render(in: UIGraphicsGetCurrentContext()!)
-            let image = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            return image
-        #endif
-    }
-
     #if os(OSX)
     #else
     func testDemonstrateUIKitTintingBug() {
@@ -82,7 +68,7 @@ class ImageTintingTests: XCTestCase {
             label.attributedText = attrString
             label.sizeToFit()
             label.backgroundColor = .white
-            return ImageTintingTests.image(of: label)
+            return label.testingSnapshot()
         }
 
         // Demonstrate that UIKit will tint the image, but only if there is

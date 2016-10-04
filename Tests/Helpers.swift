@@ -201,6 +201,22 @@ extension NSAttributedString {
 
 }
 
+extension BONView {
+    func testingSnapshot() -> BONImage {
+        #if os(OSX)
+            let dataOfView = dataWithPDF(inside: bounds)
+            let image = NSImage(data: dataOfView)!
+            return image
+        #else
+            UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
+            layer.render(in: UIGraphicsGetCurrentContext()!)
+            let image = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            return image
+        #endif
+    }
+}
+
 #if swift(>=3.0)
 #else
 extension XCTestCase {
