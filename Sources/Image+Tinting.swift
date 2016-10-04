@@ -16,89 +16,89 @@ import Foundation
 
 public extension BONImage {
 
+    #if os(OSX)
     @objc(bon_tintedImageWithColor:)
-
     func tintedImage(color theColor: BONColor) -> BONImage {
-
-        // Save original properties
-        #if os(OSX)
-            let originalTemplate = isTemplate
-        #else
-            let originalCapInsets = capInsets
-            let originalResizingMode = resizingMode
-            let originalAlignmentRectInsets = alignmentRectInsets
-        #endif
-
         let imageRect = CGRect(origin: .zero, size: size)
 
-        // Create image context
-        #if os(OSX)
-            let image = NSImage(size: size)
+        let image = NSImage(size: size)
 
-            let rep = NSBitmapImageRep(
-                bitmapDataPlanes: nil,
-                pixelsWide: Int(size.width),
-                pixelsHigh: Int(size.height),
-                bitsPerSample: 8,
-                samplesPerPixel: 4,
-                hasAlpha: true,
-                isPlanar: false,
-                colorSpaceName: theColor.colorSpaceName,
-                bytesPerRow: 0,
-                bitsPerPixel: 0
-                )!
+        let rep = NSBitmapImageRep(
+            bitmapDataPlanes: nil,
+            pixelsWide: Int(size.width),
+            pixelsHigh: Int(size.height),
+            bitsPerSample: 8,
+            samplesPerPixel: 4,
+            hasAlpha: true,
+            isPlanar: false,
+            colorSpaceName: theColor.colorSpaceName,
+            bytesPerRow: 0,
+            bitsPerPixel: 0
+            )!
 
-            image.addRepresentation(rep)
+        image.addRepresentation(rep)
 
-            image.lockFocus()
+        image.lockFocus()
 
-            let context = NSGraphicsContext.current()?.cgContext
-            precondition(context != nil)
+        let context = NSGraphicsContext.current()!.cgContext
 
-            context?.setBlendMode(.normal)
-            let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
-            context?.draw(cgImage, in: imageRect)
+        context.setBlendMode(.normal)
+        let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!
+        context.draw(cgImage, in: imageRect)
 
-            // .sourceIn: resulting color = source color * destination alpha
-            context?.setBlendMode(.sourceIn)
-            context?.setFillColor(theColor.cgColor)
-            context?.fill(imageRect)
+        // .sourceIn: resulting color = source color * destination alpha
+        context.setBlendMode(.sourceIn)
+        context.setFillColor(theColor.cgColor)
+        context.fill(imageRect)
 
-            image.unlockFocus()
+        image.unlockFocus()
 
-            // Restore original properties
-            image.isTemplate = originalTemplate
+        // Prevent further tinting
+        image.isTemplate = false
 
-            return image
-        #else
-            UIGraphicsBeginImageContextWithOptions(size, false, scale)
-            let context = UIGraphicsGetCurrentContext()!
-            // Flip the context vertically
-            context.translateBy(x: 0.0, y: size.height)
-            context.scaleBy(x: 1.0, y: -1.0)
-
-            // Image tinting mostly inspired by http://stackoverflow.com/a/22528426/255489
-
-            context.setBlendMode(.normal)
-            context.draw(cgImage!, in: imageRect)
-
-            // .sourceIn: resulting color = source color * destination alpha
-            context.setBlendMode(.sourceIn)
-            context.setFillColor(theColor.cgColor)
-            context.fill(imageRect)
-
-            // Get new image
-            var image = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-
-            // Restore original properties
-            image = image.withAlignmentRectInsets(originalAlignmentRectInsets)
-            if !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode {
-                image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
-            }
-
-            return image
-        #endif
+        return image
     }
+    #else
+    @objc(bon_tintedImageWithColor:)
+    func tintedImage(color theColor: BONColor) -> BONImage {
+        let imageRect = CGRect(origin: .zero, size: size)
+        // Save original properties
+        let originalCapInsets = capInsets
+        let originalResizingMode = resizingMode
+        let originalAlignmentRectInsets = alignmentRectInsets
+
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let context = UIGraphicsGetCurrentContext()!
+
+        // Flip the context vertically
+        context.translateBy(x: 0.0, y: size.height)
+        context.scaleBy(x: 1.0, y: -1.0)
+
+        // Image tinting mostly inspired by http://stackoverflow.com/a/22528426/255489
+
+        context.setBlendMode(.normal)
+        context.draw(cgImage!, in: imageRect)
+
+        // .sourceIn: resulting color = source color * destination alpha
+        context.setBlendMode(.sourceIn)
+        context.setFillColor(theColor.cgColor)
+        context.fill(imageRect)
+
+        // Get new image
+        var image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        // Prevent further tinting
+        image = image.withRenderingMode(.alwaysOriginal)
+
+        // Restore original properties
+        image = image.withAlignmentRectInsets(originalAlignmentRectInsets)
+        if !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode {
+            image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
+        }
+
+        return image
+    }
+    #endif
 
 }

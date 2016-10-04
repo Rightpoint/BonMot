@@ -279,6 +279,16 @@
         @nonobjc var cgImage: CGImageRef? {
             return self.CGImage
         }
+
+        @nonobjc func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {
+            return imageWithRenderingMode(renderingMode)
+        }
+    }
+
+    extension UIImageRenderingMode {
+        @nonobjc static var alwaysOriginal: UIImageRenderingMode {
+            return .AlwaysOriginal
+        }
     }
 #endif
 #endif

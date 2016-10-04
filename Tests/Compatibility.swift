@@ -12,11 +12,13 @@
     let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
     let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
     let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
+    typealias BONView = NSView
 #else
     import UIKit
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
     let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
     let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+    typealias BONView = UIView
 #endif
 import BonMot
 

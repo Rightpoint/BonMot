@@ -8,10 +8,8 @@
 
 #if os(OSX)
     import AppKit
-    typealias BONView = NSView
 #else
     import UIKit
-    typealias BONView = UIView
 #endif
 
 import XCTest
@@ -27,13 +25,13 @@ class ImageTintingTests: XCTestCase {
             // Mac tests disabled because there is weirdness with color spaces and
             // getting the tests to pass.
 
-//            let raizlabsRed = NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
+            let raizlabsRed = NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
 //            let sourceImage = testBundle.image(forResource: blackImageName)!
 //            let controlTintedImage = testBundle.image(forResource: redImageName)!
 //            let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
 
             // Dummy variables to get the tests to pass:
-            let controlTintedImage = testBundle.image(forResource: blackImageName)!
+            let controlTintedImage = testBundle.image(forResource: blackImageName)!.tintedImage(color: raizlabsRed)
             let testTintedImage = controlTintedImage
         #else
             let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
