@@ -11,22 +11,22 @@ enum DemoStrings {
     static let gray = AttributedStringStyle.style(
         .font(UIFont(name: "GillSans-Light", size: 20)!),
         .lineHeightMultiple(1.8),
-        .textColor(.darkGray)
+        .color(.darkGray)
     )
     static let colorString = NSAttributedString.compose(with: [
         "I want to be different. If everyone is wearing ",
-        " black, ".styled(with: .textColor(.white),
+        " black, ".styled(with: .color(.white),
                           .backgroundColor(.black),
                           .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
         " I want to be wearing ",
-        " red. ".styled(with: .textColor(.white),
+        " red. ".styled(with: .color(.white),
                         .backgroundColor(.raizlabsRed),
                         .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
-        "\nMaria Sharapova ".styled(with: .textColor(.raizlabsRed),
+        "\nMaria Sharapova ".styled(with: .color(.raizlabsRed),
                                     .font(UIFont(name: "SuperClarendon-Black", size: 20)!),
                                     .headIndent(10)),
         UIImage(named: "Tennis Racket")!.styled(with:
-            .textColor(.raizlabsRed), .baselineOffset(-4.0))
+            .color(.raizlabsRed), .baselineOffset(-4.0))
         ], baseStyle: gray)
 
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
@@ -75,7 +75,7 @@ enum DemoStrings {
             "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
             ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .textColor(.darkGray),
+                .color(.darkGray),
                 .adapt(AdaptiveStyle.control)
         )),
         ({
@@ -113,7 +113,7 @@ enum DemoStrings {
     static let noSpaceTextStyle = AttributedStringStyle.style(
         .font(.systemFont(ofSize: 17)),
         .adapt(.control),
-        .textColor(.darkGray),
+        .color(.darkGray),
         .baselineOffset(10)
     )
     static let noSpaceString = NSAttributedString.compose(
