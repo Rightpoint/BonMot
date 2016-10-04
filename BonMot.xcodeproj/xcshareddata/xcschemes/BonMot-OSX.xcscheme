@@ -51,6 +51,26 @@
                BlueprintName = "BonMot-OSXTests"
                ReferencedContainer = "container:BonMot.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AttributedStringStyleTests/testBasicAssertionUtilities()">
+               </Test>
+               <Test
+                  Identifier = "AttributedStringStyleTests/testFontFeatureStyle()">
+               </Test>
+               <Test
+                  Identifier = "ComposableTests/testBaseStyleIsOverridden()">
+               </Test>
+               <Test
+                  Identifier = "ComposableTests/testTabStopsWithSpacer()">
+               </Test>
+               <Test
+                  Identifier = "XMLTagStyleBuilderTests/testComposition()">
+               </Test>
+               <Test
+                  Identifier = "XMLTagStyleBuilderTests/testHTMLish()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

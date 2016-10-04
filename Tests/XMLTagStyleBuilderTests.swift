@@ -96,11 +96,13 @@ class XMLTagStyleBuilderTests: XCTestCase {
     }
 
     /// Ensure that the singleton is configured with some adaptive styles for easy Dynamic Type support.
+    #if os(iOS) || os(tvOS)
     func testDefaultTagStyles() {
         XCTAssertNotNil(TagStyles.shared.style(forName: "body"))
         XCTAssertNotNil(TagStyles.shared.style(forName: "control"))
         XCTAssertNotNil(TagStyles.shared.style(forName: "preferred"))
     }
+    #endif
 
     /// Test the line and column information returned in the error. Note that this is just testing our adapting of the column for the root node insertion.
     func testErrorLocation() {
