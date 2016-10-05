@@ -14,7 +14,11 @@ class AttributedStringStyleTests: XCTestCase {
         let style = AttributedStringStyle.style(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
         for (style, fullStyle) in checks(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
-            BONAssert(attributes: style.attributes, key: NSFontAttributeName, value: BONFont.fontA)
+            // We're only checking the font name and point size, since the full style could have font
+            // features that cause equality checks to fail. Font Feature support is tested in testFontFeatureStyle.
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertEqual(font?.fontName, BONFont.fontA.fontName)
+            XCTAssertEqual(font?.pointSize, BONFont.fontA.pointSize)
             BONAssert(attributes: style.attributes, key: NSForegroundColorAttributeName, value: BONColor.colorA)
             BONAssert(attributes: style.attributes, key: NSBackgroundColorAttributeName, value: BONColor.colorB)
         }
