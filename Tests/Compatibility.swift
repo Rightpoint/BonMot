@@ -391,9 +391,6 @@ import BonMot
         @nonobjc static var darkGray: UIColor {
             return darkGrayColor()
         }
-        @nonobjc static var white: UIColor {
-            return whiteColor()
-        }
         @nonobjc static var black: UIColor {
             return blackColor()
         }

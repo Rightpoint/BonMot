@@ -13,28 +13,27 @@
 #endif
 
 import XCTest
-import BonMot
+@testable import BonMot
 
 class ImageTintingTests: XCTestCase {
+
+    #if os(OSX)
+        let imageForTest = testBundle.image(forResource: "rz-logo-black")!
+        let raizlabsRed = NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
+    #else
+        let imageForTest = UIImage(named: "rz-logo-black", in: testBundle, compatibleWith: nil)!
+        let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
+    #endif
 
     func testImageTinting() {
         let blackImageName = "rz-logo-black"
         let redImageName = "rz-logo-red"
 
         #if os(OSX)
-            // Mac tests disabled because there is weirdness with color spaces and
-            // getting the tests to pass.
-
-            let raizlabsRed = NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
-//            let sourceImage = testBundle.image(forResource: blackImageName)!
-//            let controlTintedImage = testBundle.image(forResource: redImageName)!
-//            let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
-
-            // Dummy variables to get the tests to pass:
-            let controlTintedImage = testBundle.image(forResource: blackImageName)!.tintedImage(color: raizlabsRed)
-            let testTintedImage = controlTintedImage
+            let sourceImage = testBundle.image(forResource: blackImageName)!
+            let controlTintedImage = testBundle.image(forResource: redImageName)!
+            let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
         #else
-            let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
             let sourceImage = UIImage(named: blackImageName, in: testBundle, compatibleWith: nil)!
             let controlTintedImage = UIImage(named: redImageName, in: testBundle, compatibleWith: nil)!
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
@@ -43,50 +42,47 @@ class ImageTintingTests: XCTestCase {
         BONAssertEqualImages(controlTintedImage, testTintedImage)
     }
 
-    #if os(OSX)
-    #else
-    func testDemonstrateUIKitTintingBug() {
-        let attachment = NSTextAttachment()
+    func testTintingInAttributedString() {
+        let untintedString = NSAttributedString.composed(of: [
+            imageForTest.styled(with: .color(raizlabsRed))
+            ])
 
-        // image must be set to Template rendering mode
-        attachment.image = UIImage(named: "discount", in: testBundle, compatibleWith: nil)!.withRenderingMode(.alwaysTemplate)
+        #if os(OSX)
+            let tintableImage = imageForTest
+            tintableImage.isTemplate = true
+        #else
+            let tintableImage = imageForTest.withRenderingMode(.alwaysTemplate)
+        #endif
 
-        let withNBSP = NSMutableAttributedString(string: BonMot.Special.noBreakSpace.description)
-        let withoutNBSP = NSMutableAttributedString(string: "")
+        let tintedString = NSAttributedString.composed(of: [
+            tintableImage.styled(with: .color(raizlabsRed))
+            ])
 
-        let attachmentString = NSAttributedString(attachment: attachment)
+        let untintedResult = untintedString.snapshotForTesting()
+        let tintedResult = tintedString.snapshotForTesting()
 
-        withNBSP.append(attachmentString)
-        withoutNBSP.append(attachmentString)
+        XCTAssertNotNil(untintedResult)
+        XCTAssertNotNil(tintedResult)
 
-        let color = UIColor(red: 1.0, green: 0.5, blue: 0.0, alpha: 1.0)
-        withNBSP.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: withNBSP.length))
-        withoutNBSP.addAttribute(NSForegroundColorAttributeName, value: color, range: NSRange(location: 0, length: withoutNBSP.length))
-
-        let images = [withNBSP, withoutNBSP].map { attrString -> BONImage in
-            let label = UILabel()
-            label.attributedText = attrString
-            label.sizeToFit()
-            label.backgroundColor = .white
-            return label.testingSnapshot()
-        }
-
-        // Demonstrate that UIKit will tint the image, but only if there is
-        // at least one character in the string before the attachment.
-        // See details at https://github.com/Raizlabs/BonMot/issues/105
-        BONAssertNotEqualImages(images[0], images[1])
-
-        // Uncomment these lines and enter your username to see the images for yourself:
-//        let username = "your-username-goes-here"
-//
-//        do {
-//            try UIImagePNGRepresentation(images[0])!.write(to: URL(fileURLWithPath: "/Users/\(username)/Desktop/withNBSP.png"))
-//            try UIImagePNGRepresentation(images[1])!.write(to: URL(fileURLWithPath: "/Users/\(username)/Desktop/withoutNBSP.png"))
-//        }
-//        catch {
-//            XCTFail("failed to write images. Did you remember to put the name of your home folder in the path? \(error)")
-//        }
+        BONAssertNotEqualImages(untintedResult!, tintedResult!)
     }
-    #endif
+
+    func testNotTintingInAttributedString() {
+        let untintedString = NSAttributedString.composed(of: [
+            imageForTest
+            ])
+
+        let tintAttemptString = NSAttributedString.composed(of: [
+            imageForTest.styled(with: .color(raizlabsRed))
+            ])
+
+        let untintedResult = untintedString.snapshotForTesting()
+        let tintAttemptResult = tintAttemptString.snapshotForTesting()
+
+        XCTAssertNotNil(untintedResult)
+        XCTAssertNotNil(tintAttemptResult)
+
+        BONAssertEqualImages(untintedResult!, tintAttemptResult!)
+    }
 
 }

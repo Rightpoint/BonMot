@@ -62,6 +62,15 @@
                   Identifier = "ComposableTests/testTabStopsWithSpacer()">
                </Test>
                <Test
+                  Identifier = "ImageTintingTests/testImageTinting()">
+               </Test>
+               <Test
+                  Identifier = "ImageTintingTests/testNotTintingInAttributedString()">
+               </Test>
+               <Test
+                  Identifier = "ImageTintingTests/testTintingInAttributedString()">
+               </Test>
+               <Test
                   Identifier = "XMLTagStyleBuilderTests/testComposition()">
                </Test>
                <Test

@@ -141,9 +141,23 @@ extension BONImage: Composable {
     /// - parameter to: The attributed string to append to.
     /// - parameter baseStyle: The style to use.
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? 0
+        let baselinesOffsetForAttachment = baseStyle.baselineOffset ?? 0
         let attachment = NSTextAttachment()
-        attachment.image = self
+
+        #if os(OSX)
+            let imageIsTemplate = isTemplate
+        #else
+            let imageIsTemplate = (renderingMode != UIImageRenderingMode.alwaysOriginal)
+        #endif
+
+        var imageToUse = self
+        if let color = baseStyle.color {
+            if imageIsTemplate {
+                imageToUse = tintedImage(color: color)
+            }
+        }
+        attachment.image = imageToUse
+
         attachment.bounds = CGRect(origin: CGPoint(x: 0, y: baselinesOffsetForAttachment), size: size)
 
         let attachmentString = NSAttributedString(attachment: attachment).mutableStringCopy()

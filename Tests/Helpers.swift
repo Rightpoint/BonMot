@@ -5,7 +5,7 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import BonMot
+@testable import BonMot
 import XCTest
 
 #if os(OSX)
@@ -202,6 +202,56 @@ extension NSAttributedString {
         return attributesByRange
     }
 
+    func snapshotForTesting() -> BONImage? {
+        let bigSize = CGSize(width: 10_000, height: 10_000)
+
+        // Bug: on macOS, attached images are not taken into account
+        // when measuring attributed strings: http://www.openradar.me/28639290
+        let rect = boundingRect(with: bigSize, options: .usesLineFragmentOrigin, context: nil)
+
+        guard !rect.isEmpty else {
+            return nil
+        }
+
+        #if os(OSX)
+            let image = NSImage(size: rect.size)
+
+            let rep = NSBitmapImageRep(
+                bitmapDataPlanes: nil,
+                pixelsWide: Int(rect.size.width),
+                pixelsHigh: Int(rect.size.height),
+                bitsPerSample: 8,
+                samplesPerPixel: 4,
+                hasAlpha: true,
+                isPlanar: false,
+                colorSpaceName: NSDeviceRGBColorSpace,
+                bytesPerRow: 0,
+                bitsPerPixel: 0
+                )!
+
+            image.addRepresentation(rep)
+
+            image.lockFocus()
+
+            draw(with: rect, options: .usesLineFragmentOrigin, context: nil)
+
+            image.unlockFocus()
+            return image
+        #else
+            UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+            draw(with: rect, options: .usesLineFragmentOrigin, context: nil)
+            let image = UIGraphicsGetImageFromCurrentImageContext()!
+            UIGraphicsEndImageContext()
+            return image
+        #endif
+    }
+
+    #if swift(>=3.0)
+    #else
+    func draw(with rect: CGRect, options: NSStringDrawingOptions, context: NSStringDrawingContext?) {
+        drawWithRect(rect, options: options, context: context)
+    }
+    #endif
 }
 
 extension BONView {
