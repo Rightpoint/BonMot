@@ -17,7 +17,6 @@ import Foundation
 public extension BONImage {
 
     #if os(OSX)
-    @objc(bon_tintedImageWithColor:)
     func tintedImage(color theColor: BONColor) -> BONImage {
         let imageRect = CGRect(origin: .zero, size: size)
 
@@ -59,7 +58,6 @@ public extension BONImage {
         return image
     }
     #else
-    @objc(bon_tintedImageWithColor:)
     func tintedImage(color theColor: BONColor) -> BONImage {
         let imageRect = CGRect(origin: .zero, size: size)
         // Save original properties
