@@ -53,9 +53,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "AttributedStringStyleTests/testBasicAssertionUtilities()">
-               </Test>
-               <Test
                   Identifier = "AttributedStringStyleTests/testFontFeatureStyle()">
                </Test>
                <Test
