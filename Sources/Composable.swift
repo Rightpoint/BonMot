@@ -141,7 +141,6 @@ extension BONImage: Composable {
     /// - parameter to: The attributed string to append to.
     /// - parameter baseStyle: The style to use.
     @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
-        var attributes = baseStyle.attributes
         let baselinesOffsetForAttachment = attributes[NSBaselineOffsetAttributeName] as? CGFloat ?? 0
         let attachment = NSTextAttachment()
         attachment.image = self
@@ -149,6 +148,7 @@ extension BONImage: Composable {
 
         let attachmentString = NSAttributedString(attachment: attachment).mutableStringCopy()
         // Remove the baseline offset from the attributes so it isn't applied twice
+        var attributes = baseStyle.attributes
         attributes[NSBaselineOffsetAttributeName] = nil
         attachmentString.addAttributes(attributes, range: NSRange(location: 0, length: attachmentString.length))
 
