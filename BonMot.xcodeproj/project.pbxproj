@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		AB8497DA1DA45B9C00FE3414 /* AllTheThings */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AB8497DD1DA45B9C00FE3414 /* Build configuration list for PBXAggregateTarget "AllTheThings" */;
+			buildPhases = (
+				ABBD124E1DA469BB0084FBCC /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = AllTheThings;
+			productName = AllTheThings;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
@@ -642,6 +656,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Raizlabs;
 				TargetAttributes = {
+					AB8497DA1DA45B9C00FE3414 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					ABCBFD561D96E61000FAD37A = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -673,6 +691,7 @@
 				ABCD3E271D980E5500273936 /* BonMot-OSXTests */,
 				ABA75DCC1D99E10400B64705 /* BonMot-watchOS */,
 				ABA75DEC1D99E10F00B64705 /* BonMot-watchOSTests */,
+				AB8497DA1DA45B9C00FE3414 /* AllTheThings */,
 			);
 		};
 /* End PBXProject section */
@@ -745,6 +764,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		ABBD124E1DA469BB0084FBCC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-OSX\" \"macosx\" \"arch=x86_64\"\nbuild \"build-for-testing test-without-building\" \"BonMot-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\nbuild \"build-for-testing test-without-building\" \"BonMot-tvOS\" \"appletvsimulator\" \"name=Apple TV 1080p\"\n# watchOS doesn't support XCTest    \nbuild \"build\" \"BonMot-watchOS\" \"watchsimulator\" \"name=Apple Watch - 38mm\"\n";
+		};
 		CD4B2FCC1D9B0AB0007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1065,6 +1097,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AB8497DB1DA45B9C00FE3414 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AB8497DC1DA45B9C00FE3414 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		ABA75DE81D99E10400B64705 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1419,6 +1465,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB8497DD1DA45B9C00FE3414 /* Build configuration list for PBXAggregateTarget "AllTheThings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB8497DB1DA45B9C00FE3414 /* Debug */,
+				AB8497DC1DA45B9C00FE3414 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ABA75DE71D99E10400B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
