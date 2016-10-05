@@ -63,11 +63,24 @@ extension NSAttributedString {
         return attributedString
     }
 
-    /// The default XMLStyler to use. By default this styler will look element styles in the shared TagStyler.
+    /// The default XMLStyler to use. By default this styler will look element styles in the shared TagStyler and insert special characters when BON namespaced elements are encountered.
     @nonobjc public static var defaultXMLStyler: XMLStyler = {
-        return XMLRuleStyler(rules: [.styles(TagStyles.shared)])
+        var rules = Special.insertionRules
+        rules.append(.styles(TagStyles.shared))
+        return XMLRuleStyler(rules: rules)
     }()
 
+}
+
+extension Special {
+    static var insertionRules: [XMLStyleRule] {
+        let rulePairs: [[XMLStyleRule]] = all.map() {
+            let elementName = "BON:\($0.name)"
+            // Add the insertion rule and a style rule so we don't lookup the style and generate a warning
+            return [XMLStyleRule.enter(element: elementName, insert: $0), XMLStyleRule.style(elementName, AttributedStringStyle())]
+        }
+        return rulePairs.flatMap() { $0 }
+    }
 }
 
 /// A simple set of styling rules for styling XML. If your needs are more complicated, use the XMLStyler protocol

@@ -333,8 +333,8 @@
 		AB30D5031D9CB2F2006ADC9D /* Composable */ = {
 			isa = PBXGroup;
 			children = (
-				ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */,
 				AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */,
+				ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */,
 				ABCD3D5B1D96F02F00273936 /* Special.swift */,
 				AB30D50B1D9CB4FE006ADC9D /* Tab.swift */,
 			);

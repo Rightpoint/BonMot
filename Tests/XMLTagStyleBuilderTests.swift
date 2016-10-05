@@ -130,6 +130,14 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssertEqual(errorLocation(forXML: "<ex> <a ", [.doNotWrapXML]).column, 7)
         XCTAssertEqual(errorLocation(forXML: "<ex> \r\n <a ", [.doNotWrapXML]).line, 2)
         XCTAssertEqual(errorLocation(forXML: "<ex> \r\n <a ", [.doNotWrapXML]).column, 3)
-}
+    }
+
+    func testBONXML() {
+        for value in Special.all {
+            let xmlString = "this<BON:\(value.name)/>should embed a special character"
+            let xmlAttributedString = try? NSAttributedString.compose(xml: xmlString)
+            XCTAssertEqual(xmlAttributedString?.string, "this\(value)should embed a special character")
+        }
+    }
 
 }

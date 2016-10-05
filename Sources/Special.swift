@@ -79,4 +79,33 @@ extension Special {
         }
     }
 
+    public static var all: [Special] = [
+        .tab,
+        .lineFeed,
+        .verticalTab,
+        .formFeed,
+        .carriageReturn,
+        .space,
+        .nextLine,
+        .noBreakSpace,
+        .enSpace,
+        .emSpace,
+        .figureSpace,
+        .thinSpace,
+        .hairSpace,
+        .zeroWidthSpace,
+        .nonBreakingHyphen,
+        .figureDash,
+        .enDash,
+        .emDash,
+        .horizontalEllipsis,
+        .lineSeparator,
+        .paragraphSeparator,
+        .leftToRightOverride,
+        .narrowNoBreakSpace,
+        .wordJoiner,
+        .minusSign,
+        .objectReplacementCharacter
+    ]
+
 }
