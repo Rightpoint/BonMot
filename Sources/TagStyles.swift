@@ -45,21 +45,17 @@ public class TagStyles: NSObject {
         styles[name] = style
     }
 
-    /// The style lookup can be passed a set of intial attributes. This is done so UI Elements can
-    /// pass their configured font in as a hint for what font to use by the style.
-    ///
-    /// The primary purpose of this is so the style name can be set to 'control' or 'body' and whatever font is
-    /// in the chain can be adapted.
+    /// Lookup a style for the specified name. If no style is found `TagStyles.unregisteredStyleClosure` is invoked.
+    /// This is done for error reporting and safety. We don't want to crash if no style is found and we want to avoid
+    /// adding throw everywhere. In general if a style is requested by name it will just log and be un-styled.
     ///
     /// - parameter forName: The name of the style to lookup
-    /// - parameter initialAttributes: The initial attributes to pass to the style chain
     /// - returns: the configured style, or nil if none is found
-    public func style(forName name: String, initialAttributes: StyleAttributes = [:]) -> AttributedStringStyle? {
-        guard var style = styles[name] else {
+    public func style(forName name: String) -> AttributedStringStyle? {
+        guard let style = styles[name] else {
             TagStyles.unregisteredStyleClosure(name)
             return nil
         }
-        style.update(initialAttributes: initialAttributes)
         return style
     }
 

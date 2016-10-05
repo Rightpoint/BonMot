@@ -8,10 +8,12 @@
 import UIKit
 
 func lookupSharedStyle(for name: String?, font: UIFont) -> AttributedStringStyle? {
-    guard let name = name else {
+    guard let name = name, let style = TagStyles.shared.style(forName: name) else {
         return nil
     }
-    return TagStyles.shared.style(forName:name, initialAttributes: [NSFontAttributeName: font])
+    // Create a style with the font and then add the named style. 
+    // This will provide a font if one is not specified in the style.
+    return AttributedStringStyle.style(.font(font)).derive(attributedStringStyle: style)
 }
 
 extension UILabel {
