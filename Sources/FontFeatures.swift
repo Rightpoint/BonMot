@@ -26,7 +26,8 @@ public extension BONFont {
     /// - returns: a new font with the specified features enabled
     public func font(withFeatures featureProviders: [FontFeatureProvider]) -> BONFont {
         var fontAttributes = fontDescriptor.fontAttributes
-        if var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] {
+        var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
+        if featureProviders.count > 0 {
             let newFeatures = featureProviders.map() { $0.featureAttribute() }
             features.append(contentsOf: newFeatures)
             fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
