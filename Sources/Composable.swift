@@ -58,7 +58,7 @@ public extension NSAttributedString {
     /// appended after every item. `baseStyle` will act as the default style, and will only apply to the Composable item if the Composable
     /// does not have a style value configured.
     ///
-    /// - parameter with: An array of Composable to create an NSAttributedString from.
+    /// - parameter composables: An array of Composable to create an NSAttributedString from.
     /// - parameter baseStyle: The baseStyle to apply to every Composable. If no baseStyle is supplied, no additional styling will be added.
     /// - parameter separator: The separator to join `composables` with.
     /// - returns: A new NSAttributedString
