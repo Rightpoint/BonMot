@@ -22,7 +22,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         // For some reason, the `AllTheThings` target fails when things are measured. Since this measurement is not of much
         // value, it's disabled until we have enough value in the measurement to fix the build bug.
 //        measure() {
-            XCTAssertNotNil(try? NSAttributedString.compose(xml: hugeString, rules: [.styles(styles)]))
+            XCTAssertNotNil(try? NSAttributedString.composed(ofXML: hugeString, rules: [.styles(styles)]))
 //        }
     }
 
@@ -30,7 +30,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
     func testComposition() {
         let styles = TagStyles(styles: ["A": styleA, "B": styleB])
 
-        guard let attributedString = try? NSAttributedString.compose(xml: "This is <A>A style</A> test for <B>B Style</B>.", rules: [.styles(styles)]) else {
+        guard let attributedString = try? NSAttributedString.composed(ofXML: "This is <A>A style</A> test for <B>B Style</B>.", rules: [.styles(styles)]) else {
             XCTFail("No attributed string")
             return
         }
@@ -46,14 +46,14 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let styles = TagStyles()
         styles.registerStyle(forName: "A", style: styleA)
 
-        XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <A>style</A> is valid", rules: [.styles(styles)]))
-        XCTAssertNotNil(try? NSAttributedString.compose(xml: "This <B>style</B> is not registered but that's OK", rules: [.styles(styles)]))
+        XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "This <A>style</A> is valid", rules: [.styles(styles)]))
+        XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "This <B>style</B> is not registered but that's OK", rules: [.styles(styles)]))
     }
 
     /// Verify that the string is read when fully contained
     func testFullXML() {
         let styles = TagStyles()
-        XCTAssertNotNil(try? NSAttributedString.compose(xml: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.doNotWrapXML]))
+        XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.doNotWrapXML]))
     }
 
     /// Basic test on some HTML-like behavior.
@@ -83,7 +83,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         }
 
         let styler = HTMLishStyleBuilder()
-        guard let attributedString = try? NSAttributedString.compose(xml: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styler: styler) else {
+        guard let attributedString = try? NSAttributedString.composed(ofXML: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styler: styler) else {
             XCTFail("No attributed string")
             return
         }
@@ -110,7 +110,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
     func testErrorLocation() {
         func errorLocation(forXML xml: String, _ options: XMLParsingOptions = []) -> (line: Int, column: Int) {
             do {
-                let attributedString = try NSAttributedString.compose(xml: xml)
+                let attributedString = try NSAttributedString.composed(ofXML: xml)
                 XCTFail("compose should of thrown, got \(attributedString)")
             }
             catch let error as XMLBuilderError {
@@ -135,7 +135,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
     func testBONXML() {
         for value in Special.all {
             let xmlString = "this<BON:\(value.name)/>should embed a special character"
-            let xmlAttributedString = try? NSAttributedString.compose(xml: xmlString)
+            let xmlAttributedString = try? NSAttributedString.composed(ofXML: xmlString)
             XCTAssertEqual(xmlAttributedString?.string, "this\(value)should embed a special character")
         }
     }

@@ -27,11 +27,12 @@ extension NSAttributedString {
     ///
     /// - returns: An NSAttributedString
     // swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
-    public static func compose(xml fragment: String, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public static func composed(ofXML fragment: String, baseStyle: AttributedStringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
             styler: styler ?? NSAttributedString.defaultXMLStyler,
-            options: options
+            options: options,
+            baseStyle: baseStyle ?? AttributedStringStyle()
         )
         let attributedString = try builder.parseAttributedString()
         return attributedString
@@ -53,11 +54,12 @@ extension NSAttributedString {
     ///
     /// - returns: An NSAttributedString
     // swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
-    public static func compose(xml fragment: String, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public static func composed(ofXML fragment: String, baseStyle: AttributedStringStyle? = nil, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
             styler: XMLRuleStyler(rules: rules),
-            options: options
+            options: options,
+            baseStyle: baseStyle ?? AttributedStringStyle()
         )
         let attributedString = try builder.parseAttributedString()
         return attributedString
@@ -184,7 +186,7 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
     init(string: String,
          styler: XMLStyler,
          options: XMLParsingOptions,
-         topStyle: AttributedStringStyle = AttributedStringStyle()) {
+         baseStyle: AttributedStringStyle) {
         let xml = (options.contains(.doNotWrapXML) ?
             string :
             "<\(XMLBuilder.internalTopLevelElement)>\(string)</\(XMLBuilder.internalTopLevelElement)>")
@@ -194,7 +196,7 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         }
         self.attributedString = NSMutableAttributedString()
         self.parser = XMLParser(data: data)
-        self.styles = [topStyle]
+        self.styles = [baseStyle]
         self.options = options
         self.styler = styler
         super.init()

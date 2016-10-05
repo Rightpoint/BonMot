@@ -22,7 +22,6 @@
     public typealias Error = ErrorType
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
-    typealias BonMotStringTransform = String
     typealias CharacterSet = NSCharacterSet
     typealias Data = NSData
 

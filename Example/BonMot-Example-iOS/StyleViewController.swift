@@ -15,7 +15,7 @@ class MasterTableViewCell: UITableViewCell {
 
 class StyleViewController: UITableViewController {
     var styles: [(String, [NSAttributedString])] = [
-        ("Color", [DemoStrings.colorString]),
+        ("Color", [DemoStrings.colorStringXML]),
         ("Images", [DemoStrings.imageString, DemoStrings.noSpaceString, DemoStrings.heartsString]),
         ("Indentation", DemoStrings.indentationStrings),
         ("Tracking", [DemoStrings.trackingString]),

@@ -8,12 +8,7 @@
 import BonMot
 
 enum DemoStrings {
-    static let gray = AttributedStringStyle.style(
-        .font(UIFont(name: "GillSans-Light", size: 20)!),
-        .lineHeightMultiple(1.8),
-        .color(.darkGray)
-    )
-    static let colorString = NSAttributedString.compose(with: [
+    static let colorString = NSAttributedString.composed(of: [
         "I want to be different. If everyone is wearing ",
         " black, ".styled(with: .color(.white),
                           .backgroundColor(.black),
@@ -23,11 +18,47 @@ enum DemoStrings {
                         .backgroundColor(.raizlabsRed),
                         .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
         "\nMaria Sharapova ".styled(with: .color(.raizlabsRed),
-                                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!),
-                                    .headIndent(10)),
+                                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
         UIImage(named: "Tennis Racket")!.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
-        ], baseStyle: gray)
+        ], baseStyle: .style(
+            .font(UIFont(name: "GillSans-Light", size: 20)!),
+            .lineHeightMultiple(1.8),
+            .color(.darkGray)
+        ))
+
+    static let colorStringXML: NSAttributedString = {
+        let content = "I want to be different. If everyone is wearing <black> black, </black> I want to be wearing <red> red. </red>\n<signed>Maria Sharapova</signed> <racket/>"
+        let racket = UIImage(named: "Tennis Racket")!.styled(with:
+            .color(.raizlabsRed), .baselineOffset(-4.0))
+
+        let string = try? NSAttributedString.composed(
+            ofXML: content,
+            baseStyle: .style(
+                .font(UIFont(name: "GillSans-Light", size: 20)!),
+                .lineHeightMultiple(1.8),
+                .color(.darkGray)),
+            rules: [
+                .style("black", .style(
+                    .color(.white),
+                    .backgroundColor(.black),
+                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
+                    )),
+                .style("red", .style(
+                    .color(.white),
+                    .backgroundColor(.raizlabsRed),
+                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
+                    )),
+                .style("signed", .style(
+                    .color(.raizlabsRed),
+                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
+                    )),
+                .enter(element: "racket", insert: racket)
+            ]
+        )
+
+        return string!
+    }()
 
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
         .styled(with: .tracking(.adobe(300)),
@@ -61,7 +92,7 @@ enum DemoStrings {
         ]
 
     static let indentationStrings: [NSAttributedString] = [
-        NSAttributedString.compose(with: [
+        NSAttributedString.composed(of: [
             UIImage(named: "robot")!,
             Tab.headIndent(4.0),
             "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”"
@@ -69,7 +100,7 @@ enum DemoStrings {
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
         )),
-        NSAttributedString.compose(with: [
+        NSAttributedString.composed(of: [
             "🍑 →",
             Tab.headIndent(4.0),
             "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
@@ -83,7 +114,7 @@ enum DemoStrings {
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
             )
-            let bullet = NSAttributedString.compose(with: ["🍑 →", Tab.headIndent(4.0)])
+            let bullet = NSAttributedString.composed(of: ["🍑 →", Tab.headIndent(4.0)])
             let rules: [XMLStyleRule] = [
                 .style("li", style),
                 .enter(element: "li", insert: bullet),
@@ -91,14 +122,14 @@ enum DemoStrings {
             ]
 
             let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
-            guard let string = try? NSAttributedString.compose(xml: xml, rules: rules) else {
+            guard let string = try? NSAttributedString.composed(ofXML: xml, rules: rules) else {
                 fatalError("Unable to load XML \(xml)")
             }
             return string
         })()
     ]
 
-    static let imageString = NSAttributedString.compose(with: [
+    static let imageString = NSAttributedString.composed(of: [
         "2".styled(with: .baselineOffset(8)),
         UIImage(named: "bee")!,
         UIImage(named: "oar")!,
@@ -116,8 +147,8 @@ enum DemoStrings {
         .color(.darkGray),
         .baselineOffset(10)
     )
-    static let noSpaceString = NSAttributedString.compose(
-        with: [
+    static let noSpaceString = NSAttributedString.composed(
+        of: [
             ("barn", "This"),
             ("bee", "string"),
             ("bug", "is"),
@@ -128,10 +159,10 @@ enum DemoStrings {
             ("pin", "no-break"),
             ("robot", "spaces"),
             ].map() {
-                return NSAttributedString.compose(with: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) },
+                return NSAttributedString.composed(of: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) },
         separator: " ")
 
-    static let heartsString = NSAttributedString.compose(with: (0..<20).makeIterator().map() { i in
+    static let heartsString = NSAttributedString.composed(of: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
         return "❤️".styled(with: .baselineOffset(offset))
     })
