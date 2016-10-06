@@ -200,6 +200,12 @@ import BonMot
             return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
         }
     }
+
+    extension NSLayoutRelation {
+        static let lessThanOrEqual = NSLayoutRelation.LessThanOrEqual
+        static let equal = NSLayoutRelation.Equal
+        static let greaterThanOrEqual = NSLayoutRelation.GreaterThanOrEqual
+    }
 #endif
 
 /// Shared (AppKit + UIKit)
