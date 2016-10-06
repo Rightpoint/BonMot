@@ -32,32 +32,29 @@ enum DemoStrings {
         let racket = UIImage(named: "Tennis Racket")!.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
-        let string = try? NSAttributedString.composed(
-            ofXML: content,
-            baseStyle: .style(
+        return content.styled(with: .style(
                 .font(UIFont(name: "GillSans-Light", size: 20)!),
                 .lineHeightMultiple(1.8),
-                .color(.darkGray)),
-            rules: [
-                .style("black", .style(
-                    .color(.white),
-                    .backgroundColor(.black),
-                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
-                    )),
-                .style("red", .style(
-                    .color(.white),
-                    .backgroundColor(.raizlabsRed),
-                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
-                    )),
-                .style("signed", .style(
-                    .color(.raizlabsRed),
-                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
-                    )),
-                .enter(element: "racket", insert: racket)
-            ]
+                .color(.darkGray),
+                .xmlRules([
+                    .style("black", .style(
+                        .color(.white),
+                        .backgroundColor(.black),
+                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
+                        )),
+                    .style("red", .style(
+                        .color(.white),
+                        .backgroundColor(.raizlabsRed),
+                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
+                        )),
+                    .style("signed", .style(
+                        .color(.raizlabsRed),
+                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
+                        )),
+                    .enter(element: "racket", insert: racket)
+                    ])
+            )
         )
-
-        return string!
     }()
 
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
