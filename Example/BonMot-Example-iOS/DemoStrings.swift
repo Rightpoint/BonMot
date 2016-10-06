@@ -8,53 +8,56 @@
 import BonMot
 
 enum DemoStrings {
-    static let colorString = NSAttributedString.composed(of: [
-        "I want to be different. If everyone is wearing ",
-        " black, ".styled(with: .color(.white),
-                          .backgroundColor(.black),
-                          .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
-        " I want to be wearing ",
-        " red. ".styled(with: .color(.white),
-                        .backgroundColor(.raizlabsRed),
-                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
-        "\nMaria Sharapova ".styled(with: .color(.raizlabsRed),
-                                    .font(UIFont(name: "SuperClarendon-Black", size: 20)!)),
-        UIImage(named: "Tennis Racket")!.styled(with:
-            .color(.raizlabsRed), .baselineOffset(-4.0))
-        ], baseStyle: .style(
-            .font(UIFont(name: "GillSans-Light", size: 20)!),
-            .lineHeightMultiple(1.8),
-            .color(.darkGray)
-        ))
-
-    static let colorStringXML: NSAttributedString = {
-        let content = "I want to be different. If everyone is wearing <black> black, </black> I want to be wearing <red> red. </red>\n<signed>Maria Sharapova</signed> <racket/>"
+    static let colorString: NSAttributedString = {
+        // Define a colored image that's slightly shifted to account for the line height
         let racket = UIImage(named: "Tennis Racket")!.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
-        return content.styled(with: .style(
-                .font(UIFont(name: "GillSans-Light", size: 20)!),
-                .lineHeightMultiple(1.8),
-                .color(.darkGray),
-                .xmlRules([
-                    .style("black", .style(
-                        .color(.white),
-                        .backgroundColor(.black),
-                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
-                        )),
-                    .style("red", .style(
-                        .color(.white),
-                        .backgroundColor(.raizlabsRed),
-                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
-                        )),
-                    .style("signed", .style(
-                        .color(.raizlabsRed),
-                        .font(UIFont(name: "SuperClarendon-Black", size: 20)!)
-                        )),
-                    .enter(element: "racket", insert: racket)
-                    ])
+        let gray = AttributedStringStyle.style(
+            .font(BONFont(name: "GillSans-Light", size: 20)!),
+            .lineHeightMultiple(1.8),
+            .color(.darkGray))
+        let accent = gray.derive(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+
+        let black = accent.derive(.color(.white), .backgroundColor(.black))
+        let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
+        let signed = accent.derive(.color(.raizlabsRed))
+
+        return NSAttributedString.composed(of   : [
+            "I want to be different. If everyone is wearing ",
+            " black, ".styled(with: black),
+            " I want to be wearing ",
+            " red. ".styled(with: red),
+            "\nMaria Sharapova ".styled(with: signed),
+            racket
+            ], baseStyle: gray)
+    }()
+
+    static let colorStringXML: NSAttributedString = {
+        // Define a colored image that's slightly shifted to account for the line height
+        let racket = UIImage(named: "Tennis Racket")!.styled(with:
+            .color(.raizlabsRed), .baselineOffset(-4.0))
+
+        // Define styles
+        let accent = AttributedStringStyle.style(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+        let black = accent.derive(.color(.white), .backgroundColor(.black))
+        let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
+        let signed = accent.derive(.color(.raizlabsRed))
+
+        // Define the base style with xml rules for all tags
+        let baseStyle = AttributedStringStyle.style(
+            .font(BONFont(name: "GillSans-Light", size: 20)!),
+            .lineHeightMultiple(1.8),
+            .color(.darkGray),
+            .xmlRules([
+                .style("black", black),
+                .style("red", red),
+                .style("signed", signed),
+                .enter(element: "racket", insert: racket)
+                ]
             )
         )
+        return "I want to be different. If everyone is wearing <black> black, </black> I want to be wearing <red> red. </red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
     }()
 
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
