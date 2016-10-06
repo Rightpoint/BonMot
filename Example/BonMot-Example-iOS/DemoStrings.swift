@@ -60,6 +60,27 @@ enum DemoStrings {
         return "I want to be different. If everyone is wearing <black> black, </black> I want to be wearing <red> red. </red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
     }()
 
+    static let colorStringChain: NSAttributedString = {
+        let grey = AttributedStringStyle.style(
+            .font(BONFont(name: "GillSans-Light", size: 20)!),
+            .lineHeightMultiple(1.8),
+            .color(.darkGray))
+        let accent = grey.derive(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+
+        let black = accent.derive(.color(.white), .backgroundColor(.black))
+        let red = accent.derive(.color(.white), .backgroundColor(.black))
+        let signed = accent.derive(.color(.raizlabsRed))
+
+        var chain = Chain()
+        chain.append(grey.attributedString(from: "I want to be different. If everyone is wearing "))
+        chain.append(black.attributedString(from: " black, "))
+        chain.append(grey.attributedString(from: "I want to be wearing"))
+        chain.append(red.attributedString(from: " red. "))
+        chain.append(signed.attributedString(from: "\nMaria Sharapova"))
+        chain.append(UIImage(named: "Tennis Racket")!.styled(with: .color(.raizlabsRed), .baselineOffset(-4)))
+        return chain.attributedString()
+    }()
+
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
         .styled(with: .tracking(.adobe(300)),
                 .font(UIFont(name: "Avenir-Book", size: 18)!),
