@@ -28,7 +28,7 @@ extension NSAttributedString {
             case .objectReplacementCharacter?:
                 #if os(iOS) || os(tvOS) || os(OSX)
                     if let attachment = self.attribute(NSAttachmentAttributeName, at: index, effectiveRange: nil) as? NSTextAttachment, let image = attachment.image {
-                        replacementString = String(format: "image%.3gx%.3g", image.size.width, image.size.height)
+                        replacementString = String(format: "image size='%.3gx%.3g'", image.size.width, image.size.height)
                     }
                     else {
                         replacementString = Special.objectReplacementCharacter.name
@@ -46,21 +46,25 @@ extension NSAttributedString {
             index += utf16Length
         }
         for replacement in replacements.reversed() {
-            debug.replaceCharacters(in: replacement.range, with: "{\(replacement.string)}")
+            debug.replaceCharacters(in: replacement.range, with: "<BON:\(replacement.string)/>")
         }
         replacements = []
 
         let unassignedPrefix = "\\N{<unassigned-"
-        let unassignedReplacement = "{unassignedUnicode<"
+        let unassignedPrefixReplacement = "<BON:unassigned unicode='"
+        let unassignedSuffix = ">}"
+        let unassignedSuffixReplacement = "'/>"
+
         var currentIndex: Int = 0
         for character in debug.string.characters {
             let utf16LengthOfCharacter = String(character).utf16.count
             let original = String(character) as NSString
             let transformed = original.applyingTransform(StringTransform.toUnicodeName, reverse: false)
             if let transformed = transformed {
-                if transformed.hasPrefix(unassignedPrefix) && transformed.hasSuffix(">}") {
+                if transformed.hasPrefix(unassignedPrefix) && transformed.hasSuffix(unassignedSuffix) {
                     let range = NSRange(location: currentIndex, length: utf16LengthOfCharacter)
-                    let newString = transformed.replacingOccurrences(of: unassignedPrefix, with: unassignedReplacement)
+                    var newString = transformed.replacingOccurrences(of: unassignedPrefix, with: unassignedPrefixReplacement)
+                    newString = newString.replacingOccurrences(of: unassignedSuffix, with: unassignedSuffixReplacement)
                     replacements.append((range, newString))
                 }
             }

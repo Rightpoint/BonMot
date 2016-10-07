@@ -19,14 +19,14 @@ class NSAttributedStringDebugTests: XCTestCase {
     func testDebugRepresentationReplacements() {
         let testCases: [(String, String)] = [
             ("BonMot", "BonMot"),
-            ("Bon\tMot", "Bon{tab}Mot"),
-            ("Bon\nMot", "Bon{lineFeed}Mot"),
+            ("Bon\tMot", "Bon<BON:tab/>Mot"),
+            ("Bon\nMot", "Bon<BON:lineFeed/>Mot"),
             ("it ignores spaces", "it ignores spaces"),
             ("Pilcrow¶", "Pilcrow¶"),
             ("Floppy💾Disk", "Floppy💾Disk"),
-            ("\u{000A1338}A\u{000A1339}", "{unassignedUnicode<A1338>}A{unassignedUnicode<A1339>}"),
-            ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲{unassignedUnicode<A1338>}₫{unassignedUnicode<A1339>}"),
-            ("\n →\t", "{lineFeed} →{tab}"),
+            ("\u{000A1338}A\u{000A1339}", "<BON:unassigned unicode='A1338'/>A<BON:unassigned unicode='A1339'/>"),
+            ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲<BON:unassigned unicode='A1338'/>₫<BON:unassigned unicode='A1339'/>"),
+            ("\n →\t", "<BON:lineFeed/> →<BON:tab/>"),
         ]
         for (index, testCase) in testCases.enumerated() {
             let line = UInt(#line - testCases.count - 2 + index)
@@ -36,7 +36,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     }
 
     func testImageRepresentationHasSize() {
-        XCTAssertEqual(imageForTest.attributedString().debugRepresentation.string, "{image36x36}")
+        XCTAssertEqual(imageForTest.attributedString().debugRepresentation.string, "<BON:image size='36x36'/>       ")
     }
 
     func testThatNSAttributedStringSpeaksUTF16() {
