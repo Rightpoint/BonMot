@@ -68,7 +68,7 @@ enum DemoStrings {
         let accent = grey.derive(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
 
         let black = accent.derive(.color(.white), .backgroundColor(.black))
-        let red = accent.derive(.color(.white), .backgroundColor(.black))
+        let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
         let signed = accent.derive(.color(.raizlabsRed))
 
         var chain = Chain()
