@@ -23,7 +23,7 @@ enum DemoStrings {
         let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
         let signed = accent.derive(.color(.raizlabsRed))
 
-        return NSAttributedString.composed(of   : [
+        return NSAttributedString.composed(of: [
             "I want to be different. If everyone is wearing ",
             " black, ".styled(with: black),
             " I want to be wearing ",
