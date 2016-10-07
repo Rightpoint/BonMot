@@ -151,7 +151,8 @@ extension AttributedStringStyle {
             self.paragraphSpacingBefore = paragraphSpacingBefore
         case .xml:
             self.xmlStyler = NSAttributedString.defaultXMLStyler
-        case let .xmlRules(rules):
+        case var .xmlRules(rules):
+            rules.append(contentsOf: Special.insertionRules)
             self.xmlStyler = XMLRuleStyler(rules: rules)
         case let .xmlStyler(xmlStyler):
             self.xmlStyler = xmlStyler

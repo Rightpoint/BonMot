@@ -75,7 +75,7 @@ extension NSAttributedString {
 }
 
 extension Special {
-    static var insertionRules: [XMLStyleRule] {
+    public static var insertionRules: [XMLStyleRule] {
         let rulePairs: [[XMLStyleRule]] = all.map() {
             let elementName = "BON:\($0.name)"
             // Add the insertion rule and a style rule so we don't lookup the style and generate a warning
