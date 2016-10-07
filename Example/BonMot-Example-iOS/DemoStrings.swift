@@ -73,9 +73,9 @@ enum DemoStrings {
 
         var chain = Chain()
         chain.append(grey.attributedString(from: "I want to be different. If everyone is wearing "))
-        chain.append(black.attributedString(from: " black, "))
-        chain.append(grey.attributedString(from: "I want to be wearing"))
-        chain.append(red.attributedString(from: " red. "))
+        chain.append(black.attributedString(from: "\(Special.noBreakSpace)black,\(Special.noBreakSpace)"))
+        chain.append(grey.attributedString(from: " I want to be wearing "))
+        chain.append(red.attributedString(from: "\(Special.noBreakSpace)red.\(Special.noBreakSpace)"))
         chain.append(signed.attributedString(from: "\nMaria Sharapova"))
         chain.append(UIImage(named: "Tennis Racket")!.styled(with: .color(.raizlabsRed), .baselineOffset(-4)))
         return chain.attributedString()
