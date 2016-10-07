@@ -223,7 +223,7 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         let namedStyle = styler.style(forElement: elementName, attributes: attributeDict)
         var newStyle = self.topStyle
         if let namedStyle = namedStyle {
-            newStyle.update(attributedStringStyle: namedStyle)
+            newStyle.add(attributedStringStyle: namedStyle)
         }
         styles.append(newStyle)
     }
