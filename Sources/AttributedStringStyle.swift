@@ -124,7 +124,7 @@ extension AttributedStringStyle {
     /// values configured in UI elements, which the style can override.
     ///
     /// - parameter initialAttributes: The attributes to add to the style before applying the other properties.
-    public mutating func update(initialAttributes attributes: StyleAttributes) {
+    public mutating func add(initialAttributes attributes: StyleAttributes) {
         for (key, value) in attributes {
             initialAttributes[key] = value
         }
@@ -134,8 +134,8 @@ extension AttributedStringStyle {
     /// will over-write the values specified in this AttributedStringStyle.
     ///
     /// - parameter attributedStringStyle: The style to update this style with.
-    public mutating func update(attributedStringStyle stringStyle: AttributedStringStyle) {
-        update(initialAttributes: stringStyle.initialAttributes)
+    public mutating func add(attributedStringStyle stringStyle: AttributedStringStyle) {
+        add(initialAttributes: stringStyle.initialAttributes)
         font = stringStyle.font ?? font
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor
@@ -169,15 +169,15 @@ extension AttributedStringStyle {
         tracking = stringStyle.tracking ?? tracking
     }
 
-    public func derive(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+    public func byAdding(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
         var style = self
         block(&style)
         return style
     }
 
-    public func derive(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
+    public func byAdding(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
         var newStyle = self
-        newStyle.update(attributedStringStyle: style)
+        newStyle.add(attributedStringStyle: style)
         return newStyle
     }
 
