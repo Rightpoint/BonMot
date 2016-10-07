@@ -30,7 +30,7 @@ class NSAttributedStringDebugTests: XCTestCase {
         ]
         for (index, testCase) in testCases.enumerated() {
             let line = UInt(#line - testCases.count - 2 + index)
-            let debugString = NSAttributedString(string: testCase.0).debugRepresentation.string
+            let debugString = NSAttributedString(string: testCase.0).bonMotDebugString
             XCTAssertEqual(testCase.1, debugString, line: line)
             let fromXML = AttributedStringStyle.style(.xml).attributedString(from: debugString)
             // Unassigned unicode replacement is not currently working. No one is actually interested in doing this so I'm going to leave it out.
@@ -41,7 +41,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     }
 
     func testImageRepresentationHasSize() {
-        XCTAssertEqual(imageForTest.attributedString().debugRepresentation.string, "<BON:image size='36x36'/>")
+        XCTAssertEqual(imageForTest.attributedString().bonMotDebugString, "<BON:image size='36x36'/>")
     }
 
     func testThatNSAttributedStringSpeaksUTF16() {

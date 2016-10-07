@@ -15,8 +15,7 @@ extension NSAttributedString {
 
     /// Create a new attributed string based on the current string, but replace characters in the Special enumeration,
     /// images, and unassigned unicode characters with a visual string.
-    @objc(bon_debugRepresentation)
-    public var debugRepresentation: NSAttributedString {
+    public var bonMotDebugAttributedString: NSAttributedString {
         let debug = self.mutableStringCopy()
         var replacements = Array<(range: NSRange, string: String)>()
         var index = 0
@@ -76,6 +75,10 @@ extension NSAttributedString {
         }
 
         return debug
+    }
+
+    public var bonMotDebugString: String {
+        return bonMotDebugAttributedString.string
     }
 
 }
