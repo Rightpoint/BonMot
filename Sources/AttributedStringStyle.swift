@@ -169,12 +169,6 @@ extension AttributedStringStyle {
         tracking = stringStyle.tracking ?? tracking
     }
 
-    public func byAdding(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = self
-        block(&style)
-        return style
-    }
-
     public func byAdding(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
         var newStyle = self
         newStyle.add(attributedStringStyle: style)

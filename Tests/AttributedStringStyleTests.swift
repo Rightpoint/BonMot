@@ -215,17 +215,12 @@ class AttributedStringStyleTests: XCTestCase {
     //   - an empty style object that is updated by the passed style object
     //   - a fully populated style object that is updated by the passed style object
     func checks(for style: AttributedStringStyle) -> [(style: AttributedStringStyle, fullStyle: Bool)] {
-        let derivedStyle = AttributedStringStyle.style().byAdding { derivedStyle in
-            // Not sure why but if this line is commented out, the line after is a compilation error.
-            // Feels like a swift bug or an Xcode bug that will disappear in a few days. ><
-            derivedStyle.add(initialAttributes: [:])
-            derivedStyle.add(attributedStringStyle: style)
-        }
-        // Bizarre, this works:
+        var emptyStyle = AttributedStringStyle()
+        emptyStyle.add(attributedStringStyle: style)
         var updated = fullStyle
         updated.add(attributedStringStyle: style)
 
-        return [(style: style, fullStyle: false), (style: derivedStyle, fullStyle: false), (style: updated, fullStyle: true)]
+        return [(style: style, fullStyle: false), (style: emptyStyle, fullStyle: false), (style: updated, fullStyle: true)]
     }
 
     // A fully populated style object that is updated to ensure that update over-writes all values correctly.
