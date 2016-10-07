@@ -25,9 +25,9 @@ enum DemoStrings {
 
         return NSAttributedString.composed(of   : [
             "I want to be different. If everyone is wearing ",
-            " black, ".styled(with: black),
+            "\(Special.noBreakSpace)black,\(Special.noBreakSpace)".styled(with: black),
             " I want to be wearing ",
-            " red. ".styled(with: red),
+            "\(Special.noBreakSpace)red.\(Special.noBreakSpace)".styled(with: red),
             "\nMaria Sharapova ".styled(with: signed),
             racket
             ], baseStyle: gray)
@@ -57,7 +57,7 @@ enum DemoStrings {
                 ]
             )
         )
-        return "I want to be different. If everyone is wearing <black> black, </black> I want to be wearing <red> red. </red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
+        return "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
     }()
 
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
