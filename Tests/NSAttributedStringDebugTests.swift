@@ -26,6 +26,7 @@ class NSAttributedStringDebugTests: XCTestCase {
             ("Floppy💾Disk", "Floppy💾Disk"),
             ("\u{000A1338}A\u{000A1339}", "{unassignedUnicode<A1338>}A{unassignedUnicode<A1339>}"),
             ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲{unassignedUnicode<A1338>}₫{unassignedUnicode<A1339>}"),
+            ("\n →\t", "{lineFeed} →{tab}"),
         ]
         for (index, testCase) in testCases.enumerated() {
             let line = UInt(#line - testCases.count - 2 + index)
