@@ -24,19 +24,24 @@ class NSAttributedStringDebugTests: XCTestCase {
             ("it ignores spaces", "it ignores spaces"),
             ("Pilcrow¶", "Pilcrow¶"),
             ("Floppy💾Disk", "Floppy💾Disk"),
-            ("\u{000A1338}A\u{000A1339}", "<BON:unassigned unicode='A1338'/>A<BON:unassigned unicode='A1339'/>"),
-            ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲<BON:unassigned unicode='A1338'/>₫<BON:unassigned unicode='A1339'/>"),
+            ("\u{000A1338}A\u{000A1339}", "<BON:unicode value='A1338'/>A<BON:unicode value='A1339'/>"),
+            ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲<BON:unicode value='A1338'/>₫<BON:unicode value='A1339'/>"),
             ("\n →\t", "<BON:lineFeed/> →<BON:tab/>"),
         ]
         for (index, testCase) in testCases.enumerated() {
             let line = UInt(#line - testCases.count - 2 + index)
             let debugString = NSAttributedString(string: testCase.0).debugRepresentation.string
             XCTAssertEqual(testCase.1, debugString, line: line)
+            let fromXML = AttributedStringStyle.style(.xml).attributedString(from: debugString)
+            // Unassigned unicode replacement is not currently working. No one is actually interested in doing this so I'm going to leave it out.
+            if !testCase.1.contains("BON:unicode value=") {
+                XCTAssertEqual(testCase.0, fromXML.string, line: line)
+            }
         }
     }
 
     func testImageRepresentationHasSize() {
-        XCTAssertEqual(imageForTest.attributedString().debugRepresentation.string, "<BON:image size='36x36'/>       ")
+        XCTAssertEqual(imageForTest.attributedString().debugRepresentation.string, "<BON:image size='36x36'/>")
     }
 
     func testThatNSAttributedStringSpeaksUTF16() {

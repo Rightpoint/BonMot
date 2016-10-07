@@ -51,7 +51,7 @@ extension NSAttributedString {
         replacements = []
 
         let unassignedPrefix = "\\N{<unassigned-"
-        let unassignedPrefixReplacement = "<BON:unassigned unicode='"
+        let unassignedPrefixReplacement = "<BON:unicode value='"
         let unassignedSuffix = ">}"
         let unassignedSuffixReplacement = "'/>"
 
