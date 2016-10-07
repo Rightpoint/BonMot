@@ -27,6 +27,7 @@ class NSAttributedStringDebugTests: XCTestCase {
             ("\u{000A1338}A\u{000A1339}", "<BON:unicode value='A1338'/>A<BON:unicode value='A1339'/>"),
             ("neonسلام🚲\u{000A1338}₫\u{000A1339}", "neonسلام🚲<BON:unicode value='A1338'/>₫<BON:unicode value='A1339'/>"),
             ("\n →\t", "<BON:lineFeed/> →<BON:tab/>"),
+            ("foo\u{00a0}bar", "foo<BON:noBreakSpace/>bar"),
         ]
         for (index, testCase) in testCases.enumerated() {
             let line = UInt(#line - testCases.count - 2 + index)
