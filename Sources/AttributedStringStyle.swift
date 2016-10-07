@@ -49,6 +49,7 @@ public struct AttributedStringStyle {
     public var adaptations: [AdaptiveStyle] = []
     #endif
     public var tracking: Tracking? = nil
+    public var xmlStyler: XMLStyler? = nil
 
     public init() {}
 
@@ -116,9 +117,41 @@ extension AttributedStringStyle {
         return theAttributes
     }
 
+    /// Create an NSMutableAttributedString from the specified string.
+    /// - parameter from: The String
+    /// - parameter existingAttributes: The existing attributes, if any, to use as default values for the style.
+    ///
+    /// - returns: A new NSMutableAttributedString
+    public func attributedString(from theString: String, existingAttributes: StyleAttributes? = nil) -> NSAttributedString {
+        if let xmlStyler = xmlStyler {
+            let builder = XMLBuilder(
+                string: theString,
+                styler: xmlStyler,
+                options: [],
+                baseStyle: self
+            )
+            if let attributedString = try? builder.parseAttributedString() {
+                return attributedString
+            }
+        }
+        return NSAttributedString(string: theString, attributes: supplyDefaults(for: existingAttributes))
+    }
+
 }
 
 extension AttributedStringStyle {
+
+    public func derive(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
+        var style = self
+        block(&style)
+        return style
+    }
+
+    public func derive(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
+        var newStyle = self
+        newStyle.update(attributedStringStyle: style)
+        return newStyle
+    }
 
     /// Update the initialAttributes in the style object. This is used to provide the default
     /// values configured in UI elements, which the style can override.
@@ -167,18 +200,7 @@ extension AttributedStringStyle {
             adaptations.append(contentsOf: stringStyle.adaptations)
         #endif
         tracking = stringStyle.tracking ?? tracking
-    }
-
-    public func derive(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = self
-        block(&style)
-        return style
-    }
-
-    public func derive(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
-        var newStyle = self
-        newStyle.update(attributedStringStyle: style)
-        return newStyle
+        xmlStyler = stringStyle.xmlStyler ?? xmlStyler
     }
 
 }
@@ -186,20 +208,15 @@ extension AttributedStringStyle {
 /// An extension to provide UIKit interaction helpers to the style object
 public extension AttributedStringStyle {
 
-    /// Create an NSMutableAttributedString from the specified string.
-    /// - parameter from: The String
-    /// - returns: A new NSMutableAttributedString
-    public func attributedString(from theString: String) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: theString, attributes: attributes)
-    }
-
     /// Supply the contained attributes as default values for the passed in StyleAttributes. This will also
     /// perform some merging of values. This includes NSParagraphStyle and the embedded attributes.
     ///
     /// - parameter for: The object to over-write the defaults with
     /// - returns: The new attributes
-    func supplyDefaults(for attributes: StyleAttributes) -> StyleAttributes {
-        var attributes = attributes
+    func supplyDefaults(for attributes: StyleAttributes?) -> StyleAttributes {
+        guard var attributes = attributes else {
+            return self.attributes
+        }
         for (key, value) in self.attributes {
             switch (key, value, attributes[key]) {
             case (NSParagraphStyleAttributeName, let paragraph as NSParagraphStyle, let otherParagraph as NSParagraphStyle):

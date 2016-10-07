@@ -26,7 +26,7 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///
     /// - returns: An NSAttributedString
-    // swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
+    // swiftlint:disable:next valid_docs (swiftlint issue jpsim/SourceKitten/issues/133)
     public static func composed(ofXML fragment: String, baseStyle: AttributedStringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
@@ -125,7 +125,7 @@ public struct XMLBuilderError: Error {
 }
 
 /// This is a XMLStyler implementation for the StyleRules
-private struct XMLRuleStyler: XMLStyler {
+struct XMLRuleStyler: XMLStyler {
     let rules: [XMLStyleRule]
 
     func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle? {
@@ -169,18 +169,23 @@ private struct XMLRuleStyler: XMLStyler {
 
 }
 
-private class XMLBuilder: NSObject, XMLParserDelegate {
+class XMLBuilder: NSObject, XMLParserDelegate {
     static let internalTopLevelElement = "BonMotTopLevelContainer"
 
     let parser: XMLParser
-    let styler: XMLStyler
     let options: XMLParsingOptions
     var attributedString: NSMutableAttributedString
     var styles: [AttributedStringStyle]
+    var xmlStylers: [XMLStyler]
 
     var topStyle: AttributedStringStyle {
         guard let style = styles.last else { fatalError("Invalid Style Stack") }
         return style
+    }
+
+    var topXMLStyler: XMLStyler {
+        guard let styler = xmlStylers.last else { fatalError("Invalid Style Stack") }
+        return styler
     }
 
     init(string: String,
@@ -196,9 +201,12 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         }
         self.attributedString = NSMutableAttributedString()
         self.parser = XMLParser(data: data)
-        self.styles = [baseStyle]
         self.options = options
-        self.styler = styler
+        self.xmlStylers = [styler]
+        // Remove the XMLStyler from the base style
+        var style = baseStyle
+        style.xmlStyler = nil
+        self.styles = [style]
         super.init()
         self.parser.shouldProcessNamespaces = false
         self.parser.shouldReportNamespacePrefixes = false
@@ -206,7 +214,7 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         self.parser.delegate = self
     }
 
-    func parseAttributedString() throws -> NSAttributedString {
+    func parseAttributedString() throws -> NSMutableAttributedString {
         guard parser.parse() else {
             let line = parser.lineNumber
             let shiftColumn = (line == 1 && options.contains(.doNotWrapXML) == false)
@@ -218,57 +226,59 @@ private class XMLBuilder: NSObject, XMLParserDelegate {
         return attributedString
     }
 
-    func parse(elementNamed elementName: String, attributeDict: [String: String]) {
-        guard elementName != XMLBuilder.internalTopLevelElement else { return }
-        let namedStyle = styler.style(forElement: elementName, attributes: attributeDict)
-        var newStyle = self.topStyle
-        if let namedStyle = namedStyle {
-            newStyle.update(attributedStringStyle: namedStyle)
-        }
-        styles.append(newStyle)
-    }
-
+    /// When a node is entered, a new style is derived from the current style and the style for the node returned by the XMLStyler.
+    /// If the style contains an XMLStyler, it is pushed onto the XMLStyler stack and removed from the style.
+    /// - parameter element: The name of the XML Element
+    /// - parameter attributes: The XML Attributes
     func enter(element elementName: String, attributes: [String: String]) {
-        if let prefix = styler.prefix(forElement: elementName, attributes: attributes) {
-            prefix.append(to: attributedString, baseStyle: topStyle)
+        guard elementName != XMLBuilder.internalTopLevelElement else { return }
+        let xmlStyler = topXMLStyler
+        let namedStyle = xmlStyler.style(forElement: elementName, attributes: attributes) ?? AttributedStringStyle()
+        var newStyle = topStyle.derive(attributedStringStyle: namedStyle)
+        xmlStylers.append(newStyle.xmlStyler ?? topXMLStyler)
+        newStyle.xmlStyler = nil
+        styles.append(newStyle)
+
+        // The prefix is looked up in the styler that styled this node, not the new styler
+        if let prefix = xmlStyler.prefix(forElement: elementName, attributes: attributes) {
+            prefix.append(to: attributedString, baseStyle: newStyle)
         }
+
     }
 
     func exit(element elementName: String) {
-        if let suffix = styler.suffix(forElement: elementName) {
+        if let suffix = topXMLStyler.suffix(forElement: elementName) {
             suffix.append(to: attributedString, baseStyle: topStyle)
         }
+        styles.removeLast()
+        xmlStylers.removeLast()
     }
 
     #if swift(>=3.0)
-    @objc fileprivate func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        parse(elementNamed: elementName, attributeDict: attributeDict)
+    @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         enter(element: elementName, attributes: attributeDict)
     }
 
-    @objc fileprivate func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    @objc func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
-        styles.removeLast()
     }
 
-    @objc fileprivate func parser(_ parser: XMLParser, foundCharacters string: String) {
+    @objc func parser(_ parser: XMLParser, foundCharacters string: String) {
         let newAttributedString = topStyle.attributedString(from: string)
         attributedString.append(newAttributedString)
     }
     #else
-    @objc private func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        parse(elementNamed: elementName, attributeDict: attributeDict)
+    @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         enter(element: elementName, attributes: attributeDict)
     }
 
-    @objc private func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
-        styles.removeLast()
     }
 
-    @objc private func parser(parser: XMLParser, foundCharacters string: String) {
+    @objc func parser(parser: XMLParser, foundCharacters string: String) {
         let newAttributedString = topStyle.attributedString(from: string)
         attributedString.append(newAttributedString)
     }
