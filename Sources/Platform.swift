@@ -10,6 +10,7 @@
     import AppKit
     public typealias BONColor = NSColor
     public typealias BONImage = NSImage
+    public typealias BONTextField = NSTextField
 
     public typealias BONFont = NSFont
     public typealias BONFontDescriptor = NSFontDescriptor
@@ -26,6 +27,10 @@
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
     let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
     let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+
+    #if os(iOS) || os(tvOS)
+        public typealias BONTextField = UITextField
+    #endif
 #endif
 
 #if swift(>=3.0)

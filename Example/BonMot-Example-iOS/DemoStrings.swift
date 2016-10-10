@@ -77,16 +77,16 @@ enum DemoStrings {
     )
 
     static let proportionalStrings: [NSAttributedString] = [
-        "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.proportional),
             .fontFeature(NumberCase.upper))),
-        "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.proportional),
             .fontFeature(NumberCase.lower))),
-        "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.monospaced),
             .fontFeature(NumberCase.upper))),
-        "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.monospaced),
             .fontFeature(NumberCase.lower))),
         ]

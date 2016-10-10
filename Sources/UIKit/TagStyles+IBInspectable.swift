@@ -13,7 +13,7 @@ func lookupSharedStyle(for name: String?, font: UIFont) -> AttributedStringStyle
     }
     // Create a style with the font and then add the named style.
     // This will provide a font if one is not specified in the style.
-    return AttributedStringStyle.style(.font(font)).derive(attributedStringStyle: style)
+    return AttributedStringStyle.style(.font(font)).byAdding(attributedStringStyle: style)
 }
 
 extension UILabel {

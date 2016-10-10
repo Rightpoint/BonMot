@@ -21,6 +21,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1E7B10EC1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */; };
+		1E7B10ED1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */; };
+		1E7B10EE1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */; };
+		1E902AB41DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */; };
+		1E902AB51DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */; };
+		1E902AB61DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */; };
 		AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
 		AB30D50D1D9CB4FE006ADC9D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
@@ -194,6 +200,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignmentConstraint.swift; sourceTree = "<group>"; };
+		1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignmentConstraintTests.swift; sourceTree = "<group>"; };
 		AB167C8F1D997A2C0084808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
 		AB30D50B1D9CB4FE006ADC9D /* Tab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
@@ -437,6 +445,7 @@
 				ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */,
 				ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */,
 				ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */,
+				1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -456,6 +465,7 @@
 				ABCD3DAC1D96F06800273936 /* BONFontBehaviorTests.swift */,
 				ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */,
 				CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */,
+				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
 				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
@@ -962,6 +972,7 @@
 				ABCD3D6F1D96F02F00273936 /* FontFeatures.swift in Sources */,
 				AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
+				1E7B10EC1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -975,6 +986,7 @@
 				ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DB61D96F06800273936 /* NSAttributedStringDebugTests.swift in Sources */,
 				ABCD3DB11D96F06800273936 /* AssertHelpers.swift in Sources */,
+				1E902AB41DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */,
 				ABCD3DBA1D96F06800273936 /* BONFontBehaviorTests.swift in Sources */,
 				ABCD3DB51D96F06800273936 /* ComposableTests.swift in Sources */,
 				ABCD3DBC1D96F06800273936 /* UIKitBonMotTests.swift in Sources */,
@@ -1014,6 +1026,7 @@
 				AB30D50D1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABCD3DE21D96F6A500273936 /* FontFeatures.swift in Sources */,
 				CDEA84321D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
+				1E7B10ED1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1040,7 @@
 				ABCD3DF51D96F6E200273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DF61D96F6E200273936 /* NSAttributedStringDebugTests.swift in Sources */,
 				ABCD3DF71D96F6E200273936 /* AssertHelpers.swift in Sources */,
+				1E902AB51DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */,
 				ABCD3DF81D96F6E200273936 /* BONFontBehaviorTests.swift in Sources */,
 				ABCD3DF91D96F6E200273936 /* ComposableTests.swift in Sources */,
 				ABCD3DFA1D96F6E200273936 /* UIKitBonMotTests.swift in Sources */,
@@ -1042,6 +1056,7 @@
 			files = (
 				AB30D5111D9D9438006ADC9D /* Composable.swift in Sources */,
 				ABA75E0E1D99F9D500B64705 /* Tracking.swift in Sources */,
+				1E7B10EE1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */,
 				ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */,
 				AB30D50E1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABCD3E111D980E4900273936 /* AttributedStringStyle.swift in Sources */,
@@ -1068,6 +1083,7 @@
 				ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */,
 				ABCD3E321D980E5500273936 /* ComposableTests.swift in Sources */,
 				CDEA84381D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
+				1E902AB61DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */,
 				ABCD3E341D980E5500273936 /* Helpers.swift in Sources */,
 				ABCD3E351D980E5500273936 /* AttributedStringStyleTests.swift in Sources */,
 			);
