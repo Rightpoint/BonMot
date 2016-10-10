@@ -32,7 +32,6 @@ class AttributedStringStyleTests: XCTestCase {
             let font = style.attributes[NSFontAttributeName] as? UIFont
             let fontTextStyle = font?.textStyle
             XCTAssertEqual(fontTextStyle, titleTextStyle)
-            print(fontTextStyle, titleTextStyle)
         }
     }
     #endif

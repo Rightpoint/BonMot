@@ -199,6 +199,10 @@ import BonMot
         func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
             return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
         }
+        func contains(other: String) -> Bool {
+            return containsString(other)
+        }
+
     }
 #endif
 
