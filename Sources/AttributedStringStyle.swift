@@ -141,18 +141,6 @@ extension AttributedStringStyle {
 
 extension AttributedStringStyle {
 
-    public func derive(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = self
-        block(&style)
-        return style
-    }
-
-    public func derive(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
-        var newStyle = self
-        newStyle.update(attributedStringStyle: style)
-        return newStyle
-    }
-
     /// Update the initialAttributes in the style object. This is used to provide the default
     /// values configured in UI elements, which the style can override.
     ///
