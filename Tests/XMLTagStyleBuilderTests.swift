@@ -41,13 +41,41 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssert(fonts.count == 2)
     }
 
+    func testCompositionByStyle() {
+        let styles = TagStyles(styles: ["A": styleA, "B": styleB])
+        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let attributedString = style.attributedString(from: "This is <A>A style</A> test for <B>B Style</B>.")
+        XCTAssertEqual("This is A style test for B Style.", attributedString.string)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"])
+        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"])
+        XCTAssert(fonts.count == 2)
+    }
+
     /// Verify the behavior when a style is not registered
-    func testMissingStyle() {
+    func testMissingTags() {
         let styles = TagStyles()
         styles.registerStyle(forName: "A", style: styleA)
 
-        XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "This <A>style</A> is valid", rules: [.styles(styles)]))
-        XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "This <B>style</B> is not registered but that's OK", rules: [.styles(styles)]))
+        XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "This <B>style</B> is not registered and that's OK", rules: [.styles(styles)]))
+    }
+
+    func testMissingTagsByStyle() {
+        let styles = TagStyles()
+        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let attributedString = style.attributedString(from: "This <B>style</B> is not registered and that's OK")
+        XCTAssertEqual("This style is not registered and that's OK", attributedString.string)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        XCTAssert(fonts.count == 0)
+    }
+
+    func testInvalidXMLByStyle() {
+        let styles = TagStyles()
+        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let attributedString = style.attributedString(from: "This <B>style has no closing tag and that is :(")
+        XCTAssertEqual("This <B>style has no closing tag and that is :(", attributedString.string)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        XCTAssert(fonts.count == 0)
     }
 
     /// Verify that the string is read when fully contained

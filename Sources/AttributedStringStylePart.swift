@@ -36,6 +36,9 @@ public enum AttributedStringStylePart {
     case lineHeightMultiple(CGFloat)
     case paragraphSpacingBefore(CGFloat)
     case hyphenationFactor(Float)
+    case xml
+    case xmlRules([XMLStyleRule])
+    case xmlStyler(XMLStyler)
     #if os(iOS) || os(tvOS) || os(OSX)
     case fontFeature(FontFeatureProvider)
     #endif
@@ -146,6 +149,13 @@ extension AttributedStringStyle {
             self.lineHeightMultiple = lineHeightMultiple
         case let .paragraphSpacingBefore(paragraphSpacingBefore):
             self.paragraphSpacingBefore = paragraphSpacingBefore
+        case .xml:
+            self.xmlStyler = NSAttributedString.defaultXMLStyler
+        case var .xmlRules(rules):
+            rules.append(contentsOf: Special.insertionRules)
+            self.xmlStyler = XMLRuleStyler(rules: rules)
+        case let .xmlStyler(xmlStyler):
+            self.xmlStyler = xmlStyler
         default:
             // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {

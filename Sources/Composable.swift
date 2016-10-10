@@ -109,8 +109,8 @@ extension NSAttributedString: Composable {
         enumerateAttributes(in: range, options: []) { (attributes, range, _) in
             let substring = self.attributedSubstring(from: range)
             // Add the string with the defaults supplied by the style
-            let newAttributes = baseStyle.supplyDefaults(for: attributes)
-            attributedString.append(NSAttributedString(string: substring.string, attributes: newAttributes))
+            let newString = baseStyle.attributedString(from: substring.string, existingAttributes: attributes)
+            attributedString.append(newString)
         }
     }
 
