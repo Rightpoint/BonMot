@@ -23,11 +23,11 @@ enum DemoStrings {
         let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
         let signed = accent.derive(.color(.raizlabsRed))
 
-        return NSAttributedString.composed(of   : [
+        return NSAttributedString.composed(of: [
             "I want to be different. If everyone is wearing ",
-            " black, ".styled(with: black),
+            "\(Special.noBreakSpace)black,\(Special.noBreakSpace)".styled(with: black),
             " I want to be wearing ",
-            " red. ".styled(with: red),
+            "\(Special.noBreakSpace)red.\(Special.noBreakSpace)".styled(with: red),
             "\nMaria Sharapova ".styled(with: signed),
             racket
             ], baseStyle: gray)
@@ -78,7 +78,7 @@ enum DemoStrings {
                 ]
             )
         )
-        return "I want to be different. If everyone is wearing <black> black, </black> I want to be wearing <red> red. </red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
+        return "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
     }()
 
     static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
@@ -98,16 +98,16 @@ enum DemoStrings {
     )
 
     static let proportionalStrings: [NSAttributedString] = [
-        "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.proportional),
             .fontFeature(NumberCase.upper))),
-        "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.proportional),
             .fontFeature(NumberCase.lower))),
-        "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.monospaced),
             .fontFeature(NumberCase.upper))),
-        "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.derive(
+        "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
             .fontFeature(NumberSpacing.monospaced),
             .fontFeature(NumberCase.lower))),
         ]

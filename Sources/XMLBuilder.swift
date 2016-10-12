@@ -75,7 +75,7 @@ extension NSAttributedString {
 }
 
 extension Special {
-    static var insertionRules: [XMLStyleRule] {
+    public static var insertionRules: [XMLStyleRule] {
         let rulePairs: [[XMLStyleRule]] = all.map() {
             let elementName = "BON:\($0.name)"
             // Add the insertion rule and a style rule so we don't lookup the style and generate a warning
@@ -232,9 +232,16 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     /// - parameter attributes: The XML Attributes
     func enter(element elementName: String, attributes: [String: String]) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
+
         let xmlStyler = topXMLStyler
-        let namedStyle = xmlStyler.style(forElement: elementName, attributes: attributes) ?? AttributedStringStyle()
-        var newStyle = topStyle.derive(attributedStringStyle: namedStyle)
+        let namedStyle = xmlStyler.style(forElement: elementName, attributes: attributes)
+        var newStyle = topStyle
+        if let namedStyle = namedStyle {
+            newStyle.add(attributedStringStyle: namedStyle)
+        }
+
+        // Update the style stack. The XML Styler is removed from the style and added to it's own
+        // stack to prevent the XML parsing from being re-entrant and occuring on every character group.
         xmlStylers.append(newStyle.xmlStyler ?? topXMLStyler)
         newStyle.xmlStyler = nil
         styles.append(newStyle)

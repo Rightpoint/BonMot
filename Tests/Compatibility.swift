@@ -199,6 +199,16 @@ import BonMot
         func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
             return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
         }
+        func contains(other: String) -> Bool {
+            return containsString(other)
+        }
+
+    }
+
+    extension NSLayoutRelation {
+        static let lessThanOrEqual = NSLayoutRelation.LessThanOrEqual
+        static let equal = NSLayoutRelation.Equal
+        static let greaterThanOrEqual = NSLayoutRelation.GreaterThanOrEqual
     }
 #endif
 

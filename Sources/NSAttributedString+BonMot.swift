@@ -15,47 +15,55 @@ extension NSAttributedString {
 
     /// Create a new attributed string based on the current string, but replace characters in the Special enumeration,
     /// images, and unassigned unicode characters with a visual string.
-    @objc(bon_debugRepresentation)
-    public var debugRepresentation: NSAttributedString {
+    public var bonMotDebugAttributedString: NSAttributedString {
         let debug = self.mutableStringCopy()
         var replacements = Array<(range: NSRange, string: String)>()
-        for (index, unicode) in string.unicodeScalars.enumerated() {
-            guard let special = Special(rawValue: unicode) else { continue }
-            var replacementString = special.name
-            switch special {
-            case .space:
-                continue // substituting {space} for " " makes strings hard to read
-            case .objectReplacementCharacter:
+        var index = 0
+        for unicode in string.unicodeScalars {
+            let replacementString: String?
+            switch Special(rawValue: unicode) {
+            case .space?:
+                replacementString = nil
+            case .objectReplacementCharacter?:
                 #if os(iOS) || os(tvOS) || os(OSX)
-                    if let attribute = self.attribute(NSAttachmentAttributeName, at: index, effectiveRange: nil) as? NSTextAttachment,
-                        let image = attribute.image {
-                        replacementString = String(format: "image%.3gx%.3g", image.size.width, image.size.height)
+                    if let attachment = self.attribute(NSAttachmentAttributeName, at: index, effectiveRange: nil) as? NSTextAttachment, let image = attachment.image {
+                        replacementString = String(format: "image size='%.3gx%.3g'", image.size.width, image.size.height)
+                    }
+                    else {
+                        replacementString = Special.objectReplacementCharacter.name
                     }
                 #else
-                    break
+                    replacementString = nil
                 #endif
-            default:
-                break
+            case let value:
+                replacementString = value?.name
             }
-            replacements.append((NSRange(location: index, length: 1), replacementString))
+            let utf16Length = String(unicode).utf16.count
+            if let replacementString = replacementString {
+                replacements.append((NSRange(location: index, length: utf16Length), replacementString))
+            }
+            index += utf16Length
         }
-
         for replacement in replacements.reversed() {
-            debug.replaceCharacters(in: replacement.range, with: "{\(replacement.string)}")
+            debug.replaceCharacters(in: replacement.range, with: "<BON:\(replacement.string)/>")
         }
         replacements = []
 
         let unassignedPrefix = "\\N{<unassigned-"
-        let unassignedReplacement = "{unassignedUnicode<"
+        let unassignedPrefixReplacement = "<BON:unicode value='"
+        let unassignedSuffix = ">}"
+        let unassignedSuffixReplacement = "'/>"
+
         var currentIndex: Int = 0
         for character in debug.string.characters {
             let utf16LengthOfCharacter = String(character).utf16.count
             let original = String(character) as NSString
             let transformed = original.applyingTransform(StringTransform.toUnicodeName, reverse: false)
             if let transformed = transformed {
-                if transformed.hasPrefix(unassignedPrefix) && transformed.hasSuffix(">}") {
+                if transformed.hasPrefix(unassignedPrefix) && transformed.hasSuffix(unassignedSuffix) {
                     let range = NSRange(location: currentIndex, length: utf16LengthOfCharacter)
-                    let newString = transformed.replacingOccurrences(of: unassignedPrefix, with: unassignedReplacement)
+                    var newString = transformed.replacingOccurrences(of: unassignedPrefix, with: unassignedPrefixReplacement)
+                    newString = newString.replacingOccurrences(of: unassignedSuffix, with: unassignedSuffixReplacement)
                     replacements.append((range, newString))
                 }
             }
@@ -67,6 +75,10 @@ extension NSAttributedString {
         }
 
         return debug
+    }
+
+    public var bonMotDebugString: String {
+        return bonMotDebugAttributedString.string
     }
 
 }

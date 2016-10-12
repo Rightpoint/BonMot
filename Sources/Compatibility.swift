@@ -5,6 +5,7 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
+// swiftlint:disable file_length
 #if os(OSX)
     import AppKit
 #else
@@ -101,6 +102,51 @@
     }
 
     extension NSCharacterSet {
+        var inverted: NSCharacterSet {
+            return invertedSet
+        }
+        @nonobjc static var controlCharacters: NSCharacterSet {
+            return controlCharacterSet()
+        }
+        @nonobjc static var whitespaces: NSCharacterSet {
+            return whitespaceCharacterSet()
+        }
+        @nonobjc static var whitespacesAndNewlines: NSCharacterSet {
+            return whitespaceAndNewlineCharacterSet()
+        }
+        @nonobjc static var decimalDigits: NSCharacterSet {
+            return decimalDigitCharacterSet()
+        }
+        @nonobjc static var letters: NSCharacterSet {
+            return letterCharacterSet()
+        }
+        @nonobjc static var lowercaseLetters: NSCharacterSet {
+            return lowercaseLetterCharacterSet()
+        }
+        @nonobjc static var uppercaseLetters: NSCharacterSet {
+            return uppercaseLetterCharacterSet()
+        }
+        @nonobjc static var nonBaseCharacters: NSCharacterSet {
+            return nonBaseCharacterSet()
+        }
+        @nonobjc static var alphanumerics: NSCharacterSet {
+            return alphanumericCharacterSet()
+        }
+        @nonobjc static var decomposables: NSCharacterSet {
+            return decomposableCharacterSet()
+        }
+        @nonobjc static var illegalCharacters: NSCharacterSet {
+            return illegalCharacterSet()
+        }
+        @nonobjc static var punctuationCharacters: NSCharacterSet {
+            return punctuationCharacterSet()
+        }
+        @nonobjc static var capitalizedLetters: NSCharacterSet {
+            return capitalizedLetterCharacterSet()
+        }
+        @nonobjc static var symbols: NSCharacterSet {
+            return symbolCharacterSet()
+        }
         @nonobjc static var newlines: NSCharacterSet {
             return newlineCharacterSet()
         }
@@ -127,6 +173,12 @@
         }
     }
 
+    extension SequenceType where Generator.Element == String {
+        func joined(separator separator: String = "") -> String {
+            return joinWithSeparator(separator)
+        }
+    }
+
     extension SequenceType {
         @warn_unused_result
         func enumerated() -> EnumerateSequence<Self> {
@@ -150,6 +202,9 @@
         }
         func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
             return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
+        }
+        func components(separatedBy separator: NSCharacterSet) -> [String] {
+            return componentsSeparatedByCharactersInSet(separator)
         }
     }
 #endif
@@ -290,6 +345,34 @@
         }
     }
 #endif
+
+#if os(iOS) || os(tvOS) || os(OSX)
+    extension NSLayoutAttribute {
+        static let left = NSLayoutAttribute.Left
+        static let right = NSLayoutAttribute.Right
+        static let top = NSLayoutAttribute.Top
+        static let bottom = NSLayoutAttribute.Bottom
+        static let leading = NSLayoutAttribute.Leading
+        static let trailing = NSLayoutAttribute.Trailing
+        static let width = NSLayoutAttribute.Width
+        static let height = NSLayoutAttribute.Height
+        static let centerX = NSLayoutAttribute.CenterX
+        static let centerY = NSLayoutAttribute.CenterY
+        static let lastBaseline = NSLayoutAttribute.LastBaseline
+        static let firstBaseline = NSLayoutAttribute.FirstBaseline
+        static let notAnAttribute = NSLayoutAttribute.NotAnAttribute
+        #if os(iOS) || os(tvOS)
+        static let leftMargin = NSLayoutAttribute.LeftMargin
+        static let rightMargin = NSLayoutAttribute.RightMargin
+        static let topMargin = NSLayoutAttribute.TopMargin
+        static let bottomMargin = NSLayoutAttribute.BottomMargin
+        static let leadingMargin = NSLayoutAttribute.LeadingMargin
+        static let trailingMargin = NSLayoutAttribute.TrailingMargin
+        static let centerXWithinMargins = NSLayoutAttribute.CenterXWithinMargins
+        static let centerYWithinMargins = NSLayoutAttribute.CenterYWithinMargins
+        #endif
+    }
+#endif
 #endif
 
 /// AppKit Only
@@ -323,3 +406,4 @@
     }
 #endif
 #endif
+// swiftlint:enable file_length

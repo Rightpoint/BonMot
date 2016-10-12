@@ -32,7 +32,6 @@ class AttributedStringStyleTests: XCTestCase {
             let font = style.attributes[NSFontAttributeName] as? UIFont
             let fontTextStyle = font?.textStyle
             XCTAssertEqual(fontTextStyle, titleTextStyle)
-            print(fontTextStyle, titleTextStyle)
         }
     }
     #endif
@@ -153,7 +152,7 @@ class AttributedStringStyleTests: XCTestCase {
             .paragraphSpacingBefore(1),
             .hyphenationFactor(1)
             )
-        style.update(attributedStringStyle: AttributedStringStyle.style(
+        style.add(attributedStringStyle: AttributedStringStyle.style(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -182,7 +181,7 @@ class AttributedStringStyleTests: XCTestCase {
         for (style, _) in checks(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
-                let newStyle = style.derive(.font(font))
+                let newStyle = style.byAdding(.font(font))
                 return newStyle.attributes[NSKernAttributeName] as? CGFloat ?? 0
             }
             XCTAssertEqualWithAccuracy(testKernAttribute(20), 6, accuracy: 0.0001)
@@ -197,7 +196,7 @@ class AttributedStringStyleTests: XCTestCase {
         for (style, _) in checks(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
-                let newStyle = style.derive(.font(font))
+                let newStyle = style.byAdding(.font(font))
                 return newStyle.attributes[NSKernAttributeName] as? CGFloat ?? 0
             }
             XCTAssertEqualWithAccuracy(testKernAttribute(20), 10, accuracy: 0.0001)
@@ -215,17 +214,12 @@ class AttributedStringStyleTests: XCTestCase {
     //   - an empty style object that is updated by the passed style object
     //   - a fully populated style object that is updated by the passed style object
     func checks(for style: AttributedStringStyle) -> [(style: AttributedStringStyle, fullStyle: Bool)] {
-        let derived = AttributedStringStyle.style().derive { derived in
-            // Not sure why but if this line is commented out, the line after is a compilation error.
-            // Feels like a swift bug or an Xcode bug that will disappear in a few days. ><
-            derived.update(initialAttributes: [:])
-            derived.update(attributedStringStyle: style)
-        }
-        // Bizarre, this works:
+        var emptyStyle = AttributedStringStyle()
+        emptyStyle.add(attributedStringStyle: style)
         var updated = fullStyle
-        updated.update(attributedStringStyle: style)
+        updated.add(attributedStringStyle: style)
 
-        return [(style: style, fullStyle: false), (style: derived, fullStyle: false), (style: updated, fullStyle: true)]
+        return [(style: style, fullStyle: false), (style: emptyStyle, fullStyle: false), (style: updated, fullStyle: true)]
     }
 
     // A fully populated style object that is updated to ensure that update over-writes all values correctly.

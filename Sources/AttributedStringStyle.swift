@@ -141,23 +141,11 @@ extension AttributedStringStyle {
 
 extension AttributedStringStyle {
 
-    public func derive(configure block: (inout AttributedStringStyle) -> Void) -> AttributedStringStyle {
-        var style = self
-        block(&style)
-        return style
-    }
-
-    public func derive(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
-        var newStyle = self
-        newStyle.update(attributedStringStyle: style)
-        return newStyle
-    }
-
     /// Update the initialAttributes in the style object. This is used to provide the default
     /// values configured in UI elements, which the style can override.
     ///
     /// - parameter initialAttributes: The attributes to add to the style before applying the other properties.
-    public mutating func update(initialAttributes attributes: StyleAttributes) {
+    public mutating func add(initialAttributes attributes: StyleAttributes) {
         for (key, value) in attributes {
             initialAttributes[key] = value
         }
@@ -167,8 +155,8 @@ extension AttributedStringStyle {
     /// will over-write the values specified in this AttributedStringStyle.
     ///
     /// - parameter attributedStringStyle: The style to update this style with.
-    public mutating func update(attributedStringStyle stringStyle: AttributedStringStyle) {
-        update(initialAttributes: stringStyle.initialAttributes)
+    public mutating func add(attributedStringStyle stringStyle: AttributedStringStyle) {
+        add(initialAttributes: stringStyle.initialAttributes)
         font = stringStyle.font ?? font
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor
@@ -201,6 +189,12 @@ extension AttributedStringStyle {
         #endif
         tracking = stringStyle.tracking ?? tracking
         xmlStyler = stringStyle.xmlStyler ?? xmlStyler
+    }
+
+    public func byAdding(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
+        var newStyle = self
+        newStyle.add(attributedStringStyle: style)
+        return newStyle
     }
 
 }
