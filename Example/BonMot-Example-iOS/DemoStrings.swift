@@ -17,11 +17,11 @@ enum DemoStrings {
             .font(BONFont(name: "GillSans-Light", size: 20)!),
             .lineHeightMultiple(1.8),
             .color(.darkGray))
-        let accent = gray.derive(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+        let accent = gray.byAdding(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
 
-        let black = accent.derive(.color(.white), .backgroundColor(.black))
-        let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
-        let signed = accent.derive(.color(.raizlabsRed))
+        let black = accent.byAdding(.color(.white), .backgroundColor(.black))
+        let red = accent.byAdding(.color(.white), .backgroundColor(.raizlabsRed))
+        let signed = accent.byAdding(.color(.raizlabsRed))
 
         return NSAttributedString.composed(of: [
             "I want to be different. If everyone is wearing ",
@@ -40,9 +40,9 @@ enum DemoStrings {
 
         // Define styles
         let accent = AttributedStringStyle.style(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
-        let black = accent.derive(.color(.white), .backgroundColor(.black))
-        let red = accent.derive(.color(.white), .backgroundColor(.raizlabsRed))
-        let signed = accent.derive(.color(.raizlabsRed))
+        let black = accent.byAdding(.color(.white), .backgroundColor(.black))
+        let red = accent.byAdding(.color(.white), .backgroundColor(.raizlabsRed))
+        let signed = accent.byAdding(.color(.raizlabsRed))
 
         // Define the base style with xml rules for all tags
         let baseStyle = AttributedStringStyle.style(
