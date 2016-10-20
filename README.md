@@ -142,7 +142,7 @@ someLabel.attributedText = "Label".styled(with: style)
 
 ## Updating
 
-### Vertical Text Alignment
+## Vertical Text Alignment
 
 UIKit lets you align labels by top, bottom, or baseline. BonMot includes `TextAlignmentConstraint`, a layout constraint subclass that lets you align labels by cap height and x-height. For some fonts, this is essential to convey the designer’s intention:
 
@@ -194,7 +194,9 @@ NSAttributedString.composed(of: [
 
 You can use [XML Rules](#xml-parsing) to re-parse the resulting string (except for images) back into an attributed string. You can also save the output of `bonMotDebugString` and use it to validate attributed strings in unit tests.
 
-## Installation with CocoaPods
+# Installation
+
+## CocoaPods
 
 BonMot is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -203,7 +205,7 @@ it, simply add the following line to your Podfile:
 pod 'BonMot'
 ```
 
-## Installation with Carthage
+## Carthage
 
 BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
 
@@ -211,18 +213,18 @@ BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage).
 github "Raizlabs/BonMot"
 ```
 
-## Contributing
+# Contributing
 
 Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) and the included `.clang-format` configuration file. Contributors are expected to abide by the [Contributor Covenant Code of Conduct](https://github.com/Raizlabs/BonMot/blob/master/CONTRIBUTING.md).
 
 Please `brew install swiftlint` if you are going to be contributing to BonMot, so that any code you change is linted before you commit.
 
-## Author
+# Author
 
 Zev Eisenberg: <mailto:zev.eisenberg@raizlabs.com>, [@ZevEisenberg](https://twitter.com/zeveisenberg)
 
 Logo by Jon Lopkin: [@jonlopkin](https://twitter.com/jonlopkin)
 
-## License
+# License
 
 BonMot is available under the MIT license. See the LICENSE file for more info.
