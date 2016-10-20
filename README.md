@@ -192,7 +192,7 @@ NSAttributedString.composed(of: [
 // <BON:image size='36x36'><BON:special noBreakSpace>Monday<BON:special enDash>Friday
 ```
 
-You can use [XML Rules](#xml-rules) to re-parse the resulting string (except for images) back into an attributed string. You can also save the output of `bonMotDebugString` and use it to valid attributed strings in a unit test.
+You can use [XML Rules](#xml-parsing) to re-parse the resulting string (except for images) back into an attributed string. You can also save the output of `bonMotDebugString` and use it to valid attributed strings in a unit test.
 
 ## Installation with CocoaPods
 
