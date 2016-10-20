@@ -60,7 +60,7 @@ let blueBirdString = string.styled(with: redStyle)
 Are you trying to style just part of a string, perhaps even a localized string which is different depending on the locale of the app? No problem! BonMot can turn custom XML tags and simple HTML into attributed strings:
 
 ```swift
-let string = "one fish, two fish, <red>red fish</red>,<BON:special noBreakSpace/><blue>blue fish</blue>"
+let string = "one fish, two fish, <red>red fish</red>,<BON:noBreakSpace/><blue>blue fish</blue>"
 
 let redStyle = AttributedStringStyle.style(.color(.red))
 let blueStyle = AttributedStringStyle.style(.color(.blue))
@@ -82,7 +82,7 @@ This will produce:
 
 <img width=227 src="readme-images/fish-with-black-comma.png" />
 
-> Note the use of `<BON:special noBreakSpace/>` to specify a special character within the string. This is a great way to add special characters to localized strings, since localizers might not know to look for special characters, and many of them are invisible or ambiguous when viewed in a normal text editor. You can use any characters in the `Special` enum, or use `<BON:unicode value='A1338'/>` or `&a1338`
+> Note the use of `<BON:noBreakSpace/>` to specify a special character within the string. This is a great way to add special characters to localized strings, since localizers might not know to look for special characters, and many of them are invisible or ambiguous when viewed in a normal text editor. You can use any characters in the `Special` enum, or use `<BON:unicode value='A1338'/>` or `&a1338`
 
 ## Image Attachments
 
