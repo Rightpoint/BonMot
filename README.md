@@ -215,6 +215,7 @@ github "Raizlabs/BonMot"
 
 Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) and the included `.clang-format` configuration file. Contributors are expected to abide by the [Contributor Covenant Code of Conduct](https://github.com/Raizlabs/BonMot/blob/master/CONTRIBUTING.md).
 
+Please `brew install swiftlint` if you are going to be contributing to BonMot, so that any code you change is linted before you commit.
 
 ## Author
 
