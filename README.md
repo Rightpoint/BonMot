@@ -136,6 +136,25 @@ someLabel.attributedText = "Label".styled(with: style)
 
 <img width=443 src="readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that Control text tops out at the XXL size, but Body text keeps growing all the way up to AccessibilityXXL" />
 
+## Debugging & Testing Helpers
+
+Use `bonMotDeubgString` and `bonMotDebugAttributedString` to print out a version of any attributed string with all of the special characters and image attachments expanded into human-readable XML:
+
+```swift
+NSAttributedString.composed(of: [
+	image,
+	Special.noBreakSpace,
+	"Monday",
+	Special.enDash,
+	"Friday"
+	]).bonMotDebugString
+
+// Result:
+// <BON:image size='36x36'/><BON:noBreakSpace/>Monday<BON:enDash/>Friday
+```
+
+You can use [XML Rules](#xml-parsing) to re-parse the resulting string (except for images) back into an attributed string. You can also save the output of `bonMotDebugString` and use it to validate attributed strings in unit tests.
+
 ## Storyboard and XIB Integration
 
 ### TODO: write this section
@@ -174,25 +193,6 @@ Next, switch to the Attributes Inspector. `TextAlignmentConstraint` exposes two 
 The layout won’t change in Interface Builder (IBDesignable is not supported for constraint subclasses), but it will work when you run your code.
 
 **Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
-
-## Debugging & Testing Helpers
-
-Use `bonMotDeubgString` and `bonMotDebugAttributedString` to print out a version of any attributed string with all of the special characters and image attachments expanded into human-readable XML:
-
-```swift
-NSAttributedString.composed(of: [
-	image,
-	Special.noBreakSpace,
-	"Monday",
-	Special.enDash,
-	"Friday"
-	]).bonMotDebugString
-
-// Result:
-// <BON:image size='36x36'/><BON:noBreakSpace/>Monday<BON:enDash/>Friday
-```
-
-You can use [XML Rules](#xml-parsing) to re-parse the resulting string (except for images) back into an attributed string. You can also save the output of `bonMotDebugString` and use it to validate attributed strings in unit tests.
 
 # Installation
 
