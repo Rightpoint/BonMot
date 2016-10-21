@@ -36,13 +36,13 @@ public enum AttributedStringStylePart {
     case lineHeightMultiple(CGFloat)
     case paragraphSpacingBefore(CGFloat)
     case hyphenationFactor(Float)
-    case numberSpacing(NumberSpacing)
-    case numberCase(NumberCase)
     case xml
     case xmlRules([XMLStyleRule])
     case xmlStyler(XMLStyler)
     #if os(iOS) || os(tvOS) || os(OSX)
     case fontFeature(FontFeatureProvider)
+    case numberSpacing(NumberSpacing)
+    case numberCase(NumberCase)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -158,15 +158,21 @@ extension AttributedStringStyle {
             self.xmlStyler = XMLRuleStyler(rules: rules)
         case let .xmlStyler(xmlStyler):
             self.xmlStyler = xmlStyler
-        case let .numberCase(numberCase):
-            self.fontFeatureProviders += [numberCase as FontFeatureProvider]
-        case let .numberSpacing(numberSpacing):
-            self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
         default:
             // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {
                 self.hyphenationFactor = hyphenationFactor
             }
+            #if os(OSX) || os(iOS) || os(tvOS)
+                if case let .numberCase(numberCase) = stylePart {
+                    self.fontFeatureProviders += [numberCase as FontFeatureProvider]
+                    return
+                }
+                else if case let .numberSpacing(numberSpacing) = stylePart {
+                    self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
+                    return
+                }
+            #endif
             #if os(iOS) || os(tvOS)
                 if case let .adapt(style) = stylePart {
                     self.adaptations.append(style)
