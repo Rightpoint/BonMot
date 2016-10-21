@@ -41,6 +41,16 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssert(fonts.count == 2)
     }
 
+    func testUnicodeInXML() {
+        do {
+            let attributedString = try NSAttributedString.composed(ofXML: "caf&#233;")
+            XCTAssertEqual(attributedString.string, "café")
+        }
+        catch {
+            XCTFail("Failed to create attributed string: \(error)")
+        }
+    }
+
     func testCompositionByStyle() {
         let styles = TagStyles(styles: ["A": styleA, "B": styleB])
         let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
