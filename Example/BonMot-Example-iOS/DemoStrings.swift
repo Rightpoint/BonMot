@@ -115,7 +115,8 @@ enum DemoStrings {
         ({
             let listItem = AttributedStringStyle.style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .adapt(.control)
+                .adapt(.control),
+                .paragraphSpacingAfter(10.0)
             )
             let code = AttributedStringStyle.style(
                 .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
