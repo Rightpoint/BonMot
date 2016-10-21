@@ -161,10 +161,8 @@ extension AttributedStringStyle {
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor
         color = stringStyle.color ?? color
-
         underline = stringStyle.underline ?? underline
         strikethrough = stringStyle.strikethrough ?? strikethrough
-
         baselineOffset = stringStyle.baselineOffset ?? baselineOffset
 
         lineSpacing = stringStyle.lineSpacing ?? lineSpacing
