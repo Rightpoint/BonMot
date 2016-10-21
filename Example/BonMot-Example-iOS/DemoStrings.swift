@@ -101,7 +101,7 @@ enum DemoStrings {
             "Radia Perlman",
             ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .adapt(AdaptiveStyle.control)
+                .adapt(.control)
         )),
         NSAttributedString.composed(of: [
             "🍑 →",
@@ -110,12 +110,12 @@ enum DemoStrings {
             ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .color(.darkGray),
-                .adapt(AdaptiveStyle.control)
+                .adapt(.control)
         )),
         ({
             let style = AttributedStringStyle.style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .adapt(AdaptiveStyle.control)
+                .adapt(.control)
             )
             let bullet = NSAttributedString.composed(of: ["🍑 →", Tab.headIndent(4.0)])
             let rules: [XMLStyleRule] = [
