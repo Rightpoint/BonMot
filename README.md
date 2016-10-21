@@ -1,4 +1,4 @@
-<img width=443 src="readme-images/BonMot-logo.png" alt="BonMot Logo" />
+<img width=443 src="Resources/readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
 [![Swift 2.x + 3.0](https://img.shields.io/badge/Swift-2.3%20+%203.0-orange.svg?style=flat)](https://swift.org)
 [![CI Status](http://img.shields.io/travis/Raizlabs/BonMot.svg?style=flat)](https://travis-ci.org/Raizlabs/BonMot)
@@ -80,7 +80,7 @@ let attributedString = string.styled(with: fishStyle)
 
 This will produce:
 
-<img width=227 src="readme-images/fish-with-black-comma.png" />
+<img width=227 src="Resources/readme-images/fish-with-black-comma.png" />
 
 > Note the use of `<BON:noBreakSpace/>` to specify a special character within the string. This is a great way to add special characters to localized strings, since localizers might not know to look for special characters, and many of them are invisible or ambiguous when viewed in a normal text editor. You can use any characters in the `Special` enum, or use `<BON:unicode value='A1338'/>` or `&#a1338;`
 
@@ -102,7 +102,7 @@ let attributedString = NSAttributedString.composed(of: [
 
 Outputs:
 
-<img width=116 height=22 src="readme-images/label-with-icon.png" />
+<img width=116 height=22 src="Resources/readme-images/label-with-icon.png" />
 
 If you need to wrap multiple lines of text after an image, use `Tab.headIndent(...)` to align the whole paragraph after the image:
 
@@ -116,7 +116,7 @@ let attributedString = NSAttributedString.composed(of: [
 
 Outputs:
 
-<img width=285 src="readme-images/wrapped-label-with-icon.png" />
+<img width=285 src="Resources/readme-images/wrapped-label-with-icon.png" />
 
 ## Dynamic Type
 
@@ -134,7 +134,7 @@ someLabel.attributedText = "Label".styled(with: style)
 
 `.control` and `.body` both scale the same, except that when enabling the "Larger Dynamic Type" accessibility setting, `.body` grows unbounded. Here is a graph of the default behaviors of the [system Dynamic Type styles](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography/):
 
-<img width=443 src="readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that Control text tops out at the XXL size, but Body text keeps growing all the way up to AccessibilityXXL" />
+<img width=443 src="Resources/readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that Control text tops out at the XXL size, but Body text keeps growing all the way up to AccessibilityXXL" />
 
 ## Debugging & Testing Helpers
 
@@ -165,7 +165,7 @@ You can use [XML Rules](#xml-parsing) to re-parse the resulting string (except f
 
 UIKit lets you align labels by top, bottom, or baseline. BonMot includes `TextAlignmentConstraint`, a layout constraint subclass that lets you align labels by cap height and x-height. For some fonts, this is essential to convey the designer’s intention:
 
-<img width=320 src="readme-images/text-alignment.png" alt="Illustration of different methods of aligning text vertically" />
+<img width=320 src="Resources/readme-images/text-alignment.png" alt="Illustration of different methods of aligning text vertically" />
 
 `TextAlignmentConstraint` works with any views that expose a `font` property. It uses Key-Value Observing to watch for changes to the `font` property, and adjust its internal measurements accordingly. This is ideal for use with Dynamic Type: if the user changes the font size of the app, `TextAlignmentConstraint` will update. You can also use it to align a label with a plain view, as illustrated by the red dotted line views in the example above.
 
@@ -184,11 +184,11 @@ TextAlignmentConstraint(
 
 In Interface Builder, start by constraining two views to each other with a `top` constraint. Select the constraint, and in the Identity Inspector, change the class to `TextAlignmentConstraint`:
 
-<img width=294 src="readme-images/text-alignment-identity-inspector.png" alt="setting the class in the Identity Inspector" />
+<img width=294 src="Resources/readme-images/text-alignment-identity-inspector.png" alt="setting the class in the Identity Inspector" />
 
 Next, switch to the Attributes Inspector. `TextAlignmentConstraint` exposes two text fields through [IBInspectables](https://developer.apple.com/library/ios/recipes/xcode_help-IB_objects_media/Chapters/CreatingaLiveViewofaCustomObject.html). Type in the attributes you want to align. You will get a run-time error if you enter an invalid value.
 
-<img width=294 src="readme-images/text-alignment-attributes-inspector.png" alt="setting the alignment attributes in the Attributes Inspector" />
+<img width=294 src="Resources/readme-images/text-alignment-attributes-inspector.png" alt="setting the alignment attributes in the Attributes Inspector" />
 
 The layout won’t change in Interface Builder (IBDesignable is not supported for constraint subclasses), but it will work when you run your code.
 
