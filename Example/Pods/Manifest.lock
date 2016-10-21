@@ -6,11 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   BonMot:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   BonMot: d4c6a235b85f574160d6b97acb7d2afd42567a4d
 
 PODFILE CHECKSUM: c73102ac951ee4bc372fb6affd6f1ebfedae7062
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.1.1
