@@ -95,7 +95,10 @@ enum DemoStrings {
         NSAttributedString.composed(of: [
             UIImage(named: "robot")!,
             Tab.headIndent(4.0),
-            "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”"
+            "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”",
+            Special.lineSeparator,
+            Special.emDash,
+            "Radia Perlman",
             ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(AdaptiveStyle.control)
