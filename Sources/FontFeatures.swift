@@ -15,6 +15,7 @@
 #if os(iOS) || os(tvOS) || os(OSX)
 
 /// Protocol to provide values to be used by `UIFontFeatureTypeIdentifierKey` and `UIFontFeatureSelectorIdentifierKey`.
+/// You can typically find these values in CoreText.SFNTLayoutTypes
 public protocol FontFeatureProvider {
     func featureSettings() -> (Int, Int)
 }
