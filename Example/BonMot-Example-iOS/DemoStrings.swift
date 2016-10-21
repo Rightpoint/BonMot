@@ -113,18 +113,24 @@ enum DemoStrings {
                 .adapt(.control)
         )),
         ({
-            let style = AttributedStringStyle.style(
+            let listItem = AttributedStringStyle.style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
+                .adapt(.control)
+            )
+            let code = AttributedStringStyle.style(
+                .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
+                .backgroundColor(UIColor.blue.withAlphaComponent(0.1)),
                 .adapt(.control)
             )
             let bullet = NSAttributedString.composed(of: ["🍑 →", Tab.headIndent(4.0)])
             let rules: [XMLStyleRule] = [
-                .style("li", style),
+                .style("li", listItem),
+                .style("code", code),
                 .enter(element: "li", insert: bullet),
                 .exit(element: "li", insert: "\n")
             ]
 
-            let xml = "<li>This row is defined with XML</li><li>Each row is represented with an &lt;li&gt; tag</li><li>Attributed strings define the string to use for bullets</li><li>The text style is also specified for the &lt;li&gt; tags</li>"
+            let xml = "<li>This list is defined with XML and displayed in a single <code>UILabel</code>.</li><li>Each row is represented with an <code>&lt;li&gt;</code> tag.</li><li>Attributed strings define the string to use for bullets.</li><li>The text style is also specified for the <code>&lt;li&gt;</code> and <code>&lt;code&gt;</code> tags.</li>"
             guard let string = try? NSAttributedString.composed(ofXML: xml, rules: rules) else {
                 fatalError("Unable to load XML \(xml)")
             }
