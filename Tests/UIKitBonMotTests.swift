@@ -18,10 +18,10 @@ class UIKitBonMotTests: XCTestCase {
         TagStyles.shared.registerStyle(forName: "adaptiveStyle", style: adaptiveStyle)
     }
     func testStyleNameGetters() {
-        XCTAssertNil(UILabel().styleName)
-        XCTAssertNil(UITextField().styleName)
-        XCTAssertNil(UITextView().styleName)
-        XCTAssertNil(UIButton().styleName)
+        XCTAssertNil(UILabel().bonMotStyleName)
+        XCTAssertNil(UITextField().bonMotStyleName)
+        XCTAssertNil(UITextView().bonMotStyleName)
+        XCTAssertNil(UIButton().bonMotStyleName)
     }
 
     func testLabelExtensions() {
@@ -30,7 +30,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotEqual(label.font, expectedFont)
 
         // Assign a style by name and ensure the lookup succeeds
-        label.styleName = "adaptiveStyle"
+        label.bonMotStyleName = "adaptiveStyle"
         XCTAssertNotNil(label.bonMotStyle)
 
         // Assign the styled text and ensure text and the attributedText is updated
@@ -51,7 +51,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotEqual(textField.font, expectedFont)
 
         // Assign a style by name and ensure the lookup succeeds
-        textField.styleName = "adaptiveStyle"
+        textField.bonMotStyleName = "adaptiveStyle"
         XCTAssertNotNil(textField.bonMotStyle)
 
         // Assign the styled text and ensure text and the attributedText is updated
@@ -72,7 +72,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotEqual(textView.font, expectedFont)
 
         // Assign a style by name and ensure the lookup succeeds
-        textView.styleName = "adaptiveStyle"
+        textView.bonMotStyleName = "adaptiveStyle"
         XCTAssertNotNil(textView.bonMotStyle)
 
         // Assign the styled text and ensure text and the attributedText is updated
@@ -93,7 +93,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotEqual(button.titleLabel?.font, expectedFont)
 
         // Assign a style by name and ensure the lookup succeeds
-        button.styleName = "adaptiveStyle"
+        button.bonMotStyleName = "adaptiveStyle"
         XCTAssertNotNil(button.bonMotStyle)
         // Assign the styled text and ensure text and the attributedText is updated
         button.setStyledText(".", forState: .normal)
