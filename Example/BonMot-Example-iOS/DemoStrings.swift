@@ -78,17 +78,17 @@ enum DemoStrings {
 
     static let proportionalStrings: [NSAttributedString] = [
         "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.proportional),
-            .fontFeature(NumberCase.upper))),
+            .numberSpacing(.proportional),
+            .numberCase(.upper))),
         "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.proportional),
-            .fontFeature(NumberCase.lower))),
+            .numberSpacing(.proportional),
+            .numberCase(.lower))),
         "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.monospaced),
-            .fontFeature(NumberCase.upper))),
+            .numberSpacing(.monospaced),
+            .numberCase(.upper))),
         "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.monospaced),
-            .fontFeature(NumberCase.lower))),
+            .numberSpacing(.monospaced),
+            .numberCase(.lower))),
         ]
 
     static let indentationStrings: [NSAttributedString] = [

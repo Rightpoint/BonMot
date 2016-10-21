@@ -42,6 +42,9 @@ public struct AttributedStringStyle {
     public var paragraphSpacingBefore: CGFloat? = nil
     public var hyphenationFactor: Float? = nil
 
+    public var numberCase: NumberCase? = nil
+    public var numberSpacing: NumberSpacing? = nil
+
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
     #endif
@@ -178,6 +181,9 @@ extension AttributedStringStyle {
         lineHeightMultiple = stringStyle.lineHeightMultiple ?? lineHeightMultiple
         paragraphSpacingBefore = stringStyle.paragraphSpacingBefore ?? paragraphSpacingBefore
         hyphenationFactor = stringStyle.hyphenationFactor ?? hyphenationFactor
+
+        numberCase = stringStyle.numberCase ?? numberCase
+        numberSpacing = stringStyle.numberSpacing ?? numberSpacing
 
         #if os(iOS) || os(tvOS) || os(OSX)
             fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)

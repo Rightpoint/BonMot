@@ -36,6 +36,8 @@ public enum AttributedStringStylePart {
     case lineHeightMultiple(CGFloat)
     case paragraphSpacingBefore(CGFloat)
     case hyphenationFactor(Float)
+    case numberSpacing(NumberSpacing)
+    case numberCase(NumberCase)
     case xml
     case xmlRules([XMLStyleRule])
     case xmlStyler(XMLStyler)
@@ -156,6 +158,10 @@ extension AttributedStringStyle {
             self.xmlStyler = XMLRuleStyler(rules: rules)
         case let .xmlStyler(xmlStyler):
             self.xmlStyler = xmlStyler
+        case let .numberCase(numberCase):
+            self.fontFeatureProviders += [numberCase as FontFeatureProvider]
+        case let .numberSpacing(numberSpacing):
+            self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
         default:
             // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {
