@@ -206,6 +206,20 @@ The layout won’t change in Interface Builder (IBDesignable is not supported fo
 
 **Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
 
+# Objective-C Compatibility
+
+BonMot is written in Swift, but you have a few options if you must use it in an Objective-C code base:
+
+- For legacy Objective-C code bases, consider using [BonMot 3.2](https://github.com/Raizlabs/BonMot/releases/tag/3.2), the last major release to be written in Objective-C. Make sure you reference the ReadMe from that tagged release, since the syntax is different than BonMot 4.0 and later.
+- If you are mixing Objective-C and Swift, you can create named styles as in the [Interface Builder section](#storyboard-and-xib-integration), and then access those styles in Objective-C:
+
+ ```objc
+UILabel *label = [[UILabel alloc] init];
+label.bonMotStyleName = @"MyHeadline";
+ ```
+
+- Use the inspectable properties of common UIKit elements as in the [Interface Builder section](#storyboard-and-xib-integration).
+
 # Installation
 
 ## CocoaPods
