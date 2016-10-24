@@ -207,7 +207,7 @@ extension UIViewController: AdaptableTextContainer {
 
 }
 
-extension UIBarItem {
+extension UIBarItem: AdaptableTextContainer {
 
     /// Update the `titleTextAttributes`, adapted to the specified `UITraitCollection`.
     ///
