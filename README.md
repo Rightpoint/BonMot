@@ -135,6 +135,25 @@ someLabel.attributedText = "Label".styled(with: style).adapted(to: traitCollecti
 
 <img width=443 src="Resources/readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that Control text tops out at the XXL size, but Body text keeps growing all the way up to AccessibilityXXL" />
 
+## Storyboard and XIB Integration
+
+You can register global named styles, and use them in Storyboards and XIBs via `IBInspectable`:
+
+```swift
+let style = AttributedStringStyle.style(
+    .font(UIFont(name: "Avenir-Roman", size: 24)!),
+    .color(.red),
+    .underline(.styleSingle, .red)
+)
+TagStyles.shared.registerStyle(forName: "MyHeadline", style: style)
+```
+
+You can then use `MyHeadline` in Interface Builder’s Attributes Inspector on common UIKit controls such as buttons and labels:
+
+<img width=294 src="Resources/readme-images/bon-mot-style-attributes-inspector.png" alt="Editing the Bon Mot Style Name attribute in the Attributes Inspector of Interface Builder, and setting the value to MyHeadline" />
+
+These same named styles will also be picked up if they are used as tag names in [parsed XML](s#xml-parsing).
+
 ## Debugging & Testing Helpers
 
 Use `bonMotDeubgString` and `bonMotDebugAttributedString` to print out a version of any attributed string with all of the special characters and image attachments expanded into human-readable XML:
@@ -153,12 +172,6 @@ NSAttributedString.composed(of: [
 ```
 
 You can use [XML Rules](#xml-parsing) to re-parse the resulting string (except for images) back into an attributed string. You can also save the output of `bonMotDebugString` and use it to validate attributed strings in unit tests.
-
-## Storyboard and XIB Integration
-
-### TODO: write this section
-
-## Updating
 
 ## Vertical Text Alignment
 
