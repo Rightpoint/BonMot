@@ -49,10 +49,8 @@ let baseStyle = AttributedStringStyle.style(
 let redStyle = baseStyle.byAdding(.color(.red))
 let blueStyle = baseStyle.byAdding(.color(.blue))
 
-let string = "bird"
-
-let redBirdString = string.styled(with: redStyle)
-let blueBirdString = string.styled(with: redStyle)
+let redBirdString = "bird".styled(with: redStyle)
+let blueBirdString = "bird".styled(with: redStyle)
 ```
 
 ### XML Parsing
