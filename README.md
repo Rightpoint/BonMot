@@ -36,7 +36,7 @@ let attributedString = quote.styled(with: style)
 let attributes = style.attributes
 ```
 
-### Inheritance
+### Style  Inheritance
 
 Styles can inherit from each other, which lets you create multiple styles that share common attributes:
 
