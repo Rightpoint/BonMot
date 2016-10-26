@@ -156,7 +156,7 @@ These same named styles will also be picked up if they are used as tag names in 
 
 ## Debugging & Testing Helpers
 
-Use `bonMotDeubgString` and `bonMotDebugAttributedString` to print out a version of any attributed string with all of the special characters and image attachments expanded into human-readable XML:
+Use `bonMotDebugString` and `bonMotDebugAttributedString` to print out a version of any attributed string with all of the special characters and image attachments expanded into human-readable XML:
 
 ```swift
 NSAttributedString.composed(of: [
