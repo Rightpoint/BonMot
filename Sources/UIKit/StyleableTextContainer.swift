@@ -73,7 +73,10 @@ extension UILabel: StyleableTextContainer {
     /// update the current state of the UILabel
     public final var bonMotStyle: AttributedStringStyle? {
         get { return StyleableSupport.getStyle(object: self) }
-        set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
+        set {
+            StyleableSupport.setStyle(object: self, bonMotStyle: newValue)
+            styledText = text
+        }
     }
 
     /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and assign it to the attributedText property
@@ -89,16 +92,22 @@ extension UITextField: StyleableTextContainer {
     /// Specify the style to use for text contained inside the view. This will trigger AdaptableTextContainer.updateText(forTraitCollection:) to
     /// update the current state of the view
     ///
-    /// NOTE: This will update the typeAttributes, attributedPlaceholder, and attributedText. Use attributed strings for more control.
+    /// NOTE: This will update the defaultTextAttributes and attributedText. Use attributed strings for more control.
     public final var bonMotStyle: AttributedStringStyle? {
         get { return StyleableSupport.getStyle(object: self) }
-        set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
+        set {
+            StyleableSupport.setStyle(object: self, bonMotStyle: newValue)
+            styledText = text
+        }
     }
 
     /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and assign it to the attributedText property
     @objc(bon_styledText)
     public var styledText: String? {
-        set { attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection) }
+        set {
+            attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection)
+            defaultTextAttributes = bonMotStyle?.attributes(adaptedTo: traitCollection) ?? [:]
+        }
         get { return attributedText?.string }
     }
 }
@@ -108,16 +117,22 @@ extension UITextView: StyleableTextContainer {
     /// Specify the style to use for text contained inside the view. This will trigger AdaptableTextContainer.updateText(forTraitCollection:) to
     /// update the current state of the view
     ///
-    /// NOTE: This will update the typeAttributes and attributedText. Use attributed strings for more control.
+    /// NOTE: This will update the typingAttributes and attributedText. Use attributed strings for more control.
     public final var bonMotStyle: AttributedStringStyle? {
         get { return StyleableSupport.getStyle(object: self) }
-        set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
+        set {
+            StyleableSupport.setStyle(object: self, bonMotStyle: newValue)
+            styledText = text
+        }
     }
 
     /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and assign it to the attributedText property
     @objc(bon_styledText)
     public var styledText: String? {
-        set { attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection) }
+        set {
+            typingAttributes = bonMotStyle?.attributes(adaptedTo: traitCollection) ?? typingAttributes
+            attributedText = styledAttributedString(forText: newValue, traitCollection: traitCollection)
+        }
         get { return attributedText?.string }
     }
 }
@@ -128,13 +143,17 @@ extension UIButton: StyleableTextContainer {
     /// update the current state of the view
     public final var bonMotStyle: AttributedStringStyle? {
         get { return StyleableSupport.getStyle(object: self) }
-        set { StyleableSupport.setStyle(object: self, bonMotStyle: newValue) }
+        set {
+            StyleableSupport.setStyle(object: self, bonMotStyle: newValue)
+            setStyledText(titleLabel?.text, forState: .normal)
+            // TODO: what do we do about other states here?
+        }
     }
 
     /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and set the attributed string for the specified state.
     #if swift(>=3.0)
     @objc(bon_setStyledText:for:)
-    public func setStyledText(_ text: String, forState state: UIControlState) {
+    public func setStyledText(_ text: String?, forState state: UIControlState) {
         setAttributedTitle(styledAttributedString(forText: text, traitCollection: traitCollection), for: state)
     }
     #else
