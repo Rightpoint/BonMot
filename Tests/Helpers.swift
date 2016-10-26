@@ -56,6 +56,17 @@ let testBundle = Bundle(for: DummyClassForTests.self)
     }
 #endif
 
+extension BONColor {
+
+    typealias RGBAComponents = (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)
+    var rgbaComponents: RGBAComponents {
+        var comps: RGBAComponents = (0, 0, 0, 0)
+        getRed(&comps.r, green: &comps.g, blue: &comps.b, alpha: &comps.a)
+        return comps
+    }
+
+}
+
 extension BONFont {
     static var fontA: BONFont {
         return BONFont(name: "Avenir-Roman", size: 30)!
