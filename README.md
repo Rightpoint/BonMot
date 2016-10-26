@@ -145,7 +145,7 @@ let style = AttributedStringStyle.style(
     .color(.red),
     .underline(.styleSingle, .red)
 )
-TagStyles.shared.registerStyle(forName: "MyHeadline", style: style)
+NamedStyles.shared.registerStyle(forName: "MyHeadline", style: style)
 ```
 
 You can then use `MyHeadline` in Interface Builder’s Attributes Inspector on common UIKit controls such as buttons and labels:

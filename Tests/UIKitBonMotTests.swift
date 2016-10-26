@@ -15,7 +15,7 @@ class UIKitBonMotTests: XCTestCase {
 
     override static func setUp() {
         super.setUp()
-        TagStyles.shared.registerStyle(forName: "adaptiveStyle", style: adaptiveStyle)
+        NamedStyles.shared.registerStyle(forName: "adaptiveStyle", style: adaptiveStyle)
     }
     func testStyleNameGetters() {
         XCTAssertNil(UILabel().bonMotStyleName)

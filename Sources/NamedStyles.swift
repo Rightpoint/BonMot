@@ -1,5 +1,5 @@
 //
-//  TagStyles.swift
+//  NamedStyles.swift
 //
 //  Created by Brian King on 8/12/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-/// TagStyles stores styles, and allows them to be looked up by name. This is primarily used for supporting
+/// NamedStyles stores styles, and allows them to be looked up by name. This is primarily used for supporting
 /// Interface builder and styling markup.
-@objc(BONTagStyles)
-public class TagStyles: NSObject {
+@objc(BONNamedStyles)
+public class NamedStyles: NSObject {
 
-    /// A shared repository of styles. The shared TagStyle is used by the Interface Builder styleName property.
+    /// A shared repository of styles. The shared NamedStyles is used by the `bonMotStyleName` property in Interface Builder.
     /// This singleton is per-populated with 3 values for Dynamic Text. "control", "body", and "preferred"
     #if os(iOS) || os(tvOS)
-    public static var shared = TagStyles(
+    public static var shared = NamedStyles(
         styles: [
             "control": .style(.adapt(.control)),
             "body": .style(.adapt(.body)),
@@ -23,7 +23,7 @@ public class TagStyles: NSObject {
         ]
     )
     #else
-    public static var shared = TagStyles()
+    public static var shared = NamedStyles()
     #endif
 
     /// Define a closure to be invoked when an unregistered style is requested. By default
@@ -32,7 +32,7 @@ public class TagStyles: NSObject {
         print("Requesting unregistered style \(name)")
     }
 
-    /// Create a new TagStyles object with the specified name to style mapping
+    /// Create a new NamedStyles object with the specified name to style mapping
     /// - parameter styles: A dictionary containing the name to style mapping
     public init(styles: [String: AttributedStringStyle] = [:]) {
         self.styles = styles
@@ -45,7 +45,7 @@ public class TagStyles: NSObject {
         styles[name] = style
     }
 
-    /// Lookup a style for the specified name. If no style is found `TagStyles.unregisteredStyleClosure` is invoked.
+    /// Lookup a style for the specified name. If no style is found `NamedStyles.unregisteredStyleClosure` is invoked.
     /// This is done for error reporting and safety. We don't want to crash if no style is found and we want to avoid
     /// adding throw everywhere. In general if a style is requested by name it will just log and be un-styled.
     ///
@@ -53,7 +53,7 @@ public class TagStyles: NSObject {
     /// - returns: the configured style, or nil if none is found
     public func style(forName name: String) -> AttributedStringStyle? {
         guard let style = styles[name] else {
-            TagStyles.unregisteredStyleClosure(name)
+            NamedStyles.unregisteredStyleClosure(name)
             return nil
         }
         return style

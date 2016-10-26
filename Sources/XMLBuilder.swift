@@ -1,5 +1,5 @@
 //
-//  TagStyles+XML.swift
+//  NamedStyles+XML.swift
 //
 //  Created by Brian King on 8/29/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -65,10 +65,10 @@ extension NSAttributedString {
         return attributedString
     }
 
-    /// The default XMLStyler to use. By default this styler will look element styles in the shared TagStyler and insert special characters when BON namespaced elements are encountered.
+    /// The default XMLStyler to use. By default this styler will look up element styles in the shared NamedStyles and insert special characters when BON namespaced elements are encountered.
     @nonobjc public static var defaultXMLStyler: XMLStyler = {
         var rules = Special.insertionRules
-        rules.append(.styles(TagStyles.shared))
+        rules.append(.styles(NamedStyles.shared))
         return XMLRuleStyler(rules: rules)
     }()
 
@@ -87,7 +87,7 @@ extension Special {
 
 /// A simple set of styling rules for styling XML. If your needs are more complicated, use the XMLStyler protocol
 public enum XMLStyleRule {
-    case styles(TagStyles)
+    case styles(NamedStyles)
     case style(String, AttributedStringStyle)
     case enter(element: String, insert: Composable)
     case exit(element: String, insert: Composable)
@@ -138,8 +138,8 @@ struct XMLRuleStyler: XMLStyler {
             }
         }
         for rule in rules {
-            if case let .styles(tagStyles) = rule {
-                return tagStyles.style(forName: name)
+            if case let .styles(namedStyles) = rule {
+                return namedStyles.style(forName: name)
             }
         }
         return nil

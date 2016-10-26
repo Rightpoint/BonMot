@@ -300,6 +300,12 @@
             return preferredFontForTextStyle(textStyle)
         }
     }
+
+    extension UIControlState {
+        @nonobjc static var normal: UIControlState {
+            return .Normal
+        }
+    }
 #endif
 
 #if os(iOS) || os(watchOS) || os(tvOS)

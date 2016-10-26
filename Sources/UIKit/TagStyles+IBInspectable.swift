@@ -1,5 +1,5 @@
 //
-//  TagStyles+IBInspectable.swift
+//  NamedStyles+IBInspectable.swift
 //
 //  Created by Brian King on 8/30/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -8,7 +8,7 @@
 import UIKit
 
 func lookupSharedStyle(for name: String?, font: UIFont) -> AttributedStringStyle? {
-    guard let name = name, let style = TagStyles.shared.style(forName: name) else {
+    guard let name = name, let style = NamedStyles.shared.style(forName: name) else {
         return nil
     }
     // Create a style with the font and then add the named style.

@@ -57,7 +57,7 @@
 		ABA75DD21D99E10400B64705 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
 		ABA75DD61D99E10400B64705 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
 		ABA75DD81D99E10400B64705 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
-		ABA75DD91D99E10400B64705 /* TagStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* TagStyles.swift */; };
+		ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
 		ABA75DDB1D99E10400B64705 /* AttributedStringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */; };
 		ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
@@ -89,7 +89,7 @@
 		ABCD3D701D96F02F00273936 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
 		ABCD3D711D96F02F00273936 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
 		ABCD3D731D96F02F00273936 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
-		ABCD3D761D96F02F00273936 /* TagStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* TagStyles.swift */; };
+		ABCD3D761D96F02F00273936 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
 		ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */; };
 		ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
 		ABCD3D7A1D96F02F00273936 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
@@ -117,7 +117,7 @@
 		ABCD3DD41D96F6A500273936 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */; };
 		ABCD3DD51D96F6A500273936 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
 		ABCD3DD71D96F6A500273936 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
-		ABCD3DD81D96F6A500273936 /* TagStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* TagStyles.swift */; };
+		ABCD3DD81D96F6A500273936 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
 		ABCD3DDA1D96F6A500273936 /* AttributedStringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */; };
 		ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */; };
 		ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
@@ -140,7 +140,7 @@
 		ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
 		ABCD3E111D980E4900273936 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
 		ABCD3E131D980E4900273936 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
-		ABCD3E141D980E4900273936 /* TagStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* TagStyles.swift */; };
+		ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
 		ABCD3E161D980E4900273936 /* AttributedStringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */; };
 		ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
@@ -226,7 +226,7 @@
 		ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+BonMot.swift"; sourceTree = "<group>"; };
 		ABCD3D581D96F02F00273936 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		ABCD3D5B1D96F02F00273936 /* Special.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Special.swift; sourceTree = "<group>"; };
-		ABCD3D5E1D96F02F00273936 /* TagStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagStyles.swift; sourceTree = "<group>"; };
+		ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedStyles.swift; sourceTree = "<group>"; };
 		ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptableTextContainer.swift; sourceTree = "<group>"; };
 		ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdaptiveStyle.swift; path = UIKit/AdaptiveStyle.swift; sourceTree = "<group>"; };
 		ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdaptiveStyleTransformation.swift; path = UIKit/AdaptiveStyleTransformation.swift; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 			children = (
 				ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */,
 				ABCD3D531D96F02F00273936 /* AttributedStringStylePart.swift */,
-				ABCD3D5E1D96F02F00273936 /* TagStyles.swift */,
+				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 			);
@@ -913,7 +913,7 @@
 				AB30D50F1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABA75DD61D99E10400B64705 /* AttributedStringStyle.swift in Sources */,
 				ABA75DD81D99E10400B64705 /* Special.swift in Sources */,
-				ABA75DD91D99E10400B64705 /* TagStyles.swift in Sources */,
+				ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */,
 				CDEA84341D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
 				ABA75DDB1D99E10400B64705 /* AttributedStringStylePart.swift in Sources */,
 				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
@@ -958,7 +958,7 @@
 				ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */,
 				ABCD3D6B1D96F02F00273936 /* AttributedStringStyle.swift in Sources */,
 				ABCD3D731D96F02F00273936 /* Special.swift in Sources */,
-				ABCD3D761D96F02F00273936 /* TagStyles.swift in Sources */,
+				ABCD3D761D96F02F00273936 /* NamedStyles.swift in Sources */,
 				AB560A081DA0C14000100D15 /* Tab+Adaptive.swift in Sources */,
 				ABA75E0A1D99E43300B64705 /* Tracking.swift in Sources */,
 				ABCD3D6C1D96F02F00273936 /* AttributedStringStylePart.swift in Sources */,
@@ -1012,7 +1012,7 @@
 				ABCD3DD71D96F6A500273936 /* Special.swift in Sources */,
 				AB8497B31DA16DAE00FE3414 /* EmbededTransformation.swift in Sources */,
 				AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */,
-				ABCD3DD81D96F6A500273936 /* TagStyles.swift in Sources */,
+				ABCD3DD81D96F6A500273936 /* NamedStyles.swift in Sources */,
 				AB8497B11DA16DAE00FE3414 /* AdaptiveStyleTransformation.swift in Sources */,
 				AB8497B51DA16DAE00FE3414 /* Tab+Adaptive.swift in Sources */,
 				ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */,
@@ -1061,7 +1061,7 @@
 				AB30D50E1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABCD3E111D980E4900273936 /* AttributedStringStyle.swift in Sources */,
 				ABCD3E131D980E4900273936 /* Special.swift in Sources */,
-				ABCD3E141D980E4900273936 /* TagStyles.swift in Sources */,
+				ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */,
 				CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
 				ABCD3E161D980E4900273936 /* AttributedStringStylePart.swift in Sources */,
 				ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */,
