@@ -94,8 +94,7 @@
 		ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
 		ABCD3D7A1D96F02F00273936 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
 		ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */; };
-		ABCD3D7D1D96F02F00273936 /* StyleableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableTextContainer.swift */; };
-		ABCD3D7E1D96F02F00273936 /* TagStyles+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */; };
+		ABCD3D7D1D96F02F00273936 /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */; };
 		ABCD3D7F1D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */; };
 		ABCD3D801D96F02F00273936 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */; };
 		ABCD3D811D96F02F00273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
@@ -112,8 +111,7 @@
 		ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAF1D96F06800273936 /* XMLTagStyleBuilderTests.swift */; };
 		ABCD3DCE1D96F6A500273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */; };
 		ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
-		ABCD3DD21D96F6A500273936 /* TagStyles+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */; };
-		ABCD3DD31D96F6A500273936 /* StyleableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableTextContainer.swift */; };
+		ABCD3DD31D96F6A500273936 /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */; };
 		ABCD3DD41D96F6A500273936 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */; };
 		ABCD3DD51D96F6A500273936 /* AttributedStringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* AttributedStringStyle.swift */; };
 		ABCD3DD71D96F6A500273936 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
@@ -231,8 +229,7 @@
 		ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdaptiveStyle.swift; path = UIKit/AdaptiveStyle.swift; sourceTree = "<group>"; };
 		ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdaptiveStyleTransformation.swift; path = UIKit/AdaptiveStyleTransformation.swift; sourceTree = "<group>"; };
 		ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Adapt.swift"; path = "UIKit/NSAttributedString+Adapt.swift"; sourceTree = "<group>"; };
-		ABCD3D661D96F02F00273936 /* StyleableTextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleableTextContainer.swift; sourceTree = "<group>"; };
-		ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TagStyles+IBInspectable.swift"; sourceTree = "<group>"; };
+		ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleableUIElement.swift; sourceTree = "<group>"; };
 		ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+AdaptableTextContainerSupport.swift"; sourceTree = "<group>"; };
 		ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Helpers.swift"; sourceTree = "<group>"; };
 		ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLBuilder.swift; sourceTree = "<group>"; };
@@ -441,8 +438,7 @@
 			isa = PBXGroup;
 			children = (
 				ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */,
-				ABCD3D661D96F02F00273936 /* StyleableTextContainer.swift */,
-				ABCD3D671D96F02F00273936 /* TagStyles+IBInspectable.swift */,
+				ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */,
 				ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */,
 				ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */,
 				1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */,
@@ -951,10 +947,9 @@
 				AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */,
 				ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */,
 				ABCD3D711D96F02F00273936 /* Platform.swift in Sources */,
-				ABCD3D7E1D96F02F00273936 /* TagStyles+IBInspectable.swift in Sources */,
 				CDF7E97F1D9C612800FF46BF /* MutableCopying.swift in Sources */,
 				AB560A0A1DA0C17800100D15 /* Tracking+Adaptive.swift in Sources */,
-				ABCD3D7D1D96F02F00273936 /* StyleableTextContainer.swift in Sources */,
+				ABCD3D7D1D96F02F00273936 /* StyleableUIElement.swift in Sources */,
 				ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */,
 				ABCD3D6B1D96F02F00273936 /* AttributedStringStyle.swift in Sources */,
 				ABCD3D731D96F02F00273936 /* Special.swift in Sources */,
@@ -1002,9 +997,8 @@
 			files = (
 				ABCD3DCE1D96F6A500273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
 				ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */,
-				ABCD3DD21D96F6A500273936 /* TagStyles+IBInspectable.swift in Sources */,
 				CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */,
-				ABCD3DD31D96F6A500273936 /* StyleableTextContainer.swift in Sources */,
+				ABCD3DD31D96F6A500273936 /* StyleableUIElement.swift in Sources */,
 				AB30D5101D9D9438006ADC9D /* Composable.swift in Sources */,
 				ABCD3DD41D96F6A500273936 /* AdaptableTextContainer.swift in Sources */,
 				AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */,

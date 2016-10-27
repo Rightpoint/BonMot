@@ -98,7 +98,7 @@ class UIKitBonMotTests: XCTestCase {
         // Make sure the test is valid and the font is different
         XCTAssertNotEqual(button.titleLabel?.font, expectedFont)
 
-        button.setStyledText(".", forState: .normal)
+        button.styledText = "."
 
         // Assign a style by name and ensure the lookup succeeds
         button.bonMotStyleName = "adaptiveStyle"
