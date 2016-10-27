@@ -133,9 +133,14 @@ class AdaptiveStyleTests: XCTestCase {
     /// Dynamic Type adaptation
     func testFeatureSettingsAdaptation() {
         EBGaramondLoader.loadFontIfNeeded()
-        let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
-        for feature in features {
-            let originalAttributes = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature), .adapt(.control)).attributes
+        let parts: [AttributedStringStylePart] = [
+            .numberCase(.upper),
+            .numberCase(.lower),
+            .numberSpacing(.monospaced),
+            .numberSpacing(.proportional),
+        ]
+        for part in parts {
+            let originalAttributes = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .adapt(.control)).byAdding(part).attributes
             let adaptedAttributes = NSAttributedString.adapt(attributes: originalAttributes, to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
 
             XCTAssertEqual(originalAttributes.count, 3)
@@ -179,7 +184,7 @@ class AdaptiveStyleTests: XCTestCase {
             return paragraph.tabStops[0].location
         }
         EBGaramondLoader.loadFontIfNeeded()
-        let style = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .fontFeature(NumberSpacing.monospaced), .adapt(.control))
+        let style = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .numberSpacing(.monospaced), .adapt(.control))
         let tabTestL = NSAttributedString.composed(of: ["Q", Tab.headIndent(10)], baseStyle: style)
         XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestL), 26.12, accuracy: 0.01)
         let tabTestXS = tabTestL.adapt(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))

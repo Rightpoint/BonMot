@@ -14,9 +14,10 @@
 // This is not supported by watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
 
-/// Protocol to provide values to be used by UIFontFeatureTypeIdentifierKey and UIFontFeatureSelectorIdentifierKey.
+/// Protocol to provide values to be used by `UIFontFeatureTypeIdentifierKey` and `UIFontFeatureSelectorIdentifierKey`.
+/// You can typically find these values in CoreText.SFNTLayoutTypes
 public protocol FontFeatureProvider {
-    func featureSettings() -> (Int, Int)
+    func featureSettings() -> (type: Int, selector: Int)
 }
 
 public extension BONFont {
@@ -44,12 +45,12 @@ public extension BONFont {
 /// An enumeration representing the kNumberCaseType features.
 public enum NumberCase: FontFeatureProvider {
     case upper, lower
-    public func featureSettings() -> (Int, Int) {
+    public func featureSettings() -> (type: Int, selector: Int) {
         switch self {
         case .upper:
-            return (kNumberCaseType, kUpperCaseNumbersSelector)
+            return (type: kNumberCaseType, selector: kUpperCaseNumbersSelector)
         case .lower:
-            return (kNumberCaseType, kLowerCaseNumbersSelector)
+            return (type: kNumberCaseType, selector: kLowerCaseNumbersSelector)
         }
     }
 }
@@ -57,12 +58,12 @@ public enum NumberCase: FontFeatureProvider {
 /// An enumeration representing the kNumberSpacingType features.
 public enum NumberSpacing: FontFeatureProvider {
     case monospaced, proportional
-    public func featureSettings() -> (Int, Int) {
+    public func featureSettings() -> (type: Int, selector: Int) {
         switch self {
         case .monospaced:
-            return (kNumberSpacingType, kMonospacedNumbersSelector)
+            return (type: kNumberSpacingType, selector: kMonospacedNumbersSelector)
         case .proportional:
-            return (kNumberSpacingType, kProportionalNumbersSelector)
+            return (type: kNumberSpacingType, selector: kProportionalNumbersSelector)
         }
     }
 }
@@ -73,8 +74,8 @@ extension FontFeatureProvider {
     func featureAttribute() -> StyleAttributes {
         let featureSettings = self.featureSettings()
         return [
-            BONFontFeatureTypeIdentifierKey: featureSettings.0,
-            BONFontFeatureSelectorIdentifierKey: featureSettings.1
+            BONFontFeatureTypeIdentifierKey: featureSettings.type,
+            BONFontFeatureSelectorIdentifierKey: featureSettings.selector
         ]
     }
 }

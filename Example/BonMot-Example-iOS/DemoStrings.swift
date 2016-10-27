@@ -78,17 +78,17 @@ enum DemoStrings {
 
     static let proportionalStrings: [NSAttributedString] = [
         "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.proportional),
-            .fontFeature(NumberCase.upper))),
+            .numberSpacing(.proportional),
+            .numberCase(.upper))),
         "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.proportional),
-            .fontFeature(NumberCase.lower))),
+            .numberSpacing(.proportional),
+            .numberCase(.lower))),
         "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.monospaced),
-            .fontFeature(NumberCase.upper))),
+            .numberSpacing(.monospaced),
+            .numberCase(.upper))),
         "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .fontFeature(NumberSpacing.monospaced),
-            .fontFeature(NumberCase.lower))),
+            .numberSpacing(.monospaced),
+            .numberCase(.lower))),
         ]
 
     static let indentationStrings: [NSAttributedString] = [
@@ -102,7 +102,7 @@ enum DemoStrings {
             ], baseStyle: .style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(.control)
-        )),
+            )),
         NSAttributedString.composed(of: [
             "🍑 →",
             Tab.headIndent(4.0),
@@ -111,7 +111,7 @@ enum DemoStrings {
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .color(.darkGray),
                 .adapt(.control)
-        )),
+            )),
         ({
             let listItem = AttributedStringStyle.style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
@@ -157,20 +157,19 @@ enum DemoStrings {
         .color(.darkGray),
         .baselineOffset(10)
     )
-    static let noSpaceString = NSAttributedString.composed(
-        of: [
-            ("barn", "This"),
-            ("bee", "string"),
-            ("bug", "is"),
-            ("circuit", "separated"),
-            ("cut", "by"),
-            ("discount", "images"),
-            ("gift", "and"),
-            ("pin", "no-break"),
-            ("robot", "spaces"),
-            ].map() {
-                return NSAttributedString.composed(of: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)]) },
-        separator: " ")
+    static let noSpaceString = NSAttributedString.composed(of: [
+        ("barn", "This"),
+        ("bee", "string"),
+        ("bug", "is"),
+        ("circuit", "separated"),
+        ("cut", "by"),
+        ("discount", "images"),
+        ("gift", "and"),
+        ("pin", "no-break"),
+        ("robot", "spaces"),
+        ].map() {
+            return NSAttributedString.composed(of: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)])
+        }, separator: " ")
 
     static let heartsString = NSAttributedString.composed(of: (0..<20).makeIterator().map() { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))

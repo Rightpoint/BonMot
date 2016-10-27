@@ -41,6 +41,8 @@ public enum AttributedStringStylePart {
     case xmlStyler(XMLStyler)
     #if os(iOS) || os(tvOS) || os(OSX)
     case fontFeature(FontFeatureProvider)
+    case numberSpacing(NumberSpacing)
+    case numberCase(NumberCase)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -161,6 +163,16 @@ extension AttributedStringStyle {
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {
                 self.hyphenationFactor = hyphenationFactor
             }
+            #if os(OSX) || os(iOS) || os(tvOS)
+                if case let .numberCase(numberCase) = stylePart {
+                    self.fontFeatureProviders += [numberCase as FontFeatureProvider]
+                    return
+                }
+                else if case let .numberSpacing(numberSpacing) = stylePart {
+                    self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
+                    return
+                }
+            #endif
             #if os(iOS) || os(tvOS)
                 if case let .adapt(style) = stylePart {
                     self.adaptations.append(style)
