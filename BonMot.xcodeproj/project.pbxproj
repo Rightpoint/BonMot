@@ -87,7 +87,6 @@
 		ABC7774E1DC29F3000815FB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7774D1DC29F3000815FB9 /* AppDelegate.swift */; };
 		ABC777661DC29F7700815FB9 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7775D1DC29F7700815FB9 /* CatalogViewController.swift */; };
 		ABC777671DC29F7700815FB9 /* DemoStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC7775E1DC29F7700815FB9 /* DemoStrings.swift */; };
-		ABC777681DC29F7700815FB9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABC777601DC29F7700815FB9 /* Info.plist */; };
 		ABC777691DC29F7700815FB9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ABC777611DC29F7700815FB9 /* InfoPlist.strings */; };
 		ABC7776C1DC29F7700815FB9 /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC777651DC29F7700815FB9 /* StyleViewController.swift */; };
 		ABC7776F1DC2A02B00815FB9 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC7776D1DC2A02B00815FB9 /* Launch Screen.xib */; };
@@ -739,7 +738,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Raizlabs;
 				TargetAttributes = {
 					AB8497DA1DA45B9C00FE3414 = {
@@ -810,7 +809,6 @@
 			files = (
 				ABC777691DC29F7700815FB9 /* InfoPlist.strings in Resources */,
 				ABC777751DC2A16E00815FB9 /* EBGaramond12-Regular.otf in Resources */,
-				ABC777681DC29F7700815FB9 /* Info.plist in Resources */,
 				ABC777761DC2A16E00815FB9 /* Images.xcassets in Resources */,
 				ABC7776F1DC2A02B00815FB9 /* Launch Screen.xib in Resources */,
 				ABC777701DC2A02B00815FB9 /* Main.storyboard in Resources */,
@@ -1413,6 +1411,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1465,6 +1464,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
