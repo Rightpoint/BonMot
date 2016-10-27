@@ -306,6 +306,12 @@
             return .Normal
         }
     }
+
+    extension UIButton {
+        @nonobjc final func setAttributedTitle(title: NSAttributedString?, for state: UIControlState) {
+            setAttributedTitle(title, forState: state)
+        }
+    }
 #endif
 
 #if os(iOS) || os(watchOS) || os(tvOS)
