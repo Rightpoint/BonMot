@@ -404,6 +404,15 @@ import BonMot
         @nonobjc static var black: UIColor {
             return blackColor()
         }
+        @nonobjc static var white: UIColor {
+            return whiteColor()
+        }
+        @nonobjc static var blue: UIColor {
+            return blueColor()
+        }
+        @nonobjc func withAlphaComponent(alpha: CGFloat) -> UIColor {
+            return colorWithAlphaComponent(alpha)
+        }
     }
 
     struct UIContentSizeCategory {
