@@ -93,6 +93,8 @@ let styleBz = AttributedStringStyle.style(
     .tailIndent(10)
 )
 
+/// A fully populated style object that is updated to ensure that update over-writes all values correctly.
+/// Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
 let fullStyle: AttributedStringStyle = {
     let terribleValue = CGFloat(1000000)
     var fullStyle = AttributedStringStyle()
@@ -122,7 +124,9 @@ let fullStyle: AttributedStringStyle = {
     fullStyle.hyphenationFactor = Float(terribleValue)
 
     #if os(iOS) || os(tvOS) || os(OSX)
-        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberCase.upper, NumberCase.upper, NumberCase.upper]
+        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberSpacing.proportional]
+        fullStyle.numberCase = .upper
+        fullStyle.numberSpacing = .proportional
     #endif
     #if os(iOS) || os(tvOS)
         fullStyle.adaptations = [.preferred, .control, .body]

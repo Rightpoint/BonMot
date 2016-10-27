@@ -44,6 +44,8 @@ public struct AttributedStringStyle {
 
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
+    public var numberCase: NumberCase? = nil
+    public var numberSpacing: NumberSpacing? = nil
     #endif
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
@@ -161,10 +163,8 @@ extension AttributedStringStyle {
         link = stringStyle.link ?? link
         backgroundColor = stringStyle.backgroundColor ?? backgroundColor
         color = stringStyle.color ?? color
-
         underline = stringStyle.underline ?? underline
         strikethrough = stringStyle.strikethrough ?? strikethrough
-
         baselineOffset = stringStyle.baselineOffset ?? baselineOffset
 
         lineSpacing = stringStyle.lineSpacing ?? lineSpacing
@@ -183,6 +183,8 @@ extension AttributedStringStyle {
 
         #if os(iOS) || os(tvOS) || os(OSX)
             fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)
+            numberCase = stringStyle.numberCase ?? numberCase
+            numberSpacing = stringStyle.numberSpacing ?? numberSpacing
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: stringStyle.adaptations)
