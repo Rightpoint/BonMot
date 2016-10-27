@@ -13,6 +13,7 @@
 			buildPhases = (
 				ABBD124E1DA469BB0084FBCC /* Build and test macOS */,
 				CD15C4071DBE660700B6FF7A /* Build and test iOS */,
+				CD0DDB271DC2B57E00805488 /* Build iOS example project */,
 				CD15C4081DBE660800B6FF7A /* Build and test tvOS */,
 				CD15C4091DBE660A00B6FF7A /* Build watchOS */,
 			);
@@ -881,6 +882,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-OSX\" \"macosx\" \"arch=x86_64\"\n";
 		};
+		CD0DDB271DC2B57E00805488 /* Build iOS example project */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build iOS example project";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n\nbuild \"build\" \"Example-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+		};
 		CD15C4071DBE660700B6FF7A /* Build and test iOS */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1703,6 +1718,7 @@
 				ABC7775B1DC29F3000815FB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ABCBFD321D96E41D00FAD37A /* Build configuration list for PBXProject "BonMot" */ = {
 			isa = XCConfigurationList;
