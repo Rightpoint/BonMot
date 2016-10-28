@@ -47,20 +47,28 @@ git:
   submodules: false
 before_install:
   - git submodule update --init --recursive
+install:
+  - gem install bundler --no-rdoc --no-ri
+  - bundle install
 script:
-  - xcodebuild ${XCODE_ACTION}
+  - set -o pipefail &&
+      xcodebuild ${XCODE_ACTION}
       -project BonMot.xcodeproj
       -scheme ${XCODE_SCHEME}
       -sdk ${XCODE_SDK}
       -destination "${XCODE_DESTINATION}"
       CODE_SIGNING_REQUIRED=NO
       CODE_SIGN_IDENTITY=
-  - TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild ${XCODE_ACTION}
+      | xcpretty
+  - set -o pipefail &&
+      TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3
+      xcodebuild ${XCODE_ACTION}
       -project BonMot.xcodeproj
       -scheme ${XCODE_SCHEME}
       -sdk ${XCODE_SDK}
       -destination "${XCODE_DESTINATION}"
       CODE_SIGNING_REQUIRED=NO
-      CODE_SIGN_IDENTITY=      
+      CODE_SIGN_IDENTITY=
+      | xcpretty
 notifications:
   email: false
