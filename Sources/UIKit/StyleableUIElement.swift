@@ -111,7 +111,7 @@ extension UITextView: StyleableUIElement {
         }
     }
 
-    /// Specify the style to use for text contained inside the view. This will trigger AdaptableTextContainer.updateText(forTraitCollection:) to
+    /// Specify the style to use for text contained inside the view. This will trigger AdaptableTextContainer.adaptText(forTraitCollection:) to
     /// update the current state of the view
     ///
     /// NOTE: This will update the typingAttributes and attributedText. Use attributed strings for more control.
