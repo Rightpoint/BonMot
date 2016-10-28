@@ -1,5 +1,5 @@
 //
-//  AttributedStringStyleTests.swift
+//  StringStyleTests.swift
 //
 //  Created by Brian King on 8/20/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -7,12 +7,18 @@
 
 import XCTest
 import BonMot
+import CoreText
 
-class AttributedStringStyleTests: XCTestCase {
+class StringStyleTests: XCTestCase {
+
+    override func setUp() {
+        super.setUp()
+        EBGaramondLoader.loadFontIfNeeded()
+    }
 
     func testBasicAssertionUtilities() {
-        let style = AttributedStringStyle.style(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
-        for (style, fullStyle) in checks(for: style) {
+        let style = StringStyle.style(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
             // We're only checking the font name and point size, since the full style could have font
             // features that cause equality checks to fail. Font Feature support is tested in testFontFeatureStyle.
@@ -26,8 +32,8 @@ class AttributedStringStyleTests: XCTestCase {
 
     #if os(iOS) || os(tvOS)
     func testTextStyle() {
-        let style = AttributedStringStyle.style(.textStyle(titleTextStyle))
-        for (style, fullStyle) in checks(for: style) {
+        let style = StringStyle.style(.textStyle(titleTextStyle))
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             let font = style.attributes[NSFontAttributeName] as? UIFont
             let fontTextStyle = font?.textStyle
@@ -38,17 +44,17 @@ class AttributedStringStyleTests: XCTestCase {
 
     func testURL() {
         let url = NSURL(string: "http://apple.com/")!
-        let style = AttributedStringStyle.style(.link(url))
+        let style = StringStyle.style(.link(url))
 
-        for (style, fullStyle) in checks(for: style) {
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, key: NSLinkAttributeName, value: url)
         }
     }
 
     func testStrikethroughStyle() {
-        let style = AttributedStringStyle.style(.strikethrough(.byWord, .colorA))
-        for (style, fullStyle) in checks(for: style) {
+        let style = StringStyle.style(.strikethrough(.byWord, .colorA))
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
             BONAssert(attributes: style.attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
             BONAssert(attributes: style.attributes, key: NSStrikethroughColorAttributeName, value: BONColor.colorA)
@@ -56,8 +62,8 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testUnderlineStyle() {
-        let style = AttributedStringStyle.style(.underline(.byWord, .colorA))
-        for (style, fullStyle) in checks(for: style) {
+        let style = StringStyle.style(.underline(.byWord, .colorA))
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
             BONAssert(attributes: style.attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
             BONAssert(attributes: style.attributes, key: NSUnderlineColorAttributeName, value: BONColor.colorA)
@@ -65,26 +71,71 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testBaselineStyle() {
-        let style = AttributedStringStyle.style(.baselineOffset(15))
-        for (style, fullStyle) in checks(for: style) {
+        let style = StringStyle.style(.baselineOffset(15))
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, key: NSBaselineOffsetAttributeName, float: CGFloat(15), accuracy: 0.001)
         }
     }
 
     func testAlignmentStyle() {
-        let style = AttributedStringStyle.style(.alignment(.center))
-        for (style, fullStyle) in checks(for: style) {
+        let style = StringStyle.style(.alignment(.center))
+        for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
         }
     }
 
+    func testNumberSpacingStyle() {
+        let style = StringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberSpacing(.monospaced))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kNumberSpacingType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kMonospacedNumbersSelector)
+            }
+        }
+    }
+
+    func testNumberCaseStyle() {
+        let style = StringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberCase(.lower))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kNumberCaseType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kLowerCaseNumbersSelector)
+            }
+        }
+    }
+
     func testFontFeatureStyle() {
-        EBGaramondLoader.loadFontIfNeeded()
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let attributes = AttributedStringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
+            let attributes = StringStyle.style(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
             XCTAssertEqual(attributes.count, 1)
             let font = attributes[NSFontAttributeName] as? BONFont
             XCTAssertNotNil(font)
@@ -95,8 +146,8 @@ class AttributedStringStyleTests: XCTestCase {
         }
     }
 
-    static let tensLine = #line
-    static let tens: [(NSParagraphStyle) -> CGFloat] = [
+    static let floatingPointPropertiesLine = #line
+    static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
         // swiftlint:disable opening_brace
         { $0.lineSpacing },
         { $0.paragraphSpacing },
@@ -112,7 +163,7 @@ class AttributedStringStyleTests: XCTestCase {
     ]
 
     func testParagraphStyles() {
-        let style = AttributedStringStyle.style(
+        let style = StringStyle.style(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -127,8 +178,8 @@ class AttributedStringStyleTests: XCTestCase {
             .paragraphSpacingBefore(10),
             .hyphenationFactor(10)
             )
-        for (index, check) in AttributedStringStyleTests.tens.enumerated() {
-            let line = UInt(AttributedStringStyleTests.tensLine + 2 + index)
+        for (index, check) in StringStyleTests.floatingPointProperties.enumerated() {
+            let line = UInt(StringStyleTests.floatingPointPropertiesLine + 2 + index)
             BONAssert(attributes: style.attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
         BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
@@ -137,7 +188,7 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testParagraphStyleAdd() {
-        var style = AttributedStringStyle.style(
+        var style = StringStyle.style(
             .lineSpacing(1),
             .paragraphSpacingAfter(1),
             .alignment(.left),
@@ -152,7 +203,7 @@ class AttributedStringStyleTests: XCTestCase {
             .paragraphSpacingBefore(1),
             .hyphenationFactor(1)
             )
-        style.add(attributedStringStyle: AttributedStringStyle.style(
+        style.add(stringStyle: StringStyle.style(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -167,8 +218,8 @@ class AttributedStringStyleTests: XCTestCase {
             .paragraphSpacingBefore(10),
             .hyphenationFactor(10)
             ))
-        for (index, check) in AttributedStringStyleTests.tens.enumerated() {
-            let line = UInt(AttributedStringStyleTests.tensLine + 2 + index)
+        for (index, check) in StringStyleTests.floatingPointProperties.enumerated() {
+            let line = UInt(StringStyleTests.floatingPointPropertiesLine + 2 + index)
             BONAssert(attributes: style.attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
         BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
@@ -177,8 +228,8 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testAdobeTracking() {
-        let style = AttributedStringStyle.style(.tracking(.adobe(300)))
-        for (style, _) in checks(for: style) {
+        let style = StringStyle.style(.tracking(.adobe(300)))
+        for (style, _) in additiviePermutations(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
                 let newStyle = style.byAdding(.font(font))
@@ -192,8 +243,8 @@ class AttributedStringStyleTests: XCTestCase {
     }
 
     func testPointTracking() {
-        let style = AttributedStringStyle.style(.tracking(.point(10)))
-        for (style, _) in checks(for: style) {
+        let style = StringStyle.style(.tracking(.point(10)))
+        for (style, _) in additiviePermutations(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
                 let newStyle = style.byAdding(.font(font))
@@ -206,23 +257,19 @@ class AttributedStringStyleTests: XCTestCase {
         }
     }
 
-    // Note: avoiding triple-slash comment because SwiftLint doesn't like the formatting of this method for some reason.
-    // Return all the supported transfromations of the given style.
-    // - parameter for: the style to check
-    // - returns: One of the following
-    //   - the passed style object
-    //   - an empty style object that is updated by the passed style object
-    //   - a fully populated style object that is updated by the passed style object
-    func checks(for style: AttributedStringStyle) -> [(style: AttributedStringStyle, fullStyle: Bool)] {
-        var emptyStyle = AttributedStringStyle()
-        emptyStyle.add(attributedStringStyle: style)
+    /// Return the result of various addititve operations with the passed style:
+    /// - parameter for: the style to check
+    /// - return: The additive style permutations.
+    ///   - the passed style
+    ///   - an empty style that is updated by the passed style object
+    ///   - a fully populated style object that is updated by the passed style object
+    func additiviePermutations(for style: StringStyle) -> [(style: StringStyle, fullStyle: Bool)] {
+        var emptyStyle = StringStyle()
+        emptyStyle.add(stringStyle: style)
         var updated = fullStyle
-        updated.add(attributedStringStyle: style)
+        updated.add(stringStyle: style)
 
         return [(style: style, fullStyle: false), (style: emptyStyle, fullStyle: false), (style: updated, fullStyle: true)]
     }
-
-    // A fully populated style object that is updated to ensure that update over-writes all values correctly.
-    // Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
 
 }

@@ -56,6 +56,17 @@ let testBundle = Bundle(for: DummyClassForTests.self)
     }
 #endif
 
+extension BONColor {
+
+    typealias RGBAComponents = (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)
+    var rgbaComponents: RGBAComponents {
+        var comps: RGBAComponents = (0, 0, 0, 0)
+        getRed(&comps.r, green: &comps.g, blue: &comps.b, alpha: &comps.a)
+        return comps
+    }
+
+}
+
 extension BONFont {
     static var fontA: BONFont {
         return BONFont(name: "Avenir-Roman", size: 30)!
@@ -65,12 +76,12 @@ extension BONFont {
     }
 }
 
-let styleA = AttributedStringStyle.style(
+let styleA = StringStyle.style(
     .font(.fontA),
     .color(.colorA)
 )
 
-let styleB = AttributedStringStyle.style(
+let styleB = StringStyle.style(
     .font(.fontB),
     .color(.colorB),
     .headIndent(10),
@@ -79,23 +90,25 @@ let styleB = AttributedStringStyle.style(
 
 #if os(OSX)
 #else
-let adaptiveStyle = AttributedStringStyle.style(
+let adaptiveStyle = StringStyle.style(
     .font(.fontA),
     .color(.colorA),
     .adapt(.body)
 )
 #endif
 
-let styleBz = AttributedStringStyle.style(
+let styleBz = StringStyle.style(
     .font(.fontB),
     .color(.colorB),
     .headIndent(10),
     .tailIndent(10)
 )
 
-let fullStyle: AttributedStringStyle = {
+/// A fully populated style object that is updated to ensure that update over-writes all values correctly.
+/// Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
+let fullStyle: StringStyle = {
     let terribleValue = CGFloat(1000000)
-    var fullStyle = AttributedStringStyle()
+    var fullStyle = StringStyle()
     fullStyle.font = BONFont(name: "Copperplate", size: 20)
     fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
     fullStyle.backgroundColor = .colorC
@@ -122,7 +135,9 @@ let fullStyle: AttributedStringStyle = {
     fullStyle.hyphenationFactor = Float(terribleValue)
 
     #if os(iOS) || os(tvOS) || os(OSX)
-        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberCase.upper, NumberCase.upper, NumberCase.upper]
+        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberSpacing.proportional]
+        fullStyle.numberCase = .upper
+        fullStyle.numberSpacing = .proportional
     #endif
     #if os(iOS) || os(tvOS)
         fullStyle.adaptations = [.preferred, .control, .body]

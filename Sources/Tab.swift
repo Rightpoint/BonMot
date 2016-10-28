@@ -25,11 +25,11 @@ public enum Tab {
 
 extension Tab: Composable {
 
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
         let attributes = baseStyle.attributes
         #if os(iOS)
             // Embed the tab in the attributes
-            let tabAttributes = EmbededTransformationHelpers.embed(transformation: self, to: attributes)
+            let tabAttributes = EmbeddedTransformationHelpers.embed(transformation: self, to: attributes)
         #else
             let tabAttributes: StyleAttributes = attributes
         #endif

@@ -15,7 +15,7 @@ extension NSAttributedString {
     /// - parameter to: The trait collection to transform the attributes too
     /// - returns: Attributes with fonts updated to the specified content size category.
     public static func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes {
-        let adaptations: [AdaptiveStyleTransformation] = EmbededTransformationHelpers.transformations(from: theAttributes)
+        let adaptations: [AdaptiveStyleTransformation] = EmbeddedTransformationHelpers.transformations(from: theAttributes)
         var styleAttributes = theAttributes
         for adaptiveStyle in adaptations {
             styleAttributes = adaptiveStyle.adapt(attributes: styleAttributes, to: traitCollection) ?? styleAttributes
@@ -35,12 +35,12 @@ extension NSAttributedString {
             var styleAttributes = attributes
 
             // Adapt any AdaptiveStyleTransformation embedded in the attributes.
-            let adaptiveStyles: [AdaptiveStyleTransformation] = EmbededTransformationHelpers.transformations(from: attributes)
+            let adaptiveStyles: [AdaptiveStyleTransformation] = EmbeddedTransformationHelpers.transformations(from: attributes)
             for adaptiveStyle in adaptiveStyles {
                 styleAttributes = adaptiveStyle.adapt(attributes: styleAttributes, to: traitCollection) ?? styleAttributes
             }
             // Apply any AttributedStringTransformation embedded in the attributes.
-            let transformations: [AttributedStringTransformation] = EmbededTransformationHelpers.transformations(from: attributes)
+            let transformations: [AttributedStringTransformation] = EmbeddedTransformationHelpers.transformations(from: attributes)
             for transformation in transformations {
                 transformation.update(string: newString, in: range)
             }
@@ -52,7 +52,7 @@ extension NSAttributedString {
 
 }
 
-extension AttributedStringStyle {
+extension StringStyle {
 
     public func attributes(adaptedTo traitCollection: UITraitCollection) -> StyleAttributes {
         return NSAttributedString.adapt(attributes: attributes, to: traitCollection)

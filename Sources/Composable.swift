@@ -16,7 +16,7 @@
 /// append rather than fetching an attributed string to append. This allows more
 /// complex operations (like tab calculations)
 public protocol Composable {
-    func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle)
+    func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle)
 }
 
 public extension Composable {
@@ -32,7 +32,7 @@ public extension Composable {
     ///
     /// - parameter style: The style to decorate with
     /// - returns: A new NSAttributedString
-    public func styled(with style: AttributedStringStyle) -> NSAttributedString {
+    public func styled(with style: StringStyle) -> NSAttributedString {
         let string = NSMutableAttributedString()
         self.append(to: string, baseStyle: style)
         return string
@@ -42,10 +42,10 @@ public extension Composable {
     ///
     /// - parameter parts: The style parts to decorate with
     /// - returns: A new NSAttributedString
-    public func styled(with parts: AttributedStringStylePart...) -> NSAttributedString {
-        var style = AttributedStringStyle()
+    public func styled(with parts: StringStylePart...) -> NSAttributedString {
+        var style = StringStyle()
         for part in parts {
-            style.update(attributedStringStylePart: part)
+            style.update(stringStylePart: part)
         }
         return styled(with: style)
     }
@@ -62,7 +62,7 @@ public extension NSAttributedString {
     /// - parameter baseStyle: The baseStyle to apply to every Composable. If no baseStyle is supplied, no additional styling will be added.
     /// - parameter separator: The separator to join `composables` with.
     /// - returns: A new NSAttributedString
-    @nonobjc public static func composed(of composables: [Composable], baseStyle: AttributedStringStyle = AttributedStringStyle(), separator: Composable? = nil) -> NSAttributedString {
+    @nonobjc public static func composed(of composables: [Composable], baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
         for (index, composable) in composables.enumerated() {
@@ -85,7 +85,7 @@ public extension NSAttributedString {
         struct AttributedStringIgnoringStyle: Composable {
             let string: NSAttributedString
 
-            func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+            func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
                 attributedString.append(string)
             }
         }
@@ -104,7 +104,7 @@ extension NSAttributedString: Composable {
     ///
     /// - parameter to: The attributed string to append to
     /// - parameter baseStyle: The baseStyle that is over-ridden by this string.
-    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
         let range = NSRange(location: 0, length: length)
         enumerateAttributes(in: range, options: []) { (attributes, range, _) in
             let substring = self.attributedSubstring(from: range)
@@ -122,7 +122,7 @@ extension String: Composable {
     ///
     /// - parameter to: The attributed string to append to.
     /// - parameter baseStyle: The style to use for this string.
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
         attributedString.append(baseStyle.attributedString(from: self))
     }
 
@@ -140,7 +140,7 @@ extension BONImage: Composable {
     ///
     /// - parameter to: The attributed string to append to.
     /// - parameter baseStyle: The style to use.
-    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
         let baselinesOffsetForAttachment = baseStyle.baselineOffset ?? 0
         let attachment = NSTextAttachment()
 
@@ -178,7 +178,7 @@ extension Special: Composable {
     ///
     /// - parameter to: The attributed string to append to.
     /// - parameter baseStyle: The style to use.
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
         description.append(to: attributedString, baseStyle: baseStyle)
     }
 

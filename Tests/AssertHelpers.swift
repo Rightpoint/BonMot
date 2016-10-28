@@ -28,6 +28,21 @@ func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: Strin
     XCTAssert(dictionaryValue == value, "\(key): \(dictionaryValue) != \(value)", file: file, line: line)
 }
 
+func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: String, color controlColor: BONColor, file: StaticString = #file, line: UInt = #line) {
+    guard let testColor = dictionary?[key] as? BONColor else {
+        XCTFail("value is not of expected type", file: file, line: line)
+        return
+    }
+
+    let testComps = testColor.rgbaComponents
+    let controlComps = controlColor.rgbaComponents
+
+    XCTAssertEqualWithAccuracy(testComps.r, controlComps.r, accuracy: 0.0001)
+    XCTAssertEqualWithAccuracy(testComps.g, controlComps.g, accuracy: 0.0001)
+    XCTAssertEqualWithAccuracy(testComps.b, controlComps.b, accuracy: 0.0001)
+    XCTAssertEqualWithAccuracy(testComps.a, controlComps.a, accuracy: 0.0001)
+}
+
 func BONAssert(attributes dictionary: StyleAttributes?, key: String, float: CGFloat, accuracy: CGFloat, file: StaticString = #file, line: UInt = #line) {
     guard let dictionaryValue = dictionary?[key] as? CGFloat else {
         XCTFail("value is not of expected type", file: file, line: line)

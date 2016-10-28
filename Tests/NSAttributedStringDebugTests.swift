@@ -16,6 +16,11 @@ class NSAttributedStringDebugTests: XCTestCase {
         let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
     #endif
 
+    func testSpecialFromUnicodeScalar() {
+        let enDash = Special(rawValue: UnicodeScalar("\u{2013}"))
+        XCTAssertEqual(enDash, Special.enDash)
+    }
+
     func testDebugRepresentationReplacements() {
         let testCases: [(String, String)] = [
             ("BonMot", "BonMot"),
@@ -33,7 +38,7 @@ class NSAttributedStringDebugTests: XCTestCase {
             let line = UInt(#line - testCases.count - 2 + index)
             let debugString = NSAttributedString(string: testCase.0).bonMotDebugString
             XCTAssertEqual(testCase.1, debugString, line: line)
-            let fromXML = AttributedStringStyle.style(.xml).attributedString(from: debugString)
+            let fromXML = StringStyle.style(.xml).attributedString(from: debugString)
             // Unassigned unicode replacement is not currently working. No one is actually interested in doing this so I'm going to leave it out.
             if !testCase.1.contains("BON:unicode value=") {
                 XCTAssertEqual(testCase.0, fromXML.string, line: line)
@@ -41,8 +46,20 @@ class NSAttributedStringDebugTests: XCTestCase {
         }
     }
 
-    func testImageRepresentationHasSize() {
-        XCTAssertEqual(imageForTest.attributedString().bonMotDebugString, "<BON:image size='36x36'/>")
+    func testComposedDebugRepresentation() {
+        let testCases: [([Composable], String, UInt)] = [
+            ([imageForTest], "<BON:image size='36x36'/>", #line),
+            ([Special.enDash], "<BON:enDash/>", #line),
+            ([imageForTest, imageForTest], "<BON:image size='36x36'/><BON:image size='36x36'/>", #line),
+            ([Special.enDash, Special.emDash], "<BON:enDash/><BON:emDash/>", #line),
+            ([Special.enDash, imageForTest], "<BON:enDash/><BON:image size='36x36'/>", #line),
+            ([imageForTest, Special.enDash], "<BON:image size='36x36'/><BON:enDash/>", #line),
+            ([imageForTest, Special.noBreakSpace, "Monday", Special.enDash, "Friday"], "<BON:image size='36x36'/><BON:noBreakSpace/>Monday<BON:enDash/>Friday", #line),
+        ]
+        for testCase in testCases {
+            let debugString = NSAttributedString.composed(of: testCase.0).bonMotDebugString
+            XCTAssertEqual(testCase.1, debugString, line: testCase.2)
+        }
     }
 
     func testThatNSAttributedStringSpeaksUTF16() {

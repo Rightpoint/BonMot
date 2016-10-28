@@ -19,7 +19,13 @@ extension NSAttributedString {
         let debug = self.mutableStringCopy()
         var replacements = Array<(range: NSRange, string: String)>()
         var index = 0
-        for unicode in string.unicodeScalars {
+
+        // When looping over string.unicodeScalars directly, we saw nondeterministic behavior
+        // where indices after the first one would contain different characters than what
+        // was expected. Pulling unicodeScalars out first, and then looping, seems to fix it.
+        let scalars = string.unicodeScalars
+
+        for unicode in scalars {
             let replacementString: String?
             switch Special(rawValue: unicode) {
             case .space?:

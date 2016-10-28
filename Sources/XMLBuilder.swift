@@ -1,5 +1,5 @@
 //
-//  TagStyles+XML.swift
+//  NamedStyles+XML.swift
 //
 //  Created by Brian King on 8/29/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -27,12 +27,12 @@ extension NSAttributedString {
     ///
     /// - returns: An NSAttributedString
     // swiftlint:disable:next valid_docs (swiftlint issue jpsim/SourceKitten/issues/133)
-    public static func composed(ofXML fragment: String, baseStyle: AttributedStringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
             styler: styler ?? NSAttributedString.defaultXMLStyler,
             options: options,
-            baseStyle: baseStyle ?? AttributedStringStyle()
+            baseStyle: baseStyle ?? StringStyle()
         )
         let attributedString = try builder.parseAttributedString()
         return attributedString
@@ -54,21 +54,21 @@ extension NSAttributedString {
     ///
     /// - returns: An NSAttributedString
     // swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
-    public static func composed(ofXML fragment: String, baseStyle: AttributedStringStyle? = nil, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
+    public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
             styler: XMLRuleStyler(rules: rules),
             options: options,
-            baseStyle: baseStyle ?? AttributedStringStyle()
+            baseStyle: baseStyle ?? StringStyle()
         )
         let attributedString = try builder.parseAttributedString()
         return attributedString
     }
 
-    /// The default XMLStyler to use. By default this styler will look element styles in the shared TagStyler and insert special characters when BON namespaced elements are encountered.
+    /// The default XMLStyler to use. By default this styler will look up element styles in the shared NamedStyles and insert special characters when BON namespaced elements are encountered.
     @nonobjc public static var defaultXMLStyler: XMLStyler = {
         var rules = Special.insertionRules
-        rules.append(.styles(TagStyles.shared))
+        rules.append(.styles(NamedStyles.shared))
         return XMLRuleStyler(rules: rules)
     }()
 
@@ -79,7 +79,7 @@ extension Special {
         let rulePairs: [[XMLStyleRule]] = all.map() {
             let elementName = "BON:\($0.name)"
             // Add the insertion rule and a style rule so we don't lookup the style and generate a warning
-            return [XMLStyleRule.enter(element: elementName, insert: $0), XMLStyleRule.style(elementName, AttributedStringStyle())]
+            return [XMLStyleRule.enter(element: elementName, insert: $0), XMLStyleRule.style(elementName, StringStyle())]
         }
         return rulePairs.flatMap() { $0 }
     }
@@ -87,8 +87,8 @@ extension Special {
 
 /// A simple set of styling rules for styling XML. If your needs are more complicated, use the XMLStyler protocol
 public enum XMLStyleRule {
-    case styles(TagStyles)
-    case style(String, AttributedStringStyle)
+    case styles(NamedStyles)
+    case style(String, StringStyle)
     case enter(element: String, insert: Composable)
     case exit(element: String, insert: Composable)
 }
@@ -96,7 +96,7 @@ public enum XMLStyleRule {
 /// This contract is used to transform an XML string into an attributed string.
 public protocol XMLStyler {
     /// Return the style to apply for to the contents of the element. The style is sadded onto the current style
-    func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle?
+    func style(forElement name: String, attributes: [String: String]) -> StringStyle?
 
     /// Return a string to extend into the string being built. This is done after the style for the element has been applied, but before the contents of the element.
     func prefix(forElement name: String, attributes: [String: String]) -> Composable?
@@ -128,7 +128,7 @@ public struct XMLBuilderError: Error {
 struct XMLRuleStyler: XMLStyler {
     let rules: [XMLStyleRule]
 
-    func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle? {
+    func style(forElement name: String, attributes: [String: String]) -> StringStyle? {
         for rule in rules {
             switch rule {
             case let .style(string, style) where string == name:
@@ -138,8 +138,8 @@ struct XMLRuleStyler: XMLStyler {
             }
         }
         for rule in rules {
-            if case let .styles(tagStyles) = rule {
-                return tagStyles.style(forName: name)
+            if case let .styles(namedStyles) = rule {
+                return namedStyles.style(forName: name)
             }
         }
         return nil
@@ -175,10 +175,10 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     let parser: XMLParser
     let options: XMLParsingOptions
     var attributedString: NSMutableAttributedString
-    var styles: [AttributedStringStyle]
+    var styles: [StringStyle]
     var xmlStylers: [XMLStyler]
 
-    var topStyle: AttributedStringStyle {
+    var topStyle: StringStyle {
         guard let style = styles.last else { fatalError("Invalid Style Stack") }
         return style
     }
@@ -191,7 +191,7 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     init(string: String,
          styler: XMLStyler,
          options: XMLParsingOptions,
-         baseStyle: AttributedStringStyle) {
+         baseStyle: StringStyle) {
         let xml = (options.contains(.doNotWrapXML) ?
             string :
             "<\(XMLBuilder.internalTopLevelElement)>\(string)</\(XMLBuilder.internalTopLevelElement)>")
@@ -237,7 +237,7 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         let namedStyle = xmlStyler.style(forElement: elementName, attributes: attributes)
         var newStyle = topStyle
         if let namedStyle = namedStyle {
-            newStyle.add(attributedStringStyle: namedStyle)
+            newStyle.add(stringStyle: namedStyle)
         }
 
         // Update the style stack. The XML Styler is removed from the style and added to it's own
