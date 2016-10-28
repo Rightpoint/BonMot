@@ -172,13 +172,13 @@ extension StringStyle {
                     self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
                     return
                 }
+                else if case let .fontFeature(featureProvider) = stylePart {
+                    self.fontFeatureProviders.append(featureProvider)
+                }
             #endif
             #if os(iOS) || os(tvOS)
                 if case let .adapt(style) = stylePart {
                     self.adaptations.append(style)
-                }
-                else if case let .fontFeature(featureProvider) = stylePart {
-                    self.fontFeatureProviders.append(featureProvider)
                 }
                 else if case let .textStyle(textStyle) = stylePart {
                     self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
