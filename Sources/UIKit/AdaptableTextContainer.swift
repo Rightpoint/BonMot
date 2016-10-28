@@ -17,7 +17,7 @@ public protocol AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    func updateText(forTraitCollection traitCollection: UITraitCollection)
+    func adaptText(forTraitCollection traitCollection: UITraitCollection)
 }
 
 extension UILabel: AdaptableTextContainer {
@@ -26,7 +26,7 @@ extension UILabel: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
 
         // Update the font, then the attributed string. If the font doesn't keep in sync when
         // not using attributedText, weird things happen so update it first.
@@ -49,40 +49,36 @@ extension UITextView: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapt(to: traitCollection)
         }
-
         self.typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
-        if let bonMotStyle = bonMotStyle {
-            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
-            font = attributes[NSFontAttributeName] as? BONFont
-        }
     }
 
 }
 
 extension UITextField: AdaptableTextContainer {
 
-    /// Update the attributedText, attributedPlaceholder and typingAttributes adapted to the specified UITraitCollection
+    /// Update the attributedText, attributedPlaceholder and defaultTextAttributes adapted to the specified UITraitCollection
+    ///
+    /// NOTE: Do not modify typingAttributes, they are only relevant while the keyboard is open.
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
-        if let bonMotStyle = bonMotStyle {
-            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
-            font = attributes[NSFontAttributeName] as? BONFont
-        }
-        if let attributedText = attributedText {
-            self.attributedText = attributedText.adapt(to: traitCollection)
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
+        if let attributedText = attributedText?.adapt(to: traitCollection) {
+            if attributedText.length > 0 {
+                font = attributedText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
+            }
+            self.attributedText = attributedText
         }
         if let attributedPlaceholder = attributedPlaceholder {
             self.attributedPlaceholder = attributedPlaceholder.adapt(to: traitCollection)
         }
-        if let typingAttributes = typingAttributes {
-            self.typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
-        }
+        defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes, to: traitCollection)
+        // Fix an issue where shrinking or growing text would stay the same width, but add whitespace.
+        setNeedsDisplay()
     }
 
 }
@@ -93,12 +89,8 @@ extension UIButton: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
-        if let bonMotStyle = bonMotStyle, let titleLabel = titleLabel {
-            let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
-            titleLabel.font = attributes[NSFontAttributeName] as? BONFont
-        }
-        for state: UIControlState in UIControlState.allStates {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
+        for state in UIControlState.commonStates {
             #if swift(>=3.0)
                 let attributedText = attributedTitle(for: state)?.adapt(to: traitCollection)
                 setAttributedTitle(attributedText, for: state)
@@ -132,8 +124,8 @@ extension UISegmentedControl: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
-        for state: UIControlState in UIControlState.allStates {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
+        for state in UIControlState.commonStates {
             #if swift(>=3.0)
                 let attributes = bon_titleTextAttributes(for: state)
                 let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
@@ -157,7 +149,7 @@ extension UINavigationBar: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         if let titleTextAttributes = titleTextAttributes {
             self.titleTextAttributes = NSAttributedString.adapt(attributes: titleTextAttributes, to: traitCollection)
         }
@@ -175,9 +167,9 @@ extension UIToolbar: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         for item in items ?? [] {
-            item.updateText(forTraitCollection: traitCollection)
+            item.adaptText(forTraitCollection: traitCollection)
         }
     }
 
@@ -190,32 +182,32 @@ extension UIViewController: AdaptableTextContainer {
     ///
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         for item in navigationItem.allBarItems {
-            item.updateText(forTraitCollection: traitCollection)
+            item.adaptText(forTraitCollection: traitCollection)
         }
         #if os(tvOS)
         #else
             for item in toolbarItems ?? [] {
-                item.updateText(forTraitCollection: traitCollection)
+                item.adaptText(forTraitCollection: traitCollection)
             }
             if let backBarButtonItem = navigationItem.backBarButtonItem {
-                backBarButtonItem.updateText(forTraitCollection: traitCollection)
+                backBarButtonItem.adaptText(forTraitCollection: traitCollection)
             }
         #endif
     }
 
 }
 
-extension UIBarItem {
+extension UIBarItem: AdaptableTextContainer {
 
     /// Update the `titleTextAttributes`, adapted to the specified `UITraitCollection`.
     ///
     /// - note: This extension does not conform to `AdaptableTextContainer` since `UIBarIterm` is not a view or view controller.
     /// - parameter forTraitCollection: the trait collection to use when updating the text
     @objc(bon_updateTextForTraitCollection:)
-    public func updateText(forTraitCollection traitCollection: UITraitCollection) {
-        for state in UIControlState.allStates {
+    public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
+        for state in UIControlState.commonStates {
             #if swift(>=3.0)
                 let attributes = titleTextAttributes(for: state) ?? [:]
                 let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
@@ -232,11 +224,11 @@ extension UIBarItem {
 
 extension UIControlState {
 
-    @nonobjc static var allStates: [UIControlState] {
+    @nonobjc static var commonStates: [UIControlState] {
         #if swift(>=3.0)
-            return [.normal, .highlighted, .disabled]
+            return [.normal, .highlighted, .disabled, .selected, [.highlighted, .selected]]
         #else
-            return [.Normal, .Highlighted, .Disabled]
+            return [.Normal, .Highlighted, .Disabled, .Selected, [.Highlighted, .Selected]]
         #endif
     }
 

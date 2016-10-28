@@ -32,7 +32,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         }
         var attributes = attributes
         attributes[AttributeName.nonAdaptedFont] = font
-        attributes = EmbededTransformationHelpers.embed(transformation: self, to: attributes)
+        attributes = EmbeddedTransformationHelpers.embed(transformation: self, to: attributes)
         return attributes
     }
 
@@ -131,7 +131,7 @@ extension AdaptiveStyle {
 
 }
 
-extension AdaptiveStyle: EmbededTransformation {
+extension AdaptiveStyle: EmbeddedTransformation {
 
     struct Key {
         static let family = "family"
@@ -149,28 +149,28 @@ extension AdaptiveStyle: EmbededTransformation {
         switch self {
         case let .above(size, family):
             return [
-                EmbededTransformationHelpers.Key.type: Value.above,
-                EmbededTransformationHelpers.Key.size: size,
+                EmbeddedTransformationHelpers.Key.type: Value.above,
+                EmbeddedTransformationHelpers.Key.size: size,
                 Key.family: family,
             ]
         case let .below(size, family):
             return [
-                EmbededTransformationHelpers.Key.type: Value.below,
-                EmbededTransformationHelpers.Key.size: size,
+                EmbeddedTransformationHelpers.Key.type: Value.below,
+                EmbeddedTransformationHelpers.Key.size: size,
                 Key.family: family,
             ]
         case .control:
-            return [EmbededTransformationHelpers.Key.type: Value.control]
+            return [EmbeddedTransformationHelpers.Key.type: Value.control]
         case .body:
-            return [EmbededTransformationHelpers.Key.type: Value.body]
+            return [EmbeddedTransformationHelpers.Key.type: Value.body]
         case .preferred:
-            return [EmbededTransformationHelpers.Key.type: Value.preferred]
+            return [EmbeddedTransformationHelpers.Key.type: Value.preferred]
         }
     }
 
-    static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbededTransformation? {
-        switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
-                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat,
+    static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbeddedTransformation? {
+        switch (dictionary[EmbeddedTransformationHelpers.Key.type] as? String,
+                dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
                 dictionary[Key.family] as? String) {
         case (Value.control?, nil, nil):
             return AdaptiveStyle.control

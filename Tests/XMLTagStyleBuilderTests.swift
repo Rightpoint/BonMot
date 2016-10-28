@@ -13,7 +13,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
     /// There has been concerns about NSXMLParser performance. This is a baseline test,
     /// but doesn't mean much without a comparision
     func testBasicParserPerformance() {
-        let styles = TagStyles(styles: ["A": styleA, "B": styleB])
+        let styles = NamedStyles(styles: ["A": styleA, "B": styleB])
 
         var hugeString = ""
         for _ in 0..<100 {
@@ -28,7 +28,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     /// Test that the ranges of the composed attributed string match what is expected
     func testComposition() {
-        let styles = TagStyles(styles: ["A": styleA, "B": styleB])
+        let styles = NamedStyles(styles: ["A": styleA, "B": styleB])
 
         guard let attributedString = try? NSAttributedString.composed(ofXML: "This is <A>A style</A> test for <B>B Style</B>.", rules: [.styles(styles)]) else {
             XCTFail("No attributed string")
@@ -41,9 +41,19 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssert(fonts.count == 2)
     }
 
+    func testUnicodeInXML() {
+        do {
+            let attributedString = try NSAttributedString.composed(ofXML: "caf&#233;")
+            XCTAssertEqual(attributedString.string, "café")
+        }
+        catch {
+            XCTFail("Failed to create attributed string: \(error)")
+        }
+    }
+
     func testCompositionByStyle() {
-        let styles = TagStyles(styles: ["A": styleA, "B": styleB])
-        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let styles = NamedStyles(styles: ["A": styleA, "B": styleB])
+        let style = StringStyle.style(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This is <A>A style</A> test for <B>B Style</B>.")
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
@@ -54,15 +64,15 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     /// Verify the behavior when a style is not registered
     func testMissingTags() {
-        let styles = TagStyles()
+        let styles = NamedStyles()
         styles.registerStyle(forName: "A", style: styleA)
 
         XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "This <B>style</B> is not registered and that's OK", rules: [.styles(styles)]))
     }
 
     func testMissingTagsByStyle() {
-        let styles = TagStyles()
-        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let styles = NamedStyles()
+        let style = StringStyle.style(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This <B>style</B> is not registered and that's OK")
         XCTAssertEqual("This style is not registered and that's OK", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
@@ -70,8 +80,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
     }
 
     func testInvalidXMLByStyle() {
-        let styles = TagStyles()
-        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let styles = NamedStyles()
+        let style = StringStyle.style(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This <B>style has no closing tag and that is :(")
         XCTAssertEqual("This <B>style has no closing tag and that is :(", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
@@ -80,21 +90,23 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     /// Verify that the string is read when fully contained
     func testFullXML() {
-        let styles = TagStyles()
+        let styles = NamedStyles()
         XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.doNotWrapXML]))
     }
 
     /// Basic test on some HTML-like behavior.
     func testHTMLish() {
         struct HTMLishStyleBuilder: XMLStyler {
-            let tagStyles = ["a": styleA,
-                             "p": styleA,
-                             "p:foo": styleB]
+            let namedStyles = [
+                "a": styleA,
+                "p": styleA,
+                "p:foo": styleB,
+            ]
 
-            func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle? {
-                var namedStyle = tagStyles[name] ?? AttributedStringStyle()
+            func style(forElement name: String, attributes: [String: String]) -> StringStyle? {
+                var namedStyle = namedStyles[name] ?? StringStyle()
                 if let htmlClass = attributes["class"] {
-                    namedStyle = tagStyles["\(name):\(htmlClass)"] ?? namedStyle
+                    namedStyle = namedStyles["\(name):\(htmlClass)"] ?? namedStyle
                 }
                 if name.lowercased() == "a" {
                     if let href = attributes["href"], let url = NSURL(string: href) {
@@ -127,10 +139,10 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     /// Ensure that the singleton is configured with some adaptive styles for easy Dynamic Type support.
     #if os(iOS) || os(tvOS)
-    func testDefaultTagStyles() {
-        XCTAssertNotNil(TagStyles.shared.style(forName: "body"))
-        XCTAssertNotNil(TagStyles.shared.style(forName: "control"))
-        XCTAssertNotNil(TagStyles.shared.style(forName: "preferred"))
+    func testDefaultNamedStyles() {
+        XCTAssertNotNil(NamedStyles.shared.style(forName: "body"))
+        XCTAssertNotNil(NamedStyles.shared.style(forName: "control"))
+        XCTAssertNotNil(NamedStyles.shared.style(forName: "preferred"))
     }
     #endif
 

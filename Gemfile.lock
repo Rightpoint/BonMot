@@ -51,6 +51,7 @@ GEM
     molinillo (0.5.1)
     nap (1.1.0)
     netrc (0.7.8)
+    rouge (1.11.1)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -58,12 +59,15 @@ GEM
       activesupport (>= 3)
       claide (>= 1.0.1, < 2.0)
       colored (~> 1.2)
+    xcpretty (0.2.4)
+      rouge (~> 1.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   cocoapods (= 1.1.1)
+  xcpretty
 
 BUNDLED WITH
    1.13.1
