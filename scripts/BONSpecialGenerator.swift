@@ -86,12 +86,7 @@ extension unichar {
 
 
             let theCFMutableString = NSMutableString(string: String(swiftCharacter)) as CFMutableString
-
-            #if swift(>=3.0)
-                CFStringTransform(theCFMutableString, nil, kCFStringTransformToUnicodeName, false)
-            #else
-                CFStringTransform(theCFMutableString, UnsafeMutablePointer<CFRange>(nil), kCFStringTransformToUnicodeName, false)
-            #endif
+            CFStringTransform(theCFMutableString, nil, kCFStringTransformToUnicodeName, false)
 
             let characterName = theCFMutableString as String
             var trimmedName = characterName
