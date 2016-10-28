@@ -34,14 +34,14 @@ public class NamedStyles: NSObject {
 
     /// Create a new NamedStyles object with the specified name to style mapping
     /// - parameter styles: A dictionary containing the name to style mapping
-    public init(styles: [String: AttributedStringStyle] = [:]) {
+    public init(styles: [String: StringStyle] = [:]) {
         self.styles = styles
     }
 
     /// The contained name to style mapping
-    public var styles: [String: AttributedStringStyle]
+    public var styles: [String: StringStyle]
 
-    public func registerStyle(forName name: String, style: AttributedStringStyle) {
+    public func registerStyle(forName name: String, style: StringStyle) {
         styles[name] = style
     }
 
@@ -51,7 +51,7 @@ public class NamedStyles: NSObject {
     ///
     /// - parameter forName: The name of the style to lookup
     /// - returns: the configured style, or nil if none is found
-    public func style(forName name: String) -> AttributedStringStyle? {
+    public func style(forName name: String) -> StringStyle? {
         guard let style = styles[name] else {
             NamedStyles.unregisteredStyleClosure(name)
             return nil

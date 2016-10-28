@@ -53,7 +53,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     func testCompositionByStyle() {
         let styles = NamedStyles(styles: ["A": styleA, "B": styleB])
-        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let style = StringStyle.style(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This is <A>A style</A> test for <B>B Style</B>.")
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
@@ -72,7 +72,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     func testMissingTagsByStyle() {
         let styles = NamedStyles()
-        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let style = StringStyle.style(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This <B>style</B> is not registered and that's OK")
         XCTAssertEqual("This style is not registered and that's OK", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
@@ -81,7 +81,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
 
     func testInvalidXMLByStyle() {
         let styles = NamedStyles()
-        let style = AttributedStringStyle.style(.xmlRules([.styles(styles)]))
+        let style = StringStyle.style(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This <B>style has no closing tag and that is :(")
         XCTAssertEqual("This <B>style has no closing tag and that is :(", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
@@ -103,8 +103,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
                 "p:foo": styleB,
             ]
 
-            func style(forElement name: String, attributes: [String: String]) -> AttributedStringStyle? {
-                var namedStyle = namedStyles[name] ?? AttributedStringStyle()
+            func style(forElement name: String, attributes: [String: String]) -> StringStyle? {
+                var namedStyle = namedStyles[name] ?? StringStyle()
                 if let htmlClass = attributes["class"] {
                     namedStyle = namedStyles["\(name):\(htmlClass)"] ?? namedStyle
                 }

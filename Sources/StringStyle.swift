@@ -1,5 +1,5 @@
 //
-//  AttributedStringStyle.swift
+//  StringStyle.swift
 //
 //  Created by Brian King on 8/31/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -18,7 +18,7 @@
 /// NOTE: This was originally envisioned with a more functional closure implementation. However, the order of application
 ///  is very important, and the API was confusing with a priority integer, and forcing the user to use the right order wasn't
 ///  acceptable.
-public struct AttributedStringStyle {
+public struct StringStyle {
     public var initialAttributes: StyleAttributes = [:]
     public var font: BONFont? = nil
     public var link: NSURL? = nil
@@ -57,7 +57,7 @@ public struct AttributedStringStyle {
 
 }
 
-extension AttributedStringStyle {
+extension StringStyle {
 
     /// Obtain a StyleAttributes representing the current style
     public var attributes: StyleAttributes {
@@ -73,7 +73,7 @@ extension AttributedStringStyle {
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
 
-        let paragraph = AttributedStringStyle.paragraph(from: theAttributes)
+        let paragraph = StringStyle.paragraph(from: theAttributes)
         paragraph.lineSpacing = lineSpacing ?? paragraph.lineSpacing
         paragraph.paragraphSpacing = paragraphSpacingAfter ?? paragraph.paragraphSpacing
         paragraph.alignment = alignment ?? paragraph.alignment
@@ -141,7 +141,7 @@ extension AttributedStringStyle {
 
 }
 
-extension AttributedStringStyle {
+extension StringStyle {
 
     /// Update the initialAttributes in the style object. This is used to provide the default
     /// values configured in UI elements, which the style can override.
@@ -153,56 +153,56 @@ extension AttributedStringStyle {
         }
     }
 
-    /// Update the style with values specified in `attributedStringStyle`. Any value configured in attributedStringStyle
-    /// will over-write the values specified in this AttributedStringStyle.
+    /// Update the style with values specified in `stringStyle`. Any value configured in `stringStyle`
+    /// will over-write the values specified in this `stringStyle`.
     ///
-    /// - parameter attributedStringStyle: The style to update this style with.
-    public mutating func add(attributedStringStyle stringStyle: AttributedStringStyle) {
-        add(initialAttributes: stringStyle.initialAttributes)
-        font = stringStyle.font ?? font
-        link = stringStyle.link ?? link
-        backgroundColor = stringStyle.backgroundColor ?? backgroundColor
-        color = stringStyle.color ?? color
-        underline = stringStyle.underline ?? underline
-        strikethrough = stringStyle.strikethrough ?? strikethrough
-        baselineOffset = stringStyle.baselineOffset ?? baselineOffset
+    /// - parameter stringStyle: The style to update this style with.
+    public mutating func add(stringStyle theStringStyle: StringStyle) {
+        add(initialAttributes: theStringStyle.initialAttributes)
+        font = theStringStyle.font ?? font
+        link = theStringStyle.link ?? link
+        backgroundColor = theStringStyle.backgroundColor ?? backgroundColor
+        color = theStringStyle.color ?? color
+        underline = theStringStyle.underline ?? underline
+        strikethrough = theStringStyle.strikethrough ?? strikethrough
+        baselineOffset = theStringStyle.baselineOffset ?? baselineOffset
 
-        lineSpacing = stringStyle.lineSpacing ?? lineSpacing
-        paragraphSpacingAfter = stringStyle.paragraphSpacingAfter ?? paragraphSpacingAfter
-        alignment = stringStyle.alignment ?? alignment
-        firstLineHeadIndent = stringStyle.firstLineHeadIndent ?? firstLineHeadIndent
-        headIndent = stringStyle.headIndent ?? headIndent
-        tailIndent = stringStyle.tailIndent ?? tailIndent
-        lineBreakMode = stringStyle.lineBreakMode ?? lineBreakMode
-        minimumLineHeight = stringStyle.minimumLineHeight ?? minimumLineHeight
-        maximumLineHeight = stringStyle.maximumLineHeight ?? maximumLineHeight
-        baseWritingDirection = stringStyle.baseWritingDirection ?? baseWritingDirection
-        lineHeightMultiple = stringStyle.lineHeightMultiple ?? lineHeightMultiple
-        paragraphSpacingBefore = stringStyle.paragraphSpacingBefore ?? paragraphSpacingBefore
-        hyphenationFactor = stringStyle.hyphenationFactor ?? hyphenationFactor
+        lineSpacing = theStringStyle.lineSpacing ?? lineSpacing
+        paragraphSpacingAfter = theStringStyle.paragraphSpacingAfter ?? paragraphSpacingAfter
+        alignment = theStringStyle.alignment ?? alignment
+        firstLineHeadIndent = theStringStyle.firstLineHeadIndent ?? firstLineHeadIndent
+        headIndent = theStringStyle.headIndent ?? headIndent
+        tailIndent = theStringStyle.tailIndent ?? tailIndent
+        lineBreakMode = theStringStyle.lineBreakMode ?? lineBreakMode
+        minimumLineHeight = theStringStyle.minimumLineHeight ?? minimumLineHeight
+        maximumLineHeight = theStringStyle.maximumLineHeight ?? maximumLineHeight
+        baseWritingDirection = theStringStyle.baseWritingDirection ?? baseWritingDirection
+        lineHeightMultiple = theStringStyle.lineHeightMultiple ?? lineHeightMultiple
+        paragraphSpacingBefore = theStringStyle.paragraphSpacingBefore ?? paragraphSpacingBefore
+        hyphenationFactor = theStringStyle.hyphenationFactor ?? hyphenationFactor
 
         #if os(iOS) || os(tvOS) || os(OSX)
-            fontFeatureProviders.append(contentsOf: stringStyle.fontFeatureProviders)
-            numberCase = stringStyle.numberCase ?? numberCase
-            numberSpacing = stringStyle.numberSpacing ?? numberSpacing
+            fontFeatureProviders.append(contentsOf: theStringStyle.fontFeatureProviders)
+            numberCase = theStringStyle.numberCase ?? numberCase
+            numberSpacing = theStringStyle.numberSpacing ?? numberSpacing
         #endif
         #if os(iOS) || os(tvOS)
-            adaptations.append(contentsOf: stringStyle.adaptations)
+            adaptations.append(contentsOf: theStringStyle.adaptations)
         #endif
-        tracking = stringStyle.tracking ?? tracking
-        xmlStyler = stringStyle.xmlStyler ?? xmlStyler
+        tracking = theStringStyle.tracking ?? tracking
+        xmlStyler = theStringStyle.xmlStyler ?? xmlStyler
     }
 
-    public func byAdding(attributedStringStyle style: AttributedStringStyle) -> AttributedStringStyle {
+    public func byAdding(stringStyle style: StringStyle) -> StringStyle {
         var newStyle = self
-        newStyle.add(attributedStringStyle: style)
+        newStyle.add(stringStyle: style)
         return newStyle
     }
 
 }
 
 /// An extension to provide UIKit interaction helpers to the style object
-public extension AttributedStringStyle {
+public extension StringStyle {
 
     /// Supply the contained attributes as default values for the passed in StyleAttributes. This will also
     /// perform some merging of values. This includes NSParagraphStyle and the embedded attributes.

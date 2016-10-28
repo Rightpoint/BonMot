@@ -1,5 +1,5 @@
 //
-//  AttributedStringStylePart.swift
+//  StringStylePart.swift
 //
 //  Created by Brian King on 9/1/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -11,9 +11,9 @@
     import UIKit
 #endif
 
-/// AttributedStringStylePart encapsulates one setting in AttributedStringStyle. It is used
-/// as a DSL for building AttributedStringStyle across BonMot, but it is just syntactic sugar.
-public enum AttributedStringStylePart {
+/// StringStylePart encapsulates one setting in StringStyle. It is used
+/// as a DSL for building StringStyle across BonMot, but it is just syntactic sugar.
+public enum StringStylePart {
     case initialAttributes(StyleAttributes)
     case font(BONFont)
     case link(NSURL)
@@ -53,48 +53,48 @@ public enum AttributedStringStylePart {
 
 }
 
-extension AttributedStringStyle {
+extension StringStyle {
 
-    /// Create an AttributedStringStyle from an array of parts
+    /// Create a StringStyle from an array of parts
     ///
-    /// - parameter parts: An array of AttributedStringStylePart
-    /// - returns: A newly configured AttributedStringStyle
+    /// - parameter parts: An array of StringStylePart
+    /// - returns: A newly configured StringStyle
     #if swift(>=3.0)
-    public static func style(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        var style = AttributedStringStyle()
+    public static func style(_ parts: StringStylePart...) -> StringStyle {
+        var style = StringStyle()
         for part in parts {
-            style.update(attributedStringStylePart: part)
+            style.update(stringStylePart: part)
         }
         return style
     }
     #else
-    public static func style(parts: AttributedStringStylePart...) -> AttributedStringStyle {
-        var style = AttributedStringStyle()
+    public static func style(parts: StringStylePart...) -> StringStyle {
+        var style = StringStyle()
         for part in parts {
-            style.update(attributedStringStylePart: part)
+            style.update(stringStylePart: part)
         }
         return style
     }
 
     #endif
 
-    /// Derive a new AttributedStringStyle based on this style, updated with an array of AttributedStringStylePart.
+    /// Derive a new StringStyle based on this style, updated with an array of StringStylePart.
     ///
-    /// - parameter parts: An array of AttributedStringStylePart
-    /// - returns: A newly configured AttributedStringStyle
+    /// - parameter parts: An array of StringStylePart
+    /// - returns: A newly configured StringStyle
     #if swift(>=3.0)
-    public func byAdding(_ parts: AttributedStringStylePart...) -> AttributedStringStyle {
+    public func byAdding(_ parts: StringStylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(attributedStringStylePart: part)
+            style.update(stringStylePart: part)
         }
         return style
     }
     #else
-    public func byAdding(parts: AttributedStringStylePart...) -> AttributedStringStyle {
+    public func byAdding(parts: StringStylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(attributedStringStylePart: part)
+            style.update(stringStylePart: part)
         }
         return style
     }
@@ -102,12 +102,12 @@ extension AttributedStringStyle {
 
 }
 
-extension AttributedStringStyle {
+extension StringStyle {
 
     /// Update the style with the specified style part.
     ///
     // swiftlint:disable:next cyclomatic_complexity
-    mutating func update(attributedStringStylePart stylePart: AttributedStringStylePart) {
+    mutating func update(stringStylePart stylePart: StringStylePart) {
         switch stylePart {
         case let .initialAttributes(attributes):
             self.initialAttributes = attributes

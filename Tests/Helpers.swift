@@ -76,12 +76,12 @@ extension BONFont {
     }
 }
 
-let styleA = AttributedStringStyle.style(
+let styleA = StringStyle.style(
     .font(.fontA),
     .color(.colorA)
 )
 
-let styleB = AttributedStringStyle.style(
+let styleB = StringStyle.style(
     .font(.fontB),
     .color(.colorB),
     .headIndent(10),
@@ -90,14 +90,14 @@ let styleB = AttributedStringStyle.style(
 
 #if os(OSX)
 #else
-let adaptiveStyle = AttributedStringStyle.style(
+let adaptiveStyle = StringStyle.style(
     .font(.fontA),
     .color(.colorA),
     .adapt(.body)
 )
 #endif
 
-let styleBz = AttributedStringStyle.style(
+let styleBz = StringStyle.style(
     .font(.fontB),
     .color(.colorB),
     .headIndent(10),
@@ -106,9 +106,9 @@ let styleBz = AttributedStringStyle.style(
 
 /// A fully populated style object that is updated to ensure that update over-writes all values correctly.
 /// Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
-let fullStyle: AttributedStringStyle = {
+let fullStyle: StringStyle = {
     let terribleValue = CGFloat(1000000)
-    var fullStyle = AttributedStringStyle()
+    var fullStyle = StringStyle()
     fullStyle.font = BONFont(name: "Copperplate", size: 20)
     fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
     fullStyle.backgroundColor = .colorC

@@ -14,7 +14,7 @@ enum DemoStrings {
         let racket = UIImage(named: "Tennis Racket")!.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
-        let gray = AttributedStringStyle.style(
+        let gray = StringStyle.style(
             .font(BONFont(name: "GillSans-Light", size: 20)!),
             .lineHeightMultiple(1.8),
             .color(.darkGray))
@@ -40,13 +40,13 @@ enum DemoStrings {
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
         // Define styles
-        let accent = AttributedStringStyle.style(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+        let accent = StringStyle.style(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
         let black = accent.byAdding(.color(.white), .backgroundColor(.black))
         let red = accent.byAdding(.color(.white), .backgroundColor(.raizlabsRed))
         let signed = accent.byAdding(.color(.raizlabsRed))
 
         // Define the base style with xml rules for all tags
-        let baseStyle = AttributedStringStyle.style(
+        let baseStyle = StringStyle.style(
             .font(BONFont(name: "GillSans-Light", size: 20)!),
             .lineHeightMultiple(1.8),
             .color(.darkGray),
@@ -72,7 +72,7 @@ enum DemoStrings {
                 .adapt(.control)
     )
 
-    static let proportionalStyle = AttributedStringStyle.style(
+    static let proportionalStyle = StringStyle.style(
         .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
         .adapt(.control)
     )
@@ -114,12 +114,12 @@ enum DemoStrings {
                 .adapt(.control)
             )),
         ({
-            let listItem = AttributedStringStyle.style(
+            let listItem = StringStyle.style(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(.control),
                 .paragraphSpacingAfter(10.0)
             )
-            let code = AttributedStringStyle.style(
+            let code = StringStyle.style(
                 .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
                 .backgroundColor(UIColor.blue.withAlphaComponent(0.1)),
                 .adapt(.control)
@@ -152,7 +152,7 @@ enum DemoStrings {
             .adapt(.control)
         ))
 
-    static let noSpaceTextStyle = AttributedStringStyle.style(
+    static let noSpaceTextStyle = StringStyle.style(
         .font(.systemFont(ofSize: 17)),
         .adapt(.control),
         .color(.darkGray),
@@ -177,11 +177,11 @@ enum DemoStrings {
         return "❤️".styled(with: .baselineOffset(offset))
     })
 
-    static func CustomStoryboard(identifier theIdentifier: String) -> AttributedStringStyle {
+    static func CustomStoryboard(identifier theIdentifier: String) -> StringStyle {
         // Embed an attribute for the storyboard identifier to link to. This is
         // a good example of custom attributes, even if this might not be the best
         // UIKit design pattern.
-        return AttributedStringStyle.style(.initialAttributes(["Storyboard": theIdentifier]))
+        return StringStyle.style(.initialAttributes(["Storyboard": theIdentifier]))
     }
 
     static let dynamcTypeUIKit = DemoStrings.CustomStoryboard(identifier: "CatalogViewController")

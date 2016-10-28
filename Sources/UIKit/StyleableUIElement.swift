@@ -10,7 +10,7 @@ import UIKit
 /// Protocol to assist styling text contained in UI Elements.
 public protocol StyleableUIElement: UITraitEnvironment {
     var bonMotStyleName: String? { get set }
-    var bonMotStyle: AttributedStringStyle? { get set }
+    var bonMotStyle: StringStyle? { get set }
     var styledText: String? { get set }
 }
 
@@ -24,7 +24,7 @@ extension UILabel: StyleableUIElement {
     }
 
     /// Specify the style to use for the UILabel.
-    public final var bonMotStyle: AttributedStringStyle? {
+    public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
             setAssociatedStyle(bonMotStyle: newValue)
@@ -57,7 +57,7 @@ extension UITextField: StyleableUIElement {
     /// Specify the style to use for text contained inside the view.
     ///
     /// NOTE: This will update the defaultTextAttributes and attributedText. Use attributed strings for more control.
-    public final var bonMotStyle: AttributedStringStyle? {
+    public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
             setAssociatedStyle(bonMotStyle: newValue)
@@ -115,7 +115,7 @@ extension UITextView: StyleableUIElement {
     /// update the current state of the view
     ///
     /// NOTE: This will update the typingAttributes and attributedText. Use attributed strings for more control.
-    public final var bonMotStyle: AttributedStringStyle? {
+    public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
             setAssociatedStyle(bonMotStyle: newValue)
@@ -147,7 +147,7 @@ extension UIButton: StyleableUIElement {
     }
 
     /// Specify the style to use for text contained inside the view.
-    public final var bonMotStyle: AttributedStringStyle? {
+    public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
             setAssociatedStyle(bonMotStyle: newValue)
@@ -171,15 +171,15 @@ extension UIButton: StyleableUIElement {
 private var containerHandle: UInt8 = 0
 internal extension StyleableUIElement {
 
-    final func getAssociatedStyle() -> AttributedStringStyle? {
-        let adaptiveFunctionContainer = objc_getAssociatedObject(self, &containerHandle) as? AttributedStringStyleHolder
+    final func getAssociatedStyle() -> StringStyle? {
+        let adaptiveFunctionContainer = objc_getAssociatedObject(self, &containerHandle) as? StringStyleHolder
         return adaptiveFunctionContainer?.style
     }
 
-    final func setAssociatedStyle(bonMotStyle style: AttributedStringStyle?) {
-        var adaptiveFunction: AttributedStringStyleHolder? = nil
+    final func setAssociatedStyle(bonMotStyle style: StringStyle?) {
+        var adaptiveFunction: StringStyleHolder? = nil
         if let bonMotStyle = style {
-            adaptiveFunction = AttributedStringStyleHolder(style: bonMotStyle)
+            adaptiveFunction = StringStyleHolder(style: bonMotStyle)
         }
         objc_setAssociatedObject(
             self, &containerHandle,
@@ -190,26 +190,26 @@ internal extension StyleableUIElement {
 
     final func styledAttributedString(from text: String?) -> NSAttributedString? {
         guard let text = text else { return nil }
-        let string = (bonMotStyle ?? AttributedStringStyle()).attributedString(from: text)
+        let string = (bonMotStyle ?? StringStyle()).attributedString(from: text)
         return string.adapt(to: traitCollection)
     }
 
-    final func lookupSharedStyle(for name: String?, font: UIFont) -> AttributedStringStyle? {
+    final func lookupSharedStyle(for name: String?, font: UIFont) -> StringStyle? {
         guard let name = name, let style = NamedStyles.shared.style(forName: name) else {
             return nil
         }
         // Create a style with the font and then add the named style.
         // This will provide a font if one is not specified in the style.
-        return AttributedStringStyle.style(.font(font)).byAdding(attributedStringStyle: style)
+        return StringStyle.style(.font(font)).byAdding(stringStyle: style)
     }
 
 }
 
-@objc(BONAttributedStringStyleHolder)
-internal class AttributedStringStyleHolder: NSObject {
+@objc(BONStringStyleHolder)
+internal class StringStyleHolder: NSObject {
 
-    let style: AttributedStringStyle
-    init(style: AttributedStringStyle) {
+    let style: StringStyle
+    init(style: StringStyle) {
         self.style = style
     }
 }
