@@ -61,7 +61,8 @@ script:
       CODE_SIGN_IDENTITY=
       | xcpretty
   - set -o pipefail &&
-      TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild ${XCODE_ACTION}
+      TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3
+      xcodebuild ${XCODE_ACTION}
       -project BonMot.xcodeproj
       -scheme ${XCODE_SCHEME}
       -sdk ${XCODE_SDK}
