@@ -26,14 +26,14 @@ extension Tracking: AdaptiveStyleTransformation {
     }
 }
 
-extension Tracking: EmbededTransformation {
+extension Tracking: EmbeddedTransformation {
 
     struct Value {
         static let adobeTracking = "adobe-tracking"
     }
 
-    static func from(representation dictionary: StyleAttributes) -> EmbededTransformation? {
-        if case let (Value.adobeTracking?, size?) = (dictionary[EmbededTransformationHelpers.Key.type] as? String, dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat) {
+    static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation? {
+        if case let (Value.adobeTracking?, size?) = (dictionary[EmbeddedTransformationHelpers.Key.type] as? String, dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
             return Tracking.adobe(size)
         }
         return nil
@@ -41,8 +41,8 @@ extension Tracking: EmbededTransformation {
 
     var representation: StyleAttributes {
         if case let .adobe(size) = self {
-            return [EmbededTransformationHelpers.Key.type: Value.adobeTracking,
-                    EmbededTransformationHelpers.Key.size: size]
+            return [EmbeddedTransformationHelpers.Key.type: Value.adobeTracking,
+                    EmbeddedTransformationHelpers.Key.size: size]
         }
         else {
             // We don't need to persist regular tracking as it does not depend on the font size.

@@ -112,7 +112,7 @@ extension StringStyle {
             theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: NSKernAttributeName)
             #if os(iOS) || os(tvOS)
                 // Add the tracking as an adaptation
-                theAttributes = EmbededTransformationHelpers.embed(transformation: tracking, to: theAttributes)
+                theAttributes = EmbeddedTransformationHelpers.embed(transformation: tracking, to: theAttributes)
             #endif
         }
 

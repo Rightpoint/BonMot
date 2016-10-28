@@ -16,16 +16,16 @@ extension Tab: AttributedStringTransformation {
     // Just declare conformance. Implementation is already defined and used even if adaptive code is not included in the target.
 }
 
-extension Tab: EmbededTransformation {
+extension Tab: EmbeddedTransformation {
 
     struct Value {
         static let spacer = "spacer"
         static let headIndent = "headIndent"
     }
 
-    static func from(representation dictionary: StyleAttributes) -> EmbededTransformation? {
-        switch (dictionary[EmbededTransformationHelpers.Key.type] as? String,
-                dictionary[EmbededTransformationHelpers.Key.size] as? CGFloat) {
+    static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation? {
+        switch (dictionary[EmbeddedTransformationHelpers.Key.type] as? String,
+                dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
         case (Value.spacer?, let width?):
             return Tab.spacer(width)
         case (Value.headIndent?, let width?):
@@ -38,12 +38,12 @@ extension Tab: EmbededTransformation {
     var representation: StyleAttributes {
         switch self {
         case let .spacer(size):
-            return [EmbededTransformationHelpers.Key.type: Value.spacer,
-                    EmbededTransformationHelpers.Key.size: size]
+            return [EmbeddedTransformationHelpers.Key.type: Value.spacer,
+                    EmbeddedTransformationHelpers.Key.size: size]
 
         case let .headIndent(size):
-            return [EmbededTransformationHelpers.Key.type: Value.headIndent,
-                    EmbededTransformationHelpers.Key.size: size]
+            return [EmbeddedTransformationHelpers.Key.type: Value.headIndent,
+                    EmbeddedTransformationHelpers.Key.size: size]
         }
     }
 

@@ -29,7 +29,7 @@ extension Tab: Composable {
         let attributes = baseStyle.attributes
         #if os(iOS)
             // Embed the tab in the attributes
-            let tabAttributes = EmbededTransformationHelpers.embed(transformation: self, to: attributes)
+            let tabAttributes = EmbeddedTransformationHelpers.embed(transformation: self, to: attributes)
         #else
             let tabAttributes: StyleAttributes = attributes
         #endif
