@@ -76,10 +76,17 @@ extension unichar {
                 return customName // bail early!
             }
 
-            let swiftCharacter = Character(UnicodeScalar(self))
+            let swiftCharacter: Character
+            #if swift(>=3.0)
+                swiftCharacter = Character(UnicodeScalar(self)!)
+            #else
+                swiftCharacter = Character(UnicodeScalar(self))
+            #endif
+
+
 
             let theCFMutableString = NSMutableString(string: String(swiftCharacter)) as CFMutableString
-            CFStringTransform(theCFMutableString, UnsafeMutablePointer<CFRange>(nil), kCFStringTransformToUnicodeName, false)
+            CFStringTransform(theCFMutableString, nil, kCFStringTransformToUnicodeName, false)
 
             let characterName = theCFMutableString as String
             var trimmedName = characterName
@@ -164,7 +171,13 @@ func pathToFolderContainingThisScript() -> String {
         let cwd = NSFileManager.defaultManager().currentDirectoryPath
     #endif
 
-    let script = Process.arguments[0]
+    let script: String
+
+    #if swift(>=3.0)
+        script = CommandLine.arguments[0]
+    #else
+        script = Process.arguments[0]
+    #endif
 
     if script.hasPrefix("/") { // absolute
         #if swift(>=3.0)
@@ -312,8 +325,8 @@ let baseFileName = "BONSpecial"
 #if swift(>=3.0)
     let headerFileName = (baseFileName as NSString).appendingPathExtension("h")!
     let implementationFileName = (baseFileName as NSString).appendingPathExtension("m")!
-    let headerFilePath = (classesDirectory as NSString).appendingPathExtension(headerFileName)!
-    let implementationFilePath = (classesDirectory as NSString).appendingPathExtension(implementationFileName)!
+    let headerFilePath = (classesDirectory as NSString).appendingPathComponent(headerFileName)
+    let implementationFilePath = (classesDirectory as NSString).appendingPathComponent(implementationFileName)
 #else
     let headerFileName = (baseFileName as NSString).stringByAppendingPathExtension("h")!
     let implementationFileName = (baseFileName as NSString).stringByAppendingPathExtension("m")!

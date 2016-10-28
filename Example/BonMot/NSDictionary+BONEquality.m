@@ -9,6 +9,7 @@
 #import "NSDictionary+BONEquality.h"
 
 @import CoreGraphics.CGBase;
+@import UIKit.UIFont;
 
 const double kBONDoubleEpsilon = 0.0001;
 
@@ -52,6 +53,15 @@ static BOOL BONNumberIsFloaty(NSNumber *number)
                                 equal = NO;
                                 break;
                             }
+                        }
+                    }
+                    else if ([selfValue isKindOfClass:[UIFont class]] && [otherValue isKindOfClass:[UIFont class]]) {
+                        UIFont *selfFont = selfValue;
+                        UIFont *otherFont = otherValue;
+                        BOOL closeEnough = [selfFont.fontName isEqualToString:otherFont.fontName] && [selfFont.familyName isEqualToString:otherFont.familyName] && BONDoublesCloseEnough(selfFont.pointSize, otherFont.pointSize);
+                        if (!closeEnough) {
+                            equal = NO;
+                            break;
                         }
                     }
                     else {
