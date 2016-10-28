@@ -50,6 +50,8 @@ before_install:
 install:
   - gem install bundler --no-rdoc --no-ri
   - bundle install
+before_script:
+  - bundle exec pod lib lint
 script:
   - set -o pipefail &&
       xcodebuild ${XCODE_ACTION}
