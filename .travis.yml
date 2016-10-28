@@ -13,6 +13,11 @@ matrix:
   include:
     - osx_image: xcode8
       env:
+        - JOB=LINT_POD
+      script:
+        - bundle exec pod lib lint
+    - osx_image: xcode8
+      env:
         - XCODE_SDK=macosx
           XCODE_ACTION="build-for-testing test-without-building"
           XCODE_SCHEME=BonMot-OSX
@@ -50,8 +55,6 @@ before_install:
 install:
   - gem install bundler --no-rdoc --no-ri
   - bundle install
-before_script:
-  - bundle exec pod lib lint
 script:
   - set -o pipefail &&
       xcodebuild ${XCODE_ACTION}
