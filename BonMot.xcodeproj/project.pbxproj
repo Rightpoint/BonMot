@@ -221,8 +221,8 @@
 		AB30D50B1D9CB4FE006ADC9D /* Tab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		AB30D51C1D9D95F5006ADC9D /* EmbeddedTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmbeddedTransformation.swift; path = UIKit/EmbeddedTransformation.swift; sourceTree = "<group>"; };
 		AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttributedStringTransformation.swift; path = UIKit/AttributedStringTransformation.swift; sourceTree = "<group>"; };
-		AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tab+Adaptive.swift"; sourceTree = "<group>"; };
-		AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tracking+Adaptive.swift"; sourceTree = "<group>"; };
+		AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tab+Adaptive.swift"; path = "UIKit/Tab+Adaptive.swift"; sourceTree = "<group>"; };
+		AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tracking+Adaptive.swift"; path = "UIKit/Tracking+Adaptive.swift"; sourceTree = "<group>"; };
 		AB9C18D11D9975CE00A54787 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
