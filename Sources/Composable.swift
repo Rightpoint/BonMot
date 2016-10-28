@@ -183,3 +183,26 @@ extension Special: Composable {
     }
 
 }
+
+public struct Chain {
+    var links: [Composable]
+    public init() {
+        self.links = []
+    }
+    public mutating func append(_ link: Composable, style: AttributedStringStyle? = nil) {
+        if let style = style {
+            links.append(link.styled(with: style))
+        }
+        else {
+            links.append(link)
+        }
+    }
+}
+
+extension Chain: Composable {
+
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: AttributedStringStyle) {
+        let content = NSAttributedString.composed(of: links, baseStyle: baseStyle)
+        attributedString.append(content)
+    }
+}
