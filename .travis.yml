@@ -7,7 +7,7 @@ os: osx
 language: c
 matrix:
   exclude:
-    # Note: Workaround travis-ci/travis-ci#4681
+    # Note: Workaround https://github.com/travis-ci/travis-ci/issues/4681
     # Exclude default job which lacks our included environment variables.
     - os: osx
   include:
