@@ -15,12 +15,13 @@ class MasterTableViewCell: UITableViewCell {
 
 class StyleViewController: UITableViewController {
     var styles: [(String, [NSAttributedString])] = [
-        ("Color", [DemoStrings.colorStringXML]),
-        ("Images", [DemoStrings.imageString, DemoStrings.noSpaceString]),
+        ("XML", [DemoStrings.xml]),
+        ("Composition", [DemoStrings.composition]),
+        ("Tracking", [DemoStrings.trackingString]),
+        ("Images & Special Characters", [DemoStrings.imageString, DemoStrings.noBreakSpaceString]),
         ("Baseline Offset", [DemoStrings.heartsString]),
         ("Indentation", DemoStrings.indentationStrings),
-        ("Tracking", [DemoStrings.trackingString]),
-        ("Line Height", [DemoStrings.lineHeightString]),
+        ("Line Height", [DemoStrings.lineSpacingString]),
         ("Dynamic Type", [DemoStrings.dynamcTypeUIKit, DemoStrings.preferredFonts]),
         ("Figure Style", DemoStrings.proportionalStrings),
     ]

@@ -9,32 +9,16 @@ import UIKit
 import BonMot
 
 enum DemoStrings {
-    static let colorString: NSAttributedString = {
-        // Define a colored image that's slightly shifted to account for the line height
-        let racket = UIImage(named: "Tennis Racket")!.styled(with:
-            .color(.raizlabsRed), .baselineOffset(-4.0))
 
-        let gray = StringStyle.style(
-            .font(BONFont(name: "GillSans-Light", size: 20)!),
-            .lineHeightMultiple(1.8),
-            .color(.darkGray))
-        let accent = gray.byAdding(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+    /// Style a string, with both global and range-based overrides,
+    /// from an XML source. This is the most common use case for
+    /// styling substrings of localized strings, where searching for
+    /// and replacing substrings on a per-language basis is cumbersome.
+    static let xml: NSAttributedString = {
 
-        let black = accent.byAdding(.color(.white), .backgroundColor(.black))
-        let red = accent.byAdding(.color(.white), .backgroundColor(.raizlabsRed))
-        let signed = accent.byAdding(.color(.raizlabsRed))
+        // This would typically come from NSLocalizedString
+        let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed>Maria Sharapova</signed> <racket/>"
 
-        return NSAttributedString.composed(of: [
-            "I want to be different. If everyone is wearing ",
-            "\(Special.noBreakSpace)black,\(Special.noBreakSpace)".styled(with: black),
-            " I want to be wearing ",
-            "\(Special.noBreakSpace)red.\(Special.noBreakSpace)".styled(with: red),
-            "\nMaria Sharapova ".styled(with: signed),
-            racket
-            ], baseStyle: gray)
-    }()
-
-    static let colorStringXML: NSAttributedString = {
         // Define a colored image that's slightly shifted to account for the line height
         let racket = UIImage(named: "Tennis Racket")!.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
@@ -50,6 +34,7 @@ enum DemoStrings {
             .font(BONFont(name: "GillSans-Light", size: 20)!),
             .lineHeightMultiple(1.8),
             .color(.darkGray),
+            .adapt(.control),
             .xmlRules([
                 .style("black", black),
                 .style("red", red),
@@ -58,19 +43,77 @@ enum DemoStrings {
                 ]
             )
         )
-        return "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed>Maria Sharapova</signed> <racket/>".styled(with: baseStyle)
+        return localizedString.styled(with: baseStyle)
     }()
 
-    static let trackingString = "Adults are always asking kids what they want to be when they grow up because they are looking for ideas.\n—Paula Poundstone"
-        .styled(with: .tracking(.adobe(300)),
-                .font(UIFont(name: "Avenir-Book", size: 18)!),
-                .adapt(.control))
+    /// Compose a string piecewise from different components.
+    /// If you are using localized strings, do not use this approach.
+    /// Instead, use XML as in the previous example. Use composition
+    /// only if you absolutely need to build the string from pieces.
+    static let composition: NSAttributedString = {
+        // Define a colored image that's slightly shifted to account for the line height
+        let boat = UIImage(named: "boat")!.styled(with:
+            .color(.raizlabsRed))
 
-    static let lineHeightString = "I used to love correcting people’s grammar until I realized what I loved more was having friends.\n—Mara Wilson"
-        .styled(with: .font(UIFont(name: "AmericanTypewriter", size: 17.0)!),
-                .lineHeightMultiple(1.8),
-                .adapt(.control)
+        let baseStyle = StringStyle.style(
+            .alignment(.center),
+            .color(.black)
+        )
+
+        let preamble = baseStyle.byAdding(
+            .font(BONFont(name: "AvenirNext-Bold", size: 14)!),
+            .adapt(.body)
+        )
+
+        let bigger = baseStyle.byAdding(
+            .font(BONFont(name: "AvenirNext-Heavy", size: 64)!),
+            .adapt(.control)
+        )
+
+        return NSAttributedString.composed(of: [
+            "You’re going to need a\n".styled(with: preamble),
+            "Bigger\n".localizedUppercase.styled(with: bigger),
+            boat,
+            ], baseStyle: baseStyle)
+    }()
+
+    /// A simple examle, demonstrating using tracking and a few other adjustments
+    static let trackingString = "my precious"
+        .styled(
+            with:
+            .tracking(.point(12.86)),
+            .font(UIFont(name: "AvenirNext-BoldItalic", size: 18)!),
+            .alignment(.center),
+            .color(BONColor(hex: 0x672C6E)),
+            .adapt(.control)
     )
+
+    /// This example uses XML to combine many feautres, including single-character kerning
+    /// to move the period at the end of the sentence closer to its preceding character.
+    static let lineSpacingString: NSAttributedString = {
+
+        let fullStyle = StringStyle.style(
+            .alignment(.center),
+            .color(.raizlabsRed),
+            .font(BONFont(name: "AvenirNext-Medium", size: 16)!),
+            .adapt(.body),
+            .lineSpacing(20),
+            .xmlRules([
+                .style("large", .style(
+                    .font(BONFont(name: "AvenirNext-Heavy", size: 64)!),
+                    .lineSpacing(40),
+                    .adapt(.control))),
+                .style("kern", .style(
+                    .tracking(.adobe(-80))
+                    )),
+                ])
+        )
+
+        let phrase = "GO<BON:noBreakSpace/>AHEAD,\n<large>MAKE\nMY\nDA<kern>Y.</kern></large>"
+
+        let thing = phrase.styled(with: fullStyle)
+        return thing
+    }()
 
     static let proportionalStyle = StringStyle.style(
         .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
@@ -121,7 +164,7 @@ enum DemoStrings {
             )
             let code = StringStyle.style(
                 .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
-                .backgroundColor(UIColor.blue.withAlphaComponent(0.1)),
+                .backgroundColor(BONColor.blue.withAlphaComponent(0.1)),
                 .adapt(.control)
             )
             let bullet = NSAttributedString.composed(of: ["🍑 →", Tab.headIndent(4.0)])
@@ -158,7 +201,7 @@ enum DemoStrings {
         .color(.darkGray),
         .baselineOffset(10)
     )
-    static let noSpaceString = NSAttributedString.composed(of: [
+    static let noBreakSpaceString = NSAttributedString.composed(of: [
         ("barn", "This"),
         ("bee", "string"),
         ("bug", "is"),
