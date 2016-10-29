@@ -41,6 +41,15 @@ class StyleViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let attributedText = styles[indexPath.section].1[indexPath.row]
+        if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
+            return true
+        }
+        return false
+
+    }
+
     func selectRow(at indexPath: IndexPath) {
         let attributedText = styles[indexPath.section].1[indexPath.row]
         if let storyboardIdentifier = attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) as? String {
