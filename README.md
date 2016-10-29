@@ -13,7 +13,7 @@ To run the example project, run `pod try BonMot`, or clone the repo and open `Ex
 
 # Usage
 
-In any Swift file where you want to use BonMot, simply `import BonMot`. 
+In any Swift file where you want to use BonMot, simply `import BonMot`.
 
 ## Basics
 
