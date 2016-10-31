@@ -107,6 +107,9 @@ import BonMot
         mutating func append(string: String) {
             appendContentsOf(string)
         }
+        @nonobjc var localizedUppercase: String {
+            return localizedUppercaseString
+        }
     }
 
     extension CALayer {
