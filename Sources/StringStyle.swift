@@ -46,6 +46,10 @@ public struct StringStyle {
     public var fontFeatureProviders: [FontFeatureProvider] = []
     public var numberCase: NumberCase? = nil
     public var numberSpacing: NumberSpacing? = nil
+    public var superscript: Bool? = nil
+    public var `subscript`: Bool? = nil
+    public var ordinals: Bool? = nil
+    public var scientificInferiors: Bool? = nil
     #endif
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
@@ -183,6 +187,10 @@ extension StringStyle {
             fontFeatureProviders.append(contentsOf: theStringStyle.fontFeatureProviders)
             numberCase = theStringStyle.numberCase ?? numberCase
             numberSpacing = theStringStyle.numberSpacing ?? numberSpacing
+            superscript = theStringStyle.superscript ?? superscript
+            `subscript` = theStringStyle.`subscript` ?? `subscript`
+            ordinals = theStringStyle.ordinals ?? ordinals
+            scientificInferiors = theStringStyle.scientificInferiors ?? scientificInferiors
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)

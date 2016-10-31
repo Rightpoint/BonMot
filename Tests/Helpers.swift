@@ -135,9 +135,13 @@ let fullStyle: StringStyle = {
     fullStyle.hyphenationFactor = Float(terribleValue)
 
     #if os(iOS) || os(tvOS) || os(OSX)
-        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberSpacing.proportional]
+        fullStyle.fontFeatureProviders = [NumberCase.upper, NumberSpacing.proportional, VerticalPosition.superscript]
         fullStyle.numberCase = .upper
         fullStyle.numberSpacing = .proportional
+        fullStyle.superscript = true
+        fullStyle.subscript = true
+        fullStyle.ordinals = true
+        fullStyle.scientificInferiors = true
     #endif
     #if os(iOS) || os(tvOS)
         fullStyle.adaptations = [.preferred, .control, .body]

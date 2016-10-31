@@ -138,6 +138,14 @@ class AdaptiveStyleTests: XCTestCase {
             .numberCase(.lower),
             .numberSpacing(.monospaced),
             .numberSpacing(.proportional),
+            .superscript(true),
+            .superscript(false),
+            .subscript(true),
+            .subscript(false),
+            .ordinals(true),
+            .ordinals(false),
+            .scientificInferiors(true),
+            .scientificInferiors(false),
         ]
         for part in parts {
             let originalAttributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .adapt(.control)).byAdding(part).attributes

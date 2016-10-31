@@ -68,6 +68,22 @@
         }
     }
 
+    /// An enumeration representing the kVerticalPositionType features
+    public enum VerticalPosition: FontFeatureProvider {
+        case normal, superscript, `subscript`, ordinals, scientificInferiors
+        public func featureSettings() -> (type: Int, selector: Int) {
+            let selector: Int
+            switch self {
+            case .normal: selector = kNormalPositionSelector
+            case .superscript: selector = kSuperiorsSelector
+            case .subscript: selector = kInferiorsSelector
+            case .ordinals: selector = kOrdinalsSelector
+            case .scientificInferiors: selector = kScientificInferiorsSelector
+            }
+            return (type: kVerticalPositionType, selector: selector)
+        }
+    }
+
     extension FontFeatureProvider {
 
         /// - returns: a dictionary representing one feature for the attributes key in the font attributes

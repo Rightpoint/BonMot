@@ -43,6 +43,10 @@ public enum StylePart {
     case fontFeature(FontFeatureProvider)
     case numberSpacing(NumberSpacing)
     case numberCase(NumberCase)
+    case superscript(Bool)
+    case `subscript`(Bool)
+    case ordinals(Bool)
+    case scientificInferiors(Bool)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -117,6 +121,7 @@ extension StringStyle {
 
     /// Update the style with the specified style part.
     ///
+    // swiftlint:disable function_body_length
     // swiftlint:disable:next cyclomatic_complexity
     mutating func update(part stylePart: StylePart) {
         switch stylePart {
@@ -185,6 +190,22 @@ extension StringStyle {
                     self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
                     return
                 }
+                else if case let .superscript(superscript) = stylePart {
+                    self.fontFeatureProviders += [superscript ? VerticalPosition.superscript : VerticalPosition.normal as FontFeatureProvider]
+                    return
+                }
+                else if case let .`subscript`(`subscript`) = stylePart {
+                    self.fontFeatureProviders += [`subscript` ? VerticalPosition.subscript : VerticalPosition.normal as FontFeatureProvider]
+                    return
+                }
+                else if case let .ordinals(ordinals) = stylePart {
+                    self.fontFeatureProviders += [ordinals ? VerticalPosition.ordinals : VerticalPosition.normal as FontFeatureProvider]
+                    return
+                }
+                else if case let .scientificInferiors(scientificInferiors) = stylePart {
+                    self.fontFeatureProviders += [scientificInferiors ? VerticalPosition.scientificInferiors : VerticalPosition.normal as FontFeatureProvider]
+                    return
+                }
                 else if case let .fontFeature(featureProvider) = stylePart {
                     self.fontFeatureProviders.append(featureProvider)
                 }
@@ -199,4 +220,5 @@ extension StringStyle {
             #endif
         }
     }
+    //swiftlint:enable function_body_length
 }
