@@ -133,7 +133,7 @@ class AdaptiveStyleTests: XCTestCase {
     /// Dynamic Type adaptation
     func testFeatureSettingsAdaptation() {
         EBGaramondLoader.loadFontIfNeeded()
-        let parts: [StylePart] = [
+        let partsLine: UInt = #line; let parts: [StylePart] = [
             .numberCase(.upper),
             .numberCase(.lower),
             .numberSpacing(.monospaced),
@@ -147,18 +147,19 @@ class AdaptiveStyleTests: XCTestCase {
             .scientificInferiors(true),
             .scientificInferiors(false),
         ]
-        for part in parts {
+        for (index, part) in parts.enumerated() {
+            let partLine = partsLine + UInt(index) + 1
             let originalAttributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .adapt(.control)).byAdding(part).attributes
             let adaptedAttributes = NSAttributedString.adapt(attributes: originalAttributes, to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
 
-            XCTAssertEqual(originalAttributes.count, 3)
-            XCTAssertEqual(adaptedAttributes.count, 3)
+            XCTAssertEqual(originalAttributes.count, 3, line: partLine)
+            XCTAssertEqual(adaptedAttributes.count, 3, line: partLine)
 
             let originalFont = originalAttributes[NSFontAttributeName] as? BONFont
             let adaptedFont = adaptedAttributes[NSFontAttributeName] as? BONFont
 
-            XCTAssertNotNil(originalFont)
-            XCTAssertNotNil(adaptedFont)
+            XCTAssertNotNil(originalFont, line: partLine)
+            XCTAssertNotNil(adaptedFont, line: partLine)
 
             let originalDescriptorAttributes = originalFont?.fontDescriptor.fontAttributes
             let adaptedDescriptorAttributes = adaptedFont?.fontDescriptor.fontAttributes
@@ -166,20 +167,20 @@ class AdaptiveStyleTests: XCTestCase {
             let originalFeatureAttributeArray = originalDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
             let adaptedFeatureAttributeArray = adaptedDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
 
-            XCTAssertNotNil(originalFeatureAttributeArray)
-            XCTAssertNotNil(adaptedFeatureAttributeArray)
+            XCTAssertNotNil(originalFeatureAttributeArray, line: partLine)
+            XCTAssertNotNil(adaptedFeatureAttributeArray, line: partLine)
 
-            XCTAssertEqual(originalFeatureAttributeArray?.count, 1)
-            XCTAssertEqual(adaptedFeatureAttributeArray?.count, 1)
+            XCTAssertEqual(originalFeatureAttributeArray?.count, 1, line: partLine)
+            XCTAssertEqual(adaptedFeatureAttributeArray?.count, 1, line: partLine)
 
             let originalFeatureAttributes = originalFeatureAttributeArray?.firstObject as? [String: Int]
             let adaptedFeatureAttributes = adaptedFeatureAttributeArray?.firstObject as? [String: Int]
 
-            XCTAssertNotNil(originalFeatureAttributes)
-            XCTAssertNotNil(adaptedFeatureAttributes)
+            XCTAssertNotNil(originalFeatureAttributes, line: partLine)
+            XCTAssertNotNil(adaptedFeatureAttributes, line: partLine)
 
-            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureTypeIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureTypeIdentifierKey])
-            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureSelectorIdentifierKey])
+            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureTypeIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureTypeIdentifierKey], line: partLine)
+            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], line: partLine)
         }
     }
 
