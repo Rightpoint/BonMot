@@ -111,8 +111,8 @@ enum DemoStrings {
 
         let phrase = "GO<BON:noBreakSpace/>AHEAD,\n<large>MAKE\nMY\nDA<kern>Y.</kern></large>"
 
-        let thing = phrase.styled(with: fullStyle)
-        return thing
+        let attributedString = phrase.styled(with: fullStyle)
+        return attributedString
     }()
 
     static let proportionalStyle = StringStyle(parts:
