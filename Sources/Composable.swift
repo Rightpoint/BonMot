@@ -42,10 +42,10 @@ public extension Composable {
     ///
     /// - parameter parts: The style parts to decorate with
     /// - returns: A new NSAttributedString
-    public func styled(with parts: StringStylePart...) -> NSAttributedString {
+    public func styled(with parts: StylePart...) -> NSAttributedString {
         var style = StringStyle()
         for part in parts {
-            style.update(stringStylePart: part)
+            style.update(StylePart: part)
         }
         return styled(with: style)
     }

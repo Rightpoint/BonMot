@@ -62,7 +62,7 @@
 		ABA75DD61D99E10400B64705 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
 		ABA75DD81D99E10400B64705 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
 		ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
-		ABA75DDB1D99E10400B64705 /* StringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStylePart.swift */; };
+		ABA75DDB1D99E10400B64705 /* StylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StylePart.swift */; };
 		ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
 		ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
@@ -99,7 +99,7 @@
 		ABCBFD601D96E61100FAD37A /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCBFDA01D96E7F300FAD37A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
 		ABCD3D6B1D96F02F00273936 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
-		ABCD3D6C1D96F02F00273936 /* StringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStylePart.swift */; };
+		ABCD3D6C1D96F02F00273936 /* StylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StylePart.swift */; };
 		ABCD3D6E1D96F02F00273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
 		ABCD3D6F1D96F02F00273936 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
 		ABCD3D701D96F02F00273936 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
@@ -132,7 +132,7 @@
 		ABCD3DD51D96F6A500273936 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
 		ABCD3DD71D96F6A500273936 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
 		ABCD3DD81D96F6A500273936 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
-		ABCD3DDA1D96F6A500273936 /* StringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStylePart.swift */; };
+		ABCD3DDA1D96F6A500273936 /* StylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StylePart.swift */; };
 		ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */; };
 		ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABCD3DDD1D96F6A500273936 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
@@ -155,7 +155,7 @@
 		ABCD3E111D980E4900273936 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
 		ABCD3E131D980E4900273936 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
 		ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
-		ABCD3E161D980E4900273936 /* StringStylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStylePart.swift */; };
+		ABCD3E161D980E4900273936 /* StylePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StylePart.swift */; };
 		ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
 		ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
 		ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
@@ -243,7 +243,7 @@
 		ABCBFD5F1D96E61100FAD37A /* BonMot-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ABCD3D521D96F02F00273936 /* StringStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringStyle.swift; sourceTree = "<group>"; };
-		ABCD3D531D96F02F00273936 /* StringStylePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringStylePart.swift; sourceTree = "<group>"; };
+		ABCD3D531D96F02F00273936 /* StylePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePart.swift; sourceTree = "<group>"; };
 		ABCD3D541D96F02F00273936 /* BonMot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonMot.h; sourceTree = "<group>"; };
 		ABCD3D551D96F02F00273936 /* Compatibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compatibility.swift; sourceTree = "<group>"; };
 		ABCD3D561D96F02F00273936 /* FontFeatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontFeatures.swift; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				ABCD3D521D96F02F00273936 /* StringStyle.swift */,
-				ABCD3D531D96F02F00273936 /* StringStylePart.swift */,
+				ABCD3D531D96F02F00273936 /* StylePart.swift */,
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
@@ -1063,7 +1063,7 @@
 				ABA75DD81D99E10400B64705 /* Special.swift in Sources */,
 				ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */,
 				CDEA84341D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
-				ABA75DDB1D99E10400B64705 /* StringStylePart.swift in Sources */,
+				ABA75DDB1D99E10400B64705 /* StylePart.swift in Sources */,
 				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
 				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
 				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
@@ -1120,7 +1120,7 @@
 				ABCD3D761D96F02F00273936 /* NamedStyles.swift in Sources */,
 				AB560A081DA0C14000100D15 /* Tab+Adaptive.swift in Sources */,
 				ABA75E0A1D99E43300B64705 /* Tracking.swift in Sources */,
-				ABCD3D6C1D96F02F00273936 /* StringStylePart.swift in Sources */,
+				ABCD3D6C1D96F02F00273936 /* StylePart.swift in Sources */,
 				ABCD3D801D96F02F00273936 /* UIKit+Helpers.swift in Sources */,
 				ABCD3D811D96F02F00273936 /* XMLBuilder.swift in Sources */,
 				ABCD3D701D96F02F00273936 /* NSAttributedString+BonMot.swift in Sources */,
@@ -1174,7 +1174,7 @@
 				AB8497B11DA16DAE00FE3414 /* AdaptiveStyleTransformation.swift in Sources */,
 				AB8497B51DA16DAE00FE3414 /* Tab+Adaptive.swift in Sources */,
 				ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */,
-				ABCD3DDA1D96F6A500273936 /* StringStylePart.swift in Sources */,
+				ABCD3DDA1D96F6A500273936 /* StylePart.swift in Sources */,
 				ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */,
 				ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */,
 				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adapt.swift in Sources */,
@@ -1221,7 +1221,7 @@
 				ABCD3E131D980E4900273936 /* Special.swift in Sources */,
 				ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */,
 				CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
-				ABCD3E161D980E4900273936 /* StringStylePart.swift in Sources */,
+				ABCD3E161D980E4900273936 /* StylePart.swift in Sources */,
 				ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */,
 				ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */,
 				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,

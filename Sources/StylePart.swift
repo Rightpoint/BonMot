@@ -1,5 +1,5 @@
 //
-//  StringStylePart.swift
+//  StylePart.swift
 //
 //  Created by Brian King on 9/1/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -11,9 +11,9 @@
     import UIKit
 #endif
 
-/// StringStylePart encapsulates one setting in StringStyle. It is used
+/// StylePart encapsulates one setting in StringStyle. It is used
 /// as a DSL for building StringStyle across BonMot, but it is just syntactic sugar.
-public enum StringStylePart {
+public enum StylePart {
     case initialAttributes(StyleAttributes)
     case font(BONFont)
     case link(NSURL)
@@ -57,32 +57,32 @@ extension StringStyle {
 
     /// Create a StringStyle from an array of parts
     ///
-    /// - parameter parts: An array of StringStylePart
+    /// - parameter parts: An array of StylePart
     /// - returns: A newly configured StringStyle
-    public init(parts: StringStylePart...) {
+    public init(parts: StylePart...) {
         self.init()
         for part in parts {
-            self.update(stringStylePart: part)
+            self.update(StylePart: part)
         }
     }
 
-    /// Derive a new StringStyle based on this style, updated with an array of StringStylePart.
+    /// Derive a new StringStyle based on this style, updated with an array of StylePart.
     ///
-    /// - parameter parts: An array of StringStylePart
+    /// - parameter parts: An array of StylePart
     /// - returns: A newly configured StringStyle
     #if swift(>=3.0)
-    public func byAdding(_ parts: StringStylePart...) -> StringStyle {
+    public func byAdding(_ parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(stringStylePart: part)
+            style.update(StylePart: part)
         }
         return style
     }
     #else
-    public func byAdding(parts: StringStylePart...) -> StringStyle {
+    public func byAdding(parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(stringStylePart: part)
+            style.update(StylePart: part)
         }
         return style
     }
@@ -95,7 +95,7 @@ extension StringStyle {
     /// Update the style with the specified style part.
     ///
     // swiftlint:disable:next cyclomatic_complexity
-    mutating func update(stringStylePart stylePart: StringStylePart) {
+    mutating func update(StylePart stylePart: StylePart) {
         switch stylePart {
         case let .initialAttributes(attributes):
             self.initialAttributes = attributes

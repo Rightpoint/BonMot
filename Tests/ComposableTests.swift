@@ -86,7 +86,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testBaseStyleIsOverridden() {
-        func check<T: Equatable>(forPart thePart: StringStylePart, _ attribute: String, _ expected: T, line: UInt = #line) {
+        func check<T: Equatable>(forPart thePart: StylePart, _ attribute: String, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart)
                 ], baseStyle: fullStyle)
@@ -103,7 +103,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testBaseParagraphStyleIsOverridden() {
-        func check<T: Equatable>(forPart thePart: StringStylePart, _ getter: (NSParagraphStyle) -> T, _ expected: T, line: UInt = #line) {
+        func check<T: Equatable>(forPart thePart: StylePart, _ getter: (NSParagraphStyle) -> T, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart)
                 ], baseStyle: fullStyle)
