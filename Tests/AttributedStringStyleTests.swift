@@ -9,6 +9,7 @@ import XCTest
 import BonMot
 import CoreText
 
+//swiftlint:disable:next type_body_length
 class StringStyleTests: XCTestCase {
 
     override func setUp() {
