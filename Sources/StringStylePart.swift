@@ -59,24 +59,12 @@ extension StringStyle {
     ///
     /// - parameter parts: An array of StringStylePart
     /// - returns: A newly configured StringStyle
-    #if swift(>=3.0)
-    public static func style(_ parts: StringStylePart...) -> StringStyle {
-        var style = StringStyle()
+    public init(parts: StringStylePart...) {
+        self.init()
         for part in parts {
-            style.update(stringStylePart: part)
+            self.update(stringStylePart: part)
         }
-        return style
     }
-    #else
-    public static func style(parts: StringStylePart...) -> StringStyle {
-        var style = StringStyle()
-        for part in parts {
-            style.update(stringStylePart: part)
-        }
-        return style
-    }
-
-    #endif
 
     /// Derive a new StringStyle based on this style, updated with an array of StringStylePart.
     ///

@@ -200,7 +200,7 @@ internal extension StyleableUIElement {
         }
         // Create a style with the font and then add the named style.
         // This will provide a font if one is not specified in the style.
-        return StringStyle.style(.font(font)).byAdding(stringStyle: style)
+        return StringStyle(parts: .font(font)).byAdding(stringStyle: style)
     }
 
 }

@@ -28,7 +28,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testAttributesArePassedAlongExtend() {
-        let style = StringStyle.style(.initialAttributes(["test": "test"]))
+        let style = StringStyle(parts: .initialAttributes(["test": "test"]))
 
         let chainString = NSAttributedString.composed(of: [imageForTest, "Test", imageForTest], baseStyle: style).attributedString()
         let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
@@ -130,7 +130,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testInitialParagraphStyle() {
-        let style = StringStyle.style(.initialAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
+        let style = StringStyle(parts: .initialAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
 
         let string = NSAttributedString.composed(of: [Tab.headIndent(10), "ParagraphStyle mutable promotion"], baseStyle: style)
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
@@ -142,7 +142,7 @@ class ComposableTests: XCTestCase {
                 .styled(with: .lineSpacing(1.8)),
             " headIndent "
                 .styled(with: .headIndent(10)),
-            ], baseStyle: StringStyle.style(.firstLineHeadIndent(5)))
+            ], baseStyle: StringStyle(parts: .firstLineHeadIndent(5)))
         guard let paragraphStart = string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
             XCTFail("No paragraph style at start")
             return

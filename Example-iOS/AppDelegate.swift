@@ -24,12 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let traitCollection = window?.traitCollection else {
             fatalError("There should be a traitCollection available before calling this method.")
         }
-        let titleStyle = StringStyle.style(
+        let titleStyle = StringStyle(parts:
             .font(UIFont.appFont(ofSize: 20)),
             .adapt(.control)
         )
         UINavigationBar.appearance().titleTextAttributes = titleStyle.attributes(adaptedTo: traitCollection)
-        let barStyle = StringStyle.style(
+        let barStyle = StringStyle(parts:
             .font(UIFont.appFont(ofSize: 17)),
             .adapt(.control)
         )
