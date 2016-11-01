@@ -22,6 +22,7 @@ public enum StylePart {
     case underline(NSUnderlineStyle, BONColor?)
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
+
     case alignment(NSTextAlignment)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
@@ -36,6 +37,7 @@ public enum StylePart {
     case lineHeightMultiple(CGFloat)
     case paragraphSpacingBefore(CGFloat)
     case hyphenationFactor(Float)
+
     case xml
     case xmlRules([XMLStyleRule])
     case xmlStyler(XMLStyler)
