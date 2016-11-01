@@ -44,7 +44,10 @@
 
     /// An enumeration representing the kNumberCaseType features.
     public enum NumberCase: FontFeatureProvider {
-        case upper, lower
+
+        case upper
+        case lower
+
         public func featureSettings() -> (type: Int, selector: Int) {
             switch self {
             case .upper:
@@ -53,11 +56,15 @@
                 return (type: kNumberCaseType, selector: kLowerCaseNumbersSelector)
             }
         }
+
     }
 
     /// An enumeration representing the kNumberSpacingType features.
     public enum NumberSpacing: FontFeatureProvider {
-        case monospaced, proportional
+
+        case monospaced
+        case proportional
+
         public func featureSettings() -> (type: Int, selector: Int) {
             switch self {
             case .monospaced:
@@ -66,11 +73,18 @@
                 return (type: kNumberSpacingType, selector: kProportionalNumbersSelector)
             }
         }
+
     }
 
     /// An enumeration representing the kVerticalPositionType features
     public enum VerticalPosition: FontFeatureProvider {
-        case normal, superscript, `subscript`, ordinals, scientificInferiors
+
+        case normal
+        case superscript
+        case `subscript`
+        case ordinals
+        case scientificInferiors
+
         public func featureSettings() -> (type: Int, selector: Int) {
             let selector: Int
             switch self {
@@ -82,6 +96,7 @@
             }
             return (type: kVerticalPositionType, selector: selector)
         }
+
     }
 
     extension FontFeatureProvider {
