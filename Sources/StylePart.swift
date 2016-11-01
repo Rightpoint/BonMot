@@ -62,7 +62,7 @@ extension StringStyle {
     public init(_ parts: StylePart...) {
         self.init()
         for part in parts {
-            self.update(StylePart: part)
+            self.update(part: part)
         }
     }
 
@@ -74,7 +74,7 @@ extension StringStyle {
     /// - returns: A newly configured StringStyle
     public init(_ part: StylePart) {
         self.init()
-        self.update(StylePart: part)
+        self.update(part: part)
     }
     #endif
 
@@ -86,7 +86,7 @@ extension StringStyle {
     public func byAdding(_ parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(StylePart: part)
+            style.update(part: part)
         }
         return style
     }
@@ -94,7 +94,7 @@ extension StringStyle {
     public func byAdding(parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(StylePart: part)
+            style.update(part: part)
         }
         return style
     }
@@ -107,7 +107,7 @@ extension StringStyle {
     /// Update the style with the specified style part.
     ///
     // swiftlint:disable:next cyclomatic_complexity
-    mutating func update(StylePart stylePart: StylePart) {
+    mutating func update(part stylePart: StylePart) {
         switch stylePart {
         case let .initialAttributes(attributes):
             self.initialAttributes = attributes

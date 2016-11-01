@@ -45,7 +45,7 @@ public extension Composable {
     public func styled(with parts: StylePart...) -> NSAttributedString {
         var style = StringStyle()
         for part in parts {
-            style.update(StylePart: part)
+            style.update(part: part)
         }
         return styled(with: style)
     }
