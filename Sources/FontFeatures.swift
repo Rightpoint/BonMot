@@ -42,10 +42,17 @@
         }
     }
 
-    /// An enumeration representing the kNumberCaseType features.
+    /// A feature provider for changing the number case, also known as figure style.
     public enum NumberCase: FontFeatureProvider {
 
+        /// Uppercase numbers, also known as lining figures, are the same height
+        /// as uppercase letters, and they do not extend below the baseline.
         case upper
+
+        /// Lowercase numbers, also known as oldstyle figures, are similar in
+        /// size and visual weight to lowercase letters, allowing them to
+        /// blend in better in a block of text. They may have descenders
+        /// which drop below the typographic baseline.
         case lower
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
@@ -59,10 +66,17 @@
 
     }
 
-    /// An enumeration representing the kNumberSpacingType features.
+    /// A feature provider for changing the number spacing, also known as figure spacing.
     public enum NumberSpacing: FontFeatureProvider {
 
+        /// Monospaced numbers, also known as tabular figures, each take up the
+        /// same amount of horizontal space, meaning that different numbers will
+        /// line up when arranged in columns.
         case monospaced
+
+        /// Proportionally spaced numbers, also known as proprotional figures,
+        /// are of variable width. This makes them look better in most cases,
+        /// but they should be avoided when numbers need to line up in columns.
         case proportional
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
@@ -76,13 +90,22 @@
 
     }
 
-    /// An enumeration representing the kVerticalPositionType features
+    /// A feature provider for changing the vertical position of characters.
     public enum VerticalPosition: FontFeatureProvider {
 
+        /// No vertical position adjustment is applied.
         case normal
+
+        /// Superscript (superior) glpyh variants are used, as in footnotes¹.
         case superscript
+
+        /// Subscript (inferior) glyph variants are used: vₑ.
         case `subscript`
+
+        /// Ordinal glyph variants are used, as in the common typesetting of 4th.
         case ordinals
+
+        /// Scientific inferior glyph variants are used: H₂O
         case scientificInferiors
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
