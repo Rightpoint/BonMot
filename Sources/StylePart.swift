@@ -41,8 +41,10 @@ public enum StylePart {
     case xmlStyler(XMLStyler)
     #if os(iOS) || os(tvOS) || os(OSX)
     case fontFeature(FontFeatureProvider)
+
     case numberSpacing(NumberSpacing)
     case numberCase(NumberCase)
+
     case superscript(Bool)
     case `subscript`(Bool)
     case ordinals(Bool)

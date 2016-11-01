@@ -44,8 +44,10 @@ public struct StringStyle {
 
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
+
     public var numberCase: NumberCase? = nil
     public var numberSpacing: NumberSpacing? = nil
+
     public var superscript: Bool? = nil
     public var `subscript`: Bool? = nil
     public var ordinals: Bool? = nil
@@ -185,8 +187,10 @@ extension StringStyle {
 
         #if os(iOS) || os(tvOS) || os(OSX)
             fontFeatureProviders.append(contentsOf: theStringStyle.fontFeatureProviders)
+
             numberCase = theStringStyle.numberCase ?? numberCase
             numberSpacing = theStringStyle.numberSpacing ?? numberSpacing
+
             superscript = theStringStyle.superscript ?? superscript
             `subscript` = theStringStyle.`subscript` ?? `subscript`
             ordinals = theStringStyle.ordinals ?? ordinals
