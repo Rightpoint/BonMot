@@ -122,6 +122,38 @@
 
     }
 
+    /// A feature provider for changing small caps behavior.
+    /// - Note: `fromUppercase` and `fromLowercase` can be combined: they are not
+    /// mutually exclusive.
+    public enum SmallCaps: FontFeatureProvider {
+
+        /// No small caps are used.
+        case none
+
+        /// Uppercase letters in the source string are replaced with small caps.
+        /// Lowercase letters remain unmodified.
+        case fromUppercase
+
+        /// Lowercase letters in the source string are replaced with small caps.
+        /// Uppercase letters remain unmodified.
+        case fromLowercase
+
+        public func featureSettings() -> [(type: Int, selector: Int)] {
+            switch self {
+            case .none:
+                return [
+                    (type: kLowerCaseType, selector: kDefaultLowerCaseSelector),
+                    (type: kUpperCaseType, selector: kDefaultUpperCaseSelector),
+                ]
+            case .fromUppercase:
+                return [(type: kUpperCaseType, selector: kUpperCaseSmallCapsSelector)]
+            case .fromLowercase:
+                return [(type: kLowerCaseType, selector: kLowerCaseSmallCapsSelector)]
+            }
+        }
+
+    }
+
     extension FontFeatureProvider {
 
         /// - returns: an array of dictionaries, each representing one feature for the attributes key in the font attributes

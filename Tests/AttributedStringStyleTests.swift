@@ -225,6 +225,29 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testSmallCapsStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .smallCaps(.fromUppercase))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kUpperCaseType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kUpperCaseSmallCapsSelector)
+            }
+        }
+    }
+
     func testFontFeatureStyle() {
         let features: [FontFeatureProvider] = [
             NumberCase.upper,

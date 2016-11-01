@@ -146,6 +146,9 @@ class AdaptiveStyleTests: XCTestCase {
             (.ordinals(false), true),
             (.scientificInferiors(true), false),
             (.scientificInferiors(false), true),
+            (.smallCaps(.none), true),
+            (.smallCaps(.fromUppercase), false),
+            (.smallCaps(.fromLowercase), false),
             ]
         for (index, tuple) in partsTuples.enumerated() {
             let partLine = partsLine + UInt(index) + 1

@@ -52,6 +52,8 @@ public struct StringStyle {
     public var `subscript`: Bool? = nil
     public var ordinals: Bool? = nil
     public var scientificInferiors: Bool? = nil
+
+    public var smallCaps: SmallCaps? = nil
     #endif
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
@@ -195,6 +197,8 @@ extension StringStyle {
             `subscript` = theStringStyle.`subscript` ?? `subscript`
             ordinals = theStringStyle.ordinals ?? ordinals
             scientificInferiors = theStringStyle.scientificInferiors ?? scientificInferiors
+
+            smallCaps = theStringStyle.smallCaps ?? smallCaps
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)

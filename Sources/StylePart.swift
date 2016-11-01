@@ -49,6 +49,8 @@ public enum StylePart {
     case `subscript`(Bool)
     case ordinals(Bool)
     case scientificInferiors(Bool)
+
+    case smallCaps(SmallCaps)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -206,6 +208,10 @@ extension StringStyle {
                 }
                 else if case let .scientificInferiors(scientificInferiors) = stylePart {
                     self.fontFeatureProviders += [scientificInferiors ? VerticalPosition.scientificInferiors : VerticalPosition.normal as FontFeatureProvider]
+                    return
+                }
+                else if case let .smallCaps(smallCaps) = stylePart {
+                    self.fontFeatureProviders += [smallCaps as FontFeatureProvider]
                     return
                 }
                 else if case let .fontFeature(featureProvider) = stylePart {
