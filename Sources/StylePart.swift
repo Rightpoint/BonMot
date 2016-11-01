@@ -195,7 +195,7 @@ extension StringStyle {
                     return
                 }
                 else if case let .`subscript`(`subscript`) = stylePart {
-                    self.fontFeatureProviders += [`subscript` ? VerticalPosition.subscript : VerticalPosition.normal as FontFeatureProvider]
+                    self.fontFeatureProviders += [`subscript` ? VerticalPosition.`subscript` : VerticalPosition.normal as FontFeatureProvider]
                     return
                 }
                 else if case let .ordinals(ordinals) = stylePart {

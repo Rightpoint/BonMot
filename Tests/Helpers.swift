@@ -139,7 +139,7 @@ let fullStyle: StringStyle = {
         fullStyle.numberCase = .upper
         fullStyle.numberSpacing = .proportional
         fullStyle.superscript = true
-        fullStyle.subscript = true
+        fullStyle.`subscript` = true
         fullStyle.ordinals = true
         fullStyle.scientificInferiors = true
     #endif

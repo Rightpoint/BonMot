@@ -232,7 +232,7 @@ class StringStyleTests: XCTestCase {
             NumberSpacing.proportional,
             NumberSpacing.monospaced,
             VerticalPosition.superscript,
-            VerticalPosition.subscript,
+            VerticalPosition.`subscript`,
             VerticalPosition.ordinals,
             VerticalPosition.scientificInferiors,
         ]

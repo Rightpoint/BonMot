@@ -90,7 +90,7 @@
             switch self {
             case .normal: selector = kNormalPositionSelector
             case .superscript: selector = kSuperiorsSelector
-            case .subscript: selector = kInferiorsSelector
+            case .`subscript`: selector = kInferiorsSelector
             case .ordinals: selector = kOrdinalsSelector
             case .scientificInferiors: selector = kScientificInferiorsSelector
             }
