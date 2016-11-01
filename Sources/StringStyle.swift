@@ -42,6 +42,8 @@ public struct StringStyle {
     public var paragraphSpacingBefore: CGFloat? = nil
     public var hyphenationFactor: Float? = nil
 
+    public var ligatures: Ligatures? = nil
+
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
 
@@ -78,6 +80,7 @@ extension StringStyle {
         theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: NSStrikethroughStyleAttributeName)
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
+        theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSLigatureAttributeName)
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
         paragraph.lineSpacing = lineSpacing ?? paragraph.lineSpacing
@@ -172,6 +175,8 @@ extension StringStyle {
         underline = theStringStyle.underline ?? underline
         strikethrough = theStringStyle.strikethrough ?? strikethrough
         baselineOffset = theStringStyle.baselineOffset ?? baselineOffset
+
+        ligatures = theStringStyle.ligatures ?? ligatures
 
         lineSpacing = theStringStyle.lineSpacing ?? lineSpacing
         paragraphSpacingAfter = theStringStyle.paragraphSpacingAfter ?? paragraphSpacingAfter

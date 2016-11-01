@@ -119,6 +119,8 @@ let fullStyle: StringStyle = {
 
     fullStyle.baselineOffset = terribleValue
 
+    fullStyle.ligatures = .disabled // not the default value
+
     fullStyle.lineSpacing = terribleValue
 
     fullStyle.paragraphSpacingAfter = terribleValue

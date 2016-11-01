@@ -100,6 +100,7 @@ class ComposableTests: XCTestCase {
         check(forPart: .baselineOffset(10), NSBaselineOffsetAttributeName, CGFloat(10))
         check(forPart: .tracking(.point(10)), NSKernAttributeName, CGFloat(10))
         check(forPart: .link(NSURL(string: "http://thebestwords.com/")!), NSLinkAttributeName, NSURL(string: "http://thebestwords.com/")!)
+        check(forPart: .ligatures(.disabled), NSLigatureAttributeName, 0)
     }
 
     func testBaseParagraphStyleIsOverridden() {

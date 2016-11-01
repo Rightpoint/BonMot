@@ -168,6 +168,10 @@
 		ABCD3E341D980E5500273936 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
 		ABCD3E351D980E5500273936 /* AttributedStringStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* AttributedStringStyleTests.swift */; };
 		ABCD3E371D980E5500273936 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
+		CD3EEE681DC92CF6002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		CD3EEE691DC92CF6002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		CD3EEE6A1DC92CF7002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		CD3EEE6B1DC92CF8002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
 		CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84321D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
@@ -278,6 +282,7 @@
 		ABCD3E251D980E4900273936 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCD3E401D99558000273936 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		CD3EEE661DC92CF0002C41BB /* Ligatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ligatures.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
 		CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTintingTests.swift; sourceTree = "<group>"; };
 		CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
@@ -367,6 +372,7 @@
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
+				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -1059,6 +1065,7 @@
 				ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */,
 				ABA75DD21D99E10400B64705 /* Platform.swift in Sources */,
 				AB30D50F1D9CB4FE006ADC9D /* Tab.swift in Sources */,
+				CD3EEE6B1DC92CF8002C41BB /* Ligatures.swift in Sources */,
 				ABA75DD61D99E10400B64705 /* StringStyle.swift in Sources */,
 				ABA75DD81D99E10400B64705 /* Special.swift in Sources */,
 				ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */,
@@ -1122,6 +1129,7 @@
 				ABA75E0A1D99E43300B64705 /* Tracking.swift in Sources */,
 				ABCD3D6C1D96F02F00273936 /* StylePart.swift in Sources */,
 				ABCD3D801D96F02F00273936 /* UIKit+Helpers.swift in Sources */,
+				CD3EEE681DC92CF6002C41BB /* Ligatures.swift in Sources */,
 				ABCD3D811D96F02F00273936 /* XMLBuilder.swift in Sources */,
 				ABCD3D701D96F02F00273936 /* NSAttributedString+BonMot.swift in Sources */,
 				AB560A061D9F692000100D15 /* AttributedStringTransformation.swift in Sources */,
@@ -1175,6 +1183,7 @@
 				AB8497B51DA16DAE00FE3414 /* Tab+Adaptive.swift in Sources */,
 				ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */,
 				ABCD3DDA1D96F6A500273936 /* StylePart.swift in Sources */,
+				CD3EEE691DC92CF6002C41BB /* Ligatures.swift in Sources */,
 				ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */,
 				ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */,
 				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adapt.swift in Sources */,
@@ -1222,6 +1231,7 @@
 				ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */,
 				CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
 				ABCD3E161D980E4900273936 /* StylePart.swift in Sources */,
+				CD3EEE6A1DC92CF7002C41BB /* Ligatures.swift in Sources */,
 				ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */,
 				ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */,
 				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,

@@ -80,6 +80,14 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testLigatureStyle() {
+        let style = StringStyle(.ligatures(.disabled))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            BONAssert(attributes: style.attributes, key: NSLigatureAttributeName, value: 0)
+        }
+    }
+
     func testAlignmentStyle() {
         let style = StringStyle(.alignment(.center))
         for (style, fullStyle) in additiviePermutations(for: style) {

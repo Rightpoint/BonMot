@@ -23,6 +23,8 @@ public enum StylePart {
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
 
+    case ligatures(Ligatures)
+
     case alignment(NSTextAlignment)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
@@ -147,6 +149,8 @@ extension StringStyle {
             self.strikethrough = strikethrough
         case let .baselineOffset(baselineOffset):
             self.baselineOffset = baselineOffset
+        case let .ligatures(ligatures):
+            self.ligatures = ligatures
         case let .alignment(alignment):
             self.alignment = alignment
         case let .tracking(tracking):
