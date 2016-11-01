@@ -55,10 +55,9 @@ public enum StylePart {
 
 extension StringStyle {
 
-    /// Create a StringStyle from an array of parts
+    /// Create a `StringStyle` from an array of parts
     ///
-    /// - parameter parts: An array of StylePart
-    /// - returns: A newly configured StringStyle
+    /// - Parameter parts: An array of `StylePart`s
     public init(_ parts: StylePart...) {
         self.init()
         for part in parts {
@@ -68,21 +67,20 @@ extension StringStyle {
 
     #if swift(>=3.0)
     #else
-    /// Create a StringStyle from a part. This is needed for Swift 2.3 determine argument type.
+    /// Create a `StringStyle` from a part. This is needed for Swift 2.3 determine argument type.
     ///
-    /// - parameter parts: An array of StylePart
-    /// - returns: A newly configured StringStyle
+    /// - Parameter part: a `StylePart`
     public init(_ part: StylePart) {
         self.init()
         self.update(part: part)
     }
     #endif
 
-    /// Derive a new StringStyle based on this style, updated with an array of StylePart.
-    ///
-    /// - parameter parts: An array of StylePart
-    /// - returns: A newly configured StringStyle
     #if swift(>=3.0)
+    /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
+    ///
+    /// - Parameter parts: An array of `StylePart`s
+    /// - Returns: A newly configured `StringStyle`
     public func byAdding(_ parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
@@ -91,6 +89,10 @@ extension StringStyle {
         return style
     }
     #else
+    /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
+    ///
+    /// - Parameter parts: An array of `StylePart`s
+    /// - Returns: A newly configured `StringStyle`
     public func byAdding(parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
