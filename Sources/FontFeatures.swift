@@ -17,7 +17,7 @@
     /// Protocol to provide values to be used by `UIFontFeatureTypeIdentifierKey` and `UIFontFeatureSelectorIdentifierKey`.
     /// You can typically find these values in CoreText.SFNTLayoutTypes
     public protocol FontFeatureProvider {
-        func featureSettings() -> (type: Int, selector: Int)
+        func featureSettings() -> [(type: Int, selector: Int)]
     }
 
     public extension BONFont {
@@ -29,7 +29,7 @@
             var fontAttributes = fontDescriptor.fontAttributes
             var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
             if featureProviders.count > 0 {
-                let newFeatures = featureProviders.map() { $0.featureAttribute() }
+                let newFeatures = featureProviders.map() { $0.featureAttributes() }.flatMap { $0 }
                 features.append(contentsOf: newFeatures)
                 fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
             }
@@ -48,12 +48,12 @@
         case upper
         case lower
 
-        public func featureSettings() -> (type: Int, selector: Int) {
+        public func featureSettings() -> [(type: Int, selector: Int)] {
             switch self {
             case .upper:
-                return (type: kNumberCaseType, selector: kUpperCaseNumbersSelector)
+                return [(type: kNumberCaseType, selector: kUpperCaseNumbersSelector)]
             case .lower:
-                return (type: kNumberCaseType, selector: kLowerCaseNumbersSelector)
+                return [(type: kNumberCaseType, selector: kLowerCaseNumbersSelector)]
             }
         }
 
@@ -65,12 +65,12 @@
         case monospaced
         case proportional
 
-        public func featureSettings() -> (type: Int, selector: Int) {
+        public func featureSettings() -> [(type: Int, selector: Int)] {
             switch self {
             case .monospaced:
-                return (type: kNumberSpacingType, selector: kMonospacedNumbersSelector)
+                return [(type: kNumberSpacingType, selector: kMonospacedNumbersSelector)]
             case .proportional:
-                return (type: kNumberSpacingType, selector: kProportionalNumbersSelector)
+                return [(type: kNumberSpacingType, selector: kProportionalNumbersSelector)]
             }
         }
 
@@ -85,7 +85,7 @@
         case ordinals
         case scientificInferiors
 
-        public func featureSettings() -> (type: Int, selector: Int) {
+        public func featureSettings() -> [(type: Int, selector: Int)] {
             let selector: Int
             switch self {
             case .normal: selector = kNormalPositionSelector
@@ -94,20 +94,22 @@
             case .ordinals: selector = kOrdinalsSelector
             case .scientificInferiors: selector = kScientificInferiorsSelector
             }
-            return (type: kVerticalPositionType, selector: selector)
+            return [(type: kVerticalPositionType, selector: selector)]
         }
 
     }
 
     extension FontFeatureProvider {
 
-        /// - returns: a dictionary representing one feature for the attributes key in the font attributes
-        func featureAttribute() -> StyleAttributes {
+        /// - returns: an array of dictionaries, each representing one feature for the attributes key in the font attributes
+        func featureAttributes() -> [StyleAttributes] {
             let featureSettings = self.featureSettings()
-            return [
-                BONFontFeatureTypeIdentifierKey: featureSettings.type,
-                BONFontFeatureSelectorIdentifierKey: featureSettings.selector
-            ]
+            return featureSettings.map {
+                return [
+                    BONFontFeatureTypeIdentifierKey: $0.type,
+                    BONFontFeatureSelectorIdentifierKey: $0.selector,
+                    ]
+            }
         }
     }
 
