@@ -103,7 +103,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
                 "p:foo": styleB,
             ]
 
-            func style(forElement name: String, attributes: [String: String]) -> StringStyle? {
+            func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle? {
                 var namedStyle = namedStyles[name] ?? StringStyle()
                 if let htmlClass = attributes["class"] {
                     namedStyle = namedStyles["\(name):\(htmlClass)"] ?? namedStyle

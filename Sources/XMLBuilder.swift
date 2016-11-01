@@ -95,8 +95,8 @@ public enum XMLStyleRule {
 
 /// This contract is used to transform an XML string into an attributed string.
 public protocol XMLStyler {
-    /// Return the style to apply for to the contents of the element. The style is sadded onto the current style
-    func style(forElement name: String, attributes: [String: String]) -> StringStyle?
+    /// Return the style to apply for to the contents of the element. The style is added onto the current style
+    func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle?
 
     /// Return a string to extend into the string being built. This is done after the style for the element has been applied, but before the contents of the element.
     func prefix(forElement name: String, attributes: [String: String]) -> Composable?
@@ -128,7 +128,7 @@ public struct XMLBuilderError: Error {
 struct XMLRuleStyler: XMLStyler {
     let rules: [XMLStyleRule]
 
-    func style(forElement name: String, attributes: [String: String]) -> StringStyle? {
+    func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle? {
         for rule in rules {
             switch rule {
             case let .style(string, style) where string == name:
@@ -234,7 +234,7 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
 
         let xmlStyler = topXMLStyler
-        let namedStyle = xmlStyler.style(forElement: elementName, attributes: attributes)
+        let namedStyle = xmlStyler.style(forElement: elementName, attributes: attributes, currentStyle: topStyle)
         var newStyle = topStyle
         if let namedStyle = namedStyle {
             newStyle.add(stringStyle: namedStyle)
