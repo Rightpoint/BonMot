@@ -53,8 +53,6 @@ public struct StringStyle {
     public var tracking: Tracking? = nil
     public var xmlStyler: XMLStyler? = nil
 
-    public init() {}
-
 }
 
 extension StringStyle {

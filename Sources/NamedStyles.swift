@@ -16,12 +16,12 @@ public class NamedStyles: NSObject {
     /// This singleton is per-populated with 3 values for Dynamic Text. "control", "body", and "preferred"
     #if os(iOS) || os(tvOS)
     public static var shared: NamedStyles = {
-        let control = StringStyle(parts:
+        let control = StringStyle(
             .adapt(.control))
         let style = NamedStyles(styles: [
             "control": control,
-            "body": StringStyle(parts: .adapt(.body)),
-            "preferred": StringStyle(parts: .adapt(.preferred)) ,
+            "body": StringStyle(.adapt(.body)),
+            "preferred": StringStyle(.adapt(.preferred)),
         ])
         return style
     }()

@@ -76,12 +76,12 @@ extension BONFont {
     }
 }
 
-let styleA = StringStyle(parts:
+let styleA = StringStyle(
     .font(.fontA),
     .color(.colorA)
 )
 
-let styleB = StringStyle(parts:
+let styleB = StringStyle(
     .font(.fontB),
     .color(.colorB),
     .headIndent(10),
@@ -90,14 +90,14 @@ let styleB = StringStyle(parts:
 
 #if os(OSX)
 #else
-let adaptiveStyle = StringStyle(parts:
+let adaptiveStyle = StringStyle(
     .font(.fontA),
     .color(.colorA),
     .adapt(.body)
 )
 #endif
 
-let styleBz = StringStyle(parts:
+let styleBz = StringStyle(
     .font(.fontB),
     .color(.colorB),
     .headIndent(10),

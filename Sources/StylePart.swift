@@ -59,12 +59,24 @@ extension StringStyle {
     ///
     /// - parameter parts: An array of StylePart
     /// - returns: A newly configured StringStyle
-    public init(parts: StylePart...) {
+    public init(_ parts: StylePart...) {
         self.init()
         for part in parts {
             self.update(StylePart: part)
         }
     }
+
+    #if swift(>=3.0)
+    #else
+    /// Create a StringStyle from a part. This is needed for Swift 2.3 determine argument type.
+    ///
+    /// - parameter parts: An array of StylePart
+    /// - returns: A newly configured StringStyle
+    public init(_ part: StylePart) {
+        self.init()
+        self.update(StylePart: part)
+    }
+    #endif
 
     /// Derive a new StringStyle based on this style, updated with an array of StylePart.
     ///

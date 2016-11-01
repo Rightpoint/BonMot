@@ -24,13 +24,13 @@ enum DemoStrings {
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
         // Define styles
-        let accent = StringStyle(parts: .font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+        let accent = StringStyle(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
         let black = accent.byAdding(.color(.white), .backgroundColor(.black))
         let red = accent.byAdding(.color(.white), .backgroundColor(.raizlabsRed))
         let signed = accent.byAdding(.color(.raizlabsRed))
 
         // Define the base style with xml rules for all tags
-        let baseStyle = StringStyle(parts:
+        let baseStyle = StringStyle(
             .font(BONFont(name: "GillSans-Light", size: 20)!),
             .lineHeightMultiple(1.8),
             .color(.darkGray),
@@ -55,7 +55,7 @@ enum DemoStrings {
         let boat = UIImage(named: "boat")!.styled(with:
             .color(.raizlabsRed))
 
-        let baseStyle = StringStyle(parts:
+        let baseStyle = StringStyle(
             .alignment(.center),
             .color(.black)
         )
@@ -92,18 +92,18 @@ enum DemoStrings {
     /// to move the period at the end of the sentence closer to its preceding character.
     static let lineSpacingString: NSAttributedString = {
 
-        let fullStyle = StringStyle(parts:
+        let fullStyle = StringStyle(
             .alignment(.center),
             .color(.raizlabsRed),
             .font(BONFont(name: "AvenirNext-Medium", size: 16)!),
             .adapt(.body),
             .lineSpacing(20),
             .xmlRules([
-                .style("large", StringStyle(parts:
+                .style("large", StringStyle(
                     .font(BONFont(name: "AvenirNext-Heavy", size: 64)!),
                     .lineSpacing(40),
                     .adapt(.control))),
-                .style("kern", StringStyle(parts:
+                .style("kern", StringStyle(
                     .tracking(.adobe(-80))
                     )),
                 ])
@@ -115,7 +115,7 @@ enum DemoStrings {
         return attributedString
     }()
 
-    static let proportionalStyle = StringStyle(parts:
+    static let proportionalStyle = StringStyle(
         .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
         .adapt(.control)
     )
@@ -143,7 +143,7 @@ enum DemoStrings {
             Special.lineSeparator,
             Special.emDash,
             "Radia Perlman",
-            ], baseStyle: StringStyle(parts:
+            ], baseStyle: StringStyle(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(.control)
             )),
@@ -151,18 +151,18 @@ enum DemoStrings {
             "🍑 →",
             Tab.headIndent(4.0),
             "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
-            ], baseStyle: StringStyle(parts:
+            ], baseStyle: StringStyle(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .color(.darkGray),
                 .adapt(.control)
             )),
         ({
-            let listItem = StringStyle(parts:
+            let listItem = StringStyle(
                 .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
                 .adapt(.control),
                 .paragraphSpacingAfter(10.0)
             )
-            let code = StringStyle(parts:
+            let code = StringStyle(
                 .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
                 .backgroundColor(BONColor.blue.withAlphaComponent(0.1)),
                 .adapt(.control)
@@ -190,12 +190,12 @@ enum DemoStrings {
         UIImage(named: "knot")!,
         "2".styled(with: .baselineOffset(8)),
         UIImage(named: "bee")!
-        ], baseStyle: StringStyle(parts:
+        ], baseStyle: StringStyle(
             .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
             .adapt(.control)
         ))
 
-    static let noSpaceTextStyle = StringStyle(parts:
+    static let noSpaceTextStyle = StringStyle(
         .font(.systemFont(ofSize: 17)),
         .adapt(.control),
         .color(.darkGray),
@@ -224,7 +224,7 @@ enum DemoStrings {
         // Embed an attribute for the storyboard identifier to link to. This is
         // a good example of custom attributes, even if this might not be the best
         // UIKit design pattern.
-        return StringStyle(parts: .initialAttributes(["Storyboard": theIdentifier]))
+        return StringStyle(.initialAttributes(["Storyboard": theIdentifier]))
     }
 
     static let dynamcTypeUIKit = DemoStrings.CustomStoryboard(identifier: "CatalogViewController")

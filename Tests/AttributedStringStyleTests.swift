@@ -17,7 +17,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testBasicAssertionUtilities() {
-        let style = StringStyle(parts: .font(.fontA), .color(.colorA), .backgroundColor(.colorB))
+        let style = StringStyle(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
             // We're only checking the font name and point size, since the full style could have font
@@ -32,7 +32,7 @@ class StringStyleTests: XCTestCase {
 
     #if os(iOS) || os(tvOS)
     func testTextStyle() {
-        let style = StringStyle(parts: .textStyle(titleTextStyle))
+        let style = StringStyle(.textStyle(titleTextStyle))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             let font = style.attributes[NSFontAttributeName] as? UIFont
@@ -44,7 +44,7 @@ class StringStyleTests: XCTestCase {
 
     func testURL() {
         let url = NSURL(string: "http://apple.com/")!
-        let style = StringStyle(parts: .link(url))
+        let style = StringStyle(.link(url))
 
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
@@ -53,7 +53,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testStrikethroughStyle() {
-        let style = StringStyle(parts: .strikethrough(.byWord, .colorA))
+        let style = StringStyle(.strikethrough(.byWord, .colorA))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
             BONAssert(attributes: style.attributes, key: NSStrikethroughStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
@@ -62,7 +62,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testUnderlineStyle() {
-        let style = StringStyle(parts: .underline(.byWord, .colorA))
+        let style = StringStyle(.underline(.byWord, .colorA))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
             BONAssert(attributes: style.attributes, key: NSUnderlineStyleAttributeName, value: NSUnderlineStyle.byWord.rawValue)
@@ -71,7 +71,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testBaselineStyle() {
-        let style = StringStyle(parts: .baselineOffset(15))
+        let style = StringStyle(.baselineOffset(15))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, key: NSBaselineOffsetAttributeName, float: CGFloat(15), accuracy: 0.001)
@@ -79,7 +79,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testAlignmentStyle() {
-        let style = StringStyle(parts: .alignment(.center))
+        let style = StringStyle(.alignment(.center))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
@@ -87,7 +87,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testNumberSpacingStyle() {
-        let style = StringStyle(parts: .font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberSpacing(.monospaced))
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberSpacing(.monospaced))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             let font = style.attributes[NSFontAttributeName] as? BONFont
@@ -110,7 +110,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testNumberCaseStyle() {
-        let style = StringStyle(parts: .font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberCase(.lower))
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberCase(.lower))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
             let font = style.attributes[NSFontAttributeName] as? BONFont
@@ -135,7 +135,7 @@ class StringStyleTests: XCTestCase {
     func testFontFeatureStyle() {
         let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
         for feature in features {
-            let attributes = StringStyle(parts: .font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
+            let attributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
             XCTAssertEqual(attributes.count, 1)
             let font = attributes[NSFontAttributeName] as? BONFont
             XCTAssertNotNil(font)
@@ -163,7 +163,7 @@ class StringStyleTests: XCTestCase {
     ]
 
     func testParagraphStyles() {
-        let style = StringStyle(parts:
+        let style = StringStyle(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -188,7 +188,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testParagraphStyleAdd() {
-        var style = StringStyle(parts:
+        var style = StringStyle(
             .lineSpacing(1),
             .paragraphSpacingAfter(1),
             .alignment(.left),
@@ -203,7 +203,7 @@ class StringStyleTests: XCTestCase {
             .paragraphSpacingBefore(1),
             .hyphenationFactor(1)
             )
-        style.add(stringStyle: StringStyle(parts:
+        style.add(stringStyle: StringStyle(
             .lineSpacing(10),
             .paragraphSpacingAfter(10),
             .alignment(.center),
@@ -228,7 +228,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testAdobeTracking() {
-        let style = StringStyle(parts: .tracking(.adobe(300)))
+        let style = StringStyle(.tracking(.adobe(300)))
         for (style, _) in additiviePermutations(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
@@ -243,7 +243,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testPointTracking() {
-        let style = StringStyle(parts: .tracking(.point(10)))
+        let style = StringStyle(.tracking(.point(10)))
         for (style, _) in additiviePermutations(for: style) {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
