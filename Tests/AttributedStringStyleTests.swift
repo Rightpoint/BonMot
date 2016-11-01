@@ -9,6 +9,7 @@ import XCTest
 import BonMot
 import CoreText
 
+//swiftlint:disable file_length
 //swiftlint:disable:next type_body_length
 class StringStyleTests: XCTestCase {
 
@@ -409,3 +410,4 @@ class StringStyleTests: XCTestCase {
     }
 
 }
+//swiftlint:enable file_length
