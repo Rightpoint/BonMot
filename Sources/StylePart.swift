@@ -59,6 +59,13 @@ extension StringStyle {
     ///
     /// - Parameter parts: An array of `StylePart`s
     public init(_ parts: StylePart...) {
+        self.init(parts)
+    }
+
+    /// Create a `StringStyle` from an array of parts
+    ///
+    /// - Parameter parts: An array of `StylePart`s
+    public init(_ parts: [StylePart]) {
         self.init()
         for part in parts {
             self.update(part: part)
@@ -76,31 +83,25 @@ extension StringStyle {
     }
     #endif
 
-    #if swift(>=3.0)
     /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
     ///
     /// - Parameter parts: An array of `StylePart`s
     /// - Returns: A newly configured `StringStyle`
     public func byAdding(_ parts: StylePart...) -> StringStyle {
-        var style = self
-        for part in parts {
-            style.update(part: part)
-        }
-        return style
+        return byAdding(parts)
     }
-    #else
+
     /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
     ///
     /// - Parameter parts: An array of `StylePart`s
     /// - Returns: A newly configured `StringStyle`
-    public func byAdding(parts: StylePart...) -> StringStyle {
+    public func byAdding(_ parts: [StylePart]) -> StringStyle {
         var style = self
         for part in parts {
             style.update(part: part)
         }
         return style
     }
-    #endif
 
 }
 
