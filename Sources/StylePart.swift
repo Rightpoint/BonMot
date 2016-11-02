@@ -222,6 +222,7 @@ extension StringStyle {
                 }
                 else if case let .fontFeature(featureProvider) = stylePart {
                     self.fontFeatureProviders.append(featureProvider)
+                    return
                 }
             #endif
             #if os(iOS) || os(tvOS)
