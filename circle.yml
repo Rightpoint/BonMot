@@ -1,0 +1,47 @@
+machine:
+  xcode:
+    version: "8.0"
+
+checkout:
+  post:
+    - git submodule update --init --recursive
+
+deployment:
+  continuous:
+    commands:
+      - set -o pipefail &&
+          xcodebuild "build-for-testing test-without-building"
+          -project BonMot.xcodeproj
+          -scheme BonMot-OSX
+          -sdk macosx
+          -destination "arch=x86_64"
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGN_IDENTITY=
+          | xcpretty
+      - set -o pipefail &&
+          xcodebuild "build-for-testing test-without-building"
+          -project BonMot.xcodeproj
+          -scheme BonMot-iOS
+          -sdk iphonesimulator
+          -destination "name=iPhone 6s"
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGN_IDENTITY=
+          | xcpretty
+      - set -o pipefail &&
+          xcodebuild "build-for-testing test-without-building"
+          -project BonMot.xcodeproj
+          -scheme BonMot-tvOS
+          -sdk appletvsimulator
+          -destination "name=Apple TV 1080p"
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGN_IDENTITY=
+          | xcpretty
+      - set -o pipefail &&
+          xcodebuild "build-for-testing test-without-building"
+          -project BonMot.xcodeproj
+          -scheme BonMot-watchOS
+          -sdk watchsimulator
+          -destination "name=Apple Watch - 38mm"
+          CODE_SIGNING_REQUIRED=NO
+          CODE_SIGN_IDENTITY=
+          | xcpretty
