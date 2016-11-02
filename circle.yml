@@ -2,12 +2,27 @@ machine:
   xcode:
     version: "8.0"
 
+dependencies:
+  pre:
+    - brew install carthage
+    - brew update 1> /dev/null 2> /dev/null
+    - brew outdated carthage || brew upgrade carthage
+
 checkout:
   post:
     - git submodule update --init --recursive
 test:
   override:
     - set -o pipefail &&
+        xcodebuild clean build test
+        -project BonMot.xcodeproj
+        -scheme BonMot-OSX
+        -sdk macosx
+        -destination "arch=x86_64"
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGN_IDENTITY=
+        | xcpretty
+    - set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 &&
         xcodebuild clean build test
         -project BonMot.xcodeproj
         -scheme BonMot-OSX
@@ -25,6 +40,15 @@ test:
         CODE_SIGNING_REQUIRED=NO
         CODE_SIGN_IDENTITY=
         | xcpretty
+    - set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 &&
+        xcodebuild clean build test
+        -project BonMot.xcodeproj
+        -scheme BonMot-iOS
+        -sdk iphonesimulator
+        -destination "name=iPhone 6s"
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGN_IDENTITY=
+        | xcpretty
     - set -o pipefail &&
         xcodebuild clean build test
         -project BonMot.xcodeproj
@@ -34,8 +58,26 @@ test:
         CODE_SIGNING_REQUIRED=NO
         CODE_SIGN_IDENTITY=
         | xcpretty
-    - set -o pipefail &&
+    - set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 &&
         xcodebuild clean build test
+        -project BonMot.xcodeproj
+        -scheme BonMot-tvOS
+        -sdk appletvsimulator
+        -destination "name=Apple TV 1080p"
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGN_IDENTITY=
+        | xcpretty
+    - set -o pipefail &&
+        xcodebuild clean build
+        -project BonMot.xcodeproj
+        -scheme BonMot-watchOS
+        -sdk watchsimulator
+        -destination "name=Apple Watch - 38mm"
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGN_IDENTITY=
+        | xcpretty
+    - set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 &&
+        xcodebuild clean build
         -project BonMot.xcodeproj
         -scheme BonMot-watchOS
         -sdk watchsimulator
