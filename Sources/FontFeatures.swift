@@ -128,7 +128,7 @@
     public enum SmallCaps: FontFeatureProvider {
 
         /// No small caps are used.
-        case none
+        case disabled
 
         /// Uppercase letters in the source string are replaced with small caps.
         /// Lowercase letters remain unmodified.
@@ -140,7 +140,7 @@
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
             switch self {
-            case .none:
+            case .disabled:
                 return [
                     (type: kLowerCaseType, selector: kDefaultLowerCaseSelector),
                     (type: kUpperCaseType, selector: kDefaultUpperCaseSelector),

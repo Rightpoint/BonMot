@@ -147,7 +147,7 @@ class AdaptiveStyleTests: XCTestCase {
             (.ordinals(false), true),
             (.scientificInferiors(true), false),
             (.scientificInferiors(false), true),
-            (.smallCaps(.none), true),
+            (.smallCaps(.disabled), true),
             (.smallCaps(.fromUppercase), false),
             (.smallCaps(.fromLowercase), false),
             (.stylisticAlternates(.noAlternates), true),
