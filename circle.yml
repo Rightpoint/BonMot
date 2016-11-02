@@ -6,9 +6,11 @@ checkout:
   post:
     - git submodule update --init --recursive
 test:
+  override:
+
   post:
     - set -o pipefail &&
-        xcodebuild "build-for-testing test-without-building"
+        xcodebuild "build\-for\-testing test\-without\-building"
         -project BonMot.xcodeproj
         -scheme BonMot-OSX
         -sdk macosx
