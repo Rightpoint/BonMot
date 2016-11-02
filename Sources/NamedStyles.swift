@@ -15,13 +15,16 @@ public class NamedStyles: NSObject {
     /// A shared repository of styles. The shared NamedStyles is used by the `bonMotStyleName` property in Interface Builder.
     /// This singleton is per-populated with 3 values for Dynamic Text. "control", "body", and "preferred"
     #if os(iOS) || os(tvOS)
-    public static var shared = NamedStyles(
-        styles: [
-            "control": .style(.adapt(.control)),
-            "body": .style(.adapt(.body)),
-            "preferred": .style(.adapt(.preferred)) ,
-        ]
-    )
+    public static var shared: NamedStyles = {
+        let control = StringStyle(
+            .adapt(.control))
+        let style = NamedStyles(styles: [
+            "control": control,
+            "body": StringStyle(.adapt(.body)),
+            "preferred": StringStyle(.adapt(.preferred)),
+        ])
+        return style
+    }()
     #else
     public static var shared = NamedStyles()
     #endif

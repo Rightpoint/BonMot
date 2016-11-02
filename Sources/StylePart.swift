@@ -1,5 +1,5 @@
 //
-//  StringStylePart.swift
+//  StylePart.swift
 //
 //  Created by Brian King on 9/1/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -11,9 +11,9 @@
     import UIKit
 #endif
 
-/// StringStylePart encapsulates one setting in StringStyle. It is used
+/// StylePart encapsulates one setting in StringStyle. It is used
 /// as a DSL for building StringStyle across BonMot, but it is just syntactic sugar.
-public enum StringStylePart {
+public enum StylePart {
     case initialAttributes(StyleAttributes)
     case font(BONFont)
     case link(NSURL)
@@ -55,46 +55,48 @@ public enum StringStylePart {
 
 extension StringStyle {
 
-    /// Create a StringStyle from an array of parts
+    /// Create a `StringStyle` from an array of parts
     ///
-    /// - parameter parts: An array of StringStylePart
-    /// - returns: A newly configured StringStyle
-    #if swift(>=3.0)
-    public static func style(_ parts: StringStylePart...) -> StringStyle {
-        var style = StringStyle()
+    /// - Parameter parts: An array of `StylePart`s
+    public init(_ parts: StylePart...) {
+        self.init()
         for part in parts {
-            style.update(stringStylePart: part)
+            self.update(part: part)
         }
-        return style
-    }
-    #else
-    public static func style(parts: StringStylePart...) -> StringStyle {
-        var style = StringStyle()
-        for part in parts {
-            style.update(stringStylePart: part)
-        }
-        return style
     }
 
+    #if swift(>=3.0)
+    #else
+    /// Create a `StringStyle` from a part. This is needed for Swift 2.3 determine argument type.
+    ///
+    /// - Parameter part: a `StylePart`
+    public init(_ part: StylePart) {
+        self.init()
+        self.update(part: part)
+    }
     #endif
 
-    /// Derive a new StringStyle based on this style, updated with an array of StringStylePart.
-    ///
-    /// - parameter parts: An array of StringStylePart
-    /// - returns: A newly configured StringStyle
     #if swift(>=3.0)
-    public func byAdding(_ parts: StringStylePart...) -> StringStyle {
+    /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
+    ///
+    /// - Parameter parts: An array of `StylePart`s
+    /// - Returns: A newly configured `StringStyle`
+    public func byAdding(_ parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(stringStylePart: part)
+            style.update(part: part)
         }
         return style
     }
     #else
-    public func byAdding(parts: StringStylePart...) -> StringStyle {
+    /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
+    ///
+    /// - Parameter parts: An array of `StylePart`s
+    /// - Returns: A newly configured `StringStyle`
+    public func byAdding(parts: StylePart...) -> StringStyle {
         var style = self
         for part in parts {
-            style.update(stringStylePart: part)
+            style.update(part: part)
         }
         return style
     }
@@ -107,7 +109,7 @@ extension StringStyle {
     /// Update the style with the specified style part.
     ///
     // swiftlint:disable:next cyclomatic_complexity
-    mutating func update(stringStylePart stylePart: StringStylePart) {
+    mutating func update(part stylePart: StylePart) {
         switch stylePart {
         case let .initialAttributes(attributes):
             self.initialAttributes = attributes
