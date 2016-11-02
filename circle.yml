@@ -7,10 +7,8 @@ checkout:
     - git submodule update --init --recursive
 test:
   override:
-
-  post:
     - set -o pipefail &&
-        xcodebuild "build\-for\-testing test\-without\-building"
+        xcodebuild clean build test
         -project BonMot.xcodeproj
         -scheme BonMot-OSX
         -sdk macosx
@@ -19,7 +17,7 @@ test:
         CODE_SIGN_IDENTITY=
         | xcpretty
     - set -o pipefail &&
-        xcodebuild "build-for-testing test-without-building"
+        xcodebuild clean build test
         -project BonMot.xcodeproj
         -scheme BonMot-iOS
         -sdk iphonesimulator
@@ -28,7 +26,7 @@ test:
         CODE_SIGN_IDENTITY=
         | xcpretty
     - set -o pipefail &&
-        xcodebuild "build-for-testing test-without-building"
+        xcodebuild clean build test
         -project BonMot.xcodeproj
         -scheme BonMot-tvOS
         -sdk appletvsimulator
@@ -37,7 +35,7 @@ test:
         CODE_SIGN_IDENTITY=
         | xcpretty
     - set -o pipefail &&
-        xcodebuild "build-for-testing test-without-building"
+        xcodebuild clean build test
         -project BonMot.xcodeproj
         -scheme BonMot-watchOS
         -sdk watchsimulator
