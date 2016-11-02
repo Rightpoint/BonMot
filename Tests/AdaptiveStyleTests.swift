@@ -138,6 +138,7 @@ class AdaptiveStyleTests: XCTestCase {
             (.numberCase(.lower), false),
             (.numberSpacing(.monospaced), false),
             (.numberSpacing(.proportional), false),
+
             (.superscript(true), false),
             (.superscript(false), true),
             (.`subscript`(true), false),
@@ -146,6 +147,7 @@ class AdaptiveStyleTests: XCTestCase {
             (.ordinals(false), true),
             (.scientificInferiors(true), false),
             (.scientificInferiors(false), true),
+
             (.smallCaps(.none), true),
             (.smallCaps(.fromUppercase), false),
             (.smallCaps(.fromLowercase), false),
