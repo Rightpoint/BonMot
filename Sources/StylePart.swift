@@ -55,6 +55,8 @@ public enum StylePart {
     case scientificInferiors(Bool)
 
     case smallCaps(SmallCaps)
+
+    case stylisticAlternates(StylisticAlternates)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -218,6 +220,10 @@ extension StringStyle {
                 }
                 else if case let .smallCaps(smallCaps) = stylePart {
                     self.fontFeatureProviders += [smallCaps as FontFeatureProvider]
+                    return
+                }
+                else if case let .stylisticAlternates(stylisticAlternates) = stylePart {
+                    self.fontFeatureProviders += [stylisticAlternates as FontFeatureProvider]
                     return
                 }
                 else if case let .fontFeature(featureProvider) = stylePart {

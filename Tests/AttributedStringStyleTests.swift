@@ -257,6 +257,29 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testStylisticAlternatesStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .stylisticAlternates(.two(on: true)))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kStylisticAlternativesType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kStylisticAltTwoOnSelector)
+            }
+        }
+    }
+
     func testFontFeatureStyle() {
         let features: [FontFeatureProvider] = [
             NumberCase.upper,

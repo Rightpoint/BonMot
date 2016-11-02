@@ -129,6 +129,7 @@ class AdaptiveStyleTests: XCTestCase {
         XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraExtraExtraLarge.compatible), 10.8, accuracy: 0.0001)
     }
 
+    //swiftlint:disable function_body_length
     /// Test that font feature settings overrides persist through
     /// Dynamic Type adaptation
     func testFeatureSettingsAdaptation() {
@@ -149,6 +150,19 @@ class AdaptiveStyleTests: XCTestCase {
             (.smallCaps(.none), true),
             (.smallCaps(.fromUppercase), false),
             (.smallCaps(.fromLowercase), false),
+            (.stylisticAlternates(.noAlternates), true),
+            (.stylisticAlternates(.one(on: true)), false),  // these are the supported stylistic alternates for EBGaramond12-Regular
+            (.stylisticAlternates(.one(on: false)), true),
+            (.stylisticAlternates(.two(on: true)), false),
+            (.stylisticAlternates(.two(on: false)), true),
+            (.stylisticAlternates(.five(on: true)), false),
+            (.stylisticAlternates(.five(on: false)), true),
+            (.stylisticAlternates(.six(on: true)), false),
+            (.stylisticAlternates(.six(on: false)), true),
+            (.stylisticAlternates(.seven(on: true)), false),
+            (.stylisticAlternates(.seven(on: false)), true),
+            (.stylisticAlternates(.twenty(on: true)), false),
+            (.stylisticAlternates(.twenty(on: false)), true),
             ]
         for (index, tuple) in partsTuples.enumerated() {
             let partLine = partsLine + UInt(index) + 1
@@ -191,6 +205,7 @@ class AdaptiveStyleTests: XCTestCase {
             }
         }
     }
+    //swiftlint:enable function_body_length
 
     func testTabAdaptation() {
         func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {
