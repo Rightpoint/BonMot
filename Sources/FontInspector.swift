@@ -76,20 +76,19 @@
             }
 
             #if swift(>=3.0)
-                guard let typedFeatures = features as? [FontFeatureDictionary] else {
-                    fatalError("failed to convert to \([FontFeatureDictionary].self) from \(features)")
-                }
-                return typedFeatures
+                let intermediateFeatures = features // so we have the same name as in Swift 2.3
             #else
                 // Type gymnastics because Swift 2.3 doesn't like converting CFArray to [[String : AnyObject]] in one step
-                let partlyUnwrappedArray = features as [AnyObject]
+                let intermediateFeatures = features as [AnyObject]
 
-                guard let typedFeatures = partlyUnwrappedArray as? [FontFeatureDictionary] else {
-                    fatalError()
-                }
-
-                return typedFeatures
             #endif
+
+            guard let typedFeatures = intermediateFeatures as? [FontFeatureDictionary] else {
+                fatalError("failed to convert to \([FontFeatureDictionary].self) from \(features)")
+            }
+
+            return typedFeatures
+
         }
 
     }
