@@ -189,7 +189,7 @@ extension StringStyle {
         case let .style(style):
             self.add(stringStyle: style)
         default:
-            // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
+            // #if and enums are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {
                 self.hyphenationFactor = hyphenationFactor
             }
