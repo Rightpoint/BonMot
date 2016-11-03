@@ -172,6 +172,13 @@
 		CD3EEE691DC92CF6002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
 		CD3EEE6A1DC92CF7002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
 		CD3EEE6B1DC92CF8002C41BB /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		CD3EEE6E1DCA68ED002C41BB /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		CD3EEE6F1DCA68ED002C41BB /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		CD3EEE701DCA68EF002C41BB /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		CD3EEE711DCA68FB002C41BB /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
+		CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
+		CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
 		CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84321D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
@@ -283,6 +290,8 @@
 		ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCD3E401D99558000273936 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		CD3EEE661DC92CF0002C41BB /* Ligatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ligatures.swift; sourceTree = "<group>"; };
+		CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspector.swift; sourceTree = "<group>"; };
+		CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspectorTests.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
 		CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTintingTests.swift; sourceTree = "<group>"; };
 		CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
@@ -396,6 +405,7 @@
 				ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */,
 				CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */,
 				CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */,
+				CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -529,6 +539,7 @@
 				ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */,
 				CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */,
 				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
+				CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */,
 				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
@@ -1073,6 +1084,7 @@
 				ABA75DDB1D99E10400B64705 /* StylePart.swift in Sources */,
 				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
 				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
+				CD3EEE711DCA68FB002C41BB /* FontInspector.swift in Sources */,
 				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
 				CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */,
 				AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */,
@@ -1117,6 +1129,7 @@
 				ABCD3D7F1D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
 				AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */,
 				ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */,
+				CD3EEE6E1DCA68ED002C41BB /* FontInspector.swift in Sources */,
 				ABCD3D711D96F02F00273936 /* Platform.swift in Sources */,
 				CDF7E97F1D9C612800FF46BF /* MutableCopying.swift in Sources */,
 				AB560A0A1DA0C17800100D15 /* Tracking+Adaptive.swift in Sources */,
@@ -1149,6 +1162,7 @@
 			files = (
 				ABCD3DB31D96F06800273936 /* Compatibility.swift in Sources */,
 				ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */,
+				CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				ABCD3DB01D96F06800273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DB61D96F06800273936 /* NSAttributedStringDebugTests.swift in Sources */,
@@ -1171,6 +1185,7 @@
 				ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */,
 				CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3DD31D96F6A500273936 /* StyleableUIElement.swift in Sources */,
+				CD3EEE6F1DCA68ED002C41BB /* FontInspector.swift in Sources */,
 				AB30D5101D9D9438006ADC9D /* Composable.swift in Sources */,
 				ABCD3DD41D96F6A500273936 /* AdaptableTextContainer.swift in Sources */,
 				AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */,
@@ -1203,6 +1218,7 @@
 			files = (
 				ABCD3DF21D96F6E200273936 /* Compatibility.swift in Sources */,
 				ABCD3DF31D96F6E200273936 /* UIKitBehaviorTests.swift in Sources */,
+				CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				ABCD3DF41D96F6E200273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DF51D96F6E200273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DF61D96F6E200273936 /* NSAttributedStringDebugTests.swift in Sources */,
@@ -1228,6 +1244,7 @@
 				AB30D50E1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABCD3E111D980E4900273936 /* StringStyle.swift in Sources */,
 				ABCD3E131D980E4900273936 /* Special.swift in Sources */,
+				CD3EEE701DCA68EF002C41BB /* FontInspector.swift in Sources */,
 				ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */,
 				CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
 				ABCD3E161D980E4900273936 /* StylePart.swift in Sources */,
@@ -1249,6 +1266,7 @@
 				ABCD3E2F1D980E5500273936 /* NSAttributedStringDebugTests.swift in Sources */,
 				AB6633091DA5C5F90007F301 /* BONFontBehaviorTests.swift in Sources */,
 				ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */,
+				CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				ABCD3E321D980E5500273936 /* ComposableTests.swift in Sources */,
 				CDEA84381D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
 				1E902AB61DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */,
@@ -1449,7 +1467,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1494,7 +1512,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 3.0.1;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
