@@ -190,7 +190,7 @@ extension StringStyle {
         case let .style(style):
             self.add(stringStyle: style)
         default:
-            // interaction between `#if` and `switch` is disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
+            // interaction between `#if` and `switch` is disappointing. This case is in `default:` to remove a warning that default won't be accessed on some platforms.
             switch stylePart {
             case let .hyphenationFactor(hyphenationFactor):
                 self.hyphenationFactor = hyphenationFactor
