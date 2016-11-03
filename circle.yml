@@ -6,10 +6,6 @@ dependencies:
   pre:
     - brew update 1> /dev/null 2> /dev/null
     - brew outdated carthage || brew upgrade carthage
-
-checkout:
-  post:
-    - git submodule update --init --recursive
 test:
   override:
     - ./scripts/macOS.sh
