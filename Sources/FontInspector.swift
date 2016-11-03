@@ -81,6 +81,7 @@
                 }
                 return typedFeatures
             #else
+                // Type gymnastics because Swift 2.3 doesn't like converting CFArray to [[String : AnyObject]] in one step
                 let partlyUnwrappedArray = features as [AnyObject]
 
                 guard let typedFeatures = partlyUnwrappedArray as? [FontFeatureDictionary] else {
