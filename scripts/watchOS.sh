@@ -1,5 +1,11 @@
 #!/bin/sh
 
+## Circle's OS X image is messed up
+## https://discuss.circleci.com/t/multiple-ios-simulators-available-for-single-os-device-configurations/7854
+## If you are getting an error "Unable to find a destination matching the provided destination specifier:"
+## replace platform=watchOS Simulator,name=Apple Watch - 38mm,OS=10.0 with id=$ID where $ID is one of
+## of the ones provided
+
 set -o pipefail && \
   xcodebuild clean build \
   -project BonMot.xcodeproj \
