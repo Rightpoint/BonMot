@@ -281,7 +281,7 @@ class StringStyleTests: XCTestCase {
     }
 
     func testFontFeatureStyle() {
-        let features: [FontFeatureProvider] = [
+        let featuresLine: UInt = #line; let features: [FontFeatureProvider] = [
             NumberCase.upper,
             NumberCase.lower,
             NumberSpacing.proportional,
@@ -291,15 +291,16 @@ class StringStyleTests: XCTestCase {
             VerticalPosition.ordinals,
             VerticalPosition.scientificInferiors,
         ]
-        for feature in features {
+        for (index, feature) in features.enumerated() {
+            let featureLine = featuresLine + UInt(index) + 1
             let attributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
-            XCTAssertEqual(attributes.count, 1)
+            XCTAssertEqual(attributes.count, 1, line: featureLine)
             let font = attributes[NSFontAttributeName] as? BONFont
-            XCTAssertNotNil(font)
+            XCTAssertNotNil(font, line: featureLine)
             let fontAttributes = font?.fontDescriptor.fontAttributes
-            XCTAssertNotNil(fontAttributes)
+            XCTAssertNotNil(fontAttributes, line: featureLine)
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
-            XCTAssertNotNil(featureAttribute)
+            XCTAssertNotNil(featureAttribute, line: featureLine)
         }
     }
 
