@@ -290,6 +290,9 @@ class StringStyleTests: XCTestCase {
             VerticalPosition.`subscript`,
             VerticalPosition.ordinals,
             VerticalPosition.scientificInferiors,
+            SmallCaps.fromUppercase,
+            SmallCaps.fromLowercase,
+            StylisticAlternates.six(on: true),
         ]
         for (index, feature) in features.enumerated() {
             let featureLine = featuresLine + UInt(index) + 1
