@@ -307,6 +307,78 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testAdditiveFontFeatures() {
+        let string = "0<one>1<two>2</two></one>"
+        let font = BONFont(name: "EBGaramond12-Regular", size: 24)!
+        let rules: [XMLStyleRule] = [
+            .style("one", StringStyle(.stylisticAlternates(.two(on: true)), .smallCaps(.fromLowercase))),
+            .style("two", StringStyle(.stylisticAlternates(.five(on: true)), .smallCaps(.disabled))),
+        ]
+
+        let attributed = string.styled(with: .font(font), .xmlRules(rules))
+        XCTAssertEqual(attributed.string, "012")
+
+        let attrs0 = attributed.attributes(at: 0, effectiveRange: nil)
+        let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
+        let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
+
+        guard let font0 = attrs0[NSFontAttributeName] as? BONFont else { XCTFail(); return }
+        guard let font1 = attrs1[NSFontAttributeName] as? BONFont else { XCTFail(); return }
+        guard let font2 = attrs2[NSFontAttributeName] as? BONFont else { XCTFail(); return }
+
+        let descriptor0 = font0.fontDescriptor
+        let descriptor1 = font1.fontDescriptor
+        let descriptor2 = font2.fontDescriptor
+
+        let descriptorAttrs0 = descriptor0.fontAttributes
+        let descriptorAttrs1 = descriptor1.fontAttributes
+        let descriptorAttrs2 = descriptor2.fontAttributes
+
+        XCTAssertNil(descriptorAttrs0[BONFontDescriptorFeatureSettingsAttribute])
+
+        #if swift(>=3.0)
+            typealias BaseType = Any
+        #else
+            typealias BaseType = AnyObject
+        #endif
+
+        guard let featuresArray1 = descriptorAttrs1[BONFontDescriptorFeatureSettingsAttribute] as? [[String: BaseType]] else {
+            XCTFail("Failed to convert to \([[String: BaseType]].self)")
+            return
+        }
+        guard let featuresArray2 = descriptorAttrs2[BONFontDescriptorFeatureSettingsAttribute] as? [[String: BaseType]] else {
+            XCTFail("Failed to convert to \([[String: BaseType]].self)")
+            return
+        }
+
+        XCTAssertEqual(featuresArray1.count, 2)
+        XCTAssertEqual(featuresArray2.count, 2)
+
+        let hasAltTwoDict = featuresArray1.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
+        }
+        XCTAssertTrue(hasAltTwoDict)
+
+        let hasSmallCapsFromLowercaseDict = featuresArray1.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kLowerCaseType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kLowerCaseSmallCapsSelector
+        }
+        XCTAssertTrue(hasSmallCapsFromLowercaseDict)
+
+        let array2StillHasAltTwoDict = featuresArray2.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
+        }
+        XCTAssertTrue(array2StillHasAltTwoDict)
+
+        let hasAltFiveDict = featuresArray2.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltFiveOnSelector
+        }
+        XCTAssertTrue(hasAltFiveDict)
+    }
+
     static let floatingPointPropertiesLine = #line
     static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
         // swiftlint:disable opening_brace
