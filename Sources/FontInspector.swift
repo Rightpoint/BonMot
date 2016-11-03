@@ -13,10 +13,8 @@
 
 #if swift(>=3.0)
     typealias FontFeatureDictionary = [String : Any]
-    typealias BaseType = Any
     #else
     typealias FontFeatureDictionary = [String : AnyObject]
-    typealias BaseType = AnyObject
 #endif
 
     public extension BONFont {
@@ -83,7 +81,7 @@
                 }
                 return typedFeatures
             #else
-                let partlyUnwrappedArray = features as [BaseType]
+                let partlyUnwrappedArray = features as [AnyObject]
 
                 guard let typedFeatures = partlyUnwrappedArray as? [FontFeatureDictionary] else {
                     fatalError()
