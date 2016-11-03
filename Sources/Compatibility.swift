@@ -315,7 +315,7 @@
 #endif
 
 #if os(iOS) || os(watchOS) || os(tvOS)
-    extension UIFont {
+    extension BONFont {
         @nonobjc final var fontDescriptor: UIFontDescriptor {
             return fontDescriptor()
         }
