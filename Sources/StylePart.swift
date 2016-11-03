@@ -189,56 +189,49 @@ extension StringStyle {
         case let .style(style):
             self.add(stringStyle: style)
         default:
-            // #if and enums are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
-            if case let .hyphenationFactor(hyphenationFactor) = stylePart {
+            // interaction between `#if` and `switch` is disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
+            switch stylePart {
+            case let .hyphenationFactor(hyphenationFactor):
                 self.hyphenationFactor = hyphenationFactor
+            default:
+                #if os(OSX) || os(iOS) || os(tvOS)
+                    switch stylePart {
+                    case let .numberCase(numberCase):
+                        self.fontFeatureProviders += [numberCase as FontFeatureProvider]
+                    case let .numberSpacing(numberSpacing):
+                        self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
+                    case let .superscript(superscript):
+                        self.fontFeatureProviders += [superscript ? VerticalPosition.superscript : VerticalPosition.normal as FontFeatureProvider]
+                    case let .`subscript`(`subscript`):
+                        self.fontFeatureProviders += [`subscript` ? VerticalPosition.`subscript` : VerticalPosition.normal as FontFeatureProvider]
+                    case let .ordinals(ordinals):
+                        self.fontFeatureProviders += [ordinals ? VerticalPosition.ordinals : VerticalPosition.normal as FontFeatureProvider]
+                    case let .scientificInferiors(scientificInferiors):
+                        self.fontFeatureProviders += [scientificInferiors ? VerticalPosition.scientificInferiors : VerticalPosition.normal as FontFeatureProvider]
+                    case let .smallCaps(smallCaps):
+                        self.fontFeatureProviders += [smallCaps as FontFeatureProvider]
+                    case let .stylisticAlternates(stylisticAlternates):
+                        self.fontFeatureProviders += [stylisticAlternates as FontFeatureProvider]
+                    case let .fontFeature(featureProvider):
+                        self.fontFeatureProviders.append(featureProvider)
+                    default:
+                        #if os(iOS) || os(tvOS)
+                            switch stylePart {
+                            case let .adapt(style):
+                                self.adaptations.append(style)
+                            case let .textStyle(textStyle):
+                                self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
+                            default:
+                                fatalError("StylePart \(stylePart) should have been caught by an earlier case.")
+                            }
+                        #else
+                            fatalError("StylePart \(stylePart) should have been caught by an earlier case.")
+                        #endif
+                    }
+                #else
+                    fatalError("StylePart \(stylePart) should have been caught by an earlier case.")
+                #endif
             }
-            #if os(OSX) || os(iOS) || os(tvOS)
-                if case let .numberCase(numberCase) = stylePart {
-                    self.fontFeatureProviders += [numberCase as FontFeatureProvider]
-                    return
-                }
-                else if case let .numberSpacing(numberSpacing) = stylePart {
-                    self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
-                    return
-                }
-                else if case let .superscript(superscript) = stylePart {
-                    self.fontFeatureProviders += [superscript ? VerticalPosition.superscript : VerticalPosition.normal as FontFeatureProvider]
-                    return
-                }
-                else if case let .`subscript`(`subscript`) = stylePart {
-                    self.fontFeatureProviders += [`subscript` ? VerticalPosition.`subscript` : VerticalPosition.normal as FontFeatureProvider]
-                    return
-                }
-                else if case let .ordinals(ordinals) = stylePart {
-                    self.fontFeatureProviders += [ordinals ? VerticalPosition.ordinals : VerticalPosition.normal as FontFeatureProvider]
-                    return
-                }
-                else if case let .scientificInferiors(scientificInferiors) = stylePart {
-                    self.fontFeatureProviders += [scientificInferiors ? VerticalPosition.scientificInferiors : VerticalPosition.normal as FontFeatureProvider]
-                    return
-                }
-                else if case let .smallCaps(smallCaps) = stylePart {
-                    self.fontFeatureProviders += [smallCaps as FontFeatureProvider]
-                    return
-                }
-                else if case let .stylisticAlternates(stylisticAlternates) = stylePart {
-                    self.fontFeatureProviders += [stylisticAlternates as FontFeatureProvider]
-                    return
-                }
-                else if case let .fontFeature(featureProvider) = stylePart {
-                    self.fontFeatureProviders.append(featureProvider)
-                    return
-                }
-            #endif
-            #if os(iOS) || os(tvOS)
-                if case let .adapt(style) = stylePart {
-                    self.adaptations.append(style)
-                }
-                else if case let .textStyle(textStyle) = stylePart {
-                    self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
-                }
-            #endif
         }
     }
     //swiftlint:enable function_body_length
