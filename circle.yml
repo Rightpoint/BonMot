@@ -12,10 +12,10 @@ checkout:
     - git submodule update --init --recursive
 test:
   override:
-    - ./scripts/macOS
-    - ./scripts/iOS
-    - ./scrpts/tvOS
-    - ./scripts/watchOS
+    - ./scripts/macOS.sh
+    - ./scripts/iOS.sh
+    - ./scrpts/tvOS.sh
+    - ./scripts/watchOS.sh
   post:
     - carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
     - bundle exec pod lib lint

@@ -5,7 +5,7 @@ set -o pipefail && \
   -project BonMot.xcodeproj \
   -scheme BonMot-iOS \
   -sdk iphonesimulator \
-  -destination "name=iPhone 6s" \
+  -destination "id=E8DD285C-51EE-4DB5-B326-7E927686EC36" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | xcpretty
@@ -15,7 +15,7 @@ set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 && \
   -project BonMot.xcodeproj \
   -scheme BonMot-iOS \
   -sdk iphonesimulator \
-  -destination "name=iPhone 6s" \
+  -destination "id=E8DD285C-51EE-4DB5-B326-7E927686EC36" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | xcpretty \
