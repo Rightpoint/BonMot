@@ -55,9 +55,9 @@ public struct StringStyle {
     public var ordinals: Bool? = nil
     public var scientificInferiors: Bool? = nil
 
-    public var smallCaps: SmallCaps? = nil
+    public var smallCaps: Set<SmallCaps> = []
 
-    public var stylisticAlternates: StylisticAlternates? = nil
+    public var stylisticAlternates: Set<StylisticAlternates> = []
     #endif
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
@@ -106,7 +106,18 @@ extension StringStyle {
         #if os(iOS) || os(tvOS) || os(OSX)
             // Apply the features to the font present
             let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
-            let featuredFont = preFeaturedFont?.font(withFeatures: fontFeatureProviders)
+            var featureProviders = fontFeatureProviders
+
+            featureProviders += numberCase.map { $0 as FontFeatureProvider }.asArray
+            featureProviders += numberSpacing.map { $0 as FontFeatureProvider }.asArray
+            featureProviders += superscript.map { $0 ? VerticalPosition.superscript : VerticalPosition.normal }.asArray as [FontFeatureProvider]
+            featureProviders += `subscript`.map { $0 ? VerticalPosition.`subscript` : VerticalPosition.normal }.asArray as [FontFeatureProvider]
+            featureProviders += ordinals.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal }.asArray as [FontFeatureProvider]
+            featureProviders += scientificInferiors.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal }.asArray as [FontFeatureProvider]
+            featureProviders += smallCaps.map { $0 as FontFeatureProvider }
+            featureProviders += stylisticAlternates.map { $0 as FontFeatureProvider }
+
+            let featuredFont = preFeaturedFont?.font(withFeatures: featureProviders)
             theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
         #endif
 
@@ -205,9 +216,9 @@ extension StringStyle {
             ordinals = theStringStyle.ordinals ?? ordinals
             scientificInferiors = theStringStyle.scientificInferiors ?? scientificInferiors
 
-            smallCaps = theStringStyle.smallCaps ?? smallCaps
+            smallCaps = theStringStyle.smallCaps.isEmpty ? smallCaps : theStringStyle.smallCaps
 
-            stylisticAlternates = theStringStyle.stylisticAlternates ?? stylisticAlternates
+            stylisticAlternates = theStringStyle.stylisticAlternates.isEmpty ? stylisticAlternates : theStringStyle.stylisticAlternates
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)

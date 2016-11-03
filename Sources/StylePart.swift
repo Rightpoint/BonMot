@@ -197,21 +197,21 @@ extension StringStyle {
                 #if os(OSX) || os(iOS) || os(tvOS)
                     switch stylePart {
                     case let .numberCase(numberCase):
-                        self.fontFeatureProviders += [numberCase as FontFeatureProvider]
+                        self.numberCase = numberCase
                     case let .numberSpacing(numberSpacing):
-                        self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
+                        self.numberSpacing = numberSpacing
                     case let .superscript(superscript):
-                        self.fontFeatureProviders += [superscript ? VerticalPosition.superscript : VerticalPosition.normal as FontFeatureProvider]
+                        self.superscript = superscript
                     case let .`subscript`(`subscript`):
-                        self.fontFeatureProviders += [`subscript` ? VerticalPosition.`subscript` : VerticalPosition.normal as FontFeatureProvider]
+                        self.`subscript` = `subscript`
                     case let .ordinals(ordinals):
-                        self.fontFeatureProviders += [ordinals ? VerticalPosition.ordinals : VerticalPosition.normal as FontFeatureProvider]
+                        self.ordinals = ordinals
                     case let .scientificInferiors(scientificInferiors):
-                        self.fontFeatureProviders += [scientificInferiors ? VerticalPosition.scientificInferiors : VerticalPosition.normal as FontFeatureProvider]
+                        self.scientificInferiors = scientificInferiors
                     case let .smallCaps(smallCaps):
-                        self.fontFeatureProviders += [smallCaps as FontFeatureProvider]
+                        self.smallCaps.insert(smallCaps)
                     case let .stylisticAlternates(stylisticAlternates):
-                        self.fontFeatureProviders += [stylisticAlternates as FontFeatureProvider]
+                        self.stylisticAlternates.insert(stylisticAlternates)
                     case let .fontFeature(featureProvider):
                         self.fontFeatureProviders.append(featureProvider)
                     default:

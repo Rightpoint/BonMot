@@ -144,8 +144,8 @@ let fullStyle: StringStyle = {
         fullStyle.`subscript` = true
         fullStyle.ordinals = true
         fullStyle.scientificInferiors = true
-        fullStyle.smallCaps = .fromUppercase
-        fullStyle.stylisticAlternates = .three(on: true)
+        fullStyle.smallCaps = [.fromUppercase]
+        fullStyle.stylisticAlternates = [.three(on: true)]
     #endif
     #if os(iOS) || os(tvOS)
         fullStyle.adaptations = [.preferred, .control, .body]

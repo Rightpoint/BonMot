@@ -209,6 +209,18 @@
         }
     }
 
+    extension StylisticAlternates: Hashable {
+
+        public var hashValue: Int {
+            return featureSettings()[0].selector
+        }
+
+    }
+
+    public func == (lhs: StylisticAlternates, rhs: StylisticAlternates) -> Bool {
+        return lhs.featureSettings()[0].selector == rhs.featureSettings()[0].selector
+    }
+
     extension FontFeatureProvider {
 
         /// - returns: an array of dictionaries, each representing one feature for the attributes key in the font attributes
