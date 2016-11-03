@@ -206,6 +206,9 @@
         func components(separatedBy separator: NSCharacterSet) -> [String] {
             return componentsSeparatedByCharactersInSet(separator)
         }
+        init<T>(describing instance: T) {
+            self.init(instance)
+        }
     }
 #endif
 
