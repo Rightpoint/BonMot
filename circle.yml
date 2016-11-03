@@ -14,7 +14,7 @@ test:
   override:
     - ./scripts/macOS.sh
     - ./scripts/iOS.sh
-    - ./scrpts/tvOS.sh
+    - ./scripts/tvOS.sh
     - ./scripts/watchOS.sh
   post:
     - carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
