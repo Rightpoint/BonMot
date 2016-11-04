@@ -36,7 +36,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(label.bonMotStyle)
 
         XCTAssertEqual(label.styledText, label.text)
-        XCTAssertEqual(label.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont, expectedFont)
+        XCTAssertEqual((label.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont)!, expectedFont)
         BONAssertColor(inAttributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
@@ -59,7 +59,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(textField.bonMotStyle)
 
         XCTAssertEqual(textField.styledText, textField.text)
-        XCTAssertEqual(textField.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont, expectedFont)
+        XCTAssertEqual((textField.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont)!, expectedFont)
         BONAssertColor(inAttributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
@@ -105,7 +105,7 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(button.bonMotStyle)
 
         var attributes = button.attributedTitle(for: .normal)?.attributes(at: 0, effectiveRange: nil)
-        XCTAssertEqual(attributes?[NSFontAttributeName] as? UIFont, expectedFont)
+        XCTAssertEqual((attributes?[NSFontAttributeName] as? UIFont)!, expectedFont)
         BONAssertColor(inAttributes: attributes, key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
