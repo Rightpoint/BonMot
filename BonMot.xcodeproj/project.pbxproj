@@ -187,6 +187,10 @@
 		CD64EB1A1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
 		CD64EB1B1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
 		CD64EB1C1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
+		CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84321D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
@@ -302,6 +306,7 @@
 		CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspectorTests.swift; sourceTree = "<group>"; };
 		CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAsArray.swift; sourceTree = "<group>"; };
 		CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAsArrayTests.swift; sourceTree = "<group>"; };
+		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
 		CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTintingTests.swift; sourceTree = "<group>"; };
 		CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
@@ -390,6 +395,7 @@
 				ABCD3D531D96F02F00273936 /* StylePart.swift */,
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
+				CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
 			);
@@ -1101,6 +1107,7 @@
 				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
 				CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */,
 				AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */,
+				CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1150,6 +1157,7 @@
 				ABCD3D7D1D96F02F00273936 /* StyleableUIElement.swift in Sources */,
 				ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */,
 				ABCD3D6B1D96F02F00273936 /* StringStyle.swift in Sources */,
+				CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */,
 				ABCD3D731D96F02F00273936 /* Special.swift in Sources */,
 				ABCD3D761D96F02F00273936 /* NamedStyles.swift in Sources */,
 				AB560A081DA0C14000100D15 /* Tab+Adaptive.swift in Sources */,
@@ -1208,6 +1216,7 @@
 				ABCD3DD51D96F6A500273936 /* StringStyle.swift in Sources */,
 				ABCD3DD71D96F6A500273936 /* Special.swift in Sources */,
 				AB8497B31DA16DAE00FE3414 /* EmbeddedTransformation.swift in Sources */,
+				CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */,
 				AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */,
 				ABCD3DD81D96F6A500273936 /* NamedStyles.swift in Sources */,
 				AB8497B11DA16DAE00FE3414 /* AdaptiveStyleTransformation.swift in Sources */,
@@ -1264,6 +1273,7 @@
 				ABCD3E131D980E4900273936 /* Special.swift in Sources */,
 				CD3EEE701DCA68EF002C41BB /* FontInspector.swift in Sources */,
 				ABCD3E141D980E4900273936 /* NamedStyles.swift in Sources */,
+				CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */,
 				CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
 				ABCD3E161D980E4900273936 /* StylePart.swift in Sources */,
 				CD3EEE6A1DC92CF7002C41BB /* Ligatures.swift in Sources */,

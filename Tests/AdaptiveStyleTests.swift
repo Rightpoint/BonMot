@@ -150,7 +150,6 @@ class AdaptiveStyleTests: XCTestCase {
             (.smallCaps(.disabled), true),
             (.smallCaps(.fromUppercase), false),
             (.smallCaps(.fromLowercase), false),
-            (.stylisticAlternates(.noAlternates), true),
             (.stylisticAlternates(.one(on: true)), false),  // these are the supported stylistic alternates for EBGaramond12-Regular
             (.stylisticAlternates(.one(on: false)), true),
             (.stylisticAlternates(.two(on: true)), false),

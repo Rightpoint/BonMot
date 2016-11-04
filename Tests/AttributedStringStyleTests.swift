@@ -311,8 +311,8 @@ class StringStyleTests: XCTestCase {
         let string = "0<one>1<two>2</two></one>"
         let font = BONFont(name: "EBGaramond12-Regular", size: 24)!
         let rules: [XMLStyleRule] = [
-            .style("one", StringStyle(.stylisticAlternates(.two(on: true)), .smallCaps(.fromLowercase))),
-            .style("two", StringStyle(.stylisticAlternates(.five(on: true)), .smallCaps(.disabled))),
+            .style("one", StringStyle(.stylisticAlternates(.two(on: true)), .stylisticAlternates(.six(on: true)), .smallCaps(.fromLowercase))),
+            .style("two", StringStyle(.stylisticAlternates(.five(on: true)), .stylisticAlternates(.six(on: false)), .smallCaps(.disabled))),
         ]
 
         let attributed = string.styled(with: .font(font), .xmlRules(rules))
@@ -351,7 +351,7 @@ class StringStyleTests: XCTestCase {
             return
         }
 
-        XCTAssertEqual(featuresArray1.count, 2)
+        XCTAssertEqual(featuresArray1.count, 3)
         XCTAssertEqual(featuresArray2.count, 2)
 
         let hasAltTwoDict = featuresArray1.contains { dictionary in
@@ -359,6 +359,12 @@ class StringStyleTests: XCTestCase {
             && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
         }
         XCTAssertTrue(hasAltTwoDict)
+
+        let hasAltSixDict = featuresArray1.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOnSelector
+        }
+        XCTAssertTrue(hasAltSixDict)
 
         let hasSmallCapsFromLowercaseDict = featuresArray1.contains { dictionary in
             return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kLowerCaseType
@@ -377,6 +383,13 @@ class StringStyleTests: XCTestCase {
                 && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltFiveOnSelector
         }
         XCTAssertTrue(hasAltFiveDict)
+
+        let stillHasAltSixDict = featuresArray2.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && (dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOnSelector
+                    || dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOffSelector)
+        }
+        XCTAssertFalse(stillHasAltSixDict)
     }
 
     static let floatingPointPropertiesLine = #line

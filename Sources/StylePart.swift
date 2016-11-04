@@ -211,7 +211,7 @@ extension StringStyle {
                     case let .smallCaps(smallCaps):
                         self.smallCaps.insert(smallCaps)
                     case let .stylisticAlternates(stylisticAlternates):
-                        self.stylisticAlternates.insert(stylisticAlternates)
+                        self.stylisticAlternates.add(other: stylisticAlternates)
                     case let .fontFeature(featureProvider):
                         self.fontFeatureProviders.append(featureProvider)
                     default:
