@@ -113,7 +113,10 @@ class FontInspectorTests: XCTestCase {
             "    * No Change - selector: 0 (default)",
             "    * Small Capitals - selector: 1",
             ].joined(separator: "\n")
-        XCTAssertEqual(garamond.availableFontFeatures, garamondControlString)
+        let garamondAvailableFeatures = garamond.availableFontFeatures
+        let rejoined = garamondAvailableFeatures.components(separatedBy: "\n").joined(separator: "ZZZZ")
+        print("Garamond available features: \(rejoined)")
+        XCTAssertEqual(garamondAvailableFeatures, garamondControlString)
     }
 
 }
