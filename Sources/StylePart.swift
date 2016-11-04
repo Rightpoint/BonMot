@@ -51,6 +51,8 @@ public enum StylePart {
     case adapt(AdaptiveStyle)
     #endif
 
+    // An advanced part that allows combining multiple parts as a single part
+    case style(StringStyle)
 }
 
 extension StringStyle {
@@ -160,6 +162,8 @@ extension StringStyle {
             self.xmlStyler = XMLRuleStyler(rules: rules)
         case let .xmlStyler(xmlStyler):
             self.xmlStyler = xmlStyler
+        case let .style(style):
+            self.add(stringStyle: style)
         default:
             // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
             if case let .hyphenationFactor(hyphenationFactor) = stylePart {
