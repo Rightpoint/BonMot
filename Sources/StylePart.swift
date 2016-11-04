@@ -61,6 +61,13 @@ extension StringStyle {
     ///
     /// - Parameter parts: An array of `StylePart`s
     public init(_ parts: StylePart...) {
+        self.init(parts)
+    }
+
+    /// Create a `StringStyle` from an array of parts
+    ///
+    /// - Parameter parts: An array of `StylePart`s
+    public init(_ parts: [StylePart]) {
         self.init()
         for part in parts {
             self.update(part: part)
