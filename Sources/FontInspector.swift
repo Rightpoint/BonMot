@@ -31,26 +31,32 @@
             return !matchingFeatures.isEmpty
         }
 
-        var availableFontFeatures: String {
+        public func availableFontFeatures(includeIdentifiers includeIDs: Bool = false) -> String {
             let preamble = "Available font features of \(fontName)"
             return preamble + availableFeaturesDictionaries.map { featureDict in
-                let featureTypeIdentifier = featureDict[kCTFontFeatureTypeIdentifierKey as String] as? Int
                 let featureName = featureDict[kCTFontFeatureTypeNameKey as String] as? String
                 let exclusive = featureDict[kCTFontFeatureTypeExclusiveKey as String] as? Bool ?? false
                 let selectors = featureDict[kCTFontFeatureTypeSelectorsKey as String] as? [FontFeatureDictionary] ?? []
 
                 var resultString = ""
-                resultString += "\(featureName ?? "[unknown feature]") - feature type identifier: \(featureTypeIdentifier.map(String.init(describing:)) ?? "[unknown feature identifier]")"
+                resultString += "\(featureName ?? "[unknown feature]")"
+                if includeIDs {
+                    let featureTypeIdentifier = featureDict[kCTFontFeatureTypeIdentifierKey as String] as? Int
+                    resultString += " - feature type identifier: \(featureTypeIdentifier.map(String.init(describing:)) ?? "[unknown feature identifier]")"
+                }
                 resultString += "\n    Exclusive: \(exclusive)"
                 if !selectors.isEmpty {
                     resultString += "\n    Selectors:"
                     resultString += selectors.map { selectorDict in
-                        let selectorIdentifier = selectorDict[kCTFontFeatureSelectorIdentifierKey as String] as? Int
                         let selectorName = selectorDict[kCTFontFeatureSelectorNameKey as String] as? String
                         let selectorIsDefault = selectorDict[kCTFontFeatureSelectorDefaultKey as String] as? Bool ?? false
 
                         var resultString = ""
-                        resultString += "    * \(selectorName ?? "[unknown selector]") - selector: \(selectorIdentifier.map(String.init(describing:)) ?? "[unknownSelectorIdentifier]")"
+                        resultString += "    * \(selectorName ?? "[unknown selector]")"
+                        if includeIDs {
+                            let selectorIdentifier = selectorDict[kCTFontFeatureSelectorIdentifierKey as String] as? Int
+                            resultString += " - selector: \(selectorIdentifier.map(String.init(describing:)) ?? "[unknownSelectorIdentifier]")"
+                        }
                         if selectorIsDefault {
                             resultString += " (default)"
                         }
