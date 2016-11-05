@@ -31,6 +31,14 @@
             return !matchingFeatures.isEmpty
         }
 
+        /// Queries a font and returns its available OpenType features.
+        ///
+        /// - Parameter includeIDs: whether to include the integer values of the
+        ///                         features' type identifiers, which are
+        ///                         integers, and pretty cryptic unless you know
+        ///                         what you're looking for.
+        /// - Returns: A human-readable string representing the receiver's
+        ///            available OpenType features.
         public func availableFontFeatures(includeIdentifiers includeIDs: Bool = false) -> String {
             let preamble = "Available font features of \(fontName)"
             return preamble + availableFeaturesDictionaries.map { featureDict in
