@@ -178,4 +178,12 @@
         }
 
     }
+
+    extension ContextualAlternates: MappableFeature {
+
+        public var featureTypeIdentifiers: [Int] {
+            return [ FeatureTypeIdentifier.contextualAlternates.rawValue ]
+        }
+
+    }
 #endif

@@ -58,6 +58,7 @@ public struct StringStyle {
     public var smallCaps: Set<SmallCaps> = []
 
     public var stylisticAlternates: StylisticAlternates = StylisticAlternates()
+    public var contextualAlternates: ContextualAlternates = ContextualAlternates()
     #endif
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
@@ -116,6 +117,7 @@ extension StringStyle {
             featureProviders += scientificInferiors.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal }.asArray as [FontFeatureProvider]
             featureProviders += smallCaps.map { $0 as FontFeatureProvider }
             featureProviders += [stylisticAlternates as FontFeatureProvider]
+            featureProviders += [contextualAlternates as FontFeatureProvider]
 
             let featuredFont = preFeaturedFont?.font(withFeatures: featureProviders)
             theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
@@ -219,6 +221,7 @@ extension StringStyle {
             smallCaps = theStringStyle.smallCaps.isEmpty ? smallCaps : theStringStyle.smallCaps
 
             stylisticAlternates = stylisticAlternates + theStringStyle.stylisticAlternates
+            contextualAlternates = contextualAlternates + theStringStyle.contextualAlternates
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)

@@ -162,6 +162,7 @@ class AdaptiveStyleTests: XCTestCase {
             (.stylisticAlternates(.seven(on: false)), true),
             (.stylisticAlternates(.twenty(on: true)), false),
             (.stylisticAlternates(.twenty(on: false)), true),
+            (.contextualAlternates(.contextualAlternates(on: true)), true),
             ]
         for (index, tuple) in partsTuples.enumerated() {
             let partLine = partsLine + UInt(index) + 1

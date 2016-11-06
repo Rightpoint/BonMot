@@ -280,6 +280,29 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testContextualAlternatesStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .contextualAlternates(.contextualAlternates(on: false)))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kContextualAlternatesType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kContextualAlternatesOffSelector)
+            }
+        }
+    }
+
     func testFontFeatureStyle() {
         let featuresLine: UInt = #line; let features: [FontFeatureProvider] = [
             NumberCase.upper,

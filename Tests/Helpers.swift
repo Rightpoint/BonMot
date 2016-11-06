@@ -146,6 +146,7 @@ let fullStyle: StringStyle = {
         fullStyle.scientificInferiors = true
         fullStyle.smallCaps = [.fromUppercase]
         fullStyle.stylisticAlternates = .three(on: true)
+        fullStyle.contextualAlternates = .contextualSwashAlternates(on: true)
     #endif
     #if os(iOS) || os(tvOS)
         fullStyle.adaptations = [.preferred, .control, .body]

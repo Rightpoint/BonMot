@@ -57,6 +57,7 @@ public enum StylePart {
     case smallCaps(SmallCaps)
 
     case stylisticAlternates(StylisticAlternates)
+    case contextualAlternates(ContextualAlternates)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -212,6 +213,8 @@ extension StringStyle {
                         self.smallCaps.insert(smallCaps)
                     case let .stylisticAlternates(stylisticAlternates):
                         self.stylisticAlternates.add(other: stylisticAlternates)
+                    case let .contextualAlternates(contextualAlternates):
+                        self.contextualAlternates.add(other: contextualAlternates)
                     case let .fontFeature(featureProvider):
                         self.fontFeatureProviders.append(featureProvider)
                     default:
