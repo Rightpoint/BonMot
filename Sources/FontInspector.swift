@@ -39,6 +39,10 @@
         ///                         what you're looking for.
         /// - Returns: A human-readable string representing the receiver's
         ///            available OpenType features.
+        /// - Note: features will report whether they are "Exclusive". If a
+        ///         feature is exclusive, that means that you can use only one
+        ///         of its available options at a time. Otherwise, you can mix
+        ///         and match any combination of its options.
         public func availableFontFeatures(includeIdentifiers includeIDs: Bool = false) -> String {
             let preamble = "Available font features of \(fontName)"
             return preamble + availableFeaturesDictionaries.map { featureDict in
