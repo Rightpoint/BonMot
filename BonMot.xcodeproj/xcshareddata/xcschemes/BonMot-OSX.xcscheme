@@ -62,6 +62,9 @@
                   Identifier = "ComposableTests/testTabStopsWithSpacer()">
                </Test>
                <Test
+                  Identifier = "FontInspectorTests/testAvailableFeatures()">
+               </Test>
+               <Test
                   Identifier = "ImageTintingTests/testImageTinting()">
                </Test>
                <Test

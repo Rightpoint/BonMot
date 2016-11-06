@@ -29,6 +29,8 @@ class FontInspectorTests: XCTestCase {
         XCTAssertTrue(garamond.has(feature: NumberCase.lower))
     }
 
+    // This test is disabled on macOS because, although it works locally,
+    // the font reports _slightly_ different feature availability on the build machine. 😠
     //swiftlint:disable:next function_body_length
     func testAvailableFeatures() {
         let garamondControlString = [
