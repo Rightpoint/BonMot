@@ -11,7 +11,7 @@ set -o pipefail && \
   -project BonMot.xcodeproj \
   -scheme BonMot-watchOS \
   -sdk watchsimulator \
-  -destination "platform=watchOS Simulator,name=Apple Watch - 38mm,OS=3.0" \
+  -destination "id=8B69EEB7-101D-46FA-AB3C-A8B7BCCF004B" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | xcpretty
@@ -21,7 +21,7 @@ set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 \
   -project BonMot.xcodeproj \
   -scheme BonMot-watchOS \
   -sdk watchsimulator \
-  -destination "platform=watchOS Simulator,name=Apple Watch - 38mm,OS=3.0" \
+  -destination "id=8B69EEB7-101D-46FA-AB3C-A8B7BCCF004B" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | xcpretty \
