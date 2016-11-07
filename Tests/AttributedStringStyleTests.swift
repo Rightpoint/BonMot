@@ -272,4 +272,15 @@ class StringStyleTests: XCTestCase {
         return [(style: style, fullStyle: false), (style: emptyStyle, fullStyle: false), (style: updated, fullStyle: true)]
     }
 
+    func testStyleStylePart() {
+        let baseStyle = StringStyle(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
+        let style = StringStyle(.style(baseStyle), .font(.fontB), .color(.colorB))
+
+        let font = style.attributes[NSFontAttributeName] as? BONFont
+        XCTAssertEqual(font?.fontName, BONFont.fontB.fontName)
+        XCTAssertEqual(font?.pointSize, BONFont.fontB.pointSize)
+        BONAssert(attributes: style.attributes, key: NSForegroundColorAttributeName, value: BONColor.colorB)
+        BONAssert(attributes: style.attributes, key: NSBackgroundColorAttributeName, value: BONColor.colorB)
+    }
+
 }
