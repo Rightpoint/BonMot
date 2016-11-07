@@ -21,6 +21,7 @@
     }
 
     public extension BONFont {
+
         /// Create a new font and attempt to enable the specified font features. The returned font will have all
         /// features enabled that are supported by the font.
         /// - parameter withFeatures: the features to attempt to enable on the font
@@ -40,6 +41,7 @@
                 return BONFont(descriptor: descriptor, size: pointSize)
             #endif
         }
+
     }
 
     /// A feature provider for changing the number case, also known as figure style.
