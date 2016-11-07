@@ -14,7 +14,7 @@
 /// StylePart encapsulates one setting in StringStyle. It is used
 /// as a DSL for building StringStyle across BonMot, but it is just syntactic sugar.
 public enum StylePart {
-    case initialAttributes(StyleAttributes)
+    case extraAttributes(StyleAttributes)
     case font(BONFont)
     case link(NSURL)
     case backgroundColor(BONColor)
@@ -136,8 +136,8 @@ extension StringStyle {
     // swiftlint:disable:next cyclomatic_complexity
     mutating func update(part stylePart: StylePart) {
         switch stylePart {
-        case let .initialAttributes(attributes):
-            self.initialAttributes = attributes
+        case let .extraAttributes(attributes):
+            self.extraAttributes = attributes
         case let .font(font):
             self.font = font
         case let .link(link):

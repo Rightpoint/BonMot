@@ -19,7 +19,7 @@
 ///  is very important, and the API was confusing with a priority integer, and forcing the user to use the right order wasn't
 ///  acceptable.
 public struct StringStyle {
-    public var initialAttributes: StyleAttributes = [:]
+    public var extraAttributes: StyleAttributes = [:]
     public var font: BONFont? = nil
     public var link: NSURL? = nil
     public var backgroundColor: BONColor? = nil
@@ -72,7 +72,7 @@ extension StringStyle {
 
     /// Obtain a StyleAttributes representing the current style
     public var attributes: StyleAttributes {
-        var theAttributes = initialAttributes
+        var theAttributes = extraAttributes
 
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
         theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
@@ -167,13 +167,13 @@ extension StringStyle {
 
 extension StringStyle {
 
-    /// Update the initialAttributes in the style object. This is used to provide the default
+    /// Update the extraAttributes in the style object. This is used to provide the default
     /// values configured in UI elements, which the style can override.
     ///
-    /// - parameter initialAttributes: The attributes to add to the style before applying the other properties.
-    public mutating func add(initialAttributes attributes: StyleAttributes) {
+    /// - parameter extraAttributes: The attributes to add to the style before applying the other properties.
+    public mutating func add(extraAttributes attributes: StyleAttributes) {
         for (key, value) in attributes {
-            initialAttributes[key] = value
+            extraAttributes[key] = value
         }
     }
 
@@ -182,7 +182,7 @@ extension StringStyle {
     ///
     /// - parameter stringStyle: The style to update this style with.
     public mutating func add(stringStyle theStringStyle: StringStyle) {
-        add(initialAttributes: theStringStyle.initialAttributes)
+        add(extraAttributes: theStringStyle.extraAttributes)
         font = theStringStyle.font ?? font
         link = theStringStyle.link ?? link
         backgroundColor = theStringStyle.backgroundColor ?? backgroundColor

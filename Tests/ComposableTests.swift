@@ -28,7 +28,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testAttributesArePassedAlongExtend() {
-        let style = StringStyle(.initialAttributes(["test": "test"]))
+        let style = StringStyle(.extraAttributes(["test": "test"]))
 
         let chainString = NSAttributedString.composed(of: [imageForTest, "Test", imageForTest], baseStyle: style).attributedString()
         let attributes = chainString.attributes(at: chainString.length - 1, effectiveRange: nil)
@@ -131,7 +131,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testInitialParagraphStyle() {
-        let style = StringStyle(.initialAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
+        let style = StringStyle(.extraAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
 
         let string = NSAttributedString.composed(of: [Tab.headIndent(10), "ParagraphStyle mutable promotion"], baseStyle: style)
         XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
