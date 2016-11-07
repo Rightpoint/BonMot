@@ -17,7 +17,7 @@
 /// This protocol defines a contract to simplify this. NSCoding is not used so value types can be used.
 internal protocol EmbeddedTransformation {
 
-    /// Return a plist compatible dictionary of any state that's needed to persist the adaption
+    /// Return a plist compatible dictionary of any state that's needed to persist the adaptation
     var representation: StyleAttributes { get }
 
     /// This factory method is used to take the adaptations dictionary and create an array of AdaptiveStyleTransformation.
@@ -38,14 +38,14 @@ internal enum EmbeddedTransformationHelpers {
     static func embed(transformation theTransformation: EmbeddedTransformation, to styleAttributes: StyleAttributes) -> StyleAttributes {
         let representation = theTransformation.representation
         var styleAttributes = styleAttributes
-        var adaptions = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
+        var adaptations = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
 
         // Only add the transformation once.
-        let contains = adaptions.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: representation) }
+        let contains = adaptations.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: representation) }
         if !contains {
-            adaptions.append(representation)
+            adaptations.append(representation)
         }
-        styleAttributes[BonMotTransformationsAttributeName] = adaptions
+        styleAttributes[BonMotTransformationsAttributeName] = adaptations
         return styleAttributes
     }
 

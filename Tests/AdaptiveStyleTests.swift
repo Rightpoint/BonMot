@@ -18,7 +18,7 @@ let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIC
 @available(iOS 10.0, *)
 class AdaptiveStyleTests: XCTestCase {
 
-    func testFontControlSizeAdaption() {
+    func testFontControlSizeAdaptation() {
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = StringStyle(.font(inputFont), .adapt(.control))
         print(style.attributes)
@@ -44,7 +44,7 @@ class AdaptiveStyleTests: XCTestCase {
         }
     }
 
-    func testFontBodySizeAdaption() {
+    func testFontBodySizeAdaptation() {
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = StringStyle(.font(inputFont), .adapt(.body))
         let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
@@ -118,15 +118,15 @@ class AdaptiveStyleTests: XCTestCase {
         let chain = StringStyle(.font(font), .adapt(.control), .tracking(.adobe(300)))
         let attributes = chain.attributes
 
-        let testKernAdaption = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
+        let testKernAdaptation = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             let adaptedAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
             return adaptedAttributes[NSKernAttributeName] as? CGFloat ?? 0
         }
 
-        XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraSmall.compatible), 8.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.large.compatible), 9, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraExtraExtraLarge.compatible), 10.8, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAdaptation(UIContentSizeCategory.extraSmall.compatible), 8.1, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAdaptation(UIContentSizeCategory.large.compatible), 9, accuracy: 0.0001)
+        XCTAssertEqualWithAccuracy(testKernAdaptation(UIContentSizeCategory.extraExtraExtraLarge.compatible), 10.8, accuracy: 0.0001)
     }
 
     //swiftlint:disable function_body_length
