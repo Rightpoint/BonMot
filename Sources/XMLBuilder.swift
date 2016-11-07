@@ -26,7 +26,7 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///
     /// - returns: An NSAttributedString
-    // swiftlint:disable:next valid_docs (swiftlint issue jpsim/SourceKitten/issues/133)
+    //swiftlint:disable:next valid_docs (swiftlint issue jpsim/SourceKitten/issues/133)
     public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
@@ -53,7 +53,7 @@ extension NSAttributedString {
     /// - parameter options: XML parsing options
     ///
     /// - returns: An NSAttributedString
-    // swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
+    //swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
     public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,

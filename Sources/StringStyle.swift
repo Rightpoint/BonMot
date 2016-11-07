@@ -293,7 +293,7 @@ extension NSParagraphStyle {
 
     /// Update the supplied NSParagraphStyle properties with the value in this ParagraphStyle if the supplied
     /// ParagraphStyle property is the default value.
-    // swiftlint:disable:next cyclomatic_complexity
+    //swiftlint:disable cyclomatic_complexity
     func supplyDefaults(for paragraphStyle: NSParagraphStyle) -> NSMutableParagraphStyle {
         let defaults = NSParagraphStyle.bon_default
         let paragraph = paragraphStyle.mutableParagraphStyleCopy()

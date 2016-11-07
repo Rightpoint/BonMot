@@ -5,7 +5,7 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-// swiftlint:disable file_length
+//swiftlint:disable file_length
 #if os(OSX)
     import AppKit
 #else
@@ -523,4 +523,4 @@
     }
 #endif
 #endif
-// swiftlint:enable file_length
+//swiftlint:enable file_length

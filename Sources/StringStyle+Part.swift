@@ -128,10 +128,9 @@ extension StringStyle {
     }
     #endif
 
+    //swiftlint:disable function_body_length
+    //swiftlint:disable cyclomatic_complexity
     /// Update the style with the specified style part.
-    ///
-    // swiftlint:disable function_body_length
-    // swiftlint:disable:next cyclomatic_complexity
     mutating func update(part stylePart: Part) {
         switch stylePart {
         case let .extraAttributes(attributes):
@@ -236,5 +235,6 @@ extension StringStyle {
         }
     }
     //swiftlint:enable function_body_length
+    //swiftlint:enable cyclomatic_complexity
 
 }
