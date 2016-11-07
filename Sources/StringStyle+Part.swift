@@ -1,5 +1,5 @@
 //
-//  StylePart.swift
+//  StringStyle+Part.swift
 //
 //  Created by Brian King on 9/1/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -11,78 +11,84 @@
     import UIKit
 #endif
 
-/// StylePart encapsulates one setting in StringStyle. It is used
-/// as a DSL for building StringStyle across BonMot, but it is just syntactic sugar.
-public enum StylePart {
-    case extraAttributes(StyleAttributes)
-    case font(BONFont)
-    case link(NSURL)
-    case backgroundColor(BONColor)
-    case color(BONColor)
-    case underline(NSUnderlineStyle, BONColor?)
-    case strikethrough(NSUnderlineStyle, BONColor?)
-    case baselineOffset(CGFloat)
+extension StringStyle {
 
-    case ligatures(Ligatures)
+    /// Each `Part` encapsulates one setting in a `StringStyle`. It is used
+    /// in a DSL for building `StringStyle` across BonMot.
+    public enum Part {
 
-    case alignment(NSTextAlignment)
-    case tracking(Tracking)
-    case lineSpacing(CGFloat)
-    case paragraphSpacingAfter(CGFloat)
-    case firstLineHeadIndent(CGFloat)
-    case headIndent(CGFloat)
-    case tailIndent(CGFloat)
-    case lineBreakMode(NSLineBreakMode)
-    case minimumLineHeight(CGFloat)
-    case maximumLineHeight(CGFloat)
-    case baseWritingDirection(NSWritingDirection)
-    case lineHeightMultiple(CGFloat)
-    case paragraphSpacingBefore(CGFloat)
-    case hyphenationFactor(Float)
+        case extraAttributes(StyleAttributes)
+        case font(BONFont)
+        case link(NSURL)
+        case backgroundColor(BONColor)
+        case color(BONColor)
+        case underline(NSUnderlineStyle, BONColor?)
+        case strikethrough(NSUnderlineStyle, BONColor?)
+        case baselineOffset(CGFloat)
 
-    case xml
-    case xmlRules([XMLStyleRule])
-    case xmlStyler(XMLStyler)
-    #if os(iOS) || os(tvOS) || os(OSX)
-    case fontFeature(FontFeatureProvider)
+        case ligatures(Ligatures)
 
-    case numberSpacing(NumberSpacing)
-    case numberCase(NumberCase)
+        case alignment(NSTextAlignment)
+        case tracking(Tracking)
+        case lineSpacing(CGFloat)
+        case paragraphSpacingAfter(CGFloat)
+        case firstLineHeadIndent(CGFloat)
+        case headIndent(CGFloat)
+        case tailIndent(CGFloat)
+        case lineBreakMode(NSLineBreakMode)
+        case minimumLineHeight(CGFloat)
+        case maximumLineHeight(CGFloat)
+        case baseWritingDirection(NSWritingDirection)
+        case lineHeightMultiple(CGFloat)
+        case paragraphSpacingBefore(CGFloat)
+        case hyphenationFactor(Float)
 
-    case superscript(Bool)
-    case `subscript`(Bool)
-    case ordinals(Bool)
-    case scientificInferiors(Bool)
+        case xml
+        case xmlRules([XMLStyleRule])
+        case xmlStyler(XMLStyler)
+        #if os(iOS) || os(tvOS) || os(OSX)
+        case fontFeature(FontFeatureProvider)
 
-    case smallCaps(SmallCaps)
+        case numberSpacing(NumberSpacing)
+        case numberCase(NumberCase)
 
-    case stylisticAlternates(StylisticAlternates)
-    case contextualAlternates(ContextualAlternates)
-    #endif
-    #if os(iOS) || os(tvOS)
-    case textStyle(BonMotTextStyle)
-    #endif
-    #if os(iOS) || os(tvOS)
-    case adapt(AdaptiveStyle)
-    #endif
+        case superscript(Bool)
+        case `subscript`(Bool)
+        case ordinals(Bool)
+        case scientificInferiors(Bool)
 
-    // An advanced part that allows combining multiple parts as a single part
-    case style(StringStyle)
+        case smallCaps(SmallCaps)
+
+        case stylisticAlternates(StylisticAlternates)
+        case contextualAlternates(ContextualAlternates)
+        #endif
+        #if os(iOS) || os(tvOS)
+        case textStyle(BonMotTextStyle)
+        #endif
+        #if os(iOS) || os(tvOS)
+        case adapt(AdaptiveStyle)
+        #endif
+
+        // An advanced part that allows combining multiple parts as a single part
+        case style(StringStyle)
+
+    }
+
 }
 
 extension StringStyle {
 
     /// Create a `StringStyle` from an array of parts
     ///
-    /// - Parameter parts: An array of `StylePart`s
-    public init(_ parts: StylePart...) {
+    /// - Parameter parts: An array of `Part`s
+    public init(_ parts: Part...) {
         self.init(parts)
     }
 
     /// Create a `StringStyle` from an array of parts
     ///
     /// - Parameter parts: An array of `StylePart`s
-    public init(_ parts: [StylePart]) {
+    public init(_ parts: [Part]) {
         self.init()
         for part in parts {
             self.update(part: part)
@@ -93,19 +99,19 @@ extension StringStyle {
     #else
     /// Create a `StringStyle` from a part. This is needed for Swift 2.3 determine argument type.
     ///
-    /// - Parameter part: a `StylePart`
-    public init(_ part: StylePart) {
+    /// - Parameter part: a `Part`
+    public init(_ part: Part) {
         self.init()
         self.update(part: part)
     }
     #endif
 
     #if swift(>=3.0)
-    /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
+    /// Derive a new `StringStyle` based on this style, updated with an array of `Part`s.
     ///
-    /// - Parameter parts: An array of `StylePart`s
+    /// - Parameter parts: An array of `Part`s
     /// - Returns: A newly configured `StringStyle`
-    public func byAdding(_ parts: StylePart...) -> StringStyle {
+    public func byAdding(_ parts: Part...) -> StringStyle {
         var style = self
         for part in parts {
             style.update(part: part)
@@ -113,11 +119,11 @@ extension StringStyle {
         return style
     }
     #else
-    /// Derive a new `StringStyle` based on this style, updated with an array of `StylePart`s.
+    /// Derive a new `StringStyle` based on this style, updated with an array of `Part`s.
     ///
-    /// - Parameter parts: An array of `StylePart`s
+    /// - Parameter parts: An array of `Part`s
     /// - Returns: A newly configured `StringStyle`
-    public func byAdding(parts: StylePart...) -> StringStyle {
+    public func byAdding(parts: Part...) -> StringStyle {
         var style = self
         for part in parts {
             style.update(part: part)
@@ -134,7 +140,7 @@ extension StringStyle {
     ///
     // swiftlint:disable function_body_length
     // swiftlint:disable:next cyclomatic_complexity
-    mutating func update(part stylePart: StylePart) {
+    mutating func update(part stylePart: Part) {
         switch stylePart {
         case let .extraAttributes(attributes):
             self.extraAttributes = attributes
