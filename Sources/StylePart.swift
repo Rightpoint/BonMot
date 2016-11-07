@@ -14,7 +14,7 @@
 /// StylePart encapsulates one setting in StringStyle. It is used
 /// as a DSL for building StringStyle across BonMot, but it is just syntactic sugar.
 public enum StylePart {
-    case initialAttributes(StyleAttributes)
+    case extraAttributes(StyleAttributes)
     case font(BONFont)
     case link(NSURL)
     case backgroundColor(BONColor)
@@ -22,6 +22,9 @@ public enum StylePart {
     case underline(NSUnderlineStyle, BONColor?)
     case strikethrough(NSUnderlineStyle, BONColor?)
     case baselineOffset(CGFloat)
+
+    case ligatures(Ligatures)
+
     case alignment(NSTextAlignment)
     case tracking(Tracking)
     case lineSpacing(CGFloat)
@@ -36,13 +39,25 @@ public enum StylePart {
     case lineHeightMultiple(CGFloat)
     case paragraphSpacingBefore(CGFloat)
     case hyphenationFactor(Float)
+
     case xml
     case xmlRules([XMLStyleRule])
     case xmlStyler(XMLStyler)
     #if os(iOS) || os(tvOS) || os(OSX)
     case fontFeature(FontFeatureProvider)
+
     case numberSpacing(NumberSpacing)
     case numberCase(NumberCase)
+
+    case superscript(Bool)
+    case `subscript`(Bool)
+    case ordinals(Bool)
+    case scientificInferiors(Bool)
+
+    case smallCaps(SmallCaps)
+
+    case stylisticAlternates(StylisticAlternates)
+    case contextualAlternates(ContextualAlternates)
     #endif
     #if os(iOS) || os(tvOS)
     case textStyle(BonMotTextStyle)
@@ -117,11 +132,12 @@ extension StringStyle {
 
     /// Update the style with the specified style part.
     ///
+    // swiftlint:disable function_body_length
     // swiftlint:disable:next cyclomatic_complexity
     mutating func update(part stylePart: StylePart) {
         switch stylePart {
-        case let .initialAttributes(attributes):
-            self.initialAttributes = attributes
+        case let .extraAttributes(attributes):
+            self.extraAttributes = attributes
         case let .font(font):
             self.font = font
         case let .link(link):
@@ -136,6 +152,8 @@ extension StringStyle {
             self.strikethrough = strikethrough
         case let .baselineOffset(baselineOffset):
             self.baselineOffset = baselineOffset
+        case let .ligatures(ligatures):
+            self.ligatures = ligatures
         case let .alignment(alignment):
             self.alignment = alignment
         case let .tracking(tracking):
@@ -172,31 +190,52 @@ extension StringStyle {
         case let .style(style):
             self.add(stringStyle: style)
         default:
-            // #if and enum's are disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
-            if case let .hyphenationFactor(hyphenationFactor) = stylePart {
+            // interaction between `#if` and `switch` is disapointing. This case is in default: to remove a warning that default won't be accessed on some platforms.
+            switch stylePart {
+            case let .hyphenationFactor(hyphenationFactor):
                 self.hyphenationFactor = hyphenationFactor
+            default:
+                #if os(OSX) || os(iOS) || os(tvOS)
+                    switch stylePart {
+                    case let .numberCase(numberCase):
+                        self.numberCase = numberCase
+                    case let .numberSpacing(numberSpacing):
+                        self.numberSpacing = numberSpacing
+                    case let .superscript(superscript):
+                        self.superscript = superscript
+                    case let .`subscript`(`subscript`):
+                        self.`subscript` = `subscript`
+                    case let .ordinals(ordinals):
+                        self.ordinals = ordinals
+                    case let .scientificInferiors(scientificInferiors):
+                        self.scientificInferiors = scientificInferiors
+                    case let .smallCaps(smallCaps):
+                        self.smallCaps.insert(smallCaps)
+                    case let .stylisticAlternates(stylisticAlternates):
+                        self.stylisticAlternates.add(other: stylisticAlternates)
+                    case let .contextualAlternates(contextualAlternates):
+                        self.contextualAlternates.add(other: contextualAlternates)
+                    case let .fontFeature(featureProvider):
+                        self.fontFeatureProviders.append(featureProvider)
+                    default:
+                        #if os(iOS) || os(tvOS)
+                            switch stylePart {
+                            case let .adapt(style):
+                                self.adaptations.append(style)
+                            case let .textStyle(textStyle):
+                                self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
+                            default:
+                                fatalError("StylePart \(stylePart) should have been caught by an earlier case.")
+                            }
+                        #else
+                            fatalError("StylePart \(stylePart) should have been caught by an earlier case.")
+                        #endif
+                    }
+                #else
+                    fatalError("StylePart \(stylePart) should have been caught by an earlier case.")
+                #endif
             }
-            #if os(OSX) || os(iOS) || os(tvOS)
-                if case let .numberCase(numberCase) = stylePart {
-                    self.fontFeatureProviders += [numberCase as FontFeatureProvider]
-                    return
-                }
-                else if case let .numberSpacing(numberSpacing) = stylePart {
-                    self.fontFeatureProviders += [numberSpacing as FontFeatureProvider]
-                    return
-                }
-                else if case let .fontFeature(featureProvider) = stylePart {
-                    self.fontFeatureProviders.append(featureProvider)
-                }
-            #endif
-            #if os(iOS) || os(tvOS)
-                if case let .adapt(style) = stylePart {
-                    self.adaptations.append(style)
-                }
-                else if case let .textStyle(textStyle) = stylePart {
-                    self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
-                }
-            #endif
         }
     }
+    //swiftlint:enable function_body_length
 }

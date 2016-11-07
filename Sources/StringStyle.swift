@@ -19,7 +19,7 @@
 ///  is very important, and the API was confusing with a priority integer, and forcing the user to use the right order wasn't
 ///  acceptable.
 public struct StringStyle {
-    public var initialAttributes: StyleAttributes = [:]
+    public var extraAttributes: StyleAttributes = [:]
     public var font: BONFont? = nil
     public var link: NSURL? = nil
     public var backgroundColor: BONColor? = nil
@@ -42,10 +42,23 @@ public struct StringStyle {
     public var paragraphSpacingBefore: CGFloat? = nil
     public var hyphenationFactor: Float? = nil
 
+    public var ligatures: Ligatures? = nil
+
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
+
     public var numberCase: NumberCase? = nil
     public var numberSpacing: NumberSpacing? = nil
+
+    public var superscript: Bool? = nil
+    public var `subscript`: Bool? = nil
+    public var ordinals: Bool? = nil
+    public var scientificInferiors: Bool? = nil
+
+    public var smallCaps: Set<SmallCaps> = []
+
+    public var stylisticAlternates: StylisticAlternates = StylisticAlternates()
+    public var contextualAlternates: ContextualAlternates = ContextualAlternates()
     #endif
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
@@ -59,7 +72,7 @@ extension StringStyle {
 
     /// Obtain a StyleAttributes representing the current style
     public var attributes: StyleAttributes {
-        var theAttributes = initialAttributes
+        var theAttributes = extraAttributes
 
         theAttributes.update(possibleValue: font, forKey: NSFontAttributeName)
         theAttributes.update(possibleValue: link, forKey: NSLinkAttributeName)
@@ -70,6 +83,7 @@ extension StringStyle {
         theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: NSStrikethroughStyleAttributeName)
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
+        theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSLigatureAttributeName)
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
         paragraph.lineSpacing = lineSpacing ?? paragraph.lineSpacing
@@ -93,7 +107,19 @@ extension StringStyle {
         #if os(iOS) || os(tvOS) || os(OSX)
             // Apply the features to the font present
             let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
-            let featuredFont = preFeaturedFont?.font(withFeatures: fontFeatureProviders)
+            var featureProviders = fontFeatureProviders
+
+            featureProviders += [numberCase].flatMap { $0 as? FontFeatureProvider }
+            featureProviders += [numberSpacing].flatMap { $0 as? FontFeatureProvider }
+            featureProviders += [superscript].flatMap { $0 }.map { ($0 ? VerticalPosition.superscript : VerticalPosition.normal) } as [FontFeatureProvider]
+            featureProviders += [`subscript`].flatMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
+            featureProviders += [ordinals].flatMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]
+            featureProviders += [scientificInferiors].flatMap { $0 }.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal } as [FontFeatureProvider]
+            featureProviders += smallCaps.map { $0 as FontFeatureProvider }
+            featureProviders += [stylisticAlternates as FontFeatureProvider]
+            featureProviders += [contextualAlternates as FontFeatureProvider]
+
+            let featuredFont = preFeaturedFont?.font(withFeatures: featureProviders)
             theAttributes.update(possibleValue: featuredFont, forKey: NSFontAttributeName)
         #endif
 
@@ -141,13 +167,13 @@ extension StringStyle {
 
 extension StringStyle {
 
-    /// Update the initialAttributes in the style object. This is used to provide the default
+    /// Update the extraAttributes in the style object. This is used to provide the default
     /// values configured in UI elements, which the style can override.
     ///
-    /// - parameter initialAttributes: The attributes to add to the style before applying the other properties.
-    public mutating func add(initialAttributes attributes: StyleAttributes) {
+    /// - parameter extraAttributes: The attributes to add to the style before applying the other properties.
+    public mutating func add(extraAttributes attributes: StyleAttributes) {
         for (key, value) in attributes {
-            initialAttributes[key] = value
+            extraAttributes[key] = value
         }
     }
 
@@ -156,7 +182,7 @@ extension StringStyle {
     ///
     /// - parameter stringStyle: The style to update this style with.
     public mutating func add(stringStyle theStringStyle: StringStyle) {
-        add(initialAttributes: theStringStyle.initialAttributes)
+        add(extraAttributes: theStringStyle.extraAttributes)
         font = theStringStyle.font ?? font
         link = theStringStyle.link ?? link
         backgroundColor = theStringStyle.backgroundColor ?? backgroundColor
@@ -164,6 +190,8 @@ extension StringStyle {
         underline = theStringStyle.underline ?? underline
         strikethrough = theStringStyle.strikethrough ?? strikethrough
         baselineOffset = theStringStyle.baselineOffset ?? baselineOffset
+
+        ligatures = theStringStyle.ligatures ?? ligatures
 
         lineSpacing = theStringStyle.lineSpacing ?? lineSpacing
         paragraphSpacingAfter = theStringStyle.paragraphSpacingAfter ?? paragraphSpacingAfter
@@ -181,8 +209,19 @@ extension StringStyle {
 
         #if os(iOS) || os(tvOS) || os(OSX)
             fontFeatureProviders.append(contentsOf: theStringStyle.fontFeatureProviders)
+
             numberCase = theStringStyle.numberCase ?? numberCase
             numberSpacing = theStringStyle.numberSpacing ?? numberSpacing
+
+            superscript = theStringStyle.superscript ?? superscript
+            `subscript` = theStringStyle.`subscript` ?? `subscript`
+            ordinals = theStringStyle.ordinals ?? ordinals
+            scientificInferiors = theStringStyle.scientificInferiors ?? scientificInferiors
+
+            smallCaps = theStringStyle.smallCaps.isEmpty ? smallCaps : theStringStyle.smallCaps
+
+            stylisticAlternates = stylisticAlternates + theStringStyle.stylisticAlternates
+            contextualAlternates = contextualAlternates + theStringStyle.contextualAlternates
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)

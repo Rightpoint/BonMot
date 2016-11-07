@@ -36,8 +36,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
         }
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
-        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"])
-        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"])
+        BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"]!)
+        BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"]!)
         XCTAssert(fonts.count == 2)
     }
 
@@ -57,8 +57,8 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let attributedString = style.attributedString(from: "This is <A>A style</A> test for <B>B Style</B>.")
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
-        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"])
-        XCTAssertEqual(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"])
+        BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"]!)
+        BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"]!)
         XCTAssert(fonts.count == 2)
     }
 

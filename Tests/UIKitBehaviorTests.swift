@@ -39,7 +39,7 @@ class UIKitBehaviorTests: XCTestCase {
         // Change the text of the label
         label.text = "Testing"
         // Note that this reverts to the original font.
-        XCTAssertEqual(label.font, largeFont)
+        BONAssertEqualFonts(label.font, largeFont!)
         // When text changes, it updates the font to the last font set to self.font
         // The getter for self.font returns the visible font.
     }

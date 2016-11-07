@@ -206,6 +206,9 @@
         func components(separatedBy separator: NSCharacterSet) -> [String] {
             return componentsSeparatedByCharactersInSet(separator)
         }
+        init<T>(describing instance: T) {
+            self.init(instance)
+        }
     }
 #endif
 
@@ -315,7 +318,7 @@
 #endif
 
 #if os(iOS) || os(watchOS) || os(tvOS)
-    extension UIFont {
+    extension BONFont {
         @nonobjc final var fontDescriptor: UIFontDescriptor {
             return fontDescriptor()
         }

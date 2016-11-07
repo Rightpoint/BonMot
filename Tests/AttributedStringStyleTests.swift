@@ -9,6 +9,8 @@ import XCTest
 import BonMot
 import CoreText
 
+//swiftlint:disable file_length
+//swiftlint:disable:next type_body_length
 class StringStyleTests: XCTestCase {
 
     override func setUp() {
@@ -78,6 +80,14 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testLigatureStyle() {
+        let style = StringStyle(.ligatures(.disabled))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            BONAssert(attributes: style.attributes, key: NSLigatureAttributeName, value: 0)
+        }
+    }
+
     func testAlignmentStyle() {
         let style = StringStyle(.alignment(.center))
         for (style, fullStyle) in additiviePermutations(for: style) {
@@ -132,18 +142,277 @@ class StringStyleTests: XCTestCase {
         }
     }
 
-    func testFontFeatureStyle() {
-        let features: [FontFeatureProvider] = [NumberCase.upper, NumberCase.lower, NumberSpacing.proportional, NumberSpacing.monospaced]
-        for feature in features {
-            let attributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
-            XCTAssertEqual(attributes.count, 1)
-            let font = attributes[NSFontAttributeName] as? BONFont
+    func testSuperscriptStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .superscript(true))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kVerticalPositionType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kSuperiorsSelector)
+            }
         }
+    }
+
+    func testSubscriptStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .`subscript`(true))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kVerticalPositionType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kInferiorsSelector)
+            }
+        }
+    }
+
+    func testOrdinalsStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .ordinals(true))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kVerticalPositionType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kOrdinalsSelector)
+            }
+        }
+    }
+
+    func testScientificInferiorsStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .scientificInferiors(true))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kVerticalPositionType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kScientificInferiorsSelector)
+            }
+        }
+    }
+
+    func testSmallCapsStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .smallCaps(.fromUppercase))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kUpperCaseType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kUpperCaseSmallCapsSelector)
+            }
+        }
+    }
+
+    func testStylisticAlternatesStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .stylisticAlternates(.two(on: true)))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kStylisticAlternativesType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kStylisticAltTwoOnSelector)
+            }
+        }
+    }
+
+    func testContextualAlternatesStyle() {
+        let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .contextualAlternates(.contextualAlternates(on: false)))
+        for (style, fullStyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
+            let font = style.attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute)
+            guard let featuresArray = featureAttribute as? [[String: Int]] else {
+                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                return
+            }
+
+            if !fullStyle {
+                XCTAssertEqual(featuresArray.count, 1)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureTypeIdentifierKey], kContextualAlternatesType)
+                XCTAssertEqual(featuresArray[0][BONFontFeatureSelectorIdentifierKey], kContextualAlternatesOffSelector)
+            }
+        }
+    }
+
+    func testFontFeatureStyle() {
+        let featuresLine: UInt = #line; let features: [FontFeatureProvider] = [
+            NumberCase.upper,
+            NumberCase.lower,
+            NumberSpacing.proportional,
+            NumberSpacing.monospaced,
+            VerticalPosition.superscript,
+            VerticalPosition.`subscript`,
+            VerticalPosition.ordinals,
+            VerticalPosition.scientificInferiors,
+            SmallCaps.fromUppercase,
+            SmallCaps.fromLowercase,
+            StylisticAlternates.six(on: true),
+        ]
+        for (index, feature) in features.enumerated() {
+            let featureLine = featuresLine + UInt(index) + 1
+            let attributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
+            XCTAssertEqual(attributes.count, 1, line: featureLine)
+            let font = attributes[NSFontAttributeName] as? BONFont
+            XCTAssertNotNil(font, line: featureLine)
+            let fontAttributes = font?.fontDescriptor.fontAttributes
+            XCTAssertNotNil(fontAttributes, line: featureLine)
+            let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
+            XCTAssertNotNil(featureAttribute, line: featureLine)
+        }
+    }
+
+    func testAdditiveFontFeatures() {
+        let string = "0<one>1<two>2</two></one>"
+        let font = BONFont(name: "EBGaramond12-Regular", size: 24)!
+        let rules: [XMLStyleRule] = [
+            .style("one", StringStyle(.stylisticAlternates(.two(on: true)), .stylisticAlternates(.six(on: true)), .smallCaps(.fromLowercase))),
+            .style("two", StringStyle(.stylisticAlternates(.five(on: true)), .stylisticAlternates(.six(on: false)), .smallCaps(.disabled))),
+        ]
+
+        let attributed = string.styled(with: .font(font), .xmlRules(rules))
+        XCTAssertEqual(attributed.string, "012")
+
+        let attrs0 = attributed.attributes(at: 0, effectiveRange: nil)
+        let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
+        let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
+
+        guard let font0 = attrs0[NSFontAttributeName] as? BONFont else { XCTFail(); return }
+        guard let font1 = attrs1[NSFontAttributeName] as? BONFont else { XCTFail(); return }
+        guard let font2 = attrs2[NSFontAttributeName] as? BONFont else { XCTFail(); return }
+
+        let descriptor0 = font0.fontDescriptor
+        let descriptor1 = font1.fontDescriptor
+        let descriptor2 = font2.fontDescriptor
+
+        let descriptorAttrs0 = descriptor0.fontAttributes
+        let descriptorAttrs1 = descriptor1.fontAttributes
+        let descriptorAttrs2 = descriptor2.fontAttributes
+
+        XCTAssertNil(descriptorAttrs0[BONFontDescriptorFeatureSettingsAttribute])
+
+        #if swift(>=3.0)
+            typealias BaseType = Any
+        #else
+            typealias BaseType = AnyObject
+        #endif
+
+        guard let featuresArray1 = descriptorAttrs1[BONFontDescriptorFeatureSettingsAttribute] as? [[String: BaseType]] else {
+            XCTFail("Failed to convert to \([[String: BaseType]].self)")
+            return
+        }
+        guard let featuresArray2 = descriptorAttrs2[BONFontDescriptorFeatureSettingsAttribute] as? [[String: BaseType]] else {
+            XCTFail("Failed to convert to \([[String: BaseType]].self)")
+            return
+        }
+
+        XCTAssertEqual(featuresArray1.count, 3)
+        XCTAssertEqual(featuresArray2.count, 2)
+
+        let hasAltTwoDict = featuresArray1.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
+        }
+        XCTAssertTrue(hasAltTwoDict)
+
+        let hasAltSixDict = featuresArray1.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOnSelector
+        }
+        XCTAssertTrue(hasAltSixDict)
+
+        let hasSmallCapsFromLowercaseDict = featuresArray1.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kLowerCaseType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kLowerCaseSmallCapsSelector
+        }
+        XCTAssertTrue(hasSmallCapsFromLowercaseDict)
+
+        let array2StillHasAltTwoDict = featuresArray2.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
+        }
+        XCTAssertTrue(array2StillHasAltTwoDict)
+
+        let hasAltFiveDict = featuresArray2.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltFiveOnSelector
+        }
+        XCTAssertTrue(hasAltFiveDict)
+
+        let stillHasAltSixDict = featuresArray2.contains { dictionary in
+            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+                && (dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOnSelector
+                    || dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOffSelector)
+        }
+        XCTAssertFalse(stillHasAltSixDict)
     }
 
     static let floatingPointPropertiesLine = #line
@@ -284,3 +553,4 @@ class StringStyleTests: XCTestCase {
     }
 
 }
+//swiftlint:enable file_length

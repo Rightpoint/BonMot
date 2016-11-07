@@ -129,51 +129,83 @@ class AdaptiveStyleTests: XCTestCase {
         XCTAssertEqualWithAccuracy(testKernAdaption(UIContentSizeCategory.extraExtraExtraLarge.compatible), 10.8, accuracy: 0.0001)
     }
 
+    //swiftlint:disable function_body_length
     /// Test that font feature settings overrides persist through
     /// Dynamic Type adaptation
     func testFeatureSettingsAdaptation() {
         EBGaramondLoader.loadFontIfNeeded()
-        let parts: [StylePart] = [
-            .numberCase(.upper),
-            .numberCase(.lower),
-            .numberSpacing(.monospaced),
-            .numberSpacing(.proportional),
-        ]
-        for part in parts {
-            let originalAttributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .adapt(.control)).byAdding(part).attributes
+        let partsLine: UInt = #line; let partsTuples: [(part: StylePart, representsDefault: Bool)] = [
+            (.numberCase(.upper), false),
+            (.numberCase(.lower), false),
+            (.numberSpacing(.monospaced), false),
+            (.numberSpacing(.proportional), false),
+            (.superscript(true), false),
+            (.superscript(false), true),
+            (.`subscript`(true), false),
+            (.`subscript`(false), true),
+            (.ordinals(true), false),
+            (.ordinals(false), true),
+            (.scientificInferiors(true), false),
+            (.scientificInferiors(false), true),
+            (.smallCaps(.disabled), true),
+            (.smallCaps(.fromUppercase), false),
+            (.smallCaps(.fromLowercase), false),
+            (.stylisticAlternates(.one(on: true)), false),  // these are the supported stylistic alternates for EBGaramond12-Regular
+            (.stylisticAlternates(.one(on: false)), true),
+            (.stylisticAlternates(.two(on: true)), false),
+            (.stylisticAlternates(.two(on: false)), true),
+            (.stylisticAlternates(.five(on: true)), false),
+            (.stylisticAlternates(.five(on: false)), true),
+            (.stylisticAlternates(.six(on: true)), false),
+            (.stylisticAlternates(.six(on: false)), true),
+            (.stylisticAlternates(.seven(on: true)), false),
+            (.stylisticAlternates(.seven(on: false)), true),
+            (.stylisticAlternates(.twenty(on: true)), false),
+            (.stylisticAlternates(.twenty(on: false)), true),
+            (.contextualAlternates(.contextualAlternates(on: true)), true),
+            ]
+        for (index, tuple) in partsTuples.enumerated() {
+            let partLine = partsLine + UInt(index) + 1
+            let originalAttributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .adapt(.control)).byAdding(tuple.part).attributes
             let adaptedAttributes = NSAttributedString.adapt(attributes: originalAttributes, to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall.compatible))
 
-            XCTAssertEqual(originalAttributes.count, 3)
-            XCTAssertEqual(adaptedAttributes.count, 3)
+            XCTAssertEqual(originalAttributes.count, 3, line: partLine)
+            XCTAssertEqual(adaptedAttributes.count, 3, line: partLine)
 
             let originalFont = originalAttributes[NSFontAttributeName] as? BONFont
             let adaptedFont = adaptedAttributes[NSFontAttributeName] as? BONFont
 
-            XCTAssertNotNil(originalFont)
-            XCTAssertNotNil(adaptedFont)
+            XCTAssertNotNil(originalFont, line: partLine)
+            XCTAssertNotNil(adaptedFont, line: partLine)
 
-            let originalDescriptorAttributes = originalFont?.fontDescriptor.fontAttributes
-            let adaptedDescriptorAttributes = adaptedFont?.fontDescriptor.fontAttributes
+            // If a font feature represents the default value, it will be stripped
+            // from a font descriptor's attributes dictionary when a new descriptor
+            // is created, so there is no point in testing for its presence.
+            if !tuple.representsDefault {
+                let originalDescriptorAttributes = originalFont?.fontDescriptor.fontAttributes
+                let adaptedDescriptorAttributes = adaptedFont?.fontDescriptor.fontAttributes
 
-            let originalFeatureAttributeArray = originalDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
-            let adaptedFeatureAttributeArray = adaptedDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
+                let originalFeatureAttributeArray = originalDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
+                let adaptedFeatureAttributeArray = adaptedDescriptorAttributes?[BONFontDescriptorFeatureSettingsAttribute] as? NSArray
 
-            XCTAssertNotNil(originalFeatureAttributeArray)
-            XCTAssertNotNil(adaptedFeatureAttributeArray)
+                XCTAssertNotNil(originalFeatureAttributeArray, line: partLine)
+                XCTAssertNotNil(adaptedFeatureAttributeArray, line: partLine)
 
-            XCTAssertEqual(originalFeatureAttributeArray?.count, 1)
-            XCTAssertEqual(adaptedFeatureAttributeArray?.count, 1)
+                XCTAssertEqual(originalFeatureAttributeArray?.count, 1, line: partLine)
+                XCTAssertEqual(adaptedFeatureAttributeArray?.count, 1, line: partLine)
 
-            let originalFeatureAttributes = originalFeatureAttributeArray?.firstObject as? [String: Int]
-            let adaptedFeatureAttributes = adaptedFeatureAttributeArray?.firstObject as? [String: Int]
+                let originalFeatureAttributes = originalFeatureAttributeArray?.firstObject as? [String: Int]
+                let adaptedFeatureAttributes = adaptedFeatureAttributeArray?.firstObject as? [String: Int]
 
-            XCTAssertNotNil(originalFeatureAttributes)
-            XCTAssertNotNil(adaptedFeatureAttributes)
+                XCTAssertNotNil(originalFeatureAttributes, line: partLine)
+                XCTAssertNotNil(adaptedFeatureAttributes, line: partLine)
 
-            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureTypeIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureTypeIdentifierKey])
-            XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureSelectorIdentifierKey])
+                XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureTypeIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureTypeIdentifierKey], line: partLine)
+                XCTAssertEqual(originalFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], adaptedFeatureAttributes?[BONFontFeatureSelectorIdentifierKey], line: partLine)
+            }
         }
     }
+    //swiftlint:enable function_body_length
 
     func testTabAdaptation() {
         func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {

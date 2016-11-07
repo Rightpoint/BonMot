@@ -269,6 +269,12 @@ import BonMot
         }
     }
 
+    extension BONFont {
+        @nonobjc static func systemFont(ofSize size: CGFloat) -> BONFont {
+            return BONFont.systemFontOfSize(size)
+        }
+    }
+
 #endif
 
 /// UIKit Only
@@ -328,12 +334,6 @@ import BonMot
     extension UIImageRenderingMode {
         @nonobjc static var alwaysTemplate: UIImageRenderingMode {
             return .AlwaysTemplate
-        }
-    }
-
-    extension UIFont {
-        @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
-            return systemFontOfSize(pointSize)
         }
     }
 
