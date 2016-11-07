@@ -28,9 +28,12 @@ internal protocol EmbeddedTransformation {
 
 // Internal helper functions for managing keys in the StyleAttributes related to adaptive functionality.
 internal enum EmbeddedTransformationHelpers {
+
     struct Key {
+
         static let type = "type"
         static let size = "size"
+
     }
 
     static var EmbeddedTransformationTypes: [EmbeddedTransformation.Type] = [AdaptiveStyle.self, Tracking.self, Tab.self]

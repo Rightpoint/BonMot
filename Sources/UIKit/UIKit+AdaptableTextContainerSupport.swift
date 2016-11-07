@@ -66,6 +66,7 @@ extension UIViewController {
         presentedViewController?.notifyContainedAdaptiveContentSizeContainers()
         adaptText(forTraitCollection: traitCollection)
     }
+
 }
 
 extension UIView {
@@ -79,4 +80,5 @@ extension UIView {
             container.adaptText(forTraitCollection: traitCollection)
         }
     }
+
 }

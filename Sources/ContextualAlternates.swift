@@ -14,6 +14,7 @@
 
 // This is not supported by watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
+
     public struct ContextualAlternates {
 
         var contextualAlternates: Bool?

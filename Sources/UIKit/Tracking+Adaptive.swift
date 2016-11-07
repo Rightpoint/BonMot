@@ -13,6 +13,7 @@
 #endif
 
 extension Tracking: AdaptiveStyleTransformation {
+
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
         if case .adobe = self {
             var attributes = theAttributes
@@ -24,6 +25,7 @@ extension Tracking: AdaptiveStyleTransformation {
             return nil
         }
     }
+
 }
 
 extension Tracking: EmbeddedTransformation {

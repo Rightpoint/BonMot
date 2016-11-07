@@ -32,6 +32,7 @@ let testBundle = Bundle(for: DummyClassForTests.self)
 
 #if swift(>=3.0)
     extension BONColor {
+
         static var colorA: BONColor {
             return red
         }
@@ -41,9 +42,11 @@ let testBundle = Bundle(for: DummyClassForTests.self)
         static var colorC: BONColor {
             return purple
         }
+
     }
 #else
     extension BONColor {
+
         static var colorA: BONColor {
             return redColor()
         }
@@ -53,6 +56,7 @@ let testBundle = Bundle(for: DummyClassForTests.self)
         static var colorC: BONColor {
             return purpleColor()
         }
+
     }
 #endif
 
@@ -68,12 +72,15 @@ extension BONColor {
 }
 
 extension BONFont {
+
     static var fontA: BONFont {
         return BONFont(name: "Avenir-Roman", size: 30)!
     }
+
     static var fontB: BONFont {
         return BONFont(name: "Avenir-Roman", size: 20)!
     }
+
 }
 
 let styleA = StringStyle(
@@ -212,6 +219,7 @@ class EBGaramondLoader: NSObject {
         #endif
         return ()
     }()
+
 }
 
 extension NSAttributedString {
@@ -276,9 +284,11 @@ extension NSAttributedString {
         drawWithRect(rect, options: options, context: context)
     }
     #endif
+
 }
 
 extension BONView {
+
     func testingSnapshot() -> BONImage {
         #if os(OSX)
             let dataOfView = dataWithPDF(inside: bounds)
@@ -292,13 +302,16 @@ extension BONView {
             return image
         #endif
     }
+
 }
 
 #if swift(>=3.0)
 #else
 extension XCTestCase {
+
     func measure(block: () -> Void) {
         measureBlock(block)
     }
+
 }
 #endif

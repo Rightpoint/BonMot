@@ -14,6 +14,7 @@
 
 /// A Composable that creates a tab character with a calculated space from the beginning of the line.
 public enum Tab {
+
     /// A spacer Tab will introduce a tab of the specified amount from the current position in the String
     case spacer(CGFloat)
 

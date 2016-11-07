@@ -104,4 +104,5 @@ class UIKitBehaviorTests: XCTestCase {
         XCTAssertNotNil(attributes)
         XCTAssertNil(attributes?["TestAttribute"])
     }
+
 }

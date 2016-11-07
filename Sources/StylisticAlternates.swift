@@ -14,6 +14,7 @@
 
 // This is not supported by watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
+
     public struct StylisticAlternates {
 
         var one: Bool?

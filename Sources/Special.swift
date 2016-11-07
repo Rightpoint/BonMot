@@ -7,6 +7,7 @@
 
 /// Special encapsulates interesting Unicode values for use creating strings.
 public enum Special: UnicodeScalar {
+
     // Keep the cases sorted by unichar value when adding new cases.
     case tab = "\u{0009}"
     case lineFeed = "\u{000A}"
@@ -34,6 +35,7 @@ public enum Special: UnicodeScalar {
     case wordJoiner = "\u{2060}"
     case minusSign = "\u{2212}"
     case objectReplacementCharacter = "\u{FFFC}" // NSAttachmentCharacter
+
 }
 
 extension Special: CustomStringConvertible {

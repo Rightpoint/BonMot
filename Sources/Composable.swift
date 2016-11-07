@@ -16,7 +16,9 @@
 /// append rather than fetching an attributed string to append. This allows more
 /// complex operations (like tab calculations)
 public protocol Composable {
+
     func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle)
+
 }
 
 public extension Composable {

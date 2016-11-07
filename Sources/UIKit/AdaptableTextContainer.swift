@@ -18,6 +18,7 @@ public protocol AdaptableTextContainer {
     /// - parameter traitCollection: The updated trait collection
     @objc(bon_updateTextForTraitCollection:)
     func adaptText(forTraitCollection traitCollection: UITraitCollection)
+
 }
 
 extension UILabel: AdaptableTextContainer {

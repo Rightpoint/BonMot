@@ -27,14 +27,19 @@
     typealias Data = NSData
 
     struct StringTransform {
+
         static let toUnicodeName = NSStringTransformToUnicodeName
+
     }
 
     extension CGFloat {
+
         static var greatestFiniteMagnitude = CGFloat.max
+
     }
 
     extension CGContext {
+
         @nonobjc func translateBy(x dx: CGFloat, y ty: CGFloat) {
             CGContextTranslateCTM(self, dx, ty)
         }
@@ -62,6 +67,7 @@
     }
 
     extension CGBlendMode {
+
         static var normal: CGBlendMode {
             return .Normal
         }
@@ -69,9 +75,11 @@
         static var sourceIn: CGBlendMode {
             return .SourceIn
         }
+
     }
 
     extension NSString {
+
         @nonobjc final func lowercased() -> String {
             return lowercaseString
         }
@@ -88,133 +96,175 @@
         @nonobjc final func range(of string: String, options: NSStringCompareOptions, range: NSRange) -> NSRange {
             return rangeOfString(string, options: options, range: range)
         }
+
     }
 
     extension NSMutableString {
+
         @nonobjc final func replacingOccurrences(of target: String, with string: String, options: NSStringCompareOptions, range: NSRange) {
             replaceOccurrencesOfString(target, withString: string, options: options, range: range)
         }
+
     }
+
     extension NSStringCompareOptions {
+
         @nonobjc static var backwards: NSStringCompareOptions {
             return .BackwardsSearch
         }
+
     }
 
     extension NSCharacterSet {
+
         var inverted: NSCharacterSet {
             return invertedSet
         }
         @nonobjc static var controlCharacters: NSCharacterSet {
             return controlCharacterSet()
         }
+
         @nonobjc static var whitespaces: NSCharacterSet {
             return whitespaceCharacterSet()
         }
+
         @nonobjc static var whitespacesAndNewlines: NSCharacterSet {
             return whitespaceAndNewlineCharacterSet()
         }
+
         @nonobjc static var decimalDigits: NSCharacterSet {
             return decimalDigitCharacterSet()
         }
+
         @nonobjc static var letters: NSCharacterSet {
             return letterCharacterSet()
         }
+
         @nonobjc static var lowercaseLetters: NSCharacterSet {
             return lowercaseLetterCharacterSet()
         }
+
         @nonobjc static var uppercaseLetters: NSCharacterSet {
             return uppercaseLetterCharacterSet()
         }
+
         @nonobjc static var nonBaseCharacters: NSCharacterSet {
             return nonBaseCharacterSet()
         }
+
         @nonobjc static var alphanumerics: NSCharacterSet {
             return alphanumericCharacterSet()
         }
+
         @nonobjc static var decomposables: NSCharacterSet {
             return decomposableCharacterSet()
         }
+
         @nonobjc static var illegalCharacters: NSCharacterSet {
             return illegalCharacterSet()
         }
+
         @nonobjc static var punctuationCharacters: NSCharacterSet {
             return punctuationCharacterSet()
         }
+
         @nonobjc static var capitalizedLetters: NSCharacterSet {
             return capitalizedLetterCharacterSet()
         }
+
         @nonobjc static var symbols: NSCharacterSet {
             return symbolCharacterSet()
         }
+
         @nonobjc static var newlines: NSCharacterSet {
             return newlineCharacterSet()
         }
+
     }
 
     extension NSIndexSet {
+
         @nonobjc convenience init(indexesIn: NSRange) {
             self.init(indexesInRange: indexesIn)
         }
+
         @nonobjc final func enumerateRanges(options theOptions: NSEnumerationOptions = [], block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
             enumerateRangesWithOptions(theOptions, usingBlock: block)
         }
+
     }
 
     extension NSMutableIndexSet {
+
         @nonobjc final func remove(in range: NSRange) {
             removeIndexesInRange(range)
         }
+
     }
 
     extension Array {
+
         mutating func append<S: SequenceType where S.Generator.Element == Element>(contentsOf newElements: S) {
             appendContentsOf(newElements)
         }
+
     }
 
     extension SequenceType where Generator.Element == String {
+
         func joined(separator separator: String = "") -> String {
             return joinWithSeparator(separator)
         }
+
     }
 
     extension SequenceType {
+
         @warn_unused_result
         func enumerated() -> EnumerateSequence<Self> {
             return enumerate()
         }
+
     }
 
     extension CollectionType where Index : RandomAccessIndexType {
+
         @warn_unused_result
         func reversed() -> ReverseRandomAccessCollection<Self> {
             return reverse()
         }
+
     }
 
     extension String {
+
         struct Encoding {
             static let utf8 = NSUTF8StringEncoding
         }
+
         func lengthOfBytes(using encoding: NSStringEncoding) -> Int {
             return lengthOfBytesUsingEncoding(encoding)
         }
+
         func data(using encoding: NSStringEncoding, allowLossyConversion: Bool = false) -> NSData? {
             return dataUsingEncoding(encoding, allowLossyConversion: allowLossyConversion)
         }
+
         func components(separatedBy separator: NSCharacterSet) -> [String] {
             return componentsSeparatedByCharactersInSet(separator)
         }
+
         init<T>(describing instance: T) {
             self.init(instance)
         }
+
     }
 #endif
 
 /// Shared (AppKit + UIKit)
 #if swift(>=3.0)
     extension NSParagraphStyle {
+
         // This method has to be prefixed since default is not a valid variable in Swift 2.3
         @nonobjc static var bon_default: NSParagraphStyle {
             #if os(OSX)
@@ -223,59 +273,78 @@
                 return NSParagraphStyle.default
             #endif
         }
+
     }
 #else
     extension NSAttributedString {
+
         @nonobjc final func attributes(at location: Int, effectiveRange range: NSRangePointer) -> [String : AnyObject] {
             return attributesAtIndex(location, effectiveRange: range)
         }
+
         @nonobjc final func attribute(attribute: String, at location: Int, effectiveRange range: NSRangePointer) -> AnyObject? {
             return self.attribute(attribute, atIndex: location, effectiveRange: range)
         }
+
         @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
             enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
         }
+
         @nonobjc final func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: ([String: AnyObject], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
             enumerateAttributesInRange(enumerationRange, options: opts, usingBlock: block)
         }
+
         @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {
             return boundingRectWithSize(size, options: options, context: context)
         }
+
         @nonobjc final func attributedSubstring(from range: NSRange) -> NSAttributedString {
             return attributedSubstringFromRange(range)
         }
+
     }
 
     extension NSMutableAttributedString {
+
         @nonobjc final func append(string: NSAttributedString) {
             appendAttributedString(string)
         }
+
         @nonobjc final func replaceCharacters(in range: NSRange, with str: String) {
             replaceCharactersInRange(range, withString: str)
         }
+
     }
 
     extension NSStringDrawingOptions {
+
         @nonobjc static var usesLineFragmentOrigin = UsesLineFragmentOrigin
         @nonobjc static var usesFontLeading = UsesFontLeading
         @nonobjc static var usesDeviceMetrics = UsesDeviceMetrics
         @nonobjc static var truncatesLastVisibleLine = TruncatesLastVisibleLine
+
     }
 
     extension NSTextAlignment {
+
         @nonobjc static var natural = NSTextAlignment.Natural
+
     }
 
     extension NSParagraphStyle {
+
         @nonobjc static var bon_default: NSParagraphStyle {
             return defaultParagraphStyle()
         }
+
     }
 
     extension BONColor {
+
         @nonobjc var cgColor: CGColorRef {
             return self.CGColor
         }
+
     }
 #endif
 
@@ -285,12 +354,15 @@
 
 #if os(iOS) || os(tvOS)
     extension UIApplication {
+
         @nonobjc static var shared: UIApplication {
             return sharedApplication()
         }
+
     }
 
     extension UIFont {
+
         @available(iOS 10.0, tvOS 10.0, *)
         @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
             #if swift(>=2.3)
@@ -299,44 +371,57 @@
                 fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
             #endif
         }
+
         @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
             return preferredFontForTextStyle(textStyle)
         }
+
     }
 
     extension UIControlState {
+
         @nonobjc static var normal: UIControlState {
             return .Normal
         }
+
     }
 
     extension UIButton {
+
         @nonobjc final func setAttributedTitle(title: NSAttributedString?, for state: UIControlState) {
             setAttributedTitle(title, forState: state)
         }
+
     }
 #endif
 
 #if os(iOS) || os(watchOS) || os(tvOS)
     extension BONFont {
+
         @nonobjc final var fontDescriptor: UIFontDescriptor {
             return fontDescriptor()
         }
+
         @nonobjc final func withSize(size: CGFloat) -> UIFont {
             return fontWithSize(size)
         }
+
         @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
             return systemFontOfSize(pointSize)
         }
+
     }
 
     extension UIFontDescriptor {
+
         @nonobjc final var fontAttributes: StyleAttributes {
             return fontAttributes()
         }
+
     }
 
     extension UIImage {
+
         @nonobjc func withAlignmentRectInsets(insets: UIEdgeInsets) -> UIImage {
             return imageWithAlignmentRectInsets(insets)
         }
@@ -352,17 +437,21 @@
         @nonobjc func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {
             return imageWithRenderingMode(renderingMode)
         }
+
     }
 
     extension UIImageRenderingMode {
+
         @nonobjc static var alwaysOriginal: UIImageRenderingMode {
             return .AlwaysOriginal
         }
+
     }
 #endif
 
 #if os(iOS) || os(tvOS) || os(OSX)
     extension NSLayoutAttribute {
+
         static let left = NSLayoutAttribute.Left
         static let right = NSLayoutAttribute.Right
         static let top = NSLayoutAttribute.Top
@@ -386,6 +475,7 @@
         static let centerXWithinMargins = NSLayoutAttribute.CenterXWithinMargins
         static let centerYWithinMargins = NSLayoutAttribute.CenterYWithinMargins
         #endif
+
     }
 #endif
 #endif
@@ -396,6 +486,7 @@
 
 #if os(OSX)
     extension NSImage {
+
         @nonobjc var isTemplate: Bool {
             set {
                 template = newValue
@@ -408,9 +499,11 @@
         @nonobjc func cgImage(forProposedRect rect: UnsafeMutablePointer<NSRect>, context: NSGraphicsContext?, hints: [String: AnyObject]?) -> CGImageRef? {
             return CGImageForProposedRect(rect, context: context, hints: hints)
         }
+
     }
 
     extension NSGraphicsContext {
+
         @nonobjc class func current() -> NSGraphicsContext? {
             return currentContext()
         }
@@ -418,6 +511,7 @@
         @nonobjc var cgContext: CGContextRef {
             return CGContext
         }
+
     }
 #endif
 #endif

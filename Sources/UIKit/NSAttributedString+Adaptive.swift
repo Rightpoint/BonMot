@@ -57,4 +57,5 @@ extension StringStyle {
     public func attributes(adaptedTo traitCollection: UITraitCollection) -> StyleAttributes {
         return NSAttributedString.adapt(attributes: attributes, to: traitCollection)
     }
+
 }

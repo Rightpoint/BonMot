@@ -18,6 +18,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
 
     @objc(BONTextAlignmentConstraintAttribute)
     public enum Attribute: Int, CustomStringConvertible {
+
         case unspecified
         case top
         case capHeight
@@ -69,6 +70,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         init(ibInspectableString string: String) {
             self = Attribute.ibInspectableMapping[string] ?? .unspecified
         }
+
     }
 
     @IBInspectable public var firstAlignment: String? {
@@ -243,10 +245,12 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
 }
 
 private extension String {
+
     var normalized: String {
         var n = self.lowercased()
         n = n.components(separatedBy: CharacterSet.letters.inverted).joined(separator: "")
         n = n.components(separatedBy: CharacterSet.whitespacesAndNewlines).joined(separator: "")
         return n
     }
+
 }

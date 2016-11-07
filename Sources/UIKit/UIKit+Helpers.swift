@@ -29,6 +29,7 @@ extension UIFont {
             return textStyle
         #endif
     }
+
 }
 
 extension UITraitCollection {
@@ -62,6 +63,7 @@ extension UITraitCollection {
             #endif
         }
     }
+
 }
 
 extension UIFont {

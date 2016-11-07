@@ -9,6 +9,7 @@ import UIKit
 
 /// AdaptiveStyle defines a few default scaling behaviors and allows the font to be scaled.
 public enum AdaptiveStyle {
+
     /// Scale the font up and down based on the Dynamic Type slider, but do not grow in the Accessibility ranges.
     case control
     /// Scale the font up and down based on the Dynamic Type slider, including Accessibility sizes.
@@ -18,11 +19,15 @@ public enum AdaptiveStyle {
 
     case above(size: CGFloat, family: String)
     case below(size: CGFloat, family: String)
+
 }
 
 extension AdaptiveStyle: AdaptiveStyleTransformation {
+
     enum AttributeName {
+
         static let nonAdaptedFont = "BonMotNonAdaptedFont"
+
     }
 
     func embed(in attributes: StyleAttributes) -> StyleAttributes {
@@ -67,6 +72,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
 }
 
 extension AdaptiveStyle {
+
     /// An internal lookup table defining the font shift to use for each content size category
     static var shiftTable: [BonMotContentSizeCategory: CGFloat] {
         #if swift(>=3.0)
@@ -134,15 +140,19 @@ extension AdaptiveStyle {
 extension AdaptiveStyle: EmbeddedTransformation {
 
     struct Key {
+
         static let family = "family"
+
     }
 
     struct Value {
+
         static let control = "control"
         static let body = "body"
         static let preferred = "preferred"
         static let above = "above"
         static let below = "below"
+
     }
 
     var representation: StyleAttributes {

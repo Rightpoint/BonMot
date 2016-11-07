@@ -133,7 +133,9 @@
     }
 
     public protocol MappableFeature {
+
         var featureTypeIdentifiers: [Int] { get }
+
     }
 
     extension NumberCase: MappableFeature {
@@ -149,6 +151,7 @@
         public var featureTypeIdentifiers: [Int] {
             return [FeatureTypeIdentifier.numberSpacing.rawValue]
         }
+
     }
 
     extension VerticalPosition: MappableFeature {

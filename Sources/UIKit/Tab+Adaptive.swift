@@ -13,14 +13,18 @@
 #endif
 
 extension Tab: AttributedStringTransformation {
+
     // Just declare conformance. Implementation is already defined and used even if adaptive code is not included in the target.
+
 }
 
 extension Tab: EmbeddedTransformation {
 
     struct Value {
+
         static let spacer = "spacer"
         static let headIndent = "headIndent"
+
     }
 
     static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation? {

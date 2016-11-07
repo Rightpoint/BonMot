@@ -19,6 +19,7 @@
 ///  is very important, and the API was confusing with a priority integer, and forcing the user to use the right order wasn't
 ///  acceptable.
 public struct StringStyle {
+
     public var extraAttributes: StyleAttributes = [:]
     public var font: BONFont? = nil
     public var link: NSURL? = nil
@@ -316,9 +317,11 @@ extension NSParagraphStyle {
 }
 
 extension Dictionary {
+
     internal mutating func update(possibleValue value: Value?, forKey key: Key) {
         if let value = value {
             self[key] = value
         }
     }
+
 }

@@ -19,4 +19,5 @@ internal protocol AttributedStringTransformation {
     /// - parameter string: The attributed string to be updated.
     /// - parameter in: The range to operate over.
     func update(string theString: NSMutableAttributedString, in range: NSRange)
+
 }

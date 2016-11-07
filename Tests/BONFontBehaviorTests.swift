@@ -69,4 +69,5 @@ class BONFontBehaviorTests: XCTestCase {
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)
     }
     #endif
+
 }

@@ -11,6 +11,7 @@ import BonMot
 #if swift(>=2.3)
 
 class UIKitBonMotTests: XCTestCase {
+
     let expectedFont = adaptiveStyle.font!
 
     override static func setUp() {

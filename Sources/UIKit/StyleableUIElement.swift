@@ -9,9 +9,11 @@ import UIKit
 
 /// Protocol to assist styling text contained in UI Elements.
 public protocol StyleableUIElement: UITraitEnvironment {
+
     var bonMotStyleName: String? { get set }
     var bonMotStyle: StringStyle? { get set }
     var styledText: String? { get set }
+
 }
 
 extension UILabel: StyleableUIElement {
@@ -38,6 +40,7 @@ extension UILabel: StyleableUIElement {
         get { return attributedText?.string }
         set { attributedText = styledAttributedString(from: newValue) }
     }
+
 }
 
 extension UITextField: StyleableUIElement {
@@ -81,6 +84,7 @@ extension UITextField: StyleableUIElement {
             attributedText = styledText
         }
     }
+
 }
 
 extension UITextView: StyleableUIElement {
@@ -132,6 +136,7 @@ extension UITextView: StyleableUIElement {
             attributedText = styledAttributedString(from: newValue)
         }
     }
+
 }
 
 extension UIButton: StyleableUIElement {
@@ -212,4 +217,5 @@ internal class StringStyleHolder: NSObject {
     init(style: StringStyle) {
         self.style = style
     }
+
 }
