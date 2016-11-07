@@ -57,7 +57,7 @@ extension NSAttributedString {
     public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
-            styler: XMLRuleStyler(rules: rules),
+            styler: XMLStyleRule.Styler(rules: rules),
             options: options,
             baseStyle: baseStyle ?? StringStyle()
         )
@@ -69,7 +69,7 @@ extension NSAttributedString {
     @nonobjc public static var defaultXMLStyler: XMLStyler = {
         var rules = Special.insertionRules
         rules.append(.styles(NamedStyles.shared))
-        return XMLRuleStyler(rules: rules)
+        return XMLStyleRule.Styler(rules: rules)
     }()
 
 }
@@ -94,6 +94,52 @@ public enum XMLStyleRule {
     case style(String, StringStyle)
     case enter(element: String, insert: Composable)
     case exit(element: String, insert: Composable)
+
+    /// An `XMLStyler` implementation for handling `XMLStyleRule`s.
+    struct Styler: XMLStyler {
+
+        let rules: [XMLStyleRule]
+
+        func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle? {
+            for rule in rules {
+                switch rule {
+                case let .style(string, style) where string == name:
+                    return style
+                default:
+                    break
+                }
+            }
+            for rule in rules {
+                if case let .styles(namedStyles) = rule {
+                    return namedStyles.style(forName: name)
+                }
+            }
+            return nil
+        }
+
+        func prefix(forElement name: String, attributes: [String: String]) -> Composable? {
+            for rule in rules {
+                switch rule {
+                case let .enter(string, composable) where string == name:
+                    return composable
+                default: break
+                }
+            }
+            return nil
+        }
+
+        func suffix(forElement name: String) -> Composable? {
+            for rule in rules {
+                switch rule {
+                case let .exit(string, composable) where string == name:
+                    return composable
+                default: break
+                }
+            }
+            return nil
+        }
+
+    }
 
 }
 
@@ -132,51 +178,8 @@ public struct XMLBuilderError: Error {
     /// The column the error occurred on.
     public let column: Int
 
-}
 
-/// This is a XMLStyler implementation for the StyleRules
-struct XMLRuleStyler: XMLStyler {
 
-    let rules: [XMLStyleRule]
-
-    func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle? {
-        for rule in rules {
-            switch rule {
-            case let .style(string, style) where string == name:
-                return style
-            default:
-                break
-            }
-        }
-        for rule in rules {
-            if case let .styles(namedStyles) = rule {
-                return namedStyles.style(forName: name)
-            }
-        }
-        return nil
-    }
-
-    func prefix(forElement name: String, attributes: [String: String]) -> Composable? {
-        for rule in rules {
-            switch rule {
-            case let .enter(string, composable) where string == name:
-                return composable
-            default: break
-            }
-        }
-        return nil
-    }
-
-    func suffix(forElement name: String) -> Composable? {
-        for rule in rules {
-            switch rule {
-            case let .exit(string, composable) where string == name:
-                return composable
-            default: break
-            }
-        }
-        return nil
-    }
 
 }
 

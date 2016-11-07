@@ -181,7 +181,7 @@ extension StringStyle {
             self.xmlStyler = NSAttributedString.defaultXMLStyler
         case var .xmlRules(rules):
             rules.append(contentsOf: Special.insertionRules)
-            self.xmlStyler = XMLRuleStyler(rules: rules)
+            self.xmlStyler = XMLStyleRule.Styler(rules: rules)
         case let .xmlStyler(xmlStyler):
             self.xmlStyler = xmlStyler
         case let .style(style):
