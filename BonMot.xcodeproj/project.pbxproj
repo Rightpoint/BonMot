@@ -179,14 +179,6 @@
 		CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
 		CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
 		CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
-		CD64EB141DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */; };
-		CD64EB151DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */; };
-		CD64EB161DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */; };
-		CD64EB171DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */; };
-		CD64EB191DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
-		CD64EB1A1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
-		CD64EB1B1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
-		CD64EB1C1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */; };
 		CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
@@ -308,8 +300,6 @@
 		CD3EEE661DC92CF0002C41BB /* Ligatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ligatures.swift; sourceTree = "<group>"; };
 		CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspector.swift; sourceTree = "<group>"; };
 		CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspectorTests.swift; sourceTree = "<group>"; };
-		CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAsArray.swift; sourceTree = "<group>"; };
-		CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAsArrayTests.swift; sourceTree = "<group>"; };
 		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
 		CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextualAlternates.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
@@ -428,7 +418,6 @@
 				CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */,
 				CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */,
 				CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */,
-				CD64EB131DCBB91600DC89C6 /* OptionalAsArray.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -563,7 +552,6 @@
 				CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */,
 				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
 				CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */,
-				CD64EB181DCBB94400DC89C6 /* OptionalAsArrayTests.swift */,
 				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
@@ -1105,7 +1093,6 @@
 				ABA75DD81D99E10400B64705 /* Special.swift in Sources */,
 				ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */,
 				CDEA84341D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
-				CD64EB171DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */,
 				ABA75DDB1D99E10400B64705 /* StylePart.swift in Sources */,
 				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
 				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
@@ -1122,7 +1109,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD64EB1C1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */,
 				CDEA84391D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
 				ABA75DF01D99E10F00B64705 /* Compatibility.swift in Sources */,
 				ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */,
@@ -1182,7 +1168,6 @@
 				ABCD3D6F1D96F02F00273936 /* FontFeatures.swift in Sources */,
 				AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
-				CD64EB141DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */,
 				1E7B10EC1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1194,7 +1179,6 @@
 				ABCD3DB31D96F06800273936 /* Compatibility.swift in Sources */,
 				ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
-				CD64EB191DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */,
 				ABCD3DB01D96F06800273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DB61D96F06800273936 /* NSAttributedStringDebugTests.swift in Sources */,
@@ -1242,7 +1226,6 @@
 				AB30D50D1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABCD3DE21D96F6A500273936 /* FontFeatures.swift in Sources */,
 				CDEA84321D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
-				CD64EB151DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */,
 				1E7B10ED1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1254,7 +1237,6 @@
 				ABCD3DF21D96F6E200273936 /* Compatibility.swift in Sources */,
 				ABCD3DF31D96F6E200273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
-				CD64EB1A1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */,
 				ABCD3DF41D96F6E200273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DF51D96F6E200273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DF61D96F6E200273936 /* NSAttributedStringDebugTests.swift in Sources */,
@@ -1289,7 +1271,6 @@
 				CD3EEE6A1DC92CF7002C41BB /* Ligatures.swift in Sources */,
 				ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */,
 				ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */,
-				CD64EB161DCBB91600DC89C6 /* OptionalAsArray.swift in Sources */,
 				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,
 				CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3E1D1D980E4900273936 /* FontFeatures.swift in Sources */,
@@ -1300,7 +1281,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD64EB1B1DCBB94400DC89C6 /* OptionalAsArrayTests.swift in Sources */,
 				ABCD3E2B1D980E5500273936 /* Compatibility.swift in Sources */,
 				ABCD3E2E1D980E5500273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3E2F1D980E5500273936 /* NSAttributedStringDebugTests.swift in Sources */,

@@ -109,12 +109,12 @@ extension StringStyle {
             let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
             var featureProviders = fontFeatureProviders
 
-            featureProviders += numberCase.map { $0 as FontFeatureProvider }.asArray
-            featureProviders += numberSpacing.map { $0 as FontFeatureProvider }.asArray
-            featureProviders += superscript.map { $0 ? VerticalPosition.superscript : VerticalPosition.normal }.asArray as [FontFeatureProvider]
-            featureProviders += `subscript`.map { $0 ? VerticalPosition.`subscript` : VerticalPosition.normal }.asArray as [FontFeatureProvider]
-            featureProviders += ordinals.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal }.asArray as [FontFeatureProvider]
-            featureProviders += scientificInferiors.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal }.asArray as [FontFeatureProvider]
+            featureProviders += [numberCase].flatMap { $0 as? FontFeatureProvider }
+            featureProviders += [numberSpacing].flatMap { $0 as? FontFeatureProvider }
+            featureProviders += [superscript].flatMap { $0 }.map { ($0 ? VerticalPosition.superscript : VerticalPosition.normal) } as [FontFeatureProvider]
+            featureProviders += [`subscript`].flatMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
+            featureProviders += [ordinals].flatMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]
+            featureProviders += [scientificInferiors].flatMap { $0 }.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal } as [FontFeatureProvider]
             featureProviders += smallCaps.map { $0 as FontFeatureProvider }
             featureProviders += [stylisticAlternates as FontFeatureProvider]
             featureProviders += [contextualAlternates as FontFeatureProvider]
