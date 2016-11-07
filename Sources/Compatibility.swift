@@ -426,6 +426,10 @@
             return fontAttributes()
         }
 
+        @nonobjc final func addingAttributes(attributes: [String: AnyObject]) -> UIFontDescriptor {
+            return fontDescriptorByAddingAttributes(attributes)
+        }
+
     }
 
     extension UIImage {

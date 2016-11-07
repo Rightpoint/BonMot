@@ -17,8 +17,8 @@ public enum AdaptiveStyle {
     /// Enable automatic scaling of preferred fonts
     case preferred
 
-    case above(size: CGFloat, family: String)
-    case below(size: CGFloat, family: String)
+    case above(size: CGFloat, useFontNamed: String)
+    case below(size: CGFloat, useFontNamed: String)
 
 }
 
@@ -60,10 +60,10 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
             else {
                 print("No text style in the font, can not adapt")
             }
-        case .above(let size, let family):
-            font = pointSize > size ? font.font(familyName: family) : font
+        case .above(let size, let fontName):
+            font = pointSize > size ? font.fontWithSameAttributes(named: fontName) : font
         case .below(let size, let family):
-            font = pointSize < size ? font.font(familyName: family) : font
+            font = pointSize < size ? font.fontWithSameAttributes(named: family) : font
         }
         styleAttributes[NSFontAttributeName] = font
         return styleAttributes
@@ -141,7 +141,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
 
     struct Key {
 
-        static let family = "family"
+        static let fontName = "fontName"
 
     }
 
@@ -161,13 +161,13 @@ extension AdaptiveStyle: EmbeddedTransformation {
             return [
                 EmbeddedTransformationHelpers.Key.type: Value.above,
                 EmbeddedTransformationHelpers.Key.size: size,
-                Key.family: family,
+                Key.fontName: family,
             ]
         case let .below(size, family):
             return [
                 EmbeddedTransformationHelpers.Key.type: Value.below,
                 EmbeddedTransformationHelpers.Key.size: size,
-                Key.family: family,
+                Key.fontName: family,
             ]
         case .control:
             return [EmbeddedTransformationHelpers.Key.type: Value.control]
@@ -181,17 +181,17 @@ extension AdaptiveStyle: EmbeddedTransformation {
     static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbeddedTransformation? {
         switch (dictionary[EmbeddedTransformationHelpers.Key.type] as? String,
                 dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
-                dictionary[Key.family] as? String) {
+                dictionary[Key.fontName] as? String) {
         case (Value.control?, nil, nil):
             return AdaptiveStyle.control
         case (Value.body?, nil, nil):
             return AdaptiveStyle.body
         case (Value.preferred?, nil, nil):
             return AdaptiveStyle.preferred
-        case let (Value.above?, size?, family?):
-            return AdaptiveStyle.above(size: size, family: family)
-        case let (Value.below?, size?, family?):
-            return AdaptiveStyle.below(size: size, family: family)
+        case let (Value.above?, size?, fontName?):
+            return AdaptiveStyle.above(size: size, useFontNamed: fontName)
+        case let (Value.below?, size?, fontName?):
+            return AdaptiveStyle.below(size: size, useFontNamed: fontName)
         default:
             return nil
         }

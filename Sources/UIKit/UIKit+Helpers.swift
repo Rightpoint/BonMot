@@ -68,12 +68,17 @@ extension UITraitCollection {
 
 extension UIFont {
 
-    /// - parameter familyName: the family name to use in place of the receiver's family name
-    /// - returns: a font with the same attributes as the current font, but change the `familyName`
-    final func font(familyName theFamilyName: String) -> UIFont {
-        var attributes = fontDescriptor.fontAttributes
-        attributes[UIFontDescriptorFamilyAttribute] = fontName
-        let descriptor = UIFontDescriptor(fontAttributes: attributes)
+    /// Uses a font descriptor to return a font with the specified name, but
+    /// with all other attributes the same as the receiver.
+    ///
+    /// - Parameter name: The name of the new font. Use the same name as you
+    ///                   would pass to UIFont(name:size:).
+    /// - Returns: a font with the same attributes as the receiver, but with the
+    ///            the specified name.
+    final func fontWithSameAttributes(named name: String) -> UIFont {
+        let descriptor = fontDescriptor.addingAttributes([
+            UIFontDescriptorNameAttribute: name,
+            ])
         return UIFont(descriptor: descriptor, size: pointSize)
     }
 
