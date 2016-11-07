@@ -38,7 +38,6 @@ public extension Composable {
         return string
     }
 
-
     /// Create a new NSAttributedString with the base style specified, overriden by any additional parts.
     ///
     /// - parameter style:         The style to decorate with
