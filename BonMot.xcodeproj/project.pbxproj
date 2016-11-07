@@ -44,7 +44,7 @@
 		AB560A081DA0C14000100D15 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */; };
 		AB560A0A1DA0C17800100D15 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */; };
 		AB6633091DA5C5F90007F301 /* BONFontBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAC1D96F06800273936 /* BONFontBehaviorTests.swift */; };
-		AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */; };
+		AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adaptive.swift */; };
 		AB8497B11DA16DAE00FE3414 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
 		AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */; };
 		AB8497B31DA16DAE00FE3414 /* EmbeddedTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbeddedTransformation.swift */; };
@@ -109,7 +109,7 @@
 		ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */; };
 		ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
 		ABCD3D7A1D96F02F00273936 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
-		ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */; };
+		ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adaptive.swift */; };
 		ABCD3D7D1D96F02F00273936 /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */; };
 		ABCD3D7F1D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */; };
 		ABCD3D801D96F02F00273936 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */; };
@@ -273,7 +273,7 @@
 		ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdaptableTextContainer.swift; sourceTree = "<group>"; };
 		ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdaptiveStyle.swift; path = UIKit/AdaptiveStyle.swift; sourceTree = "<group>"; };
 		ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdaptiveStyleTransformation.swift; path = UIKit/AdaptiveStyleTransformation.swift; sourceTree = "<group>"; };
-		ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Adapt.swift"; path = "UIKit/NSAttributedString+Adapt.swift"; sourceTree = "<group>"; };
+		ABCD3D651D96F02F00273936 /* NSAttributedString+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Adaptive.swift"; path = "UIKit/NSAttributedString+Adaptive.swift"; sourceTree = "<group>"; };
 		ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleableUIElement.swift; sourceTree = "<group>"; };
 		ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+AdaptableTextContainerSupport.swift"; sourceTree = "<group>"; };
 		ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Helpers.swift"; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 		AB30D5051D9CB3D2006ADC9D /* Adaptive */ = {
 			isa = PBXGroup;
 			children = (
-				ABCD3D651D96F02F00273936 /* NSAttributedString+Adapt.swift */,
+				ABCD3D651D96F02F00273936 /* NSAttributedString+Adaptive.swift */,
 				ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */,
 				AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */,
 				AB30D51C1D9D95F5006ADC9D /* EmbeddedTransformation.swift */,
@@ -1164,7 +1164,7 @@
 				AB560A061D9F692000100D15 /* AttributedStringTransformation.swift in Sources */,
 				AB30D51D1D9D95F5006ADC9D /* EmbeddedTransformation.swift in Sources */,
 				ABCD3D6E1D96F02F00273936 /* Compatibility.swift in Sources */,
-				ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adapt.swift in Sources */,
+				ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adaptive.swift in Sources */,
 				ABCD3D6F1D96F02F00273936 /* FontFeatures.swift in Sources */,
 				AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
@@ -1219,7 +1219,7 @@
 				CD3EEE691DC92CF6002C41BB /* Ligatures.swift in Sources */,
 				ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */,
 				ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */,
-				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adapt.swift in Sources */,
+				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adaptive.swift in Sources */,
 				ABCD3DDD1D96F6A500273936 /* NSAttributedString+BonMot.swift in Sources */,
 				ABCD3DDE1D96F6A500273936 /* Compatibility.swift in Sources */,
 				AB8497B41DA16DAE00FE3414 /* AdaptiveStyle.swift in Sources */,
