@@ -390,10 +390,10 @@
 				ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */,
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
-				CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */,
-				CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
+				CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */,
+				CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -513,10 +513,10 @@
 			isa = PBXGroup;
 			children = (
 				ABCD3D541D96F02F00273936 /* BonMot.h */,
-				AB30D5031D9CB2F2006ADC9D /* Composable */,
 				AB30D5021D9CB2D4006ADC9D /* Style */,
-				AB30D5041D9CB33B006ADC9D /* Helpers */,
+				AB30D5031D9CB2F2006ADC9D /* Composable */,
 				AB30D5051D9CB3D2006ADC9D /* Adaptive */,
+				AB30D5041D9CB33B006ADC9D /* Helpers */,
 				ABCD3D5F1D96F02F00273936 /* UIKit */,
 				AB9C18D11D9975CE00A54787 /* Info.plist */,
 			);
