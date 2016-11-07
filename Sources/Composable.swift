@@ -28,24 +28,16 @@ public extension Composable {
         return .composed(of: [self])
     }
 
-    /// Create a new NSAttributedString with the base style specified.
-    ///
-    /// - parameter style: The style to decorate with
-    /// - returns: A new NSAttributedString
-    public func styled(with style: StringStyle) -> NSAttributedString {
-        let string = NSMutableAttributedString()
-        self.append(to: string, baseStyle: style)
-        return string
-    }
-
-    /// Create a new NSAttributedString with the base style specified, overriden by any additional parts.
+    /// Create a new NSAttributedString with the base style specified, , overriden by any additional parts.
     ///
     /// - parameter style:         The style to decorate with
     /// - parameter overrideParts: The style parts to override the base style with
-    ///
     /// - returns: A new NSAttributedString
     public func styled(with style: StringStyle, _ overrideParts: StylePart...) -> NSAttributedString {
-        return styled(with: style.byAdding(stringStyle: StringStyle(overrideParts)))
+        let string = NSMutableAttributedString()
+        let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
+        self.append(to: string, baseStyle: newStyle)
+        return string
     }
 
     /// Create a new NSAttributedString with the style parts specified
