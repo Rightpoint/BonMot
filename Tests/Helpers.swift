@@ -172,52 +172,30 @@ class EBGaramondLoader: NSObject {
     // Source: http://stackoverflow.com/questions/14735522/can-i-embed-a-custom-font-in-a-bundle-and-access-it-from-an-ios-framework
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
     private static var loadFont: Void = {
+        guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
+            let data = NSData(contentsOfFile: path)
+            else {
+                fatalError("Can not load EBGaramond12")
+        }
+
         #if swift(>=3.0)
-            guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
-                let data = NSData(contentsOfFile: path)
-                else {
-                    fatalError("Can not load EBGaramond12")
-            }
             guard let provider = CGDataProvider(data: data) else {
                 fatalError("Can not create provider")
             }
-
-            #if swift(>=2.3)
-                let fontRef = CGFont(provider)
-            #else
-                guard let fontRef = CGFontCreateWithDataProvider(provider) else {
-                fatalError("Can not create CGFont")
-                }
-            #endif
-            var error: Unmanaged<CFError>?
-            CTFontManagerRegisterGraphicsFont(fontRef, &error)
-            if let error = error {
-                fatalError("Unable to load font: \(error)")
-            }
+            let fontRef = CGFont(provider)
         #else
-            guard let path = NSBundle(forClass: EBGaramondLoader.self).pathForResource("EBGaramond12-Regular", ofType: "otf"),
-                let data = NSData(contentsOfFile: path)
-                else {
-                    fatalError("Can not load EBGaramond12")
-            }
             guard let provider = CGDataProviderCreateWithCFData(data) else {
                 fatalError("Can not create provider")
             }
-
-            #if swift(>=2.3)
-                let fontRef = CGFontCreateWithDataProvider(provider)
-            #else
-                guard let fontRef = CGFontCreateWithDataProvider(provider) else {
-                fatalError("Can not create CGFont")
-                }
-            #endif
-            var error: Unmanaged<CFError>?
-            CTFontManagerRegisterGraphicsFont(fontRef, &error)
-            if let error = error {
-                fatalError("Unable to load font: \(error)")
-            }
+            let fontRef = CGFontCreateWithDataProvider(provider)
         #endif
-        return ()
+
+        var error: Unmanaged<CFError>?
+        CTFontManagerRegisterGraphicsFont(fontRef, &error)
+
+        if let error = error {
+            fatalError("Unable to load font: \(error)")
+        }
     }()
 
 }

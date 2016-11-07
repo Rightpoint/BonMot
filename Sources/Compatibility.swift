@@ -210,6 +210,14 @@
 
     }
 
+    extension NSBundle {
+
+        @nonobjc func path(forResource resource: String, ofType type: String) -> String? {
+            return pathForResource(resource, ofType: type)
+        }
+
+    }
+
     extension SequenceType where Generator.Element == String {
 
         func joined(separator separator: String = "") -> String {
