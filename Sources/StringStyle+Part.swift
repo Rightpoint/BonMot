@@ -74,10 +74,6 @@ extension StringStyle {
 
     }
 
-}
-
-extension StringStyle {
-
     /// Create a `StringStyle` from an array of parts
     ///
     /// - Parameter parts: An array of `Part`s
@@ -131,10 +127,6 @@ extension StringStyle {
         return style
     }
     #endif
-
-}
-
-extension StringStyle {
 
     /// Update the style with the specified style part.
     ///
@@ -244,4 +236,5 @@ extension StringStyle {
         }
     }
     //swiftlint:enable function_body_length
+
 }
