@@ -32,8 +32,8 @@ extension UIApplication {
             object: nil)
     }
 
-    // Notify the view controller hierarchy. This is an internal method.
-    @objc func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: NSNotification) {
+    // Notify the view controller hierarchy.
+    @objc internal func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: NSNotification) {
         // First notify the app delegate if it conforms to AdaptableTextContainer.
         if let container = self.delegate as? AdaptableTextContainer, let traitCollection = self.delegate?.window??.traitCollection {
             container.adaptText(forTraitCollection: traitCollection)
