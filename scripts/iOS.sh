@@ -14,7 +14,7 @@ set -o pipefail && \
   CODE_SIGN_IDENTITY= \
   | xcpretty
 
-set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 && \
+set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 \
   xcodebuild clean build test \
   -project BonMot.xcodeproj \
   -scheme BonMot-iOS \
