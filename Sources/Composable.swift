@@ -33,7 +33,7 @@ public extension Composable {
     /// - parameter style:         The style to decorate with
     /// - parameter overrideParts: The style parts to override the base style with
     /// - returns: A new NSAttributedString
-    public func styled(with style: StringStyle, _ overrideParts: StylePart...) -> NSAttributedString {
+    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
         let string = NSMutableAttributedString()
         let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
         self.append(to: string, baseStyle: newStyle)
@@ -44,7 +44,7 @@ public extension Composable {
     ///
     /// - parameter parts: The style parts to decorate with
     /// - returns: A new NSAttributedString
-    public func styled(with parts: StylePart...) -> NSAttributedString {
+    public func styled(with parts: StringStyle.Part...) -> NSAttributedString {
         var style = StringStyle()
         for part in parts {
             style.update(part: part)

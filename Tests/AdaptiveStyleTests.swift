@@ -134,7 +134,7 @@ class AdaptiveStyleTests: XCTestCase {
     /// Dynamic Type adaptation
     func testFeatureSettingsAdaptation() {
         EBGaramondLoader.loadFontIfNeeded()
-        let partsLine: UInt = #line; let partsTuples: [(part: StylePart, representsDefault: Bool)] = [
+        let partsLine: UInt = #line; let partsTuples: [(part: StringStyle.Part, representsDefault: Bool)] = [
             (.numberCase(.upper), false),
             (.numberCase(.lower), false),
             (.numberSpacing(.monospaced), false),
