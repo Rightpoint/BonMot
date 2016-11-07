@@ -22,7 +22,7 @@ extension UILabel: StyleableUIElement {
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
-        set { bonMotStyle = lookupSharedStyle(for: newValue, font: font) }
+        set { bonMotStyle = lookUpSharedStyle(for: newValue, font: font) }
     }
 
     /// Specify the style to use for the UILabel.
@@ -53,7 +53,7 @@ extension UITextField: StyleableUIElement {
         get { return nil }
         set {
             guard let font = font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }
-            bonMotStyle = lookupSharedStyle(for: newValue, font: font)
+            bonMotStyle = lookUpSharedStyle(for: newValue, font: font)
         }
     }
 
@@ -111,7 +111,7 @@ extension UITextView: StyleableUIElement {
                     fatalError("Unsupported Mystery Platform")
                 #endif
             }
-            bonMotStyle = lookupSharedStyle(for: newValue, font: font)
+            bonMotStyle = lookUpSharedStyle(for: newValue, font: font)
         }
     }
 
@@ -147,7 +147,7 @@ extension UIButton: StyleableUIElement {
         get { return nil }
         set {
             guard let font = titleLabel?.font else { fatalError("Unable to get the font. This is unexpected; see UIKitTests.testTextFieldPropertyBehavior") }
-            bonMotStyle = lookupSharedStyle(for: newValue, font: font)
+            bonMotStyle = lookUpSharedStyle(for: newValue, font: font)
         }
     }
 
@@ -199,7 +199,7 @@ internal extension StyleableUIElement {
         return string.adapt(to: traitCollection)
     }
 
-    final func lookupSharedStyle(for name: String?, font: UIFont) -> StringStyle? {
+    final func lookUpSharedStyle(for name: String?, font: UIFont) -> StringStyle? {
         guard let name = name, let style = NamedStyles.shared.style(forName: name) else {
             return nil
         }
