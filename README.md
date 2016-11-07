@@ -44,6 +44,7 @@ These are the types with which you will most commonly interact when using BonMot
 - `StringStyle.Part`: an enum which can be used to concisely construct a `StringStyle`. You will typically interact with these, rather than constructing `StringStyle`s directly.
 - `Composable`: a protocol defining any type that knows how to append itself to an attributed string. BonMot provides functions, such as the one in [this example](#debugging--testing-helpers), to join together multiple `Composable` values.
 - `NamedStyles`: use this to register custom, reusable styles in a global namespace.
+- `Special`: a utility to include special, ambiguous, and non-printing characters in your strings without making your code unreadable.
 
 ### Style Inheritance
 
