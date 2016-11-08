@@ -1,5 +1,6 @@
 //
 //  NSAttributedString+Adapt.swift
+//  BonMot
 //
 //  Created by Brian King on 9/20/16.
 //
