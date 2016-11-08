@@ -29,9 +29,13 @@ class FontInspectorTests: XCTestCase {
         XCTAssertTrue(garamond.has(feature: NumberCase.lower))
     }
 
-    // This test is disabled on macOS because, although it works locally,
-    // the font reports _slightly_ different feature availability on the build machine. 😠
-    //swiftlint:disable:next function_body_length
+    //swiftlint:disable function_body_length
+    /// This test is disabled on macOS because, although it works locally,
+    /// the font reports _slightly_ different feature availability on the build
+    /// machine. Perhaps it is installed on the build machine? Possible fix: use
+    /// CTFontManagerCreateFontDescriptorFromData() to ensure that the copy of
+    /// EBGaramond12 that is used in the test is definitely the one included in
+    /// the test bundle.
     func testAvailableFeatures() {
         let garamondControlString = [
             "Available font features of EBGaramond12-Regular",
@@ -117,5 +121,6 @@ class FontInspectorTests: XCTestCase {
             ].joined(separator: "\n")
         XCTAssertEqual(garamond.availableFontFeatures(includeIdentifiers: false), garamondControlString)
     }
+    //swiftlint:enable function_body_length
 
 }

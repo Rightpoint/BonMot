@@ -272,7 +272,9 @@ import BonMot
 #if swift(>=3.0)
     extension NSParagraphStyle {
 
-        // This method has to be prefixed since default is not a valid variable in Swift 2.3
+        /// Returns the default paragraph style.
+        /// - note: This variable has to be prefixed since `default` is not a
+        ///         valid variable name in Swift 2.3
         @nonobjc static var bon_default: NSParagraphStyle {
             #if os(OSX)
                 return NSParagraphStyle.default()

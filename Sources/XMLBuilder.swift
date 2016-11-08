@@ -13,20 +13,27 @@
 
 extension NSAttributedString {
 
-    /// Generate an attributedString by parsing `xml` using the `XMLStyler` protocol to provide style and string insertions to decorate the XML.
-    /// As the XML fragment is traversed, the style of each node is provided by the `XMLStyler` protocol. This style, and the current style
-    /// are combined to decorate the content of the node, and the added style is removed when the node is exited. The `XMLStyler` protocol
-    /// can also insert `NSAttributedString`s when entering and exiting nodes to support more customized styling.
+    /// Generate an attributed string by parsing `fragment` using the `XMLStyler`
+    /// protocol to provide style and string insertions to decorate the XML. As
+    /// the XML fragment is traversed, the style of each node is provided by the
+    /// `XMLStyler` protocol. This style and the current style are combined to
+    /// decorate the content of the node, and the added style is removed when
+    /// the node is exited. The `XMLStyler` protocol can also insert
+    /// `NSAttributedString`s when entering and exiting nodes to support more
+    /// customized styling.
     ///
-    /// The string `xml` will be wrapped in a top level element to ensure it is valid XML, unless `doNotWrapXML` is specified as an option.
-    /// If the XML is not valid an exception will be thrown.
+    /// The `fragment` string will be wrapped in a top level element to ensure
+    /// that it is valid XML, unless `XMLParsingOptions.doNotWrapXML` is
+    /// specified as an option. If the XML is not valid, an error will be thrown.
     ///
-    /// - parameter xml: The string containing the markup.
-    /// - parameter styler: A protocol to decorate the XML
-    /// - parameter options: XML parsing options
-    ///
-    /// - returns: An NSAttributedString
-    //swiftlint:disable:next valid_docs (swiftlint issue jpsim/SourceKitten/issues/133)
+    /// - Parameters:
+    ///   - fragment: The string containing the markup.
+    ///   - baseStyle: The base style to use where the XML does not otherwise
+    ///                specify styling options.
+    ///   - styler: An optional custom styler to perform extra style operations.
+    ///   - options: XML parsing options.
+    /// - Returns: A styled attriubted string.
+    /// - Throws: Any errors encountered by the XML parser.
     public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
@@ -38,15 +45,6 @@ extension NSAttributedString {
         return attributedString
     }
 
-    /// Generate an attributedString by parsing `xml` using the collection of `XMLStyleRule`s to provide style and string insertions to decorate the XML.
-    /// As the XML fragment is traversed, the style of each node is provided by the `StyleRule`s. This style, and the current style
-    /// are combined to decorate the content of the node, and the added style is removed when the node is exited. The `XMLStyleRule`
-    /// can also insert `NSAttributedString`s when entering and exiting nodes to support more customized styling.
-    ///
-    /// For more complex styling behavior, implement the `XMLStyler` protocol instead.
-    ///
-    /// The string `xml` will be wrapped in a top level element to ensure it is valid XML, unless `doNotWrapXML` is specified as an option.
-    /// If the XML is not valid an exception will be thrown.
     ///
     /// - parameter xml: The string containing the markup.
     /// - parameter rules: A protocol to decorate the XML
@@ -54,6 +52,31 @@ extension NSAttributedString {
     ///
     /// - returns: An NSAttributedString
     //swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
+
+    /// Generate an attributed string by parsing `fragment` using the collection
+    /// of `XMLStyleRule`s to provide style and string insertions to decorate
+    /// the XML. As the XML fragment is traversed, the style of each node is
+    /// provided by the `StyleRule`s. This style and the current style are
+    /// combined to decorate the content of the node, and the added style is
+    /// removed when the node is exited. The `XMLStyleRule` can also insert
+    /// `NSAttributedString`s when entering and exiting nodes to support more
+    /// customized styling.
+    ///
+    /// For more complex styling behavior, implement the `XMLStyler` protocol
+    /// instead.
+    ///
+    /// The `fragment` string will be wrapped in a top level element to ensure
+    /// that it is valid XML, unless `XMLParsingOptions.doNotWrapXML` is
+    /// specified as an option. If the XML is not valid, an error will be thrown.
+    ///
+    /// - Parameters:
+    ///   - fragment: The string containing the markup.
+    ///   - baseStyle: The base style to use where the XML does not otherwise
+    ///                specify styling options.
+    ///   - rules: Styling rules to evaluate while parsing the XML.
+    ///   - options: XML parsing options.
+    /// - Returns: A styled attriubted string.
+    /// - Throws: Any errors encountered by the XML parser.
     public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, rules: [XMLStyleRule], options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(
             string: fragment,
@@ -65,7 +88,9 @@ extension NSAttributedString {
         return attributedString
     }
 
-    /// The default XMLStyler to use. By default this styler will look up element styles in the shared NamedStyles and insert special characters when BON namespaced elements are encountered.
+    /// The default `XMLStyler` to use. By default, this styler will look up
+    /// element styles in the shared `NamedStyles` and insert special characters
+    /// when BON-namespaced elements are encountered.
     @nonobjc public static var defaultXMLStyler: XMLStyler = {
         var rules = Special.insertionRules
         rules.append(.styles(NamedStyles.shared))
@@ -76,10 +101,11 @@ extension NSAttributedString {
 
 extension Special {
 
+    /// Rules describing how to insert values from `Special` into attributed strings.
     public static var insertionRules: [XMLStyleRule] {
         let rulePairs: [[XMLStyleRule]] = all.map() {
             let elementName = "BON:\($0.name)"
-            // Add the insertion rule and a style rule so we don't lookup the style and generate a warning
+            // Add the insertion rule and a style rule so we don't look up the style and generate a warning
             return [XMLStyleRule.enter(element: elementName, insert: $0), XMLStyleRule.style(elementName, StringStyle())]
         }
         return rulePairs.flatMap() { $0 }
@@ -87,12 +113,20 @@ extension Special {
 
 }
 
-/// A simple set of styling rules for styling XML. If your needs are more complicated, use the XMLStyler protocol
+/// A simple set of styling rules for styling XML. If your needs are more
+/// complicated, use the `XMLStyler` protocol.
 public enum XMLStyleRule {
 
+    /// A collection of named styles.
     case styles(NamedStyles)
+
+    /// A name/style pairing.
     case style(String, StringStyle)
+
+    /// A `Composable` to insert before entering tags whose name equals `element`.
     case enter(element: String, insert: Composable)
+
+    /// A `Composable` to insert before exiting tags whose name equals `element`.
     case exit(element: String, insert: Composable)
 
     /// An `XMLStyler` implementation for handling `XMLStyleRule`s.
@@ -143,27 +177,35 @@ public enum XMLStyleRule {
 
 }
 
-/// This contract is used to transform an XML string into an attributed string.
+/// A contract to transform an XML string into an attributed string.
 public protocol XMLStyler {
 
-    /// Return the style to apply for to the contents of the element. The style is added onto the current style
+    /// Return the style to apply for to the contents of the element. The style
+    /// is added onto the current style
     func style(forElement name: String, attributes: [String: String], currentStyle: StringStyle) -> StringStyle?
 
-    /// Return a string to extend into the string being built. This is done after the style for the element has been applied, but before the contents of the element.
+    /// Provide a `Composable` to add into the string being built before the
+    /// named element. This is done after the style for the element has been
+    /// applied, but before the contents of the element.
     func prefix(forElement name: String, attributes: [String: String]) -> Composable?
 
-    /// Return a string to extend into the string being built when leaving the element. This is done before the style of the element is removed.
+    /// Provide a `Composable` to add into the string being built when leaving
+    /// the element. This is done before the style of the element is removed.
     func suffix(forElement name: String) -> Composable?
 
 }
 
-/// An option set to control the behavior of the XML parsing behavior
+/// Options to control the behavior of the XML parser.
 public struct XMLParsingOptions: OptionSet {
 
     public let rawValue: Int
+
+    // Must be explicitly declared because it has to be marked public.
     public init(rawValue: Int) { self.rawValue = rawValue }
 
-    /// Do not wrap the fragment with a top level element. Wrapping the XML will cause a copy, for very large strings it is recommended that you include the root node an and pass this option.
+    /// Do not wrap the fragment with a top-level element. Wrapping the XML will
+    /// cause a copy of the entire XML string, so for very large strings, it is
+    /// recommended that you include a root node yourself and pass this option.
     public static let doNotWrapXML = XMLParsingOptions(rawValue: 1)
 
 }
@@ -171,15 +213,14 @@ public struct XMLParsingOptions: OptionSet {
 /// Error wrapper that includes the line and column number of the error.
 public struct XMLBuilderError: Error {
 
-    /// The error generated by XMLParser
+    /// The error generated by XMLParser.
     public let parserError: Error
-    /// The line number the error occurred on.
+
+    /// The line number where the error occurred.
     public let line: Int
-    /// The column the error occurred on.
+
+    /// The column where the error occurred.
     public let column: Int
-
-
-
 
 }
 
@@ -241,10 +282,13 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         return attributedString
     }
 
-    /// When a node is entered, a new style is derived from the current style and the style for the node returned by the XMLStyler.
-    /// If the style contains an XMLStyler, it is pushed onto the XMLStyler stack and removed from the style.
-    /// - parameter element: The name of the XML Element
-    /// - parameter attributes: The XML Attributes
+    /// When a node is entered, a new style is derived from the current style
+    /// and the style for the node returned by the XMLStyler. If the style
+    /// contains an `XMLStyler`, it is pushed onto the `XMLStyler` stack and
+    ///
+    /// - Parameters:
+    ///   - elementName: The name of the XML element.
+    ///   - attributes: The XML attributes.
     func enter(element elementName: String, attributes: [String: String]) {
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
 
@@ -255,8 +299,9 @@ class XMLBuilder: NSObject, XMLParserDelegate {
             newStyle.add(stringStyle: namedStyle)
         }
 
-        // Update the style stack. The XML Styler is removed from the style and added to it's own
-        // stack to prevent the XML parsing from being re-entrant and occuring on every character group.
+        // Update the style stack. The XML styler is removed from the style and
+        // added to its own stack to prevent the XML parsing from being
+        // re-entrant and occuring on every character group.
         xmlStylers.append(newStyle.xmlStyler ?? topXMLStyler)
         newStyle.xmlStyler = nil
         styles.append(newStyle)

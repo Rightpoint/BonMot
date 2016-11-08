@@ -1,11 +1,11 @@
 //
 //  Platform.swift
+//  BonMot
 //
 //  Created by Brian King on 9/22/16.
-//
+//  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-// This file contains defines used across BonMot, and a few global functions
 #if os(OSX)
     import AppKit
     public typealias BONColor = NSColor
@@ -42,14 +42,14 @@
 public typealias StyleAttributes = [String: StyleAttributeValue]
 
 #if os(iOS) || os(tvOS)
-#if swift(>=3.0)
-    public typealias BonMotTextStyle = UIFontTextStyle
-    public typealias BonMotContentSizeCategory = UIContentSizeCategory
-#else
-    public typealias BonMotTextStyle = String
-    public typealias BonMotContentSizeCategory = String
-#endif
+    #if swift(>=3.0)
+        public typealias BonMotTextStyle = UIFontTextStyle
+        public typealias BonMotContentSizeCategory = UIContentSizeCategory
+    #else
+        public typealias BonMotTextStyle = String
+        public typealias BonMotContentSizeCategory = String
+    #endif
 #endif
 
-// This key is defined here because it needs to be used in non adaptive code.
+// This key is defined here because it needs to be used in non-adaptive code.
 public let BonMotTransformationsAttributeName = "BonMotTransformations"

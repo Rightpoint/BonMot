@@ -12,12 +12,8 @@
     import UIKit
 #endif
 
-/// The primary style container for BonMot responsible for encapsulating any attributes that are intended
-/// to be used with NSAttributedString.
-///
-/// NOTE: This was originally envisioned with a more functional closure implementation. However, the order of application
-///  is very important, and the API was confusing with a priority integer, and forcing the user to use the right order wasn't
-///  acceptable.
+/// The primary style container for BonMot, responsible for encapsulating any
+/// attributes that are intended to be used with `NSAttributedString`.
 public struct StringStyle {
 
     public var extraAttributes: StyleAttributes = [:]
@@ -71,7 +67,7 @@ public struct StringStyle {
 
 extension StringStyle {
 
-    /// Obtain a StyleAttributes representing the current style
+    /// A `StyleAttributes` dictionary representing the current style.
     public var attributes: StyleAttributes {
         var theAttributes = extraAttributes
 
@@ -144,11 +140,12 @@ extension StringStyle {
         return theAttributes
     }
 
-    /// Create an NSMutableAttributedString from the specified string.
-    /// - parameter from: The String
-    /// - parameter existingAttributes: The existing attributes, if any, to use as default values for the style.
+    /// Create an `NSAttributedString` from the specified string.
+    /// - parameter from: The `String` to style.
+    /// - parameter existingAttributes: The existing attributes, if any, to use
+    ///                                 as default values for the style.
     ///
-    /// - returns: A new NSMutableAttributedString
+    /// - returns: A new `NSAttributedString`
     public func attributedString(from theString: String, existingAttributes: StyleAttributes? = nil) -> NSAttributedString {
         if let xmlStyler = xmlStyler {
             let builder = XMLBuilder(
@@ -168,20 +165,23 @@ extension StringStyle {
 
 extension StringStyle {
 
-    /// Update the extraAttributes in the style object. This is used to provide the default
-    /// values configured in UI elements, which the style can override.
+    /// Update the `extraAttributes` in the style object. This is used to
+    /// provide the default values configured in UI elements, which the style
+    /// can override.
     ///
-    /// - parameter extraAttributes: The attributes to add to the style before applying the other properties.
+    /// - parameter extraAttributes: The attributes to add to the style before
+    ///                              applying the other properties.
     public mutating func add(extraAttributes attributes: StyleAttributes) {
         for (key, value) in attributes {
             extraAttributes[key] = value
         }
     }
 
-    /// Update the style with values specified in `stringStyle`. Any value configured in `stringStyle`
-    /// will over-write the values specified in this `stringStyle`.
+    /// Update the receiver with values specified in `stringStyle`. Any value
+    /// configured in `stringStyle` will overwrite the values specified in the
+    /// receiver.
     ///
-    /// - parameter stringStyle: The style to update this style with.
+    /// - parameter stringStyle: The style with which to update this style.
     public mutating func add(stringStyle theStringStyle: StringStyle) {
         add(extraAttributes: theStringStyle.extraAttributes)
         font = theStringStyle.font ?? font
@@ -239,13 +239,13 @@ extension StringStyle {
 
 }
 
-/// An extension to provide UIKit interaction helpers to the style object
 public extension StringStyle {
 
-    /// Supply the contained attributes as default values for the passed in StyleAttributes. This will also
-    /// perform some merging of values. This includes NSParagraphStyle and the embedded attributes.
+    /// Supply the receiver's attributes as default values for the passed
+    /// `StyleAttributes` dictionary. This will also perform some merging of
+    /// values. This includes `NSParagraphStyle` and the receiver's attributes.
     ///
-    /// - parameter for: The object to over-write the defaults with
+    /// - parameter for: The object with which to overwrite the defaults.
     /// - returns: The new attributes
     func supplyDefaults(for attributes: StyleAttributes?) -> StyleAttributes {
         guard var attributes = attributes else {
@@ -269,9 +269,12 @@ public extension StringStyle {
         return attributes
     }
 
-    /// A helper function to coerce an `NSMutableParagraphStyle` from a value in an attributes dictionary.
-    /// - parameter from: the attributes dictionary from which to extract the paragraph style
-    /// - returns: a mutable copy of an `NSParagraphStyle`, or a new `NSMutableParagraphStyle` if the value is `nil`.
+    /// A helper to extract an `NSMutableParagraphStyle` from a value in an
+    /// attributes dictionary.
+    /// - parameter from: the attributes dictionary from which to extract the
+    ///                   paragraph style.
+    /// - returns: A mutable copy of an `NSParagraphStyle`, or a new
+    ///            `NSMutableParagraphStyle` if the value is `nil`.
     static func paragraph(from styleAttributes: StyleAttributes) -> NSMutableParagraphStyle {
         let theObject = styleAttributes[NSParagraphStyleAttributeName]
         let result: NSMutableParagraphStyle
@@ -291,10 +294,14 @@ public extension StringStyle {
 
 extension NSParagraphStyle {
 
-    /// Update the supplied NSParagraphStyle properties with the value in this ParagraphStyle if the supplied
-    /// ParagraphStyle property is the default value.
     //swiftlint:disable cyclomatic_complexity
-    func supplyDefaults(for paragraphStyle: NSParagraphStyle) -> NSMutableParagraphStyle {
+    /// Update the passed `NSParagraphStyle`'s properties with the value in this
+    /// the receiver (only if the supplied `NSParagraphStyle`'s value for a
+    /// given property is the default value).
+    ///
+    /// - Parameter paragraphStyle: The paragraph style to update.
+    /// - Returns: The updated paragraph style.
+    func supplyDefaults(for paragraphStyle: NSParagraphStyle) -> NSParagraphStyle {
         let defaults = NSParagraphStyle.bon_default
         let paragraph = paragraphStyle.mutableParagraphStyleCopy()
         if paragraph.lineSpacing == defaults.lineSpacing { paragraph.lineSpacing = lineSpacing }
@@ -313,11 +320,17 @@ extension NSParagraphStyle {
         if paragraph.tabStops == defaults.tabStops { paragraph.tabStops = tabStops }
         return paragraph
     }
+    //swiftlint:enable cyclomatic_complexity
 
 }
 
 extension Dictionary {
 
+    /// Set a given value in a `Dictionary`, but only if that value is non-nil.
+    ///
+    /// - Parameters:
+    ///   - value: The new value to insert into the dictionary if it is non-nil.
+    ///   - key: The key for which to set the value.
     internal mutating func update(possibleValue value: Value?, forKey key: Key) {
         if let value = value {
             self[key] = value

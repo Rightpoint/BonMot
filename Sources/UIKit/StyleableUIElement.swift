@@ -7,25 +7,33 @@
 
 import UIKit
 
-/// Protocol to assist styling text contained in UI Elements.
+/// Protocol to help with styling text contained in UI elements.
 public protocol StyleableUIElement: UITraitEnvironment {
 
+    /// The name of a style in the global `NamedStyles` registry. The getter
+    /// always returns `nil`, and should not be used.
     var bonMotStyleName: String? { get set }
+
+    /// A string style. Stored via associated objects.
     var bonMotStyle: StringStyle? { get set }
+
+    /// Update this property to style the incoming text via the `bonMotStyle`
+    /// and set it as the receiver's attributed text.
     var styledText: String? { get set }
 
 }
 
 extension UILabel: StyleableUIElement {
 
-    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
+    /// The name of a style in the global `NamedStyles` registry. The getter
+    /// always returns `nil`, and should not be used.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
         set { bonMotStyle = lookUpSharedStyle(for: newValue, font: font) }
     }
 
-    /// Specify the style to use for the UILabel.
+    /// A string style. Stored via associated objects.
     public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
@@ -34,7 +42,8 @@ extension UILabel: StyleableUIElement {
         }
     }
 
-    /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and assign it to the attributedText property
+    /// Update this property to style the incoming text via the `bonMotStyle`
+    /// and set it as the receiver's `attributedText`.
     @objc(bon_styledText)
     public var styledText: String? {
         get { return attributedText?.string }
@@ -45,9 +54,12 @@ extension UILabel: StyleableUIElement {
 
 extension UITextField: StyleableUIElement {
 
-    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
+    /// The name of a style in the global `NamedStyles` registry. The getter
+    /// always returns `nil`, and should not be used.
     ///
-    /// NOTE: he style is applied to both the text and placeholder text. If you plan on styling them differently, use attributed strings.
+    /// - note: The style is applied to both the `attributedText` and
+    /// `defaultTextAttributes`. If you plan on styling them differently, use
+    /// attributed strings directly.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
@@ -57,9 +69,10 @@ extension UITextField: StyleableUIElement {
         }
     }
 
-    /// Specify the style to use for text contained inside the view.
-    ///
-    /// NOTE: This will update the defaultTextAttributes and attributedText. Use attributed strings for more control.
+    /// A string style. Stored via associated objects.
+    /// - note: The style is applied to both the `attributedText` and
+    /// `attributedPlaceholder`. If you plan on styling them differently, use
+    /// attributed strings directly.
     public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
@@ -69,13 +82,14 @@ extension UITextField: StyleableUIElement {
         }
     }
 
-    /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and assign it to the attributedText property
+    /// Update this property to style the incoming text via the `bonMotStyle`
+    /// and set it as the receiver's `attributedText`.
     @objc(bon_styledText)
     public var styledText: String? {
         get { return attributedText?.string }
         set {
             let styledText = styledAttributedString(from: newValue)
-            // Avoid a bug that causes the UITextField to hang
+            // Set the font first to avoid a bug that causes UITextField to hang
             if let styledText = styledText {
                 if styledText.length > 0 {
                     font = styledText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
@@ -89,9 +103,12 @@ extension UITextField: StyleableUIElement {
 
 extension UITextView: StyleableUIElement {
 
-    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
+    /// The name of a style in the global `NamedStyles` registry. The getter
+    /// always returns `nil`, and should not be used.
     ///
-    /// NOTE: This will configure a zero width space in the text property if the font has never been set to obtain the default font behavior. See UIKitTests.testTextFieldPropertyBehavior for more information.
+    /// - note: The style is applied to both the `attributedText` and
+    /// `typingAttributes`. If you plan on styling them differently, use
+    /// attributed strings directly.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
@@ -115,10 +132,10 @@ extension UITextView: StyleableUIElement {
         }
     }
 
-    /// Specify the style to use for text contained inside the view. This will trigger AdaptableTextContainer.adaptText(forTraitCollection:) to
-    /// update the current state of the view
-    ///
-    /// NOTE: This will update the typingAttributes and attributedText. Use attributed strings for more control.
+    /// A string style. Stored via associated objects.
+    /// - note: The style is applied to both the `attributedText` and
+    /// `typingAtributes`. If you plan on styling them differently, use
+    /// attributed strings directly.
     public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
@@ -128,7 +145,8 @@ extension UITextView: StyleableUIElement {
         }
     }
 
-    /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and assign it to the attributedText property
+    /// Update this property to style the incoming text via the `bonMotStyle`
+    /// and set it as the receiver's `attributedText`.
     @objc(bon_styledText)
     public var styledText: String? {
         get { return attributedText?.string }
@@ -141,7 +159,8 @@ extension UITextView: StyleableUIElement {
 
 extension UIButton: StyleableUIElement {
 
-    /// Configure the view with the specified style based on the currently configured font. The getter will always return nil.
+    /// The name of a style in the global `NamedStyles` registry. The getter
+    /// always returns `nil`, and should not be used.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
@@ -151,7 +170,7 @@ extension UIButton: StyleableUIElement {
         }
     }
 
-    /// Specify the style to use for text contained inside the view.
+    /// A string style. Stored via associated objects.
     public final var bonMotStyle: StringStyle? {
         get { return getAssociatedStyle() }
         set {
@@ -160,7 +179,8 @@ extension UIButton: StyleableUIElement {
         }
     }
 
-    /// Create a new NSAttributedString using the specified string and the bonMotStyle property, and set the attributed string for the specified state.
+    /// Update this property to style the incoming text via the `bonMotStyle`
+    /// and set it as the receiver's attributed text for the "normal" state.
     @objc(bon_styledText)
     public var styledText: String? {
         get { return titleLabel?.text }
@@ -172,7 +192,7 @@ extension UIButton: StyleableUIElement {
 
 }
 
-/// Helper functionality for the BonMotStyle associated objects.
+/// Helper for the bonMotStyle associated objects.
 private var containerHandle: UInt8 = 0
 internal extension StyleableUIElement {
 

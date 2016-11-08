@@ -8,22 +8,25 @@
 import UIKit
 import BonMot
 
-// UITableViewCell built in labels are re-created when the content size category changes so we use a proper cell subclass.
+/// UITableViewCell's built in labels are re-created when the content size
+/// category changes, so we use a cell subclass with a custom label to avoid this.
 class MasterTableViewCell: UITableViewCell {
+
     @IBOutlet var titleLabel: UILabel?
+
 }
 
 class StyleViewController: UITableViewController {
     var styles: [(String, [NSAttributedString])] = [
-        ("XML", [DemoStrings.xml]),
-        ("Composition", [DemoStrings.composition]),
-        ("Tracking", [DemoStrings.trackingString]),
-        ("Images & Special Characters", [DemoStrings.imageString, DemoStrings.noBreakSpaceString]),
-        ("Baseline Offset", [DemoStrings.heartsString]),
-        ("Indentation", DemoStrings.indentationStrings),
-        ("Line Height", [DemoStrings.lineSpacingString]),
-        ("Dynamic Type", [DemoStrings.dynamcTypeUIKit, DemoStrings.preferredFonts]),
-        ("Figure Style", DemoStrings.proportionalStrings),
+        ("Simple Use Case", [DemoStrings.simpleExample]),
+        ("XML", [DemoStrings.xmlExample]),
+        ("Composition", [DemoStrings.compositionExample]),
+        ("Images & Special Characters", [DemoStrings.imagesExample, DemoStrings.noBreakSpaceExample]),
+        ("Baseline Offset", [DemoStrings.heartsExample]),
+        ("Indentation", DemoStrings.indentationExamples),
+        ("Advanced XML and Kerning", [DemoStrings.advancedXMLAndKerningExample]),
+        ("Dynamic Type", [DemoStrings.dynamcTypeUIKitExample, DemoStrings.preferredFontsExample]),
+        ("OpenType Features", DemoStrings.openTypeFeaturesExample),
     ]
 
     override func viewDidLoad() {
@@ -43,21 +46,21 @@ class StyleViewController: UITableViewController {
     }
 
     #if swift(>=3.0)
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        let attributedText = styles[indexPath.section].1[indexPath.row]
-        if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
-            return true
+        override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+            let attributedText = styles[indexPath.section].1[indexPath.row]
+            if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
+                return true
+            }
+            return false
         }
-        return false
-    }
     #else
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: IndexPath) -> Bool {
-        let attributedText = styles[indexPath.section].1[indexPath.row]
-        if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
-            return true
+        override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: IndexPath) -> Bool {
+            let attributedText = styles[indexPath.section].1[indexPath.row]
+            if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
+                return true
+            }
+            return false
         }
-        return false
-    }
     #endif
 
     func selectRow(at indexPath: IndexPath) {
@@ -76,44 +79,44 @@ class StyleViewController: UITableViewController {
 
 extension StyleViewController {
     #if swift(>=3.0)
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return styles.count
-    }
+        override func numberOfSections(in tableView: UITableView) -> Int {
+            return styles.count
+        }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return styles[section].1.count
-    }
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return styles[section].1.count
+        }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cell(at: indexPath)
-    }
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            return cell(at: indexPath)
+        }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return styles[section].0
-    }
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            return styles[section].0
+        }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectRow(at: indexPath)
-    }
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            selectRow(at: indexPath)
+        }
     #else
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return styles.count
-    }
+        override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+            return styles.count
+        }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return styles[section].1.count
-    }
+        override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return styles[section].1.count
+        }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return cell(at: indexPath)
-    }
+        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            return cell(at: indexPath)
+        }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return styles[section].0
-    }
+        override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            return styles[section].0
+        }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectRow(at: indexPath)
-    }
+        override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+            selectRow(at: indexPath)
+        }
     #endif
 }

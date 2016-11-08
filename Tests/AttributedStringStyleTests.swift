@@ -527,9 +527,10 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    //swiftlint:disable valid_docs
     /// Return the result of various addititve operations with the passed style:
     /// - parameter for: the style to check
-    /// - return: The additive style permutations.
+    /// - returns: The additive style permutations:
     ///   - the passed style
     ///   - an empty style that is updated by the passed style object
     ///   - a fully populated style object that is updated by the passed style object
@@ -541,6 +542,7 @@ class StringStyleTests: XCTestCase {
 
         return [(style: style, fullStyle: false), (style: emptyStyle, fullStyle: false), (style: updated, fullStyle: true)]
     }
+    //swiftlint:enable valid_docs
 
     func testStyleStylePart() {
         let baseStyle = StringStyle(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))

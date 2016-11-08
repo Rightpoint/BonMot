@@ -6,7 +6,7 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-/// Different ligature styles available to attributed strings.
+/// Different ligature styles for use in attributed strings.
 public enum Ligatures: Int {
 
     /// No ligatures.

@@ -74,9 +74,9 @@ extension StringStyle {
 
     }
 
-    /// Create a `StringStyle` from an array of parts
+    /// Create a `StringStyle` from zero or more `Part`s.
     ///
-    /// - Parameter parts: An array of `Part`s
+    /// - Parameter parts: Zero or more `Part`s
     public init(_ parts: Part...) {
         self.init(parts)
     }
@@ -93,7 +93,8 @@ extension StringStyle {
 
     #if swift(>=3.0)
     #else
-    /// Create a `StringStyle` from a part. This is needed for Swift 2.3 determine argument type.
+    /// Create a `StringStyle` from a part. This is needed for Swift 2.3
+    /// to disambiguate argument type in certain cases.
     ///
     /// - Parameter part: a `Part`
     public init(_ part: Part) {
@@ -103,9 +104,10 @@ extension StringStyle {
     #endif
 
     #if swift(>=3.0)
-    /// Derive a new `StringStyle` based on this style, updated with an array of `Part`s.
+    /// Derive a new `StringStyle` based on this style, updated with zero or
+    /// more `Part`s.
     ///
-    /// - Parameter parts: An array of `Part`s
+    /// - Parameter parts: Zero or more `Part`s
     /// - Returns: A newly configured `StringStyle`
     public func byAdding(_ parts: Part...) -> StringStyle {
         var style = self
@@ -115,9 +117,10 @@ extension StringStyle {
         return style
     }
     #else
-    /// Derive a new `StringStyle` based on this style, updated with an array of `Part`s.
+    /// Derive a new `StringStyle` based on this style, updated with zero or
+    /// more `Part`s.
     ///
-    /// - Parameter parts: An array of `Part`s
+    /// - Parameter parts: Zero or more `Part`s
     /// - Returns: A newly configured `StringStyle`
     public func byAdding(parts: Part...) -> StringStyle {
         var style = self
@@ -131,6 +134,8 @@ extension StringStyle {
     //swiftlint:disable function_body_length
     //swiftlint:disable cyclomatic_complexity
     /// Update the style with the specified style part.
+    ///
+    /// - Parameter stylePart: The style part with which to update the receiver.
     mutating func update(part stylePart: Part) {
         switch stylePart {
         case let .extraAttributes(attributes):
@@ -187,7 +192,9 @@ extension StringStyle {
         case let .style(style):
             self.add(stringStyle: style)
         default:
-            // interaction between `#if` and `switch` is disappointing. This case is in `default:` to remove a warning that default won't be accessed on some platforms.
+            // interaction between `#if` and `switch` is disappointing. This case
+            // is in `default:` to remove a warning that default won't be accessed
+            // on some platforms.
             switch stylePart {
             case let .hyphenationFactor(hyphenationFactor):
                 self.hyphenationFactor = hyphenationFactor

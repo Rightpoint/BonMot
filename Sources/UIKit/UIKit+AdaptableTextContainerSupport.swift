@@ -9,14 +9,14 @@ import UIKit
 
 extension UIApplication {
 
-    /// Support for the AdaptableTextContainer protocol is enabled with this method. This
-    /// adds the application as an observer for UIContentSizeCategoryDidChangeNotification
-    /// and floods the change notification to the UIViewController hierarchy, which by
-    /// default floods the view managed by the UIViewController.
+    /// Support for the `AdaptableTextContainer` protocol is enabled with this
+    /// method. It adds the application as an observer for `UIContentSizeCategoryDidChangeNotification`
+    /// and floods the change notification to the `UIViewController` hierarchy,
+    /// which by default floods the view managed by each `UIViewController`.
     ///
-    /// The UIApplication delegate is also checked for conformance to AdaptableTextContainer,
-    /// which can be a good place to update appearance proxies and invalidate any hard-wired
-    /// caches that less responsive code may have.
+    /// The `UIApplication` delegate is also checked for conformance to
+    /// `AdaptableTextContainer`, which can be a good place to update appearance
+    /// proxies and invalidate any hard-wired caches that less responsive code may have.
     public final func enableAdaptiveContentSizeMonitor() {
         #if swift(>=3.0)
             let notificationCenter = NotificationCenter.default
@@ -51,9 +51,10 @@ extension UIApplication {
 
 extension UIViewController {
 
-    /// If the view is loaded and not installed in the view hierarchy, notify the views.
-    /// If the view is in the view hierarchy, it has already been notified, and do not notify again
-    /// Then notify all child view controllers, then the presented view controller, if any.
+    /// 1. If the view is loaded and not installed in the view hierarchy, notify
+    ///    the receiver's view and subviews. If the view is in the view hierarchy,
+    ///    it has already been notified, so do not notify again.
+    /// 2. Then notify all child view controllers, then the presented view controller, if any.
     final func notifyContainedAdaptiveContentSizeContainers() {
         if let view = viewIfLoaded {
             if view.window == nil {
@@ -71,7 +72,7 @@ extension UIViewController {
 
 extension UIView {
 
-    /// Notify any subviews, then notify the view if it conforms to AdaptableTextContainer
+    /// Notify any subviews, then notify the receiver if it conforms to `AdaptableTextContainer`.
     final func notifyContainedAdaptiveContentSizeContainers() {
         for view in subviews {
             view.notifyContainedAdaptiveContentSizeContainers()

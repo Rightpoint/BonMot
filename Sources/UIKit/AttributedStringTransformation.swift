@@ -8,10 +8,10 @@
 
 import Foundation
 
-/// This protocol defines a transformation to be performed on an NSMutableAttributedString.
-/// It is used for adative transformations that need to know about the content of
-/// the string to be performed. These are applied after the `AdaptiveStyleTransformation`s
-/// are applied.
+/// Defines a transformation to be performed on an `NSMutableAttributedString`.
+/// It is used for adative transformations that need to know about the content
+/// of the string in order to be performed. These are applied after the
+/// `AdaptiveStyleTransformation`s are applied.
 internal protocol AttributedStringTransformation {
 
     /// Recalculate any values in the string over the specified range.

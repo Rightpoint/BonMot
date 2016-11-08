@@ -12,9 +12,14 @@
     import UIKit
 #endif
 
-// This is not supported by watchOS
+// This is not supported on watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
 
+    /// Different stylistic alternates available for customizing a font.
+    /// Typically, a font will support a small subset of these alternates, and
+    /// what they mean in a particular font is up to the font's creator. For
+    /// example, in Apple's San Francisco font, turn on alternate set "six" to
+    /// enable high-legibility alternates for ambiguous characters like: 0lI164.
     public struct StylisticAlternates {
 
         var one: Bool?

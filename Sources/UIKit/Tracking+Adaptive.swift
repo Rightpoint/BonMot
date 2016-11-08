@@ -47,7 +47,8 @@ extension Tracking: EmbeddedTransformation {
                     EmbeddedTransformationHelpers.Key.size: size]
         }
         else {
-            // We don't need to persist regular tracking as it does not depend on the font size.
+            // We don't need to persist point tracking, as it does not depend on
+            // the font size.
             return [:]
         }
     }

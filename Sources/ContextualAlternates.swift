@@ -12,9 +12,11 @@
     import UIKit
 #endif
 
-// This is not supported by watchOS
+// This is not supported on watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
 
+    /// Different contextual alternates available for customizing a font. Not
+    /// all fonts support all (or any) of these options.
     public struct ContextualAlternates {
 
         var contextualAlternates: Bool?

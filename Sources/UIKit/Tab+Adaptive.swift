@@ -12,11 +12,9 @@
     import UIKit
 #endif
 
-extension Tab: AttributedStringTransformation {
-
-    // Just declare conformance. Implementation is already defined and used even if adaptive code is not included in the target.
-
-}
+// Just declare conformance. Implementation is already defined and used even
+// if adaptive code is not included in the target.
+extension Tab: AttributedStringTransformation { }
 
 extension Tab: EmbeddedTransformation {
 

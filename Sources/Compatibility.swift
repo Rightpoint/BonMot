@@ -1,5 +1,6 @@
 //
 //  Compatibility.swift
+//  BonMot
 //
 //  Created by Brian King on 8/24/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -12,15 +13,20 @@
     import UIKit
 #endif
 
-/// The purpose of this file is to declare extensions to UIKit objects to provide a compatible API between 2.x and 3.0.
-/// All methods should be non-public and static or final to ensure they do not add selectors or methods to the external namespace.
-/// The bon_ prefix is used when 2.x can not support the token (Like default)
+/// This file declares extensions to UIKit, Foundation, and Standard library
+/// types to provide a compatible API between Swift 2.x and 3.0. All methods
+/// should be non-public and static or final to ensure they do not add selectors
+/// or methods to the external namespace. The bon_ prefix is used when Swift 2.x
+/// cannot support the token, e.g. ".default".
 
 /// Standard Library + Foundation
 #if swift(>=3.0)
 #else
     typealias OptionSet = OptionSetType
+
+    // Declared as public because XMLBuilderError needs it.
     public typealias Error = ErrorType
+
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias CharacterSet = NSCharacterSet
@@ -83,16 +89,19 @@
         @nonobjc final func lowercased() -> String {
             return lowercaseString
         }
+
         @nonobjc final func applyingTransform(transform: String, reverse: Bool) -> NSString? {
             return stringByApplyingTransform(transform, reverse: reverse)
         }
-        @nonobjc final func replacingOccurrences(of string: String, with replacement: String) -> String {
 
+        @nonobjc final func replacingOccurrences(of string: String, with replacement: String) -> String {
             return stringByReplacingOccurrencesOfString(string, withString: replacement)
         }
+
         @nonobjc final func rangeOfCharacter(from characterSet: CharacterSet, options: NSStringCompareOptions, range: NSRange) -> NSRange {
             return rangeOfCharacterFromSet(characterSet, options: options, range: range)
         }
+
         @nonobjc final func range(of string: String, options: NSStringCompareOptions, range: NSRange) -> NSRange {
             return rangeOfString(string, options: options, range: range)
         }
@@ -120,6 +129,7 @@
         var inverted: NSCharacterSet {
             return invertedSet
         }
+
         @nonobjc static var controlCharacters: NSCharacterSet {
             return controlCharacterSet()
         }
@@ -360,171 +370,171 @@
 #if swift(>=3.0)
 #else
 
-#if os(iOS) || os(tvOS)
-    extension UIApplication {
+    #if os(iOS) || os(tvOS)
+        extension UIApplication {
 
-        @nonobjc static var shared: UIApplication {
-            return sharedApplication()
+            @nonobjc static var shared: UIApplication {
+                return sharedApplication()
+            }
+
         }
 
-    }
+        extension UIFont {
 
-    extension UIFont {
+            @available(iOS 10.0, tvOS 10.0, *)
+            @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
+                #if swift(>=2.3)
+                    return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
+                #else
+                    fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
+                #endif
+            }
 
-        @available(iOS 10.0, tvOS 10.0, *)
-        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
-            #if swift(>=2.3)
-                return preferredFontForTextStyle(textStyle, compatibleWithTraitCollection: traitCollection)
-            #else
-                fatalError("This method is not supported on iOS 10.0, and this should not be possible.")
+            @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
+                return preferredFontForTextStyle(textStyle)
+            }
+
+        }
+
+        extension UIControlState {
+
+            @nonobjc static var normal: UIControlState {
+                return .Normal
+            }
+
+        }
+
+        extension UIButton {
+
+            @nonobjc final func setAttributedTitle(title: NSAttributedString?, for state: UIControlState) {
+                setAttributedTitle(title, forState: state)
+            }
+
+        }
+    #endif
+
+    #if os(iOS) || os(watchOS) || os(tvOS)
+        extension BONFont {
+
+            @nonobjc final var fontDescriptor: UIFontDescriptor {
+                return fontDescriptor()
+            }
+
+            @nonobjc final func withSize(size: CGFloat) -> UIFont {
+                return fontWithSize(size)
+            }
+
+            @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
+                return systemFontOfSize(pointSize)
+            }
+
+        }
+
+        extension UIFontDescriptor {
+
+            @nonobjc final var fontAttributes: StyleAttributes {
+                return fontAttributes()
+            }
+
+            @nonobjc final func addingAttributes(attributes: [String: AnyObject]) -> UIFontDescriptor {
+                return fontDescriptorByAddingAttributes(attributes)
+            }
+
+        }
+
+        extension UIImage {
+
+            @nonobjc func withAlignmentRectInsets(insets: UIEdgeInsets) -> UIImage {
+                return imageWithAlignmentRectInsets(insets)
+            }
+
+            @nonobjc func resizableImage(withCapInsets capInsets: UIEdgeInsets, resizingMode: UIImageResizingMode) -> UIImage {
+                return resizableImageWithCapInsets(capInsets, resizingMode: resizingMode)
+            }
+
+            @nonobjc var cgImage: CGImageRef? {
+                return self.CGImage
+            }
+
+            @nonobjc func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {
+                return imageWithRenderingMode(renderingMode)
+            }
+
+        }
+
+        extension UIImageRenderingMode {
+
+            @nonobjc static var alwaysOriginal: UIImageRenderingMode {
+                return .AlwaysOriginal
+            }
+
+        }
+    #endif
+
+    #if os(iOS) || os(tvOS) || os(OSX)
+        extension NSLayoutAttribute {
+
+            static let left = NSLayoutAttribute.Left
+            static let right = NSLayoutAttribute.Right
+            static let top = NSLayoutAttribute.Top
+            static let bottom = NSLayoutAttribute.Bottom
+            static let leading = NSLayoutAttribute.Leading
+            static let trailing = NSLayoutAttribute.Trailing
+            static let width = NSLayoutAttribute.Width
+            static let height = NSLayoutAttribute.Height
+            static let centerX = NSLayoutAttribute.CenterX
+            static let centerY = NSLayoutAttribute.CenterY
+            static let lastBaseline = NSLayoutAttribute.LastBaseline
+            static let firstBaseline = NSLayoutAttribute.FirstBaseline
+            static let notAnAttribute = NSLayoutAttribute.NotAnAttribute
+
+            #if os(iOS) || os(tvOS)
+                static let leftMargin = NSLayoutAttribute.LeftMargin
+                static let rightMargin = NSLayoutAttribute.RightMargin
+                static let topMargin = NSLayoutAttribute.TopMargin
+                static let bottomMargin = NSLayoutAttribute.BottomMargin
+                static let leadingMargin = NSLayoutAttribute.LeadingMargin
+                static let trailingMargin = NSLayoutAttribute.TrailingMargin
+                static let centerXWithinMargins = NSLayoutAttribute.CenterXWithinMargins
+                static let centerYWithinMargins = NSLayoutAttribute.CenterYWithinMargins
             #endif
+
         }
-
-        @nonobjc static func preferredFont(forTextStyle textStyle: BonMotTextStyle) -> UIFont {
-            return preferredFontForTextStyle(textStyle)
-        }
-
-    }
-
-    extension UIControlState {
-
-        @nonobjc static var normal: UIControlState {
-            return .Normal
-        }
-
-    }
-
-    extension UIButton {
-
-        @nonobjc final func setAttributedTitle(title: NSAttributedString?, for state: UIControlState) {
-            setAttributedTitle(title, forState: state)
-        }
-
-    }
-#endif
-
-#if os(iOS) || os(watchOS) || os(tvOS)
-    extension BONFont {
-
-        @nonobjc final var fontDescriptor: UIFontDescriptor {
-            return fontDescriptor()
-        }
-
-        @nonobjc final func withSize(size: CGFloat) -> UIFont {
-            return fontWithSize(size)
-        }
-
-        @nonobjc static func systemFont(ofSize pointSize: CGFloat) -> UIFont {
-            return systemFontOfSize(pointSize)
-        }
-
-    }
-
-    extension UIFontDescriptor {
-
-        @nonobjc final var fontAttributes: StyleAttributes {
-            return fontAttributes()
-        }
-
-        @nonobjc final func addingAttributes(attributes: [String: AnyObject]) -> UIFontDescriptor {
-            return fontDescriptorByAddingAttributes(attributes)
-        }
-
-    }
-
-    extension UIImage {
-
-        @nonobjc func withAlignmentRectInsets(insets: UIEdgeInsets) -> UIImage {
-            return imageWithAlignmentRectInsets(insets)
-        }
-
-        @nonobjc func resizableImage(withCapInsets capInsets: UIEdgeInsets, resizingMode: UIImageResizingMode) -> UIImage {
-            return resizableImageWithCapInsets(capInsets, resizingMode: resizingMode)
-        }
-
-        @nonobjc var cgImage: CGImageRef? {
-            return self.CGImage
-        }
-
-        @nonobjc func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {
-            return imageWithRenderingMode(renderingMode)
-        }
-
-    }
-
-    extension UIImageRenderingMode {
-
-        @nonobjc static var alwaysOriginal: UIImageRenderingMode {
-            return .AlwaysOriginal
-        }
-
-    }
-#endif
-
-#if os(iOS) || os(tvOS) || os(OSX)
-    extension NSLayoutAttribute {
-
-        static let left = NSLayoutAttribute.Left
-        static let right = NSLayoutAttribute.Right
-        static let top = NSLayoutAttribute.Top
-        static let bottom = NSLayoutAttribute.Bottom
-        static let leading = NSLayoutAttribute.Leading
-        static let trailing = NSLayoutAttribute.Trailing
-        static let width = NSLayoutAttribute.Width
-        static let height = NSLayoutAttribute.Height
-        static let centerX = NSLayoutAttribute.CenterX
-        static let centerY = NSLayoutAttribute.CenterY
-        static let lastBaseline = NSLayoutAttribute.LastBaseline
-        static let firstBaseline = NSLayoutAttribute.FirstBaseline
-        static let notAnAttribute = NSLayoutAttribute.NotAnAttribute
-        #if os(iOS) || os(tvOS)
-        static let leftMargin = NSLayoutAttribute.LeftMargin
-        static let rightMargin = NSLayoutAttribute.RightMargin
-        static let topMargin = NSLayoutAttribute.TopMargin
-        static let bottomMargin = NSLayoutAttribute.BottomMargin
-        static let leadingMargin = NSLayoutAttribute.LeadingMargin
-        static let trailingMargin = NSLayoutAttribute.TrailingMargin
-        static let centerXWithinMargins = NSLayoutAttribute.CenterXWithinMargins
-        static let centerYWithinMargins = NSLayoutAttribute.CenterYWithinMargins
-        #endif
-
-    }
-#endif
+    #endif
 #endif
 
 /// AppKit Only
 #if swift(>=3.0)
 #else
+    #if os(OSX)
+        extension NSImage {
 
-#if os(OSX)
-    extension NSImage {
-
-        @nonobjc var isTemplate: Bool {
-            set {
-                template = newValue
+            @nonobjc var isTemplate: Bool {
+                set {
+                    template = newValue
+                }
+                get {
+                    return template
+                }
             }
-            get {
-                return template
+
+            @nonobjc func cgImage(forProposedRect rect: UnsafeMutablePointer<NSRect>, context: NSGraphicsContext?, hints: [String: AnyObject]?) -> CGImageRef? {
+                return CGImageForProposedRect(rect, context: context, hints: hints)
             }
+
         }
 
-        @nonobjc func cgImage(forProposedRect rect: UnsafeMutablePointer<NSRect>, context: NSGraphicsContext?, hints: [String: AnyObject]?) -> CGImageRef? {
-            return CGImageForProposedRect(rect, context: context, hints: hints)
+        extension NSGraphicsContext {
+
+            @nonobjc class func current() -> NSGraphicsContext? {
+                return currentContext()
+            }
+
+            @nonobjc var cgContext: CGContextRef {
+                return CGContext
+            }
+
         }
-
-    }
-
-    extension NSGraphicsContext {
-
-        @nonobjc class func current() -> NSGraphicsContext? {
-            return currentContext()
-        }
-
-        @nonobjc var cgContext: CGContextRef {
-            return CGContext
-        }
-
-    }
-#endif
+    #endif
 #endif
 //swiftlint:enable file_length

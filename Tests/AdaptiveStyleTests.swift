@@ -75,7 +75,7 @@ class AdaptiveStyleTests: XCTestCase {
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
-        // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
+        // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred` was not added.
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: font.pointSize)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.small.compatible), query: { $0.pointSize }, float: font.pointSize)
     }
@@ -86,7 +86,7 @@ class AdaptiveStyleTests: XCTestCase {
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
-        // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
+        // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred` was not added.
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.small.compatible), query: { $0.pointSize }, float: 26)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.medium.compatible), query: { $0.pointSize }, float: 27)
@@ -103,7 +103,7 @@ class AdaptiveStyleTests: XCTestCase {
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
-        // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred was not added.
+        // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred` was not added.
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall.compatible), query: { $0.pointSize }, float: 25)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.small.compatible), query: { $0.pointSize }, float: 26)
         BONAssert(attributes: testAttributes(UIContentSizeCategory.medium.compatible), query: { $0.pointSize }, float: 27)

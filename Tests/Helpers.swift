@@ -111,8 +111,9 @@ let styleBz = StringStyle(
     .tailIndent(10)
 )
 
-/// A fully populated style object that is updated to ensure that update over-writes all values correctly.
-/// Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
+/// A fully populated style object that is updated to ensure that `update`
+/// overwrites all values correctly. Values in this style object should not be
+/// used by any test using `checks(for:)` to ensure no false positives.
 let fullStyle: StringStyle = {
     let terribleValue = CGFloat(1000000)
     var fullStyle = StringStyle()
@@ -162,6 +163,7 @@ let fullStyle: StringStyle = {
     return fullStyle
 }()
 
+/// Utility to load the EBGaramond font if needed.
 class EBGaramondLoader: NSObject {
 
     static func loadFontIfNeeded() {

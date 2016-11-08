@@ -7,6 +7,8 @@
 
 import UIKit
 
+// UIKit helpers for iOS and tvOS
+
 extension UIFont {
 
     @nonobjc static func bon_preferredFont(forTextStyle textStyle: BonMotTextStyle, compatibleWith traitCollection: UITraitCollection?) -> UIFont {
@@ -18,6 +20,7 @@ extension UIFont {
         }
     }
 
+    /// Retrieve the text style, if it exists, from the font descriptor.
     @objc(bon_textStyle)
     public final var textStyle: BonMotTextStyle? {
         guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
@@ -34,9 +37,10 @@ extension UIFont {
 
 extension UITraitCollection {
 
-    /// Obtain the `preferredContentSizeCategory` for the trait collection. This is compatible with iOS 9.x
-    /// and will use the `UIApplication` `preferredContentSizeCategory` if the trait collection's
-    /// `preferredContentSizeCategory` is `UIContentSizeCategoryUnspecified`.
+    /// Obtain the `preferredContentSizeCategory` for the trait collection. This
+    /// is compatible with iOS 9.x and will use the
+    /// `UIApplication.shared.preferredContentSizeCategory` if the trait collection's
+    /// `preferredContentSizeCategory` is `UIContentSizeCategory.unspecified`.
     public var bon_preferredContentSizeCategory: BonMotContentSizeCategory {
         #if swift(>=3.0)
             if #available(iOS 10.0, tvOS 10.0, *) {
@@ -51,7 +55,8 @@ extension UITraitCollection {
                 }
             }
         #endif
-        // UIApplication is not a valid object in the unit tests. Fallback to a default value if the delegate is nil
+        // `UIApplication.shared` is not a valid object in unit tests. Fall back
+        // to a default value if the delegate is nil.
         if UIApplication.shared.delegate != nil {
             return UIApplication.shared.preferredContentSizeCategory
         }

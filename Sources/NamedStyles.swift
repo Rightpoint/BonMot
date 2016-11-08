@@ -7,14 +7,15 @@
 
 import Foundation
 
-/// NamedStyles stores styles, and allows them to be looked up by name. This is primarily used for supporting
-/// Interface builder and styling markup.
+/// Stores styles, and allows them to be looked up by name. Used for supporting
+/// Interface builder and styling XML markup.
 @objc(BONNamedStyles)
 public class NamedStyles: NSObject {
 
-    /// A shared repository of styles. The shared NamedStyles is used by the `bonMotStyleName` property in Interface Builder.
-    /// This singleton is per-populated with 3 values for Dynamic Text. "control", "body", and "preferred"
     #if os(iOS) || os(tvOS)
+    /// A shared repository of styles. It is used by the `bonMotStyleName`
+    /// property in Interface Builder. This singleton is pre-populated with 3
+    /// values for Dynamic Type: "control", "body", and "preferred".
     public static var shared: NamedStyles = {
         let control = StringStyle(
             .adapt(.control))
@@ -26,34 +27,45 @@ public class NamedStyles: NSObject {
         return style
     }()
     #else
+    /// A shared repository of styles. It is used by the `bonMotStyleName`
+    /// property in Interface Builder.
     public static var shared = NamedStyles()
     #endif
 
-    /// Define a closure to be invoked when an unregistered style is requested. By default
-    /// an error is printed.
+    /// Define a closure to be invoked when an unregistered style is requested.
+    /// By default, an error is printed.
     public static var unregisteredStyleClosure: (String) -> Void = { name in
         print("Requesting unregistered style \(name)")
     }
 
-    /// Create a new NamedStyles object with the specified name to style mapping
-    /// - parameter styles: A dictionary containing the name to style mapping
+    /// Create a new `NamedStyles` object with the specified name-to-style
+    /// mapping.
+    /// - parameter styles: A dictionary containing the name-to-style mapping
     public init(styles: [String: StringStyle] = [:]) {
         self.styles = styles
     }
 
-    /// The contained name to style mapping
+    /// The name-to-style mapping
     public var styles: [String: StringStyle]
 
+    /// Register a new named style for later retrieval.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the new style. If a style is already registered
+    ///           for this name, it is replaced.
+    ///   - style: The style to register.
     public func registerStyle(forName name: String, style: StringStyle) {
         styles[name] = style
     }
 
-    /// Lookup a style for the specified name. If no style is found `NamedStyles.unregisteredStyleClosure` is invoked.
-    /// This is done for error reporting and safety. We don't want to crash if no style is found and we want to avoid
-    /// adding throw everywhere. In general if a style is requested by name it will just log and be un-styled.
+    /// Look up a style for the specified name. If no style is found,
+    /// `NamedStyles.unregisteredStyleClosure` is called. This is done for error
+    /// reporting and safety. We don't want to crash if no style is found, and
+    /// we want to avoid adding `throws` everywhere. In general, if a style is
+    /// requested by name, it will just log, and your text will be un-styled.
     ///
-    /// - parameter forName: The name of the style to lookup
-    /// - returns: the configured style, or nil if none is found
+    /// - parameter forName: The name of the style to look up
+    /// - returns: the requested style, or `nil` if none is found
     public func style(forName name: String) -> StringStyle? {
         guard let style = styles[name] else {
             NamedStyles.unregisteredStyleClosure(name)
