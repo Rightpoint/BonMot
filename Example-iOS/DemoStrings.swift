@@ -278,6 +278,9 @@ extension DemoStrings {
     /// Embed an attribute for the storyboard identifier to link to. This is
     /// a good example of embedding custom attributes in an attributed string,
     /// although it might not be the best UIKit design pattern.
+    ///
+    /// - Parameter theIdentifier: The identifier of the storyboard in question.
+    /// - Returns: A string style that contains the extra storyboard attribute.
     static func customStoryboard(identifier theIdentifier: String) -> StringStyle {
         return StringStyle(.extraAttributes(["Storyboard": theIdentifier]))
     }
