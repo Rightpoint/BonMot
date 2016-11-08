@@ -26,7 +26,7 @@ internal protocol EmbeddedTransformation {
     /// Take the adaptations dictionary and create an array of
     /// `AdaptiveStyleTransformation`s. To register a new adaptive transformation,
     /// add the type to `EmbeddedTransformationHelpers.embeddedTransformationTypes`.
-    static func from(dictionary: StyleAttributes) -> EmbeddedTransformation?
+    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation?
 
 }
 
