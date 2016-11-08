@@ -25,9 +25,9 @@ extension Tab: EmbeddedTransformation {
 
     }
 
-    static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation? {
-        switch (dictionary[EmbeddedTransformationHelpers.Key.type] as? String,
-                dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
+    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
+        switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
+                dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
         case (Value.spacer?, let width?):
             return Tab.spacer(width)
         case (Value.headIndent?, let width?):
@@ -37,7 +37,7 @@ extension Tab: EmbeddedTransformation {
         }
     }
 
-    var representation: StyleAttributes {
+    var asDictionary: StyleAttributes {
         switch self {
         case let .spacer(size):
             return [EmbeddedTransformationHelpers.Key.type: Value.spacer,

@@ -21,12 +21,12 @@ internal protocol EmbeddedTransformation {
 
     /// Return a plist-compatible dictionary of any state that is needed to
     /// persist the adaptation
-    var representation: StyleAttributes { get }
+    var asDictionary: StyleAttributes { get }
 
     /// Take the adaptations dictionary and create an array of
     /// `AdaptiveStyleTransformation`s. To register a new adaptive transformation,
     /// add the type to `EmbeddedTransformationHelpers.embeddedTransformationTypes`.
-    static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation?
+    static func from(dictionary: StyleAttributes) -> EmbeddedTransformation?
 
 }
 
@@ -43,14 +43,14 @@ internal enum EmbeddedTransformationHelpers {
     static var embeddedTransformationTypes: [EmbeddedTransformation.Type] = [AdaptiveStyle.self, Tracking.self, Tab.self]
 
     static func embed(transformation theTransformation: EmbeddedTransformation, to styleAttributes: StyleAttributes) -> StyleAttributes {
-        let representation = theTransformation.representation
+        let dictionary = theTransformation.asDictionary
         var styleAttributes = styleAttributes
         var adaptations = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
 
         // Only add the transformation once.
-        let contains = adaptations.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: representation) }
+        let contains = adaptations.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: dictionary) }
         if !contains {
-            adaptations.append(representation)
+            adaptations.append(dictionary)
         }
         styleAttributes[BonMotTransformationsAttributeName] = adaptations
         return styleAttributes
@@ -60,7 +60,7 @@ internal enum EmbeddedTransformationHelpers {
         let representations = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
         let results: [T?] = representations.map { representation in
             for type in embeddedTransformationTypes {
-                if let transformation = type.from(representation: representation) as? T {
+                if let transformation = type.from(dictionary: representation) as? T {
                     return transformation
                 }
             }

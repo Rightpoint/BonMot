@@ -34,14 +34,14 @@ extension Tracking: EmbeddedTransformation {
         static let adobeTracking = "adobe-tracking"
     }
 
-    static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation? {
-        if case let (Value.adobeTracking?, size?) = (dictionary[EmbeddedTransformationHelpers.Key.type] as? String, dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
+    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
+        if case let (Value.adobeTracking?, size?) = (dict[EmbeddedTransformationHelpers.Key.type] as? String, dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
             return Tracking.adobe(size)
         }
         return nil
     }
 
-    var representation: StyleAttributes {
+    var asDictionary: StyleAttributes {
         if case let .adobe(size) = self {
             return [EmbeddedTransformationHelpers.Key.type: Value.adobeTracking,
                     EmbeddedTransformationHelpers.Key.size: size]
