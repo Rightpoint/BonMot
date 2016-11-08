@@ -199,7 +199,7 @@ enum DemoStrings {
             }
             return string
         }()
-        
+
         return [
             imageIndentation,
             stringIndentation,
