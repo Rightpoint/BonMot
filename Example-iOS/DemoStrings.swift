@@ -59,9 +59,10 @@ enum DemoStrings {
     }()
 
     /// Compose a string piecewise from different components. If you are using
-    /// localized strings, do not use this approach. Instead, use XML as in the
-    /// previous example. Use composition only if you absolutely need to build
-    /// the string from pieces.
+    /// localized strings, you may not want to use this approach, since it does
+    /// not work well in cases where different languages have different
+    /// sentence structure. Instead, use XML as in the previous example. Use
+    /// composition only if you absolutely need to build the string from pieces.
     static let compositionExample: NSAttributedString = {
         // Define a colored image that's slightly shifted to account for the line height
         let boat = UIImage(named: "boat")!.styled(with:
