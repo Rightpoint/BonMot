@@ -71,6 +71,7 @@ let blueBirdString = "bird".styled(with: redStyle)
 Are you trying to style just part of a string, perhaps even a localized string which is different depending on the locale of the app? No problem! BonMot can turn custom XML tags and simple HTML into attributed strings:
 
 ```swift
+// This would typically be a localized string
 let string = "one fish, two fish, <red>red fish</red>,<BON:noBreakSpace/><blue>blue fish</blue>"
 
 let redStyle = StringStyle(.color(.red))
