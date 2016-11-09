@@ -12,7 +12,7 @@ BonMot (pronounced *Bon Mo*, French for *good word*) is a Swift attributed strin
 To run the example project, run `pod try BonMot`, or clone the repo and open `Example/BonMot-Example.xcworkspace`.
 
 ### Note
-If you are migrating a project from BonMot 3 to BonMot 4, please see the [Migration Guide](#bonmot-3---4-migration-guide).
+If you are migrating a project from BonMot 3 to BonMot 4, please see the [Migration Guide](#bonmot-3--4-migration-guide).
 
 # Usage
 
