@@ -237,6 +237,10 @@ label.bonMotStyleName = @"MyHeadline";
 
 BonMot 4 is a major update, but there are some common patterns that you can use to ease the transition. Note that this is mostly for Swift projects that were using BonMot 3. BonMot 4 has only limited [support for Objective-C](#objective-c-compatibility), so please check that section before attempting to upgrade if you need to maintain Objective-C compatibility.
 
+### Separating Style from Content
+
+BonMot 4 introduces the `StringStyle` struct, which encapsulates style information. When you apply a `StringStyle` to a plain `String`, the result is an `NSAttributedString`. This differs from BonMot 3, where a `BONChain` or `BONText` contained both style and string information. The decoupling of content from style follows in the footsteps of HTML/CSS, and makes it easier to test and reason about each component separately from the other.
+
 ### Inline Styling
 
 The changes required to support inline styling are minimal. It won’t be a completely mechanical process due to some renaming that took place in 4.0, but it should be fairly straightforward:
