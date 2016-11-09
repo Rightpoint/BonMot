@@ -12,13 +12,13 @@ import BonMot
 enum DemoStrings {
 
     // A Simple Example
-    static let simpleExample = "my precious"
+    static let simpleExample = "MY PRECIOUS"
         .styled(
             with:
-            .tracking(.point(12.86)),
-            .font(UIFont(name: "AvenirNext-BoldItalic", size: 18)!),
+            .tracking(.point(6)),
+            .font(UIFont(name: "AvenirNextCondensed-Bold", size: 16)!),
             .alignment(.center),
-            .color(BONColor(hex: 0x672C6E)),
+            .color(BONColor(hex: 0x2769dd)),
             .adapt(.control)
     )
 
