@@ -98,7 +98,7 @@ This will produce:
 
 #### XML Parsing with Error Handling
 
-If you are parsing XML that is out of your control, e.g. variable content from a server, you may want to use this alternate parsing mechanism, which allows you to handle errors encountered while parsing:
+If the above method encounters invalid XML, the resulting string will be the entire original string, tags and all. If you are parsing XML that is out of your control, e.g. variable content from a server, you may want to use this alternate parsing mechanism, which allows you to handle errors encountered while parsing:
 
 ```swift
 let rules: [XMLStyleRule] = [
