@@ -245,7 +245,7 @@ BonMot 4 introduces the `StringStyle` struct, which encapsulates style informati
 
 The changes required to support inline styling are minimal. It won’t be a completely mechanical process due to some renaming that took place in 4.0, but it should be fairly straightforward:
 
-##### BonMot 3.2
+##### BonMot 3
 
 ```swift
 let chain = BONChain()	
