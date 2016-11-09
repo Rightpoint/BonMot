@@ -245,7 +245,7 @@ BonMot 4 introduces the `StringStyle` struct, which encapsulates style informati
 
 The changes required to support inline styling are minimal. It won’t be a completely mechanical process due to some renaming that took place in 4.0, but it should be fairly straightforward:
 
-#### BonMot 3.2
+##### BonMot 3.2
 
 ```swift
 let chain = BONChain()	
@@ -257,7 +257,7 @@ let chain = BONChain()
 label.attributedText = chain.attributedString
 ```
 
-#### BonMot 4
+##### BonMot 4
 
 ```swift
 label.attributedText = text.styled(
@@ -273,7 +273,7 @@ label.attributedText = text.styled(
 
 In BonMot 3, you may have stored `BONChain`s for later use. You can accomplish the same thing with BonMot 4’s `StringStyle`, with one main difference: while a `BONChain` can contain a string, a `StringStyle` never does. It is applied to a string, producing an `NSAttributedString`:
 
-#### BonMot 3
+##### BonMot 3
 
 ```swift
 struct Constants {
@@ -292,7 +292,7 @@ struct Constants {
 let attrString = myChain.string("some string").attributedString
 ```
 
-#### BonMot 4
+##### BonMot 4
 
 ```swift
 struct Constants {
