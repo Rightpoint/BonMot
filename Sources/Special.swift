@@ -1,12 +1,17 @@
 //
 //  Special.swift
+//  BonMot
 //
 //  Created by Brian King on 9/1/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-/// Special encapsulates interesting Unicode values for use creating strings.
+/// Interesting Unicode characters for use in creating strings. Most characters
+/// in `Special` are either non-printing (like the various space characters) or
+/// visually ambiguous when viewed with a monospace code font (like the dashes
+/// and hyphens).
 public enum Special: UnicodeScalar {
+
     // Keep the cases sorted by unichar value when adding new cases.
     case tab = "\u{0009}"
     case lineFeed = "\u{000A}"
@@ -34,11 +39,12 @@ public enum Special: UnicodeScalar {
     case wordJoiner = "\u{2060}"
     case minusSign = "\u{2212}"
     case objectReplacementCharacter = "\u{FFFC}" // NSAttachmentCharacter
+
 }
 
 extension Special: CustomStringConvertible {
 
-    /// A String with the UnicodeScalar rawValue
+    /// A `String` initialized the `UnicodeScalar` of the receiver as its `rawValue`.
     public var description: String {
         return String(rawValue)
     }
@@ -47,7 +53,7 @@ extension Special: CustomStringConvertible {
 
 extension Special {
 
-    /// A developer-facing string for this UnicodeValue
+    /// A developer-facing string for this UnicodeValue. Useful for debugging.
     public var name: String {
         switch self {
         case .tab: return "tab"
@@ -79,6 +85,7 @@ extension Special {
         }
     }
 
+    /// All of the enum values contained in `Special`.
     public static var all: [Special] = [
         .tab,
         .lineFeed,

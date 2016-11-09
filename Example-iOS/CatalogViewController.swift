@@ -1,5 +1,6 @@
 //
 //  CatalogViewController.swift
+//  BonMot
 //
 //  Created by Brian King on 7/27/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.

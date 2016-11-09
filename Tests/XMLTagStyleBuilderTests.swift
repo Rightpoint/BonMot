@@ -1,5 +1,6 @@
 //
 //  XMLTagStyleBuilderTests.swift
+//  BonMot
 //
 //  Created by Brian King on 8/29/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -10,8 +11,8 @@ import BonMot
 
 class XMLTagStyleBuilderTests: XCTestCase {
 
-    /// There has been concerns about NSXMLParser performance. This is a baseline test,
-    /// but doesn't mean much without a comparision
+    /// There have been concerns about XMLParser's performance. This is a
+    /// baseline test, but doesn't mean much without a comparision.
     func testBasicParserPerformance() {
         let styles = NamedStyles(styles: ["A": styleA, "B": styleB])
 
@@ -94,7 +95,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         XCTAssertNotNil(try? NSAttributedString.composed(ofXML: "<Top>This is fully contained</Top>", rules: [.styles(styles)], options: [.doNotWrapXML]))
     }
 
-    /// Basic test on some HTML-like behavior.
+    /// Basic test of some HTML-like behavior.
     func testHTMLish() {
         struct HTMLishStyleBuilder: XMLStyler {
             let namedStyles = [

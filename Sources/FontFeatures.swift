@@ -1,5 +1,6 @@
 //
 //  FontFeatures.swift
+//  BonMot
 //
 //  Created by Brian King on 8/31/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -11,20 +12,23 @@
     import UIKit
 #endif
 
-// This is not supported by watchOS
+// This is not supported on watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
 
-    /// Protocol to provide values to be used by `UIFontFeatureTypeIdentifierKey` and `UIFontFeatureSelectorIdentifierKey`.
-    /// You can typically find these values in CoreText.SFNTLayoutTypes
+    /// Protocol to provide values to be used by `UIFontFeatureTypeIdentifierKey`
+    /// and `UIFontFeatureSelectorIdentifierKey`. You can typically find these
+    /// values in CoreText.SFNTLayoutTypes.
     public protocol FontFeatureProvider {
         func featureSettings() -> [(type: Int, selector: Int)]
     }
 
     public extension BONFont {
-        /// Create a new font and attempt to enable the specified font features. The returned font will have all
-        /// features enabled that are supported by the font.
-        /// - parameter withFeatures: the features to attempt to enable on the font
-        /// - returns: a new font with the specified features enabled
+
+        /// Create a new font and attempt to enable the specified font features.
+        /// The returned font will have all features enabled that it supports.
+        /// - parameter withFeatures: the features to attempt to enable on the
+        ///                           font.
+        /// - returns: a new font with the specified features enabled.
         public func font(withFeatures featureProviders: [FontFeatureProvider]) -> BONFont {
             var fontAttributes = fontDescriptor.fontAttributes
             var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
@@ -40,16 +44,18 @@
                 return BONFont(descriptor: descriptor, size: pointSize)
             #endif
         }
+
     }
 
-    /// A feature provider for changing the number case, also known as figure style.
+    /// A feature provider for changing the number case, also known as "figure
+    /// style".
     public enum NumberCase: FontFeatureProvider {
 
-        /// Uppercase numbers, also known as lining figures, are the same height
+        /// Uppercase numbers, also known as "lining figures", are the same height
         /// as uppercase letters, and they do not extend below the baseline.
         case upper
 
-        /// Lowercase numbers, also known as oldstyle figures, are similar in
+        /// Lowercase numbers, also known as "oldstyle figures", are similar in
         /// size and visual weight to lowercase letters, allowing them to
         /// blend in better in a block of text. They may have descenders
         /// which drop below the typographic baseline.
@@ -66,15 +72,16 @@
 
     }
 
-    /// A feature provider for changing the number spacing, also known as figure spacing.
+    /// A feature provider for changing the number spacing, also known as
+    /// "figure spacing".
     public enum NumberSpacing: FontFeatureProvider {
 
-        /// Monospaced numbers, also known as tabular figures, each take up the
-        /// same amount of horizontal space, meaning that different numbers will
-        /// line up when arranged in columns.
+        /// Monospaced numbers, also known as "tabular figures", each take up
+        /// the same amount of horizontal space, meaning that different numbers
+        /// will line up when arranged in columns.
         case monospaced
 
-        /// Proportionally spaced numbers, also known as proprotional figures,
+        /// Proportionally spaced numbers, also known as "proprotional figures",
         /// are of variable width. This makes them look better in most cases,
         /// but they should be avoided when numbers need to line up in columns.
         case proportional
@@ -90,7 +97,8 @@
 
     }
 
-    /// A feature provider for changing the vertical position of characters.
+    /// A feature provider for changing the vertical position of characters
+    /// using predefined styles in the font, such as superscript and subscript.
     public enum VerticalPosition: FontFeatureProvider {
 
         /// No vertical position adjustment is applied.
@@ -156,7 +164,8 @@
 
     extension FontFeatureProvider {
 
-        /// - returns: an array of dictionaries, each representing one feature for the attributes key in the font attributes
+        /// - returns: an array of dictionaries, each representing one feature
+        ///            for the attributes key in the font attributes dictionary.
         func featureAttributes() -> [StyleAttributes] {
             let featureSettings = self.featureSettings()
             return featureSettings.map {

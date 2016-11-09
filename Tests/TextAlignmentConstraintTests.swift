@@ -220,4 +220,5 @@ class TextAlignmentConstraintTests: XCTestCase {
 
         XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
     }
+
 }

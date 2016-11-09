@@ -1,5 +1,6 @@
 //
 //  NSAttributedString+BonMot.swift
+//  BonMot
 //
 //  Created by Brian King on 7/19/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -13,16 +14,18 @@
 
 extension NSAttributedString {
 
-    /// Create a new attributed string based on the current string, but replace characters in the Special enumeration,
-    /// images, and unassigned unicode characters with a visual string.
+    /// Create a copy of `self`, but replace characters in the `Special`
+    /// enumeration, images, and unassigned unicode characters with a
+    /// human-readable string.
     public var bonMotDebugAttributedString: NSAttributedString {
         let debug = self.mutableStringCopy()
         var replacements = Array<(range: NSRange, string: String)>()
         var index = 0
 
-        // When looping over string.unicodeScalars directly, we saw nondeterministic behavior
-        // where indices after the first one would contain different characters than what
-        // was expected. Pulling unicodeScalars out first, and then looping, seems to fix it.
+        // When looping over `string.unicodeScalars` directly, we saw
+        // nondeterministic behavior where indices after the first one would
+        // contain different characters than what was expected. Pulling
+        /// `unicodeScalars` out first, and then looping, seems to fix it.
         let scalars = string.unicodeScalars
 
         for unicode in scalars {

@@ -1,5 +1,6 @@
 //
 //  UIKitBehaviorTests.swift
+//  BonMot
 //
 //  Created by Brian King on 8/16/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -94,7 +95,7 @@ class UIKitBehaviorTests: XCTestCase {
         XCTAssertNil(button.titleLabel?.attributedText)
     }
 
-    // Check to see if arbitrary text survives re-configuration (Spoiler: It doesn't)
+    // Check to see if arbitrary text survives re-configuration (spoiler: it doesn't).
     func testLabelAttributedStringAttributePreservationBehavior() {
         let label = UILabel()
         label.attributedText = NSAttributedString(string: "", attributes: ["TestAttribute": true])
@@ -104,4 +105,5 @@ class UIKitBehaviorTests: XCTestCase {
         XCTAssertNotNil(attributes)
         XCTAssertNil(attributes?["TestAttribute"])
     }
+
 }

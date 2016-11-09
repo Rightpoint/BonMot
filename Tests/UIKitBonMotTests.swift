@@ -1,5 +1,6 @@
 //
 //  UIKitBonMotTests.swift
+//  BonMot
 //
 //  Created by Brian King on 9/3/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -11,6 +12,7 @@ import BonMot
 #if swift(>=2.3)
 
 class UIKitBonMotTests: XCTestCase {
+
     let expectedFont = adaptiveStyle.font!
 
     override static func setUp() {

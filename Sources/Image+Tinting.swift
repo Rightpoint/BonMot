@@ -17,6 +17,14 @@ import Foundation
 public extension BONImage {
 
     #if os(OSX)
+    /// Returns a copy of the receiver where the alpha channel is maintained,
+    /// but every pixel's color is replaced with `color`.
+    ///
+    /// - note: The returned image does _not_ have the template flag set,
+    ///         preventing further tinting.
+    ///
+    /// - Parameter theColor: The color to use to tint the receiver.
+    /// - Returns: A tinted copy of the image.
     @objc(bon_tintedImageWithColor:)
     func tintedImage(color theColor: BONColor) -> BONImage {
         let imageRect = CGRect(origin: .zero, size: size)
@@ -59,6 +67,14 @@ public extension BONImage {
         return image
     }
     #else
+    /// Returns a copy of the receiver where the alpha channel is maintained,
+    /// but every pixel's color is replaced with `color`.
+    ///
+    /// - note: The returned image does _not_ have the template flag set,
+    ///         preventing further tinting.
+    ///
+    /// - Parameter theColor: The color to use to tint the receiver.
+    /// - Returns: A tinted copy of the image.
     @objc(bon_tintedImageWithColor:)
     func tintedImage(color theColor: BONColor) -> BONImage {
         let imageRect = CGRect(origin: .zero, size: size)

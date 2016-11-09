@@ -1,11 +1,14 @@
 //
 //  UIKit+Helpers.swift
+//  BonMot
 //
 //  Created by Brian King on 9/12/16.
 //
 //
 
 import UIKit
+
+// UIKit helpers for iOS and tvOS
 
 extension UIFont {
 
@@ -18,6 +21,7 @@ extension UIFont {
         }
     }
 
+    /// Retrieve the text style, if it exists, from the font descriptor.
     @objc(bon_textStyle)
     public final var textStyle: BonMotTextStyle? {
         guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
@@ -29,13 +33,15 @@ extension UIFont {
             return textStyle
         #endif
     }
+
 }
 
 extension UITraitCollection {
 
-    /// Obtain the `preferredContentSizeCategory` for the trait collection. This is compatible with iOS 9.x
-    /// and will use the `UIApplication` `preferredContentSizeCategory` if the trait collection's
-    /// `preferredContentSizeCategory` is `UIContentSizeCategoryUnspecified`.
+    /// Obtain the `preferredContentSizeCategory` for the trait collection. This
+    /// is compatible with iOS 9.x and will use the
+    /// `UIApplication.shared.preferredContentSizeCategory` if the trait collection's
+    /// `preferredContentSizeCategory` is `UIContentSizeCategory.unspecified`.
     public var bon_preferredContentSizeCategory: BonMotContentSizeCategory {
         #if swift(>=3.0)
             if #available(iOS 10.0, tvOS 10.0, *) {
@@ -50,7 +56,8 @@ extension UITraitCollection {
                 }
             }
         #endif
-        // UIApplication is not a valid object in the unit tests. Fallback to a default value if the delegate is nil
+        // `UIApplication.shared` is not a valid object in unit tests. Fall back
+        // to a default value if the delegate is nil.
         if UIApplication.shared.delegate != nil {
             return UIApplication.shared.preferredContentSizeCategory
         }
@@ -62,16 +69,22 @@ extension UITraitCollection {
             #endif
         }
     }
+
 }
 
 extension UIFont {
 
-    /// - parameter familyName: the family name to use in place of the receiver's family name
-    /// - returns: a font with the same attributes as the current font, but change the `familyName`
-    final func font(familyName theFamilyName: String) -> UIFont {
-        var attributes = fontDescriptor.fontAttributes
-        attributes[UIFontDescriptorFamilyAttribute] = fontName
-        let descriptor = UIFontDescriptor(fontAttributes: attributes)
+    /// Uses a font descriptor to return a font with the specified name, but
+    /// with all other attributes the same as the receiver.
+    ///
+    /// - Parameter name: The name of the new font. Use the same name as you
+    ///                   would pass to UIFont(name:size:).
+    /// - Returns: a font with the same attributes as the receiver, but with the
+    ///            the specified name.
+    final func fontWithSameAttributes(named name: String) -> UIFont {
+        let descriptor = fontDescriptor.addingAttributes([
+            UIFontDescriptorNameAttribute: name,
+            ])
         return UIFont(descriptor: descriptor, size: pointSize)
     }
 

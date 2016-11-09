@@ -1,5 +1,6 @@
 //
 //  Helpers.swift
+//  BonMot
 //
 //  Created by Brian King on 8/29/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -32,6 +33,7 @@ let testBundle = Bundle(for: DummyClassForTests.self)
 
 #if swift(>=3.0)
     extension BONColor {
+
         static var colorA: BONColor {
             return red
         }
@@ -41,9 +43,11 @@ let testBundle = Bundle(for: DummyClassForTests.self)
         static var colorC: BONColor {
             return purple
         }
+
     }
 #else
     extension BONColor {
+
         static var colorA: BONColor {
             return redColor()
         }
@@ -53,6 +57,7 @@ let testBundle = Bundle(for: DummyClassForTests.self)
         static var colorC: BONColor {
             return purpleColor()
         }
+
     }
 #endif
 
@@ -68,12 +73,15 @@ extension BONColor {
 }
 
 extension BONFont {
+
     static var fontA: BONFont {
         return BONFont(name: "Avenir-Roman", size: 30)!
     }
+
     static var fontB: BONFont {
         return BONFont(name: "Avenir-Roman", size: 20)!
     }
+
 }
 
 let styleA = StringStyle(
@@ -104,8 +112,9 @@ let styleBz = StringStyle(
     .tailIndent(10)
 )
 
-/// A fully populated style object that is updated to ensure that update over-writes all values correctly.
-/// Values in this style object should not be used by any test using checks(for:) to ensure no false-positives.
+/// A fully populated style object that is updated to ensure that `update`
+/// overwrites all values correctly. Values in this style object should not be
+/// used by any test using `checks(for:)` to ensure no false positives.
 let fullStyle: StringStyle = {
     let terribleValue = CGFloat(1000000)
     var fullStyle = StringStyle()
@@ -155,6 +164,7 @@ let fullStyle: StringStyle = {
     return fullStyle
 }()
 
+/// Utility to load the EBGaramond font if needed.
 class EBGaramondLoader: NSObject {
 
     static func loadFontIfNeeded() {
@@ -165,53 +175,32 @@ class EBGaramondLoader: NSObject {
     // Source: http://stackoverflow.com/questions/14735522/can-i-embed-a-custom-font-in-a-bundle-and-access-it-from-an-ios-framework
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
     private static var loadFont: Void = {
+        guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
+            let data = NSData(contentsOfFile: path)
+            else {
+                fatalError("Can not load EBGaramond12")
+        }
+
         #if swift(>=3.0)
-            guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
-                let data = NSData(contentsOfFile: path)
-                else {
-                    fatalError("Can not load EBGaramond12")
-            }
             guard let provider = CGDataProvider(data: data) else {
                 fatalError("Can not create provider")
             }
-
-            #if swift(>=2.3)
-                let fontRef = CGFont(provider)
-            #else
-                guard let fontRef = CGFontCreateWithDataProvider(provider) else {
-                fatalError("Can not create CGFont")
-                }
-            #endif
-            var error: Unmanaged<CFError>?
-            CTFontManagerRegisterGraphicsFont(fontRef, &error)
-            if let error = error {
-                fatalError("Unable to load font: \(error)")
-            }
+            let fontRef = CGFont(provider)
         #else
-            guard let path = NSBundle(forClass: EBGaramondLoader.self).pathForResource("EBGaramond12-Regular", ofType: "otf"),
-                let data = NSData(contentsOfFile: path)
-                else {
-                    fatalError("Can not load EBGaramond12")
-            }
             guard let provider = CGDataProviderCreateWithCFData(data) else {
                 fatalError("Can not create provider")
             }
-
-            #if swift(>=2.3)
-                let fontRef = CGFontCreateWithDataProvider(provider)
-            #else
-                guard let fontRef = CGFontCreateWithDataProvider(provider) else {
-                fatalError("Can not create CGFont")
-                }
-            #endif
-            var error: Unmanaged<CFError>?
-            CTFontManagerRegisterGraphicsFont(fontRef, &error)
-            if let error = error {
-                fatalError("Unable to load font: \(error)")
-            }
+            let fontRef = CGFontCreateWithDataProvider(provider)
         #endif
-        return ()
+
+        var error: Unmanaged<CFError>?
+        CTFontManagerRegisterGraphicsFont(fontRef, &error)
+
+        if let error = error {
+            fatalError("Unable to load font: \(error)")
+        }
     }()
+
 }
 
 extension NSAttributedString {
@@ -276,9 +265,11 @@ extension NSAttributedString {
         drawWithRect(rect, options: options, context: context)
     }
     #endif
+
 }
 
 extension BONView {
+
     func testingSnapshot() -> BONImage {
         #if os(OSX)
             let dataOfView = dataWithPDF(inside: bounds)
@@ -292,13 +283,16 @@ extension BONView {
             return image
         #endif
     }
+
 }
 
 #if swift(>=3.0)
 #else
 extension XCTestCase {
+
     func measure(block: () -> Void) {
         measureBlock(block)
     }
+
 }
 #endif

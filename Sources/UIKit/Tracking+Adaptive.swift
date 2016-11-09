@@ -13,6 +13,7 @@
 #endif
 
 extension Tracking: AdaptiveStyleTransformation {
+
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
         if case .adobe = self {
             var attributes = theAttributes
@@ -24,6 +25,7 @@ extension Tracking: AdaptiveStyleTransformation {
             return nil
         }
     }
+
 }
 
 extension Tracking: EmbeddedTransformation {
@@ -32,20 +34,21 @@ extension Tracking: EmbeddedTransformation {
         static let adobeTracking = "adobe-tracking"
     }
 
-    static func from(representation dictionary: StyleAttributes) -> EmbeddedTransformation? {
-        if case let (Value.adobeTracking?, size?) = (dictionary[EmbeddedTransformationHelpers.Key.type] as? String, dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
+    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
+        if case let (Value.adobeTracking?, size?) = (dict[EmbeddedTransformationHelpers.Key.type] as? String, dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
             return Tracking.adobe(size)
         }
         return nil
     }
 
-    var representation: StyleAttributes {
+    var asDictionary: StyleAttributes {
         if case let .adobe(size) = self {
             return [EmbeddedTransformationHelpers.Key.type: Value.adobeTracking,
                     EmbeddedTransformationHelpers.Key.size: size]
         }
         else {
-            // We don't need to persist regular tracking as it does not depend on the font size.
+            // We don't need to persist point tracking, as it does not depend on
+            // the font size.
             return [:]
         }
     }

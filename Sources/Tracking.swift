@@ -10,6 +10,7 @@ import CoreGraphics
 
 /// An enumeration representing the tracking to be applied.
 public enum Tracking {
+
     case point(CGFloat)
     case adobe(CGFloat)
 
@@ -26,4 +27,5 @@ public enum Tracking {
             return pointSize * (adobeTracking / AdobeTrackingDivisor)
         }
     }
+
 }

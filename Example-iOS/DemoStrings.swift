@@ -1,5 +1,6 @@
 //
 //  DemoStrings.swift
+//  BonMot
 //
 //  Created by Brian King on 8/26/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -10,11 +11,22 @@ import BonMot
 
 enum DemoStrings {
 
-    /// Style a string, with both global and range-based overrides,
-    /// from an XML source. This is the most common use case for
-    /// styling substrings of localized strings, where searching for
-    /// and replacing substrings on a per-language basis is cumbersome.
-    static let xml: NSAttributedString = {
+    // A Simple Example
+    static let simpleExample = "my precious"
+        .styled(
+            with:
+            .tracking(.point(12.86)),
+            .font(UIFont(name: "AvenirNext-BoldItalic", size: 18)!),
+            .alignment(.center),
+            .color(BONColor(hex: 0x672C6E)),
+            .adapt(.control)
+    )
+
+    /// Style a string, with both global and range-based overrides, from an XML
+    /// source. This is the most common use case for styling substrings of
+    /// localized strings, where searching for and replacing substrings on a
+    /// per-language basis is cumbersome.
+    static let xmlExample: NSAttributedString = {
 
         // This would typically come from NSLocalizedString
         let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed>Maria Sharapova</signed> <racket/>"
@@ -46,11 +58,12 @@ enum DemoStrings {
         return localizedString.styled(with: baseStyle)
     }()
 
-    /// Compose a string piecewise from different components.
-    /// If you are using localized strings, do not use this approach.
-    /// Instead, use XML as in the previous example. Use composition
-    /// only if you absolutely need to build the string from pieces.
-    static let composition: NSAttributedString = {
+    /// Compose a string piecewise from different components. If you are using
+    /// localized strings, you may not want to use this approach, since it does
+    /// not work well in cases where different languages have different
+    /// sentence structure. Instead, use XML as in the previous example. Use
+    /// composition only if you absolutely need to build the string from pieces.
+    static let compositionExample: NSAttributedString = {
         // Define a colored image that's slightly shifted to account for the line height
         let boat = UIImage(named: "boat")!.styled(with:
             .color(.raizlabsRed))
@@ -77,20 +90,129 @@ enum DemoStrings {
             ], baseStyle: baseStyle)
     }()
 
-    /// A simple examle, demonstrating using tracking and a few other adjustments
-    static let trackingString = "my precious"
-        .styled(
-            with:
-            .tracking(.point(12.86)),
-            .font(UIFont(name: "AvenirNext-BoldItalic", size: 18)!),
-            .alignment(.center),
-            .color(BONColor(hex: 0x672C6E)),
+    static let imagesExample = NSAttributedString.composed(of: [
+        "2".styled(with: .baselineOffset(8)),
+        UIImage(named: "bee")!,
+        UIImage(named: "oar")!,
+        UIImage(named: "knot")!,
+        "2".styled(with: .baselineOffset(8)),
+        UIImage(named: "bee")!
+        ], baseStyle: StringStyle(
+            .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
             .adapt(.control)
-    )
+        ))
 
-    /// This example uses XML to combine many feautres, including single-character kerning
-    /// to move the period at the end of the sentence closer to its preceding character.
-    static let lineSpacingString: NSAttributedString = {
+    static let noBreakSpaceExample: NSAttributedString = {
+        let noSpaceTextStyle = StringStyle(
+            .font(.systemFont(ofSize: 17)),
+            .adapt(.control),
+            .color(.darkGray),
+            .baselineOffset(10)
+        )
+
+        return NSAttributedString.composed(of: [
+            ("barn", "This"),
+            ("bee", "string"),
+            ("bug", "is"),
+            ("circuit", "separated"),
+            ("cut", "by"),
+            ("discount", "images"),
+            ("gift", "and"),
+            ("pin", "no-break"),
+            ("robot", "spaces"),
+            ].map() {
+                return NSAttributedString.composed(of: [
+                    UIImage(named: $0)!,
+                    Special.noBreakSpace,
+                    $1.styled(with: noSpaceTextStyle)
+                    ])
+            }, separator: " ")
+    }()
+
+    /// A whimsical example using baseline offset and some math.
+    static let heartsExample = NSAttributedString.composed(of: (0..<20).map() { i in
+        let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
+        return "❤️".styled(with: .baselineOffset(offset))
+        })
+
+    static let indentationExamples: [NSAttributedString] = {
+
+        /// Using an image as a bullet.
+        let imageIndentation = NSAttributedString.composed(
+            of: [
+                UIImage(named: "robot")!,
+                Tab.headIndent(4.0),
+                "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”",
+                Special.lineSeparator,
+                Special.emDash,
+                "Radia Perlman",
+            ],
+            baseStyle: StringStyle(
+                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
+                .adapt(.control)
+            ))
+
+        /// Using text as a bullet.
+        let stringIndentation = NSAttributedString.composed(
+            of: [
+                "🍑 →",
+                Tab.headIndent(4.0),
+                "You can also use strings (including emoji) for bullets, and they will still properly indent the appended text by the right amount.",
+            ],
+            baseStyle: StringStyle(
+                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
+                .color(.darkGray),
+                .adapt(.control)
+            ))
+
+        /// Parse a bulleted list out of HTML which uses <li> tags. Note the use
+        /// of `enter` and `exit` style rules to insert bullet characters. and
+        /// line breaks. As a bonus, <code> tags are formatted using a different
+        /// font and background color.
+        let xmlIndentation: NSAttributedString = {
+            let listItemStyle = StringStyle(
+                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
+                .adapt(.control),
+                .paragraphSpacingAfter(10.0)
+            )
+
+            let codeStyle = StringStyle(
+                .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
+                .backgroundColor(BONColor.blue.withAlphaComponent(0.1)),
+                .adapt(.control)
+            )
+
+            let bulletString = NSAttributedString.composed(of: ["🍑 →", Tab.headIndent(4.0)])
+            let rules: [XMLStyleRule] = [
+                .style("li", listItemStyle),
+                .style("code", codeStyle),
+                .enter(element: "li", insert: bulletString),
+                .exit(element: "li", insert: "\n")
+            ]
+
+            let xml = "<li>This list is defined with XML and displayed in a single <code>UILabel</code>.</li><li>Each row is represented with an <code>&lt;li&gt;</code> tag.</li><li>Attributed strings define the string to use for bullets.</li><li>The text style is also specified for the <code>&lt;li&gt;</code> and <code>&lt;code&gt;</code> tags.</li>"
+
+            // Use this method of parsing XML if the content is not under your
+            // control, since you are less likley to catch edge cases while
+            // developing. This way, you can handle parsing errors gracefully.
+            guard let string = try? NSAttributedString.composed(ofXML: xml, rules: rules) else {
+                fatalError("Unable to load XML \(xml)")
+            }
+            return string
+        }()
+
+        return [
+            imageIndentation,
+            stringIndentation,
+            xmlIndentation,
+        ]
+    }()
+
+    /// This example uses XML to combine many features, including special
+    /// characters and line spacing, and it uses single-character kerning to
+    /// move the period at the end of the sentence closer to the preceding
+    /// character.
+    static let advancedXMLAndKerningExample: NSAttributedString = {
 
         let fullStyle = StringStyle(
             .alignment(.center),
@@ -109,127 +231,59 @@ enum DemoStrings {
                 ])
         )
 
+        // XML makes it hard to read. It says: "GO AHEAD, MAKE MY DAY."
         let phrase = "GO<BON:noBreakSpace/>AHEAD,\n<large>MAKE\nMY\nDA<kern>Y.</kern></large>"
 
         let attributedString = phrase.styled(with: fullStyle)
         return attributedString
     }()
 
-    static let proportionalStyle = StringStyle(
-        .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
-        .adapt(.control)
-    )
+    /// Demonstrate specifying Dynamic Type sizing behavior and custom styles
+    /// via IBDesignable in Interface Builder. To see this example in action,
+    /// play with the iOS Text Size slider and see how the UI elements react.
+    static let dynamcTypeUIKitExample = DemoStrings.customStoryboard(identifier: "CatalogViewController")
+        .attributedString(from: "Dynamic UIKit elements with custom fonts")
 
-    static let proportionalStrings: [NSAttributedString] = [
-        "Proportional Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .numberSpacing(.proportional),
-            .numberCase(.upper))),
-        "Proportional Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .numberSpacing(.proportional),
-            .numberCase(.lower))),
-        "Monospaced Uppercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .numberSpacing(.monospaced),
-            .numberCase(.upper))),
-        "Monospaced Lowercase\n1111111111\n0123456789".styled(with: proportionalStyle.byAdding(
-            .numberSpacing(.monospaced),
-            .numberCase(.lower))),
-        ]
+    /// Demonstrate how BonMot interacts with sytem preferred text styles.
+    static let preferredFontsExample = DemoStrings.customStoryboard(identifier: "PreferredFonts")
+        .attributedString(from: "Preferred Fonts")
 
-    static let indentationStrings: [NSAttributedString] = [
-        NSAttributedString.composed(of: [
-            UIImage(named: "robot")!,
-            Tab.headIndent(4.0),
-            "“It’s OK to ask for help. When doing a final exam, all the work must be yours, but in engineering, the point is to get the job done, and people are happy to help. Corollaries: You should be generous with credit, and you should be happy to help others.”",
-            Special.lineSeparator,
-            Special.emDash,
-            "Radia Perlman",
-            ], baseStyle: StringStyle(
-                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .adapt(.control)
-            )),
-        NSAttributedString.composed(of: [
-            "🍑 →",
-            Tab.headIndent(4.0),
-            "You can also use strings (including emoji) for bullets as well, and they will still properly indent the appended text by the right amount."
-            ], baseStyle: StringStyle(
-                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .color(.darkGray),
-                .adapt(.control)
-            )),
-        ({
-            let listItem = StringStyle(
-                .font(UIFont(name: "AvenirNextCondensed-Medium", size: 18.0)!),
-                .adapt(.control),
-                .paragraphSpacingAfter(10.0)
-            )
-            let code = StringStyle(
-                .font(UIFont(name: "Menlo-Regular", size: 16.0)!),
-                .backgroundColor(BONColor.blue.withAlphaComponent(0.1)),
-                .adapt(.control)
-            )
-            let bullet = NSAttributedString.composed(of: ["🍑 →", Tab.headIndent(4.0)])
-            let rules: [XMLStyleRule] = [
-                .style("li", listItem),
-                .style("code", code),
-                .enter(element: "li", insert: bullet),
-                .exit(element: "li", insert: "\n")
-            ]
+    // Demonstrate advanced OpenType Features.
+    static let openTypeFeaturesExample: [NSAttributedString] = {
 
-            let xml = "<li>This list is defined with XML and displayed in a single <code>UILabel</code>.</li><li>Each row is represented with an <code>&lt;li&gt;</code> tag.</li><li>Attributed strings define the string to use for bullets.</li><li>The text style is also specified for the <code>&lt;li&gt;</code> and <code>&lt;code&gt;</code> tags.</li>"
-            guard let string = try? NSAttributedString.composed(ofXML: xml, rules: rules) else {
-                fatalError("Unable to load XML \(xml)")
-            }
-            return string
-        })()
-    ]
-
-    static let imageString = NSAttributedString.composed(of: [
-        "2".styled(with: .baselineOffset(8)),
-        UIImage(named: "bee")!,
-        UIImage(named: "oar")!,
-        UIImage(named: "knot")!,
-        "2".styled(with: .baselineOffset(8)),
-        UIImage(named: "bee")!
-        ], baseStyle: StringStyle(
-            .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
+        let openTypeStyle = StringStyle(
+            .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .adapt(.control)
-        ))
+        )
 
-    static let noSpaceTextStyle = StringStyle(
-        .font(.systemFont(ofSize: 17)),
-        .adapt(.control),
-        .color(.darkGray),
-        .baselineOffset(10)
-    )
-    static let noBreakSpaceString = NSAttributedString.composed(of: [
-        ("barn", "This"),
-        ("bee", "string"),
-        ("bug", "is"),
-        ("circuit", "separated"),
-        ("cut", "by"),
-        ("discount", "images"),
-        ("gift", "and"),
-        ("pin", "no-break"),
-        ("robot", "spaces"),
-        ].map() {
-            return NSAttributedString.composed(of: [UIImage(named: $0)!, Special.noBreakSpace, $1.styled(with: noSpaceTextStyle)])
-        }, separator: " ")
+        return [
+            "Proportional Uppercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
+                .numberSpacing(.proportional),
+                .numberCase(.upper))),
+            "Proportional Lowercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
+                .numberSpacing(.proportional),
+                .numberCase(.lower))),
+            "Monospaced Uppercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
+                .numberSpacing(.monospaced),
+                .numberCase(.upper))),
+            "Monospaced Lowercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
+                .numberSpacing(.monospaced),
+                .numberCase(.lower))),
+        ]
+    }()
 
-    static let heartsString = NSAttributedString.composed(of: (0..<20).makeIterator().map() { i in
-        let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
-        return "❤️".styled(with: .baselineOffset(offset))
-    })
+}
 
-    static func CustomStoryboard(identifier theIdentifier: String) -> StringStyle {
-        // Embed an attribute for the storyboard identifier to link to. This is
-        // a good example of custom attributes, even if this might not be the best
-        // UIKit design pattern.
+extension DemoStrings {
+
+    /// Embed an attribute for the storyboard identifier to link to. This is
+    /// a good example of embedding custom attributes in an attributed string,
+    /// although it might not be the best UIKit design pattern.
+    ///
+    /// - Parameter theIdentifier: The identifier of the storyboard in question.
+    /// - Returns: A string style that contains the extra storyboard attribute.
+    static func customStoryboard(identifier theIdentifier: String) -> StringStyle {
         return StringStyle(.extraAttributes(["Storyboard": theIdentifier]))
     }
-
-    static let dynamcTypeUIKit = DemoStrings.CustomStoryboard(identifier: "CatalogViewController")
-        .attributedString(from: "Dynamic UIKit elements with custom fonts")
-    static let preferredFonts = DemoStrings.CustomStoryboard(identifier: "PreferredFonts")
-        .attributedString(from: "Preferred Fonts")
 
 }

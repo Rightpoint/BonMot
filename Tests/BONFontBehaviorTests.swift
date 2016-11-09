@@ -1,5 +1,6 @@
 //
 //  UIFontTests.swift
+//  BonMot
 //
 //  Created by Brian King on 7/20/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -19,11 +20,13 @@ import BonMot
 /// Test the platform behavior of [NS|UI]Font
 class BONFontBehaviorTests: XCTestCase {
 
-    /// This tests explores how font attributes persist after construction
+    /// This tests explores how font attributes persist after construction.
     ///
-    /// Note that when a font is created, attributes that are not supported are removed.
-    /// It appears that font attributes only act as hints as to what features should be enabled in a font, but only if the font supports it.
-    /// The features that are enabled are still in the font attributes after construction
+    /// - note: When a font is created, attributes that are not supported are
+    /// removed. It appears that font attributes only act as hints as to what
+    /// features should be enabled in a font, but only if the font supports it.
+    /// The features that are enabled are still in the font attributes after
+    /// construction.
     func testBONFontDescriptors() {
         var attributes = BONFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[BONFontDescriptorFeatureSettingsAttribute] = [
@@ -43,7 +46,7 @@ class BONFontBehaviorTests: XCTestCase {
     }
     #if os(iOS) || os(tvOS) || os(watchOS)
 
-    /// Test what happens when a non-standard Text Style string is supplied.
+    /// Test what happens when a non-standard text style string is supplied.
     func testUIFontNewTextStyle() {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[UIFontDescriptorFeatureSettingsAttribute] = [
@@ -59,7 +62,8 @@ class BONFontBehaviorTests: XCTestCase {
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)
     }
 
-    /// See what happens when a text style feature is added to a non-system font. (it over-rides the font)
+    /// Demonstrate what happens when a text style feature is added to a
+    /// non-system font. (It overrides the font.)
     func testTextStyleWithOtherFont() {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[UIFontDescriptorTextStyleAttribute] = testTextStyle
@@ -69,4 +73,5 @@ class BONFontBehaviorTests: XCTestCase {
         XCTAssertEqual(newAttributes["NSFontSizeAttribute"] as? Int, 10)
     }
     #endif
+
 }

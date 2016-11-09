@@ -1,5 +1,6 @@
 //
 //  AdaptiveStyle.swift
+//  BonMot
 //
 //  Created by Brian King on 8/31/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -7,22 +8,41 @@
 
 import UIKit
 
-/// AdaptiveStyle defines a few default scaling behaviors and allows the font to be scaled.
+/// A few default font scaling behaviors.
 public enum AdaptiveStyle {
-    /// Scale the font up and down based on the Dynamic Type slider, but do not grow in the Accessibility ranges.
+
+    /// Scale the font up or down based on the Dynamic Type slider, but do not
+    /// grow into the Accessibility ranges.
     case control
-    /// Scale the font up and down based on the Dynamic Type slider, including Accessibility sizes.
+
+    /// Scale the font up or down based on the Dynamic Type slider,
+    /// including Accessibility sizes.
     case body
-    /// Enable automatic scaling of preferred fonts
+
+    /// Enable automatic scaling of fonts obtained using the `preferredFont(…)`
+    /// family of methods.
     case preferred
 
-    case above(size: CGFloat, family: String)
-    case below(size: CGFloat, family: String)
+    /// If the text is scaled above `size`, substitute the font named
+    /// `useFontNamed`, but using all the same attributes as the original font.
+    /// This style may be combined with other scaling behaviors such as `control`
+    /// and `body`.
+    case above(size: CGFloat, useFontNamed: String)
+
+    /// If the text is scaled below `size`, substitute the font named
+    /// `useFontNamed`, but using all the same attributes as the original font.
+    /// This style may be combined with other scaling behaviors such as `control`
+    /// and `body`.
+    case below(size: CGFloat, useFontNamed: String)
+
 }
 
 extension AdaptiveStyle: AdaptiveStyleTransformation {
+
     enum AttributeName {
+
         static let nonAdaptedFont = "BonMotNonAdaptedFont"
+
     }
 
     func embed(in attributes: StyleAttributes) -> StyleAttributes {
@@ -55,10 +75,10 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
             else {
                 print("No text style in the font, can not adapt")
             }
-        case .above(let size, let family):
-            font = pointSize > size ? font.font(familyName: family) : font
+        case .above(let size, let fontName):
+            font = pointSize > size ? font.fontWithSameAttributes(named: fontName) : font
         case .below(let size, let family):
-            font = pointSize < size ? font.font(familyName: family) : font
+            font = pointSize < size ? font.fontWithSameAttributes(named: family) : font
         }
         styleAttributes[NSFontAttributeName] = font
         return styleAttributes
@@ -67,7 +87,8 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
 }
 
 extension AdaptiveStyle {
-    /// An internal lookup table defining the font shift to use for each content size category
+
+    /// The font size adjustment to use for each content size category.
     static var shiftTable: [BonMotContentSizeCategory: CGFloat] {
         #if swift(>=3.0)
             return [
@@ -102,27 +123,31 @@ extension AdaptiveStyle {
         #endif
     }
 
-    /// This is the default scaling function. This scaling function will continue to grow by
-    /// 2 points for each step above large, and shrink by 1 point for each step below large.
-    /// This function will not create larger values for content size category values in 'Accessibility Content Size Category Constants'.
+    /// The default scaling function. Grows by 2 points for each
+    /// step above Large, and shrinks by 1 point for each step below Large.
+    /// This function does not create larger values for content size category
+    /// values in the Accessibility range of content size categories.
     ///
-    /// - parameter designatedSize: The size the font was designed for at UIContentSizeCategoryLarge
-    /// - parameter for: The contentSizeCategory to scale to
-    /// - parameter minimiumSize: The smallest size the font can be. Defaults to 11 or designatedSize if it is under 11.
-    /// - returns: The new pointSize scaled to the specified contentSize
+    /// - Parameters:
+    ///   - size: The size the font was designed for at `UIContentSizeCategory.large`.
+    ///   - contentSizeCategory: The content size category to scale to.
+    ///   - minimiumSize: The smallest size the font can be. Defaults to 11, or
+    ///                   `designatedSize` if `designatedSize` is less than 11.
+    /// - Returns: The new point size, scaled to the specified content size
     public static func adapt(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
         let shift = min(shiftTable[contentSizeCategory] ?? 0, CGFloat(6))
         let minSize = min(minimiumSize, size)
         return max(size + shift, minSize)
     }
 
-    /// This is a scaling function for "body" elements. This scaling function will continue to grow
-    /// for content size category values in 'Accessibility Content Size Category Constants'
+    /// A scaling function for "body" elements. Continues to grow for content
+    /// size category values in the Accessibility range.
     ///
-    /// - parameter designatedSize: The size the font was designed for at UIContentSizeCategoryLarge
-    /// - parameter for: The contentSizeCategory to scale to
-    /// - parameter minimiumSize: The smallest size the font can be. Defaults to 11.
-    /// - returns: The new pointSize scaled to the specified contentSize
+    /// - Parameters:
+    ///   - size: The size the font was designed for at `UIContentSizeCategory.large`.
+    ///   - contentSizeCategory: The content size category to scale to.
+    ///   - minimiumSize: The smallest size the font can be. Defaults to 11.
+    /// - Returns: The new point size, scaled to the specified contentSize.
     public static func adaptBody(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
         let shift = shiftTable[contentSizeCategory] ?? 0
         let minSize = min(minimiumSize, size)
@@ -134,30 +159,34 @@ extension AdaptiveStyle {
 extension AdaptiveStyle: EmbeddedTransformation {
 
     struct Key {
-        static let family = "family"
+
+        static let fontName = "fontName"
+
     }
 
     struct Value {
+
         static let control = "control"
         static let body = "body"
         static let preferred = "preferred"
         static let above = "above"
         static let below = "below"
+
     }
 
-    var representation: StyleAttributes {
+    var asDictionary: StyleAttributes {
         switch self {
         case let .above(size, family):
             return [
                 EmbeddedTransformationHelpers.Key.type: Value.above,
                 EmbeddedTransformationHelpers.Key.size: size,
-                Key.family: family,
+                Key.fontName: family,
             ]
         case let .below(size, family):
             return [
                 EmbeddedTransformationHelpers.Key.type: Value.below,
                 EmbeddedTransformationHelpers.Key.size: size,
-                Key.family: family,
+                Key.fontName: family,
             ]
         case .control:
             return [EmbeddedTransformationHelpers.Key.type: Value.control]
@@ -168,20 +197,20 @@ extension AdaptiveStyle: EmbeddedTransformation {
         }
     }
 
-    static func from(representation dictionary: [String: StyleAttributeValue]) -> EmbeddedTransformation? {
-        switch (dictionary[EmbeddedTransformationHelpers.Key.type] as? String,
-                dictionary[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
-                dictionary[Key.family] as? String) {
+    static func from(dictionary dict: [String: StyleAttributeValue]) -> EmbeddedTransformation? {
+        switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
+                dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
+                dict[Key.fontName] as? String) {
         case (Value.control?, nil, nil):
             return AdaptiveStyle.control
         case (Value.body?, nil, nil):
             return AdaptiveStyle.body
         case (Value.preferred?, nil, nil):
             return AdaptiveStyle.preferred
-        case let (Value.above?, size?, family?):
-            return AdaptiveStyle.above(size: size, family: family)
-        case let (Value.below?, size?, family?):
-            return AdaptiveStyle.below(size: size, family: family)
+        case let (Value.above?, size?, fontName?):
+            return AdaptiveStyle.above(size: size, useFontNamed: fontName)
+        case let (Value.below?, size?, fontName?):
+            return AdaptiveStyle.below(size: size, useFontNamed: fontName)
         default:
             return nil
         }

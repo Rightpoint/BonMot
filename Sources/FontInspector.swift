@@ -6,16 +6,16 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-// This is not supported by watchOS
+// This is not supported on watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
     import Foundation
     import CoreText
 
-#if swift(>=3.0)
-    typealias FontFeatureDictionary = [String : Any]
+    #if swift(>=3.0)
+        typealias FontFeatureDictionary = [String : Any]
     #else
-    typealias FontFeatureDictionary = [String : AnyObject]
-#endif
+        typealias FontFeatureDictionary = [String : AnyObject]
+    #endif
 
     public extension BONFont {
 
@@ -83,6 +83,7 @@
 
     private extension BONFont {
 
+        /// Wrapper around `CTFontCopyFeatures()`, mostly to deal with Swift type shenanigans.
         var availableFeaturesDictionaries: [FontFeatureDictionary] {
             let coreTextFont = CTFontCreateWithName(
                 fontName as CFString,
@@ -111,7 +112,23 @@
 
     }
 
-    /// Home-grown mapping of font features. Best documentation on the subject I could find is on [this Apple discussion thread](http://lists.apple.com/archives/coretext-dev/2011/Jan/msg00004.html).
+    /// Home-grown mapping of font features. To add more entries, call
+    /// `availableFontFeatures(includeIdentifiers: true)` on a font and see what
+    /// it spits out. The best documentation on the subject I could find is on
+    /// [this Apple discussion thread]( http://lists.apple.com/archives/coretext-dev/2011/Jan/msg00004.html ).
+    /// 
+    /// **From user Wim Lewis on that thread:**
+    /// > It's not clear to me if there's any way to translate between the
+    /// > CTFeatureTypeIdentifier values and the standard 4-character tags for
+    /// > font features. (I would have assumed that the CTFeatureTypeIdentifier
+    /// > values *were* the FourCCs of the feature types, but looking at them
+    /// > just now they appear to be small integers.)
+    ///
+    /// **And a reply from Ned Holbrook:**
+    /// > Currently all feature settings are expressed in terms of the AAT
+    /// > features rather than OT features. Predefined AAT features can be found
+    /// > in the <ATS/SFNTLayoutTypes.h> header on the desktop, but fonts can
+    /// > define their own features as well.
     public enum FeatureTypeIdentifier: Int {
 
         case allTypographicFeatures = 0
@@ -132,8 +149,15 @@
 
     }
 
+    /// Describes a type which can vend up an array of font feature type
+    /// identifiers.
     public protocol MappableFeature {
+
+        /// The feature type identifier or identifiers which comprise this
+        /// font feature. Most of these values are not explicitly documented,
+        /// but many can be found in the BonMot.FeatureTypeIdentifier enum.
         var featureTypeIdentifiers: [Int] { get }
+
     }
 
     extension NumberCase: MappableFeature {
@@ -149,6 +173,7 @@
         public var featureTypeIdentifiers: [Int] {
             return [FeatureTypeIdentifier.numberSpacing.rawValue]
         }
+
     }
 
     extension VerticalPosition: MappableFeature {

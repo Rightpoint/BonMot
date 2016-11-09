@@ -12,13 +12,16 @@
     import UIKit
 #endif
 
-/// A Composable that creates a tab character with a calculated space from the beginning of the line.
+/// Creates a tab (\t) character with a calculated space from the beginning of the line.
 public enum Tab {
-    /// A spacer Tab will introduce a tab of the specified amount from the current position in the String
+
+    /// A spacer `Tab` introduces a tab of the specified amount from the current
+    /// position in the `String`, much like tab stops in a word processor.
     case spacer(CGFloat)
 
-    /// A headIndent Tab will introduce a tab of the specified amount from the current position in the String, and update the
-    /// headIndent value in the containing NSParagraphStyle
+    /// A head indent `Tab` will introduce a tab of the specified amount from
+    /// the current position in the string, and update the `headIndent` value in
+    /// the containing `NSParagraphStyle`.
     case headIndent(CGFloat)
 
 }
@@ -45,14 +48,18 @@ extension Tab: Composable {
 
 extension Tab {
 
-    /// Update the tab calculation for the tabs in `range`. This will create a NSTabStop in the paragraph style with the specified padding
-    /// from the beginning of the line. This supports multiple tabs in one line, and multiple lines.
+    /// Update the tab calculation for the tabs in `range`. This will create an
+    /// `NSTabStop` in the paragraph style with the specified padding from the
+    /// beginning of the line. This supports multiple tabs in one line and
+    /// multiple lines.
     ///
-    /// This implementation conforms to `AttributedStringTransformation`, but since this is used when the adaptive code may not be included, the
-    /// conformance is not declared here.
+    /// This implementation conforms to `AttributedStringTransformation`, but
+    /// since this is used when the adaptive code may not be included, the
+    /// conformance is not declared here. It is declared in Tab+Adaptive.swift.
     ///
-    /// - parameter string: The attributedString to update
-    /// - parameter in: The range to perform the tab calculations on
+    /// - Parameters:
+    ///   - attributedString: The attributed string to update.
+    ///   - range: The range on which to perform the tab calculations.
     func update(string attributedString: NSMutableAttributedString, in range: NSRange) {
         let string = attributedString.string as NSString
 

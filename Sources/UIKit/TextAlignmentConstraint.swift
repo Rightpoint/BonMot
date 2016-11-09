@@ -1,5 +1,6 @@
 //
 //  TextAlignmentConstraint.swift
+//  BonMot
 //
 //  Created by Cameron Pulsford on 10/4/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -13,11 +14,16 @@
 
 private var TextAlignmentConstraintKVOContext = "BonMotTextAlignmentConstraintKVOContext" as NSString
 
+/// Used to align various UI controls (anything with a font or attribute text)
+/// by properties that are not available with stock constraints:
+/// - cap height (the tops of capital letters)
+/// - x-height (the height of a lowercase "x")
 @objc(BONTextAlignmentConstraint)
 public class TextAlignmentConstraint: NSLayoutConstraint {
 
     @objc(BONTextAlignmentConstraintAttribute)
     public enum Attribute: Int, CustomStringConvertible {
+
         case unspecified
         case top
         case capHeight
@@ -69,6 +75,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         init(ibInspectableString string: String) {
             self = Attribute.ibInspectableMapping[string] ?? .unspecified
         }
+
     }
 
     @IBInspectable public var firstAlignment: String? {
@@ -109,6 +116,16 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         #endif
     #endif
 
+    /// Construct a new `TextAlignmentConstraint`.
+    ///
+    /// - Parameters:
+    ///   - view1: The view for the left side of the constraint equation.
+    ///   - attr1: The attribute of the view for the left side of the constraint equation.
+    ///   - relation: The relationship between the left and right side of the constraint equation.
+    ///   - view2: The view for the right side of the constraint equation.
+    ///   - attr2: The attribute of the view for the right side of the constraint equation.
+    /// - Returns: A constraint object relating the two provided views with the
+    ///            specified relation and attributes.
     public static func with(item view1: AnyObject, attribute attr1: BonMot.TextAlignmentConstraint.Attribute, relatedBy relation: NSLayoutRelation, toItem view2: AnyObject, attribute attr2: BonMot.TextAlignmentConstraint.Attribute) -> TextAlignmentConstraint {
         let constraint = TextAlignmentConstraint(
             item: view1,
@@ -243,10 +260,12 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
 }
 
 private extension String {
+
     var normalized: String {
         var n = self.lowercased()
         n = n.components(separatedBy: CharacterSet.letters.inverted).joined(separator: "")
         n = n.components(separatedBy: CharacterSet.whitespacesAndNewlines).joined(separator: "")
         return n
     }
+
 }

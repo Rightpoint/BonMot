@@ -1,5 +1,6 @@
 //
 //  StringStyleTests.swift
+//  BonMot
 //
 //  Created by Brian King on 8/20/16.
 //  Copyright © 2016 Raizlabs. All rights reserved.
@@ -24,9 +25,10 @@ class StringStyleTests: XCTestCase {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
             // We're only checking the font name and point size, since the full style could have font
             // features that cause equality checks to fail. Font Feature support is tested in testFontFeatureStyle.
-            let font = style.attributes[NSFontAttributeName] as? BONFont
-            XCTAssertEqual(font?.fontName, BONFont.fontA.fontName)
-            XCTAssertEqual(font?.pointSize, BONFont.fontA.pointSize)
+            guard let font = style.attributes[NSFontAttributeName] as? BONFont else {
+                fatalError("font was nil or of wrong type.")
+            }
+            BONAssertEqualFonts(font, BONFont.fontA)
             BONAssert(attributes: style.attributes, key: NSForegroundColorAttributeName, value: BONColor.colorA)
             BONAssert(attributes: style.attributes, key: NSBackgroundColorAttributeName, value: BONColor.colorB)
         }
@@ -417,7 +419,7 @@ class StringStyleTests: XCTestCase {
 
     static let floatingPointPropertiesLine = #line
     static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
-        // swiftlint:disable opening_brace
+        //swiftlint:disable opening_brace
         { $0.lineSpacing },
         { $0.paragraphSpacing },
         { $0.headIndent },
@@ -428,7 +430,7 @@ class StringStyleTests: XCTestCase {
         { $0.lineHeightMultiple },
         { $0.paragraphSpacingBefore },
         { CGFloat($0.hyphenationFactor) },
-        // swiftlint:enable opening_brace
+        //swiftlint:enable opening_brace
     ]
 
     func testParagraphStyles() {
@@ -526,9 +528,10 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    //swiftlint:disable valid_docs
     /// Return the result of various addititve operations with the passed style:
     /// - parameter for: the style to check
-    /// - return: The additive style permutations.
+    /// - returns: The additive style permutations:
     ///   - the passed style
     ///   - an empty style that is updated by the passed style object
     ///   - a fully populated style object that is updated by the passed style object
@@ -540,6 +543,7 @@ class StringStyleTests: XCTestCase {
 
         return [(style: style, fullStyle: false), (style: emptyStyle, fullStyle: false), (style: updated, fullStyle: true)]
     }
+    //swiftlint:enable valid_docs
 
     func testStyleStylePart() {
         let baseStyle = StringStyle(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
