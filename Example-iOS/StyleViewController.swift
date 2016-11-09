@@ -27,7 +27,12 @@ class StyleViewController: UITableViewController {
         ("Indentation", DemoStrings.indentationExamples),
         ("Advanced XML and Kerning", [DemoStrings.advancedXMLAndKerningExample]),
         ("Dynamic Type", [DemoStrings.dynamcTypeUIKitExample, DemoStrings.preferredFontsExample]),
-        ("OpenType Features", DemoStrings.openTypeFeaturesExample),
+        ("OpenType Features", [
+            DemoStrings.figureStylesExample,
+            DemoStrings.ordinalsExample,
+            DemoStrings.scientificInferiorsExample,
+            DemoStrings.stylisticAlternatesExample,
+            ]),
     ]
 
     override func viewDidLoad() {
