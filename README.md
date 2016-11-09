@@ -96,6 +96,27 @@ This will produce:
 
 > Note the use of `<BON:noBreakSpace/>` to specify a special character within the string. This is a great way to add special characters to localized strings, since localizers might not know to look for special characters, and many of them are invisible or ambiguous when viewed in a normal text editor. You can use any characters in the `Special` enum, or use `<BON:unicode value='A1338'/>` or `&#a1338;`
 
+#### XML Parsing with Error Handling
+
+If you are parsing XML that is out of your control, e.g. variable content from a server, you may want to use this alternate parsing mechanism, which allows you to handle errors encountered while parsing:
+
+```swift
+let rules: [XMLStyleRule] = [
+    .style("strong", strongStyle),
+    .style("em", emStyle),
+]
+
+let xml = // some XML from a server
+
+do {
+    let attrString = try NSAttributedString.composed(ofXML: xml, rules: rules)
+}
+catch {
+    // Handle errors encountered by Foundation's XMLParser,
+    // which is used by BonMot to parse XML.
+}
+```
+
 ## Image Attachments
 
 BonMot uses `NSTextAttachment` to embed images in strings. You can use BonMot’s `NSAttributedString.composed(of:)` API to chain images and text together in the same string:
