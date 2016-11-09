@@ -320,12 +320,10 @@ enum DemoStrings {
         let string = "My password, <callout>\(password)</callout>, is much easier to read with stylistic alternate set six enabled: <password>\(password)</password>."
 
         let callout = StringStyle(.color(.raizlabsRed))
-        return string.styled(with: systemFontStyle.byAdding(
-            .xmlRules([
-                .style("callout", callout),
-                .style("password", callout.byAdding(.stylisticAlternates(.six(on: true)))),
-                ])
-            )
+        return string.styled(with: systemFontStyle, .xmlRules([
+            .style("callout", callout),
+            .style("password", callout.byAdding(.stylisticAlternates(.six(on: true)))),
+            ])
         )
     }()
 
