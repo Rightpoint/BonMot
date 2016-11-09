@@ -29,21 +29,21 @@ enum DemoStrings {
     static let xmlExample: NSAttributedString = {
 
         // This would typically come from NSLocalizedString
-        let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed>Maria Sharapova</signed> <racket/>"
+        let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed><BON:emDash/>Maria Sharapova</signed> <racket/>"
 
         // Define a colored image that's slightly shifted to account for the line height
         let racket = UIImage(named: "Tennis Racket")!.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
         // Define styles
-        let accent = StringStyle(.font(BONFont(name: "SuperClarendon-Black", size: 20)!))
+        let accent = StringStyle(.font(BONFont(name: "SuperClarendon-Black", size: 18)!))
         let black = accent.byAdding(.color(.white), .backgroundColor(.black))
         let red = accent.byAdding(.color(.white), .backgroundColor(.raizlabsRed))
         let signed = accent.byAdding(.color(.raizlabsRed))
 
         // Define the base style with xml rules for all tags
         let baseStyle = StringStyle(
-            .font(BONFont(name: "GillSans-Light", size: 20)!),
+            .font(BONFont(name: "GillSans-Light", size: 18)!),
             .lineHeightMultiple(1.8),
             .color(.darkGray),
             .adapt(.control),
