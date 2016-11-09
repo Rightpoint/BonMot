@@ -248,28 +248,85 @@ enum DemoStrings {
     static let preferredFontsExample = DemoStrings.customStoryboard(identifier: "PreferredFonts")
         .attributedString(from: "Preferred Fonts")
 
-    // Demonstrate advanced OpenType Features.
-    static let openTypeFeaturesExample: [NSAttributedString] = {
+    // Demonstrate different number styles and spacings.
+    static let figureStylesExample: NSAttributedString = {
 
-        let openTypeStyle = StringStyle(
+        let garamondStyle = StringStyle(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
+            .lineHeightMultiple(1.2),
             .adapt(.control)
         )
 
-        return [
-            "Proportional Uppercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
-                .numberSpacing(.proportional),
-                .numberCase(.upper))),
-            "Proportional Lowercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
-                .numberSpacing(.proportional),
-                .numberCase(.lower))),
-            "Monospaced Uppercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
-                .numberSpacing(.monospaced),
-                .numberCase(.upper))),
-            "Monospaced Lowercase\n1111111111\n0123456789".styled(with: openTypeStyle.byAdding(
-                .numberSpacing(.monospaced),
-                .numberCase(.lower))),
-        ]
+        let digits = "\n0123456789"
+
+        return NSAttributedString.composed(of: [
+            "Number Styles".styled(with: garamondStyle, .smallCaps(.fromLowercase), .color(.raizlabsRed)),
+            digits.styled(with: garamondStyle, .numberCase(.lower), .numberSpacing(.monospaced)),
+            digits.styled(with: garamondStyle, .numberCase(.upper), .numberSpacing(.monospaced)),
+            digits.styled(with: garamondStyle, .numberCase(.lower), .numberSpacing(.proportional)),
+            digits.styled(with: garamondStyle, .numberCase(.upper), .numberSpacing(.proportional))
+        ])
+    }()
+
+    // Demonstrate ordinals.
+    static let ordinalsExample: NSAttributedString = {
+
+        let garamondStyle = StringStyle(
+            .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
+            .lineHeightMultiple(1.2),
+            .adapt(.control)
+        )
+
+        let string = "Today is my <number>111<ordinal>th</ordinal></number> birthday!"
+        return string.styled(with: garamondStyle.byAdding(
+            .xmlRules([
+                .style("number", garamondStyle.byAdding(.color(.raizlabsRed), .numberCase(.upper))),
+                .style("ordinal", garamondStyle.byAdding(.ordinals(true)))
+                ])
+            )
+        )
+    }()
+
+    // Demonstrate scientific inferiors.
+    static let scientificInferiorsExample: NSAttributedString = {
+
+        let garamondStyle = StringStyle(
+            .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
+            .lineHeightMultiple(1.2),
+            .adapt(.control)
+        )
+
+        let string = "<name>Johnny</name> was a little boy, but <name>Johnny</name> is no more, for what he thought was <chemical>H<number>2</number>O</chemical> was really <chemical>H<number>2</number>SO<number>4</number></chemical>."
+        return string.styled(with: garamondStyle.byAdding(
+            .xmlRules([
+                .style("name", garamondStyle.byAdding(.smallCaps(.fromLowercase))),
+                .style("chemical", garamondStyle.byAdding(.color(.raizlabsRed))),
+                .style("number", garamondStyle.byAdding(.scientificInferiors(true)))
+                ])
+            )
+        )
+    }()
+
+    // Demonstrate stylistic alternates.
+    static let stylisticAlternatesExample: NSAttributedString = {
+        let font = UIFont.systemFont(ofSize: 18)
+        print(font.availableFontFeatures(includeIdentifiers: true))
+        let systemFontStyle = StringStyle(
+            .font(.systemFont(ofSize: 18)),
+            .adapt(.control)
+        )
+
+        let password = "68Il14"
+        let string = "My password, <callout>\(password)</callout>, is much easier to read with stylistic alternate set six enabled: <password>\(password)</password>."
+
+        let callout = StringStyle(.color(.raizlabsRed))
+        return string.styled(with: systemFontStyle.byAdding(
+            .xmlRules([
+                .style("callout", callout),
+                .style("password", callout.byAdding(.stylisticAlternates(.six(on: true)))),
+                ])
+            )
+        )
     }()
 
 }
