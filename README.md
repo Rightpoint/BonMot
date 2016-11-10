@@ -9,7 +9,7 @@
 
 BonMot (pronounced *Bon Mo*, French for *good word*) is a Swift attributed string library. It abstracts away the complexities of the iOS, macOS, tvOS, and watchOS typography tools, freeing you to focus on making your text beautiful.
 
-To run the example project, run `pod try BonMot`, or clone the repo and open `Example/BonMot-Example.xcworkspace`.
+To run the example project, run `pod try BonMot`, or clone the repo, open `BonMot.xcodeproj`, and run the **Example-iOS** target.
 
 ### Note
 If you are migrating a project from BonMot 3 to BonMot 4, please see the [Migration Guide](#bonmot-3--4-migration-guide).
