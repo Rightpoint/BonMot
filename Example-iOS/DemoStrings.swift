@@ -309,8 +309,6 @@ enum DemoStrings {
 
     // Demonstrate stylistic alternates.
     static let stylisticAlternatesExample: NSAttributedString = {
-        let font = UIFont.systemFont(ofSize: 18)
-        print(font.availableFontFeatures(includeIdentifiers: true))
         let systemFontStyle = StringStyle(
             .font(.systemFont(ofSize: 18)),
             .adapt(.control)
