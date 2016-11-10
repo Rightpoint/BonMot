@@ -44,7 +44,7 @@ let attributes = style.attributes
 These are the types with which you will most commonly interact when using BonMot to build attributed strings.
 
 - `StringStyle`: a collection of attributes which can be used to style a string. These include basics, like font and color, and more advanced settings like paragraph controls and OpenType features. To get a good idea of the full set of features that BonMot supports, look at the interface for this struct.
-- `StringStyle.Part`: an enum which can be used to concisely construct a `StringStyle`. You will typically interact with these, rather than constructing `StringStyle`s directly.
+- `StringStyle.Part`: an enum which can be used to concisely construct a `StringStyle`. You will typically interact with these, rather than constructing `StringStyle`s attribute by attribute.
 - `Composable`: a protocol defining any type that knows how to append itself to an attributed string. BonMot provides functions, such as the one in [this example](#debugging--testing-helpers), to join together multiple `Composable` values.
 - `NamedStyles`: use this to register custom, reusable styles in a global namespace.
 - `Special`: a utility to include special, ambiguous, and non-printing characters in your strings without making your code unreadable.
