@@ -164,9 +164,17 @@ let style = StringStyle(
 someLabel.attributedText = "Label".styled(with: style).adapted(to: traitCollection)
 ```
 
-> **Note:** when setting attributed text on a UI element, you must use `adapted(to: traitCollection)` in order to scale the text based on the current trait collection. Prior to iOS 10, the preferred content size was not included in `UITraitCollection`, so if you support iOS 9, you must call `UIApplication.enableAdaptiveContentSizeMonitor()` at some point in your app setup code.
+If you want an attributed string to adapt to the current content size category, when setting it on a UI element, use `.adapted(to: traitCollection)` as in the above example.
 
-`.control` and `.body` both scale the same, except that when enabling the "Larger Dynamic Type" accessibility setting, `.body` grows unbounded. Here is a graph of the default behaviors of the [system Dynamic Type styles](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography#dynamic-type-sizes):
+### Responding to Content Size Category Changes
+
+If you call `UIApplication.enableAdaptiveContentSizeMonitor()` at some point in your app setup code, BonMot will update common UI elements as the preferred content size category changes. You can opt your custom controls into automatic updating by conforming them to the `AdaptableTextContainer` protocol.
+
+If you want more manual control over the adaptation process and are targeting iOS 10+, skip enabling the adaptive content size monitor, and call `.adapted(to: traitCollection)` inside `traitCollectionDidChange(_:)`. iOS 10 introduced a `preferredContentSizeCategory` property on `UITraitCollection`.
+
+### Scaling Behaviors
+
+The `.control` and `.body` behaviors both scale the same, except that when enabling the "Larger Dynamic Type" accessibility setting, `.body` grows unbounded. Here is a graph of the default behaviors of the [system Dynamic Type styles](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography#dynamic-type-sizes):
 
 <img width=443 src="Resources/readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that Control text tops out at the XXL size, but Body text keeps growing all the way up to AccessibilityXXL" />
 
