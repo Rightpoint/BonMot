@@ -1,0 +1,22 @@
+machine:
+  xcode:
+    version: "8.1"
+
+dependencies:
+  pre:
+    - brew update 1> /dev/null 2> /dev/null
+    - brew outdated carthage || brew upgrade carthage
+test:
+  override:
+    - ./scripts/macOS.sh
+    - ./scripts/iOS.sh
+    - ./scripts/tvOS.sh
+    - ./scripts/watchOS.sh
+  post:
+    - carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
+    # This is to work around the fact that CocoaPods wants to set up the master CocoaPods specs
+    # repo on pod lib lint, which takes several minutes on CircleCI. Without dependancies, this
+    # isn't a nescessary step. We can point it at any other (smaller) Git repo to speed up this
+    # step significantly. Because recursion is fun, let's point it at ourselves.
+    # Relevant CocoaPods bug: https://github.com/CocoaPods/CocoaPods/issues/6154
+    - bundle exec pod lib lint --sources="https://github.com/Raizlabs/BonMot"

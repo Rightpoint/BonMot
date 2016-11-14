@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0810"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ABCD3E071D980E4900273936"
+               BuildableName = "BonMot.framework"
+               BlueprintName = "BonMot-OSX"
+               ReferencedContainer = "container:BonMot.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ABCD3E271D980E5500273936"
+               BuildableName = "BonMot-OSXTests.xctest"
+               BlueprintName = "BonMot-OSXTests"
+               ReferencedContainer = "container:BonMot.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ABCD3E271D980E5500273936"
+               BuildableName = "BonMot-OSXTests.xctest"
+               BlueprintName = "BonMot-OSXTests"
+               ReferencedContainer = "container:BonMot.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "AttributedStringStyleTests/testFontFeatureStyle()">
+               </Test>
+               <Test
+                  Identifier = "ComposableTests/testBaseStyleIsOverridden()">
+               </Test>
+               <Test
+                  Identifier = "ComposableTests/testTabStopsWithSpacer()">
+               </Test>
+               <Test
+                  Identifier = "FontInspectorTests/testAvailableFeatures()">
+               </Test>
+               <Test
+                  Identifier = "ImageTintingTests/testImageTinting()">
+               </Test>
+               <Test
+                  Identifier = "ImageTintingTests/testNotTintingInAttributedString()">
+               </Test>
+               <Test
+                  Identifier = "ImageTintingTests/testTintingInAttributedString()">
+               </Test>
+               <Test
+                  Identifier = "XMLTagStyleBuilderTests/testComposition()">
+               </Test>
+               <Test
+                  Identifier = "XMLTagStyleBuilderTests/testHTMLish()">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ABCD3E071D980E4900273936"
+            BuildableName = "BonMot.framework"
+            BlueprintName = "BonMot-OSX"
+            ReferencedContainer = "container:BonMot.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ABCD3E071D980E4900273936"
+            BuildableName = "BonMot.framework"
+            BlueprintName = "BonMot-OSX"
+            ReferencedContainer = "container:BonMot.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "ABCD3E071D980E4900273936"
+            BuildableName = "BonMot.framework"
+            BlueprintName = "BonMot-OSX"
+            ReferencedContainer = "container:BonMot.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>

@@ -21,3 +21,4 @@ DerivedData
 
 # Bundler
 .bundle
+vendor
