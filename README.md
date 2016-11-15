@@ -63,7 +63,7 @@ let redStyle = baseStyle.byAdding(.color(.red))
 let blueStyle = baseStyle.byAdding(.color(.blue))
 
 let redBirdString = "bird".styled(with: redStyle)
-let blueBirdString = "bird".styled(with: redStyle)
+let blueBirdString = "bird".styled(with: blueStyle)
 ```
 
 ### XML Parsing
