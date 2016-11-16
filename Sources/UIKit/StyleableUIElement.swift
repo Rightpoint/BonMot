@@ -217,7 +217,7 @@ internal extension StyleableUIElement {
     final func styledAttributedString(from text: String?) -> NSAttributedString? {
         guard let text = text else { return nil }
         let string = (bonMotStyle ?? StringStyle()).attributedString(from: text)
-        return string.adapt(to: traitCollection)
+        return string.adapted(to: traitCollection)
     }
 
     final func lookUpSharedStyle(for name: String?, font: UIFont) -> StringStyle? {

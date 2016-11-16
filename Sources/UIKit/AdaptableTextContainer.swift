@@ -41,7 +41,7 @@ extension UILabel: AdaptableTextContainer {
             font = attributes[NSFontAttributeName] as? BONFont
         }
         if let attributedText = attributedText {
-            self.attributedText = attributedText.adapt(to: traitCollection)
+            self.attributedText = attributedText.adapted(to: traitCollection)
         }
     }
 
@@ -55,7 +55,7 @@ extension UITextView: AdaptableTextContainer {
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         if let attributedText = attributedText {
-            self.attributedText = attributedText.adapt(to: traitCollection)
+            self.attributedText = attributedText.adapted(to: traitCollection)
         }
         self.typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
     }
@@ -74,14 +74,14 @@ extension UITextField: AdaptableTextContainer {
     /// - parameter traitCollection: The new trait collection.
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
-        if let attributedText = attributedText?.adapt(to: traitCollection) {
+        if let attributedText = attributedText?.adapted(to: traitCollection) {
             if attributedText.length > 0 {
                 font = attributedText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
             }
             self.attributedText = attributedText
         }
         if let attributedPlaceholder = attributedPlaceholder {
-            self.attributedPlaceholder = attributedPlaceholder.adapt(to: traitCollection)
+            self.attributedPlaceholder = attributedPlaceholder.adapted(to: traitCollection)
         }
         defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes, to: traitCollection)
         // Fix an issue where shrinking or growing text would stay the same width, but add whitespace.
@@ -99,10 +99,10 @@ extension UIButton: AdaptableTextContainer {
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         for state in UIControlState.commonStates {
             #if swift(>=3.0)
-                let attributedText = attributedTitle(for: state)?.adapt(to: traitCollection)
+                let attributedText = attributedTitle(for: state)?.adapted(to: traitCollection)
                 setAttributedTitle(attributedText, for: state)
             #else
-                let attributedText = attributedTitleForState(state)?.adapt(to: traitCollection)
+                let attributedText = attributedTitleForState(state)?.adapted(to: traitCollection)
                 setAttributedTitle(attributedText, forState: state)
             #endif
         }
