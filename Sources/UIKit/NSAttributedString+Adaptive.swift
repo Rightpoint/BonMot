@@ -33,7 +33,7 @@ extension NSAttributedString {
     /// - Parameter traitCollection: The trait collection to adapt to.
     /// - Returns: A new `NSAttributedString` with the style updated to the new
     ///            trait collection.
-    public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
+    public final func adapted(to traitCollection: UITraitCollection) -> NSAttributedString {
         let newString = mutableStringCopy()
         newString.beginEditing()
         enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, stop) in
@@ -66,5 +66,20 @@ extension StringStyle {
     public func attributes(adaptedTo traitCollection: UITraitCollection) -> StyleAttributes {
         return NSAttributedString.adapt(attributes: attributes, to: traitCollection)
     }
+
+}
+
+// MARK: - Deprecations
+extension NSAttributedString {
+
+    #if swift(>=3.0)
+        @available(*, deprecated, renamed: "adapted(to:)") public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
+            return adapted(to: traitCollection)
+        }
+    #else
+        @available(*, deprecated, renamed="adapted(to:)") public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
+            return adapted(to: traitCollection)
+        }
+    #endif
 
 }

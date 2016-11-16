@@ -46,7 +46,7 @@ class StyleViewController: UITableViewController {
             fatalError("Misconfigured VC")
         }
         let attributedText = styles[indexPath.section].1[indexPath.row]
-        cell.titleLabel?.attributedText = attributedText.adapt(to: traitCollection)
+        cell.titleLabel?.attributedText = attributedText.adapted(to: traitCollection)
         cell.accessoryType = attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) == nil ? .none : .disclosureIndicator
         return cell
     }

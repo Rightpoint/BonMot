@@ -11,7 +11,7 @@ import UIKit
 /// Defines a style transformation that is dependent on a `UITraitCollection`.
 /// An adaptive transformation is embedded in the `StyleAttributes` so that any
 /// `NSAttributedString` can be updated to a new trait collection using
-/// `attributedString.adapt(to: traitCollection)`.
+/// `attributedString.adapted(to: traitCollection)`.
 ///
 /// Since `NSAttributedString` conforms to `NSCoding`, `AdaptiveStyleTransformation`
 /// is embedded in the `StyleAttributes` via simple dictionary encoding.
