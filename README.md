@@ -278,7 +278,7 @@ The changes required to support inline styling are minimal. It won’t be a comp
 ##### BonMot 3
 
 ```swift
-let chain = BONChain()	
+let chain = BONChain()
    .color(myColor)
    .font(myFont)
    .figureSpacing(.Tabular)
@@ -362,9 +362,9 @@ github "Raizlabs/BonMot"
 
 # Contributing
 
-Issues and pull requests are welcome! Please format all code using [`clang-format`](http://clang.llvm.org/docs/ClangFormat.html) and the included `.clang-format` configuration file. Contributors are expected to abide by the [Contributor Covenant Code of Conduct](https://github.com/Raizlabs/BonMot/blob/master/CONTRIBUTING.md).
+Issues and pull requests are welcome! Please ensure that you have the latest [SwiftLint](https://github.com/realm/SwiftLint) installed before committing and that there are no style warnings generated when building.
 
-Please `brew install swiftlint` if you are going to be contributing to BonMot, so that any code you change is linted before you commit.
+Contributors are expected to abide by the [Contributor Covenant Code of Conduct](https://github.com/Raizlabs/BonMot/blob/master/CONTRIBUTING.md).
 
 # Author
 
