@@ -36,11 +36,14 @@ class AdaptiveStyleTests: XCTestCase {
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge.compatible), query: { $0.pointSize }, float: 34)
 
         // Ensure the accessibility ranges are capped at XXXL
-        for size in [UIContentSizeCategory.accessibilityMedium.compatible,
-                     UIContentSizeCategory.accessibilityLarge.compatible,
-                     UIContentSizeCategory.accessibilityExtraLarge.compatible,
-                     UIContentSizeCategory.accessibilityExtraExtraLarge.compatible,
-                     UIContentSizeCategory.accessibilityExtraExtraExtraLarge.compatible] {
+        let sizes = [
+            UIContentSizeCategory.accessibilityMedium.compatible,
+            UIContentSizeCategory.accessibilityLarge.compatible,
+            UIContentSizeCategory.accessibilityExtraLarge.compatible,
+            UIContentSizeCategory.accessibilityExtraExtraLarge.compatible,
+            UIContentSizeCategory.accessibilityExtraExtraExtraLarge.compatible,
+            ]
+        for size in sizes {
             BONAssert(attributes: testAttributes(size), query: { $0.pointSize }, float: 34)
         }
     }
@@ -237,7 +240,7 @@ class AdaptiveStyleTests: XCTestCase {
     func testComplexAdaptiveComposition() {
         let string = NSAttributedString.composed(of: [
             "Hello".styled(with: .tracking(.adobe(3.0))),
-            Tab.headIndent(10)
+            Tab.headIndent(10),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
 
         let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? Array<StyleAttributeValue>

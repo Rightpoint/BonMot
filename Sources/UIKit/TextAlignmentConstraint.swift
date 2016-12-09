@@ -50,7 +50,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
             "xheight": .xHeight,
             "firstbaseline": .firstBaseline,
             "lastbaseline": .lastBaseline,
-            "bottom": .bottom
+            "bottom": .bottom,
         ]
 
         public var description: String {
@@ -182,7 +182,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
             "\(firstItemSelector).\(TextAlignmentConstraint.fontSelector)",
             "\(firstItemSelector).\(TextAlignmentConstraint.attributedTextSelector)",
             "\(secondItemSelector).\(TextAlignmentConstraint.fontSelector)",
-            "\(secondItemSelector).\(TextAlignmentConstraint.attributedTextSelector)"
+            "\(secondItemSelector).\(TextAlignmentConstraint.attributedTextSelector)",
         ]
     }
 
