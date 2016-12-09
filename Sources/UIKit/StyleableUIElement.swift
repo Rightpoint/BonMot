@@ -8,13 +8,7 @@
 
 import UIKit
 
-/// Internal protocol to organize helper code for UI Elements. Originally this
-/// was public and contained the properties, but this caused an issue with
-/// Interface Builder.
-protocol StyleableUIElement: UITraitEnvironment {
-}
-
-extension UILabel: StyleableUIElement {
+extension UILabel {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -43,7 +37,7 @@ extension UILabel: StyleableUIElement {
 
 }
 
-extension UITextField: StyleableUIElement {
+extension UITextField {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -92,7 +86,7 @@ extension UITextField: StyleableUIElement {
 
 }
 
-extension UITextView: StyleableUIElement {
+extension UITextView {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -148,7 +142,7 @@ extension UITextView: StyleableUIElement {
 
 }
 
-extension UIButton: StyleableUIElement {
+extension UIButton {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -182,6 +176,13 @@ extension UIButton: StyleableUIElement {
     }
 
 }
+
+/// Internal protocol to organize helper code for UI Elements.
+protocol StyleableUIElement: UITraitEnvironment {}
+extension UILabel: StyleableUIElement {}
+extension UITextField: StyleableUIElement {}
+extension UIButton: StyleableUIElement {}
+extension UITextView: StyleableUIElement {}
 
 /// Helper for the bonMotStyle associated objects.
 private var containerHandle: UInt8 = 0
