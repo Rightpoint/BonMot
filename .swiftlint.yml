@@ -11,3 +11,6 @@ function_body_length:
 
 opt_in_rules:
   - vertical_whitespace
+
+trailing_comma:
+  mandatory_comma: true

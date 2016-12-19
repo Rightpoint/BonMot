@@ -19,7 +19,7 @@ extension NSAttributedString {
     /// human-readable string.
     public var bonMotDebugAttributedString: NSAttributedString {
         let debug = self.mutableStringCopy()
-        var replacements = Array<(range: NSRange, string: String)>()
+        var replacements = [(range: NSRange, string: String)]()
         var index = 0
 
         // When looping over `string.unicodeScalars` directly, we saw

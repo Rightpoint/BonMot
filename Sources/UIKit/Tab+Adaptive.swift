@@ -40,12 +40,16 @@ extension Tab: EmbeddedTransformation {
     var asDictionary: StyleAttributes {
         switch self {
         case let .spacer(size):
-            return [EmbeddedTransformationHelpers.Key.type: Value.spacer,
-                    EmbeddedTransformationHelpers.Key.size: size]
+            return [
+                EmbeddedTransformationHelpers.Key.type: Value.spacer,
+                EmbeddedTransformationHelpers.Key.size: size,
+            ]
 
         case let .headIndent(size):
-            return [EmbeddedTransformationHelpers.Key.type: Value.headIndent,
-                    EmbeddedTransformationHelpers.Key.size: size]
+            return [
+                EmbeddedTransformationHelpers.Key.type: Value.headIndent,
+                EmbeddedTransformationHelpers.Key.size: size,
+            ]
         }
     }
 

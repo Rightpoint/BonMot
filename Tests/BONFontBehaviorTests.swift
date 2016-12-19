@@ -32,7 +32,7 @@ class BONFontBehaviorTests: XCTestCase {
         attributes[BONFontDescriptorFeatureSettingsAttribute] = [
             [
                 BONFontFeatureTypeIdentifierKey: 1,
-                BONFontFeatureSelectorIdentifierKey: 1
+                BONFontFeatureSelectorIdentifierKey: 1,
             ],
         ]
         #if os(OSX)
@@ -52,7 +52,7 @@ class BONFontBehaviorTests: XCTestCase {
         attributes[UIFontDescriptorFeatureSettingsAttribute] = [
             [
                 UIFontFeatureTypeIdentifierKey: 1,
-                UIFontFeatureSelectorIdentifierKey: 1
+                UIFontFeatureSelectorIdentifierKey: 1,
             ],
         ]
         attributes[UIFontDescriptorTextStyleAttribute] = "Test"

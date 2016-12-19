@@ -9,7 +9,7 @@ set -o pipefail && \
   -project BonMot.xcodeproj \
   -scheme BonMot-iOS \
   -sdk iphonesimulator \
-  -destination "id=5F273E3F-7B26-436D-A8EB-36460917614D" \
+  -destination "id=55CA63D0-DBF6-4F35-A5B6-31AA93F6A3E7" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | xcpretty
@@ -19,7 +19,7 @@ set -o pipefail && TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 \
   -project BonMot.xcodeproj \
   -scheme BonMot-iOS \
   -sdk iphonesimulator \
-  -destination "id=5F273E3F-7B26-436D-A8EB-36460917614D" \
+  -destination "id=55CA63D0-DBF6-4F35-A5B6-31AA93F6A3E7" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | xcpretty \

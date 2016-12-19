@@ -89,7 +89,7 @@ class ComposableTests: XCTestCase {
     func testBaseStyleIsOverridden() {
         func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: String, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
-                "test".styled(with: thePart)
+                "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
             let value = string.attributes(at: 0, effectiveRange: nil)[attribute] as? T
             XCTAssertEqual(value, expected, line: line)
@@ -107,7 +107,7 @@ class ComposableTests: XCTestCase {
     func testBaseParagraphStyleIsOverridden() {
         func check<T: Equatable>(forPart thePart: StringStyle.Part, _ getter: (NSParagraphStyle) -> T, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
-                "test".styled(with: thePart)
+                "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
             guard let paragraphStyle = string.attributes(at: 0, effectiveRange: nil)[NSParagraphStyleAttributeName] as? NSParagraphStyle else {
                 XCTFail("No paragraph style")

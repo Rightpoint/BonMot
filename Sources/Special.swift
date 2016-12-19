@@ -112,7 +112,7 @@ extension Special {
         .narrowNoBreakSpace,
         .wordJoiner,
         .minusSign,
-        .objectReplacementCharacter
+        .objectReplacementCharacter,
     ]
 
 }
