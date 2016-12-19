@@ -51,7 +51,7 @@ enum DemoStrings {
                 .style("black", black),
                 .style("red", red),
                 .style("signed", signed),
-                .enter(element: "racket", insert: racket)
+                .enter(element: "racket", insert: racket),
                 ]
             )
         )
@@ -96,7 +96,7 @@ enum DemoStrings {
         UIImage(named: "oar")!,
         UIImage(named: "knot")!,
         "2".styled(with: .baselineOffset(8)),
-        UIImage(named: "bee")!
+        UIImage(named: "bee")!,
         ], baseStyle: StringStyle(
             .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
             .adapt(.control)
@@ -124,7 +124,7 @@ enum DemoStrings {
                 return NSAttributedString.composed(of: [
                     UIImage(named: $0)!,
                     Special.noBreakSpace,
-                    $1.styled(with: noSpaceTextStyle)
+                    $1.styled(with: noSpaceTextStyle),
                     ])
             }, separator: " ")
     }()
@@ -187,7 +187,7 @@ enum DemoStrings {
                 .style("li", listItemStyle),
                 .style("code", codeStyle),
                 .enter(element: "li", insert: bulletString),
-                .exit(element: "li", insert: "\n")
+                .exit(element: "li", insert: "\n"),
             ]
 
             let xml = "<li>This list is defined with XML and displayed in a single <code>UILabel</code>.</li><li>Each row is represented with an <code>&lt;li&gt;</code> tag.</li><li>Attributed strings define the string to use for bullets.</li><li>The text style is also specified for the <code>&lt;li&gt;</code> and <code>&lt;code&gt;</code> tags.</li>"
@@ -264,7 +264,7 @@ enum DemoStrings {
             digits.styled(with: garamondStyle, .numberCase(.lower), .numberSpacing(.monospaced)),
             digits.styled(with: garamondStyle, .numberCase(.upper), .numberSpacing(.monospaced)),
             digits.styled(with: garamondStyle, .numberCase(.lower), .numberSpacing(.proportional)),
-            digits.styled(with: garamondStyle, .numberCase(.upper), .numberSpacing(.proportional))
+            digits.styled(with: garamondStyle, .numberCase(.upper), .numberSpacing(.proportional)),
         ])
     }()
 
@@ -281,7 +281,7 @@ enum DemoStrings {
         return string.styled(with: garamondStyle.byAdding(
             .xmlRules([
                 .style("number", garamondStyle.byAdding(.color(.raizlabsRed), .numberCase(.upper))),
-                .style("ordinal", garamondStyle.byAdding(.ordinals(true)))
+                .style("ordinal", garamondStyle.byAdding(.ordinals(true))),
                 ])
             )
         )
@@ -301,7 +301,7 @@ enum DemoStrings {
             .xmlRules([
                 .style("name", garamondStyle.byAdding(.smallCaps(.fromLowercase))),
                 .style("chemical", garamondStyle.byAdding(.color(.raizlabsRed))),
-                .style("number", garamondStyle.byAdding(.scientificInferiors(true)))
+                .style("number", garamondStyle.byAdding(.scientificInferiors(true))),
                 ])
             )
         )

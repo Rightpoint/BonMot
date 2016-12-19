@@ -44,7 +44,7 @@ class ImageTintingTests: XCTestCase {
 
     func testTintingInAttributedString() {
         let untintedString = NSAttributedString.composed(of: [
-            imageForTest.styled(with: .color(raizlabsRed))
+            imageForTest.styled(with: .color(raizlabsRed)),
             ])
 
         #if os(OSX)
@@ -55,7 +55,7 @@ class ImageTintingTests: XCTestCase {
         #endif
 
         let tintedString = NSAttributedString.composed(of: [
-            tintableImage.styled(with: .color(raizlabsRed))
+            tintableImage.styled(with: .color(raizlabsRed)),
             ])
 
         let untintedResult = untintedString.snapshotForTesting()
@@ -69,11 +69,11 @@ class ImageTintingTests: XCTestCase {
 
     func testNotTintingInAttributedString() {
         let untintedString = NSAttributedString.composed(of: [
-            imageForTest
+            imageForTest,
             ])
 
         let tintAttemptString = NSAttributedString.composed(of: [
-            imageForTest.styled(with: .color(raizlabsRed))
+            imageForTest.styled(with: .color(raizlabsRed)),
             ])
 
         let untintedResult = untintedString.snapshotForTesting()

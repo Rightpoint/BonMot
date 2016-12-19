@@ -43,8 +43,10 @@ extension Tracking: EmbeddedTransformation {
 
     var asDictionary: StyleAttributes {
         if case let .adobe(size) = self {
-            return [EmbeddedTransformationHelpers.Key.type: Value.adobeTracking,
-                    EmbeddedTransformationHelpers.Key.size: size]
+            return [
+                EmbeddedTransformationHelpers.Key.type: Value.adobeTracking,
+                EmbeddedTransformationHelpers.Key.size: size,
+            ]
         }
         else {
             // We don't need to persist point tracking, as it does not depend on
