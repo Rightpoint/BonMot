@@ -107,7 +107,7 @@ extension NSAttributedString: Composable {
     /// in the receiver and use `baseStyle` to supply defaults for the attributes.
     /// This effectively merges `baseStyle` and the embedded attributes, with a
     /// tie going to the embedded attributes.
-    /// 
+    ///
     /// See `StringStyle.supplyDefaults(for:)` for more details.
     ///
     /// - parameter to:        The attributed string to which to append the receiver.
@@ -128,7 +128,7 @@ extension NSAttributedString: Composable {
 extension String: Composable {
 
     /// Append the receiver to `attributedString`, with `baseStyle` applied as
-    /// default values. Since `String` has no style, `baseStyle` is the only 
+    /// default values. Since `String` has no style, `baseStyle` is the only
     /// style that is used.
     ///
     /// - parameter to:        The attributed string to which to append the receiver.

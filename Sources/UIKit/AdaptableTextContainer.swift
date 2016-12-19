@@ -67,7 +67,7 @@ extension UITextField: AdaptableTextContainer {
     /// Adapt `attributedText`, `attributedPlaceholder`, and
     /// `defaultTextAttributes` to the specified trait collection.
     ///
-    /// - note: Do not modify `typingAttributes`, as they are relevant only 
+    /// - note: Do not modify `typingAttributes`, as they are relevant only
     ///         while the text field has first responder status, and they are
     ///         reset as new text is entered.
     ///

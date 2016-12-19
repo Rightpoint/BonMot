@@ -116,7 +116,7 @@
     /// `availableFontFeatures(includeIdentifiers: true)` on a font and see what
     /// it spits out. The best documentation on the subject I could find is on
     /// [this Apple discussion thread]( http://lists.apple.com/archives/coretext-dev/2011/Jan/msg00004.html ).
-    /// 
+    ///
     /// **From user Wim Lewis on that thread:**
     /// > It's not clear to me if there's any way to translate between the
     /// > CTFeatureTypeIdentifier values and the standard 4-character tags for

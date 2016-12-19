@@ -15,7 +15,7 @@ import UIKit
 ///
 /// Since `NSAttributedString` conforms to `NSCoding`, `AdaptiveStyleTransformation`
 /// is embedded in the `StyleAttributes` via simple dictionary encoding.
-/// `NSCoding` was avoided so that value types can conform. See 
+/// `NSCoding` was avoided so that value types can conform. See
 /// `EmbeddedTransformation` for more information.
 internal protocol AdaptiveStyleTransformation {
 
