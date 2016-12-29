@@ -187,6 +187,7 @@
 		CDCF0F201DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
 		CDCF0F211DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
 		CDCF0F221DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
+		CDE292971E15D55600EA4A32 /* BonMot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CDEA84311D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84321D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
 		CDEA84331D9EEC390099BD73 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
@@ -230,7 +231,28 @@
 			remoteGlobalIDString = ABCBFD561D96E61000FAD37A;
 			remoteInfo = "BonMot-iOS";
 		};
+		CDE292981E15D55600EA4A32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABCBFD2F1D96E41D00FAD37A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABCBFD561D96E61000FAD37A;
+			remoteInfo = "BonMot-iOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CDE2929A1E15D55600EA4A32 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CDE292971E15D55600EA4A32 /* BonMot.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignmentConstraint.swift; sourceTree = "<group>"; };
@@ -636,10 +658,12 @@
 				ABC777471DC29F3000815FB9 /* Sources */,
 				ABC777481DC29F3000815FB9 /* Frameworks */,
 				ABC777491DC29F3000815FB9 /* Resources */,
+				CDE2929A1E15D55600EA4A32 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CDE292991E15D55600EA4A32 /* PBXTargetDependency */,
 			);
 			name = "Example-iOS";
 			productName = "Example-iOS";
@@ -1318,6 +1342,11 @@
 			target = ABCBFD561D96E61000FAD37A /* BonMot-iOS */;
 			targetProxy = ABCBFD611D96E61100FAD37A /* PBXContainerItemProxy */;
 		};
+		CDE292991E15D55600EA4A32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABCBFD561D96E61000FAD37A /* BonMot-iOS */;
+			targetProxy = CDE292981E15D55600EA4A32 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1413,6 +1442,7 @@
 		ABC7775A1DC29F3000815FB9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
@@ -1428,6 +1458,7 @@
 		ABC7775B1DC29F3000815FB9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
