@@ -48,7 +48,7 @@ internal enum EmbeddedTransformationHelpers {
         var adaptations = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
 
         // Only add the transformation once.
-        let contains = adaptations.contains() { NSDictionary(dictionary: $0) == NSDictionary(dictionary: dictionary) }
+        let contains = adaptations.contains { NSDictionary(dictionary: $0) == NSDictionary(dictionary: dictionary) }
         if !contains {
             adaptations.append(dictionary)
         }

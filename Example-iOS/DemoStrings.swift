@@ -120,7 +120,7 @@ enum DemoStrings {
             ("gift", "and"),
             ("pin", "no-break"),
             ("robot", "spaces"),
-            ].map() {
+            ].map {
                 return NSAttributedString.composed(of: [
                     UIImage(named: $0)!,
                     Special.noBreakSpace,
@@ -130,7 +130,7 @@ enum DemoStrings {
     }()
 
     /// A whimsical example using baseline offset and some math.
-    static let heartsExample = NSAttributedString.composed(of: (0..<20).map() { i in
+    static let heartsExample = NSAttributedString.composed(of: (0..<20).map { i in
         let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
         return "❤️".styled(with: .baselineOffset(offset))
         })
