@@ -207,7 +207,7 @@ extension NSAttributedString {
 
     func rangesFor<T>(attribute name: String) -> [String: T] {
         var attributesByRange: [String: T] = [:]
-        enumerateAttribute(name, in: NSRange(location: 0, length: length), options: []) { value, range, stop in
+        enumerateAttribute(name, in: NSRange(location: 0, length: length), options: []) { value, range, _ in
             if let object = value as? T {
                 attributesByRange["\(range.location):\(range.length)"] = object
             }
