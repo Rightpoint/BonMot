@@ -75,7 +75,7 @@ class StyleViewController: UITableViewController {
             guard let nextVC = storyboard?.instantiateViewController(withIdentifier: storyboardIdentifier) else {
                 fatalError("No Storyboard identifier \(storyboardIdentifier)")
             }
-            self.navigationController?.pushViewController(nextVC, animated: true)
+            navigationController?.pushViewController(nextVC, animated: true)
         }
         else {
             tableView.deselectRow(at: indexPath, animated: true)

@@ -372,7 +372,7 @@
     extension BONColor {
 
         @nonobjc var cgColor: CGColorRef {
-            return self.CGColor
+            return CGColor
         }
 
     }
@@ -465,7 +465,7 @@
             }
 
             @nonobjc var cgImage: CGImageRef? {
-                return self.CGImage
+                return CGImage
             }
 
             @nonobjc func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {

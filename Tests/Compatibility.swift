@@ -296,7 +296,7 @@ import BonMot
         }
 
         @nonobjc final func enumerateAttribute(attrName: String, in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: (AnyObject?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
-            self.enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
+            enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
         }
 
         @nonobjc final func boundingRect(with size: CGSize, options: NSStringDrawingOptions, context: NSStringDrawingContext?) -> CGRect {

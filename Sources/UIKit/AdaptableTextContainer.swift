@@ -61,7 +61,7 @@ extension UITextView {
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapted(to: traitCollection)
         }
-        self.typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
+        typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
     }
 
 }
