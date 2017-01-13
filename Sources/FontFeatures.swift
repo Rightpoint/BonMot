@@ -33,7 +33,7 @@
             var fontAttributes = fontDescriptor.fontAttributes
             var features = fontAttributes[BONFontDescriptorFeatureSettingsAttribute] as? [StyleAttributes] ?? []
             if featureProviders.count > 0 {
-                let newFeatures = featureProviders.map() { $0.featureAttributes() }.flatMap { $0 }
+                let newFeatures = featureProviders.map { $0.featureAttributes() }.flatMap { $0 }
                 features.append(contentsOf: newFeatures)
                 fontAttributes[BONFontDescriptorFeatureSettingsAttribute] = features
             }

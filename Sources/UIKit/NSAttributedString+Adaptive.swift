@@ -36,7 +36,7 @@ extension NSAttributedString {
     public final func adapted(to traitCollection: UITraitCollection) -> NSAttributedString {
         let newString = mutableStringCopy()
         newString.beginEditing()
-        enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, stop) in
+        enumerateAttributes(in: NSRange(location: 0, length: length), options: []) { (attributes, range, _) in
             var styleAttributes = attributes
 
             // Adapt any AdaptiveStyleTransformation embedded in the attributes.

@@ -175,6 +175,7 @@
     extension StylisticAlternates {
 
         mutating public func add(other theOther: StylisticAlternates) {
+            // swiftlint:disable operator_usage_whitespace
             one       = theOther.one       ?? one
             two       = theOther.two       ?? two
             three     = theOther.three     ?? three
@@ -195,6 +196,7 @@
             eighteen  = theOther.eighteen  ?? eighteen
             nineteen  = theOther.nineteen  ?? nineteen
             twenty    = theOther.twenty    ?? twenty
+            // swiftlint:enable operator_usage_whitespace
         }
 
         public func byAdding(other theOther: StylisticAlternates) -> StylisticAlternates {
