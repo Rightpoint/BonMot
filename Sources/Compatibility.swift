@@ -277,6 +277,18 @@
         }
 
     }
+
+    extension NSObjectProtocol {
+
+        func responds(to aSelector: Selector!) -> Bool {
+            return respondsToSelector(aSelector)
+        }
+
+        func perform(selector aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
+            return performSelector(aSelector, withObject: object)
+        }
+
+    }
 #endif
 
 /// Shared (AppKit + UIKit)
