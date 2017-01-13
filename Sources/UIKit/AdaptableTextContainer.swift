@@ -12,6 +12,8 @@ import UIKit
 /// triggered manually in `traitCollectionDidChange(_:)`. Any `UIViewController`
 /// or `UIView` that conforms to this protocol will be informed of content size
 /// category changes if `UIApplication.enableAdaptiveContentSizeMonitor()` is called.
+/// - Note: We don't conform UI elements to this protocol due to a [bug in Xcode](http://www.openradar.me/30001713).
+///         The protocol still exists as a container for selectors.
 @objc(BONAdaptableTextContainer)
 public protocol AdaptableTextContainer {
 
@@ -24,7 +26,8 @@ public protocol AdaptableTextContainer {
 
 }
 
-extension UILabel: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UILabel
+extension UILabel {
 
     /// Adapt `attributedText` to the specified trait collection.
     ///
@@ -47,7 +50,8 @@ extension UILabel: AdaptableTextContainer {
 
 }
 
-extension UITextView: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UITextView
+extension UITextView {
 
     /// Adapt `attributedText` and `typingAttributes` to the specified trait collection.
     ///
@@ -57,12 +61,13 @@ extension UITextView: AdaptableTextContainer {
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapted(to: traitCollection)
         }
-        self.typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
+        typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
     }
 
 }
 
-extension UITextField: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UITextField
+extension UITextField {
 
     /// Adapt `attributedText`, `attributedPlaceholder`, and
     /// `defaultTextAttributes` to the specified trait collection.
@@ -90,7 +95,8 @@ extension UITextField: AdaptableTextContainer {
 
 }
 
-extension UIButton: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UIButton
+extension UIButton {
 
     /// Adapt `attributedTitle`, for all control states, to the specified trait collection.
     ///
@@ -110,7 +116,8 @@ extension UIButton: AdaptableTextContainer {
 
 }
 
-extension UISegmentedControl: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UISegmentedControl
+extension UISegmentedControl {
 
     // `UISegmentedControl` has terrible generics ([NSObject: AnyObject]?) on
     /// `titleTextAttributes`, so use a helper in Swift 3.0.
@@ -149,7 +156,8 @@ extension UISegmentedControl: AdaptableTextContainer {
 
 }
 
-extension UINavigationBar: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UINavigationBar
+extension UINavigationBar {
 
     /// Adapt `titleTextAttributes` to the specified trait collection.
     ///
@@ -168,7 +176,8 @@ extension UINavigationBar: AdaptableTextContainer {
 
 #if os(tvOS)
 #else
-extension UIToolbar: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UIToolbar
+extension UIToolbar {
 
     /// Adapt all bar items's attributed text to the specified trait collection.
     ///
@@ -186,7 +195,8 @@ extension UIToolbar: AdaptableTextContainer {
 }
 #endif
 
-extension UIViewController: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UIViewController
+extension UIViewController {
 
     /// Adapt the attributed text of teh bar items in the navigation item or in
     /// the toolbar to the specified trait collection.
@@ -210,7 +220,8 @@ extension UIViewController: AdaptableTextContainer {
 
 }
 
-extension UIBarItem: AdaptableTextContainer {
+// MARK: - AdaptableTextContainer for UIBarItem
+extension UIBarItem {
 
     /// Adapt `titleTextAttributes` to the specified trait collection.
     ///

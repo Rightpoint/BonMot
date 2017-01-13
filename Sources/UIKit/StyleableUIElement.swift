@@ -8,37 +8,21 @@
 
 import UIKit
 
-/// Protocol to help with styling text contained in UI elements.
-public protocol StyleableUIElement: UITraitEnvironment {
-
-    /// The name of a style in the global `NamedStyles` registry. The getter
-    /// always returns `nil`, and should not be used.
-    var bonMotStyleName: String? { get set }
-
-    /// A string style. Stored via associated objects.
-    var bonMotStyle: StringStyle? { get set }
-
-    /// Update this property to style the incoming text via the `bonMotStyle`
-    /// and set it as the receiver's attributed text.
-    var styledText: String? { get set }
-
-}
-
-extension UILabel: StyleableUIElement {
+extension UILabel {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
     @IBInspectable
     public var bonMotStyleName: String? {
         get { return nil }
-        set { bonMotStyle = lookUpSharedStyle(for: newValue, font: font) }
+        set { bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font) }
     }
 
     /// A string style. Stored via associated objects.
     public final var bonMotStyle: StringStyle? {
-        get { return getAssociatedStyle() }
+        get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
-            setAssociatedStyle(bonMotStyle: newValue)
+            StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             styledText = text
         }
     }
@@ -48,12 +32,12 @@ extension UILabel: StyleableUIElement {
     @objc(bon_styledText)
     public var styledText: String? {
         get { return attributedText?.string }
-        set { attributedText = styledAttributedString(from: newValue) }
+        set { attributedText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection) }
     }
 
 }
 
-extension UITextField: StyleableUIElement {
+extension UITextField {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -66,7 +50,7 @@ extension UITextField: StyleableUIElement {
         get { return nil }
         set {
             guard let font = font else { fatalError("Unable to get the font. This is unexpected, see UIKitTests.testTextFieldPropertyBehavior") }
-            bonMotStyle = lookUpSharedStyle(for: newValue, font: font)
+            bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font)
         }
     }
 
@@ -75,9 +59,9 @@ extension UITextField: StyleableUIElement {
     /// `attributedPlaceholder`. If you plan on styling them differently, use
     /// attributed strings directly.
     public final var bonMotStyle: StringStyle? {
-        get { return getAssociatedStyle() }
+        get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
-            setAssociatedStyle(bonMotStyle: newValue)
+            StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             styledText = text
             defaultTextAttributes = bonMotStyle?.attributes(adaptedTo: traitCollection) ?? [:]
         }
@@ -89,7 +73,7 @@ extension UITextField: StyleableUIElement {
     public var styledText: String? {
         get { return attributedText?.string }
         set {
-            let styledText = styledAttributedString(from: newValue)
+            let styledText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection)
             // Set the font first to avoid a bug that causes UITextField to hang
             if let styledText = styledText {
                 if styledText.length > 0 {
@@ -102,7 +86,7 @@ extension UITextField: StyleableUIElement {
 
 }
 
-extension UITextView: StyleableUIElement {
+extension UITextView {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -129,7 +113,7 @@ extension UITextView: StyleableUIElement {
                     fatalError("Unsupported Mystery Platform")
                 #endif
             }
-            bonMotStyle = lookUpSharedStyle(for: newValue, font: font)
+            bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font)
         }
     }
 
@@ -138,9 +122,9 @@ extension UITextView: StyleableUIElement {
     /// `typingAtributes`. If you plan on styling them differently, use
     /// attributed strings directly.
     public final var bonMotStyle: StringStyle? {
-        get { return getAssociatedStyle() }
+        get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
-            setAssociatedStyle(bonMotStyle: newValue)
+            StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             typingAttributes = newValue?.attributes(adaptedTo: traitCollection) ?? typingAttributes
             styledText = text
         }
@@ -152,13 +136,13 @@ extension UITextView: StyleableUIElement {
     public var styledText: String? {
         get { return attributedText?.string }
         set {
-            attributedText = styledAttributedString(from: newValue)
+            attributedText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection)
         }
     }
 
 }
 
-extension UIButton: StyleableUIElement {
+extension UIButton {
 
     /// The name of a style in the global `NamedStyles` registry. The getter
     /// always returns `nil`, and should not be used.
@@ -167,15 +151,15 @@ extension UIButton: StyleableUIElement {
         get { return nil }
         set {
             guard let font = titleLabel?.font else { fatalError("Unable to get the font. This is unexpected; see UIKitTests.testTextFieldPropertyBehavior") }
-            bonMotStyle = lookUpSharedStyle(for: newValue, font: font)
+            bonMotStyle = StyleableUIElementHelpers.lookUpSharedStyle(for: newValue, font: font)
         }
     }
 
     /// A string style. Stored via associated objects.
     public final var bonMotStyle: StringStyle? {
-        get { return getAssociatedStyle() }
+        get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
-            setAssociatedStyle(bonMotStyle: newValue)
+            StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             styledText = titleLabel?.text
         }
     }
@@ -186,7 +170,7 @@ extension UIButton: StyleableUIElement {
     public var styledText: String? {
         get { return titleLabel?.text }
         set {
-            let styledText = styledAttributedString(from: newValue)
+            let styledText = StyleableUIElementHelpers.styledAttributedString(from: newValue, style: bonMotStyle, traitCollection: traitCollection)
             setAttributedTitle(styledText, for: .normal)
         }
     }
@@ -195,32 +179,32 @@ extension UIButton: StyleableUIElement {
 
 /// Helper for the bonMotStyle associated objects.
 private var containerHandle: UInt8 = 0
-internal extension StyleableUIElement {
+private enum StyleableUIElementHelpers {
 
-    final func getAssociatedStyle() -> StringStyle? {
-        let adaptiveFunctionContainer = objc_getAssociatedObject(self, &containerHandle) as? StringStyleHolder
+    static func getAssociatedStyle(from object: AnyObject) -> StringStyle? {
+        let adaptiveFunctionContainer = objc_getAssociatedObject(object, &containerHandle) as? StringStyleHolder
         return adaptiveFunctionContainer?.style
     }
 
-    final func setAssociatedStyle(bonMotStyle style: StringStyle?) {
+    static func setAssociatedStyle(on object: AnyObject, style: StringStyle?) {
         var adaptiveFunction: StringStyleHolder? = nil
         if let bonMotStyle = style {
             adaptiveFunction = StringStyleHolder(style: bonMotStyle)
         }
         objc_setAssociatedObject(
-            self, &containerHandle,
+            object, &containerHandle,
             adaptiveFunction,
             .OBJC_ASSOCIATION_RETAIN_NONATOMIC
         )
     }
 
-    final func styledAttributedString(from text: String?) -> NSAttributedString? {
-        guard let text = text else { return nil }
-        let string = (bonMotStyle ?? StringStyle()).attributedString(from: text)
-        return string.adapted(to: traitCollection)
+    static func styledAttributedString(from string: String?, style: StringStyle?, traitCollection: UITraitCollection) -> NSAttributedString? {
+        guard let string = string else { return nil }
+        let attributedString = (style ?? StringStyle()).attributedString(from: string)
+        return attributedString.adapted(to: traitCollection)
     }
 
-    final func lookUpSharedStyle(for name: String?, font: UIFont) -> StringStyle? {
+    static func lookUpSharedStyle(for name: String?, font: UIFont) -> StringStyle? {
         guard let name = name, let style = NamedStyles.shared.style(forName: name) else {
             return nil
         }

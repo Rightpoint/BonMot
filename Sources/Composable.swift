@@ -49,7 +49,7 @@ public extension Composable {
     public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
         let string = NSMutableAttributedString()
         let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
-        self.append(to: string, baseStyle: newStyle)
+        append(to: string, baseStyle: newStyle)
         return string
     }
 

@@ -98,7 +98,7 @@ extension StringStyle {
     public init(_ parts: [Part]) {
         self.init()
         for part in parts {
-            self.update(part: part)
+            update(part: part)
         }
     }
 
@@ -110,7 +110,7 @@ extension StringStyle {
     /// - Parameter part: a `Part`
     public init(_ part: Part) {
         self.init()
-        self.update(part: part)
+        update(part: part)
     }
     #endif
 

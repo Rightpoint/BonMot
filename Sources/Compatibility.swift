@@ -277,6 +277,18 @@
         }
 
     }
+
+    extension NSObjectProtocol {
+
+        func responds(to aSelector: Selector!) -> Bool {
+            return respondsToSelector(aSelector)
+        }
+
+        func perform(_ aSelector: Selector!, with object: AnyObject!) -> Unmanaged<AnyObject>! {
+            return performSelector(aSelector, withObject: object)
+        }
+
+    }
 #endif
 
 /// Shared (AppKit + UIKit)
@@ -360,7 +372,7 @@
     extension BONColor {
 
         @nonobjc var cgColor: CGColorRef {
-            return self.CGColor
+            return CGColor
         }
 
     }
@@ -453,7 +465,7 @@
             }
 
             @nonobjc var cgImage: CGImageRef? {
-                return self.CGImage
+                return CGImage
             }
 
             @nonobjc func withRenderingMode(renderingMode: UIImageRenderingMode) -> UIImage {
