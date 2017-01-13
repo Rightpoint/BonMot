@@ -284,7 +284,7 @@
             return respondsToSelector(aSelector)
         }
 
-        func perform(selector aSelector: Selector!, with object: Any!) -> Unmanaged<AnyObject>! {
+        func perform(_ aSelector: Selector!, with object: AnyObject!) -> Unmanaged<AnyObject>! {
             return performSelector(aSelector, withObject: object)
         }
 
