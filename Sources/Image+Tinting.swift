@@ -64,6 +64,9 @@ public extension BONImage {
         // Prevent further tinting
         image.isTemplate = false
 
+        // Transfer accessibility label
+        image.accessibilityLabel = self.accessibilityLabel
+
         return image
     }
     #else
@@ -112,6 +115,9 @@ public extension BONImage {
         if !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode {
             image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
         }
+
+        // Transfer accessibility label
+        image.accessibilityLabel = self.accessibilityLabel
 
         return image
     }
