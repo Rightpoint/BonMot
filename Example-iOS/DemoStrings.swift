@@ -32,7 +32,10 @@ enum DemoStrings {
         let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed><BON:emDash/>Maria Sharapova</signed> <racket/>"
 
         // Define a colored image that's slightly shifted to account for the line height
-        let racket = UIImage(named: "Tennis Racket")!.styled(with:
+        let accessibleRacketImage = UIImage(named: "Tennis Racket")!
+        // The racket is purely for decoration, so make the accessibility system ignore it
+        accessibleRacketImage.accessibilityLabel = ""
+        let racket = accessibleRacketImage.styled(with:
             .color(.raizlabsRed), .baselineOffset(-4.0))
 
         // Define styles
@@ -65,7 +68,9 @@ enum DemoStrings {
     /// composition only if you absolutely need to build the string from pieces.
     static let compositionExample: NSAttributedString = {
         // Define a colored image that's slightly shifted to account for the line height
-        let boat = UIImage(named: "boat")!.styled(with:
+        let accessibleBoatImage = UIImage(named: "boat")!
+        accessibleBoatImage.accessibilityLabel = "boat"
+        let boat = accessibleBoatImage.styled(with:
             .color(.raizlabsRed))
 
         let baseStyle = StringStyle(
@@ -90,17 +95,30 @@ enum DemoStrings {
             ], baseStyle: baseStyle)
     }()
 
-    static let imagesExample = NSAttributedString.composed(of: [
-        "2".styled(with: .baselineOffset(8)),
-        UIImage(named: "bee")!,
-        UIImage(named: "oar")!,
-        UIImage(named: "knot")!,
-        "2".styled(with: .baselineOffset(8)),
-        UIImage(named: "bee")!,
+    static let imagesExample: NSAttributedString = {
+
+        func accessibleImage(named name:String) -> UIImage {
+            let image = UIImage(named: name)!
+            image.accessibilityLabel = name
+            return image
+        }
+
+        let bee = accessibleImage(named: "bee")
+        let oar = accessibleImage(named: "oar")
+        let knot = accessibleImage(named: "knot")
+
+        return NSAttributedString.composed(of: [
+            "2".styled(with: .baselineOffset(8)),
+            bee,
+            oar,
+            knot,
+            "2".styled(with: .baselineOffset(8)),
+            bee,
         ], baseStyle: StringStyle(
             .font(UIFont(name: "HelveticaNeue-Bold", size: 24)!),
             .adapt(.control)
         ))
+    }()
 
     static let noBreakSpaceExample: NSAttributedString = {
         let noSpaceTextStyle = StringStyle(
