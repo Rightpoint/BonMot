@@ -131,7 +131,7 @@ enum DemoStrings {
 
     /// A whimsical example using baseline offset and some math.
     static let heartsExample = NSAttributedString.composed(of: (0..<20).map { i in
-        let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat(M_PI))
+        let offset: CGFloat = 15 * sin((CGFloat(i) / 20.0) * 7.0 * CGFloat.pi)
         return "❤️".styled(with: .baselineOffset(offset))
         })
 
@@ -340,3 +340,13 @@ extension DemoStrings {
     }
 
 }
+
+#if swift(>=3.0)
+#else
+    extension CGFloat {
+        static var pi: CGFloat {
+            //swiftlint:disable:next legacy_constant
+            return CGFloat(M_PI)
+        }
+    }
+#endif
