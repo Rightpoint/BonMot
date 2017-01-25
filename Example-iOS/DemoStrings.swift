@@ -97,7 +97,7 @@ enum DemoStrings {
 
     static let imagesExample: NSAttributedString = {
 
-        func accessibleImage(named name:String) -> UIImage {
+        func accessibleImage(named name: String) -> UIImage {
             let image = UIImage(named: name)!
             image.accessibilityLabel = name
             return image

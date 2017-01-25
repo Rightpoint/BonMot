@@ -24,6 +24,8 @@ class ImageTintingTests: XCTestCase {
         let imageForTest = UIImage(named: "rz-logo-black", in: testBundle, compatibleWith: nil)!
         let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
     #endif
+    
+    let accessibilityDescription = "I’m the very model of a modern accessible image."
 
     func testImageTinting() {
         let blackImageName = "rz-logo-black"
@@ -65,7 +67,7 @@ class ImageTintingTests: XCTestCase {
         XCTAssertNotNil(tintedResult)
 
         BONAssertNotEqualImages(untintedResult!, tintedResult!)
-    }
+    }   
 
     func testNotTintingInAttributedString() {
         let untintedString = NSAttributedString.composed(of: [
@@ -84,14 +86,23 @@ class ImageTintingTests: XCTestCase {
 
         BONAssertEqualImages(untintedResult!, tintAttemptResult!)
     }
-
-    func testAccessibilityLabelTransferToTintedImage() {
-        let accessibilityLabel = "I’m the very model of a modern accessible image."
-        let accessibleImage = BONImage(cgImage: imageForTest.cgImage!)
-        accessibleImage.accessibilityLabel = accessibilityLabel
-        let tintedImage = accessibleImage.tintedImage(color: raizlabsRed)
-
-        XCTAssertEqual(tintedImage.accessibilityLabel, accessibilityLabel)
-        XCTAssertEqual(tintedImage.accessibilityLabel, accessibleImage.accessibilityLabel)
+    
+    func testAccessibilityIOS() {
+        #if os(iOS)
+            imageForTest.accessibilityLabel = accessibilityDescription
+            let tintedImage = imageForTest.tintedImage(color: raizlabsRed)
+            XCTAssertEqual(tintedImage.accessibilityLabel, accessibilityDescription)
+            XCTAssertEqual(tintedImage.accessibilityLabel, tintedImage.accessibilityLabel)
+        #endif
     }
+
+    func testAccessibilityMacOS() {
+        #if os(macOS)
+            imageForTest.accessibilityDescription = accessibilityDescription
+            let tintedImage = imageForTest.tintedImage(color: raizlabsRed)
+            XCTAssertEqual(tintedImage.accessibilityDescription, accessibilityDescription)
+            XCTAssertEqual(tintedImage.accessibilityDescription, tintedImage.accessibilityDescription)
+        #endif
+    }
+
 }
