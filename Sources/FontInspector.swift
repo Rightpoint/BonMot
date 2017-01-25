@@ -45,7 +45,7 @@
         ///         and match any combination of its options.
         public func availableFontFeatures(includeIdentifiers includeIDs: Bool = false) -> String {
             let preamble = "Available font features of \(fontName)"
-            return preamble + availableFeaturesDictionaries.map { featureDict in
+            let features: [String] = availableFeaturesDictionaries.map { featureDict in
                 let featureName = featureDict[kCTFontFeatureTypeNameKey as String] as? String
                 let exclusive = featureDict[kCTFontFeatureTypeExclusiveKey as String] as? Bool ?? false
                 let selectors = featureDict[kCTFontFeatureTypeSelectorsKey as String] as? [FontFeatureDictionary] ?? []
@@ -59,7 +59,7 @@
                 resultString += "\n    Exclusive: \(exclusive)"
                 if !selectors.isEmpty {
                     resultString += "\n    Selectors:"
-                    resultString += selectors.map { selectorDict in
+                    let selectorStrings: [String] = selectors.map { selectorDict in
                         let selectorName = selectorDict[kCTFontFeatureSelectorNameKey as String] as? String
                         let selectorIsDefault = selectorDict[kCTFontFeatureSelectorDefaultKey as String] as? Bool ?? false
 
@@ -73,10 +73,12 @@
                             resultString += " (default)"
                         }
                         return resultString
-                        }.reduce("") { $0 + "\n" + $1 }
+                    }
+                    resultString += selectorStrings.reduce("") { $0 + "\n" + $1 }
                 }
                 return resultString
-                }.reduce("") { $0 + "\n\n" + $1 }
+            }
+            return preamble + features.reduce("") { $0 + "\n\n" + $1 }
         }
 
     }
