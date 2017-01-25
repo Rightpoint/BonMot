@@ -87,7 +87,7 @@ class ImageTintingTests: XCTestCase {
 
     func testAccessibilityLabelTransferToTintedImage() {
         let accessibilityLabel = "I’m the very model of a modern accessible image."
-        let accessibleImage = UIImage(cgImage: imageForTest.cgImage!)
+        let accessibleImage = BONImage(cgImage: imageForTest.cgImage!)
         accessibleImage.accessibilityLabel = accessibilityLabel
         let tintedImage = accessibleImage.tintedImage(color: raizlabsRed)
 
