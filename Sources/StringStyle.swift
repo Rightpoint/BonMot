@@ -18,40 +18,40 @@
 public struct StringStyle {
 
     public var extraAttributes: StyleAttributes = [:]
-    public var font: BONFont? = nil
-    public var link: NSURL? = nil
-    public var backgroundColor: BONColor? = nil
-    public var color: BONColor? = nil
-    public var underline: (NSUnderlineStyle, BONColor?)? = nil
-    public var strikethrough: (NSUnderlineStyle, BONColor?)? = nil
-    public var baselineOffset: CGFloat? = nil
+    public var font: BONFont?
+    public var link: NSURL?
+    public var backgroundColor: BONColor?
+    public var color: BONColor?
+    public var underline: (NSUnderlineStyle, BONColor?)?
+    public var strikethrough: (NSUnderlineStyle, BONColor?)?
+    public var baselineOffset: CGFloat?
 
-    public var lineSpacing: CGFloat? = nil
-    public var paragraphSpacingAfter: CGFloat? = nil
-    public var alignment: NSTextAlignment? = nil
-    public var firstLineHeadIndent: CGFloat? = nil
-    public var headIndent: CGFloat? = nil
-    public var tailIndent: CGFloat? = nil
-    public var lineBreakMode: NSLineBreakMode? = nil
-    public var minimumLineHeight: CGFloat? = nil
-    public var maximumLineHeight: CGFloat? = nil
-    public var baseWritingDirection: NSWritingDirection? = nil
-    public var lineHeightMultiple: CGFloat? = nil
-    public var paragraphSpacingBefore: CGFloat? = nil
-    public var hyphenationFactor: Float? = nil
+    public var lineSpacing: CGFloat?
+    public var paragraphSpacingAfter: CGFloat?
+    public var alignment: NSTextAlignment?
+    public var firstLineHeadIndent: CGFloat?
+    public var headIndent: CGFloat?
+    public var tailIndent: CGFloat?
+    public var lineBreakMode: NSLineBreakMode?
+    public var minimumLineHeight: CGFloat?
+    public var maximumLineHeight: CGFloat?
+    public var baseWritingDirection: NSWritingDirection?
+    public var lineHeightMultiple: CGFloat?
+    public var paragraphSpacingBefore: CGFloat?
+    public var hyphenationFactor: Float?
 
-    public var ligatures: Ligatures? = nil
+    public var ligatures: Ligatures?
 
     #if os(OSX) || os(iOS) || os(tvOS)
     public var fontFeatureProviders: [FontFeatureProvider] = []
 
-    public var numberCase: NumberCase? = nil
-    public var numberSpacing: NumberSpacing? = nil
+    public var numberCase: NumberCase?
+    public var numberSpacing: NumberSpacing?
 
-    public var superscript: Bool? = nil
-    public var `subscript`: Bool? = nil
-    public var ordinals: Bool? = nil
-    public var scientificInferiors: Bool? = nil
+    public var superscript: Bool?
+    public var `subscript`: Bool?
+    public var ordinals: Bool?
+    public var scientificInferiors: Bool?
 
     public var smallCaps: Set<SmallCaps> = []
 
@@ -61,8 +61,8 @@ public struct StringStyle {
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
     #endif
-    public var tracking: Tracking? = nil
-    public var xmlStyler: XMLStyler? = nil
+    public var tracking: Tracking?
+    public var xmlStyler: XMLStyler?
 
 }
 
@@ -222,8 +222,8 @@ extension StringStyle {
 
             smallCaps = theStringStyle.smallCaps.isEmpty ? smallCaps : theStringStyle.smallCaps
 
-            stylisticAlternates = stylisticAlternates + theStringStyle.stylisticAlternates
-            contextualAlternates = contextualAlternates + theStringStyle.contextualAlternates
+            stylisticAlternates.add(other: theStringStyle.stylisticAlternates)
+            contextualAlternates.add(other: theStringStyle.contextualAlternates)
         #endif
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)
