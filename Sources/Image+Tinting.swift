@@ -116,9 +116,9 @@ public extension BONImage {
             image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
         }
 
-        // Transfer accessibility label (iOS only; watchOS does not have accessibilityLabel on UIImage).
-        #if os(iOS)
-        image.accessibilityLabel = self.accessibilityLabel
+        // Transfer accessibility label (watchOS not included; does not have accessibilityLabel on UIImage).
+        #if os(iOS) || os(tvOS)
+            image.accessibilityLabel = self.accessibilityLabel
         #endif
 
         return image
