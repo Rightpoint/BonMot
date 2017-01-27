@@ -146,7 +146,7 @@ import BonMot
     }
 #endif
 
-/// Standard Library + Foundation
+// MARK: - Standard Library + Foundation
 #if swift(>=3.0)
 #else
     typealias OptionSet = OptionSetType
@@ -219,15 +219,6 @@ import BonMot
 
     }
 
-    extension SequenceType {
-
-        @warn_unused_result
-        func enumerated() -> EnumerateSequence<Self> {
-            return enumerate()
-        }
-
-    }
-
     extension CollectionType where Index : RandomAccessIndexType {
 
         @warn_unused_result
@@ -268,7 +259,7 @@ import BonMot
     }
 #endif
 
-/// Shared (AppKit + UIKit)
+// MARK: - Shared (AppKit + UIKit)
 #if swift(>=3.0)
     extension NSParagraphStyle {
 
@@ -350,7 +341,7 @@ import BonMot
 
 #endif
 
-/// UIKit Only
+// MARK: - UIKit Only
 #if os(iOS) || os(watchOS) || os(tvOS)
 #if swift(>=3.0)
     typealias UIApplicationLaunchOptionsValue = Any
