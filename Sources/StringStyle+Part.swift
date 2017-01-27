@@ -27,6 +27,24 @@ extension StringStyle {
         case strikethrough(NSUnderlineStyle, BONColor?)
         case baselineOffset(CGFloat)
 
+        #if os(iOS) || os(tvOS) || os(watchOS)
+
+        /// If set to `true`, when the string is read aloud, all punctuation will
+        /// be spoken aloud as well.
+        case speaksPunctuation(Bool)
+
+        /// The BCP 47 language code that you would like the system to use when
+        /// reading this string aloud. A BCP 47 language code is generally of
+        /// the form “language-REGION”, e.g. “en-US”. You can see a [list of
+        /// languages and regions](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry)
+        /// and learn more about [BCP 47](https://www.rfc-editor.org/rfc/rfc5646.txt).
+        case speakingLanguage(String)
+
+        /// The pitch of the voice used to read the text aloud. The range is
+        /// 0 to 2, where 0 is the lowest, 2 is the highest, and 1 is the default.
+        case speakingPitch(Double)
+        #endif
+
         case ligatures(Ligatures)
 
         case alignment(NSTextAlignment)
@@ -210,6 +228,22 @@ extension StringStyle {
             case let .hyphenationFactor(hyphenationFactor):
                 self.hyphenationFactor = hyphenationFactor
             default:
+                #if os(iOS) || os(tvOS) || os(watchOS)
+                    switch stylePart {
+                    case let .speaksPunctuation(speaksPunctuation):
+                        self.speaksPunctuation = speaksPunctuation
+                        return
+                    case let .speakingLanguage(speakingLanguage):
+                        self.speakingLanguage = speakingLanguage
+                        return
+                    case let .speakingPitch(speakingPitch):
+                        self.speakingPitch = speakingPitch
+                        return
+                    default:
+                        break
+                    }
+                #endif
+
                 #if os(OSX) || os(iOS) || os(tvOS)
                     switch stylePart {
                     case let .numberCase(numberCase):

@@ -102,6 +102,11 @@ class ComposableTests: XCTestCase {
         check(forPart: .tracking(.point(10)), NSKernAttributeName, CGFloat(10))
         check(forPart: .link(NSURL(string: "http://thebestwords.com/")!), NSLinkAttributeName, NSURL(string: "http://thebestwords.com/")!)
         check(forPart: .ligatures(.disabled), NSLigatureAttributeName, 0)
+        #if os(iOS) || os(tvOS) || os(watchOS)
+            check(forPart: .speaksPunctuation(true), UIAccessibilitySpeechAttributePunctuation, true)
+            check(forPart: .speakingLanguage("en-US"), UIAccessibilitySpeechAttributeLanguage, "en-US")
+            check(forPart: .speakingPitch(0.5), UIAccessibilitySpeechAttributePitch, 0.5)
+        #endif
     }
 
     func testBaseParagraphStyleIsOverridden() {

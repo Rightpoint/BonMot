@@ -90,6 +90,34 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    #if os(iOS) || os(tvOS) || os(watchOS)
+
+    func testSpeaksPronunciationStyle() {
+        let style = StringStyle(.speaksPunctuation(true))
+        for (style, fullstyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+            BONAssert(attributes: style.attributes, key: UIAccessibilitySpeechAttributePunctuation, value: true)
+        }
+    }
+
+    func testSpeakingLanguageStyle() {
+        let style = StringStyle(.speakingLanguage("pt-BR"))
+        for (style, fullstyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+            BONAssert(attributes: style.attributes, key: UIAccessibilitySpeechAttributeLanguage, value: "pt-BR")
+        }
+    }
+
+    func testSpeakingPitchStyle() {
+        let style = StringStyle(.speakingPitch(1.5))
+        for (style, fullstyle) in additiviePermutations(for: style) {
+            XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+            BONAssert(attributes: style.attributes, key: UIAccessibilitySpeechAttributePitch, value: 1.5)
+        }
+    }
+
+    #endif
+
     func testAlignmentStyle() {
         let style = StringStyle(.alignment(.center))
         for (style, fullStyle) in additiviePermutations(for: style) {
