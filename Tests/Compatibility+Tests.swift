@@ -219,15 +219,6 @@ import BonMot
 
     }
 
-    extension SequenceType {
-
-        @warn_unused_result
-        func enumerated() -> EnumerateSequence<Self> {
-            return enumerate()
-        }
-
-    }
-
     extension CollectionType where Index : RandomAccessIndexType {
 
         @warn_unused_result

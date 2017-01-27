@@ -8,7 +8,7 @@
 
 import XCTest
 import UIKit
-import BonMot
+@testable import BonMot
 
 #if swift(>=2.3) && os(iOS)
 

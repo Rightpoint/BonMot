@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import BonMot
+@testable import BonMot
 import CoreText
 
 //swiftlint:disable file_length
@@ -109,7 +109,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -132,7 +132,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -155,7 +155,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -178,7 +178,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -201,7 +201,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -224,7 +224,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -247,7 +247,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -270,7 +270,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 
@@ -293,7 +293,7 @@ class StringStyleTests: XCTestCase {
             let featureAttribute = fontAttributes?[BONFontDescriptorFeatureSettingsAttribute]
             XCTAssertNotNil(featureAttribute)
             guard let featuresArray = featureAttribute as? [[String: Int]] else {
-                XCTFail("Failed to cast \(featureAttribute) as [[String: Int]]")
+                XCTFail("Failed to cast \(String(describing: featureAttribute)) as [[String: Int]]")
                 return
             }
 

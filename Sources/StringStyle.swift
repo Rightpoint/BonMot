@@ -107,8 +107,8 @@ extension StringStyle {
             let preFeaturedFont = theAttributes[NSFontAttributeName] as? BONFont
             var featureProviders = fontFeatureProviders
 
-            featureProviders += [numberCase].flatMap { $0 as? FontFeatureProvider }
-            featureProviders += [numberSpacing].flatMap { $0 as? FontFeatureProvider }
+            featureProviders += [numberCase].flatMap { $0 }
+            featureProviders += [numberSpacing].flatMap { $0 }
             featureProviders += [superscript].flatMap { $0 }.map { ($0 ? VerticalPosition.superscript : VerticalPosition.normal) } as [FontFeatureProvider]
             featureProviders += [`subscript`].flatMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
             featureProviders += [ordinals].flatMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]

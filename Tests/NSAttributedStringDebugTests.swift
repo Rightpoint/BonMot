@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import BonMot
+@testable import BonMot
 
 class NSAttributedStringDebugTests: XCTestCase {
 
