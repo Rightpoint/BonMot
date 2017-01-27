@@ -64,6 +64,9 @@ public extension BONImage {
         // Prevent further tinting
         image.isTemplate = false
 
+        // Transfer accessibility description
+        image.accessibilityDescription = self.accessibilityDescription
+
         return image
     }
     #else
@@ -112,6 +115,11 @@ public extension BONImage {
         if !UIEdgeInsetsEqualToEdgeInsets(originalCapInsets, image.capInsets) || originalResizingMode != image.resizingMode {
             image = image.resizableImage(withCapInsets: originalCapInsets, resizingMode: originalResizingMode)
         }
+
+        // Transfer accessibility label (watchOS not included; does not have accessibilityLabel on UIImage).
+        #if os(iOS) || os(tvOS)
+            image.accessibilityLabel = self.accessibilityLabel
+        #endif
 
         return image
     }

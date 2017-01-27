@@ -25,6 +25,8 @@ class ImageTintingTests: XCTestCase {
         let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
     #endif
 
+    let accessibilityDescription = "I’m the very model of a modern accessible image."
+
     func testImageTinting() {
         let blackImageName = "rz-logo-black"
         let redImageName = "rz-logo-red"
@@ -85,4 +87,21 @@ class ImageTintingTests: XCTestCase {
         BONAssertEqualImages(untintedResult!, tintAttemptResult!)
     }
 
+    func testAccessibilityIOSAndTVOS() {
+        #if os(iOS) || os(tvOS)
+            imageForTest.accessibilityLabel = accessibilityDescription
+            let tintedImage = imageForTest.tintedImage(color: raizlabsRed)
+            XCTAssertEqual(tintedImage.accessibilityLabel, accessibilityDescription)
+            XCTAssertEqual(tintedImage.accessibilityLabel, tintedImage.accessibilityLabel)
+        #endif
+    }
+
+    func testAccessibilityOSX() {
+        #if os(OSX)
+            imageForTest.accessibilityDescription = accessibilityDescription
+            let tintedImage = imageForTest.tintedImage(color: raizlabsRed)
+            XCTAssertEqual(tintedImage.accessibilityDescription, accessibilityDescription)
+            XCTAssertEqual(tintedImage.accessibilityDescription, tintedImage.accessibilityDescription)
+        #endif
+    }
 }
