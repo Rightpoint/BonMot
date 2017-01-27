@@ -328,7 +328,7 @@
                                         <constraint firstItem="cdv-Qw-LeD" firstAttribute="leading" secondItem="jMn-3r-3Ry" secondAttribute="leadingMargin" constant="15" id="2bZ-4A-Afj"/>
                                         <constraint firstItem="cdv-Qw-LeD" firstAttribute="top" secondItem="jMn-3r-3Ry" secondAttribute="topMargin" constant="15" id="R5t-PJ-gL1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="cdv-Qw-LeD" secondAttribute="trailing" constant="15" id="UDQ-vU-CMn"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="cdv-Qw-LeD" secondAttribute="bottom" constant="30" id="V8G-p4-Uif"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="cdv-Qw-LeD" secondAttribute="bottom" priority="750" constant="30" id="V8G-p4-Uif"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
