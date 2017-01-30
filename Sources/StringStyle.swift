@@ -40,6 +40,12 @@ public struct StringStyle {
     public var paragraphSpacingBefore: CGFloat?
     public var hyphenationFactor: Float?
 
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    public var speaksPunctuation: Bool?
+    public var speakingLanguage: String?
+    public var speakingPitch: Double?
+    #endif
+
     public var ligatures: Ligatures?
 
     #if os(OSX) || os(iOS) || os(tvOS)
@@ -82,6 +88,12 @@ extension StringStyle {
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
         theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSLigatureAttributeName)
+
+        #if os(iOS) || os(tvOS) || os(watchOS)
+            theAttributes.update(possibleValue: speaksPunctuation, forKey: UIAccessibilitySpeechAttributePunctuation)
+            theAttributes.update(possibleValue: speakingLanguage, forKey: UIAccessibilitySpeechAttributeLanguage)
+            theAttributes.update(possibleValue: speakingPitch, forKey: UIAccessibilitySpeechAttributePitch)
+        #endif
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
         paragraph.lineSpacing = lineSpacing ?? paragraph.lineSpacing
@@ -194,6 +206,12 @@ extension StringStyle {
         baselineOffset = theStringStyle.baselineOffset ?? baselineOffset
 
         ligatures = theStringStyle.ligatures ?? ligatures
+
+        #if os(iOS) || os(tvOS) || os(watchOS)
+        speaksPunctuation = theStringStyle.speaksPunctuation ?? speaksPunctuation
+        speakingLanguage = theStringStyle.speakingLanguage ?? speakingLanguage
+        speakingPitch = theStringStyle.speakingPitch ?? speakingPitch
+        #endif
 
         lineSpacing = theStringStyle.lineSpacing ?? lineSpacing
         paragraphSpacingAfter = theStringStyle.paragraphSpacingAfter ?? paragraphSpacingAfter

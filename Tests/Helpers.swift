@@ -128,6 +128,12 @@ let fullStyle: StringStyle = {
 
     fullStyle.baselineOffset = terribleValue
 
+    #if os(iOS) || os(tvOS) || os(watchOS)
+        fullStyle.speaksPunctuation = true
+        fullStyle.speakingLanguage = "pt-BR" // Brazilian Portuguese
+        fullStyle.speakingPitch = 1.5
+    #endif
+
     fullStyle.ligatures = .disabled // not the default value
 
     fullStyle.lineSpacing = terribleValue

@@ -33,6 +33,7 @@ class StyleViewController: UITableViewController {
             DemoStrings.scientificInferiorsExample,
             DemoStrings.stylisticAlternatesExample,
             ]),
+        ("Accessibility Speech", DemoStrings.accessibilitySpeechExamples),
     ]
 
     override func viewDidLoad() {
