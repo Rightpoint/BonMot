@@ -46,14 +46,6 @@ extension NSAttributedString {
         return attributedString
     }
 
-    ///
-    /// - parameter xml: The string containing the markup.
-    /// - parameter rules: A protocol to decorate the XML
-    /// - parameter options: XML parsing options
-    ///
-    /// - returns: An NSAttributedString
-    //swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
-
     /// Generate an attributed string by parsing `fragment` using the collection
     /// of `XMLStyleRule`s to provide style and string insertions to decorate
     /// the XML. As the XML fragment is traversed, the style of each node is
