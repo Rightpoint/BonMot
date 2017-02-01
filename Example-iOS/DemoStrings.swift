@@ -363,6 +363,7 @@ enum DemoStrings {
                 .style("pt-PT", StringStyle(.speakingLanguage("pt-PT"))),
                 .style("ru-RU", StringStyle(.speakingLanguage("ru-RU"))),
                 .style("uk-UA", StringStyle(.speakingLanguage("uk-UA"))),
+                .style("zh-TW", StringStyle(.speakingLanguage("zh-TW"))),
                 ]))
 
         let stringsArrays = [
@@ -380,6 +381,7 @@ enum DemoStrings {
                 "<pt-PT>\n<emoji>🇵🇹</emoji> Aqui está a maneira correta de pronunciar português.</pt-PT>",
                 "<ru-RU>\n<emoji>🇷🇺</emoji> Вот как правильно произносить русский.</ru-RU>",
                 "<uk-UA>\n<emoji>🇺🇦</emoji> Ось як правильно вимовляти Український.</uk-UA>",
+                "<zh-TW>\n<emoji>🇹🇼</emoji> 这里是正确的做法发音中文.</zh-TW>",
                 ],
         ]
 
