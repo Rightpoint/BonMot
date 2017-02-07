@@ -350,6 +350,7 @@ enum DemoStrings {
         let style = StringStyle(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .paragraphSpacingAfter(12.0),
+            .adapt(.body),
             .xmlRules([
                 .style("punctuation", StringStyle(.color(.raizlabsRed))),
                 .style("emoji", StringStyle(.font(.systemFont(ofSize: 24)))),
