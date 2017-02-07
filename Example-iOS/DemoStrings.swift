@@ -273,7 +273,7 @@ enum DemoStrings {
         let garamondStyle = StringStyle(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .lineHeightMultiple(1.2),
-            .adapt(.control)
+            .adapt(.body)
         )
 
         let digits = "\n0123456789"
@@ -293,7 +293,7 @@ enum DemoStrings {
         let garamondStyle = StringStyle(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .lineHeightMultiple(1.2),
-            .adapt(.control)
+            .adapt(.body)
         )
 
         let string = "Today is my <number>111<ordinal>th</ordinal></number> birthday!"
@@ -312,7 +312,7 @@ enum DemoStrings {
         let garamondStyle = StringStyle(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .lineHeightMultiple(1.2),
-            .adapt(.control)
+            .adapt(.body)
         )
 
         let string = "<name>Johnny</name> was a little boy, but <name>Johnny</name> is no more, for what he thought was <chemical>H<number>2</number>O</chemical> was really <chemical>H<number>2</number>SO<number>4</number></chemical>."
@@ -330,7 +330,7 @@ enum DemoStrings {
     static let stylisticAlternatesExample: NSAttributedString = {
         let systemFontStyle = StringStyle(
             .font(.systemFont(ofSize: 18)),
-            .adapt(.control)
+            .adapt(.body)
         )
 
         let password = "68Il14"
@@ -350,6 +350,7 @@ enum DemoStrings {
         let style = StringStyle(
             .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
             .paragraphSpacingAfter(12.0),
+            .adapt(.body),
             .xmlRules([
                 .style("punctuation", StringStyle(.color(.raizlabsRed))),
                 .style("emoji", StringStyle(.font(.systemFont(ofSize: 24)))),
