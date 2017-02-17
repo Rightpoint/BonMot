@@ -168,7 +168,7 @@ If you want an attributed string to adapt to the current content size category, 
 
 ### Responding to Content Size Category Changes
 
-If you call `UIApplication.enableAdaptiveContentSizeMonitor()` at some point in your app setup code, BonMot will update common UI elements as the preferred content size category changes. You can opt your custom controls into automatic updating by conforming them to the `AdaptableTextContainer` protocol.
+If you call `UIApplication.shared.enableAdaptiveContentSizeMonitor()` at some point in your app setup code, BonMot will update common UI elements as the preferred content size category changes. You can opt your custom controls into automatic updating by conforming them to the `AdaptableTextContainer` protocol.
 
 If you want more manual control over the adaptation process and are targeting iOS 10+, skip enabling the adaptive content size monitor, and call `.adapted(to: traitCollection)` inside `traitCollectionDidChange(_:)`. iOS 10 introduced a `preferredContentSizeCategory` property on `UITraitCollection`.
 
