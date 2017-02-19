@@ -101,7 +101,7 @@
     public enum Fractions: FontFeatureProvider {
 
         /// No fraction formatting
-        case none
+        case disabled
 
         /// Diagonal Fractions, when written on paper, are written on one line
         /// with the numerator diagonally above and to the left of the
@@ -115,7 +115,7 @@
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
             switch self {
-            case .none:
+            case .disabled:
                 return [(type: kFractionsType, selector: kNoFractionsSelector)]
             case .diagonal:
                 return [(type: kFractionsType, selector: kDiagonalFractionsSelector)]
@@ -123,7 +123,7 @@
                 return [(type: kFractionsType, selector: kVerticalFractionsSelector)]
             }
         }
-        
+
     }
 
     /// A feature provider for changing the vertical position of characters

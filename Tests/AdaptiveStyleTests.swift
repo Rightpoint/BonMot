@@ -143,7 +143,7 @@ class AdaptiveStyleTests: XCTestCase {
             (.numberCase(.lower), false),
             (.numberSpacing(.monospaced), false),
             (.numberSpacing(.proportional), false),
-            (.fractions(.none), true),
+            (.fractions(.disabled), true),
             (.fractions(.diagonal), false),
             (.fractions(.vertical), false),
             (.superscript(true), false),
