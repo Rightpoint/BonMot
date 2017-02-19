@@ -123,6 +123,7 @@
                 return [(type: kFractionsType, selector: kVerticalFractionsSelector)]
             }
         }
+        
     }
 
     /// A feature provider for changing the vertical position of characters
