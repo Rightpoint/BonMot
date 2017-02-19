@@ -177,13 +177,13 @@
         }
 
     }
-    
+
     extension Fractions: MappableFeature {
-        
+
         public var featureTypeIdentifiers: [Int] {
             return [FeatureTypeIdentifier.contextualFractionalForms.rawValue]
         }
-        
+
     }
 
     extension VerticalPosition: MappableFeature {
