@@ -306,6 +306,25 @@ enum DemoStrings {
         )
     }()
 
+    // Demonstrate fractions.
+    static let fractionsExample: NSAttributedString = {
+
+        let garamondStyle = StringStyle(
+            .font(UIFont(name: "EBGaramond12-Regular", size: 24)!),
+            .numberCase(.upper),
+            .lineHeightMultiple(1.2),
+            .adapt(.body)
+        )
+
+        let string = "1336 <fraction>6/10</fraction> + <fraction>4/10</fraction> = 1337"
+        return string.styled(with: garamondStyle.byAdding(
+            .xmlRules([
+                .style("fraction", garamondStyle.byAdding(.fractions(.diagonal), .color(.raizlabsRed), .numberCase(.lower))),
+                ])
+            )
+        )
+    }()
+
     // Demonstrate scientific inferiors.
     static let scientificInferiorsExample: NSAttributedString = {
 

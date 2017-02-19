@@ -155,6 +155,7 @@ let fullStyle: StringStyle = {
         fullStyle.fontFeatureProviders = [NumberCase.upper, NumberSpacing.proportional, VerticalPosition.superscript]
         fullStyle.numberCase = .upper
         fullStyle.numberSpacing = .proportional
+        fullStyle.fractions = .diagonal
         fullStyle.superscript = true
         fullStyle.`subscript` = true
         fullStyle.ordinals = true

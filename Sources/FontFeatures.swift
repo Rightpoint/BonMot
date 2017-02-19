@@ -97,6 +97,35 @@
 
     }
 
+    /// A feature provider for displaying a fraction.
+    public enum Fractions: FontFeatureProvider {
+
+        /// No fraction formatting.
+        case disabled
+
+        /// Diagonal Fractions, when written on paper, are written on one line
+        /// with the numerator diagonally above and to the left of the
+        /// demoninator, with the slash ("/") between them.
+        case diagonal
+
+        /// Vertical Fractions, when written on paper, are written on one line
+        /// with the numerator directly above the
+        /// demoninator, with a line lying horizontally between them.
+        case vertical
+
+        public func featureSettings() -> [(type: Int, selector: Int)] {
+            switch self {
+            case .disabled:
+                return [(type: kFractionsType, selector: kNoFractionsSelector)]
+            case .diagonal:
+                return [(type: kFractionsType, selector: kDiagonalFractionsSelector)]
+            case .vertical:
+                return [(type: kFractionsType, selector: kVerticalFractionsSelector)]
+            }
+        }
+
+    }
+
     /// A feature provider for changing the vertical position of characters
     /// using predefined styles in the font, such as superscript and subscript.
     public enum VerticalPosition: FontFeatureProvider {
