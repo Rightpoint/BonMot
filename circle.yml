@@ -1,11 +1,12 @@
 machine:
   xcode:
-    version: "8.1"
+    version: "8.2.1"
 
 dependencies:
   pre:
     - brew update 1> /dev/null 2> /dev/null
     - brew outdated carthage || brew upgrade carthage
+    - gem install bundler
 test:
   override:
     - ./scripts/macOS.sh
