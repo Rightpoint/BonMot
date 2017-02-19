@@ -80,6 +80,7 @@ extension StringStyle {
 
         case numberSpacing(NumberSpacing)
         case numberCase(NumberCase)
+        case fractions(Fractions)
 
         case superscript(Bool)
         case `subscript`(Bool)
@@ -250,6 +251,8 @@ extension StringStyle {
                         self.numberCase = numberCase
                     case let .numberSpacing(numberSpacing):
                         self.numberSpacing = numberSpacing
+                    case let .fractions(fractions):
+                        self.fractions = fractions
                     case let .superscript(superscript):
                         self.superscript = superscript
                     case let .`subscript`(`subscript`):

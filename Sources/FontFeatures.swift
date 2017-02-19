@@ -61,19 +61,12 @@
         /// which drop below the typographic baseline.
         case lower
 
-        /// Fractions, when written on paper, are written on one line
-        /// with the numerator diagonally above and to the left of the
-        /// demoninator, with the slash ("/") between them.
-        case fraction
-
         public func featureSettings() -> [(type: Int, selector: Int)] {
             switch self {
             case .upper:
                 return [(type: kNumberCaseType, selector: kUpperCaseNumbersSelector)]
             case .lower:
                 return [(type: kNumberCaseType, selector: kLowerCaseNumbersSelector)]
-            case .fraction:
-                return [(type: kFractionsType, selector: kDiagonalFractionsSelector)]
             }
         }
 
@@ -102,6 +95,34 @@
             }
         }
 
+    }
+
+    /// A feature provider for displaying a fraction.
+    public enum Fractions: FontFeatureProvider {
+
+        /// No fraction formatting
+        case none
+
+        /// Diagonal Fractions, when written on paper, are written on one line
+        /// with the numerator diagonally above and to the left of the
+        /// demoninator, with the slash ("/") between them.
+        case diagonal
+
+        /// Vertical Fractions, when written on paper, are written on one line
+        /// with the numerator directly above the
+        /// demoninator, with the slash ("/") lying horizontally between them.
+        case vertical
+
+        public func featureSettings() -> [(type: Int, selector: Int)] {
+            switch self {
+            case .none:
+                return [(type: kFractionsType, selector: kNoFractionsSelector)]
+            case .diagonal:
+                return [(type: kFractionsType, selector: kDiagonalFractionsSelector)]
+            case .vertical:
+                return [(type: kFractionsType, selector: kVerticalFractionsSelector)]
+            }
+        }
     }
 
     /// A feature provider for changing the vertical position of characters

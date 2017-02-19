@@ -319,7 +319,7 @@ enum DemoStrings {
             "Fractions".styled(with: systemFontStyle, .smallCaps(.fromLowercase), .color(.raizlabsRed)),
             string.styled(with: systemFontStyle.byAdding(
                 .xmlRules([
-                    .style("fraction", systemFontStyle.byAdding(.numberCase(.fraction))),
+                    .style("fraction", systemFontStyle.byAdding(.fractions(.diagonal))),
                     ])
                 )
             ),
