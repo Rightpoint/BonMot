@@ -405,7 +405,11 @@ enum DemoStrings {
                 ],
         ]
 
-        return stringsArrays.map { $0.joined().styled(with: style) }
+        #if swift(>=3.0)
+            return stringsArrays.map { $0.joined().styled(with: style) }
+        #else
+            return stringsArrays.map { $0.joinWithSeparator("").styled(with: style) }
+        #endif
     }()
 
 }
