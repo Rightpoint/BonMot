@@ -170,20 +170,20 @@
 
     }
 
-    extension Fractions: MappableFeature {
-
-        public var featureTypeIdentifiers: [Int] {
-            return [FeatureTypeIdentifier.contextualFractionalForms.rawValue]
-        }
-
-    }
-
     extension NumberSpacing: MappableFeature {
 
         public var featureTypeIdentifiers: [Int] {
             return [FeatureTypeIdentifier.numberSpacing.rawValue]
         }
 
+    }
+    
+    extension Fractions: MappableFeature {
+        
+        public var featureTypeIdentifiers: [Int] {
+            return [FeatureTypeIdentifier.contextualFractionalForms.rawValue]
+        }
+        
     }
 
     extension VerticalPosition: MappableFeature {

@@ -100,7 +100,7 @@
     /// A feature provider for displaying a fraction.
     public enum Fractions: FontFeatureProvider {
 
-        /// No fraction formatting
+        /// No fraction formatting.
         case disabled
 
         /// Diagonal Fractions, when written on paper, are written on one line
@@ -110,7 +110,7 @@
 
         /// Vertical Fractions, when written on paper, are written on one line
         /// with the numerator directly above the
-        /// demoninator, with the slash ("/") lying horizontally between them.
+        /// demoninator, with a line lying horizontally between them.
         case vertical
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
