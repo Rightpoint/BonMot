@@ -32,6 +32,7 @@ class StyleViewController: UITableViewController {
             DemoStrings.ordinalsExample,
             DemoStrings.scientificInferiorsExample,
             DemoStrings.stylisticAlternatesExample,
+            DemoStrings.fractionsExample,
             ]),
         ("Accessibility Speech", DemoStrings.accessibilitySpeechExamples),
     ]

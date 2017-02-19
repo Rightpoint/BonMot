@@ -61,12 +61,19 @@
         /// which drop below the typographic baseline.
         case lower
 
+        /// Fractions, when written on paper, are written on one line
+        /// with the numerator diagonally above and to the left of the
+        /// demoninator, with the slash ("/") between them.
+        case fraction
+
         public func featureSettings() -> [(type: Int, selector: Int)] {
             switch self {
             case .upper:
                 return [(type: kNumberCaseType, selector: kUpperCaseNumbersSelector)]
             case .lower:
                 return [(type: kNumberCaseType, selector: kLowerCaseNumbersSelector)]
+            case .fraction:
+                return [(type: kFractionsType, selector: kDiagonalFractionsSelector)]
             }
         }
 
