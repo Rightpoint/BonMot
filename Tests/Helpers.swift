@@ -175,7 +175,7 @@ let fullStyle: StringStyle = {
 class EBGaramondLoader: NSObject {
 
     static func loadFontIfNeeded() {
-        let _ = loadFont
+        _ = loadFont
     }
 
     // Can't include font the normal (Plist) way for logic tests, so load it the hard way
