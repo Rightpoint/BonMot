@@ -75,6 +75,7 @@ extension StringStyle {
         case xml
         case xmlRules([XMLStyleRule])
         case xmlStyler(XMLStyler)
+        case transform(Transform)
         #if os(iOS) || os(tvOS) || os(OSX)
         case fontFeature(FontFeatureProvider)
 
@@ -219,6 +220,8 @@ extension StringStyle {
             self.xmlStyler = XMLStyleRule.Styler(rules: rules)
         case let .xmlStyler(xmlStyler):
             self.xmlStyler = xmlStyler
+        case let .transform(transform):
+            self.transform = transform
         case let .style(style):
             self.add(stringStyle: style)
         default:

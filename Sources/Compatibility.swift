@@ -27,6 +27,9 @@
     // Declared as public because XMLBuilderError needs it.
     public typealias Error = ErrorType
 
+    // Declared as public because Transform needs it
+    public typealias Locale = NSLocale
+
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias CharacterSet = NSCharacterSet
@@ -272,8 +275,36 @@
             return componentsSeparatedByCharactersInSet(separator)
         }
 
+        func appending(string: String) -> String {
+            return stringByAppendingString(string)
+        }
+
         init<T>(describing instance: T) {
             self.init(instance)
+        }
+
+        var localizedLowercase: String {
+            return localizedLowercaseString
+        }
+
+        var localizedUppercase: String {
+            return localizedUppercaseString
+        }
+
+        var localizedCapitalized: String {
+            return localizedCapitalizedString
+        }
+
+        func lowercased(with locale: Locale) -> String {
+            return self.lowercaseStringWithLocale(locale)
+        }
+
+        func uppercased(with locale: Locale) -> String {
+            return self.uppercaseStringWithLocale(locale)
+        }
+
+        func capitalized(with locale: Locale) -> String {
+            return self.capitalizedStringWithLocale(locale)
         }
 
     }
@@ -286,6 +317,14 @@
 
         func perform(aSelector: Selector!, with object: AnyObject!) -> Unmanaged<AnyObject>! {
             return performSelector(aSelector, withObject: object)
+        }
+
+    }
+
+    extension Locale {
+
+        convenience init(identifier: String) {
+            self.init(localeIdentifier: identifier)
         }
 
     }
@@ -320,7 +359,7 @@
             enumerateAttribute(attrName, inRange: enumerationRange, options: opts, usingBlock: block)
         }
 
-        @nonobjc final func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, usingBlock block: ([String: AnyObject], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
+        @nonobjc final func enumerateAttributes(in enumerationRange: NSRange, options opts: NSAttributedStringEnumerationOptions, using block: ([String: AnyObject], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void) {
             enumerateAttributesInRange(enumerationRange, options: opts, usingBlock: block)
         }
 

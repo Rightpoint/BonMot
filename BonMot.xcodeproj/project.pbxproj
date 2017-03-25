@@ -179,6 +179,14 @@
 		CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
 		CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
 		CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */; };
+		CD6BE30A1E8590F900FB308F /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		CD6BE30B1E8590FA00FB308F /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		CD6BE30C1E8590FA00FB308F /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		CD6BE30D1E8590FB00FB308F /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		CD6BE30F1E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
+		CD6BE3101E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
+		CD6BE3111E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
+		CD6BE3121E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
 		CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
@@ -322,6 +330,8 @@
 		CD3EEE661DC92CF0002C41BB /* Ligatures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ligatures.swift; sourceTree = "<group>"; };
 		CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspector.swift; sourceTree = "<group>"; };
 		CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontInspectorTests.swift; sourceTree = "<group>"; };
+		CD6BE3081E8590E900FB308F /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
+		CD6BE30E1E85924800FB308F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
 		CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextualAlternates.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
@@ -416,6 +426,7 @@
 				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
 				CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */,
 				CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */,
+				CD6BE3081E8590E900FB308F /* Transform.swift */,
 			);
 			name = Style;
 			sourceTree = "<group>";
@@ -574,6 +585,7 @@
 				CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */,
 				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
 				CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */,
+				CD6BE30E1E85924800FB308F /* TransformTests.swift */,
 				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
@@ -1118,6 +1130,7 @@
 				ABA75DD91D99E10400B64705 /* NamedStyles.swift in Sources */,
 				CDEA84341D9EEC390099BD73 /* Image+Tinting.swift in Sources */,
 				ABA75DDB1D99E10400B64705 /* StringStyle+Part.swift in Sources */,
+				CD6BE30D1E8590FB00FB308F /* Transform.swift in Sources */,
 				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
 				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
 				CD3EEE711DCA68FB002C41BB /* FontInspector.swift in Sources */,
@@ -1139,6 +1152,7 @@
 				ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */,
 				ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */,
+				CD6BE3121E85924800FB308F /* TransformTests.swift in Sources */,
 				ABA75DF61D99E10F00B64705 /* BONFontBehaviorTests.swift in Sources */,
 				ABA75DF71D99E10F00B64705 /* ComposableTests.swift in Sources */,
 				ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */,
@@ -1186,6 +1200,7 @@
 				ABCD3D811D96F02F00273936 /* XMLBuilder.swift in Sources */,
 				ABCD3D701D96F02F00273936 /* NSAttributedString+BonMot.swift in Sources */,
 				AB560A061D9F692000100D15 /* AttributedStringTransformation.swift in Sources */,
+				CD6BE30A1E8590F900FB308F /* Transform.swift in Sources */,
 				AB30D51D1D9D95F5006ADC9D /* EmbeddedTransformation.swift in Sources */,
 				ABCD3D6E1D96F02F00273936 /* Compatibility.swift in Sources */,
 				ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adaptive.swift in Sources */,
@@ -1203,6 +1218,7 @@
 				ABCD3DB31D96F06800273936 /* Compatibility+Tests.swift in Sources */,
 				ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
+				CD6BE30F1E85924800FB308F /* TransformTests.swift in Sources */,
 				ABCD3DB01D96F06800273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DB61D96F06800273936 /* NSAttributedStringDebugTests.swift in Sources */,
@@ -1244,6 +1260,7 @@
 				ABCD3DDB1D96F6A500273936 /* UIKit+Helpers.swift in Sources */,
 				ABCD3DDC1D96F6A500273936 /* XMLBuilder.swift in Sources */,
 				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adaptive.swift in Sources */,
+				CD6BE30B1E8590FA00FB308F /* Transform.swift in Sources */,
 				ABCD3DDD1D96F6A500273936 /* NSAttributedString+BonMot.swift in Sources */,
 				ABCD3DDE1D96F6A500273936 /* Compatibility.swift in Sources */,
 				AB8497B41DA16DAE00FE3414 /* AdaptiveStyle.swift in Sources */,
@@ -1261,6 +1278,7 @@
 				ABCD3DF21D96F6E200273936 /* Compatibility+Tests.swift in Sources */,
 				ABCD3DF31D96F6E200273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
+				CD6BE3101E85924800FB308F /* TransformTests.swift in Sources */,
 				ABCD3DF41D96F6E200273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DF51D96F6E200273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3DF61D96F6E200273936 /* NSAttributedStringDebugTests.swift in Sources */,
@@ -1281,6 +1299,7 @@
 			files = (
 				AB30D5111D9D9438006ADC9D /* Composable.swift in Sources */,
 				ABA75E0E1D99F9D500B64705 /* Tracking.swift in Sources */,
+				CD6BE30C1E8590FA00FB308F /* Transform.swift in Sources */,
 				1E7B10EE1DA41F9300C668A4 /* TextAlignmentConstraint.swift in Sources */,
 				CDCF0F211DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */,
 				ABCD3E0D1D980E4900273936 /* Platform.swift in Sources */,
@@ -1311,6 +1330,7 @@
 				AB6633091DA5C5F90007F301 /* BONFontBehaviorTests.swift in Sources */,
 				ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */,
 				CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
+				CD6BE3111E85924800FB308F /* TransformTests.swift in Sources */,
 				ABCD3E321D980E5500273936 /* ComposableTests.swift in Sources */,
 				CDEA84381D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
 				1E902AB61DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */,

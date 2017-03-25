@@ -258,6 +258,14 @@ import BonMot
 
     }
 
+    extension BONFont {
+
+        @nonobjc static func boldSystemFont(ofSize size: CGFloat) -> BONFont {
+            return boldSystemFontOfSize(size)
+        }
+
+    }
+
     extension BONColor {
 
         @nonobjc static var darkGray: BONColor {

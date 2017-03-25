@@ -235,6 +235,12 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     var styles: [StringStyle]
     var xmlStylers: [XMLStyler]
 
+    // The XML parser sometimes splits strings, which can break localization-sensitive
+    // string transforms. Work around this by using the currentString variable to
+    // accumulate partial strings, and then reading them back out as a single string
+    // when the current element ends, or when a new one is started.
+    var currentString: String?
+
     var topStyle: StringStyle {
         guard let style = styles.last else { fatalError("Invalid Style Stack") }
         return style
@@ -322,33 +328,54 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         xmlStylers.removeLast()
     }
 
+    func foundNew(string theString: String) {
+        let newAttributedString = topStyle.attributedString(from: theString)
+        attributedString.append(newAttributedString)
+    }
+
     #if swift(>=3.0)
     @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        if let currentString = currentString {
+            foundNew(string: currentString)
+        }
+        currentString = nil
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if let currentString = currentString {
+            foundNew(string: currentString)
+        }
+        currentString = nil
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
     }
 
     @objc func parser(_ parser: XMLParser, foundCharacters string: String) {
-        let newAttributedString = topStyle.attributedString(from: string)
-        attributedString.append(newAttributedString)
+        currentString = (currentString ?? "").appending(string)
     }
     #else
     @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        if let currentString = currentString {
+            foundNew(string: currentString)
+        }
+        currentString = nil
+
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if let currentString = currentString {
+            foundNew(string: currentString)
+        }
+        currentString = nil
+
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
     }
 
     @objc func parser(parser: XMLParser, foundCharacters string: String) {
-        let newAttributedString = topStyle.attributedString(from: string)
-        attributedString.append(newAttributedString)
+        currentString = (currentString ?? "").appending(string)
     }
     #endif
 
