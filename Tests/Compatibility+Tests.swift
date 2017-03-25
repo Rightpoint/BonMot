@@ -257,6 +257,30 @@ import BonMot
         static let greaterThanOrEqual = NSLayoutRelation.GreaterThanOrEqual
 
     }
+
+    extension BONColor {
+
+        @nonobjc static var darkGray: BONColor {
+            return darkGrayColor()
+        }
+
+        @nonobjc static var black: BONColor {
+            return blackColor()
+        }
+
+        @nonobjc static var white: BONColor {
+            return whiteColor()
+        }
+
+        @nonobjc static var blue: BONColor {
+            return blueColor()
+        }
+
+        @nonobjc func withAlphaComponent(alpha: CGFloat) -> BONColor {
+            return colorWithAlphaComponent(alpha)
+        }
+
+    }
 #endif
 
 // MARK: - Shared (AppKit + UIKit)
@@ -497,30 +521,6 @@ import BonMot
 
         @nonobjc static var none = UITableViewCellAccessoryType.None
         @nonobjc static var disclosureIndicator = UITableViewCellAccessoryType.DisclosureIndicator
-
-    }
-
-    extension UIColor {
-
-        @nonobjc static var darkGray: UIColor {
-            return darkGrayColor()
-        }
-
-        @nonobjc static var black: UIColor {
-            return blackColor()
-        }
-
-        @nonobjc static var white: UIColor {
-            return whiteColor()
-        }
-
-        @nonobjc static var blue: UIColor {
-            return blueColor()
-        }
-
-        @nonobjc func withAlphaComponent(alpha: CGFloat) -> UIColor {
-            return colorWithAlphaComponent(alpha)
-        }
 
     }
 
