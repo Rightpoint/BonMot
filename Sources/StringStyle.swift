@@ -176,19 +176,19 @@ extension StringStyle {
         }
         let tagsApplied = NSAttributedString(string: theString, attributes: supplyDefaults(for: existingAttributes))
 
-        if let transform = transform {
-            let mutable = tagsApplied.mutableStringCopy()
-            let fullRange = NSRange(location: 0, length: mutable.length)
-            mutable.enumerateAttributes(in: fullRange, options: [], using: { (_, range, _) in
-                let substring = mutable.attributedSubstring(from: range).string
-                let transformed = transform.transformer(substring)
-                mutable.replaceCharacters(in: range, with: transformed)
-            })
-
-            return mutable
+        guard let transform = transform else {
+            return tagsApplied
         }
 
-        return tagsApplied
+        let mutable = tagsApplied.mutableStringCopy()
+        let fullRange = NSRange(location: 0, length: mutable.length)
+        mutable.enumerateAttributes(in: fullRange, options: [], using: { (_, range, _) in
+            let substring = mutable.attributedSubstring(from: range).string
+            let transformed = transform.transformer(substring)
+            mutable.replaceCharacters(in: range, with: transformed)
+        })
+
+        return mutable
     }
 
 }
