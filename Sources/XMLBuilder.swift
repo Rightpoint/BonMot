@@ -334,18 +334,17 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         }
         let newAttributedString = topStyle.attributedString(from: newString)
         attributedString.append(newAttributedString)
+        currentString = nil
     }
 
     #if swift(>=3.0)
     @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         foundNew(string: currentString)
-        currentString = nil
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         foundNew(string: currentString)
-        currentString = nil
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
     }
@@ -356,14 +355,12 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     #else
     @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         foundNew(string: currentString)
-        currentString = nil
 
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         foundNew(string: currentString)
-        currentString = nil
 
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
