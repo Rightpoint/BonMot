@@ -328,24 +328,23 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         xmlStylers.removeLast()
     }
 
-    func foundNew(string theString: String) {
-        let newAttributedString = topStyle.attributedString(from: theString)
+    func foundNew(string theString: String?) {
+        guard let newString = theString else {
+            return
+        }
+        let newAttributedString = topStyle.attributedString(from: newString)
         attributedString.append(newAttributedString)
     }
 
     #if swift(>=3.0)
     @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        if let currentString = currentString {
-            foundNew(string: currentString)
-        }
+        foundNew(string: currentString)
         currentString = nil
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if let currentString = currentString {
-            foundNew(string: currentString)
-        }
+        foundNew(string: currentString)
         currentString = nil
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
@@ -356,18 +355,14 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     }
     #else
     @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        if let currentString = currentString {
-            foundNew(string: currentString)
-        }
+        foundNew(string: currentString)
         currentString = nil
 
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if let currentString = currentString {
-            foundNew(string: currentString)
-        }
+        foundNew(string: currentString)
         currentString = nil
 
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
