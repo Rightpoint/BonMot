@@ -19,7 +19,7 @@ private extension Locale {
 
 class TransformTests: XCTestCase {
 
-    func style(transform theTransform: Transform) -> StringStyle {
+    func testStyle(withTransform theTransform: Transform) -> StringStyle {
         return StringStyle(
             .color(.darkGray),
             .xmlRules([
@@ -63,7 +63,7 @@ class TransformTests: XCTestCase {
     func testLowercase() {
         let string = "Time remaining: <bold>&lt; 1 DAY</bold> FROM NOW"
 
-        let styled = string.styled(with: style(transform: .lowercase))
+        let styled = string.styled(with: testStyle(withTransform: .lowercase))
 
         XCTAssertEqual(styled.string, "Time remaining: < 1 day FROM NOW")
 
@@ -77,7 +77,7 @@ class TransformTests: XCTestCase {
     func testUppercase() {
         let string = "Time remaining: <bold>&lt; 1 day</bold> from now"
 
-        let styled = string.styled(with: style(transform: .uppercase))
+        let styled = string.styled(with: testStyle(withTransform: .uppercase))
 
         XCTAssertEqual(styled.string, "Time remaining: < 1 DAY from now")
 
@@ -91,7 +91,7 @@ class TransformTests: XCTestCase {
     func testCapitalized() {
         let string = "Time remaining: <bold>&lt; 1 day after the moment that is now</bold> (but no longer)"
 
-        let styled = string.styled(with: style(transform: .capitalized))
+        let styled = string.styled(with: testStyle(withTransform: .capitalized))
 
         XCTAssertEqual(styled.string, "Time remaining: < 1 Day After The Moment That Is Now (but no longer)")
 
@@ -105,7 +105,7 @@ class TransformTests: XCTestCase {
     func testLocalizedLowercase() {
         let string = "Translation: <bold>&lt;Straße&gt;</bold> is German for <bold>street</bold>."
 
-        let styled = string.styled(with: style(transform: .lowercaseWithLocale(.german)))
+        let styled = string.styled(with: testStyle(withTransform: .lowercaseWithLocale(.german)))
 
         XCTAssertEqual(styled.string, "Translation: <straße> is German for street.")
 
@@ -122,7 +122,7 @@ class TransformTests: XCTestCase {
     func testLocalizedUppercase() {
         let string = "Translation: <bold>&lt;Straße&gt;</bold> is German for <bold>street</bold>."
 
-        let styled = string.styled(with: style(transform: .uppercaseWithLocale(.german)))
+        let styled = string.styled(with: testStyle(withTransform: .uppercaseWithLocale(.german)))
 
         XCTAssertEqual(styled.string, "Translation: <STRASSE> is German for STREET.")
 
@@ -138,7 +138,7 @@ class TransformTests: XCTestCase {
     func testLocalizedCapitalized() {
         let string = "Translation: <bold>&lt;straße&gt;</bold> is German for <bold>street</bold>."
 
-        let styled = string.styled(with: style(transform: .capitalizedWithLocale(.german)))
+        let styled = string.styled(with: testStyle(withTransform: .capitalizedWithLocale(.german)))
 
         XCTAssertEqual(styled.string, "Translation: <Straße> is German for Street.")
 
@@ -172,7 +172,7 @@ class TransformTests: XCTestCase {
 
         let string = "Time remaining: <bold>&lt; 1 day</bold> from now"
 
-        let styled = string.styled(with: style(transform: .custom(doubler)))
+        let styled = string.styled(with: testStyle(withTransform: .custom(doubler)))
 
         XCTAssertEqual(styled.string, "Time remaining: << 11 ddaayy from now")
 
