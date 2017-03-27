@@ -70,6 +70,7 @@ public struct StringStyle {
     #endif
     public var tracking: Tracking?
     public var xmlStyler: XMLStyler?
+    public var transform: Transform?
 
 }
 
@@ -173,7 +174,21 @@ extension StringStyle {
                 return attributedString
             }
         }
-        return NSAttributedString(string: theString, attributes: supplyDefaults(for: existingAttributes))
+        let tagsApplied = NSAttributedString(string: theString, attributes: supplyDefaults(for: existingAttributes))
+
+        guard let transform = transform else {
+            return tagsApplied
+        }
+
+        let mutable = tagsApplied.mutableStringCopy()
+        let fullRange = NSRange(location: 0, length: mutable.length)
+        mutable.enumerateAttributes(in: fullRange, options: [], using: { (_, range, _) in
+            let substring = mutable.attributedSubstring(from: range).string
+            let transformed = transform.transformer(substring)
+            mutable.replaceCharacters(in: range, with: transformed)
+        })
+
+        return mutable
     }
 
 }
@@ -251,6 +266,7 @@ extension StringStyle {
         #endif
         tracking = theStringStyle.tracking ?? tracking
         xmlStyler = theStringStyle.xmlStyler ?? xmlStyler
+        transform = theStringStyle.transform ?? transform
     }
 
     public func byAdding(stringStyle style: StringStyle) -> StringStyle {

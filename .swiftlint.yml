@@ -2,6 +2,7 @@ disabled_rules: # rule identifiers to exclude from running
   - line_length
   - nesting
   - variable_name
+  - large_tuple
 
 statement_position:
   statement_mode: uncuddled_else
