@@ -355,13 +355,11 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     #else
     @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         foundNewString()
-
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         foundNewString()
-
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
     }
