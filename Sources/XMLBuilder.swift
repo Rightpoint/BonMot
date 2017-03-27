@@ -328,8 +328,8 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         xmlStylers.removeLast()
     }
 
-    func foundNew(string theString: String?) {
-        guard let newString = theString else {
+    func foundNewString() {
+        guard let newString = currentString else {
             return
         }
         let newAttributedString = topStyle.attributedString(from: newString)
@@ -339,12 +339,12 @@ class XMLBuilder: NSObject, XMLParserDelegate {
 
     #if swift(>=3.0)
     @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        foundNew(string: currentString)
+        foundNewString()
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        foundNew(string: currentString)
+        foundNewString()
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
     }
@@ -354,13 +354,13 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     }
     #else
     @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        foundNew(string: currentString)
+        foundNewString()
 
         enter(element: elementName, attributes: attributeDict)
     }
 
     @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        foundNew(string: currentString)
+        foundNewString()
 
         guard elementName != XMLBuilder.internalTopLevelElement else { return }
         exit(element: elementName)
