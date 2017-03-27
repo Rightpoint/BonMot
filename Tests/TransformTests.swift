@@ -36,7 +36,7 @@ class TransformTests: XCTestCase {
         let reconstructed = substrings.reduce("") { $0 + $1.substring }
         XCTAssertEqual(reconstructed, string.string, "Reconstructed string did not match test string", file: file, line: line)
 
-        // Confirm that fonts match for substrings
+        // Confirm that colors match for substrings
         var startIndex = 0
         for (substring, substringColor) in substrings {
             let substringUTF16Count = substring.utf16.count
