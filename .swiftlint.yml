@@ -18,4 +18,4 @@ trailing_comma:
   mandatory_comma: true
 
 swiftlint_version:
-  - 0.16.1
+  - 0.17.0
