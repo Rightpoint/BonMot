@@ -30,6 +30,9 @@
     // Declared as public because Transform needs it
     public typealias Locale = NSLocale
 
+    // Declared as public because StringStyle needs it
+    public typealias URL = NSURL
+
     typealias XMLParser = NSXMLParser
     typealias XMLParserDelegate = NSXMLParserDelegate
     typealias CharacterSet = NSCharacterSet

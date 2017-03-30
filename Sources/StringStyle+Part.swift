@@ -20,7 +20,7 @@ extension StringStyle {
 
         case extraAttributes(StyleAttributes)
         case font(BONFont)
-        case link(NSURL)
+        case link(URL)
         case backgroundColor(BONColor)
         case color(BONColor)
         case underline(NSUnderlineStyle, BONColor?)
