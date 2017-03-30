@@ -100,7 +100,7 @@ class ComposableTests: XCTestCase {
         check(forPart: .font(font), NSFontAttributeName, font)
         check(forPart: .baselineOffset(10), NSBaselineOffsetAttributeName, CGFloat(10))
         check(forPart: .tracking(.point(10)), NSKernAttributeName, CGFloat(10))
-        check(forPart: .link(NSURL(string: "http://thebestwords.com/")!), NSLinkAttributeName, NSURL(string: "http://thebestwords.com/")!)
+        check(forPart: .link(URL(string: "http://thebestwords.com/")!), NSLinkAttributeName, URL(string: "http://thebestwords.com/")!)
         check(forPart: .ligatures(.disabled), NSLigatureAttributeName, 0)
         #if os(iOS) || os(tvOS) || os(watchOS)
             check(forPart: .speaksPunctuation(true), UIAccessibilitySpeechAttributePunctuation, true)

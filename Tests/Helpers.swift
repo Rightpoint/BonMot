@@ -119,7 +119,7 @@ let fullStyle: StringStyle = {
     let terribleValue = CGFloat(1000000)
     var fullStyle = StringStyle()
     fullStyle.font = BONFont(name: "Copperplate", size: 20)
-    fullStyle.link = NSURL(string: "http://www.raizlabs.com/")
+    fullStyle.link = URL(string: "http://www.raizlabs.com/")
     fullStyle.backgroundColor = .colorC
     fullStyle.color = .colorC
 

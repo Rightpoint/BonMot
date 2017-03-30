@@ -47,7 +47,7 @@ class StringStyleTests: XCTestCase {
     #endif
 
     func testURL() {
-        let url = NSURL(string: "http://apple.com/")!
+        let url = URL(string: "http://apple.com/")!
         let style = StringStyle(.link(url))
 
         for (style, fullStyle) in additiviePermutations(for: style) {

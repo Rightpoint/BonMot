@@ -110,7 +110,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
                     namedStyle = namedStyles["\(name):\(htmlClass)"] ?? namedStyle
                 }
                 if name.lowercased() == "a" {
-                    if let href = attributes["href"], let url = NSURL(string: href) {
+                    if let href = attributes["href"], let url = URL(string: href) {
                         namedStyle.link = url
                     }
                     else {
@@ -135,7 +135,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         ]
         let actualFonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
         XCTAssertEqual(expectedFonts, actualFonts)
-        XCTAssertEqual(["5:4": NSURL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSLinkAttributeName))
+        XCTAssertEqual(["5:4": URL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSLinkAttributeName))
     }
 
     /// Ensure that the singleton is configured with some adaptive styles for easy Dynamic Type support.

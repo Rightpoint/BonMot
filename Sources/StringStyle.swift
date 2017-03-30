@@ -19,7 +19,7 @@ public struct StringStyle {
 
     public var extraAttributes: StyleAttributes = [:]
     public var font: BONFont?
-    public var link: NSURL?
+    public var link: URL?
     public var backgroundColor: BONColor?
     public var color: BONColor?
     public var underline: (NSUnderlineStyle, BONColor?)?
