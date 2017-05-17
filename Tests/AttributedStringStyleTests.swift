@@ -157,6 +157,43 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testEffectOfAlignmentOnKerning() throws {
+        let styled = NSAttributedString.composed(of: [
+            "ab".styled(with: .tracking(.point(5))),
+            "cd".styled(with: .tracking(.point(10))),
+            ])
+
+        let rangesToValuesLine = #line; let rangesToValues: [(NSRange, Double?)] = [
+            (NSRange(location: 0, length: 2), 5),
+            (NSRange(location: 2, length: 1), 10),
+            (NSRange(location: 3, length: 1), nil),
+        ]
+
+        for (index, rangeToValue) in rangesToValues.enumerated() {
+
+            let line = UInt(rangesToValuesLine + index + 1)
+
+            let (controlRange, controlValue) = rangeToValue
+            let trackingEffectiveRange: NSRangePointer = NSRangePointer.allocate(capacity: MemoryLayout<NSRange>.size)
+            let trackingValue = styled.attribute(.kern, at: controlRange.location, effectiveRange: trackingEffectiveRange)
+            guard let trackingAsNumber = trackingValue as? NSNumber? else {
+                XCTFail("Unable to convert \(String(describing: trackingValue)) to \((NSNumber?).self)", line: line)
+                return
+            }
+
+            if let controlValue = controlValue {
+                XCTAssertEqual(trackingAsNumber!.doubleValue, controlValue, accuracy: 0.0001, line: line)
+                XCTAssertNotNil(trackingEffectiveRange, line: line)
+                XCTAssertEqual(trackingEffectiveRange.pointee.location, controlRange.location, line: line)
+                XCTAssertEqual(trackingEffectiveRange.pointee.length, controlRange.length, line: line)
+            }
+            else {
+                XCTAssertNil(trackingAsNumber, line: line)
+            }
+
+        }
+    }
+
     func testNumberSpacingStyle() {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberSpacing(.monospaced))
         for (style, fullStyle) in additiviePermutations(for: style) {
