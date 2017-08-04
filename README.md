@@ -229,12 +229,12 @@ UIKit lets you align labels by top, bottom, or baseline. BonMot includes `TextAl
 You can use `TextAlignmentConstraint` programmatically or in Interface Builder. In code, use it like this:
 
 ```swift
-TextAlignmentConstraint(
+TextAlignmentConstraint.with(
     item: someLabel,
-    attribute: capHeight,
+    attribute: .capHeight,
     relatedBy: .equal,
     toItem: someOtherLabel,
-    attribute: capHeight).active = true
+    attribute: .capHeight).isActive = true
 ```
 
 In Interface Builder, start by constraining two views to each other with a `top` constraint. Select the constraint, and in the Identity Inspector, change the class to `TextAlignmentConstraint`:
