@@ -22,7 +22,7 @@ private var TextAlignmentConstraintKVOContext = "BonMotTextAlignmentConstraintKV
 public class TextAlignmentConstraint: NSLayoutConstraint {
 
     @objc(BONTextAlignmentConstraintAttribute)
-    public enum Attribute: Int, CustomStringConvertible {
+    public enum TextAttribute: Int, CustomStringConvertible {
 
         case unspecified
         case top
@@ -43,7 +43,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
             }
         }
 
-        static private let ibInspectableMapping: [String: Attribute] = [
+        static private let ibInspectableMapping: [String: TextAttribute] = [
             "unspecified": .unspecified,
             "top": .top,
             "capheight": .capHeight,
@@ -73,25 +73,25 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         }
 
         init(ibInspectableString string: String) {
-            self = Attribute.ibInspectableMapping[string] ?? .unspecified
+            self = TextAttribute.ibInspectableMapping[string] ?? .unspecified
         }
 
     }
 
     @IBInspectable public var firstAlignment: String? {
         didSet {
-            firstItemAttribute = BonMot.TextAlignmentConstraint.Attribute(ibInspectableString: firstAlignment?.normalized ?? "")
+            firstItemAttribute = TextAttribute(ibInspectableString: firstAlignment?.normalized ?? "")
         }
     }
 
     @IBInspectable public var secondAlignment: String? {
         didSet {
-            secondItemAttribute = BonMot.TextAlignmentConstraint.Attribute(ibInspectableString: secondAlignment?.normalized ?? "")
+            secondItemAttribute = TextAttribute(ibInspectableString: secondAlignment?.normalized ?? "")
         }
     }
 
-    public private(set) var firstItemAttribute: BonMot.TextAlignmentConstraint.Attribute = .unspecified
-    public private(set) var secondItemAttribute: BonMot.TextAlignmentConstraint.Attribute = .unspecified
+    public private(set) var firstItemAttribute: TextAttribute = .unspecified
+    public private(set) var secondItemAttribute: TextAttribute = .unspecified
     private var item1: AnyObject!
     private var item2: AnyObject!
 
@@ -126,7 +126,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     ///   - attr2: The attribute of the view for the right side of the constraint equation.
     /// - Returns: A constraint object relating the two provided views with the
     ///            specified relation and attributes.
-    public static func with(item view1: AnyObject, attribute attr1: BonMot.TextAlignmentConstraint.Attribute, relatedBy relation: NSLayoutRelation, toItem view2: AnyObject, attribute attr2: BonMot.TextAlignmentConstraint.Attribute) -> TextAlignmentConstraint {
+    public static func with(item view1: AnyObject, attribute attr1: TextAttribute, relatedBy relation: NSLayoutRelation, toItem view2: AnyObject, attribute attr2: TextAttribute) -> TextAlignmentConstraint {
         let constraint = TextAlignmentConstraint(
             item: view1,
             attribute: attr1.layoutAttribute,
@@ -218,7 +218,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         constant = difference
     }
 
-    private func distanceFromTop(of item: AnyObject, with attribute: BonMot.TextAlignmentConstraint.Attribute) -> CGFloat {
+    private func distanceFromTop(of item: AnyObject, with attribute: TextAttribute) -> CGFloat {
         guard let font = font(from: item) else {
             return 0
         }
