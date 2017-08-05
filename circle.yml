@@ -5,8 +5,7 @@ machine:
 dependencies:
   pre:
     - brew update 1> /dev/null 2> /dev/null
-    # Don't run carthage until we can update Xcode to 8.3+
-    # - brew outdated carthage || brew upgrade carthage
+    - brew outdated carthage || (brew uninstall carthage --force; HOMEBREW_NO_AUTO_UPDATE=1 brew install carthage --force-bottle)
     - gem install bundler
 test:
   override:
@@ -15,8 +14,7 @@ test:
     - ./scripts/tvOS.sh
     - ./scripts/watchOS.sh
   post:
-    # Don't run carthage until we can update Xcode to 8.3+
-    #- carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
+    - carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
     # This is to work around the fact that CocoaPods wants to set up the master CocoaPods specs
     # repo on pod lib lint, which takes several minutes on CircleCI. Without dependancies, this
     # isn't a nescessary step. We can point it at any other (smaller) Git repo to speed up this
