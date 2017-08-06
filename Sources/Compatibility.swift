@@ -23,9 +23,11 @@
 
     }
 
-    public extension NSLayoutConstraint {
+    #if os(iOS) || os(tvOS)
+        public extension NSLayoutConstraint {
 
-        typealias Attribute = NSLayoutAttribute
-        typealias Relation = NSLayoutRelation
-    }
+            typealias Attribute = NSLayoutAttribute
+            typealias Relation = NSLayoutRelation
+        }
+    #endif
 #endif
