@@ -413,18 +413,12 @@ class StringStyleTests: XCTestCase {
 
         XCTAssertNil(descriptorAttrs0[BONFontDescriptorFeatureSettingsAttribute])
 
-        #if swift(>=3.0)
-            typealias BaseType = Any
-        #else
-            typealias BaseType = AnyObject
-        #endif
-
-        guard let featuresArray1 = descriptorAttrs1[BONFontDescriptorFeatureSettingsAttribute] as? [[String: BaseType]] else {
-            XCTFail("Failed to convert to \([[String: BaseType]].self)")
+        guard let featuresArray1 = descriptorAttrs1[BONFontDescriptorFeatureSettingsAttribute] as? [[String: Any]] else {
+            XCTFail("Failed to convert to \([[String: Any]].self)")
             return
         }
-        guard let featuresArray2 = descriptorAttrs2[BONFontDescriptorFeatureSettingsAttribute] as? [[String: BaseType]] else {
-            XCTFail("Failed to convert to \([[String: BaseType]].self)")
+        guard let featuresArray2 = descriptorAttrs2[BONFontDescriptorFeatureSettingsAttribute] as? [[String: Any]] else {
+            XCTFail("Failed to convert to \([[String: Any]].self)")
             return
         }
 

@@ -96,24 +96,12 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     private var item2: AnyObject!
 
     // The class part of these selectors are ignored; it is there simply to satisfy Xcode's selector syntax.
-    #if swift(>=3.0)
-        private static let fontSelector = #selector(getter: BONTextField.font)
-    #else
-        private static let fontSelector = Selector("font")
-    #endif
+    private static let fontSelector = #selector(getter: BONTextField.font)
 
     #if os(OSX)
-        #if swift(>=3.0)
-            private static let attributedTextSelector = #selector(getter: NSTextField.attributedStringValue)
-        #else
-            private static let attributedTextSelector = Selector("attributedStringValue")
-        #endif
+        private static let attributedTextSelector = #selector(getter: NSTextField.attributedStringValue)
     #else
-        #if swift(>=3.0)
-            private static let attributedTextSelector = #selector(getter: UITextField.attributedText)
-        #else
-            private static let attributedTextSelector = Selector("attributedText")
-        #endif
+        private static let attributedTextSelector = #selector(getter: UITextField.attributedText)
     #endif
 
     /// Construct a new `TextAlignmentConstraint`.
@@ -170,13 +158,8 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     }
 
     private var fontKeyPaths: [String] {
-        #if swift(>=3.0)
-            let firstItemSelector = #selector(getter: NSLayoutConstraint.firstItem)
-            let secondItemSelector = #selector(getter: NSLayoutConstraint.secondItem)
-        #else
-            let firstItemSelector = Selector("firstItem")
-            let secondItemSelector = Selector("secondItem")
-        #endif
+        let firstItemSelector = #selector(getter: NSLayoutConstraint.firstItem)
+        let secondItemSelector = #selector(getter: NSLayoutConstraint.secondItem)
 
         return [
             "\(firstItemSelector).\(TextAlignmentConstraint.fontSelector)",
@@ -186,7 +169,6 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         ]
     }
 
-    #if swift(>=3.0)
     public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &TextAlignmentConstraintKVOContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
@@ -195,16 +177,6 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
 
         updateConstant()
     }
-    #else
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard context == &TextAlignmentConstraintKVOContext else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-            return
-        }
-
-        updateConstant()
-    }
-    #endif
 
     private func updateConstant() {
         #if os(OSX)
@@ -245,15 +217,9 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     private func font(from item: AnyObject) -> BONFont? {
         var font: BONFont? = nil
 
-        #if swift(>=3.0)
-            if item.responds(to: TextAlignmentConstraint.fontSelector) {
-                font = item.perform(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont
-            }
-        #else
-            if item.respondsToSelector(TextAlignmentConstraint.fontSelector) {
-                font = item.performSelector(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont
-            }
-        #endif
+        if item.responds(to: TextAlignmentConstraint.fontSelector) {
+            font = item.perform(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont
+        }
 
         return font
     }

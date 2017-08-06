@@ -43,7 +43,7 @@ class UIKitBonMotTests: XCTestCase {
 
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
-            label.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+            label.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             BONAssert(attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
             BONAssertColor(inAttributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
         }
@@ -66,7 +66,7 @@ class UIKitBonMotTests: XCTestCase {
 
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
-            textField.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+            textField.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             BONAssert(attributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
             BONAssertColor(inAttributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
         }
@@ -89,7 +89,7 @@ class UIKitBonMotTests: XCTestCase {
 
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
-            textView.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+            textView.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             BONAssert(attributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
             BONAssertColor(inAttributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
         }
@@ -112,7 +112,7 @@ class UIKitBonMotTests: XCTestCase {
 
         // Update the trait collection and ensure the font grows.
         if #available(iOS 10.0, *) {
-            button.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+            button.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             attributes = button.attributedTitle(for: .normal)?.attributes(at: 0, effectiveRange: nil)
             BONAssert(attributes: attributes, query: { $0.pointSize }, float: expectedFont.pointSize + 2)
             BONAssertColor(inAttributes: attributes, key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)

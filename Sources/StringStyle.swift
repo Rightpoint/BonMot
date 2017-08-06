@@ -294,8 +294,8 @@ public extension StringStyle {
             case (NSParagraphStyleAttributeName, let paragraph as NSParagraphStyle, let otherParagraph as NSParagraphStyle):
                 attributes[NSParagraphStyleAttributeName] = paragraph.supplyDefaults(for: otherParagraph)
             case (BonMotTransformationsAttributeName,
-                var transformations as [StyleAttributeValue],
-                let otherTransformations as [StyleAttributeValue]):
+                var transformations as [Any],
+                let otherTransformations as [Any]):
                 transformations.append(contentsOf: otherTransformations)
                 attributes[BonMotTransformationsAttributeName] = transformations
             case let (key, value, nil):

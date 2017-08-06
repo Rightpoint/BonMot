@@ -943,7 +943,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-OSX\" \"macosx\" \"arch=x86_64\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD0DDB271DC2B57E00805488 /* Build iOS example project */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -957,7 +957,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n\nbuild \"build\" \"Example-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4071DBE660700B6FF7A /* Build and test iOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -971,7 +971,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4081DBE660800B6FF7A /* Build and test tvOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -985,7 +985,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-tvOS\" \"appletvsimulator\" \"name=Apple TV 1080p\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4091DBE660A00B6FF7A /* Build watchOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -999,7 +999,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n# watchOS doesn't support XCTest\nbuild \"build\" \"BonMot-watchOS\" \"watchsimulator\" \"name=Apple Watch - 38mm\"\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD4B2FCC1D9B0AB0007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -23,11 +23,7 @@ class TextAlignmentConstraintTests: XCTestCase {
         let field = BONTextField(frame: .zero)
         field.translatesAutoresizingMaskIntoConstraints = false
 
-        #if swift(>=3.0)
-            field.font = BONFont(name: "Avenir-Roman", size: fontSize)
-        #else
-            field.font = BONFont(name: "Avenir-Roman", size: fontSize)
-        #endif
+        field.font = BONFont(name: "Avenir-Roman", size: fontSize)
 
         #if os(OSX)
             field.stringValue = text

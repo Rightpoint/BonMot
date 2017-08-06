@@ -405,11 +405,7 @@ enum DemoStrings {
                 ],
         ]
 
-        #if swift(>=3.0)
-            return stringsArrays.map { $0.joined().styled(with: style) }
-        #else
-            return stringsArrays.map { $0.joinWithSeparator("").styled(with: style) }
-        #endif
+        return stringsArrays.map { $0.joined().styled(with: style) }
     }()
 
 }
@@ -429,13 +425,4 @@ extension DemoStrings {
 
 }
 
-#if swift(>=3.0)
-#else
-    extension CGFloat {
-        static var pi: CGFloat {
-            //swiftlint:disable:next legacy_constant
-            return CGFloat(M_PI)
-        }
-    }
-#endif
 //swiftlint:enable file_length

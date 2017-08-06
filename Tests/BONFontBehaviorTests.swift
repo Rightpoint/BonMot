@@ -10,11 +10,7 @@ import XCTest
 import BonMot
 
 #if os(iOS) || os(tvOS) || os(watchOS)
-#if swift(>=3.0)
     let testTextStyle = UIFontTextStyle.title3
-#else
-    let testTextStyle = UIFontTextStyleTitle3
-#endif
 #endif
 
 /// Test the platform behavior of [NS|UI]Font

@@ -337,7 +337,6 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         currentString = nil
     }
 
-    #if swift(>=3.0)
     @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         foundNewString()
         enter(element: elementName, attributes: attributeDict)
@@ -352,21 +351,5 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     @objc func parser(_ parser: XMLParser, foundCharacters string: String) {
         currentString = (currentString ?? "").appending(string)
     }
-    #else
-    @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        foundNewString()
-        enter(element: elementName, attributes: attributeDict)
-    }
-
-    @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        foundNewString()
-        guard elementName != XMLBuilder.internalTopLevelElement else { return }
-        exit(element: elementName)
-    }
-
-    @objc func parser(parser: XMLParser, foundCharacters string: String) {
-        currentString = (currentString ?? "").appending(string)
-    }
-    #endif
 
 }
