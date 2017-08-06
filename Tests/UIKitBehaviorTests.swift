@@ -37,11 +37,11 @@ class UIKitBehaviorTests: XCTestCase {
         // Note that the font property is updated.
         XCTAssertEqual(label.font, smallFont)
 
-        if #available(iOS 11, *) {
+        if #available(iOS 11, tvOS 11, *) {
             // Change the text of the label
             label.text = "Testing"
             // Note that this does not revert to the original font. The font
-            // set by the attributed string sticks in iOS 11+.
+            // set by the attributed string sticks in iOS 11+ and tvOS 11+.
             BONAssertEqualFonts(label.font, smallFont!)
         }
         else {
