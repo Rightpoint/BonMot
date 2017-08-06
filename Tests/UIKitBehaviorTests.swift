@@ -59,18 +59,24 @@ class UIKitBehaviorTests: XCTestCase {
         let textField = UITextField()
         // Note that the font is not nil before the text property is set.
         XCTAssertNotNil(textField.font)
+        XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
         textField.text = "Testing"
-        // By default the font is not nil, size 17 (Not 12 as stated in header)
+        // By default the font is not nil, size 17 (38 on tvOS) (Not 12 as stated in header)
         XCTAssertNotNil(textField.font)
         XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
 
         textField.font = largeFont
         XCTAssertEqual(textField.font?.pointSize, 20)
 
-        textField.font = nil
-        // Note that font has a default value even though it's optional.
-        XCTAssertNotNil(textField.font)
-        XCTAssertEqual(textField.font?.pointSize, 17)
+        /// This test breaks on tvOS 11 as of beta 4: http://www.openradar.me/33742507
+        if #available(tvOS 11.0, *) {
+        }
+        else {
+            textField.font = nil
+            // Note that font has a default value even though it's optional.
+            XCTAssertNotNil(textField.font)
+            XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
+        }
     }
 
     func testTextViewFontPropertyBehavior() {
