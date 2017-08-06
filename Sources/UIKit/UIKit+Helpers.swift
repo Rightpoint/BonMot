@@ -24,7 +24,7 @@ extension UIFont {
     /// Retrieve the text style, if it exists, from the font descriptor.
     @objc(bon_textStyle)
     public final var textStyle: BonMotTextStyle? {
-        guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
+        guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptor.AttributeName.textStyle] as? String else {
             return nil
         }
         return UIFontTextStyle(rawValue: textStyle)
@@ -67,7 +67,7 @@ extension UIFont {
     ///            the specified name.
     final func fontWithSameAttributes(named name: String) -> UIFont {
         let descriptor = fontDescriptor.addingAttributes([
-            UIFontDescriptorNameAttribute: name,
+            UIFontDescriptor.AttributeName.name: name,
             ])
         return UIFont(descriptor: descriptor, size: pointSize)
     }

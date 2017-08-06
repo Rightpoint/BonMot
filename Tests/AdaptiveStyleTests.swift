@@ -125,7 +125,7 @@ class AdaptiveStyleTests: XCTestCase {
         let testKernAdaptation = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             let adaptedAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-            return adaptedAttributes[NSKernAttributeName] as? CGFloat ?? 0
+            return adaptedAttributes[NSAttributedStringKey.kern] as? CGFloat ?? 0
         }
 
         XCTAssertEqual(testKernAdaptation(UIContentSizeCategory.extraSmall), 8.1, accuracy: 0.0001)
@@ -178,8 +178,8 @@ class AdaptiveStyleTests: XCTestCase {
             XCTAssertEqual(originalAttributes.count, 3, line: partLine)
             XCTAssertEqual(adaptedAttributes.count, 3, line: partLine)
 
-            let originalFont = originalAttributes[NSFontAttributeName] as? BONFont
-            let adaptedFont = adaptedAttributes[NSFontAttributeName] as? BONFont
+            let originalFont = originalAttributes[NSAttributedStringKey.font] as? BONFont
+            let adaptedFont = adaptedAttributes[NSAttributedStringKey.font] as? BONFont
 
             XCTAssertNotNil(originalFont, line: partLine)
             XCTAssertNotNil(adaptedFont, line: partLine)
@@ -215,7 +215,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testTabAdaptation() {
         func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {
-            guard let paragraph = string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
+            guard let paragraph = string.attribute(NSAttributedStringKey.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
                 XCTFail("Unable to get paragraph")
                 return 0
             }
@@ -235,7 +235,7 @@ class AdaptiveStyleTests: XCTestCase {
         let string = NSAttributedString.composed(of: [
             "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
-        let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? [Any]
+        let attributes = string.attribute(NSAttributedStringKey(rawValue: BonMotTransformationsAttributeName), at: string.length - 1, effectiveRange: nil) as? [Any]
         XCTAssertEqual(attributes?.count, 2)
     }
 
@@ -245,8 +245,8 @@ class AdaptiveStyleTests: XCTestCase {
             Tab.headIndent(10),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
 
-        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? [Any]
-        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? [Any]
+        let attributes1 = string.attribute(NSAttributedStringKey(rawValue: BonMotTransformationsAttributeName), at:0, effectiveRange: nil) as? [Any]
+        let attributes2 = string.attribute(NSAttributedStringKey(rawValue: BonMotTransformationsAttributeName), at:string.length - 1, effectiveRange: nil) as? [Any]
         XCTAssertEqual(attributes1?.count, 2)
         XCTAssertEqual(attributes2?.count, 2)
     }

@@ -24,16 +24,16 @@
 
     public typealias BONFont = UIFont
     public typealias BONFontDescriptor = UIFontDescriptor
-    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
-    let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
-    let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
+    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
+    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
 
     #if os(iOS) || os(tvOS)
         public typealias BONTextField = UITextField
     #endif
 #endif
 
-public typealias StyleAttributes = [String: Any]
+public typealias StyleAttributes = [NSAttributedStringKey: Any]
 
 #if os(iOS) || os(tvOS)
     public typealias BonMotTextStyle = UIFontTextStyle

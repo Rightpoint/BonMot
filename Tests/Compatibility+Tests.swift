@@ -15,9 +15,9 @@
     typealias BONView = NSView
 #else
     import UIKit
-    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptorFeatureSettingsAttribute
-    let BONFontFeatureTypeIdentifierKey = UIFontFeatureTypeIdentifierKey
-    let BONFontFeatureSelectorIdentifierKey = UIFontFeatureSelectorIdentifierKey
+    let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
+    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
+    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
     typealias BONView = UIView
 #endif
 import BonMot

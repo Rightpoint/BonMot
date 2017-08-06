@@ -182,7 +182,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         #if os(OSX)
             let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
         #else
-            let distanceFromTop1 = distanceFromTop(of: firstItem, with: firstItemAttribute)
+            let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
         #endif
 
         let distanceFromTop2 = distanceFromTop(of: secondItem!, with: secondItemAttribute)

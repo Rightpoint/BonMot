@@ -20,6 +20,13 @@
 /// or methods to the external namespace. The bon_ prefix is used when Swift 2.x
 /// cannot support the token, e.g. ".default".
 
+#if swift(>=4.0)
+#else
+    public struct NSAttributedStringKey: RawRepresentable, Equatable, Hashable {
+        
+    }
+#endif
+
 extension NSParagraphStyle {
 
     @nonobjc static var bon_default: NSParagraphStyle {

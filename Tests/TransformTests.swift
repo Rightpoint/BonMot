@@ -46,7 +46,7 @@ class TransformTests: XCTestCase {
                 let characterRange = NSRange(location: i, length: 1)
                 let characterAttributes = string.attributes(at: startIndex, longestEffectiveRange: nil, in: characterRange)
 
-                guard let characterColor = characterAttributes[NSForegroundColorAttributeName] as? BONColor else {
+                guard let characterColor = characterAttributes[NSAttributedStringKey.foregroundColor] as? BONColor else {
                     XCTFail("Failed to get color at index \(startIndex) of string \(string)", file: file, line: line)
                     continue
                 }

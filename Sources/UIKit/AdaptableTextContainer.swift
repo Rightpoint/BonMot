@@ -41,7 +41,7 @@ extension UILabel {
 
         if let bonMotStyle = bonMotStyle {
             let attributes = NSAttributedString.adapt(attributes: bonMotStyle.attributes, to: traitCollection)
-            font = attributes[NSFontAttributeName] as? BONFont
+            font = attributes[NSAttributedStringKey.font] as? BONFont
         }
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapted(to: traitCollection)
@@ -81,7 +81,7 @@ extension UITextField {
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         if let attributedText = attributedText?.adapted(to: traitCollection) {
             if attributedText.length > 0 {
-                font = attributedText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
+                font = attributedText.attribute(NSAttributedStringKey.font, at: 0, effectiveRange: nil) as? UIFont
             }
             self.attributedText = attributedText
         }

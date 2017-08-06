@@ -36,7 +36,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
             return
         }
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
-        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedStringKey.font.rawValue)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"]!)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"]!)
         XCTAssert(fonts.count == 2)
@@ -57,7 +57,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let style = StringStyle(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This is <A>A style</A> test for <B>B Style</B>.")
         XCTAssertEqual("This is A style test for B Style.", attributedString.string)
-        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedStringKey.font.rawValue)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"]!)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"]!)
         XCTAssert(fonts.count == 2)
@@ -76,7 +76,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let style = StringStyle(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This <B>style</B> is not registered and that's OK")
         XCTAssertEqual("This style is not registered and that's OK", attributedString.string)
-        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedStringKey.font.rawValue)
         XCTAssert(fonts.count == 0)
     }
 
@@ -85,7 +85,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let style = StringStyle(.xmlRules([.styles(styles)]))
         let attributedString = style.attributedString(from: "This <B>style has no closing tag and that is :(")
         XCTAssertEqual("This <B>style has no closing tag and that is :(", attributedString.string)
-        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedStringKey.font.rawValue)
         XCTAssert(fonts.count == 0)
     }
 
@@ -133,9 +133,9 @@ class XMLTagStyleBuilderTests: XCTestCase {
             "11:9": styleA.font!,
             "22:5": styleB.font!,
         ]
-        let actualFonts: [String: BONFont] = attributedString.rangesFor(attribute: NSFontAttributeName)
+        let actualFonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedStringKey.font.rawValue)
         XCTAssertEqual(expectedFonts, actualFonts)
-        XCTAssertEqual(["5:4": URL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSLinkAttributeName))
+        XCTAssertEqual(["5:4": URL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSAttributedStringKey.link.rawValue))
     }
 
     /// Ensure that the singleton is configured with some adaptive styles for easy Dynamic Type support.

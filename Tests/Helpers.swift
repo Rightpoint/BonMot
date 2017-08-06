@@ -168,7 +168,7 @@ class EBGaramondLoader: NSObject {
         let fontRef = CGFont(provider)
 
         var error: Unmanaged<CFError>?
-        CTFontManagerRegisterGraphicsFont(fontRef, &error)
+        CTFontManagerRegisterGraphicsFont(fontRef!, &error)
 
         if let error = error {
             fatalError("Unable to load font: \(error)")
@@ -181,7 +181,7 @@ extension NSAttributedString {
 
     func rangesFor<T>(attribute name: String) -> [String: T] {
         var attributesByRange: [String: T] = [:]
-        enumerateAttribute(name, in: NSRange(location: 0, length: length), options: []) { value, range, _ in
+        enumerateAttribute(NSAttributedStringKey(rawValue: name), in: NSRange(location: 0, length: length), options: []) { value, range, _ in
             if let object = value as? T {
                 attributesByRange["\(range.location):\(range.length)"] = object
             }

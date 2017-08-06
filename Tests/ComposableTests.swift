@@ -95,13 +95,13 @@ class ComposableTests: XCTestCase {
             XCTAssertEqual(value, expected, line: line)
         }
         let font = BONFont(name: "Avenir-Book", size: 28)!
-        check(forPart: .color(.colorA), NSForegroundColorAttributeName, BONColor.colorA)
-        check(forPart: .backgroundColor(.colorA), NSBackgroundColorAttributeName, BONColor.colorA)
-        check(forPart: .font(font), NSFontAttributeName, font)
-        check(forPart: .baselineOffset(10), NSBaselineOffsetAttributeName, CGFloat(10))
-        check(forPart: .tracking(.point(10)), NSKernAttributeName, CGFloat(10))
-        check(forPart: .link(URL(string: "http://thebestwords.com/")!), NSLinkAttributeName, URL(string: "http://thebestwords.com/")!)
-        check(forPart: .ligatures(.disabled), NSLigatureAttributeName, 0)
+        check(forPart: .color(.colorA), NSAttributedStringKey.foregroundColor.rawValue, BONColor.colorA)
+        check(forPart: .backgroundColor(.colorA), NSAttributedStringKey.backgroundColor.rawValue, BONColor.colorA)
+        check(forPart: .font(font), NSAttributedStringKey.font.rawValue, font)
+        check(forPart: .baselineOffset(10), NSAttributedStringKey.baselineOffset.rawValue, CGFloat(10))
+        check(forPart: .tracking(.point(10)), NSAttributedStringKey.kern.rawValue, CGFloat(10))
+        check(forPart: .link(URL(string: "http://thebestwords.com/")!), NSAttributedStringKey.link.rawValue, URL(string: "http://thebestwords.com/")!)
+        check(forPart: .ligatures(.disabled), NSAttributedStringKey.ligature.rawValue, 0)
         #if os(iOS) || os(tvOS) || os(watchOS)
             check(forPart: .speaksPunctuation(true), UIAccessibilitySpeechAttributePunctuation, true)
             check(forPart: .speakingLanguage("en-US"), UIAccessibilitySpeechAttributeLanguage, "en-US")
@@ -114,7 +114,7 @@ class ComposableTests: XCTestCase {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
-            guard let paragraphStyle = string.attributes(at: 0, effectiveRange: nil)[NSParagraphStyleAttributeName] as? NSParagraphStyle else {
+            guard let paragraphStyle = string.attributes(at: 0, effectiveRange: nil)[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else {
                 XCTFail("No paragraph style")
                 return
             }
@@ -137,10 +137,10 @@ class ComposableTests: XCTestCase {
     }
 
     func testInitialParagraphStyle() {
-        let style = StringStyle(.extraAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
+        let style = StringStyle(.extraAttributes([NSAttributedStringKey.paragraphStyle: NSParagraphStyle()]))
 
         let string = NSAttributedString.composed(of: [Tab.headIndent(10), "ParagraphStyle mutable promotion"], baseStyle: style)
-        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
+        XCTAssertNotNil(string.attribute(NSAttributedStringKey.paragraphStyle, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
 
     func testCompositionWithChangingParagraphStyles() {
@@ -150,11 +150,11 @@ class ComposableTests: XCTestCase {
             " headIndent "
                 .styled(with: .headIndent(10)),
             ], baseStyle: StringStyle(.firstLineHeadIndent(5)))
-        guard let paragraphStart = string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
+        guard let paragraphStart = string.attribute(NSAttributedStringKey.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
             XCTFail("No paragraph style at start")
             return
         }
-        guard let paragraphEnd = string.attribute(NSParagraphStyleAttributeName, at: string.length - 1, effectiveRange: nil) as? NSParagraphStyle else {
+        guard let paragraphEnd = string.attribute(NSAttributedStringKey.paragraphStyle, at: string.length - 1, effectiveRange: nil) as? NSParagraphStyle else {
             XCTFail("No paragraph style at end")
             return
         }

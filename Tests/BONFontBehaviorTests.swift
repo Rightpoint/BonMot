@@ -45,13 +45,13 @@ class BONFontBehaviorTests: XCTestCase {
     /// Test what happens when a non-standard text style string is supplied.
     func testUIFontNewTextStyle() {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
-        attributes[UIFontDescriptorFeatureSettingsAttribute] = [
+        attributes[UIFontDescriptor.AttributeName.featureSettings] = [
             [
-                UIFontFeatureTypeIdentifierKey: 1,
-                UIFontFeatureSelectorIdentifierKey: 1,
+                UIFontDescriptor.FeatureKey.featureIdentifier: 1,
+                UIFontDescriptor.FeatureKey.typeIdentifier: 1,
             ],
         ]
-        attributes[UIFontDescriptorTextStyleAttribute] = "Test"
+        attributes[UIFontDescriptor.AttributeName.textStyle] = "Test"
         let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).fontDescriptor.fontAttributes
         XCTAssertEqual(newAttributes.count, 2)
         XCTAssertEqual(newAttributes["NSFontNameAttribute"] as? String, "Avenir-Roman")
@@ -62,7 +62,7 @@ class BONFontBehaviorTests: XCTestCase {
     /// non-system font. (It overrides the font.)
     func testTextStyleWithOtherFont() {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
-        attributes[UIFontDescriptorTextStyleAttribute] = testTextStyle
+        attributes[UIFontDescriptor.AttributeName.textStyle] = testTextStyle
         let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).fontDescriptor.fontAttributes
         XCTAssertEqual(newAttributes.count, 2)
         XCTAssertEqual(newAttributes["NSCTFontUIUsageAttribute"] as? BonMotTextStyle, testTextStyle)
