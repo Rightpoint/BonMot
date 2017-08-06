@@ -13,7 +13,8 @@ test:
     - ./scripts/iOS-11.0.sh
     - ./scripts/iOS-10.2.sh
     - ./scripts/tvOS-11.0.sh
-    - ./scripts/tvOS-10.2.sh
+    # don't build on tvOS 10.2 until CircleCI supports it: https://github.com/circleci/macos-image-tests/pull/12
+    # - ./scripts/tvOS-10.2.sh
     - ./scripts/watchOS-4.0.sh
     - ./scripts/watchOS-3.1.sh
   post:
