@@ -16,7 +16,6 @@ test:
     # don't build on tvOS 10.2 until CircleCI supports it: https://github.com/circleci/macos-image-tests/pull/12
     # - ./scripts/tvOS-10.2.sh
     - ./scripts/watchOS-4.0.sh
-    - ./scripts/watchOS-3.1.sh
   post:
     - carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
     # This is to work around the fact that CocoaPods wants to set up the master CocoaPods specs
