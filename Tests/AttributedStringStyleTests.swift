@@ -28,7 +28,8 @@ class StringStyleTests: XCTestCase {
             guard let font = style.attributes[NSFontAttributeName] as? BONFont else {
                 fatalError("font was nil or of wrong type.")
             }
-            BONAssertEqualFonts(font, BONFont.fontA)
+            XCTAssertEqual(font.fontName, BONFont.fontA.fontName)
+            XCTAssertEqual(font.pointSize, BONFont.fontA.pointSize)
             BONAssert(attributes: style.attributes, key: NSForegroundColorAttributeName, value: BONColor.colorA)
             BONAssert(attributes: style.attributes, key: NSBackgroundColorAttributeName, value: BONColor.colorB)
         }
