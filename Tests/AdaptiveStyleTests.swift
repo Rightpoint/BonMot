@@ -128,9 +128,9 @@ class AdaptiveStyleTests: XCTestCase {
             return adaptedAttributes[NSKernAttributeName] as? CGFloat ?? 0
         }
 
-        XCTAssertEqualWithAccuracy(testKernAdaptation(UIContentSizeCategory.extraSmall), 8.1, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(testKernAdaptation(UIContentSizeCategory.large), 9, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(testKernAdaptation(UIContentSizeCategory.extraExtraExtraLarge), 10.8, accuracy: 0.0001)
+        XCTAssertEqual(testKernAdaptation(UIContentSizeCategory.extraSmall), 8.1, accuracy: 0.0001)
+        XCTAssertEqual(testKernAdaptation(UIContentSizeCategory.large), 9, accuracy: 0.0001)
+        XCTAssertEqual(testKernAdaptation(UIContentSizeCategory.extraExtraExtraLarge), 10.8, accuracy: 0.0001)
     }
 
     //swiftlint:disable function_body_length
@@ -224,11 +224,11 @@ class AdaptiveStyleTests: XCTestCase {
         EBGaramondLoader.loadFontIfNeeded()
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 20)!), .numberSpacing(.monospaced), .adapt(.control))
         let tabTestL = NSAttributedString.composed(of: ["Q", Tab.headIndent(10)], baseStyle: style)
-        XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestL), 26.12, accuracy: 0.01)
+        XCTAssertEqual(firstTabLocation(attributedString: tabTestL), 26.12, accuracy: 0.01)
         let tabTestXS = tabTestL.adapted(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraSmall))
-        XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXS), 23.70, accuracy: 0.01)
+        XCTAssertEqual(firstTabLocation(attributedString: tabTestXS), 23.70, accuracy: 0.01)
         let tabTestXXXL = tabTestL.adapted(to: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraExtraExtraLarge))
-        XCTAssertEqualWithAccuracy(firstTabLocation(attributedString: tabTestXXXL), 30.95, accuracy: 0.01)
+        XCTAssertEqual(firstTabLocation(attributedString: tabTestXXXL), 30.95, accuracy: 0.01)
     }
 
     func testMergingEmbeddedTransformations() {

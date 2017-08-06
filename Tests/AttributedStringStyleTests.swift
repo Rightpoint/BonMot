@@ -552,10 +552,10 @@ class StringStyleTests: XCTestCase {
                 let newStyle = style.byAdding(.font(font))
                 return newStyle.attributes[NSKernAttributeName] as? CGFloat ?? 0
             }
-            XCTAssertEqualWithAccuracy(testKernAttribute(20), 6, accuracy: 0.0001)
-            XCTAssertEqualWithAccuracy(testKernAttribute(30), 9, accuracy: 0.0001)
-            XCTAssertEqualWithAccuracy(testKernAttribute(40), 12, accuracy: 0.0001)
-            XCTAssertEqualWithAccuracy(testKernAttribute(50), 15, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(20), 6, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(30), 9, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(40), 12, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(50), 15, accuracy: 0.0001)
         }
     }
 
@@ -567,10 +567,10 @@ class StringStyleTests: XCTestCase {
                 let newStyle = style.byAdding(.font(font))
                 return newStyle.attributes[NSKernAttributeName] as? CGFloat ?? 0
             }
-            XCTAssertEqualWithAccuracy(testKernAttribute(20), 10, accuracy: 0.0001)
-            XCTAssertEqualWithAccuracy(testKernAttribute(30), 10, accuracy: 0.0001)
-            XCTAssertEqualWithAccuracy(testKernAttribute(40), 10, accuracy: 0.0001)
-            XCTAssertEqualWithAccuracy(testKernAttribute(50), 10, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(20), 10, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(30), 10, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(40), 10, accuracy: 0.0001)
+            XCTAssertEqual(testKernAttribute(50), 10, accuracy: 0.0001)
         }
     }
 

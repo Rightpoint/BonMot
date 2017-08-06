@@ -38,10 +38,10 @@ func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: String, colo
     let testComps = testColor.rgbaComponents
     let controlComps = controlColor.rgbaComponents
 
-    XCTAssertEqualWithAccuracy(testComps.r, controlComps.r, accuracy: 0.0001)
-    XCTAssertEqualWithAccuracy(testComps.g, controlComps.g, accuracy: 0.0001)
-    XCTAssertEqualWithAccuracy(testComps.b, controlComps.b, accuracy: 0.0001)
-    XCTAssertEqualWithAccuracy(testComps.a, controlComps.a, accuracy: 0.0001)
+    XCTAssertEqual(testComps.r, controlComps.r, accuracy: 0.0001)
+    XCTAssertEqual(testComps.g, controlComps.g, accuracy: 0.0001)
+    XCTAssertEqual(testComps.b, controlComps.b, accuracy: 0.0001)
+    XCTAssertEqual(testComps.a, controlComps.a, accuracy: 0.0001)
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, key: String, float: CGFloat, accuracy: CGFloat, file: StaticString = #file, line: UInt = #line) {
@@ -49,7 +49,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, key: String, float: CGFl
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }
-    XCTAssertEqualWithAccuracy(dictionaryValue, float, accuracy: accuracy, file: file, line: line)
+    XCTAssertEqual(dictionaryValue, float, accuracy: accuracy, file: file, line: line)
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, query: (BONFont) -> CGFloat, float: CGFloat, accuracy: CGFloat = 0.001, file: StaticString = #file, line: UInt = #line) {
@@ -58,7 +58,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (BONFont) -> CGFl
         return
     }
     let value = query(font)
-    XCTAssertEqualWithAccuracy(value, float, accuracy: accuracy, file: file, line: line)
+    XCTAssertEqual(value, float, accuracy: accuracy, file: file, line: line)
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> CGFloat, float: CGFloat, accuracy: CGFloat, file: StaticString = #file, line: UInt = #line) {
@@ -67,7 +67,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
         return
     }
     let actualValue = query(paragraphStyle)
-    XCTAssertEqualWithAccuracy(actualValue, float, accuracy: accuracy, file: file, line: line)
+    XCTAssertEqual(actualValue, float, accuracy: accuracy, file: file, line: line)
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> Int, value: Int, file: StaticString = #file, line: UInt = #line) {

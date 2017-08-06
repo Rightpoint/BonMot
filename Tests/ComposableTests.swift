@@ -82,7 +82,7 @@ class ComposableTests: XCTestCase {
                                             context: nil
                 ).width
 
-            XCTAssertEqualWithAccuracy(expectedWidth, width, accuracy: 1.0, line: line)
+            XCTAssertEqual(expectedWidth, width, accuracy: 1.0, line: line)
         }
     }
 
