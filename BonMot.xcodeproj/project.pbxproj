@@ -11,11 +11,16 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = AB8497DD1DA45B9C00FE3414 /* Build configuration list for PBXAggregateTarget "AllTheThings" */;
 			buildPhases = (
-				ABBD124E1DA469BB0084FBCC /* Build and test macOS */,
-				CD15C4071DBE660700B6FF7A /* Build and test iOS */,
-				CD0DDB271DC2B57E00805488 /* Build iOS example project */,
-				CD15C4081DBE660800B6FF7A /* Build and test tvOS */,
-				CD15C4091DBE660A00B6FF7A /* Build watchOS */,
+				CDC513341F36B1BC00EA1712 /* Build and test macOS - Swift 3 */,
+				ABBD124E1DA469BB0084FBCC /* Build and test macOS - Swift 4 */,
+				CDC513351F36B1D700EA1712 /* Build and test iOS - Swift 3 */,
+				CD15C4071DBE660700B6FF7A /* Build and test iOS - Swift 4 */,
+				CD0DDB271DC2B57E00805488 /* Build iOS example project - Swift 3 */,
+				CDC513361F36B1FA00EA1712 /* Build iOS example project - Swift 4 */,
+				CDC513371F36B21500EA1712 /* Build and test tvOS - Swift 3 */,
+				CD15C4081DBE660800B6FF7A /* Build and test tvOS - Swift 4 */,
+				CDC513381F36B22D00EA1712 /* Build watchOS - Swift 3 */,
+				CD15C4091DBE660A00B6FF7A /* Build watchOS - Swift 4 */,
 			);
 			dependencies = (
 			);
@@ -931,75 +936,75 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		ABBD124E1DA469BB0084FBCC /* Build and test macOS */ = {
+		ABBD124E1DA469BB0084FBCC /* Build and test macOS - Swift 4 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build and test macOS";
+			name = "Build and test macOS - Swift 4";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
-		CD0DDB271DC2B57E00805488 /* Build iOS example project */ = {
+		CD0DDB271DC2B57E00805488 /* Build iOS example project - Swift 3 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build iOS example project";
+			name = "Build iOS example project - Swift 3";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
-		CD15C4071DBE660700B6FF7A /* Build and test iOS */ = {
+		CD15C4071DBE660700B6FF7A /* Build and test iOS - Swift 4 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build and test iOS";
+			name = "Build and test iOS - Swift 4";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
-		CD15C4081DBE660800B6FF7A /* Build and test tvOS */ = {
+		CD15C4081DBE660800B6FF7A /* Build and test tvOS - Swift 4 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build and test tvOS";
+			name = "Build and test tvOS - Swift 4";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
-		CD15C4091DBE660A00B6FF7A /* Build watchOS */ = {
+		CD15C4091DBE660A00B6FF7A /* Build watchOS - Swift 4 */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build watchOS";
+			name = "Build watchOS - Swift 4";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD4B2FCC1D9B0AB0007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1112,6 +1117,76 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		CDC513341F36B1BC00EA1712 /* Build and test macOS - Swift 3 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build and test macOS - Swift 3";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+		};
+		CDC513351F36B1D700EA1712 /* Build and test iOS - Swift 3 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build and test iOS - Swift 3";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+		};
+		CDC513361F36B1FA00EA1712 /* Build iOS example project - Swift 4 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build iOS example project - Swift 4";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+		};
+		CDC513371F36B21500EA1712 /* Build and test tvOS - Swift 3 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build and test tvOS - Swift 3";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+		};
+		CDC513381F36B22D00EA1712 /* Build watchOS - Swift 3 */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build watchOS - Swift 3";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=3.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
