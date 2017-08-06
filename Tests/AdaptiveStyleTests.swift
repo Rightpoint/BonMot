@@ -200,8 +200,8 @@ class AdaptiveStyleTests: XCTestCase {
                 XCTAssertEqual(originalFeatureAttributeArray?.count, 1, line: partLine)
                 XCTAssertEqual(adaptedFeatureAttributeArray?.count, 1, line: partLine)
 
-                let originalFeatureAttributes = originalFeatureAttributeArray?.firstObject as? [String: Int]
-                let adaptedFeatureAttributes = adaptedFeatureAttributeArray?.firstObject as? [String: Int]
+                let originalFeatureAttributes = originalFeatureAttributeArray?.firstObject as? [BONFontDescriptor.FeatureKey: Int]
+                let adaptedFeatureAttributes = adaptedFeatureAttributeArray?.firstObject as? [BONFontDescriptor.FeatureKey: Int]
 
                 XCTAssertNotNil(originalFeatureAttributes, line: partLine)
                 XCTAssertNotNil(adaptedFeatureAttributes, line: partLine)
@@ -235,7 +235,7 @@ class AdaptiveStyleTests: XCTestCase {
         let string = NSAttributedString.composed(of: [
             "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
-        let attributes = string.attribute(NSAttributedStringKey(rawValue: BonMotTransformationsAttributeName), at: string.length - 1, effectiveRange: nil) as? [Any]
+        let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? [Any]
         XCTAssertEqual(attributes?.count, 2)
     }
 
@@ -245,8 +245,8 @@ class AdaptiveStyleTests: XCTestCase {
             Tab.headIndent(10),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
 
-        let attributes1 = string.attribute(NSAttributedStringKey(rawValue: BonMotTransformationsAttributeName), at:0, effectiveRange: nil) as? [Any]
-        let attributes2 = string.attribute(NSAttributedStringKey(rawValue: BonMotTransformationsAttributeName), at:string.length - 1, effectiveRange: nil) as? [Any]
+        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? [Any]
+        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? [Any]
         XCTAssertEqual(attributes1?.count, 2)
         XCTAssertEqual(attributes2?.count, 2)
     }

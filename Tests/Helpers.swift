@@ -181,7 +181,7 @@ extension NSAttributedString {
 
     func rangesFor<T>(attribute name: String) -> [String: T] {
         var attributesByRange: [String: T] = [:]
-        enumerateAttribute(NSAttributedStringKey(rawValue: name), in: NSRange(location: 0, length: length), options: []) { value, range, _ in
+        enumerateAttribute(NSAttributedStringKey(name), in: NSRange(location: 0, length: length), options: []) { value, range, _ in
             if let object = value as? T {
                 attributesByRange["\(range.location):\(range.length)"] = object
             }
@@ -211,7 +211,7 @@ extension NSAttributedString {
                 samplesPerPixel: 4,
                 hasAlpha: true,
                 isPlanar: false,
-                colorSpaceName: NSDeviceRGBColorSpace,
+                colorSpaceName: .deviceRGB,
                 bytesPerRow: 0,
                 bitsPerPixel: 0
                 )!

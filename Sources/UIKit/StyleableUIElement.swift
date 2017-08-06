@@ -63,7 +63,7 @@ extension UITextField {
         set {
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             styledText = text
-            defaultTextAttributes = bonMotStyle?.attributes(adaptedTo: traitCollection) ?? [:]
+            defaultTextAttributes = bonMotStyle?.attributes(adaptedTo: traitCollection).withStringKeys ?? [:]
         }
     }
 
@@ -125,7 +125,7 @@ extension UITextView {
         get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
-            typingAttributes = newValue?.attributes(adaptedTo: traitCollection) ?? typingAttributes
+            typingAttributes = newValue?.attributes(adaptedTo: traitCollection).withStringKeys ?? typingAttributes
             styledText = text
         }
     }
@@ -221,6 +221,34 @@ internal class StringStyleHolder: NSObject {
     let style: StringStyle
     init(style: StringStyle) {
         self.style = style
+    }
+
+}
+
+extension Dictionary where Key: RawRepresentable, Key.RawValue == String {
+
+    var withStringKeys: [String: Value] {
+        var newDict: [String: Value] = [:]
+        for (key, value) in self {
+            newDict[key.rawValue] = value
+        }
+
+        return newDict
+    }
+
+}
+
+extension Dictionary where Key == String {
+
+    func withTypedKeys<KeyType>() -> [KeyType: Value] where KeyType: RawRepresentable, KeyType.RawValue == String {
+        var newDict: [KeyType: Value] = [:]
+        for (key, value) in self {
+            if let newKey = KeyType(rawValue: key) {
+                newDict[newKey] = value
+            }
+        }
+
+        return newDict
     }
 
 }

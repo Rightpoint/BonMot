@@ -32,7 +32,7 @@ public struct StringStyle {
     public var firstLineHeadIndent: CGFloat?
     public var headIndent: CGFloat?
     public var tailIndent: CGFloat?
-    public var lineBreakMode: NSLineBreakMode?
+    public var lineBreakMode: NSParagraphStyle.LineBreakMode?
     public var minimumLineHeight: CGFloat?
     public var maximumLineHeight: CGFloat?
     public var baseWritingDirection: NSWritingDirection?
@@ -72,6 +72,7 @@ public struct StringStyle {
     public var xmlStyler: XMLStyler?
     public var transform: Transform?
 
+    public init() {}
 }
 
 extension StringStyle {
@@ -80,21 +81,21 @@ extension StringStyle {
     public var attributes: StyleAttributes {
         var theAttributes = extraAttributes
 
-        theAttributes.update(possibleValue: font, forKey: NSAttributedStringKey.font.rawValue)
-        theAttributes.update(possibleValue: link, forKey: NSAttributedStringKey.link.rawValue)
-        theAttributes.update(possibleValue: backgroundColor, forKey: NSAttributedStringKey.backgroundColor.rawValue)
-        theAttributes.update(possibleValue: color, forKey: NSAttributedStringKey.foregroundColor.rawValue)
-        theAttributes.update(possibleValue: underline?.0.rawValue, forKey: NSAttributedStringKey.underlineStyle.rawValue)
-        theAttributes.update(possibleValue: underline?.1, forKey: NSAttributedStringKey.underlineColor.rawValue)
-        theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: NSAttributedStringKey.strikethroughStyle.rawValue)
-        theAttributes.update(possibleValue: strikethrough?.1, forKey: NSAttributedStringKey.strikethroughColor.rawValue)
-        theAttributes.update(possibleValue: baselineOffset, forKey: NSAttributedStringKey.baselineOffset.rawValue)
-        theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSAttributedStringKey.ligature.rawValue)
+        theAttributes.update(possibleValue: font, forKey: NSAttributedStringKey.font)
+        theAttributes.update(possibleValue: link, forKey: NSAttributedStringKey.link)
+        theAttributes.update(possibleValue: backgroundColor, forKey: NSAttributedStringKey.backgroundColor)
+        theAttributes.update(possibleValue: color, forKey: NSAttributedStringKey.foregroundColor)
+        theAttributes.update(possibleValue: underline?.0.rawValue, forKey: NSAttributedStringKey.underlineStyle)
+        theAttributes.update(possibleValue: underline?.1, forKey: NSAttributedStringKey.underlineColor)
+        theAttributes.update(possibleValue: strikethrough?.0.rawValue, forKey: NSAttributedStringKey.strikethroughStyle)
+        theAttributes.update(possibleValue: strikethrough?.1, forKey: NSAttributedStringKey.strikethroughColor)
+        theAttributes.update(possibleValue: baselineOffset, forKey: NSAttributedStringKey.baselineOffset)
+        theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSAttributedStringKey.ligature)
 
         #if os(iOS) || os(tvOS) || os(watchOS)
-            theAttributes.update(possibleValue: speaksPunctuation, forKey: UIAccessibilitySpeechAttributePunctuation)
-            theAttributes.update(possibleValue: speakingLanguage, forKey: UIAccessibilitySpeechAttributeLanguage)
-            theAttributes.update(possibleValue: speakingPitch, forKey: UIAccessibilitySpeechAttributePitch)
+            theAttributes.update(possibleValue: speaksPunctuation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation))
+            theAttributes.update(possibleValue: speakingLanguage, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage))
+            theAttributes.update(possibleValue: speakingPitch, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch))
         #endif
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
@@ -112,8 +113,8 @@ extension StringStyle {
         paragraph.paragraphSpacingBefore = paragraphSpacingBefore ?? paragraph.paragraphSpacingBefore
         paragraph.hyphenationFactor = hyphenationFactor ?? paragraph.hyphenationFactor
 
-        if paragraph != NSParagraphStyle.bon_default {
-            theAttributes.update(possibleValue: paragraph, forKey: NSAttributedStringKey.paragraphStyle.rawValue)
+        if paragraph != NSParagraphStyle.default {
+            theAttributes.update(possibleValue: paragraph, forKey: NSAttributedStringKey.paragraphStyle)
         }
 
         #if os(iOS) || os(tvOS) || os(OSX)
@@ -340,7 +341,7 @@ extension NSParagraphStyle {
     /// - Parameter paragraphStyle: The paragraph style to update.
     /// - Returns: The updated paragraph style.
     func supplyDefaults(for paragraphStyle: NSParagraphStyle) -> NSParagraphStyle {
-        let defaults = NSParagraphStyle.bon_default
+        let defaults = NSParagraphStyle.default
         let paragraph = paragraphStyle.mutableParagraphStyleCopy()
         if paragraph.lineSpacing == defaults.lineSpacing { paragraph.lineSpacing = lineSpacing }
         if paragraph.paragraphSpacing == defaults.paragraphSpacing { paragraph.paragraphSpacing = paragraphSpacing }

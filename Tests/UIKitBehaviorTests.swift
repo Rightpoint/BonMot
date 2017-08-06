@@ -113,7 +113,7 @@ class UIKitBehaviorTests: XCTestCase {
     // Check to see if arbitrary text survives re-configuration (spoiler: it doesn't).
     func testLabelAttributedStringAttributePreservationBehavior() {
         let label = UILabel()
-        label.attributedText = NSAttributedString(string: "", attributes: [NSAttributedStringKey(rawValue: "TestAttribute"): true])
+        label.attributedText = NSAttributedString(string: "", attributes: ["TestAttribute": true])
         label.text = "New Text"
         label.font = UIFont(name: "Avenir-Roman", size: 10)
         let attributes = label.attributedText?.attributes(at: 0, effectiveRange: nil)

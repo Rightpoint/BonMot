@@ -87,7 +87,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testBaseStyleIsOverridden() {
-        func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: String, _ expected: T, line: UInt = #line) {
+        func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: NSAttributedStringKey, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
@@ -95,17 +95,17 @@ class ComposableTests: XCTestCase {
             XCTAssertEqual(value, expected, line: line)
         }
         let font = BONFont(name: "Avenir-Book", size: 28)!
-        check(forPart: .color(.colorA), NSAttributedStringKey.foregroundColor.rawValue, BONColor.colorA)
-        check(forPart: .backgroundColor(.colorA), NSAttributedStringKey.backgroundColor.rawValue, BONColor.colorA)
-        check(forPart: .font(font), NSAttributedStringKey.font.rawValue, font)
-        check(forPart: .baselineOffset(10), NSAttributedStringKey.baselineOffset.rawValue, CGFloat(10))
-        check(forPart: .tracking(.point(10)), NSAttributedStringKey.kern.rawValue, CGFloat(10))
-        check(forPart: .link(URL(string: "http://thebestwords.com/")!), NSAttributedStringKey.link.rawValue, URL(string: "http://thebestwords.com/")!)
-        check(forPart: .ligatures(.disabled), NSAttributedStringKey.ligature.rawValue, 0)
+        check(forPart: .color(.colorA), NSAttributedStringKey.foregroundColor, BONColor.colorA)
+        check(forPart: .backgroundColor(.colorA), NSAttributedStringKey.backgroundColor, BONColor.colorA)
+        check(forPart: .font(font), NSAttributedStringKey.font, font)
+        check(forPart: .baselineOffset(10), NSAttributedStringKey.baselineOffset, CGFloat(10))
+        check(forPart: .tracking(.point(10)), NSAttributedStringKey.kern, CGFloat(10))
+        check(forPart: .link(URL(string: "http://thebestwords.com/")!), NSAttributedStringKey.link, URL(string: "http://thebestwords.com/")!)
+        check(forPart: .ligatures(.disabled), NSAttributedStringKey.ligature, 0)
         #if os(iOS) || os(tvOS) || os(watchOS)
-            check(forPart: .speaksPunctuation(true), UIAccessibilitySpeechAttributePunctuation, true)
-            check(forPart: .speakingLanguage("en-US"), UIAccessibilitySpeechAttributeLanguage, "en-US")
-            check(forPart: .speakingPitch(0.5), UIAccessibilitySpeechAttributePitch, 0.5)
+            check(forPart: .speaksPunctuation(true), NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation), true)
+            check(forPart: .speakingLanguage("en-US"), NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage), "en-US")
+            check(forPart: .speakingPitch(0.5), NSAttributedStringKey(UIAccessibilitySpeechAttributePitch), 0.5)
         #endif
     }
 

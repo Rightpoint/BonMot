@@ -6,12 +6,13 @@
 //  Copyright © 2016 Zev Eisenberg. All rights reserved.
 //
 
-//swiftlint:disable file_length
+import BonMot
+
 #if os(OSX)
     import AppKit
-    let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
-    let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
-    let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
+    let BONFontDescriptorFeatureSettingsAttribute = NSFontDescriptor.AttributeName.featureSettings
+    let BONFontFeatureTypeIdentifierKey = NSFontDescriptor.FeatureKey.typeIdentifier
+    let BONFontFeatureSelectorIdentifierKey = NSFontDescriptor.FeatureKey.selectorIdentifier
     typealias BONView = NSView
 #else
     import UIKit
@@ -20,23 +21,38 @@
     let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
     typealias BONView = UIView
 #endif
-import BonMot
 
-// MARK: - Shared (AppKit + UIKit)
+extension NSAttributedStringKey: ExpressibleByStringLiteral {
 
-extension NSParagraphStyle {
-
-    /// Returns the default paragraph style.
-    /// - note: This variable has to be prefixed since `default` is not a
-    ///         valid variable name in Swift 2.3
-    @nonobjc static var bon_default: NSParagraphStyle {
-        #if os(OSX)
-            return NSParagraphStyle.default()
-        #else
-            return NSParagraphStyle.default
-        #endif
+    public init(stringLiteral value: String) {
+        self.init(value)
     }
 
 }
 
-//swiftlint:enable file_length
+extension BONFontDescriptor.AttributeName: ExpressibleByStringLiteral {
+
+    public init(stringLiteral value: String) {
+        self.init(value)
+    }
+
+}
+
+#if os(OSX)
+    extension NSImage.Name: ExpressibleByStringLiteral {
+
+        public init(stringLiteral value: String) {
+            self.init(value)
+        }
+
+    }
+
+    extension Bundle {
+
+        func image(forResource resource: String) -> NSImage? {
+            return image(forResource: NSImage.Name(resource))
+        }
+
+    }
+
+#endif

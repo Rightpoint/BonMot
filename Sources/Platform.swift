@@ -14,9 +14,9 @@
 
     public typealias BONFont = NSFont
     public typealias BONFontDescriptor = NSFontDescriptor
-    let BONFontDescriptorFeatureSettingsAttribute = NSFontFeatureSettingsAttribute
-    let BONFontFeatureTypeIdentifierKey = NSFontFeatureTypeIdentifierKey
-    let BONFontFeatureSelectorIdentifierKey = NSFontFeatureSelectorIdentifierKey
+    let BONFontDescriptorFeatureSettingsAttribute = NSFontDescriptor.AttributeName.featureSettings
+    let BONFontFeatureTypeIdentifierKey = NSFontDescriptor.FeatureKey.typeIdentifier
+    let BONFontFeatureSelectorIdentifierKey = NSFontDescriptor.FeatureKey.selectorIdentifier
 #else
     import UIKit
     public typealias BONColor = UIColor
@@ -41,4 +41,4 @@ public typealias StyleAttributes = [NSAttributedStringKey: Any]
 #endif
 
 // This key is defined here because it needs to be used in non-adaptive code.
-public let BonMotTransformationsAttributeName = "BonMotTransformations"
+public let BonMotTransformationsAttributeName = NSAttributedStringKey("BonMotTransformations")

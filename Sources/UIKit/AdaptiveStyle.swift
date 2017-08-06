@@ -41,7 +41,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
 
     enum AttributeName {
 
-        static let nonAdaptedFont = "BonMotNonAdaptedFont"
+        static let nonAdaptedFont = NSAttributedStringKey("BonMotNonAdaptedFont")
 
     }
 
@@ -143,7 +143,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
 
     struct Key {
 
-        static let fontName = "fontName"
+        static let fontName = NSAttributedStringKey("fontName")
 
     }
 
@@ -180,7 +180,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
         }
     }
 
-    static func from(dictionary dict: [String: Any]) -> EmbeddedTransformation? {
+    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
         switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
                 dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
                 dict[Key.fontName] as? String) {

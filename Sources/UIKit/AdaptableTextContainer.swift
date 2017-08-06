@@ -61,7 +61,7 @@ extension UITextView {
         if let attributedText = attributedText {
             self.attributedText = attributedText.adapted(to: traitCollection)
         }
-        typingAttributes = NSAttributedString.adapt(attributes: typingAttributes, to: traitCollection)
+        typingAttributes = NSAttributedString.adapt(attributes: typingAttributes.withTypedKeys(), to: traitCollection).withStringKeys
     }
 
 }
@@ -88,7 +88,7 @@ extension UITextField {
         if let attributedPlaceholder = attributedPlaceholder {
             self.attributedPlaceholder = attributedPlaceholder.adapted(to: traitCollection)
         }
-        defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes, to: traitCollection)
+        defaultTextAttributes = NSAttributedString.adapt(attributes: defaultTextAttributes.withTypedKeys(), to: traitCollection).withStringKeys
         // Fix an issue where shrinking or growing text would stay the same width, but add whitespace.
         setNeedsDisplay()
     }
@@ -218,7 +218,7 @@ extension UIBarItem {
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         for state in UIControlState.commonStates {
             let attributes = titleTextAttributes(for: state) ?? [:]
-            let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
+            let newAttributes = NSAttributedString.adapt(attributes: attributes.withTypedKeys(), to: traitCollection)
             setTitleTextAttributes(newAttributes, for: state)
         }
     }
