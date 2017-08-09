@@ -174,7 +174,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
 
     }
 
-    var asDictionary: StyleAttributes {
+    public var asDictionary: StyleAttributes {
         switch self {
         case let .above(size, family):
             return [
@@ -197,20 +197,20 @@ extension AdaptiveStyle: EmbeddedTransformation {
         }
     }
 
-    static func from(dictionary dict: [String: StyleAttributeValue]) -> EmbeddedTransformation? {
+    public init?(dictionary dict: StyleAttributes) {
         switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
                 dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
                 dict[Key.fontName] as? String) {
         case (Value.control?, nil, nil):
-            return AdaptiveStyle.control
+            self = .control
         case (Value.body?, nil, nil):
-            return AdaptiveStyle.body
+            self = .body
         case (Value.preferred?, nil, nil):
-            return AdaptiveStyle.preferred
+            self = .preferred
         case let (Value.above?, size?, fontName?):
-            return AdaptiveStyle.above(size: size, useFontNamed: fontName)
+            self = .above(size: size, useFontNamed: fontName)
         case let (Value.below?, size?, fontName?):
-            return AdaptiveStyle.below(size: size, useFontNamed: fontName)
+            self = .below(size: size, useFontNamed: fontName)
         default:
             return nil
         }

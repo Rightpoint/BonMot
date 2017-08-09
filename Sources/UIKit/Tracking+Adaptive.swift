@@ -34,14 +34,7 @@ extension Tracking: EmbeddedTransformation {
         static let adobeTracking = "adobe-tracking"
     }
 
-    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
-        if case let (Value.adobeTracking?, size?) = (dict[EmbeddedTransformationHelpers.Key.type] as? String, dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
-            return Tracking.adobe(size)
-        }
-        return nil
-    }
-
-    var asDictionary: StyleAttributes {
+    public var asDictionary: StyleAttributes {
         if case let .adobe(size) = self {
             return [
                 EmbeddedTransformationHelpers.Key.type: Value.adobeTracking,
@@ -52,6 +45,15 @@ extension Tracking: EmbeddedTransformation {
             // We don't need to persist point tracking, as it does not depend on
             // the font size.
             return [:]
+        }
+    }
+
+    public init?(dictionary dict: StyleAttributes) {
+        if case let (Value.adobeTracking?, size?) = (dict[EmbeddedTransformationHelpers.Key.type] as? String, dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
+            self = .adobe(size)
+        }
+        else {
+            return nil
         }
     }
 

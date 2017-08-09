@@ -17,16 +17,16 @@
 /// support, these transformations get embedded using plist-compatible objects.
 /// This protocol defines a contract to simplify this. `NSCoding` is not used so
 /// that value types can conform.
-internal protocol EmbeddedTransformation {
+public protocol EmbeddedTransformation {
 
     /// Return a plist-compatible dictionary of any state that is needed to
     /// persist the adaptation
     var asDictionary: StyleAttributes { get }
 
-    /// Take the adaptations dictionary and create an array of
-    /// `AdaptiveStyleTransformation`s. To register a new adaptive transformation,
-    /// add the type to `EmbeddedTransformationHelpers.embeddedTransformationTypes`.
-    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation?
+    /// Deserializes an object from a dictionary of style attributes.
+    /// This function should be the inverse of `asDictionary`. That is,
+    /// `TransformType(dictionary: transform.asDictionary) == transform`
+    init?(dictionary dict: StyleAttributes)
 
 }
 
@@ -60,7 +60,7 @@ internal enum EmbeddedTransformationHelpers {
         let representations = styleAttributes[BonMotTransformationsAttributeName] as? [StyleAttributes] ?? []
         let results: [T?] = representations.map { representation in
             for type in embeddedTransformationTypes {
-                if let transformation = type.from(dictionary: representation) as? T {
+                if let transformation = type.init(dictionary: representation) as? T {
                     return transformation
                 }
             }

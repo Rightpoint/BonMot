@@ -25,19 +25,19 @@ extension Tab: EmbeddedTransformation {
 
     }
 
-    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
+    public init?(dictionary dict: StyleAttributes) {
         switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
                 dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat) {
         case (Value.spacer?, let width?):
-            return Tab.spacer(width)
+            self = .spacer(width)
         case (Value.headIndent?, let width?):
-            return Tab.headIndent(width)
+            self = .headIndent(width)
         default:
             return nil
         }
     }
 
-    var asDictionary: StyleAttributes {
+    public var asDictionary: StyleAttributes {
         switch self {
         case let .spacer(size):
             return [
