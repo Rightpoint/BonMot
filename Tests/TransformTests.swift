@@ -183,4 +183,22 @@ class TransformTests: XCTestCase {
             ], in: styled)
     }
 
+    func testAttribute() {
+        let string = "Time remaining: 1 DAY FROM NOW"
+        let style = StringStyle(
+            .transform(.lowercase),
+            .adapt(.control)
+        )
+
+        let attributes = style.attributes
+        XCTAssertNotNil(attributes[BonMotTransformationsAttributeName])
+
+        let transform = (attributes[BonMotTransformationsAttributeName] as? StyleAttributes).flatMap(Transform.init)
+        XCTAssertNotNil(transform)
+
+        if let transformer = transform?.transformer {
+            XCTAssertEqual(transformer(string), string.styled(with: style).string)
+        }
+    }
+
 }
