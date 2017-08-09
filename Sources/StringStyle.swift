@@ -90,6 +90,7 @@ extension StringStyle {
         theAttributes.update(possibleValue: strikethrough?.1, forKey: NSStrikethroughColorAttributeName)
         theAttributes.update(possibleValue: baselineOffset, forKey: NSBaselineOffsetAttributeName)
         theAttributes.update(possibleValue: ligatures?.rawValue, forKey: NSLigatureAttributeName)
+        theAttributes.update(possibleValue: transform, forKey: BonMotTransformationsAttributeName)
 
         #if os(iOS) || os(tvOS) || os(watchOS)
             theAttributes.update(possibleValue: speaksPunctuation, forKey: UIAccessibilitySpeechAttributePunctuation)
