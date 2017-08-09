@@ -25,7 +25,7 @@ public enum Transform {
     case capitalizedWithLocale(Locale)
     case custom(TransformFunction)
 
-    var transformer: TransformFunction {
+    public var transformer: TransformFunction {
         switch self {
         case .lowercase: return { string in string.localizedLowercase }
         case .uppercase: return { string in string.localizedUppercase }
