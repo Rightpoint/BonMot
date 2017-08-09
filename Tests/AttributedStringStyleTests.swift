@@ -25,13 +25,13 @@ class StringStyleTests: XCTestCase {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 3)
             // We're only checking the font name and point size, since the full style could have font
             // features that cause equality checks to fail. Font Feature support is tested in testFontFeatureStyle.
-            guard let font = style.attributes[NSAttributedStringKey.font] as? BONFont else {
+            guard let font = style.attributes[.font] as? BONFont else {
                 fatalError("font was nil or of wrong type.")
             }
             XCTAssertEqual(font.fontName, BONFont.fontA.fontName)
             XCTAssertEqual(font.pointSize, BONFont.fontA.pointSize)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.foregroundColor, value: BONColor.colorA)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.backgroundColor, value: BONColor.colorB)
+            BONAssert(attributes: style.attributes, key: .foregroundColor, value: BONColor.colorA)
+            BONAssert(attributes: style.attributes, key: .backgroundColor, value: BONColor.colorB)
         }
     }
 
@@ -40,7 +40,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.textStyle(titleTextStyle))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? UIFont
+            let font = style.attributes[.font] as? UIFont
             let fontTextStyle = font?.textStyle
             XCTAssertEqual(fontTextStyle, titleTextStyle)
         }
@@ -53,7 +53,7 @@ class StringStyleTests: XCTestCase {
 
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.link, value: url)
+            BONAssert(attributes: style.attributes, key: .link, value: url)
         }
     }
 
@@ -61,8 +61,8 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.strikethrough(.byWord, .colorA))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.strikethroughStyle, value: NSUnderlineStyle.byWord.rawValue)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.strikethroughColor, value: BONColor.colorA)
+            BONAssert(attributes: style.attributes, key: .strikethroughStyle, value: NSUnderlineStyle.byWord.rawValue)
+            BONAssert(attributes: style.attributes, key: .strikethroughColor, value: BONColor.colorA)
         }
     }
 
@@ -70,8 +70,8 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.underline(.byWord, .colorA))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 2)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.byWord.rawValue)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.underlineColor, value: BONColor.colorA)
+            BONAssert(attributes: style.attributes, key: .underlineStyle, value: NSUnderlineStyle.byWord.rawValue)
+            BONAssert(attributes: style.attributes, key: .underlineColor, value: BONColor.colorA)
         }
     }
 
@@ -79,7 +79,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.baselineOffset(15))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.baselineOffset, float: CGFloat(15), accuracy: 0.001)
+            BONAssert(attributes: style.attributes, key: .baselineOffset, float: CGFloat(15), accuracy: 0.001)
         }
     }
 
@@ -87,7 +87,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.ligatures(.disabled))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey.ligature, value: 0)
+            BONAssert(attributes: style.attributes, key: .ligature, value: 0)
         }
     }
 
@@ -131,7 +131,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberSpacing(.monospaced))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -154,7 +154,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberCase(.lower))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -177,7 +177,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fractions(.diagonal))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -200,7 +200,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .superscript(true))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -223,7 +223,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .`subscript`(true))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -246,7 +246,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .ordinals(true))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -269,7 +269,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .scientificInferiors(true))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -292,7 +292,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .smallCaps(.fromUppercase))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -315,7 +315,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .stylisticAlternates(.two(on: true)))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -338,7 +338,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .contextualAlternates(.contextualAlternates(on: false)))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+            let font = style.attributes[.font] as? BONFont
             XCTAssertNotNil(font)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes)
@@ -375,7 +375,7 @@ class StringStyleTests: XCTestCase {
             let featureLine = featuresLine + UInt(index) + 1
             let attributes = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .fontFeature(feature)).attributes
             XCTAssertEqual(attributes.count, 1, line: featureLine)
-            let font = attributes[NSAttributedStringKey.font] as? BONFont
+            let font = attributes[.font] as? BONFont
             XCTAssertNotNil(font, line: featureLine)
             let fontAttributes = font?.fontDescriptor.fontAttributes
             XCTAssertNotNil(fontAttributes, line: featureLine)
@@ -399,9 +399,9 @@ class StringStyleTests: XCTestCase {
         let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
         let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
 
-        guard let font0 = attrs0[NSAttributedStringKey.font] as? BONFont else { XCTFail(); return }
-        guard let font1 = attrs1[NSAttributedStringKey.font] as? BONFont else { XCTFail(); return }
-        guard let font2 = attrs2[NSAttributedStringKey.font] as? BONFont else { XCTFail(); return }
+        guard let font0 = attrs0[.font] as? BONFont else { XCTFail(); return }
+        guard let font1 = attrs1[.font] as? BONFont else { XCTFail(); return }
+        guard let font2 = attrs2[.font] as? BONFont else { XCTFail(); return }
 
         let descriptor0 = font0.fontDescriptor
         let descriptor1 = font1.fontDescriptor
@@ -550,7 +550,7 @@ class StringStyleTests: XCTestCase {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
                 let newStyle = style.byAdding(.font(font))
-                return newStyle.attributes[NSAttributedStringKey.kern] as? CGFloat ?? 0
+                return newStyle.attributes[.kern] as? CGFloat ?? 0
             }
             XCTAssertEqual(testKernAttribute(20), 6, accuracy: 0.0001)
             XCTAssertEqual(testKernAttribute(30), 9, accuracy: 0.0001)
@@ -565,7 +565,7 @@ class StringStyleTests: XCTestCase {
             let testKernAttribute = { (fontSize: CGFloat) -> CGFloat in
                 let font = BONFont(name: "Avenir-Book", size: fontSize)!
                 let newStyle = style.byAdding(.font(font))
-                return newStyle.attributes[NSAttributedStringKey.kern] as? CGFloat ?? 0
+                return newStyle.attributes[.kern] as? CGFloat ?? 0
             }
             XCTAssertEqual(testKernAttribute(20), 10, accuracy: 0.0001)
             XCTAssertEqual(testKernAttribute(30), 10, accuracy: 0.0001)
@@ -595,11 +595,11 @@ class StringStyleTests: XCTestCase {
         let baseStyle = StringStyle(.font(.fontA), .color(.colorA), .backgroundColor(.colorB))
         let style = StringStyle(.style(baseStyle), .font(.fontB), .color(.colorB))
 
-        let font = style.attributes[NSAttributedStringKey.font] as? BONFont
+        let font = style.attributes[.font] as? BONFont
         XCTAssertEqual(font?.fontName, BONFont.fontB.fontName)
         XCTAssertEqual(font?.pointSize, BONFont.fontB.pointSize)
-        BONAssert(attributes: style.attributes, key: NSAttributedStringKey.foregroundColor, value: BONColor.colorB)
-        BONAssert(attributes: style.attributes, key: NSAttributedStringKey.backgroundColor, value: BONColor.colorB)
+        BONAssert(attributes: style.attributes, key: .foregroundColor, value: BONColor.colorB)
+        BONAssert(attributes: style.attributes, key: .backgroundColor, value: BONColor.colorB)
     }
 
 }

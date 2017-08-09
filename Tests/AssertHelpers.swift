@@ -53,7 +53,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, key: NSAttributedStringK
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, query: (BONFont) -> CGFloat, float: CGFloat, accuracy: CGFloat = 0.001, file: StaticString = #file, line: UInt = #line) {
-    guard let font = dictionary?[NSAttributedStringKey.font] as? BONFont else {
+    guard let font = dictionary?[.font] as? BONFont else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }
@@ -62,7 +62,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (BONFont) -> CGFl
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> CGFloat, float: CGFloat, accuracy: CGFloat, file: StaticString = #file, line: UInt = #line) {
-    guard let paragraphStyle = dictionary?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else {
+    guard let paragraphStyle = dictionary?[.paragraphStyle] as? NSParagraphStyle else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }
@@ -71,7 +71,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
 }
 
 func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> Int, value: Int, file: StaticString = #file, line: UInt = #line) {
-    guard let paragraphStyle = dictionary?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else {
+    guard let paragraphStyle = dictionary?[.paragraphStyle] as? NSParagraphStyle else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }
@@ -80,7 +80,7 @@ func BONAssert(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle
 }
 
 func BONAssert<T: RawRepresentable>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, value: T, file: StaticString = #file, line: UInt = #line) where T.RawValue: Equatable {
-    guard let paragraphStyle = dictionary?[NSAttributedStringKey.paragraphStyle] as? NSParagraphStyle else {
+    guard let paragraphStyle = dictionary?[.paragraphStyle] as? NSParagraphStyle else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }

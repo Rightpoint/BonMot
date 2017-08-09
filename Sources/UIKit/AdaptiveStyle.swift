@@ -46,7 +46,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
     }
 
     func embed(in attributes: StyleAttributes) -> StyleAttributes {
-        guard let font = attributes[NSAttributedStringKey.font] as? BONFont else {
+        guard let font = attributes[.font] as? BONFont else {
             print("No font to adapt, ignoring adaptive style")
             return attributes
         }
@@ -80,7 +80,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         case .below(let size, let family):
             font = pointSize < size ? font.fontWithSameAttributes(named: family) : font
         }
-        styleAttributes[NSAttributedStringKey.font] = font
+        styleAttributes[.font] = font
         return styleAttributes
     }
 

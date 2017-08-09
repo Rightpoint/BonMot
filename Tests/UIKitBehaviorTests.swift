@@ -27,12 +27,12 @@ class UIKitBehaviorTests: XCTestCase {
 
         // Ensure font information is mirrored in attributed string
         let attributedText = label.attributedText!
-        let attributeFont = attributedText.attribute(NSAttributedStringKey.font, at: 0, effectiveRange: nil) as? UIFont
+        let attributeFont = attributedText.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
         XCTAssertEqual(attributeFont, largeFont)
 
         // Change the font in the attributed string
         var attributes = attributedText.attributes(at: 0, effectiveRange: nil)
-        attributes[NSAttributedStringKey.font] = smallFont
+        attributes[.font] = smallFont
         label.attributedText = NSAttributedString(string: "Testing", attributes: attributes)
         // Note that the font property is updated.
         XCTAssertEqual(label.font, smallFont)

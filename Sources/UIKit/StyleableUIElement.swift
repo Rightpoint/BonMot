@@ -77,7 +77,7 @@ extension UITextField {
             // Set the font first to avoid a bug that causes UITextField to hang
             if let styledText = styledText {
                 if styledText.length > 0 {
-                    font = styledText.attribute(NSAttributedStringKey.font, at: 0, effectiveRange: nil) as? UIFont
+                    font = styledText.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
                 }
             }
             attributedText = styledText

@@ -125,7 +125,7 @@ class AdaptiveStyleTests: XCTestCase {
         let testKernAdaptation = { (contentSizeCategory: BonMotContentSizeCategory) -> CGFloat in
             let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
             let adaptedAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
-            return adaptedAttributes[NSAttributedStringKey.kern] as? CGFloat ?? 0
+            return adaptedAttributes[.kern] as? CGFloat ?? 0
         }
 
         XCTAssertEqual(testKernAdaptation(UIContentSizeCategory.extraSmall), 8.1, accuracy: 0.0001)
@@ -178,8 +178,8 @@ class AdaptiveStyleTests: XCTestCase {
             XCTAssertEqual(originalAttributes.count, 3, line: partLine)
             XCTAssertEqual(adaptedAttributes.count, 3, line: partLine)
 
-            let originalFont = originalAttributes[NSAttributedStringKey.font] as? BONFont
-            let adaptedFont = adaptedAttributes[NSAttributedStringKey.font] as? BONFont
+            let originalFont = originalAttributes[.font] as? BONFont
+            let adaptedFont = adaptedAttributes[.font] as? BONFont
 
             XCTAssertNotNil(originalFont, line: partLine)
             XCTAssertNotNil(adaptedFont, line: partLine)
@@ -215,7 +215,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testTabAdaptation() {
         func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {
-            guard let paragraph = string.attribute(NSAttributedStringKey.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
+            guard let paragraph = string.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
                 XCTFail("Unable to get paragraph")
                 return 0
             }
