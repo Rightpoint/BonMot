@@ -41,73 +41,75 @@ public enum Transform {
 
 }
 
-extension Transform: EmbeddedTransformation {
+#if os(iOS) || os(tvOS)
+    extension Transform: EmbeddedTransformation {
 
-    internal enum Keys {
+        internal enum Keys {
 
-        static let name = "name"
-        static let locale = "locale"
+            static let name = "name"
+            static let locale = "locale"
 
-    }
-
-    internal enum Name: String {
-
-        case lowercase
-        case uppercase
-        case capitalized
-        case custom
-
-    }
-
-    internal var name: Name {
-        switch self {
-        case .lowercase, .lowercaseWithLocale: return Name.lowercase
-        case .uppercase, .uppercaseWithLocale: return Name.uppercase
-        case .capitalized, .capitalizedWithLocale: return Name.capitalized
-        case .custom: return Name.custom
-        }
-    }
-
-    public var asDictionary: StyleAttributes {
-        var dict: StyleAttributes = [
-            Keys.name: name.rawValue,
-        ]
-
-        switch self {
-        case .lowercaseWithLocale(let locale):
-            dict[Keys.locale] = locale as NSLocale
-        case .uppercaseWithLocale(let locale):
-            dict[Keys.locale] = locale as NSLocale
-        case .capitalizedWithLocale(let locale):
-            dict[Keys.locale] = locale as NSLocale
-        default:
-            break
         }
 
-        return dict
-    }
+        internal enum Name: String {
 
-    public init?(dictionary dict: StyleAttributes) {
-        guard let name = (dict[Keys.name] as? String).flatMap(Name.init) else {
-            return nil
+            case lowercase
+            case uppercase
+            case capitalized
+            case custom
+
         }
 
-        switch (name, dict[Keys.locale] as? Locale) {
-        case (.lowercase, nil):
-            self = .lowercase
-        case (.uppercase, nil):
-            self = .uppercase
-        case (.capitalized, nil):
-            self = .capitalized
-        case (.lowercase, let locale?):
-            self = .lowercaseWithLocale(locale)
-        case (.uppercase, let locale?):
-            self = .uppercaseWithLocale(locale)
-        case (.capitalized, let locale?):
-            self = .capitalizedWithLocale(locale)
-        default:
-            return nil
+        internal var name: Name {
+            switch self {
+            case .lowercase, .lowercaseWithLocale: return Name.lowercase
+            case .uppercase, .uppercaseWithLocale: return Name.uppercase
+            case .capitalized, .capitalizedWithLocale: return Name.capitalized
+            case .custom: return Name.custom
+            }
         }
-    }
 
-}
+        public var asDictionary: StyleAttributes {
+            var dict: StyleAttributes = [
+                Keys.name: name.rawValue,
+                ]
+
+            switch self {
+            case .lowercaseWithLocale(let locale):
+                dict[Keys.locale] = locale as NSLocale
+            case .uppercaseWithLocale(let locale):
+                dict[Keys.locale] = locale as NSLocale
+            case .capitalizedWithLocale(let locale):
+                dict[Keys.locale] = locale as NSLocale
+            default:
+                break
+            }
+
+            return dict
+        }
+
+        public init?(dictionary dict: StyleAttributes) {
+            guard let name = (dict[Keys.name] as? String).flatMap(Name.init) else {
+                return nil
+            }
+
+            switch (name, dict[Keys.locale] as? Locale) {
+            case (.lowercase, nil):
+                self = .lowercase
+            case (.uppercase, nil):
+                self = .uppercase
+            case (.capitalized, nil):
+                self = .capitalized
+            case (.lowercase, let locale?):
+                self = .lowercaseWithLocale(locale)
+            case (.uppercase, let locale?):
+                self = .uppercaseWithLocale(locale)
+            case (.capitalized, let locale?):
+                self = .capitalizedWithLocale(locale)
+            default:
+                return nil
+            }
+        }
+
+    }
+#endif

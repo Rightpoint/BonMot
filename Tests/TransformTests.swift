@@ -183,6 +183,7 @@ class TransformTests: XCTestCase {
             ], in: styled)
     }
 
+    #if os(iOS) || os(tvOS)
     func testAttribute() {
         let string = "Time remaining: 1 DAY FROM NOW"
         let style = StringStyle(
@@ -200,5 +201,6 @@ class TransformTests: XCTestCase {
             XCTAssertEqual(transformer(string), string.styled(with: style).string)
         }
     }
+    #endif
 
 }
