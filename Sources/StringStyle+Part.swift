@@ -46,6 +46,9 @@ extension StringStyle {
 
         /// The IPA pronunciation of the given range.
         case speakingPronunciation(String)
+
+        /// Whether the spoken text is queued behind, or interrupts, existing spoken content.
+        case shouldQueueSpeechAnnouncement(Bool)
         #endif
 
         case ligatures(Ligatures)
@@ -221,6 +224,9 @@ extension StringStyle {
                         return
                     case let .speakingPronunciation(speakingPronunciation):
                         self.speakingPronunciation = speakingPronunciation
+                        return
+                    case let .shouldQueueSpeechAnnouncement(shouldQueueSpeechAnnouncement):
+                        self.shouldQueueSpeechAnnouncement = shouldQueueSpeechAnnouncement
                         return
                     default:
                         break

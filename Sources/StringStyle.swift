@@ -45,6 +45,7 @@ public struct StringStyle {
     public var speakingLanguage: String?
     public var speakingPitch: Double?
     public var speakingPronunciation: String?
+    public var shouldQueueSpeechAnnouncement: Bool?
     #endif
 
     public var ligatures: Ligatures?
@@ -99,6 +100,7 @@ extension StringStyle {
             theAttributes.update(possibleValue: speakingPitch, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch))
             if #available(iOS 11, tvOS 11, watchOS 4, *) {
                 theAttributes.update(possibleValue: speakingPronunciation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation))
+                theAttributes.update(possibleValue: shouldQueueSpeechAnnouncement as NSNumber?, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement))
             }
         #endif
 
@@ -235,6 +237,7 @@ extension StringStyle {
         speakingPitch = theStringStyle.speakingPitch ?? speakingPitch
             if #available(iOS 11, tvOS 11, watchOS 4, *) {
                 speakingPronunciation = theStringStyle.speakingPronunciation ?? speakingPronunciation
+                shouldQueueSpeechAnnouncement = theStringStyle.shouldQueueSpeechAnnouncement ?? shouldQueueSpeechAnnouncement
             }
         #endif
 
