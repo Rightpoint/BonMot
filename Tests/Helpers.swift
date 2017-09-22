@@ -14,7 +14,7 @@ import XCTest
     import UIKit
     let titleTextStyle = UIFontTextStyle.title1
     let differentTextStyle = UIFontTextStyle.title2
-    @available(iOS 10.0, *)
+    @available(iOS 10.0, tvOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #endif
 

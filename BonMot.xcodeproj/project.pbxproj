@@ -1719,6 +1719,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1731,6 +1732,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
