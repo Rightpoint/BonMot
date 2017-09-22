@@ -133,7 +133,6 @@ class AdaptiveStyleTests: XCTestCase {
         XCTAssertEqual(testKernAdaptation(UIContentSizeCategory.extraExtraExtraLarge), 10.8, accuracy: 0.0001)
     }
 
-    //swiftlint:disable function_body_length
     /// Test that font feature settings overrides persist through
     /// Dynamic Type adaptation
     func testFeatureSettingsAdaptation() {
