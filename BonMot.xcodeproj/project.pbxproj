@@ -191,6 +191,9 @@
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CDC49D8D1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		CDC49D8E1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
 		CDCF0F1F1DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
 		CDCF0F201DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
 		CDCF0F211DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
@@ -333,6 +336,7 @@
 		CD6BE3081E8590E900FB308F /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		CD6BE30E1E85924800FB308F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
+		CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHeadingLevel.swift; sourceTree = "<group>"; };
 		CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextualAlternates.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
 		CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTintingTests.swift; sourceTree = "<group>"; };
@@ -422,6 +426,7 @@
 				ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */,
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
+				CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
 				CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */,
@@ -1124,6 +1129,7 @@
 			files = (
 				AB30D5121D9D9439006ADC9D /* Composable.swift in Sources */,
 				ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */,
+				CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
 				ABA75DD21D99E10400B64705 /* Platform.swift in Sources */,
 				AB30D50F1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				CD3EEE6B1DC92CF8002C41BB /* Ligatures.swift in Sources */,
@@ -1189,6 +1195,7 @@
 				AB560A0A1DA0C17800100D15 /* Tracking+Adaptive.swift in Sources */,
 				ABCD3D7D1D96F02F00273936 /* StyleableUIElement.swift in Sources */,
 				ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */,
+				CDC49D8D1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
 				ABCD3D6B1D96F02F00273936 /* StringStyle.swift in Sources */,
 				CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */,
 				ABCD3D731D96F02F00273936 /* Special.swift in Sources */,
@@ -1249,6 +1256,7 @@
 				AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */,
 				ABCD3DD51D96F6A500273936 /* StringStyle.swift in Sources */,
 				ABCD3DD71D96F6A500273936 /* Special.swift in Sources */,
+				CDC49D8E1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
 				AB8497B31DA16DAE00FE3414 /* EmbeddedTransformation.swift in Sources */,
 				CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */,
 				AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */,

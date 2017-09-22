@@ -49,6 +49,9 @@ extension StringStyle {
 
         /// Whether the spoken text is queued behind, or interrupts, existing spoken content.
         case shouldQueueSpeechAnnouncement(Bool)
+
+        /// The accessibility heading level of the text.
+        case headingLevel(HeadingLevel)
         #endif
 
         case ligatures(Ligatures)
@@ -227,6 +230,9 @@ extension StringStyle {
                         return
                     case let .shouldQueueSpeechAnnouncement(shouldQueueSpeechAnnouncement):
                         self.shouldQueueSpeechAnnouncement = shouldQueueSpeechAnnouncement
+                        return
+                    case let .headingLevel(headingLevel):
+                        self.headingLevel = headingLevel
                         return
                     default:
                         break

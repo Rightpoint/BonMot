@@ -109,6 +109,7 @@ class ComposableTests: XCTestCase {
             if #available(iOS 11, tvOS 11, watchOS 4, *) {
                 check(forPart: .speakingPronunciation("ˈɡɪər"), NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation), "ˈɡɪər")
                 check(forPart: .shouldQueueSpeechAnnouncement(true), NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement), true as NSNumber)
+                check(forPart: .headingLevel(.four), NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel), 4 as NSNumber)
             }
         #endif
     }
