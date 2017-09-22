@@ -399,9 +399,9 @@ class StringStyleTests: XCTestCase {
         let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
         let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
 
-        guard let font0 = attrs0[.font] as? BONFont else { XCTFail(); return }
-        guard let font1 = attrs1[.font] as? BONFont else { XCTFail(); return }
-        guard let font2 = attrs2[.font] as? BONFont else { XCTFail(); return }
+        guard let font0 = attrs0[.font] as? BONFont else { XCTFail("font0 not found"); return }
+        guard let font1 = attrs1[.font] as? BONFont else { XCTFail("font1 not found"); return }
+        guard let font2 = attrs2[.font] as? BONFont else { XCTFail("font2 not found"); return }
 
         let descriptor0 = font0.fontDescriptor
         let descriptor1 = font1.fontDescriptor
