@@ -96,10 +96,9 @@ extension StringStyle {
         #if os(iOS) || os(tvOS) || os(watchOS)
             theAttributes.update(possibleValue: speaksPunctuation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation))
             theAttributes.update(possibleValue: speakingLanguage, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage))
-            theAttributes.update(possibleValue: speakingPitch, forKey: UIAccessibilitySpeechAttributePitch)
             theAttributes.update(possibleValue: speakingPitch, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch))
             if #available(iOS 11, tvOS 11, watchOS 4, *) {
-                theAttributes.update(possibleValue: speakingPronunciation, forKey: UIAccessibilitySpeechAttributeIPANotation)
+                theAttributes.update(possibleValue: speakingPronunciation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation))
             }
         #endif
 

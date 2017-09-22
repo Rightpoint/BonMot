@@ -118,11 +118,11 @@ class StringStyleTests: XCTestCase {
     }
 
     func testPronuciationStyle() {
-        let style = StringStyle(.speakingPronunciation("ˈɡɪər"))
-        for (style, fullstyle) in additiviePermutations(for: style) {
-            XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-            if #available(iOS 11, tvOS 11, watchOS 4, *) {
-                BONAssert(attributes: style.attributes, key: UIAccessibilitySpeechAttributeIPANotation, value: "ˈɡɪər")
+        if #available(iOS 11, tvOS 11, watchOS 4, *) {
+            let style = StringStyle(.speakingPronunciation("ˈɡɪər"))
+            for (style, fullstyle) in additiviePermutations(for: style) {
+                XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation), value: "ˈɡɪər")
             }
         }
     }
