@@ -199,6 +199,7 @@ class TransformTests: XCTestCase {
 
         if let transformer = transform?.transformer {
             XCTAssertEqual(transformer(string), string.styled(with: style).string)
+            XCTAssertEqual(transformer(string), "time remaining: 1 day from now")
         }
     }
     #endif
