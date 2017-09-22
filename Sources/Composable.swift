@@ -65,26 +65,30 @@ public extension Composable {
 
     /// Create a new `NSAttributedString` with the style specified.
     ///
-    /// - parameter style:         The style to use.
+    /// - parameter style: The style to use.
     /// - parameter overrideParts: The style parts to override on the base style.
+    /// - parameter stripTrailingKerning: whether to strip NSAttributedStringKey.kern
+    ///                                   from the last character of the result.
     /// - returns: A new `NSAttributedString`.
-    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
+    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part..., stripTrailingKerning: Bool = true) -> NSAttributedString {
         let string = NSMutableAttributedString()
         let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
-        append(to: string, baseStyle: newStyle, isLastElement: !Thread.current.isCurrentlyComposing)
+        append(to: string, baseStyle: newStyle, isLastElement: stripTrailingKerning && !Thread.current.isCurrentlyComposing)
         return string
     }
 
     /// Create a new `NSAttributedString` with the style parts specified.
     ///
     /// - parameter parts: The style parts to use.
+    /// - parameter stripTrailingKerning: whether to strip NSAttributedStringKey.kern
+    ///                                   from the last character of the result.
     /// - returns: A new `NSAttributedString`.
-    public func styled(with parts: StringStyle.Part...) -> NSAttributedString {
+    public func styled(with parts: StringStyle.Part..., stripTrailingKerning: Bool = true) -> NSAttributedString {
         var style = StringStyle()
         for part in parts {
             style.update(part: part)
         }
-        return styled(with: style)
+        return styled(with: style, stripTrailingKerning: stripTrailingKerning)
     }
 
 }
@@ -178,7 +182,7 @@ extension String: Composable {
     /// - parameter baseStyle: The style to use for this string.
     public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         attributedString.append(baseStyle.attributedString(from: self))
-        if isLastElement || !Thread.current.isCurrentlyComposing {
+        if isLastElement && !Thread.current.isCurrentlyComposing {
             attributedString.removeKerningFromLastCharacter()
         }
     }
