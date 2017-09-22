@@ -43,6 +43,9 @@ extension StringStyle {
         /// The pitch of the voice used to read the text aloud. The range is
         /// 0 to 2, where 0 is the lowest, 2 is the highest, and 1 is the default.
         case speakingPitch(Double)
+
+        /// The IPA pronunciation of the given range.
+        case speakingPronunciation(String)
         #endif
 
         case ligatures(Ligatures)
@@ -215,6 +218,9 @@ extension StringStyle {
                         return
                     case let .speakingPitch(speakingPitch):
                         self.speakingPitch = speakingPitch
+                        return
+                    case let .speakingPronunciation(speakingPronunciation):
+                        self.speakingPronunciation = speakingPronunciation
                         return
                     default:
                         break

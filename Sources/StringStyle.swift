@@ -44,6 +44,7 @@ public struct StringStyle {
     public var speaksPunctuation: Bool?
     public var speakingLanguage: String?
     public var speakingPitch: Double?
+    public var speakingPronunciation: String?
     #endif
 
     public var ligatures: Ligatures?
@@ -95,7 +96,11 @@ extension StringStyle {
         #if os(iOS) || os(tvOS) || os(watchOS)
             theAttributes.update(possibleValue: speaksPunctuation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation))
             theAttributes.update(possibleValue: speakingLanguage, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage))
+            theAttributes.update(possibleValue: speakingPitch, forKey: UIAccessibilitySpeechAttributePitch)
             theAttributes.update(possibleValue: speakingPitch, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch))
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                theAttributes.update(possibleValue: speakingPronunciation, forKey: UIAccessibilitySpeechAttributeIPANotation)
+            }
         #endif
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
@@ -229,6 +234,9 @@ extension StringStyle {
         speaksPunctuation = theStringStyle.speaksPunctuation ?? speaksPunctuation
         speakingLanguage = theStringStyle.speakingLanguage ?? speakingLanguage
         speakingPitch = theStringStyle.speakingPitch ?? speakingPitch
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                speakingPronunciation = theStringStyle.speakingPronunciation ?? speakingPronunciation
+            }
         #endif
 
         lineSpacing = theStringStyle.lineSpacing ?? lineSpacing

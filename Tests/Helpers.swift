@@ -106,6 +106,7 @@ let fullStyle: StringStyle = {
         fullStyle.speaksPunctuation = true
         fullStyle.speakingLanguage = "pt-BR" // Brazilian Portuguese
         fullStyle.speakingPitch = 1.5
+        fullStyle.speakingPronunciation = "ˈɡɪər"
     #endif
 
     fullStyle.ligatures = .disabled // not the default value
