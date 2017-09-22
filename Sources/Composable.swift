@@ -71,7 +71,7 @@ public extension Composable {
     public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
         let string = NSMutableAttributedString()
         let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
-        append(to: string, baseStyle: newStyle)
+        append(to: string, baseStyle: newStyle, isLastElement: !Thread.current.isCurrentlyComposing)
         return string
     }
 
@@ -105,14 +105,17 @@ public extension NSAttributedString {
     /// - parameter separator: The separator to insert between every pair of
     ///                        elements in `composables`.
     /// - returns: A new `NSAttributedString`.
-    @nonobjc public static func composed(of composables: [Composable], baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
+    @nonobjc public static func composed(of composables: @autoclosure () -> [Composable], baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
+        Thread.current.isCurrentlyComposing = true
+        defer { Thread.current.isCurrentlyComposing = false }
         let string = NSMutableAttributedString()
         string.beginEditing()
-        let lastComposableIndex = composables.endIndex
-        for (index, composable) in composables.enumerated() {
+        let composablesResult = composables()
+        let lastComposableIndex = composablesResult.endIndex
+        for (index, composable) in composablesResult.enumerated() {
             composable.append(to: string, baseStyle: baseStyle, isLastElement: index == lastComposableIndex - 1)
             if let separator = separator {
-                if index != composables.indices.last {
+                if index != composablesResult.indices.last {
                     separator.append(to: string, baseStyle: baseStyle)
                 }
             }
@@ -158,9 +161,8 @@ extension NSAttributedString: Composable {
             attributedString.append(newString)
         }
 
-        if isLastElement && length != 0 {
-            let lastCharacterRange = NSRange(location: attributedString.length - 1, length: 1)
-            attributedString.removeAttribute(.kern, range: lastCharacterRange)
+        if isLastElement {
+            attributedString.removeKerningFromLastCharacter()
         }
     }
 
@@ -176,6 +178,9 @@ extension String: Composable {
     /// - parameter baseStyle: The style to use for this string.
     public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         attributedString.append(baseStyle.attributedString(from: self))
+        if isLastElement || !Thread.current.isCurrentlyComposing {
+            attributedString.removeKerningFromLastCharacter()
+        }
     }
 
 }
@@ -238,6 +243,32 @@ extension Special: Composable {
     /// - parameter baseStyle: The style to use.
     public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         description.append(to: attributedString, baseStyle: baseStyle)
+    }
+
+}
+
+extension NSMutableAttributedString {
+
+    func removeKerningFromLastCharacter() {
+        guard length != 0 else {
+            return
+        }
+
+        let lastCharacterRange = NSRange(location: length - 1, length: 1)
+        removeAttribute(.kern, range: lastCharacterRange)
+    }
+
+}
+
+extension Thread {
+
+    var isCurrentlyComposing: Bool {
+        get {
+            return Thread.current.threadDictionary["com.raizlabs.bonmot.currentlyComposing"] as? Bool ?? false
+        }
+        set {
+            Thread.current.threadDictionary["com.raizlabs.bonmot.currentlyComposing"] = newValue
+        }
     }
 
 }
