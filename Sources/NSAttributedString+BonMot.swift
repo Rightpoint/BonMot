@@ -64,7 +64,7 @@ extension NSAttributedString {
         let unassignedSuffixReplacement = "'/>"
 
         var currentIndex: Int = 0
-        for character in debug.string.characters {
+        for character in debug.string {
             let utf16LengthOfCharacter = String(character).utf16.count
             let original = String(character) as NSString
             let transformed = original.applyingTransform(StringTransform.toUnicodeName, reverse: false)
