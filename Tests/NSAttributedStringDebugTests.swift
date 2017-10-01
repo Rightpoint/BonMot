@@ -82,11 +82,11 @@ class NSAttributedStringDebugTests: XCTestCase {
         style1.lineSpacing = 1000
         let style2 = NSMutableParagraphStyle()
         style2.headIndent = 1000
-        let string1 = NSMutableAttributedString(string: "first part ", attributes: [NSParagraphStyleAttributeName: style1])
-        let string2 = NSAttributedString(string: "second part.\n", attributes: [NSParagraphStyleAttributeName: style2])
+        let string1 = NSMutableAttributedString(string: "first part ", attributes: [.paragraphStyle: style1])
+        let string2 = NSAttributedString(string: "second part.\n", attributes: [.paragraphStyle: style2])
         string1.append(string2)
-        let p1 = string1.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle
-        let p2 = string1.attribute(NSParagraphStyleAttributeName, at: string1.length - 1, effectiveRange: nil) as? NSParagraphStyle
+        let p1 = string1.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle
+        let p2 = string1.attribute(.paragraphStyle, at: string1.length - 1, effectiveRange: nil) as? NSParagraphStyle
         XCTAssertNotEqual(p1, p2)
     }
 

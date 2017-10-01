@@ -54,7 +54,7 @@ extension StringStyle {
         case firstLineHeadIndent(CGFloat)
         case headIndent(CGFloat)
         case tailIndent(CGFloat)
-        case lineBreakMode(NSLineBreakMode)
+        case lineBreakMode(NSParagraphStyle.LineBreakMode)
         case minimumLineHeight(CGFloat)
         case maximumLineHeight(CGFloat)
         case baseWritingDirection(NSWritingDirection)
@@ -122,19 +122,6 @@ extension StringStyle {
         }
     }
 
-    #if swift(>=3.0)
-    #else
-    /// Create a `StringStyle` from a part. This is needed for Swift 2.3
-    /// to disambiguate argument type in certain cases.
-    ///
-    /// - Parameter part: a `Part`
-    public init(_ part: Part) {
-        self.init()
-        update(part: part)
-    }
-    #endif
-
-    #if swift(>=3.0)
     /// Derive a new `StringStyle` based on this style, updated with zero or
     /// more `Part`s.
     ///
@@ -147,20 +134,6 @@ extension StringStyle {
         }
         return style
     }
-    #else
-    /// Derive a new `StringStyle` based on this style, updated with zero or
-    /// more `Part`s.
-    ///
-    /// - Parameter parts: Zero or more `Part`s
-    /// - Returns: A newly configured `StringStyle`
-    public func byAdding(parts: Part...) -> StringStyle {
-        var style = self
-        for part in parts {
-            style.update(part: part)
-        }
-        return style
-    }
-    #endif
 
     //swiftlint:disable function_body_length
     //swiftlint:disable cyclomatic_complexity

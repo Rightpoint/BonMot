@@ -82,12 +82,12 @@ class ComposableTests: XCTestCase {
                                             context: nil
                 ).width
 
-            XCTAssertEqualWithAccuracy(expectedWidth, width, accuracy: 1.0, line: line)
+            XCTAssertEqual(expectedWidth, width, accuracy: 1.0, line: line)
         }
     }
 
     func testBaseStyleIsOverridden() {
-        func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: String, _ expected: T, line: UInt = #line) {
+        func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: NSAttributedStringKey, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
@@ -95,17 +95,17 @@ class ComposableTests: XCTestCase {
             XCTAssertEqual(value, expected, line: line)
         }
         let font = BONFont(name: "Avenir-Book", size: 28)!
-        check(forPart: .color(.colorA), NSForegroundColorAttributeName, BONColor.colorA)
-        check(forPart: .backgroundColor(.colorA), NSBackgroundColorAttributeName, BONColor.colorA)
-        check(forPart: .font(font), NSFontAttributeName, font)
-        check(forPart: .baselineOffset(10), NSBaselineOffsetAttributeName, CGFloat(10))
-        check(forPart: .tracking(.point(10)), NSKernAttributeName, CGFloat(10))
-        check(forPart: .link(URL(string: "http://thebestwords.com/")!), NSLinkAttributeName, URL(string: "http://thebestwords.com/")!)
-        check(forPart: .ligatures(.disabled), NSLigatureAttributeName, 0)
+        check(forPart: .color(.colorA), .foregroundColor, BONColor.colorA)
+        check(forPart: .backgroundColor(.colorA), .backgroundColor, BONColor.colorA)
+        check(forPart: .font(font), .font, font)
+        check(forPart: .baselineOffset(10), .baselineOffset, CGFloat(10))
+        check(forPart: .tracking(.point(10)), .kern, CGFloat(10))
+        check(forPart: .link(URL(string: "http://thebestwords.com/")!), .link, URL(string: "http://thebestwords.com/")!)
+        check(forPart: .ligatures(.disabled), .ligature, 0)
         #if os(iOS) || os(tvOS) || os(watchOS)
-            check(forPart: .speaksPunctuation(true), UIAccessibilitySpeechAttributePunctuation, true)
-            check(forPart: .speakingLanguage("en-US"), UIAccessibilitySpeechAttributeLanguage, "en-US")
-            check(forPart: .speakingPitch(0.5), UIAccessibilitySpeechAttributePitch, 0.5)
+            check(forPart: .speaksPunctuation(true), NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation), true)
+            check(forPart: .speakingLanguage("en-US"), NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage), "en-US")
+            check(forPart: .speakingPitch(0.5), NSAttributedStringKey(UIAccessibilitySpeechAttributePitch), 0.5)
         #endif
     }
 
@@ -114,7 +114,7 @@ class ComposableTests: XCTestCase {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
-            guard let paragraphStyle = string.attributes(at: 0, effectiveRange: nil)[NSParagraphStyleAttributeName] as? NSParagraphStyle else {
+            guard let paragraphStyle = string.attributes(at: 0, effectiveRange: nil)[.paragraphStyle] as? NSParagraphStyle else {
                 XCTFail("No paragraph style")
                 return
             }
@@ -137,10 +137,10 @@ class ComposableTests: XCTestCase {
     }
 
     func testInitialParagraphStyle() {
-        let style = StringStyle(.extraAttributes([NSParagraphStyleAttributeName: NSParagraphStyle()]))
+        let style = StringStyle(.extraAttributes([.paragraphStyle: NSParagraphStyle()]))
 
         let string = NSAttributedString.composed(of: [Tab.headIndent(10), "ParagraphStyle mutable promotion"], baseStyle: style)
-        XCTAssertNotNil(string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
+        XCTAssertNotNil(string.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSMutableParagraphStyle)
     }
 
     func testCompositionWithChangingParagraphStyles() {
@@ -150,11 +150,11 @@ class ComposableTests: XCTestCase {
             " headIndent "
                 .styled(with: .headIndent(10)),
             ], baseStyle: StringStyle(.firstLineHeadIndent(5)))
-        guard let paragraphStart = string.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
+        guard let paragraphStart = string.attribute(.paragraphStyle, at: 0, effectiveRange: nil) as? NSParagraphStyle else {
             XCTFail("No paragraph style at start")
             return
         }
-        guard let paragraphEnd = string.attribute(NSParagraphStyleAttributeName, at: string.length - 1, effectiveRange: nil) as? NSParagraphStyle else {
+        guard let paragraphEnd = string.attribute(.paragraphStyle, at: string.length - 1, effectiveRange: nil) as? NSParagraphStyle else {
             XCTFail("No paragraph style at end")
             return
         }

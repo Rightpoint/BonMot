@@ -17,8 +17,8 @@ extension Tracking: AdaptiveStyleTransformation {
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes? {
         if case .adobe = self {
             var attributes = theAttributes
-            let styledFont = theAttributes[NSFontAttributeName] as? UIFont
-            attributes.update(possibleValue: kerning(forFont: styledFont), forKey: NSKernAttributeName)
+            let styledFont = theAttributes[.font] as? UIFont
+            attributes.update(possibleValue: kerning(forFont: styledFont), forKey: .kern)
             return attributes
         }
         else {

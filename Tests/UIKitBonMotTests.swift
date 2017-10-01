@@ -38,14 +38,14 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(label.bonMotStyle)
 
         XCTAssertEqual(label.styledText, label.text)
-        XCTAssertEqual((label.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont)!, expectedFont)
-        BONAssertColor(inAttributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+        XCTAssertEqual((label.attributedText?.attributes(at: 0, effectiveRange: nil)[.font] as? UIFont)!, expectedFont)
+        BONAssertColor(inAttributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), key: .foregroundColor, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
-        if #available(iOS 10.0, *) {
-            label.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            label.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             BONAssert(attributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
-            BONAssertColor(inAttributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+            BONAssertColor(inAttributes: label.attributedText?.attributes(at: 0, effectiveRange: nil), key: .foregroundColor, color: adaptiveStyle.color!)
         }
     }
 
@@ -61,14 +61,14 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(textField.bonMotStyle)
 
         XCTAssertEqual(textField.styledText, textField.text)
-        XCTAssertEqual((textField.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont)!, expectedFont)
-        BONAssertColor(inAttributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+        XCTAssertEqual((textField.attributedText?.attributes(at: 0, effectiveRange: nil)[.font] as? UIFont)!, expectedFont)
+        BONAssertColor(inAttributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), key: .foregroundColor, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
-        if #available(iOS 10.0, *) {
-            textField.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            textField.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             BONAssert(attributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
-            BONAssertColor(inAttributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+            BONAssertColor(inAttributes: textField.attributedText?.attributes(at: 0, effectiveRange: nil), key: .foregroundColor, color: adaptiveStyle.color!)
         }
     }
 
@@ -84,14 +84,14 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(textView.bonMotStyle)
 
         XCTAssertEqual(textView.styledText, textView.text)
-        XCTAssertEqual(textView.attributedText?.attributes(at: 0, effectiveRange: nil)[NSFontAttributeName] as? UIFont, expectedFont)
-        BONAssertColor(inAttributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+        XCTAssertEqual(textView.attributedText?.attributes(at: 0, effectiveRange: nil)[.font] as? UIFont, expectedFont)
+        BONAssertColor(inAttributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), key: .foregroundColor, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
-        if #available(iOS 10.0, *) {
-            textView.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            textView.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             BONAssert(attributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), query: { $0.pointSize }, float: expectedFont.pointSize + 2)
-            BONAssertColor(inAttributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+            BONAssertColor(inAttributes: textView.attributedText?.attributes(at: 0, effectiveRange: nil), key: .foregroundColor, color: adaptiveStyle.color!)
         }
     }
 
@@ -107,15 +107,15 @@ class UIKitBonMotTests: XCTestCase {
         XCTAssertNotNil(button.bonMotStyle)
 
         var attributes = button.attributedTitle(for: .normal)?.attributes(at: 0, effectiveRange: nil)
-        XCTAssertEqual((attributes?[NSFontAttributeName] as? UIFont)!, expectedFont)
-        BONAssertColor(inAttributes: attributes, key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+        XCTAssertEqual((attributes?[.font] as? UIFont)!, expectedFont)
+        BONAssertColor(inAttributes: attributes, key: .foregroundColor, color: adaptiveStyle.color!)
 
         // Update the trait collection and ensure the font grows.
-        if #available(iOS 10.0, *) {
-            button.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge.compatible))
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            button.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
             attributes = button.attributedTitle(for: .normal)?.attributes(at: 0, effectiveRange: nil)
             BONAssert(attributes: attributes, query: { $0.pointSize }, float: expectedFont.pointSize + 2)
-            BONAssertColor(inAttributes: attributes, key: NSForegroundColorAttributeName, color: adaptiveStyle.color!)
+            BONAssertColor(inAttributes: attributes, key: .foregroundColor, color: adaptiveStyle.color!)
         }
     }
 

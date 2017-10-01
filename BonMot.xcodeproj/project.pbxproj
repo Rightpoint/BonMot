@@ -13,7 +13,7 @@
 			buildPhases = (
 				ABBD124E1DA469BB0084FBCC /* Build and test macOS */,
 				CD15C4071DBE660700B6FF7A /* Build and test iOS */,
-				CD0DDB271DC2B57E00805488 /* Build iOS example project */,
+				CDC513361F36B1FA00EA1712 /* Build iOS example project */,
 				CD15C4081DBE660800B6FF7A /* Build and test tvOS */,
 				CD15C4091DBE660A00B6FF7A /* Build watchOS */,
 			);
@@ -803,7 +803,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Raizlabs;
 				TargetAttributes = {
 					AB8497DA1DA45B9C00FE3414 = {
@@ -816,10 +816,12 @@
 					};
 					ABCBFD561D96E61000FAD37A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					ABCBFD5E1D96E61100FAD37A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -943,21 +945,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-OSX\" \"macosx\" \"arch=x86_64\"\n";
-		};
-		CD0DDB271DC2B57E00805488 /* Build iOS example project */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build iOS example project";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n\nbuild \"build\" \"Example-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4071DBE660700B6FF7A /* Build and test iOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -971,7 +959,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4081DBE660800B6FF7A /* Build and test tvOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -985,7 +973,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-tvOS\" \"appletvsimulator\" \"name=Apple TV 1080p\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4091DBE660A00B6FF7A /* Build watchOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -999,7 +987,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n# watchOS doesn't support XCTest\nbuild \"build\" \"BonMot-watchOS\" \"watchsimulator\" \"name=Apple Watch - 38mm\"\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD4B2FCC1D9B0AB0007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1112,6 +1100,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		CDC513361F36B1FA00EA1712 /* Build iOS example project */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build iOS example project";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1465,8 +1467,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1481,8 +1484,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1500,7 +1504,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1508,8 +1514,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1538,7 +1548,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1553,7 +1564,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1561,8 +1574,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1583,7 +1600,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1701,6 +1719,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1713,6 +1732,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

@@ -179,7 +179,7 @@ extension BONImage: Composable {
         let attachmentString = NSAttributedString(attachment: attachment).mutableStringCopy()
         // Remove the baseline offset from the attributes so it isn't applied twice
         var attributes = baseStyle.attributes
-        attributes[NSBaselineOffsetAttributeName] = nil
+        attributes[.baselineOffset] = nil
         attachmentString.addAttributes(attributes, range: NSRange(location: 0, length: attachmentString.length))
 
         attributedString.append(attachmentString)

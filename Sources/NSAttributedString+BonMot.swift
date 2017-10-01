@@ -35,7 +35,7 @@ extension NSAttributedString {
                 replacementString = nil
             case .objectReplacementCharacter?:
                 #if os(iOS) || os(tvOS) || os(OSX)
-                    if let attachment = attribute(NSAttachmentAttributeName, at: index, effectiveRange: nil) as? NSTextAttachment, let image = attachment.image {
+                    if let attachment = attribute(.attachment, at: index, effectiveRange: nil) as? NSTextAttachment, let image = attachment.image {
                         replacementString = String(format: "image size='%.3gx%.3g'", image.size.width, image.size.height)
                     }
                     else {
@@ -64,7 +64,7 @@ extension NSAttributedString {
         let unassignedSuffixReplacement = "'/>"
 
         var currentIndex: Int = 0
-        for character in debug.string.characters {
+        for character in debug.string {
             let utf16LengthOfCharacter = String(character).utf16.count
             let original = String(character) as NSString
             let transformed = original.applyingTransform(StringTransform.toUnicodeName, reverse: false)
