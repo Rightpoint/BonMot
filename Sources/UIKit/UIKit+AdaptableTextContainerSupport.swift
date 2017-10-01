@@ -32,8 +32,8 @@ extension UIApplication {
     @objc internal func bon_notifyContainedAdaptiveContentSizeContainers(fromNotification notification: NSNotification) {
         // First notify the app delegate if it conforms to AdaptableTextContainer.
         if let container = delegate, let traitCollection = container.window??.traitCollection {
-            if NSObject.responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
-                NSObject.perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
+            if container.responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
+                container.perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
             }
         }
 
@@ -75,8 +75,8 @@ extension UIView {
         for view in subviews {
             view.notifyContainedAdaptiveContentSizeContainers()
         }
-        if NSObject.responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
-            NSObject.perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
+        if responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
+            perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
         }
     }
 
