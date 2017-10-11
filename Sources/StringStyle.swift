@@ -44,6 +44,9 @@ public struct StringStyle {
     public var speaksPunctuation: Bool?
     public var speakingLanguage: String?
     public var speakingPitch: Double?
+    public var speakingPronunciation: String?
+    public var shouldQueueSpeechAnnouncement: Bool?
+    public var headingLevel: HeadingLevel?
     #endif
 
     public var ligatures: Ligatures?
@@ -96,6 +99,11 @@ extension StringStyle {
             theAttributes.update(possibleValue: speaksPunctuation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation))
             theAttributes.update(possibleValue: speakingLanguage, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage))
             theAttributes.update(possibleValue: speakingPitch, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch))
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                theAttributes.update(possibleValue: speakingPronunciation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation))
+                theAttributes.update(possibleValue: shouldQueueSpeechAnnouncement as NSNumber?, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement))
+                theAttributes.update(possibleValue: headingLevel?.rawValue as NSNumber?, forKey: NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel))
+            }
         #endif
 
         let paragraph = StringStyle.paragraph(from: theAttributes)
@@ -229,6 +237,11 @@ extension StringStyle {
         speaksPunctuation = theStringStyle.speaksPunctuation ?? speaksPunctuation
         speakingLanguage = theStringStyle.speakingLanguage ?? speakingLanguage
         speakingPitch = theStringStyle.speakingPitch ?? speakingPitch
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                speakingPronunciation = theStringStyle.speakingPronunciation ?? speakingPronunciation
+                shouldQueueSpeechAnnouncement = theStringStyle.shouldQueueSpeechAnnouncement ?? shouldQueueSpeechAnnouncement
+                headingLevel = theStringStyle.headingLevel ?? headingLevel
+            }
         #endif
 
         lineSpacing = theStringStyle.lineSpacing ?? lineSpacing

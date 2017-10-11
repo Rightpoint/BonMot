@@ -117,6 +117,36 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testPronuciationStyle() {
+        if #available(iOS 11, tvOS 11, watchOS 4, *) {
+            let style = StringStyle(.speakingPronunciation("ˈɡɪər"))
+            for (style, fullstyle) in additiviePermutations(for: style) {
+                XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation), value: "ˈɡɪər")
+            }
+        }
+    }
+
+    func testShouldQueueSpeechAnnouncement() {
+        if #available(iOS 11, tvOS 11, watchOS 4, *) {
+            let style = StringStyle(.shouldQueueSpeechAnnouncement(true))
+            for (style, fullstyle) in additiviePermutations(for: style) {
+                XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement), value: true as NSNumber)
+            }
+        }
+    }
+
+    func testHeadingLevel() {
+        if #available(iOS 11, tvOS 11, watchOS 4, *) {
+            let style = StringStyle(.headingLevel(.four))
+            for (style, fullstyle) in additiviePermutations(for: style) {
+                XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
+                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel), value: 4 as NSNumber)
+            }
+        }
+    }
+
     #endif
 
     func testAlignmentStyle() {

@@ -106,6 +106,11 @@ class ComposableTests: XCTestCase {
             check(forPart: .speaksPunctuation(true), NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation), true)
             check(forPart: .speakingLanguage("en-US"), NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage), "en-US")
             check(forPart: .speakingPitch(0.5), NSAttributedStringKey(UIAccessibilitySpeechAttributePitch), 0.5)
+            if #available(iOS 11, tvOS 11, watchOS 4, *) {
+                check(forPart: .speakingPronunciation("ˈɡɪər"), NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation), "ˈɡɪər")
+                check(forPart: .shouldQueueSpeechAnnouncement(true), NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement), true as NSNumber)
+                check(forPart: .headingLevel(.four), NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel), 4 as NSNumber)
+            }
         #endif
     }
 
