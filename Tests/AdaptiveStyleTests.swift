@@ -232,7 +232,7 @@ class AdaptiveStyleTests: XCTestCase {
 
     func testMergingEmbeddedTransformations() {
         let string = NSAttributedString.composed(of: [
-            "Hello".styled(with:.font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
+            "Hello".styled(with: .font(UIFont(name: "Avenir-Book", size: 28)!), .tracking(.adobe(3.0))),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
         let attributes = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? [Any]
         XCTAssertEqual(attributes?.count, 2)
@@ -244,8 +244,8 @@ class AdaptiveStyleTests: XCTestCase {
             Tab.headIndent(10),
             ], baseStyle: StringStyle(.font(UIFont(name: "Avenir-Book", size: 28)!), .adapt(.control)))
 
-        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at:0, effectiveRange: nil) as? [Any]
-        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at:string.length - 1, effectiveRange: nil) as? [Any]
+        let attributes1 = string.attribute(BonMotTransformationsAttributeName, at: 0, effectiveRange: nil) as? [Any]
+        let attributes2 = string.attribute(BonMotTransformationsAttributeName, at: string.length - 1, effectiveRange: nil) as? [Any]
         XCTAssertEqual(attributes1?.count, 2)
         XCTAssertEqual(attributes2?.count, 2)
     }

@@ -11,7 +11,7 @@
     import Foundation
     import CoreText
 
-    typealias FontFeatureDictionary = [String : Any]
+    typealias FontFeatureDictionary = [String: Any]
 
     public extension BONFont {
 

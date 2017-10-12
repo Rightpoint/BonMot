@@ -172,7 +172,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
 
     // Can't use block-based KVO until we can use \NSLayoutConstraint.firstItem
     //swiftlint:disable:next block_based_kvo
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &TextAlignmentConstraintKVOContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return

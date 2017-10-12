@@ -329,7 +329,7 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         currentString = nil
     }
 
-    @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         foundNewString()
         enter(element: elementName, attributes: attributeDict)
     }
