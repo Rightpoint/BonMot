@@ -23,6 +23,12 @@ extension NSAttributedString {
         return copy
     }
 
+    @nonobjc func immutableCopy() -> NSAttributedString {
+        guard let copy = copy() as? NSAttributedString else {
+            fatalError("Failed to copy() \(self)")
+        }
+        return copy
+    }
 }
 
 extension NSParagraphStyle {

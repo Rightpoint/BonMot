@@ -137,6 +137,15 @@ extension StringStyle {
     /// - Parameter parts: Zero or more `Part`s
     /// - Returns: A newly configured `StringStyle`
     public func byAdding(_ parts: Part...) -> StringStyle {
+        return byAdding(parts)
+    }
+
+    /// Derive a new `StringStyle` based on this style, updated with zero or
+    /// more `Part`s.
+    ///
+    /// - Parameter parts: an array of `Part`s
+    /// - Returns: A newly configured `StringStyle`
+    public func byAdding(_ parts: [Part]) -> StringStyle {
         var style = self
         for part in parts {
             style.update(part: part)

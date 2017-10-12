@@ -98,6 +98,19 @@ public extension NSAttributedString {
         return string
     }
 
+    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
+        let newStyle = style.byAdding(overrideParts)
+        let newAttributes = newStyle.attributes
+
+        let mutableSelf = mutableStringCopy()
+        let fullRange = NSRange(location: 0, length: mutableSelf.string.utf16.count)
+
+        for (key, value) in newAttributes {
+            mutableSelf.addAttribute(key, value: value, range: fullRange)
+        }
+        return mutableSelf.immutableCopy()
+    }
+
 }
 
 extension NSAttributedString: Composable {

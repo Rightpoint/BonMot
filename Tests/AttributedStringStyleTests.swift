@@ -630,5 +630,32 @@ class StringStyleTests: XCTestCase {
         BONAssert(attributes: style.attributes, key: .backgroundColor, value: BONColor.colorB)
     }
 
+    func testOverridingProperties() {
+        // Parent style is white with font A
+        let parentStyle = StringStyle(.font(.fontA), .color(.white))
+        BONAssertEqualFonts(parentStyle.font!, .fontA)
+        XCTAssertEqual(parentStyle.color, .white)
+
+        let parentAttributedString = "foo".styled(with: parentStyle)
+
+        // Child style is black with font A
+        let childStyle = parentStyle.byAdding(.color(.black))
+
+        BONAssertEqualFonts(childStyle.font!, .fontA)
+        XCTAssertEqual(childStyle.color, .black)
+
+        let childAttributedString = parentAttributedString.styled(with: childStyle)
+        let childAttributes = childAttributedString.attributes(at: 0, effectiveRange: nil)
+        if let childFont = childAttributes[.font] as? BONFont {
+            BONAssertEqualFonts(childFont, .fontA)
+        }
+        else {
+            XCTFail("Font should not be nil")
+        }
+
+        // Child attributes should be overridden with black font
+        BONAssert(attributes: childAttributes, key: .foregroundColor, value: BONColor.black)
+    }
+
 }
 //swiftlint:enable file_length
