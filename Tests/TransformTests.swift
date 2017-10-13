@@ -149,8 +149,7 @@ class TransformTests: XCTestCase {
 
     func testCustom() {
         let doubler = { (string: String) -> String in
-            let characters = string.characters
-            let doubled = characters.flatMap { (character: Character) -> [Character] in
+            let doubled = string.flatMap { (character: Character) -> [Character] in
                 switch character {
                 case " ": return [character]
                 default: return [character, character]
