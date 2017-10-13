@@ -207,7 +207,6 @@ class StringStyleTests: XCTestCase {
             ]
 
         checkKerningValues(customRangesToValues, startingOnLine: customRangesToValuesLine, in: customStyled)
-
     }
 
     func testNumberSpacingStyle() {
