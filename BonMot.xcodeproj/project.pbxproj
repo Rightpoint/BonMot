@@ -191,6 +191,10 @@
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
 		CDC49D8D1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
 		CDC49D8E1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
 		CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
@@ -336,6 +340,7 @@
 		CD6BE3081E8590E900FB308F /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		CD6BE30E1E85924800FB308F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
+		CDC0CE351F90730700E144F7 /* AccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTests.swift; sourceTree = "<group>"; };
 		CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHeadingLevel.swift; sourceTree = "<group>"; };
 		CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextualAlternates.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
@@ -591,6 +596,7 @@
 				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
 				CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */,
 				CD6BE30E1E85924800FB308F /* TransformTests.swift */,
+				CDC0CE351F90730700E144F7 /* AccessTests.swift */,
 				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
@@ -1157,6 +1163,7 @@
 				CDEA84391D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
 				ABA75DF01D99E10F00B64705 /* Compatibility+Tests.swift in Sources */,
 				ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */,
+				CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */,
 				ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */,
@@ -1225,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3DB31D96F06800273936 /* Compatibility+Tests.swift in Sources */,
+				CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				CD6BE30F1E85924800FB308F /* TransformTests.swift in Sources */,
@@ -1286,6 +1294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3DF21D96F6E200273936 /* Compatibility+Tests.swift in Sources */,
+				CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABCD3DF31D96F6E200273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				CD6BE3101E85924800FB308F /* TransformTests.swift in Sources */,
@@ -1337,6 +1346,7 @@
 				ABCD3E2B1D980E5500273936 /* Compatibility+Tests.swift in Sources */,
 				ABCD3E2E1D980E5500273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3E2F1D980E5500273936 /* NSAttributedStringDebugTests.swift in Sources */,
+				CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */,
 				AB6633091DA5C5F90007F301 /* BONFontBehaviorTests.swift in Sources */,
 				ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */,
 				CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,

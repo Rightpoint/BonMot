@@ -157,6 +157,68 @@ class StringStyleTests: XCTestCase {
         }
     }
 
+    func testNoKern() throws {
+        let styled = "abcd".styled(with: .color(.red))
+
+        let rangesToValuesLine = #line; let rangesToValues: [(NSRange, KernCheckingType)] = [
+            (NSRange(location: 0, length: 4), .none),
+            ]
+
+        checkKerningValues(rangesToValues, startingOnLine: rangesToValuesLine, in: styled)
+    }
+
+    func testEffectOfAlignmentOnKerningForOneOffStrings() throws {
+        let styled = "abcd".styled(with: .tracking(.point(5)))
+
+        let rangesToValuesLine = #line; let rangesToValues: [(NSRange, KernCheckingType)] = [
+            (NSRange(location: 0, length: 3), .kern(5)),
+            (NSRange(location: 3, length: 1), .kernRemoved(5)),
+            ]
+
+        checkKerningValues(rangesToValues, startingOnLine: rangesToValuesLine, in: styled)
+    }
+
+    func testEffectOfAlignmentOnKerningForComposedStrings() throws {
+        let styled = NSAttributedString.composed(of: [
+            "ab".styled(with: .tracking(.point(5))),
+            "cd".styled(with: .tracking(.point(10))),
+            ])
+
+        let rangesToValuesLine = #line; let rangesToValues: [(NSRange, KernCheckingType)] = [
+            (NSRange(location: 0, length: 2), .kern(5)),
+            (NSRange(location: 2, length: 1), .kern(10)),
+            (NSRange(location: 3, length: 1), .kernRemoved(10)),
+            ]
+
+        checkKerningValues(rangesToValues, startingOnLine: rangesToValuesLine, in: styled)
+    }
+
+    func testEffectOfAlignmentOnKerningForStringsComposedOfOneOffStrings() throws {
+        let abDefault = "ab".styled(with: .tracking(.point(5)))
+        let cdDefault = "cd".styled(with: .tracking(.point(10)))
+        let styled = NSAttributedString.composed(of: [abDefault, cdDefault])
+
+        let rangesToValuesLine = #line; let rangesToValues: [(NSRange, KernCheckingType)] = [
+            (NSRange(location: 0, length: 2), .kern(5)),
+            (NSRange(location: 2, length: 1), .kern(10)),
+            (NSRange(location: 3, length: 1), .kernRemoved(10)),
+            ]
+
+        checkKerningValues(rangesToValues, startingOnLine: rangesToValuesLine, in: styled)
+
+        let abNoStrip = "ab".styled(with: .tracking(.point(5)), stripTrailingKerning: false)
+        let cdExplicitStrip = "cd".styled(with: .tracking(.point(10)), stripTrailingKerning: true)
+        let customStyled = NSAttributedString.composed(of: [abNoStrip, cdExplicitStrip])
+
+        let customRangesToValuesLine = #line; let customRangesToValues: [(NSRange, KernCheckingType)] = [
+            (NSRange(location: 0, length: 2), .kern(5)),
+            (NSRange(location: 2, length: 1), .kern(10)),
+            (NSRange(location: 3, length: 1), .kernRemoved(10)),
+            ]
+
+        checkKerningValues(customRangesToValues, startingOnLine: customRangesToValuesLine, in: customStyled)
+    }
+
     func testNumberSpacingStyle() {
         let style = StringStyle(.font(BONFont(name: "EBGaramond12-Regular", size: 24)!), .numberSpacing(.monospaced))
         for (style, fullStyle) in additiviePermutations(for: style) {
@@ -658,4 +720,47 @@ class StringStyleTests: XCTestCase {
     }
 
 }
+
+private extension StringStyleTests {
+
+    enum KernCheckingType {
+        case none
+        case kern(Double)
+        case kernRemoved(Double)
+    }
+
+    func checkKerningValues(_ rangesToValues: [(NSRange, KernCheckingType)], startingOnLine rangesToValuesLine: Int, in string: NSAttributedString) {
+        for (index, rangeToValue) in rangesToValues.enumerated() {
+
+            let line = UInt(rangesToValuesLine + index + 1)
+
+            let (controlRange, checkingType) = rangeToValue
+
+            let trackingValue = string.attribute(.kern, at: controlRange.location, effectiveRange: nil)
+            let trackingRemovedValue = string.attribute(.bonMotRemovedKernAttribute, at: controlRange.location, effectiveRange: nil)
+
+            switch checkingType {
+            case .none:
+                XCTAssertNil(trackingValue, line: line)
+                XCTAssertNil(trackingRemovedValue, line: line)
+            case .kern(let kernValue):
+                guard let trackingValueNumber = trackingValue as? NSNumber else {
+                    XCTFail("Unable to unwrap tracking value \(String(describing: trackingValue)) as Double", line: line)
+                    return
+                }
+                XCTAssertEqual(kernValue, trackingValueNumber.doubleValue, accuracy: 0.0001, line: line)
+                XCTAssertNil(trackingRemovedValue, line: line)
+            case .kernRemoved(let kernRemovedValue):
+                guard let trackingRemovedValueNumber = trackingRemovedValue as? NSNumber else {
+                    XCTFail("Unable to unwrap tracking removed value \(String(describing: trackingValue)) as Double", line: line)
+                    return
+                }
+                XCTAssertEqual(kernRemovedValue, trackingRemovedValueNumber.doubleValue, accuracy: 0.0001, line: line)
+                XCTAssertNil(trackingValue, line: line)
+            }
+        }
+    }
+
+}
+
 //swiftlint:enable file_length

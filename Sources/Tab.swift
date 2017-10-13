@@ -28,7 +28,7 @@ public enum Tab {
 
 extension Tab: Composable {
 
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         let attributes = baseStyle.attributes
         #if os(iOS)
             // Embed the tab in the attributes

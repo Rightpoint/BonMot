@@ -66,7 +66,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     func testThatNSAttributedStringSpeaksUTF16() {
         // We don't actually need to test this - just demonstrating how it works
         let string = "\u{000A1338}A"
-        XCTAssertEqual(string.characters.count, 2)
+        XCTAssertEqual(string.count, 2)
         XCTAssertEqual(string.utf8.count, 5)
         XCTAssertEqual(string.utf16.count, 3)
         let mutableAttributedString = NSMutableAttributedString(string: string)
