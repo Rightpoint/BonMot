@@ -189,8 +189,7 @@ class StringStyleTests: XCTestCase {
         let styled = NSAttributedString.composed(of: [abDefault, cdDefault])
 
         let rangesToValuesLine = #line; let rangesToValues: [(NSRange, Double?)] = [
-            (NSRange(location: 0, length: 1), 5),
-            (NSRange(location: 1, length: 1), nil),
+            (NSRange(location: 0, length: 2), 5),
             (NSRange(location: 2, length: 1), 10),
             (NSRange(location: 3, length: 1), nil),
             ]

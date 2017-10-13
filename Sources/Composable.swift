@@ -73,7 +73,7 @@ public extension Composable {
     public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part..., stripTrailingKerning: Bool = true) -> NSAttributedString {
         let string = NSMutableAttributedString()
         let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
-        append(to: string, baseStyle: newStyle, isLastElement: stripTrailingKerning && !Thread.current.isCurrentlyComposing)
+        append(to: string, baseStyle: newStyle, isLastElement: stripTrailingKerning)
         return string
     }
 
@@ -109,17 +109,14 @@ public extension NSAttributedString {
     /// - parameter separator: The separator to insert between every pair of
     ///                        elements in `composables`.
     /// - returns: A new `NSAttributedString`.
-    @nonobjc public static func composed(of composables: @autoclosure () -> [Composable], baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
-        Thread.current.isCurrentlyComposing = true
-        defer { Thread.current.isCurrentlyComposing = false }
+    @nonobjc public static func composed(of composables: [Composable], baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
-        let composablesResult = composables()
-        let lastComposableIndex = composablesResult.endIndex
-        for (index, composable) in composablesResult.enumerated() {
+        let lastComposableIndex = composables.endIndex
+        for (index, composable) in composables.enumerated() {
             composable.append(to: string, baseStyle: baseStyle, isLastElement: index == lastComposableIndex - 1)
             if let separator = separator {
-                if index != composablesResult.indices.last {
+                if index != composables.indices.last {
                     separator.append(to: string, baseStyle: baseStyle)
                 }
             }
@@ -168,6 +165,9 @@ extension NSAttributedString: Composable {
         if isLastElement {
             attributedString.removeKerningFromLastCharacter()
         }
+        else {
+            attributedString.restoreKerningOnLastCharacter()
+        }
     }
 
 }
@@ -182,8 +182,11 @@ extension String: Composable {
     /// - parameter baseStyle: The style to use for this string.
     public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         attributedString.append(baseStyle.attributedString(from: self))
-        if isLastElement && !Thread.current.isCurrentlyComposing {
+        if isLastElement {
             attributedString.removeKerningFromLastCharacter()
+        }
+        else {
+            attributedString.restoreKerningOnLastCharacter()
         }
     }
 
@@ -251,6 +254,12 @@ extension Special: Composable {
 
 }
 
+extension NSAttributedStringKey {
+
+    public static let bonMotRemovedKernAttribute = NSAttributedStringKey("com.raizlabs.bonmot.removedKernAttributeRemoved")
+
+}
+
 extension NSMutableAttributedString {
 
     func removeKerningFromLastCharacter() {
@@ -259,20 +268,28 @@ extension NSMutableAttributedString {
         }
 
         let lastCharacterRange = NSRange(location: length - 1, length: 1)
+
+        guard let currentKernValue = attribute(.kern, at: lastCharacterRange.location, effectiveRange: nil) else {
+            return
+        }
+
         removeAttribute(.kern, range: lastCharacterRange)
+        addAttribute(.bonMotRemovedKernAttribute, value: currentKernValue, range: lastCharacterRange)
     }
 
-}
-
-extension Thread {
-
-    var isCurrentlyComposing: Bool {
-        get {
-            return Thread.current.threadDictionary["com.raizlabs.bonmot.currentlyComposing"] as? Bool ?? false
+    func restoreKerningOnLastCharacter() {
+        guard length != 0 else {
+            return
         }
-        set {
-            Thread.current.threadDictionary["com.raizlabs.bonmot.currentlyComposing"] = newValue
+
+        let lastCharacterRange = NSRange(location: length - 1, length: 1)
+
+        guard let currentKernValue = attribute(.bonMotRemovedKernAttribute, at: lastCharacterRange.location, effectiveRange: nil) else {
+            return
         }
+
+        removeAttribute(.bonMotRemovedKernAttribute, range: lastCharacterRange)
+        addAttribute(.kern, value: currentKernValue, range: lastCharacterRange)
     }
 
 }
