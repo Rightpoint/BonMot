@@ -370,7 +370,7 @@ Contributors are expected to abide by the [Contributor Covenant Code of Conduct]
 
 # Author
 
-Zev Eisenberg: <mailto:zev.eisenberg@raizlabs.com>, [@ZevEisenberg](https://twitter.com/zeveisenberg)
+Zev Eisenberg: [zev.eisenberg@raizlabs.com](mailto:zev.eisenberg@raizlabs.com), [@ZevEisenberg](https://twitter.com/zeveisenberg)
 
 Logo by Jon Lopkin: [@jonlopkin](https://twitter.com/jonlopkin)
 
