@@ -30,7 +30,10 @@ enum DemoStrings {
     static let xmlExample: NSAttributedString = {
 
         // This would typically come from NSLocalizedString
-        let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed><BON:emDash/>Maria Sharapova</signed> <racket/>"
+        let localizedString = """
+            I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>
+            <signed><BON:emDash/>Maria Sharapova</signed> <racket/>
+            """
 
         // Define a colored image that's slightly shifted to account for the line height
         let accessibleRacketImage = UIImage(named: "Tennis Racket")!
@@ -251,7 +254,12 @@ enum DemoStrings {
         )
 
         // XML makes it hard to read. It says: "GO AHEAD, MAKE MY DAY."
-        let phrase = "GO<BON:noBreakSpace/>AHEAD,\n<large>MAKE\nMY\nDA<kern>Y.</kern></large>"
+        let phrase = """
+            GO<BON:noBreakSpace/>AHEAD,
+            <large>MAKE
+            MY
+            DA<kern>Y.</kern></large>
+            """
 
         let attributedString = phrase.styled(with: fullStyle)
         return attributedString
@@ -386,26 +394,22 @@ enum DemoStrings {
                 .style("zh-TW", StringStyle(.speakingLanguage("zh-TW"))),
                 ]))
 
-        let stringsArrays = [
-            [
+        let strings = [
                 "<speak-punctuation>With VoiceOver<punctuation>,</punctuation> this string<punctuation>,</punctuation> well<punctuation>,</punctuation> reads its<punctuation>…</punctuation>punctuation<punctuation>!</punctuation></speak-punctuation>",
-                ],
-            [
                 "<high-pitch>Helium is less dense than air, making my voice higher. </high-pitch><low-pitch>And with sulfur hexafluoride, my voice gets really low, and somehow, I’m still funny. Ha ha ha.</low-pitch>",
-                ],
-            [
-                "<el-GR><emoji>🇬🇷</emoji> Εδώ είναι ο σωστός τρόπος για να προφέρει Ελληνικά.</el-GR>",
-                "<en-US>\n<emoji>🇺🇸</emoji> Here is the correct way to pronounce American English.</en-US>",
-                "<es-DO>\n<emoji>🇩🇴</emoji> Aquí está la manera correcta de pronunciar el español.</es-DO>",
-                "<fr-FR>\n<emoji>🇫🇷</emoji> Voici comment prononcer correctement le français.</fr-FR>",
-                "<pt-PT>\n<emoji>🇵🇹</emoji> Aqui está a maneira correta de pronunciar português.</pt-PT>",
-                "<ru-RU>\n<emoji>🇷🇺</emoji> Вот как правильно произносить русский.</ru-RU>",
-                "<uk-UA>\n<emoji>🇺🇦</emoji> Ось як правильно вимовляти Український.</uk-UA>",
-                "<zh-TW>\n<emoji>🇹🇼</emoji> 这里是正确的做法发音中文.</zh-TW>",
-                ],
+                """
+                <el-GR><emoji>🇬🇷</emoji> Εδώ είναι ο σωστός τρόπος για να προφέρει Ελληνικά.</el-GR>
+                <en-US><emoji>🇺🇸</emoji> Here is the correct way to pronounce American English.</en-US>
+                <es-DO><emoji>🇩🇴</emoji> Aquí está la manera correcta de pronunciar el español.</es-DO>
+                <fr-FR><emoji>🇫🇷</emoji> Voici comment prononcer correctement le français.</fr-FR>
+                <pt-PT><emoji>🇵🇹</emoji> Aqui está a maneira correta de pronunciar português.</pt-PT>
+                <ru-RU><emoji>🇷🇺</emoji> Вот как правильно произносить русский.</ru-RU>
+                <uk-UA><emoji>🇺🇦</emoji> Ось як правильно вимовляти Український.</uk-UA>
+                <zh-TW><emoji>🇹🇼</emoji> 这里是正确的做法发音中文.</zh-TW>
+                """,
         ]
 
-        return stringsArrays.map { $0.joined().styled(with: style) }
+        return strings.map { $0.styled(with: style) }
     }()
 
 }
