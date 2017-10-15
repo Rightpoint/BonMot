@@ -23,9 +23,11 @@ In any Swift file where you want to use BonMot, simply `import BonMot`.
 Use a `StringStyle` to specify the style of your attributed string. Then, use the `styled(with:)` method on `String` to get your attributed string:
 
 ```swift
-let quote = "I used to love correcting people’s grammar until " +
-            "I realized what I loved more was having friends.\n" +
-            "-Mara Wilson"
+let quote = """
+    I used to love correcting people’s grammar until \
+    I realized what I loved more was having friends.
+    -Mara Wilson
+    """
 
 let style = StringStyle(
     .font(UIFont(name: "AmericanTypewriter", size: 17)!),

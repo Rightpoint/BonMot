@@ -30,7 +30,10 @@ enum DemoStrings {
     static let xmlExample: NSAttributedString = {
 
         // This would typically come from NSLocalizedString
-        let localizedString = "I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>\n<signed><BON:emDash/>Maria Sharapova</signed> <racket/>"
+        let localizedString = """
+            I want to be different. If everyone is wearing <black><BON:noBreakSpace/>black,<BON:noBreakSpace/></black> I want to be wearing <red><BON:noBreakSpace/>red.<BON:noBreakSpace/></red>
+            <signed><BON:emDash/>Maria Sharapova</signed> <racket/>
+            """
 
         // Define a colored image that's slightly shifted to account for the line height
         let accessibleRacketImage = UIImage(named: "Tennis Racket")!
@@ -251,7 +254,12 @@ enum DemoStrings {
         )
 
         // XML makes it hard to read. It says: "GO AHEAD, MAKE MY DAY."
-        let phrase = "GO<BON:noBreakSpace/>AHEAD,\n<large>MAKE\nMY\nDA<kern>Y.</kern></large>"
+        let phrase = """
+            GO<BON:noBreakSpace/>AHEAD,
+            <large>MAKE
+            MY
+            DA<kern>Y.</kern></large>
+            """
 
         let attributedString = phrase.styled(with: fullStyle)
         return attributedString
