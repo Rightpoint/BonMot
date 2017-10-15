@@ -25,7 +25,7 @@ test:
     - bundle exec pod lib lint --sources="https://github.com/Raizlabs/BonMot"
 
 deployment:
-    release:
-        tag: /\d+(\.\d+)*(\..*)*/
+  release:
+    tag: /\d+(\.\d+)*(-.*)*/
     commands:
-        - bundle exec pod trunk push
+      - bundle exec pod trunk push
