@@ -1012,7 +1012,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FCD1D9B0ADF007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1026,7 +1026,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FCE1D9B0AF2007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1040,7 +1040,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FCF1D9B0B12007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1054,7 +1054,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FD01D9B0B1F007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1068,7 +1068,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FD11D9B0B2E007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1082,7 +1082,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FD21D9B0B3D007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1096,7 +1096,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CD4B2FD31D9B0B47007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1110,7 +1110,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint || echo \"warning: SwiftLint failed with exit code $?. Is SwiftLint installed and up to date?\"\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		CDC513361F36B1FA00EA1712 /* Build iOS example project */ = {
 			isa = PBXShellScriptBuildPhase;
