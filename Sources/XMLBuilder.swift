@@ -46,14 +46,6 @@ extension NSAttributedString {
         return attributedString
     }
 
-    ///
-    /// - parameter xml: The string containing the markup.
-    /// - parameter rules: A protocol to decorate the XML
-    /// - parameter options: XML parsing options
-    ///
-    /// - returns: An NSAttributedString
-    //swiftlint:disable:next valid_docs  (swiftlint issue jpsim/SourceKitten/issues/133)
-
     /// Generate an attributed string by parsing `fragment` using the collection
     /// of `XMLStyleRule`s to provide style and string insertions to decorate
     /// the XML. As the XML fragment is traversed, the style of each node is
@@ -337,8 +329,7 @@ class XMLBuilder: NSObject, XMLParserDelegate {
         currentString = nil
     }
 
-    #if swift(>=3.0)
-    @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+    @objc func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String]) {
         foundNewString()
         enter(element: elementName, attributes: attributeDict)
     }
@@ -352,21 +343,5 @@ class XMLBuilder: NSObject, XMLParserDelegate {
     @objc func parser(_ parser: XMLParser, foundCharacters string: String) {
         currentString = (currentString ?? "").appending(string)
     }
-    #else
-    @objc func parser(parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        foundNewString()
-        enter(element: elementName, attributes: attributeDict)
-    }
-
-    @objc func parser(parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        foundNewString()
-        guard elementName != XMLBuilder.internalTopLevelElement else { return }
-        exit(element: elementName)
-    }
-
-    @objc func parser(parser: XMLParser, foundCharacters string: String) {
-        currentString = (currentString ?? "").appending(string)
-    }
-    #endif
 
 }

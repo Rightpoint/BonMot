@@ -48,7 +48,7 @@ public extension BONImage {
 
         image.lockFocus()
 
-        let context = NSGraphicsContext.current()!.cgContext
+        let context = NSGraphicsContext.current!.cgContext
 
         context.setBlendMode(.normal)
         let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil)!

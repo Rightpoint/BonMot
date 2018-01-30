@@ -23,11 +23,7 @@ class TextAlignmentConstraintTests: XCTestCase {
         let field = BONTextField(frame: .zero)
         field.translatesAutoresizingMaskIntoConstraints = false
 
-        #if swift(>=3.0)
-            field.font = .systemFont(ofSize: fontSize)
-        #else
-            field.font = .systemFontOfSize(fontSize)
-        #endif
+        field.font = BONFont(name: "Avenir-Roman", size: fontSize)
 
         #if os(OSX)
             field.stringValue = text
@@ -50,7 +46,7 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .top
         )
 
-        XCTAssertEqualWithAccuracy(constraint.constant, 0, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, 0, accuracy: 0.0001)
     }
 
     func testCapHeightConstraint() {
@@ -65,13 +61,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .capHeight
         )
 
-        #if os(OSX)
-            let target: CGFloat = 8.6528
-        #else
-            let target: CGFloat = 8.1694
-        #endif
+        let target: CGFloat = 9.636
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testXHeightConstraint() {
@@ -86,13 +78,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .xHeight
         )
 
-        #if os(OSX)
-            let target: CGFloat = 14.53417
-        #else
-            let target: CGFloat = 14.05078
-        #endif
+        let target: CGFloat = 17.556
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testTopToCapHeightConstraint() {
@@ -107,13 +95,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .capHeight
         )
 
-        #if os(OSX)
-            let target: CGFloat = 13.1103
-        #else
-            let target: CGFloat = 12.378
-        #endif
+        let target: CGFloat = 14.6
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testCapHeightToTopConstraint() {
@@ -128,13 +112,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .top
         )
 
-        #if os(OSX)
-            let target: CGFloat = -4.4575
-        #else
-            let target: CGFloat = -4.20850
-        #endif
+        let target: CGFloat = -4.964
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testTopToXHeightConstraint() {
@@ -149,13 +129,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .xHeight
         )
 
-        #if os(OSX)
-            let target: CGFloat = 22.02148
-        #else
-            let target: CGFloat = 21.289
-        #endif
+        let target: CGFloat = 26.6
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testXHeightToTopConstraint() {
@@ -170,13 +146,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .top
         )
 
-        #if os(OSX)
-            let target: CGFloat = -7.4873
-        #else
-            let target: CGFloat = -7.2382
-        #endif
+        let target: CGFloat = -9.044
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testCapHeightToXHeightConstraint() {
@@ -191,13 +163,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .xHeight
         )
 
-        #if os(OSX)
-            let target: CGFloat = 17.5639
-        #else
-            let target: CGFloat = 17.0806
-        #endif
+        let target: CGFloat = 21.636
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
     func testXHeightToCapHeightConstraint() {
@@ -212,13 +180,9 @@ class TextAlignmentConstraintTests: XCTestCase {
             attribute: .capHeight
         )
 
-        #if os(OSX)
-            let target: CGFloat = 5.6230
-        #else
-            let target: CGFloat = 5.1396
-        #endif
+        let target: CGFloat = 5.556
 
-        XCTAssertEqualWithAccuracy(constraint.constant, target, accuracy: 0.0001)
+        XCTAssertEqual(constraint.constant, target, accuracy: 0.0001)
     }
 
 }

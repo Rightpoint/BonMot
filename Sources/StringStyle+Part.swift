@@ -43,6 +43,15 @@ extension StringStyle {
         /// The pitch of the voice used to read the text aloud. The range is
         /// 0 to 2, where 0 is the lowest, 2 is the highest, and 1 is the default.
         case speakingPitch(Double)
+
+        /// The IPA pronunciation of the given range.
+        case speakingPronunciation(String)
+
+        /// Whether the spoken text is queued behind, or interrupts, existing spoken content.
+        case shouldQueueSpeechAnnouncement(Bool)
+
+        /// The accessibility heading level of the text.
+        case headingLevel(HeadingLevel)
         #endif
 
         case ligatures(Ligatures)
@@ -54,7 +63,7 @@ extension StringStyle {
         case firstLineHeadIndent(CGFloat)
         case headIndent(CGFloat)
         case tailIndent(CGFloat)
-        case lineBreakMode(NSLineBreakMode)
+        case lineBreakMode(NSParagraphStyle.LineBreakMode)
         case minimumLineHeight(CGFloat)
         case maximumLineHeight(CGFloat)
         case baseWritingDirection(NSWritingDirection)
@@ -122,45 +131,27 @@ extension StringStyle {
         }
     }
 
-    #if swift(>=3.0)
-    #else
-    /// Create a `StringStyle` from a part. This is needed for Swift 2.3
-    /// to disambiguate argument type in certain cases.
-    ///
-    /// - Parameter part: a `Part`
-    public init(_ part: Part) {
-        self.init()
-        update(part: part)
-    }
-    #endif
-
-    #if swift(>=3.0)
     /// Derive a new `StringStyle` based on this style, updated with zero or
     /// more `Part`s.
     ///
     /// - Parameter parts: Zero or more `Part`s
     /// - Returns: A newly configured `StringStyle`
     public func byAdding(_ parts: Part...) -> StringStyle {
-        var style = self
-        for part in parts {
-            style.update(part: part)
-        }
-        return style
+        return byAdding(parts)
     }
-    #else
+
     /// Derive a new `StringStyle` based on this style, updated with zero or
     /// more `Part`s.
     ///
-    /// - Parameter parts: Zero or more `Part`s
+    /// - Parameter parts: an array of `Part`s
     /// - Returns: A newly configured `StringStyle`
-    public func byAdding(parts: Part...) -> StringStyle {
+    public func byAdding(_ parts: [Part]) -> StringStyle {
         var style = self
         for part in parts {
             style.update(part: part)
         }
         return style
     }
-    #endif
 
     //swiftlint:disable function_body_length
     //swiftlint:disable cyclomatic_complexity
@@ -242,6 +233,15 @@ extension StringStyle {
                         return
                     case let .speakingPitch(speakingPitch):
                         self.speakingPitch = speakingPitch
+                        return
+                    case let .speakingPronunciation(speakingPronunciation):
+                        self.speakingPronunciation = speakingPronunciation
+                        return
+                    case let .shouldQueueSpeechAnnouncement(shouldQueueSpeechAnnouncement):
+                        self.shouldQueueSpeechAnnouncement = shouldQueueSpeechAnnouncement
+                        return
+                    case let .headingLevel(headingLevel):
+                        self.headingLevel = headingLevel
                         return
                     default:
                         break

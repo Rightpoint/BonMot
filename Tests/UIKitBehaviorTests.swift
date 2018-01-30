@@ -27,22 +27,31 @@ class UIKitBehaviorTests: XCTestCase {
 
         // Ensure font information is mirrored in attributed string
         let attributedText = label.attributedText!
-        let attributeFont = attributedText.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as? UIFont
+        let attributeFont = attributedText.attribute(.font, at: 0, effectiveRange: nil) as? UIFont
         XCTAssertEqual(attributeFont, largeFont)
 
         // Change the font in the attributed string
         var attributes = attributedText.attributes(at: 0, effectiveRange: nil)
-        attributes[NSFontAttributeName] = smallFont
+        attributes[.font] = smallFont
         label.attributedText = NSAttributedString(string: "Testing", attributes: attributes)
         // Note that the font property is updated.
         XCTAssertEqual(label.font, smallFont)
 
-        // Change the text of the label
-        label.text = "Testing"
-        // Note that this reverts to the original font.
-        BONAssertEqualFonts(label.font, largeFont!)
-        // When text changes, it updates the font to the last font set to self.font
-        // The getter for self.font returns the visible font.
+        if #available(iOS 11, tvOS 11, *) {
+            // Change the text of the label
+            label.text = "Testing"
+            // Note that this does not revert to the original font. The font
+            // set by the attributed string sticks in iOS 11+ and tvOS 11+.
+            BONAssertEqualFonts(label.font, smallFont!)
+        }
+        else {
+            // Change the text of the label
+            label.text = "Testing"
+            // Note that this reverts to the original font.
+            BONAssertEqualFonts(label.font, largeFont!)
+            // When text changes, it updates the font to the last font set to self.font
+            // The getter for self.font returns the visible font.
+        }
     }
 
     func testTextFieldFontPropertyBehavior() {
@@ -50,18 +59,24 @@ class UIKitBehaviorTests: XCTestCase {
         let textField = UITextField()
         // Note that the font is not nil before the text property is set.
         XCTAssertNotNil(textField.font)
+        XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
         textField.text = "Testing"
-        // By default the font is not nil, size 17 (Not 12 as stated in header)
+        // By default the font is not nil, size 17 (38 on tvOS) (Not 12 as stated in header)
         XCTAssertNotNil(textField.font)
         XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
 
         textField.font = largeFont
         XCTAssertEqual(textField.font?.pointSize, 20)
 
-        textField.font = nil
-        // Note that font has a default value even though it's optional.
-        XCTAssertNotNil(textField.font)
-        XCTAssertEqual(textField.font?.pointSize, 17)
+        /// This test breaks on tvOS 11 as of beta 4: http://www.openradar.me/33742507
+        if #available(tvOS 11.0, *) {
+        }
+        else {
+            textField.font = nil
+            // Note that font has a default value even though it's optional.
+            XCTAssertNotNil(textField.font)
+            XCTAssertEqual(textField.font?.pointSize, defaultTextFieldFontSize)
+        }
     }
 
     func testTextViewFontPropertyBehavior() {

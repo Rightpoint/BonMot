@@ -11,11 +11,7 @@
     import Foundation
     import CoreText
 
-    #if swift(>=3.0)
-        typealias FontFeatureDictionary = [String : Any]
-    #else
-        typealias FontFeatureDictionary = [String : AnyObject]
-    #endif
+    typealias FontFeatureDictionary = [String: Any]
 
     public extension BONFont {
 
@@ -96,15 +92,7 @@
                 return []
             }
 
-            #if swift(>=3.0)
-                let intermediateFeatures = features // so we have the same name as in Swift 2.3
-            #else
-                // Type gymnastics because Swift 2.3 doesn't like converting CFArray to [[String : AnyObject]] in one step
-                let intermediateFeatures = features as [AnyObject]
-
-            #endif
-
-            guard let typedFeatures = intermediateFeatures as? [FontFeatureDictionary] else {
+            guard let typedFeatures = features as? [FontFeatureDictionary] else {
                 fatalError("failed to convert to \([FontFeatureDictionary].self) from \(features)")
             }
 

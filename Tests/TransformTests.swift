@@ -44,13 +44,9 @@ class TransformTests: XCTestCase {
 
             for i in startIndex..<(startIndex + substringUTF16Count) {
                 let characterRange = NSRange(location: i, length: 1)
-                #if swift(>=3.0)
-                    let characterAttributes = string.attributes(at: startIndex, longestEffectiveRange: nil, in: characterRange)
-                #else
-                    let characterAttributes = string.attributesAtIndex(startIndex, longestEffectiveRange: nil, inRange: characterRange)
-                #endif
+                let characterAttributes = string.attributes(at: startIndex, longestEffectiveRange: nil, in: characterRange)
 
-                guard let characterColor = characterAttributes[NSForegroundColorAttributeName] as? BONColor else {
+                guard let characterColor = characterAttributes[.foregroundColor] as? BONColor else {
                     XCTFail("Failed to get color at index \(startIndex) of string \(string)", file: file, line: line)
                     continue
                 }
@@ -153,8 +149,7 @@ class TransformTests: XCTestCase {
 
     func testCustom() {
         let doubler = { (string: String) -> String in
-            let characters = string.characters
-            let doubled = characters.flatMap { (character: Character) -> [Character] in
+            let doubled = string.flatMap { (character: Character) -> [Character] in
                 switch character {
                 case " ": return [character]
                 default: return [character, character]

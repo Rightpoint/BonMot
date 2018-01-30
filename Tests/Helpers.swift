@@ -12,54 +12,28 @@ import XCTest
 #if os(OSX)
 #else
     import UIKit
-    #if swift(>=3.0)
-        let titleTextStyle = UIFontTextStyle.title1
-        let differentTextStyle = UIFontTextStyle.title2
-        @available(iOS 10.0, *)
-        let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
-    #elseif swift(>=2.3)
-        let titleTextStyle = UIFontTextStyleTitle1
-        let differentTextStyle = UIFontTextStyleTitle2
-        @available(iOS 10.0, *)
-        let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategoryLarge)
-    #else
-        let titleTextStyle = UIFontTextStyleTitle1
-        let differentTextStyle = UIFontTextStyleTitle2
-     #endif
+    let titleTextStyle = UIFontTextStyle.title1
+    let differentTextStyle = UIFontTextStyle.title2
+    @available(iOS 10.0, tvOS 10.0, *)
+    let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #endif
 
 class DummyClassForTests {}
 let testBundle = Bundle(for: DummyClassForTests.self)
 
-#if swift(>=3.0)
-    extension BONColor {
+extension BONColor {
 
-        static var colorA: BONColor {
-            return red
-        }
-        static var colorB: BONColor {
-            return blue
-        }
-        static var colorC: BONColor {
-            return purple
-        }
-
+    static var colorA: BONColor {
+        return red
     }
-#else
-    extension BONColor {
-
-        static var colorA: BONColor {
-            return redColor()
-        }
-        static var colorB: BONColor {
-            return blueColor()
-        }
-        static var colorC: BONColor {
-            return purpleColor()
-        }
-
+    static var colorB: BONColor {
+        return blue
     }
-#endif
+    static var colorC: BONColor {
+        return purple
+    }
+
+}
 
 extension BONColor {
 
@@ -132,6 +106,9 @@ let fullStyle: StringStyle = {
         fullStyle.speaksPunctuation = true
         fullStyle.speakingLanguage = "pt-BR" // Brazilian Portuguese
         fullStyle.speakingPitch = 1.5
+        fullStyle.speakingPronunciation = "ˈɡɪər"
+        fullStyle.shouldQueueSpeechAnnouncement = false
+        fullStyle.headingLevel = .two
     #endif
 
     fullStyle.ligatures = .disabled // not the default value
@@ -188,20 +165,13 @@ class EBGaramondLoader: NSObject {
                 fatalError("Can not load EBGaramond12")
         }
 
-        #if swift(>=3.0)
-            guard let provider = CGDataProvider(data: data) else {
-                fatalError("Can not create provider")
-            }
-            let fontRef = CGFont(provider)
-        #else
-            guard let provider = CGDataProviderCreateWithCFData(data) else {
-                fatalError("Can not create provider")
-            }
-            let fontRef = CGFontCreateWithDataProvider(provider)
-        #endif
+        guard let provider = CGDataProvider(data: data) else {
+            fatalError("Can not create provider")
+        }
+        let fontRef = CGFont(provider)
 
         var error: Unmanaged<CFError>?
-        CTFontManagerRegisterGraphicsFont(fontRef, &error)
+        CTFontManagerRegisterGraphicsFont(fontRef!, &error)
 
         if let error = error {
             fatalError("Unable to load font: \(error)")
@@ -214,7 +184,7 @@ extension NSAttributedString {
 
     func rangesFor<T>(attribute name: String) -> [String: T] {
         var attributesByRange: [String: T] = [:]
-        enumerateAttribute(name, in: NSRange(location: 0, length: length), options: []) { value, range, _ in
+        enumerateAttribute(NSAttributedStringKey(name), in: NSRange(location: 0, length: length), options: []) { value, range, _ in
             if let object = value as? T {
                 attributesByRange["\(range.location):\(range.length)"] = object
             }
@@ -244,7 +214,7 @@ extension NSAttributedString {
                 samplesPerPixel: 4,
                 hasAlpha: true,
                 isPlanar: false,
-                colorSpaceName: NSDeviceRGBColorSpace,
+                colorSpaceName: .deviceRGB,
                 bytesPerRow: 0,
                 bitsPerPixel: 0
                 )!
@@ -266,13 +236,6 @@ extension NSAttributedString {
         #endif
     }
 
-    #if swift(>=3.0)
-    #else
-    func draw(with rect: CGRect, options: NSStringDrawingOptions, context: NSStringDrawingContext?) {
-        drawWithRect(rect, options: options, context: context)
-    }
-    #endif
-
 }
 
 extension BONView {
@@ -292,14 +255,3 @@ extension BONView {
     }
 
 }
-
-#if swift(>=3.0)
-#else
-extension XCTestCase {
-
-    func measure(block: () -> Void) {
-        measureBlock(block)
-    }
-
-}
-#endif

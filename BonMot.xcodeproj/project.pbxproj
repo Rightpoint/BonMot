@@ -13,7 +13,7 @@
 			buildPhases = (
 				ABBD124E1DA469BB0084FBCC /* Build and test macOS */,
 				CD15C4071DBE660700B6FF7A /* Build and test iOS */,
-				CD0DDB271DC2B57E00805488 /* Build iOS example project */,
+				CDC513361F36B1FA00EA1712 /* Build iOS example project */,
 				CD15C4081DBE660800B6FF7A /* Build and test tvOS */,
 				CD15C4091DBE660A00B6FF7A /* Build watchOS */,
 			);
@@ -191,6 +191,13 @@
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
+		CDC49D8D1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		CDC49D8E1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
 		CDCF0F1F1DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
 		CDCF0F201DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
 		CDCF0F211DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
@@ -333,6 +340,8 @@
 		CD6BE3081E8590E900FB308F /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		CD6BE30E1E85924800FB308F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
+		CDC0CE351F90730700E144F7 /* AccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTests.swift; sourceTree = "<group>"; };
+		CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHeadingLevel.swift; sourceTree = "<group>"; };
 		CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextualAlternates.swift; sourceTree = "<group>"; };
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
 		CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTintingTests.swift; sourceTree = "<group>"; };
@@ -422,6 +431,7 @@
 				ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */,
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
+				CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
 				CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */,
@@ -586,6 +596,7 @@
 				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
 				CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */,
 				CD6BE30E1E85924800FB308F /* TransformTests.swift */,
+				CDC0CE351F90730700E144F7 /* AccessTests.swift */,
 				AB167C8F1D997A2C0084808D /* Info.plist */,
 			);
 			path = Tests;
@@ -803,7 +814,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Raizlabs;
 				TargetAttributes = {
 					AB8497DA1DA45B9C00FE3414 = {
@@ -816,10 +827,12 @@
 					};
 					ABCBFD561D96E61000FAD37A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					ABCBFD5E1D96E61100FAD37A = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -943,21 +956,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-OSX\" \"macosx\" \"arch=x86_64\"\n";
-		};
-		CD0DDB271DC2B57E00805488 /* Build iOS example project */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build iOS example project";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n\nbuild \"build\" \"Example-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4071DBE660700B6FF7A /* Build and test iOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -971,7 +970,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-iOS\" \"iphonesimulator\" \"name=iPhone 6s\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4081DBE660800B6FF7A /* Build and test tvOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -985,7 +984,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\nbuild \"build-for-testing test-without-building\" \"BonMot-tvOS\" \"appletvsimulator\" \"name=Apple TV 1080p\"\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4091DBE660A00B6FF7A /* Build watchOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -999,7 +998,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Simple script to build all of the targets.\nbuild() {\n    xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n    TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 xcodebuild $1 -project BonMot.xcodeproj -scheme $2 -sdk $3 -destination \"$4\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n}\n# watchOS doesn't support XCTest\nbuild \"build\" \"BonMot-watchOS\" \"watchsimulator\" \"name=Apple Watch - 38mm\"\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD4B2FCC1D9B0AB0007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1113,6 +1112,20 @@
 			shellPath = /bin/sh;
             shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage, will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		CDC513361F36B1FA00EA1712 /* Build iOS example project */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build iOS example project";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1122,6 +1135,7 @@
 			files = (
 				AB30D5121D9D9439006ADC9D /* Composable.swift in Sources */,
 				ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */,
+				CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
 				ABA75DD21D99E10400B64705 /* Platform.swift in Sources */,
 				AB30D50F1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				CD3EEE6B1DC92CF8002C41BB /* Ligatures.swift in Sources */,
@@ -1149,6 +1163,7 @@
 				CDEA84391D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
 				ABA75DF01D99E10F00B64705 /* Compatibility+Tests.swift in Sources */,
 				ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */,
+				CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */,
 				ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */,
@@ -1187,6 +1202,7 @@
 				AB560A0A1DA0C17800100D15 /* Tracking+Adaptive.swift in Sources */,
 				ABCD3D7D1D96F02F00273936 /* StyleableUIElement.swift in Sources */,
 				ABCD3D771D96F02F00273936 /* AdaptableTextContainer.swift in Sources */,
+				CDC49D8D1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
 				ABCD3D6B1D96F02F00273936 /* StringStyle.swift in Sources */,
 				CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */,
 				ABCD3D731D96F02F00273936 /* Special.swift in Sources */,
@@ -1216,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3DB31D96F06800273936 /* Compatibility+Tests.swift in Sources */,
+				CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				CD6BE30F1E85924800FB308F /* TransformTests.swift in Sources */,
@@ -1247,6 +1264,7 @@
 				AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */,
 				ABCD3DD51D96F6A500273936 /* StringStyle.swift in Sources */,
 				ABCD3DD71D96F6A500273936 /* Special.swift in Sources */,
+				CDC49D8E1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
 				AB8497B31DA16DAE00FE3414 /* EmbeddedTransformation.swift in Sources */,
 				CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */,
 				AB8497B21DA16DAE00FE3414 /* AttributedStringTransformation.swift in Sources */,
@@ -1276,6 +1294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3DF21D96F6E200273936 /* Compatibility+Tests.swift in Sources */,
+				CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABCD3DF31D96F6E200273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
 				CD6BE3101E85924800FB308F /* TransformTests.swift in Sources */,
@@ -1327,6 +1346,7 @@
 				ABCD3E2B1D980E5500273936 /* Compatibility+Tests.swift in Sources */,
 				ABCD3E2E1D980E5500273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3E2F1D980E5500273936 /* NSAttributedStringDebugTests.swift in Sources */,
+				CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */,
 				AB6633091DA5C5F90007F301 /* BONFontBehaviorTests.swift in Sources */,
 				ABCD3E301D980E5500273936 /* AssertHelpers.swift in Sources */,
 				CD3EEE751DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
@@ -1465,8 +1485,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1481,8 +1502,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2KJHM26Y46;
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1500,7 +1522,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1508,8 +1532,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1538,7 +1566,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1553,7 +1582,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1561,8 +1592,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
 				CLANG_WARN_NULLABLE_TO_NONNULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1583,7 +1618,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1701,6 +1737,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -1713,6 +1750,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};

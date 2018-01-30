@@ -22,7 +22,7 @@ private var TextAlignmentConstraintKVOContext = "BonMotTextAlignmentConstraintKV
 public class TextAlignmentConstraint: NSLayoutConstraint {
 
     @objc(BONTextAlignmentConstraintAttribute)
-    public enum Attribute: Int, CustomStringConvertible {
+    public enum TextAttribute: Int, CustomStringConvertible {
 
         case unspecified
         case top
@@ -32,7 +32,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         case lastBaseline
         case bottom
 
-        var layoutAttribute: NSLayoutAttribute {
+        var layoutAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .top, .capHeight, .firstBaseline, .xHeight:
                 return .top
@@ -43,7 +43,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
             }
         }
 
-        static private let ibInspectableMapping: [String: Attribute] = [
+        static private let ibInspectableMapping: [String: TextAttribute] = [
             "unspecified": .unspecified,
             "top": .top,
             "capheight": .capHeight,
@@ -73,47 +73,35 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         }
 
         init(ibInspectableString string: String) {
-            self = Attribute.ibInspectableMapping[string] ?? .unspecified
+            self = TextAttribute.ibInspectableMapping[string] ?? .unspecified
         }
 
     }
 
     @IBInspectable public var firstAlignment: String? {
         didSet {
-            firstItemAttribute = BonMot.TextAlignmentConstraint.Attribute(ibInspectableString: firstAlignment?.normalized ?? "")
+            firstItemAttribute = TextAttribute(ibInspectableString: firstAlignment?.normalized ?? "")
         }
     }
 
     @IBInspectable public var secondAlignment: String? {
         didSet {
-            secondItemAttribute = BonMot.TextAlignmentConstraint.Attribute(ibInspectableString: secondAlignment?.normalized ?? "")
+            secondItemAttribute = TextAttribute(ibInspectableString: secondAlignment?.normalized ?? "")
         }
     }
 
-    public private(set) var firstItemAttribute: BonMot.TextAlignmentConstraint.Attribute = .unspecified
-    public private(set) var secondItemAttribute: BonMot.TextAlignmentConstraint.Attribute = .unspecified
+    public private(set) var firstItemAttribute: TextAttribute = .unspecified
+    public private(set) var secondItemAttribute: TextAttribute = .unspecified
     private var item1: AnyObject!
     private var item2: AnyObject!
 
     // The class part of these selectors are ignored; it is there simply to satisfy Xcode's selector syntax.
-    #if swift(>=3.0)
-        private static let fontSelector = #selector(getter: BONTextField.font)
-    #else
-        private static let fontSelector = Selector("font")
-    #endif
+    private static let fontSelector = #selector(getter: BONTextField.font)
 
     #if os(OSX)
-        #if swift(>=3.0)
-            private static let attributedTextSelector = #selector(getter: NSTextField.attributedStringValue)
-        #else
-            private static let attributedTextSelector = Selector("attributedStringValue")
-        #endif
+        private static let attributedTextSelector = #selector(getter: NSTextField.attributedStringValue)
     #else
-        #if swift(>=3.0)
-            private static let attributedTextSelector = #selector(getter: UITextField.attributedText)
-        #else
-            private static let attributedTextSelector = Selector("attributedText")
-        #endif
+        private static let attributedTextSelector = #selector(getter: UITextField.attributedText)
     #endif
 
     /// Construct a new `TextAlignmentConstraint`.
@@ -126,7 +114,8 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     ///   - attr2: The attribute of the view for the right side of the constraint equation.
     /// - Returns: A constraint object relating the two provided views with the
     ///            specified relation and attributes.
-    public static func with(item view1: AnyObject, attribute attr1: BonMot.TextAlignmentConstraint.Attribute, relatedBy relation: NSLayoutRelation, toItem view2: AnyObject, attribute attr2: BonMot.TextAlignmentConstraint.Attribute) -> TextAlignmentConstraint {
+    public static func with(
+        item view1: AnyObject, attribute attr1: TextAttribute, relatedBy relation: NSLayoutConstraint.Relation, toItem view2: AnyObject, attribute attr2: TextAttribute) -> TextAlignmentConstraint {
         let constraint = TextAlignmentConstraint(
             item: view1,
             attribute: attr1.layoutAttribute,
@@ -170,13 +159,8 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     }
 
     private var fontKeyPaths: [String] {
-        #if swift(>=3.0)
-            let firstItemSelector = #selector(getter: NSLayoutConstraint.firstItem)
-            let secondItemSelector = #selector(getter: NSLayoutConstraint.secondItem)
-        #else
-            let firstItemSelector = Selector("firstItem")
-            let secondItemSelector = Selector("secondItem")
-        #endif
+        let firstItemSelector = #selector(getter: NSLayoutConstraint.firstItem)
+        let secondItemSelector = #selector(getter: NSLayoutConstraint.secondItem)
 
         return [
             "\(firstItemSelector).\(TextAlignmentConstraint.fontSelector)",
@@ -186,8 +170,9 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         ]
     }
 
-    #if swift(>=3.0)
-    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    // Can't use block-based KVO until we can use \NSLayoutConstraint.firstItem
+    //swiftlint:disable:next block_based_kvo
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &TextAlignmentConstraintKVOContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
@@ -195,22 +180,12 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
 
         updateConstant()
     }
-    #else
-    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        guard context == &TextAlignmentConstraintKVOContext else {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
-            return
-        }
-
-        updateConstant()
-    }
-    #endif
 
     private func updateConstant() {
         #if os(OSX)
             let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
         #else
-            let distanceFromTop1 = distanceFromTop(of: firstItem, with: firstItemAttribute)
+            let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
         #endif
 
         let distanceFromTop2 = distanceFromTop(of: secondItem!, with: secondItemAttribute)
@@ -218,7 +193,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         constant = difference
     }
 
-    private func distanceFromTop(of item: AnyObject, with attribute: BonMot.TextAlignmentConstraint.Attribute) -> CGFloat {
+    private func distanceFromTop(of item: AnyObject, with attribute: TextAttribute) -> CGFloat {
         guard let font = font(from: item) else {
             return 0
         }
@@ -245,15 +220,9 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     private func font(from item: AnyObject) -> BONFont? {
         var font: BONFont? = nil
 
-        #if swift(>=3.0)
-            if item.responds(to: TextAlignmentConstraint.fontSelector) {
-                font = item.perform(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont
-            }
-        #else
-            if item.respondsToSelector(TextAlignmentConstraint.fontSelector) {
-                font = item.performSelector(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont
-            }
-        #endif
+        if item.responds(to: TextAlignmentConstraint.fontSelector) {
+            font = item.perform(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont
+        }
 
         return font
     }

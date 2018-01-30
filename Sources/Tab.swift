@@ -28,7 +28,7 @@ public enum Tab {
 
 extension Tab: Composable {
 
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         let attributes = baseStyle.attributes
         #if os(iOS)
             // Embed the tab in the attributes
@@ -76,7 +76,7 @@ extension Tab {
         while paragraphCursor >= leadingNewline && paragraphAttribute == nil {
             var attributeRange = NSRange()
             let attributes = attributedString.attributes(at: paragraphCursor, effectiveRange: &attributeRange)
-            paragraphAttribute = attributes[NSParagraphStyleAttributeName]
+            paragraphAttribute = attributes[.paragraphStyle]
             paragraphCursor = attributeRange.location - 1
         }
 
@@ -125,7 +125,7 @@ extension Tab {
             enumerationRange.location = NSMaxRange(tabRange)
             tabIndex += 1
         }
-        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: paragraphRange)
+        attributedString.addAttribute(.paragraphStyle, value: paragraph, range: paragraphRange)
     }
 
     var padding: CGFloat {

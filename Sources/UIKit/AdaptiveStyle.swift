@@ -41,12 +41,12 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
 
     enum AttributeName {
 
-        static let nonAdaptedFont = "BonMotNonAdaptedFont"
+        static let nonAdaptedFont = NSAttributedStringKey("BonMotNonAdaptedFont")
 
     }
 
     func embed(in attributes: StyleAttributes) -> StyleAttributes {
-        guard let font = attributes[NSFontAttributeName] as? BONFont else {
+        guard let font = attributes[.font] as? BONFont else {
             print("No font to adapt, ignoring adaptive style")
             return attributes
         }
@@ -80,7 +80,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         case .below(let size, let family):
             font = pointSize < size ? font.fontWithSameAttributes(named: family) : font
         }
-        styleAttributes[NSFontAttributeName] = font
+        styleAttributes[.font] = font
         return styleAttributes
     }
 
@@ -90,37 +90,20 @@ extension AdaptiveStyle {
 
     /// The font size adjustment to use for each content size category.
     static var shiftTable: [BonMotContentSizeCategory: CGFloat] {
-        #if swift(>=3.0)
-            return [
-                .extraSmall: -3,
-                .small: -2,
-                .medium: -1,
-                .large: 0,
-                .extraLarge: 2,
-                .extraExtraLarge: 4,
-                .extraExtraExtraLarge: 6,
-                .accessibilityMedium: 11,
-                .accessibilityLarge: 16,
-                .accessibilityExtraLarge: 23,
-                .accessibilityExtraExtraLarge: 30,
-                .accessibilityExtraExtraExtraLarge: 36,
-            ]
-        #else
-            return [
-                UIContentSizeCategoryExtraSmall: -3,
-                UIContentSizeCategorySmall: -2,
-                UIContentSizeCategoryMedium: -1,
-                UIContentSizeCategoryLarge: 0,
-                UIContentSizeCategoryExtraLarge: 2,
-                UIContentSizeCategoryExtraExtraLarge: 4,
-                UIContentSizeCategoryExtraExtraExtraLarge: 6,
-                UIContentSizeCategoryAccessibilityMedium: 11,
-                UIContentSizeCategoryAccessibilityLarge: 16,
-                UIContentSizeCategoryAccessibilityExtraLarge: 23,
-                UIContentSizeCategoryAccessibilityExtraExtraLarge: 30,
-                UIContentSizeCategoryAccessibilityExtraExtraExtraLarge: 36,
-            ]
-        #endif
+        return [
+            .extraSmall: -3,
+            .small: -2,
+            .medium: -1,
+            .large: 0,
+            .extraLarge: 2,
+            .extraExtraLarge: 4,
+            .extraExtraExtraLarge: 6,
+            .accessibilityMedium: 11,
+            .accessibilityLarge: 16,
+            .accessibilityExtraLarge: 23,
+            .accessibilityExtraExtraLarge: 30,
+            .accessibilityExtraExtraExtraLarge: 36,
+        ]
     }
 
     /// The default scaling function. Grows by 2 points for each
@@ -160,7 +143,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
 
     struct Key {
 
-        static let fontName = "fontName"
+        static let fontName = NSAttributedStringKey("fontName")
 
     }
 
@@ -197,7 +180,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
         }
     }
 
-    static func from(dictionary dict: [String: StyleAttributeValue]) -> EmbeddedTransformation? {
+    static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
         switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
                 dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
                 dict[Key.fontName] as? String) {

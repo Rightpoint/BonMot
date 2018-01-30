@@ -24,14 +24,10 @@ extension UIFont {
     /// Retrieve the text style, if it exists, from the font descriptor.
     @objc(bon_textStyle)
     public final var textStyle: BonMotTextStyle? {
-        guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptorTextStyleAttribute] as? String else {
+        guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptor.AttributeName.textStyle] as? String else {
             return nil
         }
-        #if swift(>=3.0)
-            return UIFontTextStyle(rawValue: textStyle)
-        #else
-            return textStyle
-        #endif
+        return UIFontTextStyle(rawValue: textStyle)
     }
 
 }
@@ -43,30 +39,18 @@ extension UITraitCollection {
     /// `UIApplication.shared.preferredContentSizeCategory` if the trait collection's
     /// `preferredContentSizeCategory` is `UIContentSizeCategory.unspecified`.
     public var bon_preferredContentSizeCategory: BonMotContentSizeCategory {
-        #if swift(>=3.0)
-            if #available(iOS 10.0, tvOS 10.0, *) {
-                if preferredContentSizeCategory != .unspecified {
-                    return preferredContentSizeCategory
-                }
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            if preferredContentSizeCategory != .unspecified {
+                return preferredContentSizeCategory
             }
-        #elseif swift(>=2.3)
-            if #available(iOS 10.0, tvOS 10.0, *) {
-                if preferredContentSizeCategory != UIContentSizeCategoryUnspecified {
-                    return preferredContentSizeCategory
-                }
-            }
-        #endif
+        }
         // `UIApplication.shared` is not a valid object in unit tests. Fall back
         // to a default value if the delegate is nil.
         if UIApplication.shared.delegate != nil {
             return UIApplication.shared.preferredContentSizeCategory
         }
         else {
-            #if swift(>=3.0)
-                return UIContentSizeCategory.large
-            #else
-                return UIContentSizeCategoryLarge
-            #endif
+            return UIContentSizeCategory.large
         }
     }
 
@@ -83,7 +67,7 @@ extension UIFont {
     ///            the specified name.
     final func fontWithSameAttributes(named name: String) -> UIFont {
         let descriptor = fontDescriptor.addingAttributes([
-            UIFontDescriptorNameAttribute: name,
+            UIFontDescriptor.AttributeName.name: name,
             ])
         return UIFont(descriptor: descriptor, size: pointSize)
     }

@@ -53,23 +53,13 @@ class StyleViewController: UITableViewController {
         return cell
     }
 
-    #if swift(>=3.0)
-        override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-            let attributedText = styles[indexPath.section].1[indexPath.row]
-            if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
-                return true
-            }
-            return false
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        let attributedText = styles[indexPath.section].1[indexPath.row]
+        if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
+            return true
         }
-    #else
-        override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: IndexPath) -> Bool {
-            let attributedText = styles[indexPath.section].1[indexPath.row]
-            if attributedText.attribute("Storyboard", at: 0, effectiveRange: nil) is String {
-                return true
-            }
-            return false
-        }
-    #endif
+        return false
+    }
 
     func selectRow(at indexPath: IndexPath) {
         let attributedText = styles[indexPath.section].1[indexPath.row]
@@ -86,45 +76,23 @@ class StyleViewController: UITableViewController {
 }
 
 extension StyleViewController {
-    #if swift(>=3.0)
-        override func numberOfSections(in tableView: UITableView) -> Int {
-            return styles.count
-        }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return styles.count
+    }
 
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return styles[section].1.count
-        }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return styles[section].1.count
+    }
 
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            return cell(at: indexPath)
-        }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return cell(at: indexPath)
+    }
 
-        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return styles[section].0
-        }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return styles[section].0
+    }
 
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            selectRow(at: indexPath)
-        }
-    #else
-        override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-            return styles.count
-        }
-
-        override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return styles[section].1.count
-        }
-
-        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            return cell(at: indexPath)
-        }
-
-        override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return styles[section].0
-        }
-
-        override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            selectRow(at: indexPath)
-        }
-    #endif
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectRow(at: indexPath)
+    }
 }

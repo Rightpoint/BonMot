@@ -29,9 +29,31 @@ public protocol Composable {
     ///                appending it to the passed attributed string.
     func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle)
 
+    /// Append the receiver to a given attributed string. It is up to the
+    /// receiver's type to define what it means to be appended to an attributed
+    /// string. Typically, the receiver will pick up the attributes of the last
+    /// character of the passed attributed string, but the `baseStyle` parameter
+    /// can be used to provide additional attributes for the appended string.
+    ///
+    /// - Parameters:
+    ///   - attributedString: The attributed string to which to append the
+    ///                       receiver.
+    ///   - baseStyle: Additional attribues to apply to the receiver before
+    ///                appending it to the passed attributed string.
+    ///   - isLastElement: Whether the receiver is the final element that is
+    ///                    being appended to an attributed string. Used in cases
+    ///                    where the receiver wants to customize how it is
+    ///                    appended if it knows it is the last element, chiefly
+    ///                    regarding NSAttributedStringKey.kern.
+    func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool)
+
 }
 
 public extension Composable {
+
+    func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+        append(to: attributedString, baseStyle: baseStyle, isLastElement: false)
+    }
 
     /// Create an attributed string with only this composable content, and no
     /// base style.
@@ -43,26 +65,30 @@ public extension Composable {
 
     /// Create a new `NSAttributedString` with the style specified.
     ///
-    /// - parameter style:         The style to use.
+    /// - parameter style: The style to use.
     /// - parameter overrideParts: The style parts to override on the base style.
+    /// - parameter stripTrailingKerning: whether to strip NSAttributedStringKey.kern
+    ///                                   from the last character of the result.
     /// - returns: A new `NSAttributedString`.
-    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
+    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part..., stripTrailingKerning: Bool = true) -> NSAttributedString {
         let string = NSMutableAttributedString()
         let newStyle = style.byAdding(stringStyle: StringStyle(overrideParts))
-        append(to: string, baseStyle: newStyle)
+        append(to: string, baseStyle: newStyle, isLastElement: stripTrailingKerning)
         return string
     }
 
     /// Create a new `NSAttributedString` with the style parts specified.
     ///
     /// - parameter parts: The style parts to use.
+    /// - parameter stripTrailingKerning: whether to strip NSAttributedStringKey.kern
+    ///                                   from the last character of the result.
     /// - returns: A new `NSAttributedString`.
-    public func styled(with parts: StringStyle.Part...) -> NSAttributedString {
+    public func styled(with parts: StringStyle.Part..., stripTrailingKerning: Bool = true) -> NSAttributedString {
         var style = StringStyle()
         for part in parts {
             style.update(part: part)
         }
-        return styled(with: style)
+        return styled(with: style, stripTrailingKerning: stripTrailingKerning)
     }
 
 }
@@ -86,8 +112,9 @@ public extension NSAttributedString {
     @nonobjc public static func composed(of composables: [Composable], baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
         let string = NSMutableAttributedString()
         string.beginEditing()
+        let lastComposableIndex = composables.endIndex
         for (index, composable) in composables.enumerated() {
-            composable.append(to: string, baseStyle: baseStyle)
+            composable.append(to: string, baseStyle: baseStyle, isLastElement: index == lastComposableIndex - 1)
             if let separator = separator {
                 if index != composables.indices.last {
                     separator.append(to: string, baseStyle: baseStyle)
@@ -96,6 +123,19 @@ public extension NSAttributedString {
         }
         string.endEditing()
         return string
+    }
+
+    public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
+        let newStyle = style.byAdding(overrideParts)
+        let newAttributes = newStyle.attributes
+
+        let mutableSelf = mutableStringCopy()
+        let fullRange = NSRange(location: 0, length: mutableSelf.string.utf16.count)
+
+        for (key, value) in newAttributes {
+            mutableSelf.addAttribute(key, value: value, range: fullRange)
+        }
+        return mutableSelf.immutableCopy()
     }
 
 }
@@ -113,13 +153,20 @@ extension NSAttributedString: Composable {
     /// - parameter to:        The attributed string to which to append the receiver.
     /// - parameter baseStyle: The `StringStyle` that is overridden by the
     ///                        receiver's attributes
-    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         let range = NSRange(location: 0, length: length)
         enumerateAttributes(in: range, options: []) { (attributes, range, _) in
             let substring = self.attributedSubstring(from: range)
             // Add the string with the defaults supplied by the style
             let newString = baseStyle.attributedString(from: substring.string, existingAttributes: attributes)
             attributedString.append(newString)
+        }
+
+        if isLastElement {
+            attributedString.removeKerningFromLastCharacter()
+        }
+        else {
+            attributedString.restoreKerningOnLastCharacter()
         }
     }
 
@@ -133,8 +180,14 @@ extension String: Composable {
     ///
     /// - parameter to:        The attributed string to which to append the receiver.
     /// - parameter baseStyle: The style to use for this string.
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         attributedString.append(baseStyle.attributedString(from: self))
+        if isLastElement {
+            attributedString.removeKerningFromLastCharacter()
+        }
+        else {
+            attributedString.restoreKerningOnLastCharacter()
+        }
     }
 
 }
@@ -156,7 +209,7 @@ extension BONImage: Composable {
     ///
     /// - parameter to:        The attributed string to which to append the receiver.
     /// - parameter baseStyle: The style to use.
-    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    @nonobjc public final func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         let baselinesOffsetForAttachment = baseStyle.baselineOffset ?? 0
         let attachment = NSTextAttachment()
 
@@ -179,7 +232,7 @@ extension BONImage: Composable {
         let attachmentString = NSAttributedString(attachment: attachment).mutableStringCopy()
         // Remove the baseline offset from the attributes so it isn't applied twice
         var attributes = baseStyle.attributes
-        attributes[NSBaselineOffsetAttributeName] = nil
+        attributes[.baselineOffset] = nil
         attachmentString.addAttributes(attributes, range: NSRange(location: 0, length: attachmentString.length))
 
         attributedString.append(attachmentString)
@@ -195,8 +248,48 @@ extension Special: Composable {
     ///
     /// - parameter to:        The attributed string to which to append the receiver.
     /// - parameter baseStyle: The style to use.
-    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle, isLastElement: Bool) {
         description.append(to: attributedString, baseStyle: baseStyle)
+    }
+
+}
+
+extension NSAttributedStringKey {
+
+    public static let bonMotRemovedKernAttribute = NSAttributedStringKey("com.raizlabs.bonmot.removedKernAttributeRemoved")
+
+}
+
+extension NSMutableAttributedString {
+
+    func removeKerningFromLastCharacter() {
+        guard length != 0 else {
+            return
+        }
+
+        let lastCharacterRange = NSRange(location: length - 1, length: 1)
+
+        guard let currentKernValue = attribute(.kern, at: lastCharacterRange.location, effectiveRange: nil) else {
+            return
+        }
+
+        removeAttribute(.kern, range: lastCharacterRange)
+        addAttribute(.bonMotRemovedKernAttribute, value: currentKernValue, range: lastCharacterRange)
+    }
+
+    func restoreKerningOnLastCharacter() {
+        guard length != 0 else {
+            return
+        }
+
+        let lastCharacterRange = NSRange(location: length - 1, length: 1)
+
+        guard let currentKernValue = attribute(.bonMotRemovedKernAttribute, at: lastCharacterRange.location, effectiveRange: nil) else {
+            return
+        }
+
+        removeAttribute(.bonMotRemovedKernAttribute, range: lastCharacterRange)
+        addAttribute(.kern, value: currentKernValue, range: lastCharacterRange)
     }
 
 }
