@@ -130,7 +130,6 @@ extension StringStyle {
             let preFeaturedFont = theAttributes[.font] as? BONFont
             var featureProviders = fontFeatureProviders
 
-            #if swift(>=4.1)
             featureProviders += [numberCase].compactMap { $0 } as [FontFeatureProvider]
             featureProviders += [numberSpacing].compactMap { $0 } as [FontFeatureProvider]
             featureProviders += [fractions].compactMap { $0 } as [FontFeatureProvider]
@@ -138,15 +137,6 @@ extension StringStyle {
             featureProviders += [`subscript`].compactMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
             featureProviders += [ordinals].compactMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]
             featureProviders += [scientificInferiors].compactMap { $0 }.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal } as [FontFeatureProvider]
-            #else
-            featureProviders += [numberCase].flatMap { $0 } as [FontFeatureProvider]
-            featureProviders += [numberSpacing].flatMap { $0 } as [FontFeatureProvider]
-            featureProviders += [fractions].flatMap { $0 } as [FontFeatureProvider]
-            featureProviders += [superscript].flatMap { $0 }.map { ($0 ? VerticalPosition.superscript : VerticalPosition.normal) } as [FontFeatureProvider]
-            featureProviders += [`subscript`].flatMap { $0 }.map { ($0 ? VerticalPosition.`subscript` : VerticalPosition.normal) } as [FontFeatureProvider]
-            featureProviders += [ordinals].flatMap { $0 }.map { $0 ? VerticalPosition.ordinals : VerticalPosition.normal } as [FontFeatureProvider]
-            featureProviders += [scientificInferiors].flatMap { $0 }.map { $0 ? VerticalPosition.scientificInferiors : VerticalPosition.normal } as [FontFeatureProvider]
-            #endif
             featureProviders += smallCaps.map { $0 as FontFeatureProvider }
             featureProviders += [stylisticAlternates as FontFeatureProvider]
             featureProviders += [contextualAlternates as FontFeatureProvider]
