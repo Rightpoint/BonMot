@@ -66,7 +66,11 @@ internal enum EmbeddedTransformationHelpers {
             }
             return nil
         }
+        #if swift(>=4.1)
+        return results.compactMap({ $0 })
+        #else
         return results.flatMap({ $0 })
+        #endif
     }
 
 }
