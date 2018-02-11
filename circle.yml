@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "9.2"
+    version: "9.3"
 
 dependencies:
   pre:
@@ -10,11 +10,11 @@ dependencies:
 test:
   override:
     - ./scripts/macOS.sh
-    - ./scripts/iOS-11.2.sh
+    - ./scripts/iOS-11.3.sh
     - ./scripts/iOS-10.3.1.sh
-    - ./scripts/tvOS-11.2.sh
-    - ./scripts/tvOS-10.2.sh
-    - ./scripts/watchOS-4.2.sh
+    - ./scripts/tvOS-11.3.sh
+    - ./scripts/tvOS-10.3.sh
+    - ./scripts/watchOS-4.3.sh
   post:
     - carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
     # This is to work around the fact that CocoaPods wants to set up the master CocoaPods specs
