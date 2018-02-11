@@ -66,7 +66,7 @@ internal enum EmbeddedTransformationHelpers {
             }
             return nil
         }
-        return results.flatMap({ $0 })
+        return results.compactMap({ $0 })
     }
 
 }
