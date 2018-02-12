@@ -33,12 +33,24 @@ workflows:
   version: 2
   test:
     jobs:
-      - brew-dependencies
-      - ruby-dependencies
-      - test
+      - brew-dependencies:
+        filters:
+          tags:
+            only: /.*/
+      - ruby-dependencies:
+        filters:
+          tags:
+            only: /.*/
+      - test:
+        filters:
+          tags:
+            only: /.*/
   deployment:
     jobs:
-      - ruby-dependencies
+      - ruby-dependencies:
+        filters:
+          tags:
+            only: /\d+(\.\d+)*(-.*)*/
       - deploy-to-cocoapods:
         filters:
           tags:
