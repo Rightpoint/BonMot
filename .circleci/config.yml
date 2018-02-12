@@ -1,0 +1,29 @@
+version: 2
+
+dependencies:
+  pre:
+    - run: brew update 1> /dev/null 2> /dev/null
+    - run: brew outdated carthage || (brew uninstall carthage --force; HOMEBREW_NO_AUTO_UPDATE=1 brew install carthage --force-bottle)
+    - run: gem install bundler
+
+jobs:
+  test:
+    macos:
+      xcode: "9.3"
+    steps:
+      - run: ./scripts/macOS.sh
+      - run: ./scripts/iOS-11.3.sh
+      - run: ./scripts/iOS-10.3.1.sh
+      - run: ./scripts/tvOS-11.3.sh
+      - run: ./scripts/tvOS-10.3.sh
+      - run: ./scripts/watchOS-4.3.sh
+      - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
+      - run: bundle exec pod lib lint
+
+  deployment:
+    macos:
+      xcode: "9.3"
+    release:
+      tag: /\d+(\.\d+)*(-.*)*/
+      steps:
+        - run: bundle exec pod trunk push
