@@ -35,15 +35,15 @@ workflows:
     jobs:
       - brew-dependencies:
         filters:
-          tags:
+          branches:
             only: /.*/
       - ruby-dependencies:
         filters:
-          tags:
+          branches:
             only: /.*/
       - test:
         filters:
-          tags:
+          branches:
             only: /.*/
   deployment:
     jobs:
