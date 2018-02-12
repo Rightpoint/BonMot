@@ -33,18 +33,9 @@ workflows:
   version: 2
   test:
     jobs:
-      - brew-dependencies:
-        filters:
-          branches:
-            only: /.*/
-      - ruby-dependencies:
-        filters:
-          branches:
-            only: /.*/
-      - test:
-        filters:
-          branches:
-            only: /.*/
+      - brew-dependencies
+      - ruby-dependencies
+      - test
   deployment:
     jobs:
       - ruby-dependencies:
