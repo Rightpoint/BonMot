@@ -12,6 +12,7 @@ jobs:
     macos:
       xcode: "9.3"
     steps:
+      - checkout
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-11.3.sh
       - run: ./scripts/iOS-10.3.1.sh
@@ -25,6 +26,7 @@ jobs:
     macos:
       xcode: "9.3"
     steps:
+      - checkout
       - run: bundle exec pod trunk push
     release:
       tag: /\d+(\.\d+)*(-.*)*/
