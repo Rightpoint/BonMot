@@ -835,6 +835,7 @@
 					};
 					ABC7774A1DC29F3000815FB9 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2KJHM26Y46;
 						ProvisioningStyle = Automatic;
 					};
 					ABCBFD561D96E61000FAD37A = {
