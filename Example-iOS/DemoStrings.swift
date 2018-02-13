@@ -65,6 +65,22 @@ enum DemoStrings {
         return localizedString.styled(with: baseStyle)
     }()
 
+    static let xmlWithEmphasis: NSAttributedString = {
+        let string = "You can parse HTML with <strong>strong</strong>, <em>em</em>, and even <strong><em>nested strong and em</em></strong> tags."
+        let emphasis = StringStyle(.emphasis(.italic), .color(.raizlabsRed))
+        let strong = StringStyle(.emphasis(.bold), .color(.raizlabsRed))
+        let style = StringStyle(
+            .font(.systemFont(ofSize: 17)),
+            .color(.black),
+            .xmlRules([
+                .style("em", emphasis),
+                .style("strong", strong),
+                ])
+        )
+        let ret = string.styled(with: style)
+        return ret
+    }()
+
     /// Compose a string piecewise from different components. If you are using
     /// localized strings, you may not want to use this approach, since it does
     /// not work well in cases where different languages have different

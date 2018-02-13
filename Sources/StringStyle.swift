@@ -71,6 +71,8 @@ public struct StringStyle {
     #if os(iOS) || os(tvOS)
     public var adaptations: [AdaptiveStyle] = []
     #endif
+
+    public var emphasis: Emphasis?
     public var tracking: Tracking?
     public var xmlStyler: XMLStyler?
     public var transform: Transform?
@@ -144,6 +146,20 @@ extension StringStyle {
             let featuredFont = preFeaturedFont?.font(withFeatures: featureProviders)
             theAttributes.update(possibleValue: featuredFont, forKey: .font)
         #endif
+
+        if let font = theAttributes[.font] as? BONFont, let emphasis = emphasis {
+            let descriptor = font.fontDescriptor
+            let existingTraits = descriptor.symbolicTraits
+            let newTraits = existingTraits.union(emphasis.symbolicTraits)
+
+            // Explicit cast to optional because withSymbolicTraits returns an
+            // optional on Mac, but not on iOS.
+            let newDescriptor: BONFontDescriptor? = descriptor.withSymbolicTraits(newTraits)
+            if let newDesciptor = newDescriptor {
+                let newFont = BONFont(descriptor: newDesciptor, size: 0)
+                theAttributes.update(possibleValue: newFont, forKey: .font)
+            }
+        }
 
         #if os(iOS) || os(tvOS)
             // Apply any adaptations
@@ -275,6 +291,16 @@ extension StringStyle {
             stylisticAlternates.add(other: theStringStyle.stylisticAlternates)
             contextualAlternates.add(other: theStringStyle.contextualAlternates)
         #endif
+
+        if let newEmphasis = theStringStyle.emphasis, let existingEmphasis = emphasis {
+            // If we have both new and existing, merge them
+            emphasis = existingEmphasis.union(newEmphasis)
+        }
+        else if let newEmphasis = theStringStyle.emphasis {
+            // If we have only new, just replace existing
+            emphasis = newEmphasis
+        }
+
         #if os(iOS) || os(tvOS)
             adaptations.append(contentsOf: theStringStyle.adaptations)
         #endif

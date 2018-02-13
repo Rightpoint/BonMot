@@ -191,6 +191,14 @@
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5511DCD22A9003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		CDB366BC20325AE1002C256E /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		CDB366BD20325AE1002C256E /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		CDB366C1203264DE002C256E /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		CDB366C2203264DF002C256E /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		CDB366C620326FCD002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
+		CDB366C720326FCE002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
+		CDB366C820326FCE002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
+		CDB366C920326FCF002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
 		CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
 		CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
 		CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
@@ -340,6 +348,8 @@
 		CD6BE3081E8590E900FB308F /* Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		CD6BE30E1E85924800FB308F /* TransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformTests.swift; sourceTree = "<group>"; };
 		CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylisticAlternates.swift; sourceTree = "<group>"; };
+		CDB366BB20325AE1002C256E /* Emphasis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emphasis.swift; sourceTree = "<group>"; };
+		CDB366C320326FC9002C256E /* EmphasisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmphasisTests.swift; sourceTree = "<group>"; };
 		CDC0CE351F90730700E144F7 /* AccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTests.swift; sourceTree = "<group>"; };
 		CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHeadingLevel.swift; sourceTree = "<group>"; };
 		CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextualAlternates.swift; sourceTree = "<group>"; };
@@ -431,6 +441,7 @@
 				ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */,
 				ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */,
 				ABCD3D561D96F02F00273936 /* FontFeatures.swift */,
+				CDB366BB20325AE1002C256E /* Emphasis.swift */,
 				CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */,
 				ABA75E091D99E43300B64705 /* Tracking.swift */,
 				CD3EEE661DC92CF0002C41BB /* Ligatures.swift */,
@@ -594,6 +605,7 @@
 				ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */,
 				CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */,
 				1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */,
+				CDB366C320326FC9002C256E /* EmphasisTests.swift */,
 				CD3EEE721DCA6BCB002C41BB /* FontInspectorTests.swift */,
 				CD6BE30E1E85924800FB308F /* TransformTests.swift */,
 				CDC0CE351F90730700E144F7 /* AccessTests.swift */,
@@ -1152,6 +1164,7 @@
 				CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */,
 				CDCF0F221DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */,
 				AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */,
+				CDB366C2203264DF002C256E /* Emphasis.swift in Sources */,
 				CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1161,6 +1174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDEA84391D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
+				CDB366C920326FCF002C256E /* EmphasisTests.swift in Sources */,
 				ABA75DF01D99E10F00B64705 /* Compatibility+Tests.swift in Sources */,
 				ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */,
 				CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */,
@@ -1193,6 +1207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3D7A1D96F02F00273936 /* AdaptiveStyleTransformation.swift in Sources */,
+				CDB366BC20325AE1002C256E /* Emphasis.swift in Sources */,
 				ABCD3D7F1D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
 				AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */,
 				ABCD3D791D96F02F00273936 /* AdaptiveStyle.swift in Sources */,
@@ -1235,6 +1250,7 @@
 				CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABCD3DBB1D96F06800273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE731DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
+				CDB366C620326FCD002C256E /* EmphasisTests.swift in Sources */,
 				CD6BE30F1E85924800FB308F /* TransformTests.swift in Sources */,
 				ABCD3DB01D96F06800273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DBD1D96F06800273936 /* XMLTagStyleBuilderTests.swift in Sources */,
@@ -1255,6 +1271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3DCE1D96F6A500273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
+				CDB366BD20325AE1002C256E /* Emphasis.swift in Sources */,
 				ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */,
 				CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */,
 				ABCD3DD31D96F6A500273936 /* StyleableUIElement.swift in Sources */,
@@ -1297,6 +1314,7 @@
 				CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */,
 				ABCD3DF31D96F6E200273936 /* UIKitBehaviorTests.swift in Sources */,
 				CD3EEE741DCA6BCB002C41BB /* FontInspectorTests.swift in Sources */,
+				CDB366C720326FCE002C256E /* EmphasisTests.swift in Sources */,
 				CD6BE3101E85924800FB308F /* TransformTests.swift in Sources */,
 				ABCD3DF41D96F6E200273936 /* AdaptiveStyleTests.swift in Sources */,
 				ABCD3DF51D96F6E200273936 /* XMLTagStyleBuilderTests.swift in Sources */,
@@ -1335,6 +1353,7 @@
 				ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */,
 				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,
 				CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */,
+				CDB366C1203264DE002C256E /* Emphasis.swift in Sources */,
 				ABCD3E1D1D980E4900273936 /* FontFeatures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1344,6 +1363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3E2B1D980E5500273936 /* Compatibility+Tests.swift in Sources */,
+				CDB366C820326FCE002C256E /* EmphasisTests.swift in Sources */,
 				ABCD3E2E1D980E5500273936 /* XMLTagStyleBuilderTests.swift in Sources */,
 				ABCD3E2F1D980E5500273936 /* NSAttributedStringDebugTests.swift in Sources */,
 				CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */,
