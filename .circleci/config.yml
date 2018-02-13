@@ -1,11 +1,11 @@
 version: 2
 
 jobs:
-  brew-dependencies:
+  brewDependencies:
     steps:
       - run: brew update 1> /dev/null 2> /dev/null
       - run: brew outdated carthage || (brew uninstall carthage --force; HOMEBREW_NO_AUTO_UPDATE=1 brew install carthage --force-bottle)
-  ruby-dependencies:
+  rubyDependencies:
     steps:
       - run: gem install bundler
   test:
@@ -21,7 +21,7 @@ jobs:
       - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
       - run: bundle exec pod lib lint
 
-  deploy-to-cocoapods:
+  deployToCocoapods:
     macos:
       xcode: "9.3"
     steps:
@@ -33,16 +33,16 @@ workflows:
   version: 2
   test:
     jobs:
-      - brew-dependencies
-      - ruby-dependencies
+      - brewDependencies
+      - rubyDependencies
       - test
   deployment:
     jobs:
-      - ruby-dependencies:
+      - rubyDependencies:
         filters:
           tags:
             only: /\d+(\.\d+)*(-.*)*/
-      - deploy-to-cocoapods:
+      - deployToCocoapods:
         filters:
           tags:
             only: /\d+(\.\d+)*(-.*)*/
