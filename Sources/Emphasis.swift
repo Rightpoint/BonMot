@@ -22,12 +22,14 @@ public struct Emphasis: OptionSet {
 
     public static let italic = Emphasis(rawValue: 1 << 0)
     public static let bold = Emphasis(rawValue: 1 << 1)
-    public static let expanded = Emphasis(rawValue: 1 << 2)
-    public static let condensed = Emphasis(rawValue: 1 << 3)
-    public static let vertical = Emphasis(rawValue: 1 << 4)
-    public static let uiOptimized = Emphasis(rawValue: 1 << 5)
-    public static let tightLineSpacing = Emphasis(rawValue: 1 << 6) // AKA Tight Leading
-    public static let looseLineSpacing = Emphasis(rawValue: 1 << 7) // AKA Loose Leading
+
+    // Reserved for later use, if we figure out a good naming scheme and use case.
+    private static let expanded = Emphasis(rawValue: 1 << 2)
+    private static let condensed = Emphasis(rawValue: 1 << 3)
+    private static let vertical = Emphasis(rawValue: 1 << 4)
+    private static let uiOptimized = Emphasis(rawValue: 1 << 5)
+    private static let tightLineSpacing = Emphasis(rawValue: 1 << 6) // AKA Tight Leading
+    private static let looseLineSpacing = Emphasis(rawValue: 1 << 7) // AKA Loose Leading
 
 }
 
