@@ -18,7 +18,7 @@ extension Tracking: AdaptiveStyleTransformation {
         if case .adobe = self {
             var attributes = theAttributes
             let styledFont = theAttributes[.font] as? UIFont
-            attributes.update(possibleValue: kerning(forFont: styledFont), forKey: .kern)
+            attributes.update(possibleValue: kerning(for: styledFont), forKey: .kern)
             return attributes
         }
         else {

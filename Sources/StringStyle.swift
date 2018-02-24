@@ -171,7 +171,7 @@ extension StringStyle {
         // Apply tracking
         if let tracking = tracking {
             let styledFont = theAttributes[.font] as? BONFont
-            theAttributes.update(possibleValue: tracking.kerning(forFont: styledFont), forKey: .kern)
+            theAttributes.update(possibleValue: tracking.kerning(for: styledFont), forKey: .kern)
             #if os(iOS) || os(tvOS)
                 // Add the tracking as an adaptation
                 theAttributes = EmbeddedTransformationHelpers.embed(transformation: tracking, to: theAttributes)

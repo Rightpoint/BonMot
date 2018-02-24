@@ -14,7 +14,7 @@ public enum Tracking {
     case point(CGFloat)
     case adobe(CGFloat)
 
-    public func kerning(forFont font: BONFont?) -> CGFloat {
+    public func kerning(for font: BONFont?) -> CGFloat {
         switch self {
         case .point(let kernValue):
             return kernValue

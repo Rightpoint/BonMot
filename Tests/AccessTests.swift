@@ -23,8 +23,8 @@ class AccessTests: XCTestCase {
         XCTAssertEqual(kernKey, "com.raizlabs.bonmot.removedKernAttributeRemoved")
 
         let font = BONFont(name: "EBGaramond12-Regular", size: 24)!
-        XCTAssertEqual(Tracking.point(10).kerning(forFont: nil), 10, accuracy: 0.00001)
-        XCTAssertEqual(Tracking.adobe(100).kerning(forFont: font), 2.4, accuracy: 0.00001)
+        XCTAssertEqual(Tracking.point(10).kerning(for: nil), 10, accuracy: 0.00001)
+        XCTAssertEqual(Tracking.adobe(100).kerning(for: font), 2.4, accuracy: 0.00001)
     }
 
 }
