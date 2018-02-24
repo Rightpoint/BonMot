@@ -14,6 +14,7 @@
 
     public typealias BONFont = NSFont
     public typealias BONFontDescriptor = NSFontDescriptor
+    public typealias BONSymbolicTraits = NSFontDescriptor.SymbolicTraits
     let BONFontDescriptorFeatureSettingsAttribute = NSFontDescriptor.AttributeName.featureSettings
     let BONFontFeatureTypeIdentifierKey = NSFontDescriptor.FeatureKey.typeIdentifier
     let BONFontFeatureSelectorIdentifierKey = NSFontDescriptor.FeatureKey.selectorIdentifier
@@ -24,6 +25,7 @@
 
     public typealias BONFont = UIFont
     public typealias BONFontDescriptor = UIFontDescriptor
+    public typealias BONSymbolicTraits = UIFontDescriptorSymbolicTraits
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
     let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
     let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
@@ -42,3 +44,42 @@ public typealias StyleAttributes = [NSAttributedStringKey: Any]
 
 // This key is defined here because it needs to be used in non-adaptive code.
 public let BonMotTransformationsAttributeName = NSAttributedStringKey("BonMotTransformations")
+
+extension BONSymbolicTraits {
+    #if os(iOS) || os(tvOS) || os(watchOS)
+        static var italic: BONSymbolicTraits {
+            return .traitItalic
+        }
+        static var bold: BONSymbolicTraits {
+            return .traitBold
+        }
+        static var expanded: BONSymbolicTraits {
+            return .traitExpanded
+        }
+        static var condensed: BONSymbolicTraits {
+            return .traitCondensed
+        }
+        static var vertical: BONSymbolicTraits {
+            return .traitVertical
+        }
+        static var uiOptimized: BONSymbolicTraits {
+            return .traitUIOptimized
+        }
+        static var tightLineSpacing: BONSymbolicTraits {
+            return .traitTightLeading
+        }
+        static var looseLineSpacing: BONSymbolicTraits {
+            return .traitLooseLeading
+        }
+    #else
+        static var uiOptimized: BONSymbolicTraits {
+            return .UIOptimized
+        }
+        static var tightLineSpacing: BONSymbolicTraits {
+            return .tightLeading
+        }
+        static var looseLineSpacing: BONSymbolicTraits {
+            return .looseLeading
+        }
+    #endif
+}

@@ -3,6 +3,7 @@ disabled_rules: # rule identifiers to exclude from running
   - nesting
   - identifier_name
   - large_tuple
+  - file_length
 
 statement_position:
   statement_mode: uncuddled_else

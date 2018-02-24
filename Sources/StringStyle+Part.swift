@@ -109,6 +109,8 @@ extension StringStyle {
         case adapt(AdaptiveStyle)
         #endif
 
+        case emphasis(Emphasis)
+
         // An advanced part that allows combining multiple parts as a single part
         case style(StringStyle)
 
@@ -215,6 +217,8 @@ extension StringStyle {
             self.transform = transform
         case let .style(style):
             self.add(stringStyle: style)
+        case let .emphasis(emphasis):
+            self.emphasis = emphasis
         default:
             // interaction between `#if` and `switch` is disappointing. This case
             // is in `default:` to remove a warning that default won't be accessed

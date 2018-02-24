@@ -20,7 +20,10 @@ class MasterTableViewCell: UITableViewCell {
 class StyleViewController: UITableViewController {
     var styles: [(String, [NSAttributedString])] = [
         ("Simple Use Case", [DemoStrings.simpleExample]),
-        ("XML", [DemoStrings.xmlExample]),
+        ("XML", [
+            DemoStrings.xmlExample,
+            DemoStrings.xmlWithEmphasis,
+            ]),
         ("Composition", [DemoStrings.compositionExample]),
         ("Images & Special Characters", [DemoStrings.imagesExample, DemoStrings.noBreakSpaceExample]),
         ("Baseline Offset", [DemoStrings.heartsExample]),
