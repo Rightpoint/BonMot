@@ -11,11 +11,20 @@ import XCTest
 
 class AccessTests: XCTestCase {
 
+    override func setUp() {
+        super.setUp()
+        EBGaramondLoader.loadFontIfNeeded()
+    }
+
     func testThatThingsThatShouldBePublicArePublic() {
         let kernKey = NSAttributedStringKey.bonMotRemovedKernAttribute
         // we care more that it's public than that it's equal to this string,
         // but might as well test it while we're here.
         XCTAssertEqual(kernKey, "com.raizlabs.bonmot.removedKernAttributeRemoved")
+
+        let font = BONFont(name: "EBGaramond12-Regular", size: 24)!
+        XCTAssertEqual(Tracking.point(10).kerning(forFont: nil), 10, accuracy: 0.00001)
+        XCTAssertEqual(Tracking.adobe(100).kerning(forFont: font), 2.4, accuracy: 0.00001)
     }
 
 }
