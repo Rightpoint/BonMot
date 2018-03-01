@@ -173,4 +173,41 @@ class ComposableTests: XCTestCase {
         XCTAssertEqual(paragraphEnd.lineSpacing, 0)
     }
 
+    func testJoiningSequence() {
+        let redStyle = StringStyle(.color(.red))
+        let greenStyle = StringStyle(.color(.green))
+        let blueStyle = StringStyle(.color(.blue))
+
+        let attributedStrings = [
+            "A".styled(with: redStyle),
+            "B".styled(with: greenStyle),
+            "C".styled(with: blueStyle),
+        ]
+        let testString = attributedStrings.joined(separator: "\n")
+
+        let controlString = NSAttributedString.composed(of: [
+            "A".styled(with: redStyle),
+            "\n",
+            "B".styled(with: greenStyle),
+            "\n",
+            "C".styled(with: blueStyle),
+            ])
+
+        XCTAssertEqual(testString, controlString)
+
+        let testWithDefaultSeparator = attributedStrings.joined()
+
+        let controlWithDefaultSeparator = NSAttributedString.composed(of: [
+            "A".styled(with: redStyle),
+            "B".styled(with: greenStyle),
+            "C".styled(with: blueStyle),
+            ])
+
+        XCTAssertEqual(testWithDefaultSeparator, controlWithDefaultSeparator)
+
+        XCTAssertEqual(["a", "b", "c"].joined(), "abc")
+
+        XCTAssertEqual(["a", "b", "c"].joined() as NSAttributedString, "abc".styled(with: StringStyle()))
+    }
+
 }

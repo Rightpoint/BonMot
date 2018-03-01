@@ -254,6 +254,14 @@ extension Special: Composable {
 
 }
 
+public extension Sequence where Element: Composable {
+
+    func joined(separator: Composable = "") -> NSAttributedString {
+        return NSAttributedString.composed(of: Array(self), separator: separator)
+    }
+
+}
+
 extension NSAttributedStringKey {
 
     public static let bonMotRemovedKernAttribute = NSAttributedStringKey("com.raizlabs.bonmot.removedKernAttributeRemoved")
