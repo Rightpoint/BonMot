@@ -204,6 +204,10 @@ class ComposableTests: XCTestCase {
             ])
 
         XCTAssertEqual(testWithDefaultSeparator, controlWithDefaultSeparator)
+
+        XCTAssertEqual(["a", "b", "c"].joined(), "abc")
+
+        XCTAssertEqual(["a", "b", "c"].joined() as NSAttributedString, "abc".styled(with: StringStyle()))
     }
 
 }
