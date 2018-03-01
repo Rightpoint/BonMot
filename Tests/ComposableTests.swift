@@ -175,8 +175,8 @@ class ComposableTests: XCTestCase {
 
     func testJoiningSequence() {
         let redStyle = StringStyle(.color(.red))
-        let greenStyle = StringStyle(.color(.red))
-        let blueStyle = StringStyle(.color(.red))
+        let greenStyle = StringStyle(.color(.green))
+        let blueStyle = StringStyle(.color(.blue))
 
         let attributedStrings = [
             "A".styled(with: redStyle),
