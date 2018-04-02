@@ -3,8 +3,12 @@ version: 2
 jobs:
   brew-dependencies:
     steps:
-      - run: brew update 1> /dev/null 2> /dev/null
-      - run: brew outdated carthage || (brew uninstall carthage --force; HOMEBREW_NO_AUTO_UPDATE=1 brew install carthage --force-bottle)
+      - run:
+        name: Update homebrew dependencies
+        command: brew update 1> /dev/null 2> /dev/null
+      - run:
+        name: Update Carthage
+        command: brew outdated carthage || (brew uninstall carthage --force; HOMEBREW_NO_AUTO_UPDATE=1 brew install carthage --force-bottle)
   ruby-dependencies:
     steps:
       - run: gem install bundler
