@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  test:
+  test-xcode-9-3:
     macos:
       xcode: "9.3.0"
     steps:
@@ -9,11 +9,18 @@ jobs:
       - run: bundle install
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-11.3.sh
-      - run: ./scripts/iOS-10.3.1.sh
       - run: ./scripts/tvOS-11.3.sh
-      - run: ./scripts/tvOS-10.3.sh
       - run: ./scripts/watchOS-4.3.sh
       - run: bundle exec pod lib lint
+  test-xcode-9-2:
+    macos:
+      xcode: "9.2.0"
+    steps:
+      - checkout
+      - run: bundle install
+      - run: ./scripts/macOS.sh
+      - run: ./scripts/iOS-10.3.1.sh
+      - run: ./scripts/tvOS-10.3.sh
 
   carthage-build:
     macos:
@@ -40,7 +47,8 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - test
+      - test-xcode-9-3
+      - test-xcode-9-2
       - carthage-build
 #      - deploy-to-cocoapods:
 #          requires:
