@@ -47,19 +47,19 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      test-xcode-9-3:
+      - test-xcode-9-3:
         filters:
           tags:
             only: /.*/
-      test-xcode-9-2:
+      - test-xcode-9-2:
         filters:
           tags:
             only: /.*/
-      carthage-build:
+      - carthage-build:
         filters:
           tags:
             only: /.*/
-      deploy-to-cocoapods:
+      - deploy-to-cocoapods:
         requires:
           - test-xcode-9-3
           - test-xcode-9-2
