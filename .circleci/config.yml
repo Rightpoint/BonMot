@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     macos:
-      xcode: "9.3"
+      xcode: "9.3.0"
     steps:
       - checkout
       - run: bundle install
@@ -17,7 +17,7 @@ jobs:
 
   carthage-build:
     macos:
-      xcode: "9.3"
+      xcode: "9.3.0"
     steps:
       - checkout
       - run:
@@ -30,7 +30,7 @@ jobs:
 
   deploy-to-cocoapods:
     macos:
-      xcode: "9.3"
+      xcode: "9.3.0"
     steps:
       - checkout
       - run: bundle install
