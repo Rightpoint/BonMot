@@ -50,9 +50,11 @@ workflows:
       - test-xcode-9-3
       - test-xcode-9-2
       - carthage-build
-#      - deploy-to-cocoapods:
-#          requires:
-#            - test
-#          filters:
-#            tags:
-#              only: /\d+(\.\d+)*(-.*)*/
+      - deploy-to-cocoapods:
+          requires:
+            - test-xcode-9-3
+            - test-xcode-9-2
+            - carthage-build
+          filters:
+            tags:
+              only: /\d+(\.\d+)*(-.*)*/
