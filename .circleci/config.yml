@@ -47,14 +47,23 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - test-xcode-9-3
-      - test-xcode-9-2
-      - carthage-build
-      - deploy-to-cocoapods:
-          requires:
-            - test-xcode-9-3
-            - test-xcode-9-2
-            - carthage-build
-          filters:
-            tags:
-              only: /\d+(\.\d+)*(-.*)*/
+      test-xcode-9-3:
+        filters:
+          tags:
+            only: /.*/
+      test-xcode-9-2:
+        filters:
+          tags:
+            only: /.*/
+      carthage-build:
+        filters:
+          tags:
+            only: /.*/
+      deploy-to-cocoapods:
+        requires:
+          - test-xcode-9-3
+          - test-xcode-9-2
+          - carthage-build
+        filters:
+          tags:
+            only: /\d+(\.\d+)*(-.*)*/
