@@ -6,6 +6,10 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
+      - run:
+          name: Install CocoaPods Specs Repo
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run: bundle install
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-11.3.sh
@@ -40,6 +44,10 @@ jobs:
       xcode: "9.3.0"
     steps:
       - checkout
+      - run:
+          name: Install CocoaPods Specs Repo
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run: bundle install
       - run: bundle exec pod trunk push
 
