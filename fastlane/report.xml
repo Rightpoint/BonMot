@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.005828">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: scan" time="5.087004">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: xchtmlreport" time="0.067374">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: xcov" time="0.284229">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: slather" time="1.962723">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: slather" time="1.340627">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
