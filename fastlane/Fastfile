@@ -47,27 +47,27 @@ platform :ios do
 
   desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1"
   lane :coverage_ios_10_3 do
-    ENV["FASTLANE_EXPLICIT_OPEN_SIMULATOR"] = "1"
     # The full list of iOS simulators available on CircleCI
     # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
     devices = ["iPhone SE (10.3.1)",
                "iPhone 7 (10.3.1)",
-               "iPhone 7 Plus (10.3.1)",
-               "iPad Pro (10.5-inch) (10.3.1)"]
+               # "iPhone 7 Plus (10.3.1)",
+               # "iPad Pro (10.5-inch) (10.3.1)",
+              ]
     coverage(scheme: "BonMot-iOS",
              devices: devices)
   end
 
   desc "Runs Tests & Generates Code Coverage Reports for latest iOS"
   lane :coverage_ios_latest do
-    ENV["FASTLANE_EXPLICIT_OPEN_SIMULATOR"] = "1"
     # The full list of iOS simulators available on CircleCI
     # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
     devices = ["iPhone SE",
-               "iPhone 8",
-               "iPhone 8 Plus",
-               "iPad Pro (10.5-inch)",
-               "iPhone X"]
+               # "iPhone 8",
+               # "iPhone 8 Plus",
+               # "iPad Pro (10.5-inch)",
+               "iPhone X",
+               ]
     coverage(scheme: "BonMot-iOS",
              devices: devices)
   end
