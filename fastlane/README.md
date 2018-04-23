@@ -35,7 +35,17 @@ Runs Tests & Generates Code Coverage Reports for macOS
 ```
 fastlane ios coverage_ios
 ```
-Runs Tests & Generates Code Coverage Reports for iOS
+Runs Tests & Generates Code Coverage Reports for iOS 10.3.1 and latest iOS
+### ios coverage_ios_10_3
+```
+fastlane ios coverage_ios_10_3
+```
+Runs Tests & Generates Code Coverage Reports for iOS 10.3.1
+### ios coverage_ios_latest
+```
+fastlane ios coverage_ios_latest
+```
+Runs Tests & Generates Code Coverage Reports for latest iOS
 ### ios coverage_tvos
 ```
 fastlane ios coverage_tvos

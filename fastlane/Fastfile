@@ -37,20 +37,35 @@ platform :ios do
     coverage(scheme: "BonMot-OSX")
   end
 
-  desc "Runs Tests & Generates Code Coverage Reports for iOS"
+  desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1 and latest iOS"
   lane :coverage_ios do
+    # Running too many devices concurrently breaks CircleCI resource limits
+    # "Reason: Unable to boot device due to insufficient system resources."
+    coverage_ios_10_3
+    coverage_ios_latest
+  end
+
+  desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1"
+  lane :coverage_ios_10_3 do
     # The full list of iOS simulators available on CircleCI
     # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
-    # "" will use latest iOS SDK
-    ios_versions = [" (10.3.1)", ""]
-    devices = []
-    ios_versions.each { |version|
-      devices.push("iPhone SE#{version}")
-      devices.push("iPhone 7#{version}")
-      devices.push("iPhone 7 Plus#{version}")
-      devices.push("iPad Pro (10.5-inch)#{version}")
-    }
-    devices.push("iPhone X")
+    devices = ["iPhone SE (10.3.1)",
+               "iPhone 7 (10.3.1)",
+               "iPhone 7 Plus (10.3.1)",
+               "iPad Pro (10.5-inch) (10.3.1)"]
+    coverage(scheme: "BonMot-iOS",
+             devices: devices)
+  end
+
+  desc "Runs Tests & Generates Code Coverage Reports for latest iOS"
+  lane :coverage_ios_latest do
+    # The full list of iOS simulators available on CircleCI
+    # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
+    devices = ["iPhone SE",
+               "iPhone 8",
+               "iPhone 8 Plus",
+               "iPad Pro (10.5-inch)",
+               "iPhone X"]
     coverage(scheme: "BonMot-iOS",
              devices: devices)
   end
