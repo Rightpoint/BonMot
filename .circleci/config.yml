@@ -15,8 +15,8 @@ jobs:
     working_directory: /Users/distiller/project
     steps:
       - run:
-        name: Set Ruby Version
-        command:  echo "ruby-2.4" > ~/.ruby-version
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
       - checkout
       # Setup Ruby dependencies
       - restore_cache:
