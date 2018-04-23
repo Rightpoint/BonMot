@@ -60,7 +60,7 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
 
   xcov_url = results.url_for_query(xcov)
   slather_url = results.url_for_query(slather)
-  screenshots_url = results.url_for_query(screenshots)
+  # screenshots_url = results.url_for_query(screenshots)
   xcpretty_url = results.url_for_query(xcpretty)
   xchtmlreport_url = results.url_for_query(xchtmlreport)
 
