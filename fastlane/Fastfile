@@ -47,6 +47,7 @@ platform :ios do
 
   desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1"
   lane :coverage_ios_10_3 do
+    ENV["FASTLANE_EXPLICIT_OPEN_SIMULATOR"] = "1"
     # The full list of iOS simulators available on CircleCI
     # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
     devices = ["iPhone SE (10.3.1)",
@@ -59,6 +60,7 @@ platform :ios do
 
   desc "Runs Tests & Generates Code Coverage Reports for latest iOS"
   lane :coverage_ios_latest do
+    ENV["FASTLANE_EXPLICIT_OPEN_SIMULATOR"] = "1"
     # The full list of iOS simulators available on CircleCI
     # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
     devices = ["iPhone SE",
