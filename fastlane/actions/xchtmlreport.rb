@@ -7,6 +7,11 @@ module Fastlane
     class XchtmlreportAction < Action
       def self.run(params)
         result_bundle_path = params[:result_bundle_path]
+        result_bundle_paths = params[:result_bundle_paths]
+        if result_bundle_path and result_bundle_paths.empty?
+          result_bundle_paths = [result_bundle_path]
+        end
+
         binary_path = params[:binary_path]
 
         if !File.file?(binary_path)
@@ -14,7 +19,13 @@ module Fastlane
         end
         UI.message "Result bundle path: #{result_bundle_path}"
 
-        sh "#{binary_path} -r #{result_bundle_path}"
+        command = "#{binary_path}"
+
+        result_bundle_paths.each { |path|
+          command += " -r #{path}"
+        }
+
+        sh command
 
       end
 
@@ -36,9 +47,29 @@ module Fastlane
         # Below a few examples
         [
           FastlaneCore::ConfigItem.new(key: :result_bundle_path,
-                                       description: "Path to the result bundle from scan. After running scan you can use Scan.cache[:result_bundle_path]", # a short description of this parameter
+                                       description: "Path to the result bundle from scan. After running scan you can use Scan.cache[:result_bundle_path]",
+                                       conflicting_options: [:result_bundle_paths],
+                                       default_value: Scan.cache[:result_bundle_path],
+                                       is_string: true,
+                                       conflict_block: proc do |value|
+                                          UI.user_error!("You can't use 'result_bundle_path' and 'result_bundle_paths' options in one run")
+                                        end,
                                        verify_block: proc do |value|
-                                          UI.user_error!("Bad path to the result bundle given, pass using `result_bundle_path: 'path'`") unless (value and File.directory?(value))
+                                          UI.user_error!("Bad path to the result bundle given: #{value}") unless (value and File.directory?(value))
+                                        end),
+          FastlaneCore::ConfigItem.new(key: :result_bundle_paths,
+                                       description: "Array of multiple result bundle paths from scan",
+                                       conflicting_options: [:result_bundle_path],
+                                       default_value: [],
+                                       optional: true,
+                                       is_string: false,
+                                       conflict_block: proc do |value|
+                                        UI.user_error!("You can't use 'result_bundle_path' and 'result_bundle_paths' options in one run")
+                                       end,
+                                       verify_block: proc do |value|
+                                          value.each { |path|
+                                            UI.user_error!("Bad path to the result bundle given: #{path}") unless (path and File.directory?(path))
+                                          }
                                        end),
           FastlaneCore::ConfigItem.new(key: :binary_path,
                                        description: "Path to xchtmlreport binary",

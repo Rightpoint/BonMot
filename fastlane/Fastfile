@@ -20,16 +20,16 @@ PROJECT_NAME='BonMot.xcodeproj'
 platform :ios do
   desc "Tests: macOS, iOS, tvOS. Builds: watchOS."
   lane :build_and_test_all do
-    coverage_all()
+    coverage_all
     # Unit testing is not available on watchOS
-    build_watchos()
+    build_watchos
   end
 
   desc "Runs Tests & Generates Code Coverage Reports for macOS, iOS, tvOS"
   lane :coverage_all do
-    coverage_macos()
-    coverage_ios()
-    coverage_tvos()
+    coverage_macos
+    coverage_ios
+    coverage_tvos
   end
 
   desc "Runs Tests & Generates Code Coverage Reports for macOS"
@@ -71,8 +71,6 @@ end
 
 def coverage(scheme:, devices: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
-  result_bundle_path = "#{scan_output_path}/#{scheme}.test_result"
-  FileUtils.rm_rf(result_bundle_path, :secure => true)
   begin
     scan(
       output_types: 'junit,html',
@@ -88,7 +86,8 @@ def coverage(scheme:, devices: nil)
     STDERR.puts ex
   end
 
-  xchtmlreport(result_bundle_path: Scan.cache[:result_bundle_path])
+  result_bundle_path = Scan.cache[:result_bundle_path]
+  xchtmlreport(result_bundle_path: result_bundle_path)
   
   slather_use_circleci = "false"
 
@@ -127,4 +126,5 @@ def coverage(scheme:, devices: nil)
     cobertura_xml: "true",
     build_directory: DERIVED_DATA_PATH
   )
+  result_bundle_path
 end

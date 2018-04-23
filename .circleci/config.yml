@@ -1,6 +1,70 @@
 version: 2
 
 jobs:
+  danger:
+    macos:
+      xcode: "9.3.0"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/build/gems
+    shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
+    steps:
+      - checkout
+      # Setup Ruby dependencies
+      - restore_cache:
+          keys: 
+            - 1-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
+            - 1-gems-
+      - run:
+          name: Restore Ruby Gems
+          command: |
+            bundle check || bundle install
+      # Cache Gems
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - "/Users/distiller/project/build/gems"
+      - run:
+          name: Homebrew Dependencies
+          command: |
+            brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/feature/homebrew/xchtmlreport.rb
+            brew install swiftlint
+      - run:
+          name: Tests
+          command: |
+            bundle exec fastlane build_and_test_all
+      - run:
+          name: Code Coverage
+          when: always
+          command: |
+            cd PRODUCTNAME/app
+            bundle exec fastlane coverage
+      # Store xcov Code Coverage HTML report artifact 
+      - store_artifacts:
+          path: /Users/distiller/project/build/BonMot-iOS/xcov
+          destination: xcov
+      - store_artifacts:
+          path: /Users/distiller/project/build/BonMot-iOS/slather
+          destination: slather
+      - store_artifacts:
+          path: /Users/distiller/project/build/BonMot-iOS/scan
+          destination: scan
+      # Update Danger as soon as we have code coverage/tests, while waiting for screenshots to be generated
+      - run:
+          name: Danger
+          when: always
+          command: |
+            bundle exec danger
+      - run:
+          name: Upload to Codecov
+          when: always
+          command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
+
   test-xcode-9-3:
     macos:
       xcode: "9.3.0"
@@ -55,6 +119,10 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
+      - danger:
+          filters:
+            tags:
+              only: /.*/
       - test-xcode-9-3:
           filters:
             tags:

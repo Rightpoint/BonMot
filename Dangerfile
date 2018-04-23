@@ -16,21 +16,20 @@ if github.pr_body.length < 3 && git.lines_of_code > 10
   warn("Please provide a summary in the Pull Request description")
 end
 
-src_root = File.expand_path('../app', __FILE__)
+src_root = File.expand_path('../', __FILE__)
+
+SCHEME = "BonMot-iOS"
 
 xcov.report(
-  workspace: "#{src_root}/PRODUCTNAME.xcworkspace",
-  scheme: "debug-PRODUCTNAME",
-  output_directory: "#{src_root}/build/xcov",
-  # Add targets here as you add new internal products / frameworks
-  include_targets: "debug-PRODUCTNAME.app, Services.framework",
-  ignore_file_path: "#{src_root}/fastlane/.xcovignore",
+  project: "#{src_root}/BonMot.xcodeproj",
+  scheme: SCHEME,
+  output_directory: "#{src_root}/build/#{SCHEME}/xcov",
   derived_data_path: "#{src_root}/build/derived_data"
 )
 
 ## ** SWIFT LINT ***
 # Use the SwiftLint included via CocoaPods
-swiftlint.binary_path = "#{src_root}/Pods/SwiftLint/swiftlint"
+swiftlint.binary_path = "/usr/local/bin/swiftlint"
 swiftlint.config_file = "#{src_root}/.swiftlint.yml"
 
 # Run Swift-Lint and warn us if anything fails it
@@ -88,5 +87,5 @@ end
 
 # Test Reporting
 
-junit.parse "#{src_root}/build/scan/report.junit"
+junit.parse "#{src_root}/build/#{SCHEME}/scan/report.junit"
 junit.report
