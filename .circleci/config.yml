@@ -21,16 +21,16 @@ jobs:
       # Setup Ruby dependencies
       - restore_cache:
           keys: 
-            - 1-gems-{{ checksum "Gemfile.lock" }}
+            - 2-gems-{{ checksum "Gemfile.lock" }}
             # Fall back to a previous cache if exact match cannot be found
-            - 1-gems-
+            - 2-gems-
       - run:
           name: Restore Ruby Gems
           command: |
             bundle check || bundle install
       # Cache Gems
       - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
       - run:
