@@ -10,9 +10,13 @@ jobs:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
+      HOMEBREW_NO_AUTO_UPDATE: 1
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
+      run:
+        name: Set Ruby Version
+        command:  echo "ruby-2.4" > ~/.ruby-version
       - checkout
       # Setup Ruby dependencies
       - restore_cache:
@@ -30,10 +34,9 @@ jobs:
           paths:
             - "/Users/distiller/project/build/gems"
       - run:
-          name: Homebrew Dependencies
+          name: Install xchtmlreport
           command: |
             brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/feature/homebrew/xchtmlreport.rb
-            brew install swiftlint
       - run:
           name: Tests
           command: |
@@ -54,7 +57,10 @@ jobs:
       - store_artifacts:
           path: /Users/distiller/project/build/BonMot-iOS/scan
           destination: scan
-      # Update Danger as soon as we have code coverage/tests, while waiting for screenshots to be generated
+      - run:
+          name: Install Swiftlint
+          command: |
+            brew install swiftlint
       - run:
           name: Danger
           when: always
