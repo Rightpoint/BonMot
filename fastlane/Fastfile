@@ -45,12 +45,12 @@ platform :ios do
     ios_versions = [" (10.3.1)", ""]
     devices = []
     ios_versions.each { |version|
-      devices.append("iPhone SE#{version}")
-      devices.append("iPhone 7#{version}")
-      devices.append("iPhone 7 Plus#{version}")
-      devices.append("iPad Pro (10.5-inch)#{version}")
+      devices.push("iPhone SE#{version}")
+      devices.push("iPhone 7#{version}")
+      devices.push("iPhone 7 Plus#{version}")
+      devices.push("iPad Pro (10.5-inch)#{version}")
     }
-    devices.append("iPhone X")
+    devices.push("iPhone X")
     coverage(scheme: "BonMot-iOS",
              devices: devices)
   end

@@ -52,18 +52,26 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
 
   xcov = CircleciArtifact::Query.new(url_substring: 'xcov/index.html')
   slather = CircleciArtifact::Query.new(url_substring: 'slather/index.html')
-  screenshots = CircleciArtifact::Query.new(url_substring: 'screenshots/screenshots.html')
-  tests = CircleciArtifact::Query.new(url_substring: 'scan/report.html')
-  queries = [xcov, slather, screenshots, tests]
+  # screenshots = CircleciArtifact::Query.new(url_substring: 'screenshots/screenshots.html')
+  xcpretty = CircleciArtifact::Query.new(url_substring: 'scan/report.html')
+  xchtmlreport = CircleciArtifact::Query.new(url_substring: 'test_result/index.html')
+  queries = [xcov, slather, screenshots, xcpretty, xchtmlreport]
   results = fetcher.fetch_queries(queries)
 
   xcov_url = results.url_for_query(xcov)
   slather_url = results.url_for_query(slather)
   screenshots_url = results.url_for_query(screenshots)
-  tests_url = results.url_for_query(tests)
+  xcpretty_url = results.url_for_query(xcpretty)
+  xchtmlreport_url = results.url_for_query(xchtmlreport)
 
-  if !tests_url.nil?
-    message "[Test Results](#{tests_url})"
+  if !xcpretty_url.nil?
+    message "[Test Results: xcpretty](#{xcpretty_url})"
+  else
+    message "Tests in progress..."
+  end
+
+  if !xchtmlreport_url.nil?
+    message "[Test Results: xchtmlreport](#{xchtmlreport_url})"
   else
     message "Tests in progress..."
   end
@@ -76,11 +84,11 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
     message "[Code Coverage: Slather](#{slather_url})"
   end
 
-  if !screenshots_url.nil?
-    message "[Screenshots](#{screenshots_url})"
-  else
-    message "Screenshots in progress..."
-  end
+  # if !screenshots_url.nil?
+  #   message "[Screenshots](#{screenshots_url})"
+  # else
+  #   message "Screenshots in progress..."
+  # end
 else
   warn "Missing CircleCI artifacts. Most likely the [CIRCLE_API_TOKEN](https://github.com/Raizlabs/circleci_artifact#getting-started) is not set, or Danger is not running on CircleCI."
 end
