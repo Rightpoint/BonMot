@@ -60,6 +60,7 @@ jobs:
       # Install Swiftlint only before Danger because otherwise it fails the build
       - run:
           name: Install Swiftlint
+          when: always
           command: |
             brew install swiftlint
       - run:
