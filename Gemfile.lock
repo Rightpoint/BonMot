@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Raizlabs/fastlane.git
-  revision: 0d5658abe052d9da295caa0130695b430117de4e
+  revision: ad47397c92a0dbf5ae6d0144dc45f746ff5aa0dd
   branch: scan/max_concurrent_simulators
   specs:
     fastlane (2.93.1)

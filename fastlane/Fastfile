@@ -72,9 +72,9 @@ def coverage(scheme:, devices: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
 
   # NOTE: Running too many devices concurrently breaks CircleCI resource limits
-  max_concurrent_simulators = nil
+  disable_concurrent_testing = nil
   if ENV['CIRCLE_BUILD_NUM']
-    max_concurrent_simulators = 1
+    disable_concurrent_testing = 1
   end
 
   begin
@@ -86,7 +86,7 @@ def coverage(scheme:, devices: nil)
       code_coverage: true,
       derived_data_path: DERIVED_DATA_PATH,
       result_bundle: true,
-      max_concurrent_simulators: max_concurrent_simulators
+      disable_concurrent_testing: disable_concurrent_testing
     )
   rescue => ex
     # Don't fail the entire lane when running tests, but print failure to STDERR
