@@ -7,9 +7,16 @@ module Fastlane
     class XchtmlreportAction < Action
       def self.run(params)
         result_bundle_path = params[:result_bundle_path]
+        if result_bundle_path.nil?
+          result_bundle_path = Scan.cache[:result_bundle_path]
+        end
         result_bundle_paths = params[:result_bundle_paths]
         if result_bundle_path and result_bundle_paths.empty?
           result_bundle_paths = [result_bundle_path]
+        end
+
+        if result_bundle_paths.nil? or result_bundle_paths.empty?
+          UI.user_error!("You must pass at least one result_bundle_path")
         end
 
         binary_path = params[:binary_path]
@@ -24,6 +31,10 @@ module Fastlane
         result_bundle_paths.each { |path|
           command += " -r #{path}"
         }
+
+        if params[:enable_junit]
+          command += " -j"
+        end
 
         sh command
 
@@ -49,7 +60,7 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :result_bundle_path,
                                        description: "Path to the result bundle from scan. After running scan you can use Scan.cache[:result_bundle_path]",
                                        conflicting_options: [:result_bundle_paths],
-                                       default_value: Scan.cache[:result_bundle_path],
+                                       optional: true,
                                        is_string: true,
                                        conflict_block: proc do |value|
                                           UI.user_error!("You can't use 'result_bundle_path' and 'result_bundle_paths' options in one run")
@@ -60,9 +71,9 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :result_bundle_paths,
                                        description: "Array of multiple result bundle paths from scan",
                                        conflicting_options: [:result_bundle_path],
-                                       default_value: [],
                                        optional: true,
-                                       is_string: false,
+                                       default_value: [],
+                                       type: Array,
                                        conflict_block: proc do |value|
                                         UI.user_error!("You can't use 'result_bundle_path' and 'result_bundle_paths' options in one run")
                                        end,
@@ -74,7 +85,12 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :binary_path,
                                        description: "Path to xchtmlreport binary",
                                        is_string: true, # true: verifies the input is a string, false: every kind of value
-                                       default_value: "/usr/local/bin/xchtmlreport") # the default value if the user didn't provide one
+                                       default_value: "/usr/local/bin/xchtmlreport"), # the default value if the user didn't provide one
+          FastlaneCore::ConfigItem.new(key: :enable_junit,
+                                       type: Boolean,
+                                       default_value: false,
+                                       description: "Enables JUnit XML output 'report.junit'",
+                                       optional: true),
         ]
       end
 

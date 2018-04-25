@@ -21,8 +21,11 @@ desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
 lane :coverage_all do
   bundle_ios = coverage(scheme: "BonMot-iOS", devices: get_devices(ios_latest: true, ios_10_3: true))
   bundle_tvos = coverage(scheme: "BonMot-tvOS")
-  bundle_macos = coverage(scheme: "BonMot-OSX")
-  xchtmlreport(result_bundle_paths: [bundle_ios, bundle_tvos, bundle_macos])
+  # For some reason fastlane tries to build for tvOS simulator unless destination is manually set
+  bundle_macos = coverage(scheme: "BonMot-OSX", destination: "platform=macOS")
+  
+  xchtmlreport(result_bundle_paths: [bundle_ios, bundle_tvos, bundle_macos],
+               enable_junit: true)
   # Unit testing is not available on watchOS
   xcodebuild(scheme: "BonMot-watchOS",
              derivedDataPath: DERIVED_DATA_PATH)
@@ -71,7 +74,7 @@ platform :ios do
 end
 
 
-def coverage(scheme:, devices: nil)
+def coverage(scheme:, devices: nil, destination: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
 
   # NOTE: Running too many devices concurrently breaks CircleCI resource limits
@@ -84,6 +87,7 @@ def coverage(scheme:, devices: nil)
     scan(
       output_types: 'junit,html',
       devices: devices,
+      destination: destination,
       scheme: scheme,
       output_directory: scan_output_path,
       code_coverage: true,
@@ -139,27 +143,23 @@ def coverage(scheme:, devices: nil)
   result_bundle_path
 end
 
-def get_devices(ios_latest: false, ios_10_3: false, circleci: nil)
+def get_devices(ios_latest: false, ios_10_3: false)
   # The full list of iOS simulators available on CircleCI
   # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
   devices = []
   if ios_latest
     devices.push("iPhone SE")
     devices.push("iPhone X")
-    if !circleci
-      devices.push("iPhone 8")
-      devices.push("iPhone 8 Plus")
-      devices.push("iPad Pro (10.5-inch)")
-    end
+    devices.push("iPhone 8")
+    devices.push("iPhone 8 Plus")
+    devices.push("iPad Pro (10.5-inch)")
   end
 
   if ios_10_3
     devices.push("iPhone SE (10.3.1)")
     devices.push("iPhone 7 (10.3.1)")
-    if !circleci
-      devices.push("iPhone 7 Plus (10.3.1)")
-      devices.push("iPad Pro (10.5-inch) (10.3.1)")
-    end
+    devices.push("iPhone 7 Plus (10.3.1)")
+    devices.push("iPad Pro (10.5-inch) (10.3.1)")
   end
   devices
 end

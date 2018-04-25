@@ -64,24 +64,24 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
   xcpretty_url = results.url_for_query(xcpretty)
   xchtmlreport_url = results.url_for_query(xchtmlreport)
 
-  if !xcpretty_url.nil?
-    message "[Test Results: xcpretty](#{xcpretty_url})"
-  else
-    message "Tests in progress..."
-  end
+  # if !xcpretty_url.nil?
+  #   message "[Test Results: xcpretty](#{xcpretty_url})"
+  # else
+  #   message "Tests in progress..."
+  # end
 
   if !xchtmlreport_url.nil?
-    message "[Test Results: xchtmlreport](#{xchtmlreport_url})"
+    message "[Test Results](#{xchtmlreport_url})"
   else
     message "Tests in progress..."
   end
 
-  if !xcov_url.nil?
-    message "[Code Coverage: xcov](#{xcov_url})"
-  end
+  # if !xcov_url.nil?
+  #   message "[Code Coverage: xcov](#{xcov_url})"
+  # end
 
   if !slather_url.nil?
-    message "[Code Coverage: Slather](#{slather_url})"
+    message "[Code Coverage](#{slather_url})"
   end
 
   # if !screenshots_url.nil?
@@ -95,9 +95,5 @@ end
 
 # Test Reporting
 
-junit.parse "#{src_root}/build/BonMot-iOS/scan/report.junit"
-junit.report
-junit.parse "#{src_root}/build/BonMot-OSX/scan/report.junit"
-junit.report
-junit.parse "#{src_root}/build/BonMot-tvOS/scan/report.junit"
+junit.parse "#{src_root}/build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit"
 junit.report
