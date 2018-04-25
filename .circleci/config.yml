@@ -20,7 +20,7 @@ jobs:
       - checkout
       # Setup Ruby dependencies
       - restore_cache:
-          keys: 
+          keys:
             - 2-gems-{{ checksum "Gemfile.lock" }}
             # Fall back to a previous cache if exact match cannot be found
             - 2-gems-
@@ -71,13 +71,39 @@ jobs:
   test-xcode-9-3:
     macos:
       xcode: "9.3.0"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/build/gems
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
     steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
       - checkout
+      # Setup Ruby dependencies
+      - restore_cache:
+          keys:
+            - 2-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
+            - 2-gems-
+      - run:
+          name: Restore Ruby Gems
+          command: |
+            bundle check || bundle install
+      # Cache Gems
+      - save_cache:
+          key: 2-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - "/Users/distiller/project/build/gems"
       - run:
           name: Install CocoaPods Specs Repo
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      - run: bundle install
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-11.3.sh
       - run: ./scripts/tvOS-11.3.sh
@@ -86,9 +112,35 @@ jobs:
   test-xcode-9-2:
     macos:
       xcode: "9.2.0"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/build/gems
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
     steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
       - checkout
-      - run: bundle install
+      # Setup Ruby dependencies
+      - restore_cache:
+          keys:
+            - 2-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
+            - 2-gems-
+      - run:
+          name: Restore Ruby Gems
+          command: |
+            bundle check || bundle install
+      # Cache Gems
+      - save_cache:
+          key: 2-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - "/Users/distiller/project/build/gems"
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-10.3.1.sh
       - run: ./scripts/tvOS-10.2.sh
@@ -96,26 +148,79 @@ jobs:
   carthage-build:
     macos:
       xcode: "9.3.0"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/build/gems
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
     steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
       - checkout
+      # Setup Ruby dependencies
+      - restore_cache:
+          keys:
+            - 2-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
+            - 2-gems-
+      - run:
+          name: Restore Ruby Gems
+          command: |
+            bundle check || bundle install
+      # Cache Gems
+      - save_cache:
+          key: 2-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - "/Users/distiller/project/build/gems"
       - run:
           name: Update homebrew dependencies
           command: brew update 1> /dev/null 2> /dev/null
       - run:
           name: Update Carthage
-          command: brew outdated carthage || (brew uninstall carthage --force; HOMEBREW_NO_AUTO_UPDATE=1 brew install carthage --force-bottle)
+          command: brew outdated carthage || (brew uninstall carthage --force; brew install carthage --force-bottle)
       - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
     macos:
       xcode: "9.3.0"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/build/gems
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
     steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
       - checkout
+      # Setup Ruby dependencies
+      - restore_cache:
+          keys:
+            - 2-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
+            - 2-gems-
+      - run:
+          name: Restore Ruby Gems
+          command: |
+            bundle check || bundle install
+      # Cache Gems
+      - save_cache:
+          key: 2-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - "/Users/distiller/project/build/gems"
       - run:
           name: Install CocoaPods Specs Repo
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      - run: bundle install
       - run: bundle exec pod trunk push
 
 workflows:
