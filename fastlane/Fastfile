@@ -142,7 +142,7 @@ def coverage(scheme:, devices: nil)
   result_bundle_path
 end
 
-def get_devices(ios_latest: false, ios_10_3: false)
+def get_devices(ios_latest: false, ios_10_3: false, circleci: nil)
   # The full list of iOS simulators available on CircleCI
   # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
   devices = []
