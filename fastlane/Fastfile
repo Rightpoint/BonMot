@@ -9,7 +9,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-default_platform(:ios)
+# default_platform(:ios)
 fastlane_require 'circleci_artifact'
 fastlane_version "2.93.1"
 
@@ -17,22 +17,25 @@ BUILD_PATH="./build"
 DERIVED_DATA_PATH = "#{BUILD_PATH}/derived_data"
 PROJECT_NAME='BonMot.xcodeproj'
 
-platform :ios do
-  desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
-  lane :coverage_all do
-    bundle_ios = coverage_ios
-    bundle_tvos = coverage_tvos
-    bundle_macos = coverage_macos
-    xchtmlreport(result_bundle_paths: [bundle_ios, bundle_tvos, bundle_macos])
-    # Unit testing is not available on watchOS
-    build_watchos
-  end
+desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
+lane :coverage_all do
+  bundle_macos = coverage(scheme: "BonMot-OSX")
+  bundle_ios = coverage(scheme: "BonMot-iOS", devices: get_devices(ios_latest: true, ios_10_3: true))
+  bundle_tvos = coverage(scheme: "BonMot-tvOS")
+  xchtmlreport(result_bundle_paths: [bundle_ios, bundle_tvos, bundle_macos])
+  # Unit testing is not available on watchOS
+  xcodebuild(scheme: "BonMot-watchOS",
+             derivedDataPath: DERIVED_DATA_PATH)
+end
 
+platform :mac do
   desc "Runs Tests & Generates Code Coverage Reports for macOS"
   lane :coverage_macos do
     coverage(scheme: "BonMot-OSX")
   end
+end
 
+platform :ios do
   desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1 and latest iOS"
   lane :coverage_ios do
     devices = get_devices(ios_latest: true, ios_10_3: true)

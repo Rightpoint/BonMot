@@ -15,6 +15,14 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+### coverage_all
+```
+fastlane coverage_all
+```
+Tests: iOS, tvOS, macOS. Builds: watchOS.
+
+----
+
 ## Mac
 ### mac coverage_macos
 ```
@@ -25,11 +33,6 @@ Runs Tests & Generates Code Coverage Reports for macOS
 ----
 
 ## iOS
-### ios coverage_all
-```
-fastlane ios coverage_all
-```
-Tests: iOS, tvOS. Builds: watchOS.
 ### ios coverage_ios
 ```
 fastlane ios coverage_ios
