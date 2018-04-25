@@ -19,9 +19,9 @@ PROJECT_NAME='BonMot.xcodeproj'
 
 desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
 lane :coverage_all do
-  bundle_macos = coverage(scheme: "BonMot-OSX")
   bundle_ios = coverage(scheme: "BonMot-iOS", devices: get_devices(ios_latest: true, ios_10_3: true))
   bundle_tvos = coverage(scheme: "BonMot-tvOS")
+  bundle_macos = coverage(scheme: "BonMot-OSX")
   xchtmlreport(result_bundle_paths: [bundle_ios, bundle_tvos, bundle_macos])
   # Unit testing is not available on watchOS
   xcodebuild(scheme: "BonMot-watchOS",
