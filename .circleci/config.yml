@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Install xchtmlreport
           command: |
-            brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/feature/homebrew/xchtmlreport.rb
+            brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/1.5.0-raizlabs/xchtmlreport.rb
       - run:
           name: Tests & Code Coverage
           when: always
