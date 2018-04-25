@@ -38,9 +38,14 @@ jobs:
           command: |
             brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/feature/homebrew/xchtmlreport.rb
       - run:
-          name: Tests & Code Coverage
+          name: Tests & Code Coverage (iOS, tvOS, watchOS)
+          when: always
           command: |
             bundle exec fastlane ios coverage_all
+      - run:
+          name: Tests & Code Coverage (macOS)
+          when: always
+          command: |
             bundle exec fastlane mac coverage_macos
       # Store xcov Code Coverage HTML report artifact 
       - store_artifacts:
