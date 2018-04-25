@@ -9,65 +9,47 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-default_platform(:ios)
-
+# default_platform(:ios)
 fastlane_require 'circleci_artifact'
+fastlane_version "2.93.1"
 
 BUILD_PATH="./build"
 DERIVED_DATA_PATH = "#{BUILD_PATH}/derived_data"
 PROJECT_NAME='BonMot.xcodeproj'
 
-platform :ios do
-  desc "Tests: macOS, iOS, tvOS. Builds: watchOS."
-  lane :build_and_test_all do
-    coverage_all
-    # Unit testing is not available on watchOS
-    build_watchos
-  end
-
-  desc "Runs Tests & Generates Code Coverage Reports for macOS, iOS, tvOS"
-  lane :coverage_all do
-    coverage_macos
-    coverage_ios
-    coverage_tvos
-  end
-
+platform :mac do
   desc "Runs Tests & Generates Code Coverage Reports for macOS"
   lane :coverage_macos do
     coverage(scheme: "BonMot-OSX")
   end
+end
+
+platform :ios do
+  desc "Tests: iOS, tvOS. Builds: watchOS."
+  lane :coverage_all do
+    coverage_ios
+    coverage_tvos
+    # Unit testing is not available on watchOS
+    build_watchos
+  end
 
   desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1 and latest iOS"
   lane :coverage_ios do
-    # Running too many devices concurrently breaks CircleCI resource limits
-    # "Reason: Unable to boot device due to insufficient system resources."
-    coverage_ios_10_3
-    coverage_ios_latest
+    devices = get_devices(ios_latest: true, ios_10_3: true)
+    coverage(scheme: "BonMot-iOS",
+             devices: devices)
   end
 
   desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1"
   lane :coverage_ios_10_3 do
-    # The full list of iOS simulators available on CircleCI
-    # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
-    devices = ["iPhone SE (10.3.1)",
-               "iPhone 7 (10.3.1)",
-               # "iPhone 7 Plus (10.3.1)",
-               # "iPad Pro (10.5-inch) (10.3.1)",
-              ]
+    devices = get_devices(ios_10_3: true)
     coverage(scheme: "BonMot-iOS",
              devices: devices)
   end
 
   desc "Runs Tests & Generates Code Coverage Reports for latest iOS"
   lane :coverage_ios_latest do
-    # The full list of iOS simulators available on CircleCI
-    # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
-    devices = ["iPhone SE",
-               # "iPhone 8",
-               # "iPhone 8 Plus",
-               # "iPad Pro (10.5-inch)",
-               "iPhone X",
-               ]
+    devices = get_devices(ios_latest: true)
     coverage(scheme: "BonMot-iOS",
              devices: devices)
   end
@@ -88,6 +70,13 @@ end
 
 def coverage(scheme:, devices: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
+
+  # NOTE: Running too many devices concurrently breaks CircleCI resource limits
+  max_concurrent_simulators = nil
+  if ENV['CIRCLE_BUILD_NUM']
+    max_concurrent_simulators = 1
+  end
+
   begin
     scan(
       output_types: 'junit,html',
@@ -96,11 +85,18 @@ def coverage(scheme:, devices: nil)
       output_directory: scan_output_path,
       code_coverage: true,
       derived_data_path: DERIVED_DATA_PATH,
-      result_bundle: true
+      result_bundle: true,
+      max_concurrent_simulators: max_concurrent_simulators
     )
   rescue => ex
     # Don't fail the entire lane when running tests, but print failure to STDERR
     STDERR.puts ex
+  end
+
+  trainer(output_directory: scan_output_path)
+
+  if ENV["CIRCLE_TEST_REPORTS"]
+    trainer(output_directory: ENV["CIRCLE_TEST_REPORTS"])
   end
 
   result_bundle_path = Scan.cache[:result_bundle_path]
@@ -108,7 +104,7 @@ def coverage(scheme:, devices: nil)
   
   slather_use_circleci = "false"
 
-  if !ENV['CIRCLE_BUILD_NUM'].nil?
+  if ENV['CIRCLE_BUILD_NUM']
     slather_use_circleci = "true"
   end
 
@@ -144,4 +140,29 @@ def coverage(scheme:, devices: nil)
     build_directory: DERIVED_DATA_PATH
   )
   result_bundle_path
+end
+
+def get_devices(ios_latest: false, ios_10_3: false)
+  # The full list of iOS simulators available on CircleCI
+  # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
+  devices = []
+  if ios_latest
+    devices.push("iPhone SE")
+    devices.push("iPhone X")
+    if !circleci
+      devices.push("iPhone 8")
+      devices.push("iPhone 8 Plus")
+      devices.push("iPad Pro (10.5-inch)")
+    end
+  end
+
+  if ios_10_3
+    devices.push("iPhone SE (10.3.1)")
+    devices.push("iPhone 7 (10.3.1)")
+    if !circleci
+      devices.push("iPhone 7 Plus (10.3.1)")
+      devices.push("iPad Pro (10.5-inch) (10.3.1)")
+    end
+  end
+  devices
 end

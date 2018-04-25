@@ -95,5 +95,9 @@ end
 
 # Test Reporting
 
-junit.parse "#{src_root}/build/#{SCHEME}/scan/report.junit"
+junit.parse "#{src_root}/build/BonMot-iOS/scan/report.junit"
+junit.report
+junit.parse "#{src_root}/build/BonMot-OSX/scan/report.junit"
+junit.report
+junit.parse "#{src_root}/build/BonMot-tvOS/scan/report.junit"
 junit.report

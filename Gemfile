@@ -14,9 +14,8 @@ group :test, :danger do
   # See https://github.com/nakiostudio/xcov/issues/116 for more details
   gem 'xcov', :git => 'https://github.com/Raizlabs/xcov.git', :branch => '1.4.0-rz'
 
-  # We need to use our fork until fastlane deletes scan's result_bundle_path
-  # between builds. See https://github.com/fastlane/fastlane/issues/12349
-  gem 'fastlane', :git => 'https://github.com/Raizlabs/fastlane.git', :branch => 'bugfix/scan_result_bundle'
+  # Our fork allows us to limit the max concurrent simulators, which is needed on CircleCI
+  gem 'fastlane', :git => 'https://github.com/Raizlabs/fastlane.git', :branch => 'scan/max_concurrent_simulators'
 end
 
 group :danger do
@@ -25,3 +24,6 @@ group :danger do
   gem 'danger-xcov'
   gem 'danger-junit'
 end
+
+plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
+eval_gemfile(plugins_path) if File.exist?(plugins_path)

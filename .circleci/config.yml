@@ -40,7 +40,8 @@ jobs:
       - run:
           name: Tests & Code Coverage
           command: |
-            bundle exec fastlane build_and_test_all
+            bundle exec fastlane ios coverage_all
+            bundle exec fastlane mac coverage_macos
       # Store xcov Code Coverage HTML report artifact 
       - store_artifacts:
           path: /Users/distiller/project/build/BonMot-iOS/xcov
