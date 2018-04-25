@@ -72,9 +72,9 @@ def coverage(scheme:, devices: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
 
   # NOTE: Running too many devices concurrently breaks CircleCI resource limits
-  disable_concurrent_testing = nil
+  disable_concurrent_testing = false
   if ENV['CIRCLE_BUILD_NUM']
-    disable_concurrent_testing = 1
+    disable_concurrent_testing = true
   end
 
   begin
