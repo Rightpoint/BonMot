@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Raizlabs/fastlane.git
-  revision: ad47397c92a0dbf5ae6d0144dc45f746ff5aa0dd
+  revision: 1af2289470b0afd0950d82bcad0783528798f40a
   branch: scan/max_concurrent_simulators
   specs:
     fastlane (2.93.1)
@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: https://github.com/Raizlabs/xcov.git
-  revision: 41e7d39f97a1665b3048d9035547b025caf9ff91
+  revision: 0f474dd2f430c43632d1c7b9ae1e810578325621
   branch: 1.4.0-rz
   specs:
     xcov (1.4.0)
@@ -122,7 +122,7 @@ GEM
     concurrent-ruby (1.0.5)
     cork (0.3.0)
       colored2 (~> 3.1)
-    danger (5.5.12)
+    danger (5.5.13)
       claide (~> 1.0)
       claide-plugins (>= 0.9.2)
       colored2 (~> 3.1)
