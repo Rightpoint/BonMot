@@ -56,9 +56,10 @@ jobs:
           name: Rename CircleCI JUnit XML
           when: always
           command: |
-            cp build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit build/BonMot-iOS/scan/BonMot-iOS.test_result/junit.xml
+            mkdir -p build/test-results/danger
+            cp build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit build/test-results/danger/results.xml
       - store_test_results:
-          path: /Users/distiller/project/build/BonMot-iOS/scan/BonMot-iOS.test_result/junit.xml
+          path: /Users/distiller/project/build/test-results
       # Install Swiftlint only before Danger because otherwise it fails the build
       - run:
           name: Install Swiftlint
