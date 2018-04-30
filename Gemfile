@@ -9,10 +9,7 @@ gem 'xcpretty', :git => 'https://github.com/Raizlabs/xcpretty.git', :branch => '
 group :test, :danger do
   gem 'slather'
   gem 'circleci_artifact'
-  
-  # We need to use our fork until xcov upstream is fixed
-  # See https://github.com/nakiostudio/xcov/issues/116 for more details
-  gem 'xcov', :git => 'https://github.com/Raizlabs/xcov.git', :branch => '1.4.0-rz'
+  gem 'xcov'
 
   # Our fork allows us to limit the max concurrent simulators, which is needed on CircleCI
   gem 'fastlane', :git => 'https://github.com/Raizlabs/fastlane.git', :branch => 'scan/max_concurrent_simulators'

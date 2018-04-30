@@ -41,18 +41,6 @@ GIT
       xcpretty-travis-formatter (>= 0.0.3)
 
 GIT
-  remote: https://github.com/Raizlabs/xcov.git
-  revision: 0f474dd2f430c43632d1c7b9ae1e810578325621
-  branch: 1.4.0-rz
-  specs:
-    xcov (1.4.0)
-      fastlane (>= 2.82.0, < 3.0.0)
-      multipart-post
-      slack-notifier
-      terminal-table
-      xcodeproj
-
-GIT
   remote: https://github.com/Raizlabs/xcpretty.git
   revision: 3c9a013c8030818fc785fbcb7de5222f5c3ccb3c
   branch: feature/parallel-testing-support
@@ -270,6 +258,12 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.4)
+    xcov (1.4.2)
+      fastlane (>= 2.82.0, < 3.0.0)
+      multipart-post
+      slack-notifier
+      terminal-table
+      xcodeproj
     xcpretty-travis-formatter (1.0.0)
       xcpretty (~> 0.2, >= 0.0.7)
 
@@ -285,7 +279,7 @@ DEPENDENCIES
   danger-xcov
   fastlane!
   slather
-  xcov!
+  xcov
   xcpretty!
 
 BUNDLED WITH
