@@ -91,13 +91,28 @@ class AdaptiveStyleTests: XCTestCase {
             return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred` was not added.
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 25)
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 26)
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 27)
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 28)
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 30)
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 32)
-        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 34)
+
+        // iPhone SE on 11.3 has slightly different expected values
+        if UIDevice.current.userInterfaceIdiom == .phone,
+            UIScreen.main.nativeBounds.height == 1136,
+            ProcessInfo().operatingSystemVersion.majorVersion == 11 {
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 25)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 26)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 26)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 26)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 27)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 28)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 30)
+        }
+        else {
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 25)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 26)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 27)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 28)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 30)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 32)
+            BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 34)
+        }
     }
 
     func testPreferredFontWithPreferredAdaptation() {
