@@ -124,9 +124,9 @@ class AdaptiveStyleTests: XCTestCase {
         }
         // Ensure the font doesn't change sizes since it was added to the chain as a font, and `.preferred` was not added.
 
-        // iPhone SE on 11.3 has slightly different expected values
+        // iPhone SE on 11.0+ has slightly different expected values
         if UIDevice.current.userInterfaceIdiom == .phone,
-            UIScreen.main.nativeBounds.height == 1136,
+            UIScreen.main.bounds.height == 568,
             ProcessInfo().operatingSystemVersion.majorVersion == 11 {
             BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 25)
             BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 26)

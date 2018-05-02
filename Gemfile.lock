@@ -1,53 +1,3 @@
-GIT
-  remote: https://github.com/Raizlabs/fastlane.git
-  revision: 1af2289470b0afd0950d82bcad0783528798f40a
-  branch: scan/max_concurrent_simulators
-  specs:
-    fastlane (2.93.1)
-      CFPropertyList (>= 2.3, < 4.0.0)
-      addressable (>= 2.3, < 3.0.0)
-      babosa (>= 1.0.2, < 2.0.0)
-      bundler (>= 1.12.0, < 2.0.0)
-      colored
-      commander-fastlane (>= 4.4.6, < 5.0.0)
-      dotenv (>= 2.1.1, < 3.0.0)
-      emoji_regex (~> 0.1)
-      excon (>= 0.45.0, < 1.0.0)
-      faraday (~> 0.9)
-      faraday-cookie_jar (~> 0.0.6)
-      faraday_middleware (~> 0.9)
-      fastimage (>= 2.1.0, < 3.0.0)
-      gh_inspector (>= 1.1.2, < 2.0.0)
-      google-api-client (>= 0.13.1, < 0.14.0)
-      highline (>= 1.7.2, < 2.0.0)
-      json (< 3.0.0)
-      mini_magick (~> 4.5.1)
-      multi_json
-      multi_xml (~> 0.5)
-      multipart-post (~> 2.0.0)
-      plist (>= 3.1.0, < 4.0.0)
-      public_suffix (~> 2.0.0)
-      rubyzip (>= 1.1.0, < 2.0.0)
-      security (= 0.1.3)
-      simctl (~> 1.6.3)
-      slack-notifier (>= 2.0.0, < 3.0.0)
-      terminal-notifier (>= 1.6.2, < 2.0.0)
-      terminal-table (>= 1.4.5, < 2.0.0)
-      tty-screen (>= 0.6.3, < 1.0.0)
-      tty-spinner (>= 0.8.0, < 1.0.0)
-      word_wrap (~> 1.0.0)
-      xcodeproj (>= 1.5.7, < 2.0.0)
-      xcpretty (>= 0.2.4, < 1.0.0)
-      xcpretty-travis-formatter (>= 0.0.3)
-
-GIT
-  remote: https://github.com/Raizlabs/xcpretty.git
-  revision: 3c9a013c8030818fc785fbcb7de5222f5c3ccb3c
-  branch: feature/parallel-testing-support
-  specs:
-    xcpretty (0.2.8)
-      rouge (~> 2.0.7)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -149,7 +99,43 @@ GEM
       faraday (~> 0.8)
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
-    fastimage (2.1.1)
+    fastimage (2.1.3)
+    fastlane (2.94.0)
+      CFPropertyList (>= 2.3, < 4.0.0)
+      addressable (>= 2.3, < 3.0.0)
+      babosa (>= 1.0.2, < 2.0.0)
+      bundler (>= 1.12.0, < 2.0.0)
+      colored
+      commander-fastlane (>= 4.4.6, < 5.0.0)
+      dotenv (>= 2.1.1, < 3.0.0)
+      emoji_regex (~> 0.1)
+      excon (>= 0.45.0, < 1.0.0)
+      faraday (~> 0.9)
+      faraday-cookie_jar (~> 0.0.6)
+      faraday_middleware (~> 0.9)
+      fastimage (>= 2.1.0, < 3.0.0)
+      gh_inspector (>= 1.1.2, < 2.0.0)
+      google-api-client (>= 0.13.1, < 0.14.0)
+      highline (>= 1.7.2, < 2.0.0)
+      json (< 3.0.0)
+      mini_magick (~> 4.5.1)
+      multi_json
+      multi_xml (~> 0.5)
+      multipart-post (~> 2.0.0)
+      plist (>= 3.1.0, < 4.0.0)
+      public_suffix (~> 2.0.0)
+      rubyzip (>= 1.1.0, < 2.0.0)
+      security (= 0.1.3)
+      simctl (~> 1.6.3)
+      slack-notifier (>= 2.0.0, < 3.0.0)
+      terminal-notifier (>= 1.6.2, < 2.0.0)
+      terminal-table (>= 1.4.5, < 2.0.0)
+      tty-screen (>= 0.6.3, < 1.0.0)
+      tty-spinner (>= 0.8.0, < 1.0.0)
+      word_wrap (~> 1.0.0)
+      xcodeproj (>= 1.5.7, < 2.0.0)
+      xcpretty (>= 0.2.4, < 1.0.0)
+      xcpretty-travis-formatter (>= 0.0.3)
     fourflusher (2.0.1)
     fuzzy_match (2.0.4)
     gh_inspector (1.1.3)
@@ -264,6 +250,8 @@ GEM
       slack-notifier
       terminal-table
       xcodeproj
+    xcpretty (0.2.8)
+      rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
       xcpretty (~> 0.2, >= 0.0.7)
 
@@ -272,15 +260,15 @@ PLATFORMS
 
 DEPENDENCIES
   circleci_artifact
-  cocoapods (= 1.5.0)
+  cocoapods
   danger
   danger-junit
   danger-swiftlint
   danger-xcov
-  fastlane!
+  fastlane
   slather
   xcov
-  xcpretty!
+  xcpretty
 
 BUNDLED WITH
    1.16.1

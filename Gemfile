@@ -1,18 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods', '1.5.0'
-
-# xcpretty still does not support testing multiple devices in parallel
-gem 'xcpretty', :git => 'https://github.com/Raizlabs/xcpretty.git', :branch => 'feature/parallel-testing-support'
+gem 'cocoapods'
+gem 'xcpretty'
 
 # Danger
 group :test, :danger do
   gem 'slather'
   gem 'circleci_artifact'
   gem 'xcov'
-
-  # Our fork allows us to limit the max concurrent simulators, which is needed on CircleCI
-  gem 'fastlane', :git => 'https://github.com/Raizlabs/fastlane.git', :branch => 'scan/max_concurrent_simulators'
+  gem 'fastlane'
 end
 
 group :danger do
