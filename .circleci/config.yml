@@ -60,9 +60,9 @@ jobs:
             cp build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit build/test-results/danger/results.xml
       - store_test_results:
           path: /Users/distiller/project/build/test-results
-      # Install Swiftlint only before Danger because otherwise it fails the build
+      # Install SwiftLint only before Danger because otherwise it fails the build
       - run:
-          name: Install Swiftlint
+          name: Install SwiftLint
           when: always
           command: |
             brew install swiftlint
