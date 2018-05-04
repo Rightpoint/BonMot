@@ -94,7 +94,7 @@ class AdaptiveStyleTests: XCTestCase {
 
         // iPhone SE on 11.3 has slightly different expected values
         if UIDevice.current.userInterfaceIdiom == .phone,
-            UIScreen.main.nativeBounds.height == 1136,
+            UIScreen.main.bounds.height == 568,
             ProcessInfo().operatingSystemVersion.majorVersion == 11 {
             BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 25)
             BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 26)
