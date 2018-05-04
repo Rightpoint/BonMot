@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABCD3DCB1D96F6A500273936"
-               BuildableName = "BonMot.framework"
-               BlueprintName = "BonMot-tvOS"
-               ReferencedContainer = "container:BonMot.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABCD3DEE1D96F6E200273936"
-               BuildableName = "BonMot-tvOSTests.xctest"
-               BlueprintName = "BonMot-tvOSTests"
+               BlueprintIdentifier = "AB8497DA1DA45B9C00FE3414"
+               BuildableName = "AllTheThings"
+               BlueprintName = "AllTheThings"
                ReferencedContainer = "container:BonMot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,26 +29,7 @@
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ABCD3DEE1D96F6E200273936"
-               BuildableName = "BonMot-tvOSTests.xctest"
-               BlueprintName = "BonMot-tvOSTests"
-               ReferencedContainer = "container:BonMot.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABCD3DCB1D96F6A500273936"
-            BuildableName = "BonMot.framework"
-            BlueprintName = "BonMot-tvOS"
-            ReferencedContainer = "container:BonMot.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -79,9 +46,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABCD3DCB1D96F6A500273936"
-            BuildableName = "BonMot.framework"
-            BlueprintName = "BonMot-tvOS"
+            BlueprintIdentifier = "AB8497DA1DA45B9C00FE3414"
+            BuildableName = "AllTheThings"
+            BlueprintName = "AllTheThings"
             ReferencedContainer = "container:BonMot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -97,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ABCD3DCB1D96F6A500273936"
-            BuildableName = "BonMot.framework"
-            BlueprintName = "BonMot-tvOS"
+            BlueprintIdentifier = "AB8497DA1DA45B9C00FE3414"
+            BuildableName = "AllTheThings"
+            BlueprintName = "AllTheThings"
             ReferencedContainer = "container:BonMot.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -67,19 +67,6 @@
 		ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
 		ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
 		ABA75DE41D99E10400B64705 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
-		ABA75DF01D99E10F00B64705 /* Compatibility+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA41D96F06800273936 /* Compatibility+Tests.swift */; };
-		ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAD1D96F06800273936 /* UIKitBehaviorTests.swift */; };
-		ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAF1D96F06800273936 /* XMLTagStyleBuilderTests.swift */; };
-		ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA71D96F06800273936 /* NSAttributedStringDebugTests.swift */; };
-		ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA21D96F06800273936 /* AssertHelpers.swift */; };
-		ABA75DF61D99E10F00B64705 /* BONFontBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAC1D96F06800273936 /* BONFontBehaviorTests.swift */; };
-		ABA75DF71D99E10F00B64705 /* ComposableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA61D96F06800273936 /* ComposableTests.swift */; };
-		ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DAE1D96F06800273936 /* UIKitBonMotTests.swift */; };
-		ABA75DF91D99E10F00B64705 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA51D96F06800273936 /* Helpers.swift */; };
-		ABA75DFA1D99E10F00B64705 /* AttributedStringStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA31D96F06800273936 /* AttributedStringStyleTests.swift */; };
-		ABA75DFC1D99E10F00B64705 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
-		ABA75DFE1D99E10F00B64705 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
-		ABA75DFF1D99E10F00B64705 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
 		ABA75E0A1D99E43300B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
 		ABA75E0B1D99E45C00B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
 		ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
@@ -186,7 +173,6 @@
 		CD6BE30F1E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
 		CD6BE3101E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
 		CD6BE3111E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
-		CD6BE3121E85924800FB308F /* TransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE30E1E85924800FB308F /* TransformTests.swift */; };
 		CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C54F1DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
 		CD70C5501DCD22A8003C063A /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
@@ -198,11 +184,9 @@
 		CDB366C620326FCD002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
 		CDB366C720326FCE002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
 		CDB366C820326FCE002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
-		CDB366C920326FCF002C256E /* EmphasisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366C320326FC9002C256E /* EmphasisTests.swift */; };
 		CDC0CE361F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
 		CDC0CE371F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
 		CDC0CE381F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
-		CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC0CE351F90730700E144F7 /* AccessTests.swift */; };
 		CDC49D8D1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
 		CDC49D8E1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
 		CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
@@ -218,7 +202,6 @@
 		CDEA84361D9EEC490099BD73 /* ImageTintingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */; };
 		CDEA84371D9EEC490099BD73 /* ImageTintingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */; };
 		CDEA84381D9EEC490099BD73 /* ImageTintingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */; };
-		CDEA84391D9EEC490099BD73 /* ImageTintingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */; };
 		CDF7E97F1D9C612800FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
 		CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
 		CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
@@ -239,13 +222,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = ABCD3DCB1D96F6A500273936;
 			remoteInfo = "BonMot-tvOS";
-		};
-		ABA75E051D99E12800B64705 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ABCBFD2F1D96E41D00FAD37A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ABA75DCC1D99E10400B64705;
-			remoteInfo = "BonMot-watchOS";
 		};
 		ABCBFD611D96E61100FAD37A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -291,7 +267,6 @@
 		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
 		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ABA75DEA1D99E10400B64705 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ABA75E031D99E10F00B64705 /* BonMot-watchOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BonMot-watchOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA75E091D99E43300B64705 /* Tracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		ABC7774B1DC29F3000815FB9 /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC7774D1DC29F3000815FB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -364,14 +339,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA75DE41D99E10400B64705 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABA75DFB1D99E10F00B64705 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABA75DFC1D99E10F00B64705 /* BonMot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +514,6 @@
 				ABCD3E251D980E4900273936 /* BonMot.framework */,
 				ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */,
 				ABA75DEA1D99E10400B64705 /* BonMot.framework */,
-				ABA75E031D99E10F00B64705 /* BonMot-watchOSTests.xctest */,
 				ABC7774B1DC29F3000815FB9 /* Example-iOS.app */,
 			);
 			name = Products;
@@ -666,25 +632,6 @@
 			productName = "BonMot-iOS";
 			productReference = ABA75DEA1D99E10400B64705 /* BonMot.framework */;
 			productType = "com.apple.product-type.framework";
-		};
-		ABA75DEC1D99E10F00B64705 /* BonMot-watchOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ABA75E001D99E10F00B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOSTests" */;
-			buildPhases = (
-				ABA75DEF1D99E10F00B64705 /* Sources */,
-				CD4B2FD31D9B0B47007CF808 /* SwiftLint */,
-				ABA75DFB1D99E10F00B64705 /* Frameworks */,
-				ABA75DFD1D99E10F00B64705 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ABA75E061D99E12800B64705 /* PBXTargetDependency */,
-			);
-			name = "BonMot-watchOSTests";
-			productName = "BonMot-iOSTests";
-			productReference = ABA75E031D99E10F00B64705 /* BonMot-watchOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		ABC7774A1DC29F3000815FB9 /* Example-iOS */ = {
 			isa = PBXNativeTarget;
@@ -871,7 +818,6 @@
 				ABCD3E071D980E4900273936 /* BonMot-OSX */,
 				ABCD3E271D980E5500273936 /* BonMot-OSXTests */,
 				ABA75DCC1D99E10400B64705 /* BonMot-watchOS */,
-				ABA75DEC1D99E10F00B64705 /* BonMot-watchOSTests */,
 				AB8497DA1DA45B9C00FE3414 /* AllTheThings */,
 			);
 		};
@@ -882,15 +828,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABA75DFD1D99E10F00B64705 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ABA75DFE1D99E10F00B64705 /* EBGaramond12-Regular.otf in Resources */,
-				ABA75DFF1D99E10F00B64705 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,20 +1048,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		CD4B2FD31D9B0B47007CF808 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
 		CDC513361F36B1FA00EA1712 /* Build iOS example project */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1167,27 +1090,6 @@
 				AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */,
 				CDB366C2203264DF002C256E /* Emphasis.swift in Sources */,
 				CD70C54E1DCD22A7003C063A /* StylisticAlternates.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ABA75DEF1D99E10F00B64705 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDEA84391D9EEC490099BD73 /* ImageTintingTests.swift in Sources */,
-				CDB366C920326FCF002C256E /* EmphasisTests.swift in Sources */,
-				ABA75DF01D99E10F00B64705 /* Compatibility+Tests.swift in Sources */,
-				ABA75DF11D99E10F00B64705 /* UIKitBehaviorTests.swift in Sources */,
-				CDC0CE391F90730700E144F7 /* AccessTests.swift in Sources */,
-				ABA75DF31D99E10F00B64705 /* XMLTagStyleBuilderTests.swift in Sources */,
-				ABA75DF41D99E10F00B64705 /* NSAttributedStringDebugTests.swift in Sources */,
-				ABA75DF51D99E10F00B64705 /* AssertHelpers.swift in Sources */,
-				CD6BE3121E85924800FB308F /* TransformTests.swift in Sources */,
-				ABA75DF61D99E10F00B64705 /* BONFontBehaviorTests.swift in Sources */,
-				ABA75DF71D99E10F00B64705 /* ComposableTests.swift in Sources */,
-				ABA75DF81D99E10F00B64705 /* UIKitBonMotTests.swift in Sources */,
-				ABA75DF91D99E10F00B64705 /* Helpers.swift in Sources */,
-				ABA75DFA1D99E10F00B64705 /* AttributedStringStyleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,11 +1295,6 @@
 			target = ABCD3DCB1D96F6A500273936 /* BonMot-tvOS */;
 			targetProxy = AB9C18CF1D9965B100A54787 /* PBXContainerItemProxy */;
 		};
-		ABA75E061D99E12800B64705 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = ABA75DCC1D99E10400B64705 /* BonMot-watchOS */;
-			targetProxy = ABA75E051D99E12800B64705 /* PBXContainerItemProxy */;
-		};
 		ABCBFD621D96E61100FAD37A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = ABCBFD561D96E61000FAD37A /* BonMot-iOS */;
@@ -1439,6 +1336,7 @@
 		ABA75DE81D99E10400B64705 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1458,6 +1356,7 @@
 		ABA75DE91D99E10400B64705 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1470,32 +1369,6 @@
 				PRODUCT_NAME = BonMot;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Release;
-		};
-		ABA75E011D99E10F00B64705 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				WATCHOS_DEPLOYMENT_TARGET = 2.2;
-			};
-			name = Debug;
-		};
-		ABA75E021D99E10F00B64705 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOSTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
@@ -1654,6 +1527,7 @@
 		ABCBFD691D96E61100FAD37A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1673,6 +1547,7 @@
 		ABCBFD6A1D96E61100FAD37A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1718,6 +1593,7 @@
 		ABCD3DEA1D96F6A500273936 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1737,6 +1613,7 @@
 		ABCD3DEB1D96F6A500273936 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1782,6 +1659,7 @@
 		ABCD3E231D980E4900273936 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1801,6 +1679,7 @@
 		ABCD3E241D980E4900273936 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1860,15 +1739,6 @@
 			buildConfigurations = (
 				ABA75DE81D99E10400B64705 /* Debug */,
 				ABA75DE91D99E10400B64705 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ABA75E001D99E10F00B64705 /* Build configuration list for PBXNativeTarget "BonMot-watchOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ABA75E011D99E10F00B64705 /* Debug */,
-				ABA75E021D99E10F00B64705 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

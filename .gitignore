@@ -1,5 +1,6 @@
 # OS X
 .DS_Store
+fastlane/report.xml
 
 # Xcode
 build/
