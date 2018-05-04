@@ -33,6 +33,8 @@ jobs:
           key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
+      # Waiting for new stable release of XCTestHTMLReport that includes our JUnit PR
+      # https://github.com/TitouanVanBelle/XCTestHTMLReport/pull/63
       - run:
           name: Install xchtmlreport
           command: |
