@@ -38,7 +38,7 @@
 
             extension UIFontDescriptor {
 
-                typealias SymbolicTraits = UIFontDescriptorSymbolicTraits
+                public typealias SymbolicTraits = UIFontDescriptorSymbolicTraits
 
             }
 
@@ -78,13 +78,13 @@
                 static let accessibilitySpeechLanguage = NSAttributedString.Key(UIAccessibilitySpeechAttributeLanguage)
                 static let accessibilitySpeechPitch = NSAttributedString.Key(UIAccessibilitySpeechAttributePitch)
 
-                @available(iOS 11.0, *)
+                @available(iOS 11.0, tvOS 11.0, *)
                 static let accessibilitySpeechIPANotation = NSAttributedString.Key(UIAccessibilitySpeechAttributeIPANotation)
 
-                @available(iOS 11.0, *)
+                @available(iOS 11.0, tvOS 11.0, *)
                 static let accessibilitySpeechQueueAnnouncement = NSAttributedString.Key(UIAccessibilitySpeechAttributeQueueAnnouncement)
 
-                @available(iOS 11.0, *)
+                @available(iOS 11.0, tvOS 11.0, *)
                 static let accessibilityTextHeadingLevel = NSAttributedString.Key(UIAccessibilityTextAttributeHeadingLevel)
             #endif
         }
