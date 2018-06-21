@@ -216,7 +216,7 @@ extension BONImage: Composable {
         #if os(OSX)
             let imageIsTemplate = isTemplate
         #else
-            let imageIsTemplate = (renderingMode != UIImageRenderingMode.alwaysOriginal)
+            let imageIsTemplate = (renderingMode != .alwaysOriginal)
         #endif
 
         var imageToUse = self
@@ -262,9 +262,9 @@ public extension Sequence where Element: Composable {
 
 }
 
-extension NSAttributedStringKey {
+extension NSAttributedString.Key {
 
-    public static let bonMotRemovedKernAttribute = NSAttributedStringKey("com.raizlabs.bonmot.removedKernAttributeRemoved")
+    public static let bonMotRemovedKernAttribute = NSAttributedString.Key("com.raizlabs.bonmot.removedKernAttributeRemoved")
 
 }
 

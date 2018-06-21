@@ -16,6 +16,10 @@
 /// between Swift iOS, macOS, watchOS, and tvOS.
 
 #if os(OSX)
+    #if swift(>=4.2)
+    #else
+        public typealias NSLineBreakMode = NSParagraphStyle.LineBreakMode
+    #endif
 #else
     public extension NSParagraphStyle {
 
@@ -24,12 +28,77 @@
     }
 
     #if os(iOS) || os(tvOS)
-        public extension NSLayoutConstraint {
+        #if swift(>=4.2)
+        #else
+            public extension NSLayoutConstraint {
 
-            typealias Attribute = NSLayoutAttribute
-            typealias Relation = NSLayoutRelation
+                typealias Attribute = NSLayoutAttribute
+                typealias Relation = NSLayoutRelation
+            }
+
+            extension UIFontDescriptor {
+
+                typealias SymbolicTraits = UIFontDescriptorSymbolicTraits
+
+            }
+
+            extension UIFont {
+
+                public typealias TextStyle = UIFontTextStyle
+
+            }
+
+            extension UIContentSizeCategory {
+
+                static var didChangeNotification: NSNotification.Name {
+                    return NSNotification.Name.UIContentSizeCategoryDidChange
+                }
+
+            }
+
+            extension UIViewController {
+
+                var children: [UIViewController] {
+                    return childViewControllers
+                }
+
+            }
+
+            extension UIControl {
+
+                typealias State = UIControlState
+
+            }
+        #endif
+
+        extension NSAttributedString.Key {
+            #if swift(>=4.2)
+            #else
+                static let accessibilitySpeechPunctuation = NSAttributedString.Key(UIAccessibilitySpeechAttributePunctuation)
+                static let accessibilitySpeechLanguage = NSAttributedString.Key(UIAccessibilitySpeechAttributeLanguage)
+                static let accessibilitySpeechPitch = NSAttributedString.Key(UIAccessibilitySpeechAttributePitch)
+
+                @available(iOS 11.0, *)
+                static let accessibilitySpeechIPANotation = NSAttributedString.Key(UIAccessibilitySpeechAttributeIPANotation)
+
+                @available(iOS 11.0, *)
+                static let accessibilitySpeechQueueAnnouncement = NSAttributedString.Key(UIAccessibilitySpeechAttributeQueueAnnouncement)
+
+                @available(iOS 11.0, *)
+                static let accessibilityTextHeadingLevel = NSAttributedString.Key(UIAccessibilityTextAttributeHeadingLevel)
+            #endif
         }
     #endif
+#endif
+
+#if swift(>=4.2)
+#else
+
+extension NSAttributedString {
+
+    public typealias Key = NSAttributedStringKey
+
+}
 #endif
 
 #if swift(>=4.1)

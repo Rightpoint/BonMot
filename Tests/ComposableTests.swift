@@ -87,7 +87,7 @@ class ComposableTests: XCTestCase {
     }
 
     func testBaseStyleIsOverridden() {
-        func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: NSAttributedStringKey, _ expected: T, line: UInt = #line) {
+        func check<T: Equatable>(forPart thePart: StringStyle.Part, _ attribute: NSAttributedString.Key, _ expected: T, line: UInt = #line) {
             let string = NSAttributedString.composed(of: [
                 "test".styled(with: thePart),
                 ], baseStyle: fullStyle)
@@ -103,13 +103,13 @@ class ComposableTests: XCTestCase {
         check(forPart: .link(URL(string: "http://thebestwords.com/")!), .link, URL(string: "http://thebestwords.com/")!)
         check(forPart: .ligatures(.disabled), .ligature, 0)
         #if os(iOS) || os(tvOS) || os(watchOS)
-            check(forPart: .speaksPunctuation(true), NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation), true)
-            check(forPart: .speakingLanguage("en-US"), NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage), "en-US")
-            check(forPart: .speakingPitch(0.5), NSAttributedStringKey(UIAccessibilitySpeechAttributePitch), 0.5)
+            check(forPart: .speaksPunctuation(true), .accessibilitySpeechPunctuation, true)
+            check(forPart: .speakingLanguage("en-US"), .accessibilitySpeechLanguage, "en-US")
+            check(forPart: .speakingPitch(0.5), .accessibilitySpeechPitch, 0.5)
             if #available(iOS 11, tvOS 11, watchOS 4, *) {
-                check(forPart: .speakingPronunciation("ˈɡɪər"), NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation), "ˈɡɪər")
-                check(forPart: .shouldQueueSpeechAnnouncement(true), NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement), true as NSNumber)
-                check(forPart: .headingLevel(.four), NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel), 4 as NSNumber)
+                check(forPart: .speakingPronunciation("ˈɡɪər"), .accessibilitySpeechIPANotation, "ˈɡɪər")
+                check(forPart: .shouldQueueSpeechAnnouncement(true), .accessibilitySpeechQueueAnnouncement, true as NSNumber)
+                check(forPart: .headingLevel(.four), .accessibilityTextHeadingLevel, 4 as NSNumber)
             }
         #endif
     }

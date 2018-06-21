@@ -25,7 +25,7 @@
 
     public typealias BONFont = UIFont
     public typealias BONFontDescriptor = UIFontDescriptor
-    public typealias BONSymbolicTraits = UIFontDescriptorSymbolicTraits
+    public typealias BONSymbolicTraits = UIFontDescriptor.SymbolicTraits
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
     let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
     let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
@@ -35,15 +35,15 @@
     #endif
 #endif
 
-public typealias StyleAttributes = [NSAttributedStringKey: Any]
+public typealias StyleAttributes = [NSAttributedString.Key: Any]
 
 #if os(iOS) || os(tvOS)
-    public typealias BonMotTextStyle = UIFontTextStyle
+    public typealias BonMotTextStyle = UIFont.TextStyle
     public typealias BonMotContentSizeCategory = UIContentSizeCategory
 #endif
 
 // This key is defined here because it needs to be used in non-adaptive code.
-public let BonMotTransformationsAttributeName = NSAttributedStringKey("BonMotTransformations")
+public let BonMotTransformationsAttributeName = NSAttributedString.Key("BonMotTransformations")
 
 extension BONSymbolicTraits {
     #if os(iOS) || os(tvOS) || os(watchOS)

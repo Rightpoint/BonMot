@@ -63,7 +63,7 @@ extension StringStyle {
         case firstLineHeadIndent(CGFloat)
         case headIndent(CGFloat)
         case tailIndent(CGFloat)
-        case lineBreakMode(NSParagraphStyle.LineBreakMode)
+        case lineBreakMode(NSLineBreakMode)
         case minimumLineHeight(CGFloat)
         case maximumLineHeight(CGFloat)
         case baseWritingDirection(NSWritingDirection)

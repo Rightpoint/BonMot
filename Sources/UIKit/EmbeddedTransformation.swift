@@ -35,8 +35,8 @@ internal enum EmbeddedTransformationHelpers {
 
     struct Key {
 
-        static let type = NSAttributedStringKey("type")
-        static let size = NSAttributedStringKey("size")
+        static let type = NSAttributedString.Key("type")
+        static let size = NSAttributedString.Key("size")
 
     }
 

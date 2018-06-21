@@ -97,7 +97,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.speaksPunctuation(true))
         for (style, fullstyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation), value: true)
+            BONAssert(attributes: style.attributes, key: .accessibilitySpeechPunctuation, value: true)
         }
     }
 
@@ -105,7 +105,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.speakingLanguage("pt-BR"))
         for (style, fullstyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage), value: "pt-BR")
+            BONAssert(attributes: style.attributes, key: NSAttributedString.Key.accessibilitySpeechLanguage, value: "pt-BR")
         }
     }
 
@@ -113,7 +113,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.speakingPitch(1.5))
         for (style, fullstyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch), value: 1.5)
+            BONAssert(attributes: style.attributes, key: NSAttributedString.Key.accessibilitySpeechPitch, value: 1.5)
         }
     }
 
@@ -122,7 +122,7 @@ class StringStyleTests: XCTestCase {
             let style = StringStyle(.speakingPronunciation("ˈɡɪər"))
             for (style, fullstyle) in additiviePermutations(for: style) {
                 XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation), value: "ˈɡɪər")
+                BONAssert(attributes: style.attributes, key: .accessibilitySpeechIPANotation, value: "ˈɡɪər")
             }
         }
     }
@@ -132,7 +132,7 @@ class StringStyleTests: XCTestCase {
             let style = StringStyle(.shouldQueueSpeechAnnouncement(true))
             for (style, fullstyle) in additiviePermutations(for: style) {
                 XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement), value: true as NSNumber)
+                BONAssert(attributes: style.attributes, key: .accessibilitySpeechQueueAnnouncement, value: true as NSNumber)
             }
         }
     }
@@ -142,7 +142,7 @@ class StringStyleTests: XCTestCase {
             let style = StringStyle(.headingLevel(.four))
             for (style, fullstyle) in additiviePermutations(for: style) {
                 XCTAssertTrue(fullstyle == true || style.attributes.count == 1)
-                BONAssert(attributes: style.attributes, key: NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel), value: 4 as NSNumber)
+                BONAssert(attributes: style.attributes, key: .accessibilityTextHeadingLevel, value: 4 as NSNumber)
             }
         }
     }
