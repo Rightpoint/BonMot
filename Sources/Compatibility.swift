@@ -37,11 +37,14 @@
     }
 
     #if os(iOS) || os(tvOS) || os(watchOS)
+        #if swift(>=4.2)
+        #else
         extension UIFontDescriptor {
 
             public typealias SymbolicTraits = UIFontDescriptorSymbolicTraits
 
         }
+        #endif
 
         extension NSAttributedString.Key {
             #if swift(>=4.2)
@@ -108,5 +111,15 @@
         func compactMap<ElementOfResult>(_ transform: (Element) throws -> ElementOfResult?) rethrows -> [ElementOfResult] {
             return try flatMap(transform)
         }
+    }
+#endif
+
+#if swift(>=4.2)
+#else
+    extension UIApplication {
+        public typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
+    }
+    extension UITableView {
+        public static let automaticDimension = UITableViewAutomaticDimension
     }
 #endif
