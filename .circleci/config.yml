@@ -115,7 +115,7 @@ jobs:
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run: ./scripts/macOS.sh
-      - run: ./scripts/iOS-11.3.sh
+      - run: ./scripts/iOS-12.0.sh
       - run: ./scripts/tvOS-11.3.sh
       - run: ./scripts/watchOS-4.3.sh
       - run: bundle exec pod lib lint
