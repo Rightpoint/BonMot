@@ -120,7 +120,7 @@ jobs:
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-12.0.sh
       - run: ./scripts/tvOS-12.0.sh
-      - run: ./scripts/watchOS-4.3.sh
+      - run: ./scripts/watchOS-5.0.sh
       - run: bundle exec pod lib lint
 
   test-xcode-9-3:
