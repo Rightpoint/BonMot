@@ -119,7 +119,7 @@ jobs:
           command: bundle exec fastlane snapshot reset_simulators --force
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-12.0.sh
-      - run: ./scripts/tvOS-11.3.sh
+      - run: ./scripts/tvOS-12.0.sh
       - run: ./scripts/watchOS-4.3.sh
       - run: bundle exec pod lib lint
 
