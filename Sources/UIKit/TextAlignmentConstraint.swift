@@ -218,7 +218,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     }
 
     private func font(from item: AnyObject) -> BONFont? {
-        var font: BONFont? = nil
+        var font: BONFont?
 
         if item.responds(to: TextAlignmentConstraint.fontSelector) {
             font = item.perform(TextAlignmentConstraint.fontSelector).takeUnretainedValue() as? BONFont

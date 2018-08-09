@@ -196,7 +196,7 @@ private enum StyleableUIElementHelpers {
     }
 
     static func setAssociatedStyle(on object: AnyObject, style: StringStyle?) {
-        var adaptiveFunction: StringStyleHolder? = nil
+        var adaptiveFunction: StringStyleHolder?
         if let bonMotStyle = style {
             adaptiveFunction = StringStyleHolder(style: bonMotStyle)
         }
