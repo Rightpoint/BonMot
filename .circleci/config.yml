@@ -33,12 +33,10 @@ jobs:
           key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
-      # Waiting for new stable release of XCTestHTMLReport that includes our JUnit PR
-      # https://github.com/TitouanVanBelle/XCTestHTMLReport/pull/63
       - run:
           name: Install xchtmlreport
           command: |
-            brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/1.5.0-raizlabs/xchtmlreport.rb --HEAD
+            brew install https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
       - run:
           name: Tests & Code Coverage
           when: always
