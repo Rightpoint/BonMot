@@ -1,5 +1,5 @@
 //
-//  Compatibility.swift
+//  _Compatibility.swift
 //  BonMot
 //
 //  Created by Brian King on 8/24/16.
@@ -93,12 +93,6 @@
                 var children: [UIViewController] {
                     return childViewControllers
                 }
-
-            }
-
-            extension UIControl {
-
-                typealias State = UIControlState
 
             }
 

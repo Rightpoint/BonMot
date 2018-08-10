@@ -103,6 +103,27 @@ extension UITextField {
 
 }
 
+// Extension is here to work around [SR-631](https://bugs.swift.org/browse/SR-631),
+// which requires new types declared in extensions to be built before they can
+// themselves be extended. This is fixed in Xcode 10, so we can revert this when
+// we stop supporting Xcode 9. (Another workaround is to reorder the files in
+// the Compile Sources build phase, but since this is a library, we do not own
+// that build phase in all projects that we are used in. We could have renamed
+// Compatibility.swift to _Compatibility.swift and trusted CocoaPods to sort
+// built files alphabetically, but we're opting to use the more reliable method
+// of just putting the extension in the file where it's used.
+
+#if os(iOS) || os(tvOS)
+    #if swift(>=4.2)
+    #else
+        extension UIControl {
+
+            typealias State = UIControlState
+
+        }
+    #endif
+#endif
+
 // MARK: - AdaptableTextContainer for UIButton
 extension UIButton {
 
