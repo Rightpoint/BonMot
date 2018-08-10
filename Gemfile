@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods'
+gem 'cocoapods', :git => 'https://github.com/cocoapods/cocoapods.git', :branch => 'master'
 gem 'xcpretty'
 
 # Danger
