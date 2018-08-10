@@ -278,6 +278,7 @@ workflows:
               only: /.*/
       - deploy-to-cocoapods:
           requires:
+            - test-xcode-10-0
             - test-xcode-9-3
             - test-xcode-9-2
             - carthage-build
