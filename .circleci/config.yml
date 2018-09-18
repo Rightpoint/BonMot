@@ -108,9 +108,6 @@ jobs:
           key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
-      - run: # work around Xcode 10b5 Circle instance having duplicate simulators with the same name/OS combination: https://discuss.circleci.com/t/xcode-10-beta-vm/23238/9?u=fassko
-          name: Reset simulators
-          command: bundle exec fastlane snapshot reset_simulators --force
       - run: ./scripts/macOS.sh
       - run: ./scripts/iOS-12.0.sh
       - run: ./scripts/tvOS-12.0.sh
