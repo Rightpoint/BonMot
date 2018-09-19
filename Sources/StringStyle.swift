@@ -32,7 +32,7 @@ public struct StringStyle {
     public var firstLineHeadIndent: CGFloat?
     public var headIndent: CGFloat?
     public var tailIndent: CGFloat?
-    public var lineBreakMode: NSParagraphStyle.LineBreakMode?
+    public var lineBreakMode: NSLineBreakMode?
     public var minimumLineHeight: CGFloat?
     public var maximumLineHeight: CGFloat?
     public var baseWritingDirection: NSWritingDirection?
@@ -98,13 +98,13 @@ extension StringStyle {
         theAttributes.update(possibleValue: ligatures?.rawValue, forKey: .ligature)
 
         #if os(iOS) || os(tvOS) || os(watchOS)
-            theAttributes.update(possibleValue: speaksPunctuation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePunctuation))
-            theAttributes.update(possibleValue: speakingLanguage, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeLanguage))
-            theAttributes.update(possibleValue: speakingPitch, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributePitch))
+        theAttributes.update(possibleValue: speaksPunctuation, forKey: .accessibilitySpeechPunctuation)
+        theAttributes.update(possibleValue: speakingLanguage, forKey: .accessibilitySpeechLanguage)
+        theAttributes.update(possibleValue: speakingPitch, forKey: .accessibilitySpeechPitch)
             if #available(iOS 11, tvOS 11, watchOS 4, *) {
-                theAttributes.update(possibleValue: speakingPronunciation, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeIPANotation))
-                theAttributes.update(possibleValue: shouldQueueSpeechAnnouncement as NSNumber?, forKey: NSAttributedStringKey(UIAccessibilitySpeechAttributeQueueAnnouncement))
-                theAttributes.update(possibleValue: headingLevel?.rawValue as NSNumber?, forKey: NSAttributedStringKey(UIAccessibilityTextAttributeHeadingLevel))
+                theAttributes.update(possibleValue: speakingPronunciation, forKey: .accessibilitySpeechIPANotation)
+                theAttributes.update(possibleValue: shouldQueueSpeechAnnouncement as NSNumber?, forKey: .accessibilitySpeechQueueAnnouncement)
+                theAttributes.update(possibleValue: headingLevel?.rawValue as NSNumber?, forKey: .accessibilityTextHeadingLevel)
             }
         #endif
 

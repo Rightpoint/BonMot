@@ -17,11 +17,15 @@ func dataFromImage(image theImage: BONImage) -> Data {
         let pngData = bitmapImageRep.representation(using: .png, properties: [:])!
         return pngData
     #else
-        return UIImagePNGRepresentation(theImage)!
+        #if swift(>=4.2)
+            return theImage.pngData()!
+        #else
+            return UIImagePNGRepresentation(theImage)!
+        #endif
     #endif
 }
 
-func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAttributedStringKey, value: T, file: StaticString = #file, line: UInt = #line) {
+func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAttributedString.Key, value: T, file: StaticString = #file, line: UInt = #line) {
     guard let dictionaryValue = dictionary?[key] as? T else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -29,7 +33,7 @@ func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAtt
     XCTAssert(dictionaryValue == value, "\(key): \(dictionaryValue) != \(value)", file: file, line: line)
 }
 
-func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributedStringKey, color controlColor: BONColor, file: StaticString = #file, line: UInt = #line) {
+func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributedString.Key, color controlColor: BONColor, file: StaticString = #file, line: UInt = #line) {
     guard let testColor = dictionary?[key] as? BONColor else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -44,7 +48,7 @@ func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributed
     XCTAssertEqual(testComps.a, controlComps.a, accuracy: 0.0001)
 }
 
-func BONAssert(attributes dictionary: StyleAttributes?, key: NSAttributedStringKey, float: CGFloat, accuracy: CGFloat, file: StaticString = #file, line: UInt = #line) {
+func BONAssert(attributes dictionary: StyleAttributes?, key: NSAttributedString.Key, float: CGFloat, accuracy: CGFloat, file: StaticString = #file, line: UInt = #line) {
     guard let dictionaryValue = dictionary?[key] as? CGFloat else {
         XCTFail("value is not of expected type", file: file, line: line)
         return

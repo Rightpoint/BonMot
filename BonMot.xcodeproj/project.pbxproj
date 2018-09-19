@@ -1069,6 +1069,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
 				AB30D5121D9D9439006ADC9D /* Composable.swift in Sources */,
 				ABA75E0D1D99E45E00B64705 /* Tracking.swift in Sources */,
 				CDC49D8F1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift in Sources */,
@@ -1084,7 +1085,6 @@
 				ABA75DDD1D99E10400B64705 /* XMLBuilder.swift in Sources */,
 				ABA75DDE1D99E10400B64705 /* NSAttributedString+BonMot.swift in Sources */,
 				CD3EEE711DCA68FB002C41BB /* FontInspector.swift in Sources */,
-				ABA75DDF1D99E10400B64705 /* Compatibility.swift in Sources */,
 				CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */,
 				CDCF0F221DCE5B9B00727AAE /* ContextualAlternates.swift in Sources */,
 				AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */,
@@ -1109,6 +1109,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCD3D6E1D96F02F00273936 /* Compatibility.swift in Sources */,
 				ABCD3D7A1D96F02F00273936 /* AdaptiveStyleTransformation.swift in Sources */,
 				CDB366BC20325AE1002C256E /* Emphasis.swift in Sources */,
 				ABCD3D7F1D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
@@ -1136,7 +1137,6 @@
 				AB560A061D9F692000100D15 /* AttributedStringTransformation.swift in Sources */,
 				CD6BE30A1E8590F900FB308F /* Transform.swift in Sources */,
 				AB30D51D1D9D95F5006ADC9D /* EmbeddedTransformation.swift in Sources */,
-				ABCD3D6E1D96F02F00273936 /* Compatibility.swift in Sources */,
 				ABCD3D7C1D96F02F00273936 /* NSAttributedString+Adaptive.swift in Sources */,
 				ABCD3D6F1D96F02F00273936 /* FontFeatures.swift in Sources */,
 				AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */,
@@ -1173,6 +1173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCD3DDE1D96F6A500273936 /* Compatibility.swift in Sources */,
 				ABCD3DCE1D96F6A500273936 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
 				CDB366BD20325AE1002C256E /* Emphasis.swift in Sources */,
 				ABCD3DD11D96F6A500273936 /* Platform.swift in Sources */,
@@ -1200,7 +1201,6 @@
 				AB8497B01DA16DAE00FE3414 /* NSAttributedString+Adaptive.swift in Sources */,
 				CD6BE30B1E8590FA00FB308F /* Transform.swift in Sources */,
 				ABCD3DDD1D96F6A500273936 /* NSAttributedString+BonMot.swift in Sources */,
-				ABCD3DDE1D96F6A500273936 /* Compatibility.swift in Sources */,
 				AB8497B41DA16DAE00FE3414 /* AdaptiveStyle.swift in Sources */,
 				AB30D50D1D9CB4FE006ADC9D /* Tab.swift in Sources */,
 				ABCD3DE21D96F6A500273936 /* FontFeatures.swift in Sources */,
@@ -1237,6 +1237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,
 				AB30D5111D9D9438006ADC9D /* Composable.swift in Sources */,
 				ABA75E0E1D99F9D500B64705 /* Tracking.swift in Sources */,
 				CD6BE30C1E8590FA00FB308F /* Transform.swift in Sources */,
@@ -1254,7 +1255,6 @@
 				CD3EEE6A1DC92CF7002C41BB /* Ligatures.swift in Sources */,
 				ABCD3E181D980E4900273936 /* XMLBuilder.swift in Sources */,
 				ABCD3E191D980E4900273936 /* NSAttributedString+BonMot.swift in Sources */,
-				ABCD3E1A1D980E4900273936 /* Compatibility.swift in Sources */,
 				CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */,
 				CDB366C1203264DE002C256E /* Emphasis.swift in Sources */,
 				ABCD3E1D1D980E4900273936 /* FontFeatures.swift in Sources */,
@@ -1463,7 +1463,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1517,7 +1517,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

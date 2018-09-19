@@ -12,8 +12,8 @@ import XCTest
 #if os(OSX)
 #else
     import UIKit
-    let titleTextStyle = UIFontTextStyle.title1
-    let differentTextStyle = UIFontTextStyle.title2
+    let titleTextStyle = UIFont.TextStyle.title1
+    let differentTextStyle = UIFont.TextStyle.title2
     @available(iOS 10.0, tvOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #endif
@@ -184,7 +184,7 @@ extension NSAttributedString {
 
     func rangesFor<T>(attribute name: String) -> [String: T] {
         var attributesByRange: [String: T] = [:]
-        enumerateAttribute(NSAttributedStringKey(name), in: NSRange(location: 0, length: length), options: []) { value, range, _ in
+        enumerateAttribute(NSAttributedString.Key(name), in: NSRange(location: 0, length: length), options: []) { value, range, _ in
             if let object = value as? T {
                 attributesByRange["\(range.location):\(range.length)"] = object
             }

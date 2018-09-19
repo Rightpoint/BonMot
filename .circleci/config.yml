@@ -33,12 +33,10 @@ jobs:
           key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
-      # Waiting for new stable release of XCTestHTMLReport that includes our JUnit PR
-      # https://github.com/TitouanVanBelle/XCTestHTMLReport/pull/63
       - run:
           name: Install xchtmlreport
           command: |
-            brew install https://raw.githubusercontent.com/Raizlabs/XCTestHTMLReport/1.5.0-raizlabs/xchtmlreport.rb --HEAD
+            brew install https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
       - run:
           name: Tests & Code Coverage
           when: always
@@ -77,6 +75,48 @@ jobs:
           name: Upload to Codecov
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
+
+  test-xcode-10-0:
+    macos:
+      xcode: "10.0.0"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: /Users/distiller/project/build/gems
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+    working_directory: /Users/distiller/project
+    steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
+      - checkout
+      # Setup Ruby dependencies
+      - restore_cache:
+          keys:
+            - 2-gems-{{ checksum "Gemfile.lock" }}
+            # Fall back to a previous cache if exact match cannot be found
+            - 2-gems-
+      - run:
+          name: Restore Ruby Gems
+          command: |
+            bundle check || bundle install
+      # Cache Gems
+      - save_cache:
+          key: 2-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - "/Users/distiller/project/build/gems"
+      - run: ./scripts/macOS.sh
+      - run: ./scripts/iOS-12.0.sh
+      - run: ./scripts/tvOS-12.0.sh
+      - run: ./scripts/watchOS-5.0.sh
+      - run:
+          name: Install CocoaPods Specs Repo
+          command: |
+            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run: bundle exec pod lib lint
 
   test-xcode-9-3:
     macos:
@@ -217,6 +257,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - test-xcode-10-0:
+          filters:
+            tags:
+              only: /.*/
       - test-xcode-9-3:
           filters:
             tags:
@@ -231,6 +275,7 @@ workflows:
               only: /.*/
       - deploy-to-cocoapods:
           requires:
+            - test-xcode-10-0
             - test-xcode-9-3
             - test-xcode-9-2
             - carthage-build

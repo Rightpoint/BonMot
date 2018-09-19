@@ -20,7 +20,7 @@ extension UIApplication {
     /// proxies and invalidate any hard-wired caches that less responsive code may have.
     public final func enableAdaptiveContentSizeMonitor() {
         let notificationCenter = NotificationCenter.default
-        let notificationName = NSNotification.Name.UIContentSizeCategoryDidChange
+        let notificationName = UIContentSizeCategory.didChangeNotification
         notificationCenter.addObserver(
             self,
             selector: #selector(UIApplication.bon_notifyContainedAdaptiveContentSizeContainers(fromNotification:)),
@@ -59,7 +59,7 @@ extension UIViewController {
                 view.notifyContainedAdaptiveContentSizeContainers()
             }
         }
-        for viewController in childViewControllers {
+        for viewController in children {
             viewController.notifyContainedAdaptiveContentSizeContainers()
         }
         presentedViewController?.notifyContainedAdaptiveContentSizeContainers()

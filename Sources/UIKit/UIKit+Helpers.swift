@@ -27,7 +27,7 @@ extension UIFont {
         guard let textStyle = fontDescriptor.fontAttributes[UIFontDescriptor.AttributeName.textStyle] as? String else {
             return nil
         }
-        return UIFontTextStyle(rawValue: textStyle)
+        return UIFont.TextStyle(rawValue: textStyle)
     }
 
 }

@@ -22,7 +22,7 @@ import BonMot
     typealias BONView = UIView
 #endif
 
-extension NSAttributedStringKey: ExpressibleByStringLiteral {
+extension NSAttributedString.Key: ExpressibleByStringLiteral {
 
     public init(stringLiteral value: String) {
         self.init(value)
@@ -33,26 +33,28 @@ extension NSAttributedStringKey: ExpressibleByStringLiteral {
 extension BONFontDescriptor.AttributeName: ExpressibleByStringLiteral {
 
     public init(stringLiteral value: String) {
-        self.init(value)
+        self.init(rawValue: value)
     }
 
 }
 
 #if os(OSX)
-    extension NSImage.Name: ExpressibleByStringLiteral {
+    #if swift(>=4.2)
+    #else
+        extension NSImage.Name: ExpressibleByStringLiteral {
 
-        public init(stringLiteral value: String) {
-            self.init(value)
+            public init(stringLiteral value: String) {
+                self.init(value)
+            }
+
         }
 
-    }
+        extension Bundle {
 
-    extension Bundle {
+            func image(forResource resource: String) -> NSImage? {
+                return image(forResource: NSImage.Name(resource))
+            }
 
-        func image(forResource resource: String) -> NSImage? {
-            return image(forResource: NSImage.Name(resource))
         }
-
-    }
-
+    #endif
 #endif

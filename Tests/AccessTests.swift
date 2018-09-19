@@ -17,7 +17,7 @@ class AccessTests: XCTestCase {
     }
 
     func testThatThingsThatShouldBePublicArePublic() {
-        let kernKey = NSAttributedStringKey.bonMotRemovedKernAttribute
+        let kernKey = NSAttributedString.Key.bonMotRemovedKernAttribute
         // we care more that it's public than that it's equal to this string,
         // but might as well test it while we're here.
         XCTAssertEqual(kernKey, "com.raizlabs.bonmot.removedKernAttributeRemoved")

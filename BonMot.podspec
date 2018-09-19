@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name             = "BonMot"
   s.version          = "5.2"
   s.summary          = "Beautiful, easy attributed strings in Swift"
-  s.swift_version    = "4.0"
+  s.swift_version    = "4.2"
   s.description      = <<-DESC
   BonMot removes all the mystery from creating beautiful, powerful attributed strings in Swift.
                        DESC
