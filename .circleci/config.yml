@@ -27,6 +27,7 @@ jobs:
       - run:
           name: Restore Ruby Gems
           command: |
+            gem install bundler
             bundle check || bundle install
       # Cache Gems
       - save_cache:
@@ -102,6 +103,7 @@ jobs:
       - run:
           name: Restore Ruby Gems
           command: |
+            gem install bundler
             bundle check || bundle install
       # Cache Gems
       - save_cache:
@@ -144,6 +146,7 @@ jobs:
       - run:
           name: Restore Ruby Gems
           command: |
+            gem install bundler
             bundle check || bundle install
       # Cache Gems
       - save_cache:
