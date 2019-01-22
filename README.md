@@ -266,9 +266,9 @@ label.bonMotStyleName = @"MyHeadline";
 
 - Use the inspectable properties of common UIKit elements as in the [Interface Builder section](#storyboard-and-xib-integration).
 
-# BonMot 3 → 4 Migration Guide
+# BonMot 3 → 4+ Migration Guide
 
-BonMot 4 is a major update, but there are some common patterns that you can use to ease the transition. Note that this is mostly for Swift projects that were using BonMot 3. BonMot 4 has only limited [support for Objective-C](#objective-c-compatibility), so please check that section before attempting to upgrade if you need to maintain Objective-C compatibility.
+BonMot 4 is a major update, but there are some common patterns that you can use to ease the transition. Note that this is mostly for Swift projects that were using BonMot 3. BonMot 4+ has only limited [support for Objective-C](#objective-c-compatibility), so please check that section before attempting to upgrade if you need to maintain Objective-C compatibility.
 
 ### Separating Style from Content
 
@@ -371,7 +371,7 @@ Contributors are expected to abide by the [Contributor Covenant Code of Conduct]
 
 # Author
 
-Zev Eisenberg: [zev.eisenberg@raizlabs.com](mailto:zev.eisenberg@raizlabs.com), [@ZevEisenberg](https://twitter.com/zeveisenberg)
+Zev Eisenberg: [zeisenberg@rightpoint.com](mailto:zeisenberg@rightpoint.com), [@ZevEisenberg](https://twitter.com/zeveisenberg)
 
 Logo by Jon Lopkin: [@jonlopkin](https://twitter.com/jonlopkin)
 
