@@ -11,7 +11,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.0
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -88,7 +87,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.2
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -132,7 +130,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.0
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -175,7 +172,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.0
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -207,7 +203,6 @@ jobs:
       xcode: "9.3.0"
     environment:
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.0
     shell: /bin/bash --login -eo pipefail
     steps:
       - checkout
@@ -229,7 +224,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.0
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
