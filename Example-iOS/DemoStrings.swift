@@ -6,8 +6,8 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import UIKit
 import BonMot
+import UIKit
 
 //swiftlint:disable type_body_length file_length
 enum DemoStrings {
@@ -148,23 +148,24 @@ enum DemoStrings {
             .baselineOffset(10)
         )
 
-        return NSAttributedString.composed(of: [
-            ("barn", "This"),
-            ("bee", "string"),
-            ("bug", "is"),
-            ("circuit", "separated"),
-            ("cut", "by"),
-            ("discount", "images"),
-            ("gift", "and"),
-            ("pin", "no-break"),
-            ("robot", "spaces"),
-            ].map {
-                return NSAttributedString.composed(of: [
-                    UIImage(named: $0)!,
-                    Special.noBreakSpace,
-                    $1.styled(with: noSpaceTextStyle),
-                    ])
-            }, separator: " ")
+        return NSAttributedString.composed(
+            of: [
+                ("barn", "This"),
+                ("bee", "string"),
+                ("bug", "is"),
+                ("circuit", "separated"),
+                ("cut", "by"),
+                ("discount", "images"),
+                ("gift", "and"),
+                ("pin", "no-break"),
+                ("robot", "spaces"),
+                ].map {
+                    NSAttributedString.composed(of: [
+                        UIImage(named: $0)!,
+                        Special.noBreakSpace,
+                        $1.styled(with: noSpaceTextStyle),
+                        ])
+        }, separator: " ")
     }()
 
     /// A whimsical example using baseline offset and some math.

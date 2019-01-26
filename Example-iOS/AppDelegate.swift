@@ -6,8 +6,8 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import UIKit
 import BonMot
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

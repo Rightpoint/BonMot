@@ -6,8 +6,8 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import XCTest
 import BonMot
+import XCTest
 
 #if os(iOS) || os(tvOS) || os(watchOS)
     let testTextStyle = UIFont.TextStyle.title3

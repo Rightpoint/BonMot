@@ -6,8 +6,8 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import XCTest
 import BonMot
+import XCTest
 
 #if swift(>=2.3)
 

@@ -906,7 +906,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-OSX\" -sdk \"macosx\" -destination \"arch=x86_64\" SWIFT_VERSION=4.2 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4071DBE660700B6FF7A /* Build and test iOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -920,7 +920,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.2 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4081DBE660800B6FF7A /* Build and test tvOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -934,7 +934,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV 1080p\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build-for-testing test-without-building -project BonMot.xcodeproj -scheme \"BonMot-tvOS\" -sdk \"appletvsimulator\" -destination \"name=Apple TV\" SWIFT_VERSION=4.2 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD15C4091DBE660A00B6FF7A /* Build watchOS */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -948,7 +948,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch - 38mm\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"BonMot-watchOS\" -sdk \"watchsimulator\" -destination \"name=Apple Watch Series 4 - 44mm\" SWIFT_VERSION=4.2 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 		CD4B2FCC1D9B0AB0007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1060,7 +1060,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.0 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" SWIFT_VERSION=4.2 CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

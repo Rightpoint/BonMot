@@ -6,8 +6,8 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import UIKit
 import BonMot
+import UIKit
 
 /// UITableViewCell's built in labels are re-created when the content size
 /// category changes, so we use a cell subclass with a custom label to avoid this.

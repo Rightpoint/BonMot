@@ -14,8 +14,8 @@ import Foundation
     import UIKit
 #endif
 
-import XCTest
 @testable import BonMot
+import XCTest
 
 class TextAlignmentConstraintTests: XCTestCase {
 

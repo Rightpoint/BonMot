@@ -6,8 +6,8 @@
 //  Copyright © 2018 Raizlabs. All rights reserved.
 //
 
-import XCTest
 @testable import BonMot
+import XCTest
 
 class EmphasisTests: XCTestCase {
 

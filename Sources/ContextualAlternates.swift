@@ -86,7 +86,9 @@
 
     }
 
-    public func + (lhs: ContextualAlternates, rhs: ContextualAlternates) -> ContextualAlternates {
-        return lhs.byAdding(other: rhs)
+    extension ContextualAlternates {
+        public static func + (lhs: ContextualAlternates, rhs: ContextualAlternates) -> ContextualAlternates {
+            return lhs.byAdding(other: rhs)
+        }
     }
 #endif

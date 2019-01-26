@@ -6,8 +6,8 @@
 //  Copyright © 2017 Raizlabs. All rights reserved.
 //
 
-import XCTest
 @testable import BonMot
+import XCTest
 
 private extension Locale {
 

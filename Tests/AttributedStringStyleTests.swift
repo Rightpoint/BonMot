@@ -6,9 +6,9 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import XCTest
 @testable import BonMot
 import CoreText
+import XCTest
 
 //swiftlint:disable file_length
 //swiftlint:disable:next type_body_length
@@ -518,37 +518,37 @@ class StringStyleTests: XCTestCase {
         XCTAssertEqual(featuresArray2.count, 2)
 
         let hasAltTwoDict = featuresArray1.contains { dictionary in
-            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
             && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
         }
         XCTAssertTrue(hasAltTwoDict)
 
         let hasAltSixDict = featuresArray1.contains { dictionary in
-            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
                 && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOnSelector
         }
         XCTAssertTrue(hasAltSixDict)
 
         let hasSmallCapsFromLowercaseDict = featuresArray1.contains { dictionary in
-            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kLowerCaseType
+            dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kLowerCaseType
                 && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kLowerCaseSmallCapsSelector
         }
         XCTAssertTrue(hasSmallCapsFromLowercaseDict)
 
         let array2StillHasAltTwoDict = featuresArray2.contains { dictionary in
-            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
                 && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltTwoOnSelector
         }
         XCTAssertTrue(array2StillHasAltTwoDict)
 
         let hasAltFiveDict = featuresArray2.contains { dictionary in
-            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
                 && dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltFiveOnSelector
         }
         XCTAssertTrue(hasAltFiveDict)
 
         let stillHasAltSixDict = featuresArray2.contains { dictionary in
-            return dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
+            dictionary[kCTFontFeatureTypeIdentifierKey as String] as? Int == kStylisticAlternativesType
                 && (dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOnSelector
                     || dictionary[kCTFontFeatureSelectorIdentifierKey as String] as? Int == kStylisticAltSixOffSelector)
         }
