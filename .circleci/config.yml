@@ -43,7 +43,7 @@ jobs:
           when: always
           command: |
             bundle exec fastlane coverage_all
-      # Store xcov Code Coverage HTML report artifact 
+      # Store xcov Code Coverage HTML report artifact
       - store_artifacts:
           path: /Users/distiller/project/build/BonMot-iOS/xcov
           destination: xcov
@@ -77,9 +77,9 @@ jobs:
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
-  test-xcode-10-0:
+  test-xcode-10-1:
     macos:
-      xcode: "10.0.0"
+      xcode: "10.1.0"
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -111,9 +111,9 @@ jobs:
           paths:
             - "/Users/distiller/project/build/gems"
       - run: ./scripts/macOS.sh
-      - run: ./scripts/iOS-12.0.sh
-      - run: ./scripts/tvOS-12.0.sh
-      - run: ./scripts/watchOS-5.0.sh
+      - run: ./scripts/iOS-12.1.sh
+      - run: ./scripts/tvOS-12.1.sh
+      - run: ./scripts/watchOS-5.1.sh
       - run:
           name: Install CocoaPods Specs Repo
           command: |
@@ -260,7 +260,7 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-xcode-10-0:
+      - test-xcode-10-1:
           filters:
             tags:
               only: /.*/
@@ -278,7 +278,7 @@ workflows:
               only: /.*/
       - deploy-to-cocoapods:
           requires:
-            - test-xcode-10-0
+            - test-xcode-10-1
             - test-xcode-9-3
             - test-xcode-9-2
             - carthage-build

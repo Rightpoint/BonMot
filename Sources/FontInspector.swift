@@ -8,8 +8,8 @@
 
 // This is not supported on watchOS
 #if os(iOS) || os(tvOS) || os(OSX)
-    import Foundation
     import CoreText
+    import Foundation
 
     typealias FontFeatureDictionary = [String: Any]
 

@@ -208,7 +208,7 @@
         func featureAttributes() -> [[BONFontDescriptor.FeatureKey: Any]] {
             let featureSettings = self.featureSettings()
             return featureSettings.map {
-                return [
+                [
                     BONFontFeatureTypeIdentifierKey: $0.type,
                     BONFontFeatureSelectorIdentifierKey: $0.selector,
                     ]

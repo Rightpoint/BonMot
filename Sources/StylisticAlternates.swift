@@ -279,7 +279,11 @@
 
     }
 
-    public func + (lhs: StylisticAlternates, rhs: StylisticAlternates) -> StylisticAlternates {
-        return lhs.byAdding(other: rhs)
+    extension StylisticAlternates {
+
+        public static func + (lhs: StylisticAlternates, rhs: StylisticAlternates) -> StylisticAlternates {
+            return lhs.byAdding(other: rhs)
+        }
+
     }
 #endif

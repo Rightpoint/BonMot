@@ -12,11 +12,18 @@ function_body_length:
   - 75 # warning
 
 opt_in_rules:
-  - vertical_whitespace
+  - anyobject_protocol
+  - identical_operands
+  - implicit_return
+  - last_where
+  - legacy_random
   - operator_usage_whitespace
+  - redundant_objc_attribute
+  - sorted_imports
+  - static_operator
+  - toggle_bool
+  - unused_control_flow_label
+  - vertical_whitespace
 
 trailing_comma:
   mandatory_comma: true
-
-swiftlint_version:
-  - 0.17.0

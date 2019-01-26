@@ -3,9 +3,9 @@
 set -o pipefail && \
   xcodebuild clean build test \
   -project BonMot.xcodeproj \
-  -scheme BonMot-tvOS \
-  -sdk appletvsimulator \
-  -destination "platform=tvOS Simulator,name=Apple TV,OS=12.0" \
+  -scheme BonMot-iOS \
+  -sdk iphonesimulator \
+  -destination "platform=iOS Simulator,name=iPhone 6s,OS=12.1" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= \
   | bundle exec xcpretty

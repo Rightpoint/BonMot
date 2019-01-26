@@ -6,8 +6,8 @@
 //  Copyright © 2016 Raizlabs. All rights reserved.
 //
 
-import XCTest
 import BonMot
+import XCTest
 
 func dataFromImage(image theImage: BONImage) -> Data {
     assert(theImage.size != .zero)
