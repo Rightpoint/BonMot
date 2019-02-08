@@ -69,7 +69,7 @@ let redBirdString = "bird".styled(with: redStyle)
 let blueBirdString = "bird".styled(with: blueStyle)
 ```
 
-### XML Parsing
+### Styling Parts of Strings with XML
 
 Are you trying to style just part of a string, perhaps even a localized string which is different depending on the locale of the app? No problem! BonMot can turn custom XML tags and simple HTML into attributed strings:
 
