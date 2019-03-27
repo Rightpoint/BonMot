@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		5B39AB58224BDE2000452BD6 /* Mutation Testing */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5B39AB5B224BDE2000452BD6 /* Build configuration list for PBXAggregateTarget "Mutation Testing" */;
+			buildPhases = (
+				5B39AB5C224BDE2500452BD6 /* Muter */,
+			);
+			dependencies = (
+			);
+			name = "Mutation Testing";
+			productName = "Mutation Testing";
+		};
 		AB8497DA1DA45B9C00FE3414 /* AllTheThings */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = AB8497DD1DA45B9C00FE3414 /* Build configuration list for PBXAggregateTarget "AllTheThings" */;
@@ -780,10 +791,15 @@
 		ABCBFD2F1D96E41D00FAD37A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				DefaultBuildSystemTypeForWorkspace = Latest;
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Rightpoint;
 				TargetAttributes = {
+					5B39AB58224BDE2000452BD6 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+					};
 					AB8497DA1DA45B9C00FE3414 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -834,6 +850,7 @@
 				ABCD3E271D980E5500273936 /* BonMot-OSXTests */,
 				ABA75DCC1D99E10400B64705 /* BonMot-watchOS */,
 				AB8497DA1DA45B9C00FE3414 /* AllTheThings */,
+				5B39AB58224BDE2000452BD6 /* Mutation Testing */,
 			);
 		};
 /* End PBXProject section */
@@ -909,6 +926,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5B39AB5C224BDE2500452BD6 /* Muter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Muter;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "muter --output-xcode\n";
+		};
 		ABBD124E1DA469BB0084FBCC /* Build and test macOS */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1334,6 +1369,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5B39AB59224BDE2000452BD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5B39AB5A224BDE2000452BD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		AB8497DB1DA45B9C00FE3414 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1805,6 +1856,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5B39AB5B224BDE2000452BD6 /* Build configuration list for PBXAggregateTarget "Mutation Testing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B39AB59224BDE2000452BD6 /* Debug */,
+				5B39AB5A224BDE2000452BD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AB8497DD1DA45B9C00FE3414 /* Build configuration list for PBXAggregateTarget "AllTheThings" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

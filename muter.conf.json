@@ -1,0 +1,11 @@
+{
+    "executable": "/usr/bin/xcodebuild",
+    "arguments": [
+        "-project",
+        "BonMot.xcodeproj",
+        "-scheme",
+        "BonMot-OSX",
+        "test"
+    ],
+    "exclude": ["AppDelegate.swift", "CatalogViewController.swift", "StyleViewController.swift"]
+}
