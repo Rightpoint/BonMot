@@ -1,12 +1,12 @@
 <img width=443 src="Resources/readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
 [![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://swift.org)
-[![CircleCI](https://img.shields.io/circleci/project/github/Raizlabs/BonMot/master.svg)](https://circleci.com/gh/Raizlabs/BonMot)
+[![CircleCI](https://img.shields.io/circleci/project/github/Rightpoint/BonMot/master.svg)](https://circleci.com/gh/Rightpoint/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Platform](https://img.shields.io/cocoapods/p/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![codecov](https://codecov.io/gh/Raizlabs/BonMot/branch/master/graph/badge.svg)](https://codecov.io/gh/Raizlabs/BonMot)
+[![codecov](https://codecov.io/gh/Rightpoint/BonMot/branch/master/graph/badge.svg)](https://codecov.io/gh/Rightpoint/BonMot)
 
 BonMot (pronounced *Bon Mo*, French for *good word*) is a Swift attributed string library. It abstracts away the complexities of the iOS, macOS, tvOS, and watchOS typography tools, freeing you to focus on making your text beautiful.
 
@@ -250,13 +250,13 @@ Next, switch to the Attributes Inspector. `TextAlignmentConstraint` exposes two 
 
 The layout won’t change in Interface Builder (IBDesignable is not supported for constraint subclasses), but it will work when you run your code.
 
-**Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Raizlabs/BonMot/issues/37) for updates.
+**Note:** some of the possible alignment values are not supported in all configurations. Check out [Issue #37](https://github.com/Rightpoint/BonMot/issues/37) for updates.
 
 # Objective-C Compatibility
 
 BonMot is written in Swift, but you have a few options if you must use it in an Objective-C code base:
 
-- For legacy Objective-C code bases, consider using [BonMot 3.2](https://github.com/Raizlabs/BonMot/releases/tag/3.2), the last major release to be written in Objective-C. Make sure you reference the ReadMe from that tagged release, since the syntax is different than BonMot 4.0 and later.
+- For legacy Objective-C code bases, consider using [BonMot 3.2](https://github.com/Rightpoint/BonMot/releases/tag/3.2), the last major release to be written in Objective-C. Make sure you reference the ReadMe from that tagged release, since the syntax is different than BonMot 4.0 and later.
 - If you are mixing Objective-C and Swift, you can create named styles as in the [Interface Builder section](#storyboard-and-xib-integration), and then access those styles in Objective-C:
 
  ```objc
@@ -360,14 +360,14 @@ pod 'BonMot'
 BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
 
 ```ogdl
-github "Raizlabs/BonMot"
+github "Rightpoint/BonMot"
 ```
 
 # Contributing
 
 Issues and pull requests are welcome! Please ensure that you have the latest [SwiftLint](https://github.com/realm/SwiftLint) installed before committing and that there are no style warnings generated when building.
 
-Contributors are expected to abide by the [Contributor Covenant Code of Conduct](https://github.com/Raizlabs/BonMot/blob/master/CONTRIBUTING.md).
+Contributors are expected to abide by the [Contributor Covenant Code of Conduct](https://github.com/Rightpoint/BonMot/blob/master/CONTRIBUTING.md).
 
 # Author
 
