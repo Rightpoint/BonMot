@@ -16,6 +16,7 @@ import XCTest
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.large)
 
 // These tests rely on iOS 10.0 APIs. Test method needs to be updated to run on iOS 9.0
+//swiftlint:disable type_body_length
 @available(iOS 10.0, *)
 class AdaptiveStyleTests: XCTestCase {
 
@@ -147,8 +148,14 @@ class AdaptiveStyleTests: XCTestCase {
         }
     }
 
-    @available(iOS 11, tvOS 11, *)
+    @available(iOS 11, *)
     func testFontMetricsAdaptation() {
+        // Test is still always run (and fails) on the iOS 10 simulator despite
+        // the availability annotation.
+        guard ProcessInfo().operatingSystemVersion.majorVersion > 10 else {
+            return
+        }
+
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = StringStyle(.font(inputFont), .adapt(.fontMetrics(textStyle: .headline, maxPointSize: nil)))
         print(style.attributes)
@@ -167,8 +174,14 @@ class AdaptiveStyleTests: XCTestCase {
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 37)
     }
 
-    @available(iOS 11, tvOS 11, *)
+    @available(iOS 11, *)
     func testFontMetricsWithMaxPointSizeAdaptation() {
+        // Test is still always run (and fails) on the iOS 10 simulator despite
+        // the availability annotation.
+        guard ProcessInfo().operatingSystemVersion.majorVersion > 10 else {
+            return
+        }
+
         let inputFont = UIFont(name: "Avenir-Book", size: 28)!
         let style = StringStyle(.font(inputFont), .adapt(.fontMetrics(textStyle: .headline, maxPointSize: 30)))
         print(style.attributes)
