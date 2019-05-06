@@ -40,6 +40,7 @@ public enum AdaptiveStyle {
     /// This style may be combined with other scaling behaviors such as `control`
     /// and `body`.
     case below(size: CGFloat, useFontNamed: String)
+
 }
 
 extension AdaptiveStyle: AdaptiveStyleTransformation {
@@ -170,6 +171,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
         static let above = "above"
         static let below = "below"
         static let fontMetrics = "fontMetrics"
+
     }
 
     var asDictionary: StyleAttributes {
