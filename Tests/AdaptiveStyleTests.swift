@@ -147,6 +147,46 @@ class AdaptiveStyleTests: XCTestCase {
         }
     }
 
+    @available(iOS 11, tvOS 11, *)
+    func testFontMetricsAdaptation() {
+        let inputFont = UIFont(name: "Avenir-Book", size: 28)!
+        let style = StringStyle(.font(inputFont), .adapt(.fontMetrics(textStyle: .headline, maxPointSize: nil)))
+        print(style.attributes)
+
+        let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
+            let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
+        }
+
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 24)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 31)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 33)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 37)
+    }
+
+    @available(iOS 11, tvOS 11, *)
+    func testFontMetricsWithMaxPointSizeAdaptation() {
+        let inputFont = UIFont(name: "Avenir-Book", size: 28)!
+        let style = StringStyle(.font(inputFont), .adapt(.fontMetrics(textStyle: .headline, maxPointSize: 30)))
+        print(style.attributes)
+
+        let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
+            let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
+        }
+
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 24)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 30)
+    }
+
     func testAdobeAdaptiveTracking() {
         let font = UIFont(name: "Avenir-Book", size: 30)!
         let chain = StringStyle(.font(font), .adapt(.control), .tracking(.adobe(300)))

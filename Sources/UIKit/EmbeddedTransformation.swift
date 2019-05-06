@@ -37,6 +37,8 @@ internal enum EmbeddedTransformationHelpers {
 
         static let type = NSAttributedString.Key("type")
         static let size = NSAttributedString.Key("size")
+        static let textStyle = NSAttributedString.Key("textStyle")
+        static let maxPointSize = NSAttributedString.Key("maxPointSize")
 
     }
 
