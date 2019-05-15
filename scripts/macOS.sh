@@ -1,4 +1,5 @@
 #!/bin/sh
+# Any arguments passed are passed to xcodebuild
 
 set -o pipefail && \
   xcodebuild clean build test \
@@ -7,5 +8,5 @@ set -o pipefail && \
   -sdk macosx \
   -destination "arch=x86_64" \
   CODE_SIGNING_REQUIRED=NO \
-  CODE_SIGN_IDENTITY= \
+  CODE_SIGN_IDENTITY= $@\
   | bundle exec xcpretty

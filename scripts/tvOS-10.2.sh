@@ -1,4 +1,5 @@
 #!/bin/sh
+# Any arguments passed are passed to xcodebuild
 
 set -o pipefail && \
   xcodebuild clean build test \
@@ -7,5 +8,5 @@ set -o pipefail && \
   -sdk appletvsimulator \
   -destination "platform=tvOS Simulator,name=Apple TV 1080p,OS=10.2" \
   CODE_SIGNING_REQUIRED=NO \
-  CODE_SIGN_IDENTITY= \
+  CODE_SIGN_IDENTITY= $@\
   | bundle exec xcpretty

@@ -87,7 +87,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 5
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -111,10 +110,11 @@ jobs:
           key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
-      - run: ./scripts/macOS.sh
-      - run: ./scripts/iOS-12.2.sh
-      - run: ./scripts/tvOS-12.2.sh
-      - run: ./scripts/watchOS-5.2.sh
+      - run: ./scripts/macOS.sh SWIFT_VERSION=5
+      - run: ./scripts/iOS-11.4.sh SWIFT_VERSION=5
+      - run: ./scripts/iOS-12.2.sh SWIFT_VERSION=5
+      - run: ./scripts/tvOS-12.2.sh SWIFT_VERSION=5
+      - run: ./scripts/watchOS-5.2.sh SWIFT_VERSION=5
       - run:
           name: Install CocoaPods Specs Repo
           command: |
@@ -131,7 +131,6 @@ jobs:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: /Users/distiller/project/build/gems
       HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 4.2
     shell: /bin/bash --login -eo pipefail
     working_directory: /Users/distiller/project
     steps:
@@ -155,10 +154,11 @@ jobs:
           key: 2-gems-{{ checksum "Gemfile.lock" }}
           paths:
             - "/Users/distiller/project/build/gems"
-      - run: ./scripts/macOS.sh
-      - run: ./scripts/iOS-12.1.sh
-      - run: ./scripts/tvOS-12.1.sh
-      - run: ./scripts/watchOS-5.1.sh
+      - run: ./scripts/macOS.sh SWIFT_VERSION=4.2
+      - run: ./scripts/iOS-12.1.sh SWIFT_VERSION=4.2
+      - run: ./scripts/tvOS-11.2.sh SWIFT_VERSION=4.2
+      - run: ./scripts/tvOS-12.1.sh SWIFT_VERSION=4.2
+      - run: ./scripts/watchOS-5.1.sh SWIFT_VERSION=4.2
       - run:
           name: Install CocoaPods Specs Repo
           command: |
