@@ -112,7 +112,8 @@ def coverage(scheme:, devices: nil, destination: nil)
   xcov(
     project: PROJECT_NAME,
     scheme: scheme,
-    output_directory: "#{BUILD_PATH}/#{scheme}/xcov"
+    output_directory: "#{BUILD_PATH}/#{scheme}/xcov",
+    derived_data_path: DERIVED_DATA_PATH
   )
 
   # Add binaries here as you create internal frameworks
