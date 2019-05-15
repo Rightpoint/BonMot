@@ -92,16 +92,13 @@ def coverage(scheme:, devices: nil, destination: nil)
       output_directory: scan_output_path,
       code_coverage: true,
       derived_data_path: DERIVED_DATA_PATH,
-      result_bundle: true,
+      result_bundle: false,
       disable_concurrent_testing: disable_concurrent_testing
     )
   rescue => ex
     # Don't fail the entire lane when running tests, but print failure to STDERR
     STDERR.puts ex
   end
-
-  result_bundle_path = Scan.cache[:result_bundle_path]
-  xchtmlreport(result_bundle_path: result_bundle_path)
   
   slather_use_circleci = "false"
 
@@ -140,6 +137,29 @@ def coverage(scheme:, devices: nil, destination: nil)
     cobertura_xml: "true",
     build_directory: DERIVED_DATA_PATH
   )
+
+  # Since xchtmlreport depends on the result bundle path, we need to run the tests again
+  # AFTER xcov has run, because running it before causes issues finding the test logs in derived data
+  begin
+    scan(
+      output_types: 'junit,html',
+      devices: devices,
+      destination: destination,
+      scheme: scheme,
+      output_directory: scan_output_path,
+      code_coverage: true,
+      derived_data_path: DERIVED_DATA_PATH,
+      result_bundle: true,
+      disable_concurrent_testing: disable_concurrent_testing
+    )
+  rescue => ex
+    # Don't fail the entire lane when running tests, but print failure to STDERR
+    STDERR.puts ex
+  end
+
+  result_bundle_path = Scan.cache[:result_bundle_path]
+  xchtmlreport(result_bundle_path: result_bundle_path)
+
   result_bundle_path
 end
 
