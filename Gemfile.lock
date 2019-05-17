@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/nakiostudio/xcov.git
+  revision: d89bd2dc6ef324ed7586907a872d1bd33876471f
+  branch: master
+  specs:
+    xcov (1.5.1)
+      fastlane (>= 2.82.0, < 3.0.0)
+      multipart-post
+      slack-notifier
+      terminal-table
+      xcodeproj
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -254,12 +266,6 @@ GEM
       claide (>= 1.0.2, < 2.0)
       colored2 (~> 3.1)
       nanaimo (~> 0.2.6)
-    xcov (1.5.0)
-      fastlane (>= 2.82.0, < 3.0.0)
-      multipart-post
-      slack-notifier
-      terminal-table
-      xcodeproj
     xcpretty (0.3.0)
       rouge (~> 2.0.7)
     xcpretty-travis-formatter (1.0.0)
@@ -277,8 +283,8 @@ DEPENDENCIES
   danger-xcov
   fastlane
   slather
-  xcov
+  xcov!
   xcpretty
 
 BUNDLED WITH
-   1.17.1
+   1.17.3

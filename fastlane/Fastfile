@@ -92,14 +92,18 @@ def coverage(scheme:, devices: nil, destination: nil)
       output_directory: scan_output_path,
       code_coverage: true,
       derived_data_path: DERIVED_DATA_PATH,
-      result_bundle: false,
+      result_bundle: true,
       disable_concurrent_testing: disable_concurrent_testing
     )
   rescue => ex
     # Don't fail the entire lane when running tests, but print failure to STDERR
     STDERR.puts ex
   end
-  
+
+  result_bundle_path = Scan.cache[:result_bundle_path]
+  xccoverage_files = Dir.glob("#{Dir.pwd}/../#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
+  xccov_file_direct_path = xccoverage_files.first
+
   slather_use_circleci = "false"
 
   if ENV['CIRCLE_BUILD_NUM']
@@ -110,7 +114,7 @@ def coverage(scheme:, devices: nil, destination: nil)
     project: PROJECT_NAME,
     scheme: scheme,
     output_directory: "#{BUILD_PATH}/#{scheme}/xcov",
-    derived_data_path: DERIVED_DATA_PATH
+    xccov_file_direct_path: xccov_file_direct_path
   )
 
   # Add binaries here as you create internal frameworks
@@ -138,27 +142,8 @@ def coverage(scheme:, devices: nil, destination: nil)
     build_directory: DERIVED_DATA_PATH
   )
 
-  # Since xchtmlreport depends on the result bundle path, we need to run the tests again
-  # AFTER xcov has run, because running it before causes issues finding the test logs in derived data
-  begin
-    scan(
-      output_types: 'junit,html',
-      devices: devices,
-      destination: destination,
-      scheme: scheme,
-      output_directory: scan_output_path,
-      code_coverage: true,
-      derived_data_path: DERIVED_DATA_PATH,
-      result_bundle: true,
-      disable_concurrent_testing: disable_concurrent_testing
-    )
-  rescue => ex
-    # Don't fail the entire lane when running tests, but print failure to STDERR
-    STDERR.puts ex
-  end
-
-  result_bundle_path = Scan.cache[:result_bundle_path]
-  xchtmlreport(result_bundle_path: result_bundle_path)
+  xchtmlreport(result_bundle_path: result_bundle_path,
+               enable_junit: true)
 
   result_bundle_path
 end
