@@ -101,8 +101,9 @@ def coverage(scheme:, devices: nil, destination: nil)
   end
 
   result_bundle_path = Scan.cache[:result_bundle_path]
-  xchtmlreport(result_bundle_path: result_bundle_path)
-  
+  xccoverage_files = Dir.glob("#{Dir.pwd}/../#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
+  xccov_file_direct_path = xccoverage_files.first
+
   slather_use_circleci = "false"
 
   if ENV['CIRCLE_BUILD_NUM']
@@ -113,7 +114,7 @@ def coverage(scheme:, devices: nil, destination: nil)
     project: PROJECT_NAME,
     scheme: scheme,
     output_directory: "#{BUILD_PATH}/#{scheme}/xcov",
-    derived_data_path: DERIVED_DATA_PATH
+    xccov_file_direct_path: xccov_file_direct_path
   )
 
   # Add binaries here as you create internal frameworks
@@ -140,6 +141,10 @@ def coverage(scheme:, devices: nil, destination: nil)
     cobertura_xml: "true",
     build_directory: DERIVED_DATA_PATH
   )
+
+  xchtmlreport(result_bundle_path: result_bundle_path,
+               enable_junit: true)
+
   result_bundle_path
 end
 
