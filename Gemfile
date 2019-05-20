@@ -7,7 +7,8 @@ gem 'xcpretty'
 group :test, :danger do
   gem 'slather'
   gem 'circleci_artifact'
-  gem 'xcov'
+  # Waiting on 1.5.1 release for xccov_file_direct_path support
+  gem 'xcov', :git => 'https://github.com/nakiostudio/xcov.git', :branch => 'master'
   gem 'fastlane'
 end
 
