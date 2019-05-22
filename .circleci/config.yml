@@ -1,39 +1,10 @@
-version: 2
+version: 2.1
 
 jobs:
   danger:
-    macos:
-      xcode: "10.2.1"
-    environment:
-      LC_ALL: en_US.UTF-8
-      LANG: en_US.UTF-8
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: /Users/distiller/project/build/gems
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    shell: /bin/bash --login -eo pipefail
-    working_directory: /Users/distiller/project
+    executor: xcode-10
     steps:
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.4" > ~/.ruby-version
-      - checkout
-      # Setup Ruby dependencies
-      - restore_cache:
-          keys:
-            - 2-gems-{{ checksum "Gemfile.lock" }}
-            # Fall back to a previous cache if exact match cannot be found
-            - 2-gems-
-      - run:
-          name: Restore Ruby Gems
-          command: |
-            gem install bundler
-            bundle check || bundle install
-      # Cache Gems
-      - save_cache:
-          key: 2-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - "/Users/distiller/project/build/gems"
+      - setup
       - run:
           name: Install xchtmlreport
           command: |
@@ -45,13 +16,13 @@ jobs:
             bundle exec fastlane coverage_all
       # Store xcov Code Coverage HTML report artifact
       - store_artifacts:
-          path: /Users/distiller/project/build/BonMot-iOS/xcov
+          path: build/BonMot-iOS/xcov
           destination: xcov
       - store_artifacts:
-          path: /Users/distiller/project/build/BonMot-iOS/slather
+          path: build/BonMot-iOS/slather
           destination: slather
       - store_artifacts:
-          path: /Users/distiller/project/build/BonMot-iOS/scan
+          path: build/BonMot-iOS/scan
           destination: scan
       - run:
           name: Rename CircleCI JUnit XML
@@ -60,7 +31,7 @@ jobs:
             mkdir -p build/test-results/danger
             cp build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit build/test-results/danger/results.xml
       - store_test_results:
-          path: /Users/distiller/project/build/test-results
+          path: build/test-results
       # Install SwiftLint only before Danger because otherwise it fails the build
       - run:
           name: Install SwiftLint
@@ -78,99 +49,33 @@ jobs:
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
   test-xcode-10-2:
-    macos:
-      xcode: "10.2.1"
-    environment:
-      LC_ALL: en_US.UTF-8
-      LANG: en_US.UTF-8
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: /Users/distiller/project/build/gems
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    shell: /bin/bash --login -eo pipefail
-    working_directory: /Users/distiller/project
+    executor: xcode-10
     steps:
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.4" > ~/.ruby-version
-      - checkout
-      # Setup Ruby dependencies
-      - restore_cache:
-          keys:
-            - 2-gems-{{ checksum "Gemfile.lock" }}
-            # Fall back to a previous cache if exact match cannot be found
-            - 2-gems-
-      - run:
-          name: Restore Ruby Gems
-          command: |
-            gem install bundler
-            bundle check || bundle install
-      # Cache Gems
-      - save_cache:
-          key: 2-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - "/Users/distiller/project/build/gems"
+      - setup
       - run: ./scripts/macOS.sh SWIFT_VERSION=5
       - run: ./scripts/iOS-11.4.sh SWIFT_VERSION=5
       - run: ./scripts/iOS-12.2.sh SWIFT_VERSION=5
       - run: ./scripts/tvOS-12.2.sh SWIFT_VERSION=5
       - run: ./scripts/watchOS-5.2.sh SWIFT_VERSION=5
-      - run:
-          name: Install CocoaPods Specs Repo
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      - run: bundle exec pod lib lint
+      - lint-pod:
+          swift-version: "5.0"
 
   test-xcode-10-1:
+    executor: xcode-10
     macos:
       xcode: "10.1.0"
-    environment:
-      LC_ALL: en_US.UTF-8
-      LANG: en_US.UTF-8
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: /Users/distiller/project/build/gems
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    shell: /bin/bash --login -eo pipefail
-    working_directory: /Users/distiller/project
     steps:
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.4" > ~/.ruby-version
-      - checkout
-      # Setup Ruby dependencies
-      - restore_cache:
-          keys:
-            - 2-gems-{{ checksum "Gemfile.lock" }}
-            # Fall back to a previous cache if exact match cannot be found
-            - 2-gems-
-      - run:
-          name: Restore Ruby Gems
-          command: |
-            gem install bundler
-            bundle check || bundle install
-      # Cache Gems
-      - save_cache:
-          key: 2-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - "/Users/distiller/project/build/gems"
+      - setup
       - run: ./scripts/macOS.sh SWIFT_VERSION=4.2
       - run: ./scripts/iOS-12.1.sh SWIFT_VERSION=4.2
       - run: ./scripts/tvOS-11.2.sh SWIFT_VERSION=4.2
       - run: ./scripts/tvOS-12.1.sh SWIFT_VERSION=4.2
       - run: ./scripts/watchOS-5.1.sh SWIFT_VERSION=4.2
-      - run:
-          name: Install CocoaPods Specs Repo
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      - run: bundle exec pod lib lint
+      - lint-pod:
+          swift-version: "4.2"
 
   carthage-build:
-    macos:
-      xcode: "10.2.1"
-    environment:
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    shell: /bin/bash --login -eo pipefail
+    executor: xcode-10
     steps:
       - checkout
       - run:
@@ -182,43 +87,56 @@ jobs:
       - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
-    macos:
-      xcode: "10.2.1"
-    environment:
-      LC_ALL: en_US.UTF-8
-      LANG: en_US.UTF-8
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: /Users/distiller/project/build/gems
-      HOMEBREW_NO_AUTO_UPDATE: 1
-      SWIFT_VERSION: 5
-    shell: /bin/bash --login -eo pipefail
-    working_directory: /Users/distiller/project
+    executor: xcode-10
     steps:
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.4" > ~/.ruby-version
-      - checkout
-      # Setup Ruby dependencies
-      - restore_cache:
-          keys:
-            - 2-gems-{{ checksum "Gemfile.lock" }}
-            # Fall back to a previous cache if exact match cannot be found
-            - 2-gems-
-      - run:
-          name: Restore Ruby Gems
-          command: |
-            bundle check || bundle install
-      # Cache Gems
-      - save_cache:
-          key: 2-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - "/Users/distiller/project/build/gems"
+      - setup
       - run:
           name: Install CocoaPods Specs Repo
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run: bundle exec pod trunk push
+
+
+executors:
+  xcode-10:
+    macos:
+      xcode: "10.2.1"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+
+commands:
+  setup:
+    description: "Shared setup"
+    steps:
+      - checkout
+      - restore-gems
+
+  restore-gems:
+    description: "Restore Ruby Gems"
+    steps:
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.5" > ~/.ruby-version
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+  lint-pod:
+    description: "Lints podspec with specified Swift version"
+    parameters:
+      swift-version:
+        type: string
+        default: "5.0"
+    steps:
+      - run: bundle exec pod repo add-cdn jsDelivr-Specs "https://cdn.jsdelivr.net/cocoa/"
+      - run: bundle exec pod lib lint --swift-version=<< parameters.swift-version >>  --sources=jsDelivr-Specs
 
 workflows:
   version: 2

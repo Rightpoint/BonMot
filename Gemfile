@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods'
+gem 'cocoapods', '~> 1.7.0'
 gem 'xcpretty'
 
 # Danger
