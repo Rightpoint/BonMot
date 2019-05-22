@@ -206,6 +206,117 @@
 		CDF7E9801D9C613100FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
 		CDF7E9811D9C613400FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
 		CDF7E9821D9C613500FF46BF /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		D9AB173F2296019400A700D5 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
+		D9AB17402296019400A700D5 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
+		D9AB17412296019400A700D5 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		D9AB17422296019400A700D5 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */; };
+		D9AB17432296019400A700D5 /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
+		D9AB17442296019400A700D5 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
+		D9AB17452296019400A700D5 /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		D9AB17462296019400A700D5 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
+		D9AB17472296019400A700D5 /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		D9AB17482296019400A700D5 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */; };
+		D9AB17492296019400A700D5 /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */; };
+		D9AB174A2296019400A700D5 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */; };
+		D9AB174B2296019400A700D5 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		D9AB174C2296019400A700D5 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
+		D9AB174D2296019400A700D5 /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		D9AB174E2296019400A700D5 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
+		D9AB174F2296019400A700D5 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
+		D9AB17502296019400A700D5 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */; };
+		D9AB17512296019400A700D5 /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
+		D9AB17522296019400A700D5 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		D9AB17532296019400A700D5 /* StringStyle+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */; };
+		D9AB17542296019400A700D5 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */; };
+		D9AB17552296019400A700D5 /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		D9AB17562296019400A700D5 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
+		D9AB17572296019400A700D5 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
+		D9AB17582296019400A700D5 /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */; };
+		D9AB17592296019400A700D5 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		D9AB175A2296019400A700D5 /* EmbeddedTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbeddedTransformation.swift */; };
+		D9AB175B2296019400A700D5 /* NSAttributedString+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adaptive.swift */; };
+		D9AB175C2296019400A700D5 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
+		D9AB175D2296019400A700D5 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
+		D9AB175E2296019400A700D5 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
+		D9AB175F2296019400A700D5 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */; };
+		D9AB17622296019400A700D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
+		D9AB176C2296035700A700D5 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
+		D9AB176D2296035700A700D5 /* UIKit+AdaptableTextContainerSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D681D96F02F00273936 /* UIKit+AdaptableTextContainerSupport.swift */; };
+		D9AB176E2296035700A700D5 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		D9AB176F2296035700A700D5 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
+		D9AB17702296035700A700D5 /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		D9AB17712296035700A700D5 /* StyleableUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D661D96F02F00273936 /* StyleableUIElement.swift */; };
+		D9AB17722296035700A700D5 /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		D9AB17732296035700A700D5 /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
+		D9AB17742296035700A700D5 /* AdaptableTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D601D96F02F00273936 /* AdaptableTextContainer.swift */; };
+		D9AB17752296035700A700D5 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */; };
+		D9AB17762296035700A700D5 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
+		D9AB17772296035700A700D5 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
+		D9AB17782296035700A700D5 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		D9AB17792296035700A700D5 /* EmbeddedTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D51C1D9D95F5006ADC9D /* EmbeddedTransformation.swift */; };
+		D9AB177A2296035700A700D5 /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		D9AB177B2296035700A700D5 /* AttributedStringTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A051D9F692000100D15 /* AttributedStringTransformation.swift */; };
+		D9AB177C2296035700A700D5 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
+		D9AB177D2296035700A700D5 /* AdaptiveStyleTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D631D96F02F00273936 /* AdaptiveStyleTransformation.swift */; };
+		D9AB177E2296035700A700D5 /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
+		D9AB177F2296035700A700D5 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */; };
+		D9AB17802296035700A700D5 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		D9AB17812296035700A700D5 /* StringStyle+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */; };
+		D9AB17822296035700A700D5 /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		D9AB17832296035700A700D5 /* UIKit+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D691D96F02F00273936 /* UIKit+Helpers.swift */; };
+		D9AB17842296035700A700D5 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
+		D9AB17852296035700A700D5 /* NSAttributedString+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D651D96F02F00273936 /* NSAttributedString+Adaptive.swift */; };
+		D9AB17862296035700A700D5 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		D9AB17872296035700A700D5 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
+		D9AB17882296035700A700D5 /* AdaptiveStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D621D96F02F00273936 /* AdaptiveStyle.swift */; };
+		D9AB17892296035700A700D5 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
+		D9AB178A2296035700A700D5 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
+		D9AB178B2296035700A700D5 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
+		D9AB178C2296035700A700D5 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */; };
+		D9AB178F2296035700A700D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
+		D9AB1799229603AD00A700D5 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
+		D9AB179A229603AD00A700D5 /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
+		D9AB179B229603AD00A700D5 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		D9AB179C229603AD00A700D5 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		D9AB179D229603AD00A700D5 /* TextAlignmentConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */; };
+		D9AB179E229603AD00A700D5 /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
+		D9AB179F229603AD00A700D5 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
+		D9AB17A0229603AD00A700D5 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
+		D9AB17A1229603AD00A700D5 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
+		D9AB17A2229603AD00A700D5 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
+		D9AB17A3229603AD00A700D5 /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		D9AB17A4229603AD00A700D5 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
+		D9AB17A5229603AD00A700D5 /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		D9AB17A6229603AD00A700D5 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
+		D9AB17A7229603AD00A700D5 /* StringStyle+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */; };
+		D9AB17A8229603AD00A700D5 /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		D9AB17A9229603AD00A700D5 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
+		D9AB17AA229603AD00A700D5 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
+		D9AB17AB229603AD00A700D5 /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		D9AB17AC229603AD00A700D5 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		D9AB17AD229603AD00A700D5 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
+		D9AB17B9229603E200A700D5 /* Compatibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D551D96F02F00273936 /* Compatibility.swift */; };
+		D9AB17BA229603E200A700D5 /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
+		D9AB17BB229603E200A700D5 /* Tracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA75E091D99E43300B64705 /* Tracking.swift */; };
+		D9AB17BC229603E200A700D5 /* AccessibilityHeadingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC49D8C1F74AD8F0067FC86 /* AccessibilityHeadingLevel.swift */; };
+		D9AB17BD229603E200A700D5 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
+		D9AB17BE229603E200A700D5 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
+		D9AB17BF229603E200A700D5 /* Ligatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE661DC92CF0002C41BB /* Ligatures.swift */; };
+		D9AB17C0229603E200A700D5 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
+		D9AB17C1229603E200A700D5 /* Special.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5B1D96F02F00273936 /* Special.swift */; };
+		D9AB17C2229603E200A700D5 /* NamedStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D5E1D96F02F00273936 /* NamedStyles.swift */; };
+		D9AB17C3229603E200A700D5 /* Image+Tinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */; };
+		D9AB17C4229603E200A700D5 /* StringStyle+Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D531D96F02F00273936 /* StringStyle+Part.swift */; };
+		D9AB17C5229603E200A700D5 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6BE3081E8590E900FB308F /* Transform.swift */; };
+		D9AB17C6229603E200A700D5 /* XMLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D6A1D96F02F00273936 /* XMLBuilder.swift */; };
+		D9AB17C7229603E200A700D5 /* NSAttributedString+BonMot.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D571D96F02F00273936 /* NSAttributedString+BonMot.swift */; };
+		D9AB17C8229603E200A700D5 /* FontInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3EEE6C1DCA68E1002C41BB /* FontInspector.swift */; };
+		D9AB17C9229603E200A700D5 /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */; };
+		D9AB17CA229603E200A700D5 /* ContextualAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCF0F1E1DCE5B9B00727AAE /* ContextualAlternates.swift */; };
+		D9AB17CB229603E200A700D5 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
+		D9AB17CC229603E200A700D5 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB366BB20325AE1002C256E /* Emphasis.swift */; };
+		D9AB17CD229603E200A700D5 /* StylisticAlternates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD70C54C1DCD22A1003C063A /* StylisticAlternates.swift */; };
+		D9AB17D0229603E200A700D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -331,6 +442,10 @@
 		CDEA84301D9EEC390099BD73 /* Image+Tinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Image+Tinting.swift"; sourceTree = "<group>"; };
 		CDEA84351D9EEC490099BD73 /* ImageTintingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTintingTests.swift; sourceTree = "<group>"; };
 		CDF7E97E1D9C612800FF46BF /* MutableCopying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
+		D9AB17682296019400A700D5 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AB17952296035700A700D5 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AB17B5229603AD00A700D5 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AB17D6229603E200A700D5 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +510,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABCD3E371D980E5500273936 /* BonMot.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17612296019400A700D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB17622296019400A700D5 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB178E2296035700A700D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB178F2296035700A700D5 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17AF229603AD00A700D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17CF229603E200A700D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB17D0229603E200A700D5 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +661,10 @@
 				ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */,
 				ABA75DEA1D99E10400B64705 /* BonMot.framework */,
 				ABC7774B1DC29F3000815FB9 /* Example-iOS.app */,
+				D9AB17682296019400A700D5 /* BonMot.framework */,
+				D9AB17952296035700A700D5 /* BonMot.framework */,
+				D9AB17B5229603AD00A700D5 /* BonMot.framework */,
+				D9AB17D6229603E200A700D5 /* BonMot.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -605,6 +755,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		ABCD3E201D980E4900273936 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17632296019400A700D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17902296035700A700D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17B0229603AD00A700D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17D1229603E200A700D5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -766,6 +944,82 @@
 			productReference = ABCD3E3E1D980E5500273936 /* BonMot-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D9AB173D2296019400A700D5 /* BonMot-iOS (Static) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AB17652296019400A700D5 /* Build configuration list for PBXNativeTarget "BonMot-iOS (Static)" */;
+			buildPhases = (
+				D9AB173E2296019400A700D5 /* Sources */,
+				D9AB17602296019400A700D5 /* SwiftLint */,
+				D9AB17612296019400A700D5 /* Frameworks */,
+				D9AB17632296019400A700D5 /* Headers */,
+				D9AB17642296019400A700D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BonMot-iOS (Static)";
+			productName = "BonMot-iOS";
+			productReference = D9AB17682296019400A700D5 /* BonMot.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D9AB176A2296035700A700D5 /* BonMot-tvOS (Static) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AB17922296035700A700D5 /* Build configuration list for PBXNativeTarget "BonMot-tvOS (Static)" */;
+			buildPhases = (
+				D9AB176B2296035700A700D5 /* Sources */,
+				D9AB178D2296035700A700D5 /* SwiftLint */,
+				D9AB178E2296035700A700D5 /* Frameworks */,
+				D9AB17902296035700A700D5 /* Headers */,
+				D9AB17912296035700A700D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BonMot-tvOS (Static)";
+			productName = "BonMot-iOS";
+			productReference = D9AB17952296035700A700D5 /* BonMot.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D9AB1797229603AD00A700D5 /* BonMot-OSX (Static) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AB17B2229603AD00A700D5 /* Build configuration list for PBXNativeTarget "BonMot-OSX (Static)" */;
+			buildPhases = (
+				D9AB1798229603AD00A700D5 /* Sources */,
+				D9AB17AE229603AD00A700D5 /* SwiftLint */,
+				D9AB17AF229603AD00A700D5 /* Frameworks */,
+				D9AB17B0229603AD00A700D5 /* Headers */,
+				D9AB17B1229603AD00A700D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BonMot-OSX (Static)";
+			productName = "BonMot-iOS";
+			productReference = D9AB17B5229603AD00A700D5 /* BonMot.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D9AB17B7229603E200A700D5 /* BonMot-watchOS (Static) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D9AB17D3229603E200A700D5 /* Build configuration list for PBXNativeTarget "BonMot-watchOS (Static)" */;
+			buildPhases = (
+				D9AB17B8229603E200A700D5 /* Sources */,
+				D9AB17CE229603E200A700D5 /* SwiftLint */,
+				D9AB17CF229603E200A700D5 /* Frameworks */,
+				D9AB17D1229603E200A700D5 /* Headers */,
+				D9AB17D2229603E200A700D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BonMot-watchOS (Static)";
+			productName = "BonMot-iOS";
+			productReference = D9AB17D6229603E200A700D5 /* BonMot.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -826,6 +1080,10 @@
 				ABCD3E271D980E5500273936 /* BonMot-OSXTests */,
 				ABA75DCC1D99E10400B64705 /* BonMot-watchOS */,
 				AB8497DA1DA45B9C00FE3414 /* AllTheThings */,
+				D9AB173D2296019400A700D5 /* BonMot-iOS (Static) */,
+				D9AB176A2296035700A700D5 /* BonMot-tvOS (Static) */,
+				D9AB1797229603AD00A700D5 /* BonMot-OSX (Static) */,
+				D9AB17B7229603E200A700D5 /* BonMot-watchOS (Static) */,
 			);
 		};
 /* End PBXProject section */
@@ -895,6 +1153,34 @@
 			files = (
 				AB9C18DC1D9975FE00A54787 /* EBGaramond12-Regular.otf in Resources */,
 				AB9C18DD1D9975FE00A54787 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17642296019400A700D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17912296035700A700D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17B1229603AD00A700D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17D2229603E200A700D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1354,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "xcodebuild build -project BonMot.xcodeproj -scheme \"Example-iOS\" -sdk \"iphonesimulator\" -destination \"name=iPhone 6s\" CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=\n";
+		};
+		D9AB17602296019400A700D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D9AB178D2296035700A700D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D9AB17AE229603AD00A700D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		D9AB17CE229603E200A700D5 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1286,6 +1628,142 @@
 				1E902AB61DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */,
 				ABCD3E341D980E5500273936 /* Helpers.swift in Sources */,
 				ABCD3E351D980E5500273936 /* AttributedStringStyleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB173E2296019400A700D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB173F2296019400A700D5 /* Compatibility.swift in Sources */,
+				D9AB17402296019400A700D5 /* AdaptiveStyleTransformation.swift in Sources */,
+				D9AB17412296019400A700D5 /* Emphasis.swift in Sources */,
+				D9AB17422296019400A700D5 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
+				D9AB17432296019400A700D5 /* Composable.swift in Sources */,
+				D9AB17442296019400A700D5 /* AdaptiveStyle.swift in Sources */,
+				D9AB17452296019400A700D5 /* FontInspector.swift in Sources */,
+				D9AB17462296019400A700D5 /* Platform.swift in Sources */,
+				D9AB17472296019400A700D5 /* MutableCopying.swift in Sources */,
+				D9AB17482296019400A700D5 /* Tracking+Adaptive.swift in Sources */,
+				D9AB17492296019400A700D5 /* StyleableUIElement.swift in Sources */,
+				D9AB174A2296019400A700D5 /* AdaptableTextContainer.swift in Sources */,
+				D9AB174B2296019400A700D5 /* AccessibilityHeadingLevel.swift in Sources */,
+				D9AB174C2296019400A700D5 /* StringStyle.swift in Sources */,
+				D9AB174D2296019400A700D5 /* StylisticAlternates.swift in Sources */,
+				D9AB174E2296019400A700D5 /* Special.swift in Sources */,
+				D9AB174F2296019400A700D5 /* NamedStyles.swift in Sources */,
+				D9AB17502296019400A700D5 /* Tab+Adaptive.swift in Sources */,
+				D9AB17512296019400A700D5 /* ContextualAlternates.swift in Sources */,
+				D9AB17522296019400A700D5 /* Tracking.swift in Sources */,
+				D9AB17532296019400A700D5 /* StringStyle+Part.swift in Sources */,
+				D9AB17542296019400A700D5 /* UIKit+Helpers.swift in Sources */,
+				D9AB17552296019400A700D5 /* Ligatures.swift in Sources */,
+				D9AB17562296019400A700D5 /* XMLBuilder.swift in Sources */,
+				D9AB17572296019400A700D5 /* NSAttributedString+BonMot.swift in Sources */,
+				D9AB17582296019400A700D5 /* AttributedStringTransformation.swift in Sources */,
+				D9AB17592296019400A700D5 /* Transform.swift in Sources */,
+				D9AB175A2296019400A700D5 /* EmbeddedTransformation.swift in Sources */,
+				D9AB175B2296019400A700D5 /* NSAttributedString+Adaptive.swift in Sources */,
+				D9AB175C2296019400A700D5 /* FontFeatures.swift in Sources */,
+				D9AB175D2296019400A700D5 /* Tab.swift in Sources */,
+				D9AB175E2296019400A700D5 /* Image+Tinting.swift in Sources */,
+				D9AB175F2296019400A700D5 /* TextAlignmentConstraint.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB176B2296035700A700D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB176C2296035700A700D5 /* Compatibility.swift in Sources */,
+				D9AB176D2296035700A700D5 /* UIKit+AdaptableTextContainerSupport.swift in Sources */,
+				D9AB176E2296035700A700D5 /* Emphasis.swift in Sources */,
+				D9AB176F2296035700A700D5 /* Platform.swift in Sources */,
+				D9AB17702296035700A700D5 /* MutableCopying.swift in Sources */,
+				D9AB17712296035700A700D5 /* StyleableUIElement.swift in Sources */,
+				D9AB17722296035700A700D5 /* FontInspector.swift in Sources */,
+				D9AB17732296035700A700D5 /* Composable.swift in Sources */,
+				D9AB17742296035700A700D5 /* AdaptableTextContainer.swift in Sources */,
+				D9AB17752296035700A700D5 /* Tracking+Adaptive.swift in Sources */,
+				D9AB17762296035700A700D5 /* StringStyle.swift in Sources */,
+				D9AB17772296035700A700D5 /* Special.swift in Sources */,
+				D9AB17782296035700A700D5 /* AccessibilityHeadingLevel.swift in Sources */,
+				D9AB17792296035700A700D5 /* EmbeddedTransformation.swift in Sources */,
+				D9AB177A2296035700A700D5 /* StylisticAlternates.swift in Sources */,
+				D9AB177B2296035700A700D5 /* AttributedStringTransformation.swift in Sources */,
+				D9AB177C2296035700A700D5 /* NamedStyles.swift in Sources */,
+				D9AB177D2296035700A700D5 /* AdaptiveStyleTransformation.swift in Sources */,
+				D9AB177E2296035700A700D5 /* ContextualAlternates.swift in Sources */,
+				D9AB177F2296035700A700D5 /* Tab+Adaptive.swift in Sources */,
+				D9AB17802296035700A700D5 /* Tracking.swift in Sources */,
+				D9AB17812296035700A700D5 /* StringStyle+Part.swift in Sources */,
+				D9AB17822296035700A700D5 /* Ligatures.swift in Sources */,
+				D9AB17832296035700A700D5 /* UIKit+Helpers.swift in Sources */,
+				D9AB17842296035700A700D5 /* XMLBuilder.swift in Sources */,
+				D9AB17852296035700A700D5 /* NSAttributedString+Adaptive.swift in Sources */,
+				D9AB17862296035700A700D5 /* Transform.swift in Sources */,
+				D9AB17872296035700A700D5 /* NSAttributedString+BonMot.swift in Sources */,
+				D9AB17882296035700A700D5 /* AdaptiveStyle.swift in Sources */,
+				D9AB17892296035700A700D5 /* Tab.swift in Sources */,
+				D9AB178A2296035700A700D5 /* FontFeatures.swift in Sources */,
+				D9AB178B2296035700A700D5 /* Image+Tinting.swift in Sources */,
+				D9AB178C2296035700A700D5 /* TextAlignmentConstraint.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB1798229603AD00A700D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB1799229603AD00A700D5 /* Compatibility.swift in Sources */,
+				D9AB179A229603AD00A700D5 /* Composable.swift in Sources */,
+				D9AB179B229603AD00A700D5 /* Tracking.swift in Sources */,
+				D9AB179C229603AD00A700D5 /* Transform.swift in Sources */,
+				D9AB179D229603AD00A700D5 /* TextAlignmentConstraint.swift in Sources */,
+				D9AB179E229603AD00A700D5 /* ContextualAlternates.swift in Sources */,
+				D9AB179F229603AD00A700D5 /* Platform.swift in Sources */,
+				D9AB17A0229603AD00A700D5 /* Tab.swift in Sources */,
+				D9AB17A1229603AD00A700D5 /* StringStyle.swift in Sources */,
+				D9AB17A2229603AD00A700D5 /* Special.swift in Sources */,
+				D9AB17A3229603AD00A700D5 /* FontInspector.swift in Sources */,
+				D9AB17A4229603AD00A700D5 /* NamedStyles.swift in Sources */,
+				D9AB17A5229603AD00A700D5 /* StylisticAlternates.swift in Sources */,
+				D9AB17A6229603AD00A700D5 /* Image+Tinting.swift in Sources */,
+				D9AB17A7229603AD00A700D5 /* StringStyle+Part.swift in Sources */,
+				D9AB17A8229603AD00A700D5 /* Ligatures.swift in Sources */,
+				D9AB17A9229603AD00A700D5 /* XMLBuilder.swift in Sources */,
+				D9AB17AA229603AD00A700D5 /* NSAttributedString+BonMot.swift in Sources */,
+				D9AB17AB229603AD00A700D5 /* MutableCopying.swift in Sources */,
+				D9AB17AC229603AD00A700D5 /* Emphasis.swift in Sources */,
+				D9AB17AD229603AD00A700D5 /* FontFeatures.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9AB17B8229603E200A700D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9AB17B9229603E200A700D5 /* Compatibility.swift in Sources */,
+				D9AB17BA229603E200A700D5 /* Composable.swift in Sources */,
+				D9AB17BB229603E200A700D5 /* Tracking.swift in Sources */,
+				D9AB17BC229603E200A700D5 /* AccessibilityHeadingLevel.swift in Sources */,
+				D9AB17BD229603E200A700D5 /* Platform.swift in Sources */,
+				D9AB17BE229603E200A700D5 /* Tab.swift in Sources */,
+				D9AB17BF229603E200A700D5 /* Ligatures.swift in Sources */,
+				D9AB17C0229603E200A700D5 /* StringStyle.swift in Sources */,
+				D9AB17C1229603E200A700D5 /* Special.swift in Sources */,
+				D9AB17C2229603E200A700D5 /* NamedStyles.swift in Sources */,
+				D9AB17C3229603E200A700D5 /* Image+Tinting.swift in Sources */,
+				D9AB17C4229603E200A700D5 /* StringStyle+Part.swift in Sources */,
+				D9AB17C5229603E200A700D5 /* Transform.swift in Sources */,
+				D9AB17C6229603E200A700D5 /* XMLBuilder.swift in Sources */,
+				D9AB17C7229603E200A700D5 /* NSAttributedString+BonMot.swift in Sources */,
+				D9AB17C8229603E200A700D5 /* FontInspector.swift in Sources */,
+				D9AB17C9229603E200A700D5 /* MutableCopying.swift in Sources */,
+				D9AB17CA229603E200A700D5 /* ContextualAlternates.swift in Sources */,
+				D9AB17CB229603E200A700D5 /* FontFeatures.swift in Sources */,
+				D9AB17CC229603E200A700D5 /* Emphasis.swift in Sources */,
+				D9AB17CD229603E200A700D5 /* StylisticAlternates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,6 +2209,174 @@
 			};
 			name = Release;
 		};
+		D9AB17662296019400A700D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D9AB17672296019400A700D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D9AB17932296035700A700D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		D9AB17942296035700A700D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		D9AB17B3229603AD00A700D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSX";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D9AB17B4229603AD00A700D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSX";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		D9AB17D4229603E200A700D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		D9AB17D5229603E200A700D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOS";
+				PRODUCT_NAME = BonMot;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1820,6 +2466,42 @@
 			buildConfigurations = (
 				ABCD3E3C1D980E5500273936 /* Debug */,
 				ABCD3E3D1D980E5500273936 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AB17652296019400A700D5 /* Build configuration list for PBXNativeTarget "BonMot-iOS (Static)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AB17662296019400A700D5 /* Debug */,
+				D9AB17672296019400A700D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AB17922296035700A700D5 /* Build configuration list for PBXNativeTarget "BonMot-tvOS (Static)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AB17932296035700A700D5 /* Debug */,
+				D9AB17942296035700A700D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AB17B2229603AD00A700D5 /* Build configuration list for PBXNativeTarget "BonMot-OSX (Static)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AB17B3229603AD00A700D5 /* Debug */,
+				D9AB17B4229603AD00A700D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D9AB17D3229603E200A700D5 /* Build configuration list for PBXNativeTarget "BonMot-watchOS (Static)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D9AB17D4229603E200A700D5 /* Debug */,
+				D9AB17D5229603E200A700D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
