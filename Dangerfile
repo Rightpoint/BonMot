@@ -20,11 +20,15 @@ src_root = File.expand_path('../', __FILE__)
 
 SCHEME = "BonMot-iOS"
 
+result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.test_result"
+xccoverage_files = Dir.glob("#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
+xccov_file_direct_path = xccoverage_files.first
+
 xcov.report(
   project: "#{src_root}/BonMot.xcodeproj",
   scheme: SCHEME,
   output_directory: "#{src_root}/build/#{SCHEME}/xcov",
-  derived_data_path: "#{src_root}/build/derived_data"
+  xccov_file_direct_path: xccov_file_direct_path
 )
 
 ## ** SwiftLint ***

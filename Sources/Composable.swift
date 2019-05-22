@@ -49,9 +49,9 @@ public protocol Composable {
 
 }
 
-public extension Composable {
+extension Composable {
 
-    func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
+    public func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle) {
         append(to: attributedString, baseStyle: baseStyle, isLastElement: false)
     }
 
@@ -93,7 +93,7 @@ public extension Composable {
 
 }
 
-public extension NSAttributedString {
+extension NSAttributedString {
 
     /// Compose an `NSAttributedString` by concatenating every item in
     /// `composables` with `baseStyle` applied. The `separator` is inserted

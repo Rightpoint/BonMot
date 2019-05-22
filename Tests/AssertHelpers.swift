@@ -108,5 +108,5 @@ func BONAssertEqualFonts(_ font1: BONFont, _ font2: BONFont, _ message: @autoclo
     let descriptor1 = font1.fontDescriptor
     let descriptor2 = font2.fontDescriptor
 
-    XCTAssertEqual(descriptor1, descriptor2, message, file: file, line: line)
+    XCTAssertEqual(descriptor1, descriptor2, message(), file: file, line: line)
 }
