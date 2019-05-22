@@ -22,7 +22,7 @@
         func featureSettings() -> [(type: Int, selector: Int)]
     }
 
-    public extension BONFont {
+    extension BONFont {
 
         /// Create a new font and attempt to enable the specified font features.
         /// The returned font will have all features enabled that it supports.

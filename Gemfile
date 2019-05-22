@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'cocoapods', '1.6.0.beta.2'
+gem 'cocoapods', '~> 1.7.0'
 gem 'xcpretty'
 
 # Danger
 group :test, :danger do
   gem 'slather'
   gem 'circleci_artifact'
-  gem 'xcov'
+  # Waiting on 1.5.1 release for xccov_file_direct_path support
+  gem 'xcov', :git => 'https://github.com/nakiostudio/xcov.git', :branch => 'master'
   gem 'fastlane'
 end
 
