@@ -42,7 +42,7 @@ jobs:
           name: Danger
           when: always
           command: |
-            bundle exec danger
+            if [ -n "$DANGER_GITHUB_API_TOKEN" ]; then bundle exec danger; else echo "Skipping Danger for forked pull request."; fi
       - run:
           name: Upload to Codecov
           when: always
