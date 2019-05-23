@@ -23,6 +23,12 @@ public enum AdaptiveStyle {
     /// family of methods.
     case preferred
 
+    /// Enable automatic scaling of fonts obtained using `UIFontMetrics`
+    /// available on iOS 11+ based on the provided `textStyle` and optional
+    /// `maxPointSize`. If `maxPointSize` is `nil` the font will grow unbounded.
+    @available(iOS 11, tvOS 11, *)
+    case fontMetrics(textStyle: BonMotTextStyle, maxPointSize: CGFloat?)
+
     /// If the text is scaled above `size`, substitute the font named
     /// `useFontNamed`, but using all the same attributes as the original font.
     /// This style may be combined with other scaling behaviors such as `control`
@@ -74,6 +80,16 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
             }
             else {
                 print("No text style in the font, can not adapt")
+            }
+        case .fontMetrics(let style, let maxPointSize):
+            if #available(iOS 11, tvOS 11, *) {
+                let metrics = UIFontMetrics(forTextStyle: style)
+                if let maxPointSize = maxPointSize {
+                    font = metrics.scaledFont(for: font, maximumPointSize: maxPointSize, compatibleWith: traitCollection)
+                }
+                else {
+                    font = metrics.scaledFont(for: font, compatibleWith: traitCollection)
+                }
             }
         case .above(let size, let fontName):
             font = pointSize > size ? font.fontWithSameAttributes(named: fontName) : font
@@ -154,6 +170,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
         static let preferred = "preferred"
         static let above = "above"
         static let below = "below"
+        static let fontMetrics = "fontMetrics"
 
     }
 
@@ -177,23 +194,41 @@ extension AdaptiveStyle: EmbeddedTransformation {
             return [EmbeddedTransformationHelpers.Key.type: Value.body]
         case .preferred:
             return [EmbeddedTransformationHelpers.Key.type: Value.preferred]
+        case .fontMetrics(let textStyle, let maxPointSize):
+            var attributes: StyleAttributes = [
+                EmbeddedTransformationHelpers.Key.type: Value.fontMetrics,
+                EmbeddedTransformationHelpers.Key.textStyle: textStyle,
+            ]
+            if let maxPointSize = maxPointSize {
+                attributes[EmbeddedTransformationHelpers.Key.maxPointSize] = maxPointSize
+            }
+            return attributes
         }
     }
 
     static func from(dictionary dict: StyleAttributes) -> EmbeddedTransformation? {
         switch (dict[EmbeddedTransformationHelpers.Key.type] as? String,
                 dict[EmbeddedTransformationHelpers.Key.size] as? CGFloat,
-                dict[Key.fontName] as? String) {
-        case (Value.control?, nil, nil):
+                dict[Key.fontName] as? String,
+                dict[EmbeddedTransformationHelpers.Key.textStyle] as? BonMotTextStyle,
+                dict[EmbeddedTransformationHelpers.Key.maxPointSize] as? CGFloat) {
+        case (Value.control?, nil, nil, nil, nil):
             return AdaptiveStyle.control
-        case (Value.body?, nil, nil):
+        case (Value.body?, nil, nil, nil, nil):
             return AdaptiveStyle.body
-        case (Value.preferred?, nil, nil):
+        case (Value.preferred?, nil, nil, nil, nil):
             return AdaptiveStyle.preferred
-        case let (Value.above?, size?, fontName?):
+        case let (Value.above?, size?, fontName?, nil, nil):
             return AdaptiveStyle.above(size: size, useFontNamed: fontName)
-        case let (Value.below?, size?, fontName?):
+        case let (Value.below?, size?, fontName?, nil, nil):
             return AdaptiveStyle.below(size: size, useFontNamed: fontName)
+        case let (Value.fontMetrics?, nil, nil, textStyle?, maxPointSize):
+            if #available(iOS 11, tvOS 11, *) {
+                return AdaptiveStyle.fontMetrics(textStyle: textStyle, maxPointSize: maxPointSize)
+            }
+            else {
+                return nil
+            }
         default:
             return nil
         }

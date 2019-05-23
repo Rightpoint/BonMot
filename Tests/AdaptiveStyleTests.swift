@@ -16,6 +16,7 @@ import XCTest
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.large)
 
 // These tests rely on iOS 10.0 APIs. Test method needs to be updated to run on iOS 9.0
+//swiftlint:disable type_body_length
 @available(iOS 10.0, *)
 class AdaptiveStyleTests: XCTestCase {
 
@@ -145,6 +146,58 @@ class AdaptiveStyleTests: XCTestCase {
             BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 32)
             BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 34)
         }
+    }
+
+    @available(iOS 11, *)
+    func testFontMetricsAdaptation() {
+        // Test is still always run (and fails) on the iOS 10 simulator despite
+        // the availability annotation.
+        guard ProcessInfo().operatingSystemVersion.majorVersion > 10 else {
+            return
+        }
+
+        let inputFont = UIFont(name: "Avenir-Book", size: 28)!
+        let style = StringStyle(.font(inputFont), .adapt(.fontMetrics(textStyle: .headline, maxPointSize: nil)))
+        print(style.attributes)
+
+        let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
+            let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
+        }
+
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 24)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 31)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 33)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 37)
+    }
+
+    @available(iOS 11, *)
+    func testFontMetricsWithMaxPointSizeAdaptation() {
+        // Test is still always run (and fails) on the iOS 10 simulator despite
+        // the availability annotation.
+        guard ProcessInfo().operatingSystemVersion.majorVersion > 10 else {
+            return
+        }
+
+        let inputFont = UIFont(name: "Avenir-Book", size: 28)!
+        let style = StringStyle(.font(inputFont), .adapt(.fontMetrics(textStyle: .headline, maxPointSize: 30)))
+        print(style.attributes)
+
+        let testAttributes = { (contentSizeCategory: BonMotContentSizeCategory) -> StyleAttributes in
+            let traitCollection = UITraitCollection(preferredContentSizeCategory: contentSizeCategory)
+            return NSAttributedString.adapt(attributes: style.attributes, to: traitCollection)
+        }
+
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraSmall), query: { $0.pointSize }, float: 24)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.small), query: { $0.pointSize }, float: 25)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.medium), query: { $0.pointSize }, float: 27)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.large), query: { $0.pointSize }, float: 28)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraLarge), query: { $0.pointSize }, float: 30)
+        BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: { $0.pointSize }, float: 30)
     }
 
     func testAdobeAdaptiveTracking() {
