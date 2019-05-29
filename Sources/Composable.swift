@@ -275,7 +275,8 @@ extension NSMutableAttributedString {
             return
         }
 
-        let lastCharacterRange = NSRange(location: length - 1, length: 1)
+        let lastCharacterLength = string.suffix(1).utf16.count
+        let lastCharacterRange = NSRange(location: length - lastCharacterLength, length: lastCharacterLength)
 
         guard let currentKernValue = attribute(.kern, at: lastCharacterRange.location, effectiveRange: nil) else {
             return
@@ -290,7 +291,8 @@ extension NSMutableAttributedString {
             return
         }
 
-        let lastCharacterRange = NSRange(location: length - 1, length: 1)
+        let lastCharacterLength = string.suffix(1).utf16.count
+        let lastCharacterRange = NSRange(location: length - lastCharacterLength, length: lastCharacterLength)
 
         guard let currentKernValue = attribute(.bonMotRemovedKernAttribute, at: lastCharacterRange.location, effectiveRange: nil) else {
             return

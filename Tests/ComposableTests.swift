@@ -210,4 +210,25 @@ class ComposableTests: XCTestCase {
         XCTAssertEqual(["a", "b", "c"].joined() as NSAttributedString, "abc".styled(with: StringStyle()))
     }
 
+    func testKerningStrippingOnLastCharacter() {
+        let styleWithTracking = StringStyle(.tracking(.point(0.5)))
+
+        let pairsline = #line; let testCases: [(input: String, lastCharacterUnicodeLength: Int)] = [
+            ("abc", 1),
+            ("abc🍕", 2),
+            ("🍕🍕", 2),
+        ]
+
+        for (offset, testCase) in testCases.enumerated() {
+            let styledString = testCase.input.styled(with: styleWithTracking)
+
+            var range = NSRange(location: 0, length: 0)
+            let maxRange = NSRange(location: 0, length: styledString.length)
+
+            let kerning = styledString.attribute(.kern, at: 0, longestEffectiveRange: &range, in: maxRange) as? Float
+            let testLine = UInt(pairsline + offset + 1)
+            XCTAssertEqual(kerning, 0.5, line: testLine)
+            XCTAssertEqual(range, NSRange(location: 0, length: styledString.length - testCase.lastCharacterUnicodeLength), line: testLine)
+        }
+    }
 }
