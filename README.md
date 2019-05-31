@@ -1,6 +1,6 @@
 <img width=443 src="Resources/readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
-[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://swift.org)
+[![Swift 4.2 + 5.0](https://img.shields.io/badge/Swift-4.2%20+%205.0-orange.svg?style=flat)](https://swift.org)
 [![CircleCI](https://img.shields.io/circleci/project/github/Rightpoint/BonMot/master.svg)](https://circleci.com/gh/Rightpoint/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
