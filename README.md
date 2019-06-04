@@ -309,7 +309,7 @@ In BonMot 3, you may have stored `BONChain`s for later use. You can accomplish t
 ##### BonMot 3
 
 ```swift
-struct Constants {
+enum Constants {
 
     static let myChain = BONChain()
         .color(myColor)
@@ -328,7 +328,7 @@ let attrString = myChain.string("some string").attributedString
 ##### BonMot 4
 
 ```swift
-struct Constants {
+enum Constants {
 
     static let myStyle = StringStyle(
         .color(myColor),
