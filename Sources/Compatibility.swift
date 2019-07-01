@@ -102,12 +102,6 @@
 
             }
 
-            extension UITableView {
-
-                public static let automaticDimension = UITableViewAutomaticDimension
-
-            }
-
         #endif
     #endif
 #endif
