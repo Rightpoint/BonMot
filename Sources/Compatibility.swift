@@ -1,5 +1,5 @@
 //
-//  _Compatibility.swift
+//  Compatibility.swift
 //  BonMot
 //
 //  Created by Brian King on 8/24/16.
