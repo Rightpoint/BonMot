@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Zev Eisenberg on 10/13/17.
-//  Copyright © 2017 Raizlabs. All rights reserved.
+//  Copyright © 2017 Rightpoint. All rights reserved.
 //
 
 import BonMot

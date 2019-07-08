@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Zev Eisenberg on 11/1/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
 /// Different ligature styles for use in attributed strings.
