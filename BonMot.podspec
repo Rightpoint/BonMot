@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage         = "https://github.com/Raizlabs/BonMot"
   s.license          = 'MIT'
-  s.author           = { "Zev Eisenberg" => "zev.eisenberg@raizlabs.com" }
+  s.author           = { "Zev Eisenberg" => "zeisenberg@rightpoint.com" }
   s.source           = { :git => "https://github.com/Raizlabs/BonMot.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/ZevEisenberg'
   s.requires_arc = true

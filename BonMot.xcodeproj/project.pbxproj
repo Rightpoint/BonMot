@@ -1352,7 +1352,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-watchOS";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1372,7 +1372,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-watchOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-watchOS";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1390,7 +1390,7 @@
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.Example-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1407,7 +1407,7 @@
 				INFOPLIST_FILE = "Example-iOS/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.Example-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1546,7 +1546,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-iOS";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1566,7 +1566,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-iOS";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1580,7 +1580,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};
@@ -1593,7 +1593,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-iOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 			};
@@ -1611,7 +1611,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-tvOS";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1631,7 +1631,7 @@
 				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-tvOS";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1645,7 +1645,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1658,7 +1658,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
@@ -1678,7 +1678,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-OSX";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1698,7 +1698,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSX";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-OSX";
 				PRODUCT_NAME = BonMot;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1712,7 +1712,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -1725,7 +1725,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.raizlabs.BonMot-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.rightpoint.BonMot-OSXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
