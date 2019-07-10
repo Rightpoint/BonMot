@@ -42,7 +42,7 @@ swiftlint.lint_files inline_mode: true
 # Getting artifact URLs from CircleCI
 
 # You must set up the CIRCLE_API_TOKEN manually using these instructions
-# https://github.com/Raizlabs/ios-template/tree/master/PRODUCTNAME#danger
+# https://github.com/Rightpoint/ios-template/tree/master/PRODUCTNAME#danger
 token = ENV['CIRCLE_API_TOKEN']
 # These are already in the Circle environment
 # https://circleci.com/docs/2.0/env-vars/#build-specific-environment-variables
@@ -75,7 +75,7 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
     message "[Code Coverage](#{slather_url})"
   end
 else
-  warn "Missing CircleCI artifacts. Most likely the [CIRCLE_API_TOKEN](https://github.com/Raizlabs/circleci_artifact#getting-started) is not set, or Danger is not running on CircleCI."
+  warn "Missing CircleCI artifacts. Most likely the [CIRCLE_API_TOKEN](https://github.com/Rightpoint/circleci_artifact#getting-started) is not set, or Danger is not running on CircleCI."
 end
 
 # Test Reporting
