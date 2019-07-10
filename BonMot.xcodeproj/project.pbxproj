@@ -774,7 +774,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = Raizlabs;
+				ORGANIZATIONNAME = Rightpoint;
 				TargetAttributes = {
 					AB8497DA1DA45B9C00FE3414 = {
 						CreatedOnToolsVersion = 8.0;
