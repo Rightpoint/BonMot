@@ -135,7 +135,7 @@ commands:
         type: string
         default: "5.0"
     steps:
-      - run: bundle exec pod repo add-cdn jsDelivr-Specs "https://cdn.jsdelivr.net/cocoa/"
+      - run: bundle exec pod repo add-cdn CocoaPods-Specs "https://cdn.cocoapods.org/"
       # We are passing --allow-warnings because the Twitter homepage was redesigned.
       # We should be able to fix this once we are on CocoaPods 1.8.x.
       # More info: https://github.com/CocoaPods/CocoaPods/issues/9049
