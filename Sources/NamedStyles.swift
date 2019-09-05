@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Brian King on 8/12/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
 import Foundation

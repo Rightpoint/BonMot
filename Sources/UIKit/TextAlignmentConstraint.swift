@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Cameron Pulsford on 10/4/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
 #if os(OSX)
@@ -209,7 +209,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
         case .top:
             distanceFromTop = 0
         case .firstBaseline, .lastBaseline, .bottom:
-            fatalError("\(attribute) alignment is not currently supported with \(self). Please check https://github.com/Raizlabs/BonMot/issues/37 for progress on this issue.")
+            fatalError("\(attribute) alignment is not currently supported with \(self). Please check https://github.com/Rightpoint/BonMot/issues/37 for progress on this issue.")
         case .unspecified:
             fatalError("Attempt to reason about unspecified constraint attribute")
         }

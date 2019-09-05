@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Brian King on 8/29/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
 import BonMot
@@ -124,7 +124,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         }
 
         let styler = HTMLishStyleBuilder()
-        guard let attributedString = try? NSAttributedString.composed(ofXML: "This <a href='http://raizlabs.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styler: styler) else {
+        guard let attributedString = try? NSAttributedString.composed(ofXML: "This <a href='http://rightpoint.com/'>Link</a>, <p>paragraph</p>, <p class='foo'>class</p> looks like HTML.", styler: styler) else {
             XCTFail("No attributed string")
             return
         }
@@ -135,7 +135,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         ]
         let actualFonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedString.Key.font.rawValue)
         XCTAssertEqual(expectedFonts, actualFonts)
-        XCTAssertEqual(["5:4": URL(string: "http://raizlabs.com/")!], attributedString.rangesFor(attribute: NSAttributedString.Key.link.rawValue))
+        XCTAssertEqual(["5:4": URL(string: "http://rightpoint.com/")!], attributedString.rangesFor(attribute: NSAttributedString.Key.link.rawValue))
     }
 
     /// Ensure that the singleton is configured with some adaptive styles for easy Dynamic Type support.

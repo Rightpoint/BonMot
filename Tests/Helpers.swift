@@ -3,7 +3,7 @@
 //  BonMot
 //
 //  Created by Brian King on 8/29/16.
-//  Copyright © 2016 Raizlabs. All rights reserved.
+//  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
 @testable import BonMot
@@ -93,7 +93,7 @@ let fullStyle: StringStyle = {
     let terribleValue = CGFloat(1000000)
     var fullStyle = StringStyle()
     fullStyle.font = BONFont(name: "Copperplate", size: 20)
-    fullStyle.link = URL(string: "http://www.raizlabs.com/")
+    fullStyle.link = URL(string: "http://www.rightpoint.com/")
     fullStyle.backgroundColor = .colorC
     fullStyle.color = .colorC
 
