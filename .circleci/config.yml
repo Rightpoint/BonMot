@@ -96,10 +96,6 @@ jobs:
     executor: xcode-10
     steps:
       - setup
-      - run:
-          name: Install CocoaPods Specs Repo
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run: bundle exec pod trunk push
 
 
