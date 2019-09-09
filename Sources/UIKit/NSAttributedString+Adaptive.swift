@@ -6,6 +6,7 @@
 //
 //
 
+#if canImport(UIKit)
 import UIKit
 
 extension NSAttributedString {
@@ -77,3 +78,4 @@ extension NSAttributedString {
     }
 
 }
+#endif

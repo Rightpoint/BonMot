@@ -6,6 +6,7 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
+#if canImport(UIKit)
 import UIKit
 
 /// A few default font scaling behaviors.
@@ -235,3 +236,4 @@ extension AdaptiveStyle: EmbeddedTransformation {
     }
 
 }
+#endif
