@@ -155,6 +155,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - build-xcode-11:
+          filters:
+            tags:
+              only: /.*/
       - test-xcode-10-2:
           filters:
             tags:
@@ -169,6 +173,7 @@ workflows:
               only: /.*/
       - deploy-to-cocoapods:
           requires:
+            - build-xcode-11
             - test-xcode-10-2
             - test-xcode-10-1
             - carthage-build
