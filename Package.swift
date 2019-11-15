@@ -14,18 +14,15 @@ let package = Package(
     products: [
         .library(
             name: "BonMot",
-            targets: ["BonMot"]),
+            targets: ["BonMot"])
     ],
     targets: [
         .target(
             name: "BonMot",
-            dependencies: [],
             path: "Sources"),
-        // Test targets do not currently support including resource files,
-        // which these tests depend on. Revisit when resources are supported.
-//        .testTarget(
-//            name: "BonMotTests",
-//            dependencies: ["BonMot"],
-//            path: "Tests"),
+        .testTarget(
+            name: "BonMotTests",
+            dependencies: ["BonMot"],
+            path: "Tests")
     ]
 )

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
+#if !os(macOS)
+
 import XCTest
 
 #if os(iOS)
@@ -122,3 +124,5 @@ class UIKitBehaviorTests: XCTestCase {
     }
 
 }
+
+#endif // !macOS

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
+#if !os(macOS)
+
 import BonMot
 import XCTest
 
@@ -128,3 +130,5 @@ class UIKitBonMotTests: XCTestCase {
 }
 
 #endif
+
+#endif // !macOS
