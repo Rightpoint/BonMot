@@ -108,11 +108,11 @@ extension BONFontDescriptor.AttributeName: ExpressibleByStringLiteral {
 #else // regular Xcode build
     extension Bundle {
         #if os(macOS)
-            func testImage(forResource resource: String) -> UXImage? {
+            func testImage(forResource resource: String) -> NSImage? {
                 return image(forResource: resource)
             }
         #else
-            func testImage(forResource resource: String) -> UXImage? {
+            func testImage(forResource resource: String) -> UIImage? {
                 return UIImage(named: resource, in: self, compatibleWith: nil)
             }
         #endif
