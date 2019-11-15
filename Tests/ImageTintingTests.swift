@@ -17,11 +17,10 @@ import XCTest
 
 class ImageTintingTests: XCTestCase {
 
+    let imageForTest = testBundle.testImage(forResource: "rz-logo-black")!
     #if os(OSX)
-        let imageForTest = testBundle.image(forResource: "rz-logo-black")!
         let raizlabsRed = NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
     #else
-        let imageForTest = UIImage(named: "rz-logo-black", in: testBundle, compatibleWith: nil)!
         let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
     #endif
 
@@ -29,15 +28,13 @@ class ImageTintingTests: XCTestCase {
 
     func testImageTinting() {
         let blackImageName = "rz-logo-black"
-        let redImageName = "rz-logo-red"
+        let redImageName   = "rz-logo-red"
 
+        let sourceImage        = testBundle.testImage(forResource: blackImageName)!
+        let controlTintedImage = testBundle.testImage(forResource: redImageName)!
         #if os(OSX)
-            let sourceImage = testBundle.image(forResource: blackImageName)!
-            let controlTintedImage = testBundle.image(forResource: redImageName)!
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
         #else
-            let sourceImage = UIImage(named: blackImageName, in: testBundle, compatibleWith: nil)!
-            let controlTintedImage = UIImage(named: redImageName, in: testBundle, compatibleWith: nil)!
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
         #endif
 

@@ -159,11 +159,21 @@ class EBGaramondLoader: NSObject {
     // Source: http://stackoverflow.com/questions/14735522/can-i-embed-a-custom-font-in-a-bundle-and-access-it-from-an-ios-framework
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
     private static var loadFont: Void = {
-        guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
-            let data = NSData(contentsOfFile: path)
-            else {
-                fatalError("Can not load EBGaramond12")
-        }
+        #if SWIFT_PACKAGE
+            let fontURL = Bundle(for: EBGaramondLoader.self)
+                            .spmResourcesURL
+                            .appendingPathComponent("EBGaramond12-Regular.otf")
+            guard let data = NSData(contentsOfFile: fontURL.path)
+                else {
+                    fatalError("Can not load EBGaramond12")
+            }
+        #else
+            guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
+                let data = NSData(contentsOfFile: path)
+                else {
+                    fatalError("Can not load EBGaramond12")
+            }
+        #endif
 
         guard let provider = CGDataProvider(data: data) else {
             fatalError("Can not create provider")

@@ -11,11 +11,7 @@ import XCTest
 
 class NSAttributedStringDebugTests: XCTestCase {
 
-    #if os(OSX)
-        let imageForTest = testBundle.image(forResource: "robot")!
-    #else
-        let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
-    #endif
+    let imageForTest = testBundle.testImage(forResource: "robot")!
 
     func testSpecialFromUnicodeScalar() {
         let enDash = Special(rawValue: UnicodeScalar("\u{2013}"))
