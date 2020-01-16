@@ -2,13 +2,13 @@ version: 2.1
 
 jobs:
   danger:
-    executor: xcode-10
+    executor: xcode-11-3
     steps:
       - setup
       - run:
           name: Install xchtmlreport
           command: |
-            brew install https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+            brew install https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb --head
       - run:
           name: Tests & Code Coverage
           when: always
