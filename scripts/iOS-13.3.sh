@@ -6,7 +6,7 @@ set -o pipefail && \
   -project BonMot.xcodeproj \
   -scheme BonMot-iOS \
   -sdk iphonesimulator \
-  -destination "platform=iOS Simulator,name=iPhone 6s,OS=13.3" \
+  -destination "platform=iOS Simulator,name=iPhone 8,OS=13.3" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= $@\
   | bundle exec xcpretty
