@@ -64,7 +64,7 @@ jobs:
       SWIFT_VERSION: "5.0"
     steps:
       - setup
-      - bundle exec fastlane test_all
+      - run: bundle exec fastlane test_all
       - lint-pod:
           swift-version: "5.0"
 
@@ -74,7 +74,7 @@ jobs:
       SWIFT_VERSION: "4.2"
     steps:
       - setup
-      - bundle exec fastlane test_all
+      - run: bundle exec fastlane test_all
       - lint-pod:
           swift-version: "4.2"
 
