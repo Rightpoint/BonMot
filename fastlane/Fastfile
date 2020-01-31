@@ -34,7 +34,7 @@ end
 desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
 lane :test_all do
   test(scheme: "BonMot-iOS", devices: get_devices())
-  test(scheme: "BonMot-OSX")
+  test(scheme: "BonMot-OSX", destination: "platform=macOS")
   test(scheme: "BonMot-tvOS")
   # Unit testing is not available on watchOS
   xcodebuild(scheme: "BonMot-watchOS",
@@ -49,7 +49,7 @@ platform :mac do
 
   desc "Runs Tests for macOS"
   lane :test_macos do
-    test(scheme: "BonMot-OSX")
+    test(scheme: "BonMot-OSX", destination: "platform=macOS")
   end
 end
 

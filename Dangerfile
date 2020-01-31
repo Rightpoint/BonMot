@@ -56,7 +56,7 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
   xcov = CircleciArtifact::Query.new(url_substring: 'xcov/index.html')
   slather = CircleciArtifact::Query.new(url_substring: 'slather/index.html')
   xcpretty = CircleciArtifact::Query.new(url_substring: 'scan/report.html')
-  xchtmlreport = CircleciArtifact::Query.new(url_substring: 'test_result/index.html')
+  xchtmlreport = CircleciArtifact::Query.new(url_substring: 'scan/index.html')
   queries = [xcov, slather, xcpretty, xchtmlreport]
   results = fetcher.fetch_queries(queries)
 
