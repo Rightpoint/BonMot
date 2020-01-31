@@ -20,7 +20,7 @@ src_root = File.expand_path('../', __FILE__)
 
 SCHEME = "BonMot-iOS"
 
-result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.test_result"
+result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.test_result-coverage"
 xccoverage_files = Dir.glob("#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
 xccov_file_direct_path = xccoverage_files.first
 
