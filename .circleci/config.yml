@@ -131,13 +131,7 @@ commands:
   run-test-scripts:
     description: "Runs test scripts"
     steps:
-      - run: ./scripts/macOS.sh
-      - run: ./scripts/iOS-12.4.sh
-      - run: ./scripts/iOS-13.3.sh
-      - run: ./scripts/tvOS-12.4.sh
-      - run: ./scripts/tvOS-13.3.sh
-      - run: ./scripts/watchOS-5.3.sh
-      - run: ./scripts/watchOS-6.1.sh
+      - run: bundle exec fastlane test_all
 
   lint-pod:
     description: "Lints podspec with specified Swift version"

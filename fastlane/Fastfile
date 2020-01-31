@@ -17,7 +17,7 @@ BUILD_PATH="./build"
 DERIVED_DATA_PATH = "#{BUILD_PATH}/derived_data"
 PROJECT_NAME='BonMot.xcodeproj'
 
-desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
+desc "Tests & Coverage: iOS, tvOS, macOS. Builds: watchOS."
 lane :coverage_all do
   bundle_ios = coverage(scheme: "BonMot-iOS", devices: get_devices())
   bundle_tvos = coverage(scheme: "BonMot-tvOS")
@@ -31,10 +31,25 @@ lane :coverage_all do
              derivedDataPath: DERIVED_DATA_PATH)
 end
 
+desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
+lane :test_all do
+  test(scheme: "BonMot-iOS", devices: get_devices())
+  test(scheme: "BonMot-OSX")
+  test(scheme: "BonMot-tvOS")
+  # Unit testing is not available on watchOS
+  xcodebuild(scheme: "BonMot-watchOS",
+             derivedDataPath: DERIVED_DATA_PATH)
+end
+
 platform :mac do
   desc "Runs Tests & Generates Code Coverage Reports for macOS"
   lane :coverage_macos do
     coverage(scheme: "BonMot-OSX")
+  end
+
+  desc "Runs Tests for macOS"
+  lane :test_macos do
+    test(scheme: "BonMot-OSX")
   end
 end
 
@@ -46,9 +61,21 @@ platform :ios do
              devices: devices)
   end
 
+  desc "Runs Tests for latest iOS"
+  lane :test_ios do
+    devices = get_devices()
+    test(scheme: "BonMot-iOS",
+         devices: devices)
+  end
+
   desc "Runs Tests & Generates Code Coverage Reports for tvOS"
   lane :coverage_tvos do
     coverage(scheme: "BonMot-tvOS")
+  end
+
+  desc "Runs Tests for tvOS"
+  lane :test_tvos do
+    test(scheme: "BonMot-tvOS")
   end
 
   # Tests cannot be run on watchOS
@@ -59,6 +86,32 @@ platform :ios do
   end
 end
 
+def test(scheme:, devices: nil, destination: nil)
+  # NOTE: Running too many devices concurrently breaks CircleCI resource limits
+  disable_concurrent_testing = false
+  if ENV['CIRCLE_BUILD_NUM']
+    disable_concurrent_testing = true
+  end
+
+  xcargs = ""
+  if !ENV['SWIFT_VERSION'].nil?
+    xcargs = "SWIFT_VERSION=#{ENV['SWIFT_VERSION']}"
+  end
+
+  begin
+    scan(
+      devices: devices,
+      destination: destination,
+      scheme: scheme,
+      xcargs: xcargs,
+      derived_data_path: DERIVED_DATA_PATH,
+      disable_concurrent_testing: disable_concurrent_testing
+    )
+  rescue => ex
+    # Don't fail the entire lane when running tests, but print failure to STDERR
+    STDERR.puts ex
+  end
+end
 
 def coverage(scheme:, devices: nil, destination: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
@@ -145,6 +198,7 @@ def get_devices()
   devices = []
 	devices.push("iPhone SE")
 	devices.push("iPhone X")
+  devices.push("iPhone 11 Pro Max")
 	devices.push("iPhone 8")
 	devices.push("iPhone 8 Plus")
 	devices.push("iPad Pro (10.5-inch)")
