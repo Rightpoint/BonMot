@@ -6,7 +6,7 @@ set -o pipefail && \
   -project BonMot.xcodeproj \
   -scheme BonMot-watchOS \
   -sdk watchsimulator \
-  -destination "platform=watchOS Simulator,name=Apple Watch Series 3 - 38mm,OS=5.1" \
+  -destination "platform=watchOS Simulator,name=Apple Watch Series 3 - 38mm,OS=5.3" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= $@\
   | bundle exec xcpretty

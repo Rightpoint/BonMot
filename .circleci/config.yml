@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   danger:
-    executor: xcode-11-3
+    executor: xcode-11
     steps:
       - setup
       - run:
@@ -52,40 +52,34 @@ jobs:
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
-  build-xcode-11-3:
-    executor: xcode-11-3
+  build-swift-package:
+    executor: xcode-11
     steps:
       - setup
       - run: swift build
 
-  test-xcode-10-2:
-    executor: xcode-10
+  test-swift-5-0:
+    executor: xcode-11
+    environment:
+      SWIFT_VERSION: "5.0"
     steps:
       - setup
-      - run: ./scripts/macOS.sh SWIFT_VERSION=5.0
-      - run: ./scripts/iOS-11.4.sh SWIFT_VERSION=5.0
-      - run: ./scripts/iOS-12.2.sh SWIFT_VERSION=5.0
-      - run: ./scripts/tvOS-12.2.sh SWIFT_VERSION=5.0
-      - run: ./scripts/watchOS-5.2.sh SWIFT_VERSION=5.0
+      - run-test-scripts
       - lint-pod:
           swift-version: "5.0"
 
-  test-xcode-10-1:
-    executor: xcode-10
-    macos:
-      xcode: "10.1.0"
+  test-swift-4-2:
+    executor: xcode-11
+    environment:
+      SWIFT_VERSION: "4.2"
     steps:
       - setup
-      - run: ./scripts/macOS.sh SWIFT_VERSION=4.2
-      - run: ./scripts/iOS-12.1.sh SWIFT_VERSION=4.2
-      - run: ./scripts/tvOS-11.2.sh SWIFT_VERSION=4.2
-      - run: ./scripts/tvOS-12.1.sh SWIFT_VERSION=4.2
-      - run: ./scripts/watchOS-5.1.sh SWIFT_VERSION=4.2
+      - run-test-scripts
       - lint-pod:
           swift-version: "4.2"
 
   carthage-build:
-    executor: xcode-10
+    executor: xcode-11
     steps:
       - checkout
       - run:
@@ -97,24 +91,16 @@ jobs:
       - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
-    executor: xcode-10
+    executor: xcode-11
     steps:
       - setup
       - run: bundle exec pod trunk push
 
 
 executors:
-  xcode-11-3:
+  xcode-11:
     macos:
       xcode: "11.3.1"
-    environment:
-      LC_ALL: en_US.UTF-8
-      LANG: en_US.UTF-8
-      HOMEBREW_NO_AUTO_UPDATE: 1
-    shell: /bin/bash --login -eo pipefail
-  xcode-10:
-    macos:
-      xcode: "10.2.1"
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -142,6 +128,17 @@ commands:
           paths:
             - vendor/bundle
 
+  run-test-scripts:
+    description: "Runs test scripts"
+    steps:
+      - run: ./scripts/macOS.sh
+      - run: ./scripts/iOS-12.4.sh
+      - run: ./scripts/iOS-13.3.sh
+      - run: ./scripts/tvOS-12.4.sh
+      - run: ./scripts/tvOS-13.3.sh
+      - run: ./scripts/watchOS-5.3.sh
+      - run: ./scripts/watchOS-6.1.sh
+
   lint-pod:
     description: "Lints podspec with specified Swift version"
     parameters:
@@ -159,15 +156,15 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - build-xcode-11-3:
+      - build-swift-package:
           filters:
             tags:
               only: /.*/
-      - test-xcode-10-2:
+      - test-swift-5-0:
           filters:
             tags:
               only: /.*/
-      - test-xcode-10-1:
+      - test-swift-4-2:
           filters:
             tags:
               only: /.*/
@@ -177,9 +174,10 @@ workflows:
               only: /.*/
       - deploy-to-cocoapods:
           requires:
-            - build-xcode-11-3
-            - test-xcode-10-2
-            - test-xcode-10-1
+            - danger
+            - build-swift-package
+            - test-swift-5-0
+            - test-swift-4-2
             - carthage-build
           filters:
             tags:

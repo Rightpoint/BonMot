@@ -2,11 +2,11 @@
 # Any arguments passed are passed to xcodebuild
 
 set -o pipefail && \
-  xcodebuild clean build \
+  xcodebuild clean build test \
   -project BonMot.xcodeproj \
-  -scheme BonMot-watchOS \
-  -sdk watchsimulator \
-  -destination "platform=watchOS Simulator,name=Apple Watch Series 3 - 38mm,OS=5.2" \
+  -scheme BonMot-tvOS \
+  -sdk appletvsimulator \
+  -destination "platform=tvOS Simulator,name=Apple TV,OS=13.3" \
   CODE_SIGNING_REQUIRED=NO \
   CODE_SIGN_IDENTITY= $@\
   | bundle exec xcpretty
