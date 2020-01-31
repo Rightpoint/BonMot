@@ -8,7 +8,11 @@ jobs:
       - run:
           name: Install xchtmlreport
           command: |
-            brew install https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb --head
+            brew install --HEAD https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+      - run:
+          name: Install xcparse
+          command: |
+            brew install chargepoint/xcparse/xcparse
       - run:
           name: Tests & Code Coverage
           when: always
@@ -58,11 +62,11 @@ jobs:
     executor: xcode-10
     steps:
       - setup
-      - run: ./scripts/macOS.sh SWIFT_VERSION=5
-      - run: ./scripts/iOS-11.4.sh SWIFT_VERSION=5
-      - run: ./scripts/iOS-12.2.sh SWIFT_VERSION=5
-      - run: ./scripts/tvOS-12.2.sh SWIFT_VERSION=5
-      - run: ./scripts/watchOS-5.2.sh SWIFT_VERSION=5
+      - run: ./scripts/macOS.sh SWIFT_VERSION=5.0
+      - run: ./scripts/iOS-11.4.sh SWIFT_VERSION=5.0
+      - run: ./scripts/iOS-12.2.sh SWIFT_VERSION=5.0
+      - run: ./scripts/tvOS-12.2.sh SWIFT_VERSION=5.0
+      - run: ./scripts/watchOS-5.2.sh SWIFT_VERSION=5.0
       - lint-pod:
           swift-version: "5.0"
 
@@ -102,7 +106,7 @@ jobs:
 executors:
   xcode-11-3:
     macos:
-      xcode: "11.3.0"
+      xcode: "11.3.1"
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
