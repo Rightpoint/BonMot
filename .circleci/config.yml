@@ -2,13 +2,17 @@ version: 2.1
 
 jobs:
   danger:
-    executor: xcode-10
+    executor: xcode-11
     steps:
       - setup
       - run:
           name: Install xchtmlreport
           command: |
-            brew install https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+            brew install --HEAD https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+      - run:
+          name: Install xcparse
+          command: |
+            brew install chargepoint/xcparse/xcparse
       - run:
           name: Tests & Code Coverage
           when: always
@@ -48,34 +52,34 @@ jobs:
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
-  test-xcode-10-2:
-    executor: xcode-10
+  build-swift-package:
+    executor: xcode-11
     steps:
       - setup
-      - run: ./scripts/macOS.sh SWIFT_VERSION=5
-      - run: ./scripts/iOS-11.4.sh SWIFT_VERSION=5
-      - run: ./scripts/iOS-12.2.sh SWIFT_VERSION=5
-      - run: ./scripts/tvOS-12.2.sh SWIFT_VERSION=5
-      - run: ./scripts/watchOS-5.2.sh SWIFT_VERSION=5
+      - run: swift build
+
+  test-swift-5-0:
+    executor: xcode-11
+    environment:
+      SWIFT_VERSION: "5.0"
+    steps:
+      - setup
+      - run: bundle exec fastlane test_all
       - lint-pod:
           swift-version: "5.0"
 
-  test-xcode-10-1:
-    executor: xcode-10
-    macos:
-      xcode: "10.1.0"
+  test-swift-4-2:
+    executor: xcode-11
+    environment:
+      SWIFT_VERSION: "4.2"
     steps:
       - setup
-      - run: ./scripts/macOS.sh SWIFT_VERSION=4.2
-      - run: ./scripts/iOS-12.1.sh SWIFT_VERSION=4.2
-      - run: ./scripts/tvOS-11.2.sh SWIFT_VERSION=4.2
-      - run: ./scripts/tvOS-12.1.sh SWIFT_VERSION=4.2
-      - run: ./scripts/watchOS-5.1.sh SWIFT_VERSION=4.2
+      - run: bundle exec fastlane test_all
       - lint-pod:
           swift-version: "4.2"
 
   carthage-build:
-    executor: xcode-10
+    executor: xcode-11
     steps:
       - checkout
       - run:
@@ -87,20 +91,16 @@ jobs:
       - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
-    executor: xcode-10
+    executor: xcode-11
     steps:
       - setup
-      - run:
-          name: Install CocoaPods Specs Repo
-          command: |
-            curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
       - run: bundle exec pod trunk push
 
 
 executors:
-  xcode-10:
+  xcode-11:
     macos:
-      xcode: "10.2.1"
+      xcode: "11.3.1"
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -145,11 +145,15 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-xcode-10-2:
+      - build-swift-package:
           filters:
             tags:
               only: /.*/
-      - test-xcode-10-1:
+      - test-swift-5-0:
+          filters:
+            tags:
+              only: /.*/
+      - test-swift-4-2:
           filters:
             tags:
               only: /.*/
@@ -159,8 +163,10 @@ workflows:
               only: /.*/
       - deploy-to-cocoapods:
           requires:
-            - test-xcode-10-2
-            - test-xcode-10-1
+            - danger
+            - build-swift-package
+            - test-swift-5-0
+            - test-swift-4-2
             - carthage-build
           filters:
             tags:

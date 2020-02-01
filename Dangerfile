@@ -20,7 +20,7 @@ src_root = File.expand_path('../', __FILE__)
 
 SCHEME = "BonMot-iOS"
 
-result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.test_result"
+result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.test_result-coverage"
 xccoverage_files = Dir.glob("#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
 xccov_file_direct_path = xccoverage_files.first
 
@@ -56,7 +56,7 @@ if !(token.nil? or username.nil? or reponame.nil? or build.nil?)
   xcov = CircleciArtifact::Query.new(url_substring: 'xcov/index.html')
   slather = CircleciArtifact::Query.new(url_substring: 'slather/index.html')
   xcpretty = CircleciArtifact::Query.new(url_substring: 'scan/report.html')
-  xchtmlreport = CircleciArtifact::Query.new(url_substring: 'test_result/index.html')
+  xchtmlreport = CircleciArtifact::Query.new(url_substring: 'scan/index.html')
   queries = [xcov, slather, xcpretty, xchtmlreport]
   results = fetcher.fetch_queries(queries)
 

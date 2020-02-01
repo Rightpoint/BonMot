@@ -6,11 +6,8 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
-#if os(OSX)
-    import AppKit
-#else
-    import UIKit
-#endif
+#if canImport(UIKit)
+import UIKit
 
 /// BonMot embeds transformation objects inside `NSAttributedString` attributes
 /// to do adaptive styling. To simplify `NSAttributedString`'s `NSCoding`
@@ -72,3 +69,4 @@ internal enum EmbeddedTransformationHelpers {
     }
 
 }
+#endif

@@ -6,6 +6,7 @@
 //
 //
 
+#if canImport(UIKit)
 import UIKit
 
 /// Defines a style transformation that is dependent on a `UITraitCollection`.
@@ -29,3 +30,4 @@ internal protocol AdaptiveStyleTransformation {
     func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes?
 
 }
+#endif

@@ -17,9 +17,9 @@ BUILD_PATH="./build"
 DERIVED_DATA_PATH = "#{BUILD_PATH}/derived_data"
 PROJECT_NAME='BonMot.xcodeproj'
 
-desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
+desc "Tests & Coverage: iOS, tvOS, macOS. Builds: watchOS."
 lane :coverage_all do
-  bundle_ios = coverage(scheme: "BonMot-iOS", devices: get_devices(ios_latest: true, ios_10_3: true))
+  bundle_ios = coverage(scheme: "BonMot-iOS", devices: get_devices())
   bundle_tvos = coverage(scheme: "BonMot-tvOS")
   # For some reason fastlane tries to build for tvOS simulator unless destination is manually set
   bundle_macos = coverage(scheme: "BonMot-OSX", destination: "platform=macOS")
@@ -31,38 +31,51 @@ lane :coverage_all do
              derivedDataPath: DERIVED_DATA_PATH)
 end
 
+desc "Tests: iOS, tvOS, macOS. Builds: watchOS."
+lane :test_all do
+  test(scheme: "BonMot-iOS", devices: get_devices())
+  test(scheme: "BonMot-OSX", destination: "platform=macOS")
+  test(scheme: "BonMot-tvOS")
+  # Unit testing is not available on watchOS
+  xcodebuild(scheme: "BonMot-watchOS",
+             derivedDataPath: DERIVED_DATA_PATH)
+end
+
 platform :mac do
   desc "Runs Tests & Generates Code Coverage Reports for macOS"
   lane :coverage_macos do
     coverage(scheme: "BonMot-OSX")
   end
+
+  desc "Runs Tests for macOS"
+  lane :test_macos do
+    test(scheme: "BonMot-OSX", destination: "platform=macOS")
+  end
 end
 
 platform :ios do
-  desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1 and latest iOS"
-  lane :coverage_ios do
-    devices = get_devices(ios_latest: true, ios_10_3: true)
-    coverage(scheme: "BonMot-iOS",
-             devices: devices)
-  end
-
-  desc "Runs Tests & Generates Code Coverage Reports for iOS 10.3.1"
-  lane :coverage_ios_10_3 do
-    devices = get_devices(ios_10_3: true)
-    coverage(scheme: "BonMot-iOS",
-             devices: devices)
-  end
-
   desc "Runs Tests & Generates Code Coverage Reports for latest iOS"
-  lane :coverage_ios_latest do
-    devices = get_devices(ios_latest: true)
+  lane :coverage_ios do
+    devices = get_devices()
     coverage(scheme: "BonMot-iOS",
              devices: devices)
+  end
+
+  desc "Runs Tests for latest iOS"
+  lane :test_ios do
+    devices = get_devices()
+    test(scheme: "BonMot-iOS",
+         devices: devices)
   end
 
   desc "Runs Tests & Generates Code Coverage Reports for tvOS"
   lane :coverage_tvos do
     coverage(scheme: "BonMot-tvOS")
+  end
+
+  desc "Runs Tests for tvOS"
+  lane :test_tvos do
+    test(scheme: "BonMot-tvOS")
   end
 
   # Tests cannot be run on watchOS
@@ -73,6 +86,32 @@ platform :ios do
   end
 end
 
+def test(scheme:, devices: nil, destination: nil)
+  # NOTE: Running too many devices concurrently breaks CircleCI resource limits
+  disable_concurrent_testing = false
+  if ENV['CIRCLE_BUILD_NUM']
+    disable_concurrent_testing = true
+  end
+
+  xcargs = ""
+  if !ENV['SWIFT_VERSION'].nil?
+    xcargs = "SWIFT_VERSION=#{ENV['SWIFT_VERSION']}"
+  end
+
+  begin
+    scan(
+      devices: devices,
+      destination: destination,
+      scheme: scheme,
+      xcargs: xcargs,
+      derived_data_path: DERIVED_DATA_PATH,
+      disable_concurrent_testing: disable_concurrent_testing
+    )
+  rescue => ex
+    # Don't fail the entire lane when running tests, but print failure to STDERR
+    STDERR.puts ex
+  end
+end
 
 def coverage(scheme:, devices: nil, destination: nil)
   scan_output_path = "#{BUILD_PATH}/#{scheme}/scan"
@@ -101,7 +140,12 @@ def coverage(scheme:, devices: nil, destination: nil)
   end
 
   result_bundle_path = Scan.cache[:result_bundle_path]
-  xccoverage_files = Dir.glob("#{Dir.pwd}/../#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
+
+  # Extract coverage from Xcode 11 xcresult bundle
+  absolute_result_bundle_path = "#{Dir.pwd}/../#{result_bundle_path}"
+  absolute_coverage_path = "#{absolute_result_bundle_path}-coverage"
+  sh("xcparse codecov #{absolute_result_bundle_path} #{absolute_coverage_path}")
+  xccoverage_files = Dir.glob("#{absolute_coverage_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
   xccov_file_direct_path = xccoverage_files.first
 
   slather_use_circleci = "false"
@@ -148,23 +192,15 @@ def coverage(scheme:, devices: nil, destination: nil)
   result_bundle_path
 end
 
-def get_devices(ios_latest: false, ios_10_3: false)
+def get_devices()
   # The full list of iOS simulators available on CircleCI
   # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
   devices = []
-  if ios_latest
-    devices.push("iPhone SE")
-    devices.push("iPhone X")
-    devices.push("iPhone 8")
-    devices.push("iPhone 8 Plus")
-    devices.push("iPad Pro (10.5-inch)")
-  end
-
-  if ios_10_3
-    devices.push("iPhone SE (10.3.1)")
-    devices.push("iPhone 7 (10.3.1)")
-    devices.push("iPhone 7 Plus (10.3.1)")
-    devices.push("iPad Pro (10.5-inch) (10.3.1)")
-  end
+	devices.push("iPhone SE")
+	devices.push("iPhone X")
+  devices.push("iPhone 11 Pro Max")
+	devices.push("iPhone 8")
+	devices.push("iPhone 8 Plus")
+	devices.push("iPad Pro (10.5-inch)")
   devices
 end
