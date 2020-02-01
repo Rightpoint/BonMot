@@ -4,6 +4,7 @@ disabled_rules: # rule identifiers to exclude from running
   - identifier_name
   - large_tuple
   - file_length
+  - implicit_return # Re-enable when we drop support for Swift 4.2
 
 statement_position:
   statement_mode: uncuddled_else
