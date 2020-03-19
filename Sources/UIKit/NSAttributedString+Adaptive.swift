@@ -6,7 +6,7 @@
 //
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 extension NSAttributedString {
