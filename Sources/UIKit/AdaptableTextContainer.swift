@@ -6,7 +6,7 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 /// A protocol to update the text style contained by the object. This can be

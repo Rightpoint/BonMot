@@ -6,6 +6,8 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
+#if !os(watchOS)
+
 #if os(OSX)
     import AppKit
 #else
@@ -238,3 +240,5 @@ private extension String {
     }
 
 }
+
+#endif
