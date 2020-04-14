@@ -58,7 +58,7 @@ jobs:
       - setup
       - run: swift build
 
-  test-swift-5-2:
+  test-swift-5-0:
     executor: xcode-11
     environment:
       SWIFT_VERSION: "5.0"
@@ -149,7 +149,7 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-swift-5-2:
+      - test-swift-5-0:
           filters:
             tags:
               only: /.*/
@@ -165,7 +165,7 @@ workflows:
           requires:
             - danger
             - build-swift-package
-            - test-swift-5-2
+            - test-swift-5-0
             - test-swift-4-2
             - carthage-build
           filters:
