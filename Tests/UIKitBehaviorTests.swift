@@ -68,7 +68,7 @@ class UIKitBehaviorTests: XCTestCase {
         textField.font = largeFont
         XCTAssertEqual(textField.font?.pointSize, 20)
 
-        /// This test breaks on tvOS 11 as of beta 4: http://www.openradar.me/33742507
+        // This test breaks on tvOS 11 as of beta 4: http://www.openradar.me/33742507
         if #available(tvOS 11.0, *) {
         }
         else {

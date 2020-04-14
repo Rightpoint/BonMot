@@ -12,8 +12,8 @@
     import UIKit
 #endif
 
-/// This file declares extensions to system types to provide a compatible API
-/// between Swift iOS, macOS, watchOS, and tvOS.
+// This file declares extensions to system types to provide a compatible API
+// between Swift iOS, macOS, watchOS, and tvOS.
 
 #if swift(>=4.2)
 #else
