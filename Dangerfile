@@ -80,5 +80,5 @@ end
 
 # Test Reporting
 
-junit.parse "#{src_root}/build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit"
+junit.parse "#{src_root}/build/BonMot-iOS/scan/BonMot-iOS.xcresult/report.junit"
 junit.report

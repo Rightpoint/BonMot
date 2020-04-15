@@ -33,7 +33,7 @@ jobs:
           when: always
           command: |
             mkdir -p build/test-results/danger
-            cp build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit build/test-results/danger/results.xml
+            cp build/BonMot-iOS/scan/BonMot-iOS.xcresult/report.junit build/test-results/danger/results.xml
       - store_test_results:
           path: build/test-results
       # Install SwiftLint only before Danger because otherwise it fails the build
