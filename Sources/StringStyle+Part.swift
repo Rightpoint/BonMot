@@ -172,10 +172,10 @@ extension StringStyle {
             self.backgroundColor = backgroundColor
         case let .color(color):
             self.color = color
-        case let .underline(underline):
-            self.underline = underline
-        case let .strikethrough(strikethrough):
-            self.strikethrough = strikethrough
+        case let .underline(style, color):
+            self.underline = (style, color)
+        case let .strikethrough(style, color):
+            self.strikethrough = (style, color)
         case let .baselineOffset(baselineOffset):
             self.baselineOffset = baselineOffset
         case let .ligatures(ligatures):
