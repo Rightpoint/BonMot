@@ -20,7 +20,7 @@ src_root = File.expand_path('../', __FILE__)
 
 SCHEME = "BonMot-iOS"
 
-result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.test_result-coverage"
+result_bundle_path = "#{src_root}/build/#{SCHEME}/scan/#{SCHEME}.xcresult-coverage"
 xccoverage_files = Dir.glob("#{result_bundle_path}/**/action.xccovreport").sort_by { |filename| File.mtime(filename) }.reverse
 xccov_file_direct_path = xccoverage_files.first
 
@@ -80,5 +80,5 @@ end
 
 # Test Reporting
 
-junit.parse "#{src_root}/build/BonMot-iOS/scan/BonMot-iOS.test_result/report.junit"
+junit.parse "#{src_root}/build/BonMot-iOS/scan/BonMot-iOS.xcresult/report.junit"
 junit.report
