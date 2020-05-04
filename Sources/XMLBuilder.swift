@@ -116,11 +116,21 @@ public enum XMLStyleRule {
     /// A name/style pairing.
     case style(String, StringStyle)
 
+    /// A name with a block that returns style based on `attributes` dictionary.
+    case styleBlock(String, ([String: String]) -> StringStyle)
+
     /// A `Composable` to insert before entering tags whose name equals `element`.
     case enter(element: String, insert: Composable)
 
+    /// A block that returns `Composable` to insert before entering tags whose name equals `element`, based on
+    /// `attributes` dictionary.
+    case enterBlock(element: String, insert: ([String: String]) -> Composable)
+
     /// A `Composable` to insert before exiting tags whose name equals `element`.
     case exit(element: String, insert: Composable)
+
+    /// A block that returns `Composable` to insert before exiting tags whose name equals `element`.
+    case exitBlock(element: String, insert: () -> Composable)
 
     /// An `XMLStyler` implementation for handling `XMLStyleRule`s.
     struct Styler: XMLStyler {
@@ -132,6 +142,8 @@ public enum XMLStyleRule {
                 switch rule {
                 case let .style(string, style) where string == name:
                     return style
+                case let .styleBlock(string, block) where string == name:
+                    return block(attributes)
                 default:
                     break
                 }
@@ -149,6 +161,8 @@ public enum XMLStyleRule {
                 switch rule {
                 case let .enter(string, composable) where string == name:
                     return composable
+                case let .enterBlock(string, block) where string == name:
+                    return block(attributes)
                 default: break
                 }
             }
@@ -160,6 +174,8 @@ public enum XMLStyleRule {
                 switch rule {
                 case let .exit(string, composable) where string == name:
                     return composable
+                case let .exitBlock(string, block) where string == name:
+                    return block()
                 default: break
                 }
             }
