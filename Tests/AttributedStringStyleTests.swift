@@ -555,6 +555,134 @@ class StringStyleTests: XCTestCase {
         XCTAssertFalse(stillHasAltSixDict)
     }
 
+    func testStyleBlockRules() {
+        let string = "0<one attr1=\"11\">1<two attr2=\"12\">2</two></one>"
+
+        var tagAttr1Value: String!
+        var tagAttr2Value: String!
+
+        let rules: [XMLStyleRule] = [
+            .styleBlock("one") { attributes in
+                guard let val1 = attributes["attr1"], let intVal1 = Int(val1) else {
+                    XCTFail("attr1 not found")
+                    return StringStyle()
+                }
+
+                tagAttr1Value = val1
+                return StringStyle(.baselineOffset(CGFloat(intVal1)))
+            },
+            .styleBlock("two") { attributes in
+                guard let val2 = attributes["attr2"], let intVal2 = Int(val2) else {
+                    XCTFail("attr2 not found")
+                    return StringStyle()
+                }
+
+                tagAttr2Value = val2
+                return StringStyle(.baselineOffset(CGFloat(intVal2)))
+            },
+        ]
+
+        let attributed = string.styled(with: .font(BONFont.fontA), .xmlRules(rules))
+        XCTAssertEqual(attributed.string, "012")
+
+        XCTAssertEqual(tagAttr1Value, "11")
+        XCTAssertEqual(tagAttr2Value, "12")
+
+        let attrs0 = attributed.attributes(at: 0, effectiveRange: nil)
+        let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
+        let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
+
+        XCTAssertTrue(attrs0.count == 1)
+        XCTAssertTrue(attrs1.count == 2)
+        XCTAssertTrue(attrs2.count == 2)
+
+        XCTAssertNil(attrs0[.baselineOffset])
+        guard let lineSpacing1 = attrs1[.baselineOffset] as? Int else { XCTFail("lineSpacing1 not found"); return }
+        guard let lineSpacing2 = attrs2[.baselineOffset] as? Int else { XCTFail("lineSpacing2 not found"); return }
+
+        XCTAssertEqual(lineSpacing1, 11)
+        XCTAssertEqual(lineSpacing2, 12)
+    }
+
+    func testEnterExitBlockRules() {
+        let string = "0<one attr1=\"11\" attr2=\"a\">1<two attr3=\"12\" attr4=\"b\">2</two></one>"
+
+        var tagAttr1Value: String!
+        var tagAttr2Value: String!
+        var tagAttr3Value: String!
+        var tagAttr4Value: String!
+
+        let rules: [XMLStyleRule] = [
+            .enterBlock(element: "one") { attributes in
+                guard let val1 = attributes["attr1"], let intVal1 = Int(val1) else {
+                    XCTFail("attr1 not found")
+                    return ""
+                }
+
+                guard let val2 = attributes["attr2"] else {
+                    XCTFail("attr2 not found")
+                    return ""
+                }
+
+                tagAttr1Value = val1
+                tagAttr2Value = val2
+
+                return val2.styled(with: .baselineOffset(CGFloat(intVal1)))
+            },
+            .exitBlock(element: "one") {
+                return "c"
+            },
+            .enterBlock(element: "two") { attributes in
+                guard let val3 = attributes["attr3"], let intVal3 = Int(val3) else {
+                    XCTFail("attr3 not found")
+                    return ""
+                }
+
+                guard let val4 = attributes["attr4"] else {
+                    XCTFail("attr4 not found")
+                    return ""
+                }
+
+                tagAttr3Value = val3
+                tagAttr4Value = val4
+
+                return val4.styled(with: .baselineOffset(CGFloat(intVal3)))
+            },
+            .exitBlock(element: "two") {
+                return "d"
+            },
+        ]
+
+        let attributed = string.styled(with: .font(BONFont.fontA), .xmlRules(rules))
+        XCTAssertEqual(attributed.string, "0a1b2dc")
+
+        XCTAssertEqual(tagAttr1Value, "11")
+        XCTAssertEqual(tagAttr2Value, "a")
+        XCTAssertEqual(tagAttr3Value, "12")
+        XCTAssertEqual(tagAttr4Value, "b")
+
+        let attrs0 = attributed.attributes(at: 0, effectiveRange: nil)
+        let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
+        let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
+        let attrs3 = attributed.attributes(at: 3, effectiveRange: nil)
+        let attrs4 = attributed.attributes(at: 4, effectiveRange: nil)
+
+        XCTAssertTrue(attrs0.count == 1)
+        XCTAssertTrue(attrs1.count == 2)
+        XCTAssertTrue(attrs2.count == 1)
+        XCTAssertTrue(attrs3.count == 2)
+        XCTAssertTrue(attrs4.count == 1)
+
+        XCTAssertNil(attrs0[.baselineOffset])
+        guard let lineSpacing1 = attrs1[.baselineOffset] as? Int else { XCTFail("lineSpacing1 not found"); return }
+        XCTAssertNil(attrs2[.baselineOffset])
+        guard let lineSpacing3 = attrs3[.baselineOffset] as? Int else { XCTFail("lineSpacing3 not found"); return }
+        XCTAssertNil(attrs4[.baselineOffset])
+
+        XCTAssertEqual(lineSpacing1, 11)
+        XCTAssertEqual(lineSpacing3, 12)
+    }
+
     static let floatingPointPropertiesLine = #line
     static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
         //swiftlint:disable opening_brace
