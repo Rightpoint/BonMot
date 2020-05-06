@@ -555,11 +555,11 @@ class StringStyleTests: XCTestCase {
         XCTAssertFalse(stillHasAltSixDict)
     }
 
-    func testStyleBlockRules() {
-        let string = "0<one attr1=\"11\">1<two attr2=\"12\">2</two></one>"
+    func testStyleBlockRules() throws {
+        let string = #"0<one attr1="11">1<two attr2="12">2</two></one>"#
 
-        var tagAttr1Value: String!
-        var tagAttr2Value: String!
+        var tagAttr1Value: String?
+        var tagAttr2Value: String?
 
         let rules: [XMLStyleRule] = [
             .styleBlock("one") { attributes in
@@ -592,25 +592,25 @@ class StringStyleTests: XCTestCase {
         let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
         let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
 
-        XCTAssertTrue(attrs0.count == 1)
-        XCTAssertTrue(attrs1.count == 2)
-        XCTAssertTrue(attrs2.count == 2)
+        XCTAssertEqual(attrs0.count, 1)
+        XCTAssertEqual(attrs1.count, 2)
+        XCTAssertEqual(attrs2.count, 2)
 
         XCTAssertNil(attrs0[.baselineOffset])
-        guard let lineSpacing1 = attrs1[.baselineOffset] as? Int else { XCTFail("lineSpacing1 not found"); return }
-        guard let lineSpacing2 = attrs2[.baselineOffset] as? Int else { XCTFail("lineSpacing2 not found"); return }
+        let lineSpacing1 = try XCTUnwrap(attrs1[.baselineOffset] as? Int)
+        let lineSpacing2 = try XCTUnwrap(attrs2[.baselineOffset] as? Int)
 
         XCTAssertEqual(lineSpacing1, 11)
         XCTAssertEqual(lineSpacing2, 12)
     }
 
-    func testEnterExitBlockRules() {
-        let string = "0<one attr1=\"11\" attr2=\"a\">1<two attr3=\"12\" attr4=\"b\">2</two></one>"
+    func testEnterExitBlockRules() throws {
+        let string = #"0<one attr1="11" attr2="a">1<two attr3="12" attr4="b">2</two></one>"#
 
-        var tagAttr1Value: String!
-        var tagAttr2Value: String!
-        var tagAttr3Value: String!
-        var tagAttr4Value: String!
+        var tagAttr1Value: String?
+        var tagAttr2Value: String?
+        var tagAttr3Value: String?
+        var tagAttr4Value: String?
 
         let rules: [XMLStyleRule] = [
             .enterBlock(element: "one") { attributes in
@@ -667,16 +667,16 @@ class StringStyleTests: XCTestCase {
         let attrs3 = attributed.attributes(at: 3, effectiveRange: nil)
         let attrs4 = attributed.attributes(at: 4, effectiveRange: nil)
 
-        XCTAssertTrue(attrs0.count == 1)
-        XCTAssertTrue(attrs1.count == 2)
-        XCTAssertTrue(attrs2.count == 1)
-        XCTAssertTrue(attrs3.count == 2)
-        XCTAssertTrue(attrs4.count == 1)
+        XCTAssertEqual(attrs0.count, 1)
+        XCTAssertEqual(attrs1.count, 2)
+        XCTAssertEqual(attrs2.count, 1)
+        XCTAssertEqual(attrs3.count, 2)
+        XCTAssertEqual(attrs4.count, 1)
 
         XCTAssertNil(attrs0[.baselineOffset])
-        guard let lineSpacing1 = attrs1[.baselineOffset] as? Int else { XCTFail("lineSpacing1 not found"); return }
+        let lineSpacing1 = try XCTUnwrap(attrs1[.baselineOffset] as? Int)
         XCTAssertNil(attrs2[.baselineOffset])
-        guard let lineSpacing3 = attrs3[.baselineOffset] as? Int else { XCTFail("lineSpacing3 not found"); return }
+        let lineSpacing3 = try XCTUnwrap(attrs3[.baselineOffset] as? Int)
         XCTAssertNil(attrs4[.baselineOffset])
 
         XCTAssertEqual(lineSpacing1, 11)
