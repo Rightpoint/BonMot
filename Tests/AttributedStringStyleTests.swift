@@ -563,22 +563,14 @@ class StringStyleTests: XCTestCase {
 
         let rules: [XMLStyleRule] = [
             .styleBlock("one") { attributes in
-                guard let val1 = attributes["attr1"], let intVal1 = Int(val1) else {
-                    XCTFail("attr1 not found")
-                    return StringStyle()
-                }
+                tagAttr1Value = attributes["attr1"]
 
-                tagAttr1Value = val1
-                return StringStyle(.baselineOffset(CGFloat(intVal1)))
+                return StringStyle(.baselineOffset(CGFloat(Int(tagAttr1Value ?? "") ?? 0)))
             },
             .styleBlock("two") { attributes in
-                guard let val2 = attributes["attr2"], let intVal2 = Int(val2) else {
-                    XCTFail("attr2 not found")
-                    return StringStyle()
-                }
+                tagAttr2Value = attributes["attr2"]
 
-                tagAttr2Value = val2
-                return StringStyle(.baselineOffset(CGFloat(intVal2)))
+                return StringStyle(.baselineOffset(CGFloat(Int(tagAttr2Value ?? "") ?? 0)))
             },
         ]
 
@@ -614,39 +606,19 @@ class StringStyleTests: XCTestCase {
 
         let rules: [XMLStyleRule] = [
             .enterBlock(element: "one") { attributes in
-                guard let val1 = attributes["attr1"], let intVal1 = Int(val1) else {
-                    XCTFail("attr1 not found")
-                    return ""
-                }
+                tagAttr1Value = attributes["attr1"]
+                tagAttr2Value = attributes["attr2"]
 
-                guard let val2 = attributes["attr2"] else {
-                    XCTFail("attr2 not found")
-                    return ""
-                }
-
-                tagAttr1Value = val1
-                tagAttr2Value = val2
-
-                return val2.styled(with: .baselineOffset(CGFloat(intVal1)))
+                return (tagAttr2Value ?? "").styled(with: .baselineOffset(CGFloat(Int(tagAttr1Value ?? "") ?? 0)))
             },
             .exitBlock(element: "one") {
                 return "c"
             },
             .enterBlock(element: "two") { attributes in
-                guard let val3 = attributes["attr3"], let intVal3 = Int(val3) else {
-                    XCTFail("attr3 not found")
-                    return ""
-                }
+                tagAttr3Value = attributes["attr3"]
+                tagAttr4Value = attributes["attr4"]
 
-                guard let val4 = attributes["attr4"] else {
-                    XCTFail("attr4 not found")
-                    return ""
-                }
-
-                tagAttr3Value = val3
-                tagAttr4Value = val4
-
-                return val4.styled(with: .baselineOffset(CGFloat(intVal3)))
+                return (tagAttr4Value ?? "").styled(with: .baselineOffset(CGFloat(Int(tagAttr3Value ?? "") ?? 0)))
             },
             .exitBlock(element: "two") {
                 return "d"
