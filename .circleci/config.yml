@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   danger:
-    executor: xcode-11
+    executor: xcode-12
     steps:
       - setup
       - run:
@@ -53,13 +53,13 @@ jobs:
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
   build-swift-package:
-    executor: xcode-11
+    executor: xcode-12
     steps:
       - setup
       - run: swift build
 
   test-swift-5-0:
-    executor: xcode-11
+    executor: xcode-12
     environment:
       SWIFT_VERSION: "5.0"
     steps:
@@ -69,7 +69,7 @@ jobs:
           swift-version: "5.0"
 
   test-swift-4-2:
-    executor: xcode-11
+    executor: xcode-12
     environment:
       SWIFT_VERSION: "4.2"
     steps:
@@ -79,7 +79,7 @@ jobs:
           swift-version: "4.2"
 
   carthage-build:
-    executor: xcode-11
+    executor: xcode-12
     steps:
       - checkout
       - run:
@@ -91,16 +91,16 @@ jobs:
       - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
-    executor: xcode-11
+    executor: xcode-12
     steps:
       - setup
       - run: bundle exec pod trunk push
 
 
 executors:
-  xcode-11:
+  xcode-12:
     macos:
-      xcode: "11.7.0"
+      xcode: "12.1.0"
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -162,6 +162,7 @@ workflows:
             tags:
               only: /.*/
       - deploy-to-cocoapods:
+          context: CocoaPods
           requires:
             - danger
             - build-swift-package
