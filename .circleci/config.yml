@@ -88,7 +88,8 @@ jobs:
       - run:
           name: Update Carthage
           command: brew outdated carthage || (brew uninstall carthage --force; brew install carthage --force-bottle)
-      - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
+      # Carthage does not work on Xcode 12 https://github.com/Carthage/Carthage/issues/3019
+      # - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
     executor: xcode-12
