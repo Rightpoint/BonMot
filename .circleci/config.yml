@@ -8,7 +8,7 @@ jobs:
       - run:
           name: Install xchtmlreport
           command: |
-            wget https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+            curl -O https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
             brew install --HEAD --build-from-source xchtmlreport.rb
       - run:
           name: Install xcparse
