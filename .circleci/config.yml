@@ -8,9 +8,11 @@ jobs:
       - run:
           name: Install xchtmlreport
           command: |
-            brew install --HEAD https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+            wget https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
+            brew install --HEAD --build-from-source xchtmlreport.rb
       - run:
           name: Install xcparse
+          when: always
           command: |
             brew install chargepoint/xcparse/xcparse
       - run:
