@@ -64,7 +64,7 @@ class BONFontBehaviorTests: XCTestCase {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[UIFontDescriptor.AttributeName.textStyle] = testTextStyle
         let newAttributes = UIFont(descriptor: UIFontDescriptor(fontAttributes: attributes), size: 0).fontDescriptor.fontAttributes
-        if #available(iOS 14.0, *) {
+        if #available(iOS 14.0, tvOS 14.0, macOS 11.0, watchOS 7.0, *) {
             XCTAssertEqual(newAttributes.count, 3)
         }
         else {
