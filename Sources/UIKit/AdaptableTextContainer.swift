@@ -147,19 +147,19 @@ extension UISegmentedControl {
     // `UISegmentedControl` has terrible generics ([NSObject: AnyObject]? or [AnyHashable: Any]?) on
     /// `titleTextAttributes`, so use a helper in Swift 3+
     @nonobjc final func bon_titleTextAttributes(for state: UIControl.State) -> StyleAttributes? {
-		guard let attributes = titleTextAttributes(for: state) else { return nil }
-		#if swift(>=4.2)
-			return attributes
-		#else
-			var result: StyleAttributes = [:]
-			for attribute in attributes {
-				guard let string = attribute.key as? StyleAttributes.Key else {
-					fatalError("Can not convert key \(attribute.key) to String")
-				}
-				result[string] = attribute.value
-			}
-			return result
-		#endif
+        guard let attributes = titleTextAttributes(for: state) else { return nil }
+        #if swift(>=4.2)
+            return attributes
+        #else
+            var result: StyleAttributes = [:]
+            for attribute in attributes {
+                guard let string = attribute.key as? StyleAttributes.Key else {
+                    fatalError("Can not convert key \(attribute.key) to String")
+                }
+                result[string] = attribute.value
+            }
+            return result
+        #endif
     }
 
     /// Adapt `attributedTitle`, for all control states, to the specified trait collection.
@@ -168,7 +168,7 @@ extension UISegmentedControl {
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {
         for state in UIControl.State.commonStates {
-			guard let attributes = bon_titleTextAttributes(for: state) else { continue }
+            guard let attributes = bon_titleTextAttributes(for: state) else { continue }
             let newAttributes = NSAttributedString.adapt(attributes: attributes, to: traitCollection)
             setTitleTextAttributes(newAttributes, for: state)
         }
