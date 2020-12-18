@@ -147,7 +147,7 @@ extension UISegmentedControl {
     // `UISegmentedControl` has terrible generics ([NSObject: AnyObject]? or [AnyHashable: Any]?) on
     /// `titleTextAttributes`, so use a helper in Swift 3+
     @nonobjc final func bon_titleTextAttributes(for state: UIControl.State) -> StyleAttributes {
-        let attributes = titleTextAttributes(for: state)
+		let attributes = titleTextAttributes(for: state) ?? [:]
         #if swift(>=4.2)
             return attributes
         #else
