@@ -10,7 +10,8 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "Zev Eisenberg" => "zev@zeveisenberg.com" }
   s.source           = { :git => "https://github.com/Rightpoint/BonMot.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/ZevEisenberg'
+  # Setting the twitter url is causing builds to fail due to not being able to reach twitter.
+  # s.social_media_url = 'https://twitter.com/ZevEisenberg'
   s.requires_arc = true
 
   s.ios.deployment_target = '10.0'
