@@ -131,12 +131,12 @@ extension AdaptiveStyle {
     /// - Parameters:
     ///   - size: The size the font was designed for at `UIContentSizeCategory.large`.
     ///   - contentSizeCategory: The content size category to scale to.
-    ///   - minimiumSize: The smallest size the font can be. Defaults to 11, or
+    ///   - minimumSize: The smallest size the font can be. Defaults to 11, or
     ///                   `designatedSize` if `designatedSize` is less than 11.
     /// - Returns: The new point size, scaled to the specified content size
-    public static func adapt(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
+    public static func adapt(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimumSize: CGFloat = 11) -> CGFloat {
         let shift = min(shiftTable[contentSizeCategory] ?? 0, CGFloat(6))
-        let minSize = min(minimiumSize, size)
+        let minSize = min(minimumSize, size)
         return max(size + shift, minSize)
     }
 
@@ -146,14 +146,52 @@ extension AdaptiveStyle {
     /// - Parameters:
     ///   - size: The size the font was designed for at `UIContentSizeCategory.large`.
     ///   - contentSizeCategory: The content size category to scale to.
-    ///   - minimiumSize: The smallest size the font can be. Defaults to 11.
+    ///   - minimumSize: The smallest size the font can be. Defaults to 11.
     /// - Returns: The new point size, scaled to the specified contentSize.
-    public static func adaptBody(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize: CGFloat = 11) -> CGFloat {
+    public static func adaptBody(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimumSize: CGFloat = 11) -> CGFloat {
         let shift = shiftTable[contentSizeCategory] ?? 0
-        let minSize = min(minimiumSize, size)
+        let minSize = min(minimumSize, size)
         return max(size + shift, minSize)
     }
 
+}
+
+extension AdaptiveStyle { // Deprecated - search the code and remove other deprecations when you remove this
+
+    /// The default scaling function. Grows by 2 points for each
+    /// step above Large, and shrinks by 1 point for each step below Large.
+    /// This function does not create larger values for content size category
+    /// values in the Accessibility range of content size categories.
+    ///
+    /// - Parameters:
+    ///   - size: The size the font was designed for at `UIContentSizeCategory.large`.
+    ///   - contentSizeCategory: The content size category to scale to.
+    ///   - minimiumSize: The smallest size the font can be. Defaults to `designatedSize` if `designatedSize` is less
+    ///                   than the supplied size.
+    /// - Returns: The new point size, scaled to the specified content size
+    @available(*, deprecated, renamed: "adapt(designatedSize:for:minimumSize:)")
+    public static func adapt(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize minimumSize: CGFloat) -> CGFloat {
+        // removed default value of minimiumSize so that call sites that don't pass anything will use the new implementation
+        let shift = min(shiftTable[contentSizeCategory] ?? 0, CGFloat(6))
+        let minSize = min(minimumSize, size)
+        return max(size + shift, minSize)
+    }
+
+    /// A scaling function for "body" elements. Continues to grow for content
+    /// size category values in the Accessibility range.
+    ///
+    /// - Parameters:
+    ///   - size: The size the font was designed for at `UIContentSizeCategory.large`.
+    ///   - contentSizeCategory: The content size category to scale to.
+    ///   - minimiumSize: The smallest size the font can be.
+    /// - Returns: The new point size, scaled to the specified contentSize.
+    @available(*, deprecated, renamed: "adaptBody(designatedSize:for:minimumSize:)")
+    public static func adaptBody(designatedSize size: CGFloat, for contentSizeCategory: BonMotContentSizeCategory, minimiumSize minimumSize: CGFloat) -> CGFloat {
+        // removed default value of minimiumSize so that call sites that don't pass anything will use the new implementation
+        let shift = shiftTable[contentSizeCategory] ?? 0
+        let minSize = min(minimumSize, size)
+        return max(size + shift, minSize)
+    }
 }
 
 extension AdaptiveStyle: EmbeddedTransformation {

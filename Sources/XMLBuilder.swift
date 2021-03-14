@@ -33,7 +33,7 @@ extension NSAttributedString {
     ///                specify styling options.
     ///   - styler: An optional custom styler to perform extra style operations.
     ///   - options: XML parsing options.
-    /// - Returns: A styled attriubted string.
+    /// - Returns: A styled attriubuted string.
     /// - Throws: Any errors encountered by the XML parser.
     public static func composed(ofXML fragment: String, baseStyle: StringStyle? = nil, styler: XMLStyler? = nil, options: XMLParsingOptions = []) throws -> NSAttributedString {
         let builder = XMLBuilder(

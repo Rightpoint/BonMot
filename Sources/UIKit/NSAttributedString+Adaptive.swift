@@ -18,7 +18,7 @@ extension NSAttributedString {
     /// - Parameters:
     ///   - theAttributes: The attributes to transform.
     ///   - traitCollection: The trait collection to which to adapt the attributes.
-    /// - Returns: Attributes with fonts updated to the specified contect size category.
+    /// - Returns: Attributes with fonts updated to the specified content size category.
     public static func adapt(attributes theAttributes: StyleAttributes, to traitCollection: UITraitCollection) -> StyleAttributes {
         let adaptations: [AdaptiveStyleTransformation] = EmbeddedTransformationHelpers.transformations(from: theAttributes)
         var styleAttributes = theAttributes
@@ -73,7 +73,9 @@ extension StringStyle {
 // MARK: - Deprecations
 extension NSAttributedString {
 
-    @available(*, deprecated, renamed: "adapted(to:)") public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
+    // Deprecated - search the code and remove other deprecations when you remove this
+    @available(*, deprecated, renamed: "adapted(to:)")
+    public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
         return adapted(to: traitCollection)
     }
 

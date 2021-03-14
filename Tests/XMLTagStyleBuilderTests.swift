@@ -12,7 +12,7 @@ import XCTest
 class XMLTagStyleBuilderTests: XCTestCase {
 
     /// There have been concerns about XMLParser's performance. This is a
-    /// baseline test, but doesn't mean much without a comparision.
+    /// baseline test, but doesn't mean much without a comparison.
     func testBasicParserPerformance() {
         let styles = NamedStyles(styles: ["A": styleA, "B": styleB])
 

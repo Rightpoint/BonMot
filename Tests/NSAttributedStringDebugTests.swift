@@ -76,7 +76,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     }
 
     // ParagraphStyles are a bit interesting, as tabs behave over a line, but multiple paragraph styles can be applied on that line.
-    // I'm not sure how a multi-paragrah line would behave, but this confirms that NSAttributedString doesn't do any coalescing
+    // I'm not sure how a multi-paragraph line would behave, but this confirms that NSAttributedString doesn't do any coalescing
     func testParagraphStyleBehavior() {
         let style1 = NSMutableParagraphStyle()
         style1.lineSpacing = 1000

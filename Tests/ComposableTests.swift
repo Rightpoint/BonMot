@@ -127,19 +127,19 @@ class ComposableTests: XCTestCase {
             XCTAssertEqual(value, expected, line: line)
         }
 
-        check(forPart: .paragraphSpacingAfter(10), { $0.paragraphSpacing }, 10)
-        check(forPart: .alignment(.center), { $0.alignment }, .center)
-        check(forPart: .firstLineHeadIndent(10), { $0.firstLineHeadIndent }, 10)
-        check(forPart: .headIndent(10), { $0.headIndent }, 10)
-        check(forPart: .tailIndent(10), { $0.tailIndent }, 10)
-        check(forPart: .lineBreakMode(.byClipping), { $0.lineBreakMode }, .byClipping)
-        check(forPart: .minimumLineHeight(10), { $0.minimumLineHeight }, 10)
-        check(forPart: .maximumLineHeight(10), { $0.maximumLineHeight }, 10)
-        check(forPart: .baseWritingDirection(.leftToRight), { $0.baseWritingDirection }, .leftToRight)
-        check(forPart: .lineHeightMultiple(10), { $0.lineHeightMultiple }, 10)
-        check(forPart: .paragraphSpacingBefore(10), { $0.paragraphSpacingBefore }, 10)
-        check(forPart: .hyphenationFactor(10), { $0.hyphenationFactor }, 10)
-        check(forPart: .allowsDefaultTighteningForTruncation(true), { $0.allowsDefaultTighteningForTruncation }, true)
+        check(forPart: .paragraphSpacingAfter(10), \.paragraphSpacing, 10)
+        check(forPart: .alignment(.center), \.alignment, .center)
+        check(forPart: .firstLineHeadIndent(10), \.firstLineHeadIndent, 10)
+        check(forPart: .headIndent(10), \.headIndent, 10)
+        check(forPart: .tailIndent(10), \.tailIndent, 10)
+        check(forPart: .lineBreakMode(.byClipping), \.lineBreakMode, .byClipping)
+        check(forPart: .minimumLineHeight(10), \.minimumLineHeight, 10)
+        check(forPart: .maximumLineHeight(10), \.maximumLineHeight, 10)
+        check(forPart: .baseWritingDirection(.leftToRight), \.baseWritingDirection, .leftToRight)
+        check(forPart: .lineHeightMultiple(10), \.lineHeightMultiple, 10)
+        check(forPart: .paragraphSpacingBefore(10), \.paragraphSpacingBefore, 10)
+        check(forPart: .hyphenationFactor(10), \.hyphenationFactor, 10)
+        check(forPart: .allowsDefaultTighteningForTruncation(true), \.allowsDefaultTighteningForTruncation, true)
     }
 
     func testInitialParagraphStyle() {
@@ -214,7 +214,7 @@ class ComposableTests: XCTestCase {
     func testKerningStrippingOnLastCharacter() {
         let styleWithTracking = StringStyle(.tracking(.point(0.5)))
 
-        let pairsline = #line; let testCases: [(input: String, lastCharacterUnicodeLength: Int)] = [
+        let pairsLine = #line; let testCases: [(input: String, lastCharacterUnicodeLength: Int)] = [
             ("abc", 1),
             ("abc🍕", 2),
             ("🍕🍕", 2),
@@ -227,7 +227,7 @@ class ComposableTests: XCTestCase {
             let maxRange = NSRange(location: 0, length: styledString.length)
 
             let kerning = styledString.attribute(.kern, at: 0, longestEffectiveRange: &range, in: maxRange) as? Float
-            let testLine = UInt(pairsline + offset + 1)
+            let testLine = UInt(pairsLine + offset + 1)
             XCTAssertEqual(kerning, 0.5, line: testLine)
             XCTAssertEqual(range, NSRange(location: 0, length: styledString.length - testCase.lastCharacterUnicodeLength), line: testLine)
         }

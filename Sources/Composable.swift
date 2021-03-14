@@ -25,7 +25,7 @@ public protocol Composable {
     /// - Parameters:
     ///   - attributedString: The attributed string to which to append the
     ///                       receiver.
-    ///   - baseStyle: Additional attribues to apply to the receiver before
+    ///   - baseStyle: Additional attributes to apply to the receiver before
     ///                appending it to the passed attributed string.
     func append(to attributedString: NSMutableAttributedString, baseStyle: StringStyle)
 
@@ -38,7 +38,7 @@ public protocol Composable {
     /// - Parameters:
     ///   - attributedString: The attributed string to which to append the
     ///                       receiver.
-    ///   - baseStyle: Additional attribues to apply to the receiver before
+    ///   - baseStyle: Additional attributes to apply to the receiver before
     ///                appending it to the passed attributed string.
     ///   - isLastElement: Whether the receiver is the final element that is
     ///                    being appended to an attributed string. Used in cases
