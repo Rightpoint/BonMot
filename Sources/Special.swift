@@ -87,6 +87,7 @@ extension Special {
 
     /// All of the enum values contained in `Special`.
     /// Property kept here for backward compatibility
+    @available(*, deprecated, renamed: "allCases")
     @inlinable
     public static var all: [Special] { allCases }
 
