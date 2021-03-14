@@ -25,7 +25,7 @@ func dataFromImage(image theImage: BONImage) -> Data {
     #endif
 }
 
-func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAttributedString.Key, value: T, file: StaticString = #file, line: UInt = #line) {
+func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAttributedString.Key, value: T, file: StaticString = #filePath, line: UInt = #line) {
     guard let dictionaryValue = dictionary?[key] as? T else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -33,7 +33,7 @@ func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAtt
     XCTAssert(dictionaryValue == value, "\(key): \(dictionaryValue) != \(value)", file: file, line: line)
 }
 
-func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributedString.Key, color controlColor: BONColor, file: StaticString = #file, line: UInt = #line) {
+func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributedString.Key, color controlColor: BONColor, file: StaticString = #filePath, line: UInt = #line) {
     guard let testColor = dictionary?[key] as? BONColor else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -48,7 +48,7 @@ func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributed
     XCTAssertEqual(testComps.a, controlComps.a, accuracy: 0.0001)
 }
 
-func BONAssert<T>(attributes dictionary: StyleAttributes?, key: NSAttributedString.Key, float: T, accuracy: T, file: StaticString = #file, line: UInt = #line) where T: FloatingPoint {
+func BONAssert<T>(attributes dictionary: StyleAttributes?, key: NSAttributedString.Key, float: T, accuracy: T, file: StaticString = #filePath, line: UInt = #line) where T: FloatingPoint {
     guard let dictionaryValue = dictionary?[key] as? T else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -56,7 +56,7 @@ func BONAssert<T>(attributes dictionary: StyleAttributes?, key: NSAttributedStri
     XCTAssertEqual(dictionaryValue, float, accuracy: accuracy, file: file, line: line)
 }
 
-func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (BONFont) -> T, float: T, accuracy: T = T(0.001), file: StaticString = #file, line: UInt = #line) where T: BinaryFloatingPoint {
+func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (BONFont) -> T, float: T, accuracy: T = T(0.001), file: StaticString = #filePath, line: UInt = #line) where T: BinaryFloatingPoint {
     guard let font = dictionary?[.font] as? BONFont else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -65,7 +65,7 @@ func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (BONFont) -> T
     XCTAssertEqual(value, float, accuracy: accuracy, file: file, line: line)
 }
 
-func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, float: T, accuracy: T = T(0.001), file: StaticString = #file, line: UInt = #line) where T: BinaryFloatingPoint {
+func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, float: T, accuracy: T = T(0.001), file: StaticString = #filePath, line: UInt = #line) where T: BinaryFloatingPoint {
     guard let paragraphStyle = dictionary?[.paragraphStyle] as? NSParagraphStyle else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -74,7 +74,7 @@ func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (NSParagraphSt
     XCTAssertEqual(actualValue, float, accuracy: accuracy, file: file, line: line)
 }
 
-func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, value: T, file: StaticString = #file, line: UInt = #line) where T: Equatable {
+func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (NSParagraphStyle) -> T, value: T, file: StaticString = #filePath, line: UInt = #line) where T: Equatable {
     guard let paragraphStyle = dictionary?[.paragraphStyle] as? NSParagraphStyle else {
         XCTFail("value is not of expected type", file: file, line: line)
         return
@@ -83,19 +83,19 @@ func BONAssert<T>(attributes dictionary: StyleAttributes?, query: (NSParagraphSt
     XCTAssertEqual(value, actualValue, file: file, line: line)
 }
 
-func BONAssertEqualImages(_ image1: BONImage, _ image2: BONImage, file: StaticString = #file, line: UInt = #line) {
+func BONAssertEqualImages(_ image1: BONImage, _ image2: BONImage, file: StaticString = #filePath, line: UInt = #line) {
     let data1 = dataFromImage(image: image1)
     let data2 = dataFromImage(image: image2)
     XCTAssertEqual(data1, data2, file: file, line: line)
 }
 
-func BONAssertNotEqualImages(_ image1: BONImage, _ image2: BONImage, file: StaticString = #file, line: UInt = #line) {
+func BONAssertNotEqualImages(_ image1: BONImage, _ image2: BONImage, file: StaticString = #filePath, line: UInt = #line) {
     let data1 = dataFromImage(image: image1)
     let data2 = dataFromImage(image: image2)
     XCTAssertNotEqual(data1, data2, file: file, line: line)
 }
 
-func BONAssertEqualFonts(_ font1: BONFont, _ font2: BONFont, _ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) {
+func BONAssertEqualFonts(_ font1: BONFont, _ font2: BONFont, _ message: @autoclosure () -> String = "", file: StaticString = #filePath, line: UInt = #line) {
     let descriptor1 = font1.fontDescriptor
     let descriptor2 = font2.fontDescriptor
 

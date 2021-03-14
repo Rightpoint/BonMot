@@ -30,7 +30,7 @@ class TransformTests: XCTestCase {
                 ]))
     }
 
-    func assertCorrectColors(inSubstrings substrings: [(substring: String, color: BONColor)], in string: NSAttributedString, file: StaticString = #file, line: UInt = #line) {
+    func assertCorrectColors(inSubstrings substrings: [(substring: String, color: BONColor)], in string: NSAttributedString, file: StaticString = #filePath, line: UInt = #line) {
         // Confirm that lengths and strings match
 
         let reconstructed = substrings.reduce("") { $0 + $1.substring }
