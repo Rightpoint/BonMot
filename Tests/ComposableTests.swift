@@ -139,6 +139,7 @@ class ComposableTests: XCTestCase {
         check(forPart: .lineHeightMultiple(10), { $0.lineHeightMultiple }, 10)
         check(forPart: .paragraphSpacingBefore(10), { $0.paragraphSpacingBefore }, 10)
         check(forPart: .hyphenationFactor(10), { $0.hyphenationFactor }, 10)
+        check(forPart: .allowsDefaultTighteningForTruncation(true), { $0.allowsDefaultTighteningForTruncation }, true)
     }
 
     func testInitialParagraphStyle() {

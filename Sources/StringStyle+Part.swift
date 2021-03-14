@@ -69,6 +69,7 @@ extension StringStyle {
         case baseWritingDirection(NSWritingDirection)
         case lineHeightMultiple(CGFloat)
         case paragraphSpacingBefore(CGFloat)
+        case allowsDefaultTighteningForTruncation(Bool)
 
         /// Values from 0 to 1 will result in varying levels of hyphenation,
         /// with higher values resulting in more aggressive (i.e. more frequent)
@@ -221,6 +222,8 @@ extension StringStyle {
             self.emphasis = emphasis
         case let .hyphenationFactor(hyphenationFactor):
             self.hyphenationFactor = hyphenationFactor
+        case let .allowsDefaultTighteningForTruncation(allowsDefaultTighteningForTruncation):
+            self.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
         #if os(iOS) || os(tvOS) || os(watchOS)
             case let .speaksPunctuation(speaksPunctuation):
                 self.speaksPunctuation = speaksPunctuation

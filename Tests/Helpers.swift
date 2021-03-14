@@ -127,6 +127,7 @@ let fullStyle: StringStyle = {
     fullStyle.lineHeightMultiple = terribleValue
     fullStyle.paragraphSpacingBefore = terribleValue
     fullStyle.hyphenationFactor = Float(terribleValue)
+    fullStyle.allowsDefaultTighteningForTruncation = true
 
     #if os(iOS) || os(tvOS) || os(OSX)
         fullStyle.fontFeatureProviders = [NumberCase.upper, NumberSpacing.proportional, VerticalPosition.superscript]

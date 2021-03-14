@@ -585,7 +585,8 @@ class StringStyleTests: XCTestCase {
             .baseWritingDirection(.leftToRight),
             .lineHeightMultiple(10),
             .paragraphSpacingBefore(10),
-            .hyphenationFactor(10)
+            .hyphenationFactor(10),
+            .allowsDefaultTighteningForTruncation(true)
             )
         for (index, check) in StringStyleTests.floatingPointProperties.enumerated() {
             let line = UInt(StringStyleTests.floatingPointPropertiesLine + 2 + index)
@@ -594,6 +595,7 @@ class StringStyleTests: XCTestCase {
         BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
         BONAssert(attributes: style.attributes, query: { $0.lineBreakMode }, value: .byClipping)
         BONAssert(attributes: style.attributes, query: { $0.baseWritingDirection }, value: .leftToRight)
+        BONAssert(attributes: style.attributes, query: { $0.allowsDefaultTighteningForTruncation }, value: true)
     }
 
     func testParagraphStyleAdd() {
@@ -610,7 +612,8 @@ class StringStyleTests: XCTestCase {
             .baseWritingDirection(.natural),
             .lineHeightMultiple(1),
             .paragraphSpacingBefore(1),
-            .hyphenationFactor(1)
+            .hyphenationFactor(1),
+            .allowsDefaultTighteningForTruncation(false)
             )
         style.add(stringStyle: StringStyle(
             .lineSpacing(10),
@@ -625,7 +628,8 @@ class StringStyleTests: XCTestCase {
             .baseWritingDirection(.leftToRight),
             .lineHeightMultiple(10),
             .paragraphSpacingBefore(10),
-            .hyphenationFactor(10)
+            .hyphenationFactor(10),
+            .allowsDefaultTighteningForTruncation(true)
             ))
         for (index, check) in StringStyleTests.floatingPointProperties.enumerated() {
             let line = UInt(StringStyleTests.floatingPointPropertiesLine + 2 + index)
@@ -634,6 +638,7 @@ class StringStyleTests: XCTestCase {
         BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
         BONAssert(attributes: style.attributes, query: { $0.lineBreakMode }, value: .byClipping)
         BONAssert(attributes: style.attributes, query: { $0.baseWritingDirection }, value: .leftToRight)
+        BONAssert(attributes: style.attributes, query: { $0.allowsDefaultTighteningForTruncation }, value: true)
     }
 
     func testAdobeTracking() {
