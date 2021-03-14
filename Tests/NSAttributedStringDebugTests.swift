@@ -18,7 +18,7 @@ class NSAttributedStringDebugTests: XCTestCase {
     #endif
 
     func testSpecialFromUnicodeScalar() {
-        let enDash = Special(rawValue: UnicodeScalar("\u{2013}"))
+        let enDash = Special(rawValue: "\u{2013}")
         XCTAssertEqual(enDash, Special.enDash)
     }
 

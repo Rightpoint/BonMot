@@ -30,7 +30,7 @@ extension NSAttributedString {
 
         for unicode in scalars {
             let replacementString: String?
-            switch Special(rawValue: unicode) {
+            switch Special(rawValue: String(unicode)) {
             case .space?:
                 replacementString = nil
             case .objectReplacementCharacter?:

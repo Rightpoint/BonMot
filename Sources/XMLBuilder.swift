@@ -96,7 +96,7 @@ extension Special {
 
     /// Rules describing how to insert values from `Special` into attributed strings.
     public static var insertionRules: [XMLStyleRule] {
-        let rulePairs: [[XMLStyleRule]] = all.map {
+        let rulePairs: [[XMLStyleRule]] = allCases.map {
             let elementName = "BON:\($0.name)"
             // Add the insertion rule and a style rule so we don't look up the style and generate a warning
             return [XMLStyleRule.enter(element: elementName, insert: $0), XMLStyleRule.style(elementName, StringStyle())]
