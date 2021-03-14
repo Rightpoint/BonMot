@@ -9,7 +9,7 @@
 import Foundation
 
 /// Defines a transformation to be performed on an `NSMutableAttributedString`.
-/// It is used for adative transformations that need to know about the content
+/// It is used for adaptive transformations that need to know about the content
 /// of the string in order to be performed. These are applied after the
 /// `AdaptiveStyleTransformation`s are applied.
 internal protocol AttributedStringTransformation {

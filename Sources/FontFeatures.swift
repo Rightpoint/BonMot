@@ -91,7 +91,7 @@
         /// will line up when arranged in columns.
         case monospaced
 
-        /// Proportionally spaced numbers, also known as "proprotional figures",
+        /// Proportionally spaced numbers, also known as "proportional figures",
         /// are of variable width. This makes them look better in most cases,
         /// but they should be avoided when numbers need to line up in columns.
         case proportional
@@ -115,12 +115,12 @@
 
         /// Diagonal Fractions, when written on paper, are written on one line
         /// with the numerator diagonally above and to the left of the
-        /// demoninator, with the slash ("/") between them.
+        /// denominator, with the slash ("/") between them.
         case diagonal
 
         /// Vertical Fractions, when written on paper, are written on one line
         /// with the numerator directly above the
-        /// demoninator, with a line lying horizontally between them.
+        /// denominator, with a line lying horizontally between them.
         case vertical
 
         public func featureSettings() -> [(type: Int, selector: Int)] {
@@ -143,7 +143,7 @@
         /// No vertical position adjustment is applied.
         case normal
 
-        /// Superscript (superior) glpyh variants are used, as in footnotes¹.
+        /// Superscript (superior) glyph variants are used, as in footnotes¹.
         case superscript
 
         /// Subscript (inferior) glyph variants are used: vₑ.

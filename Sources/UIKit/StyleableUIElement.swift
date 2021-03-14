@@ -125,7 +125,7 @@ extension UITextView {
 
     /// A string style. Stored via associated objects.
     /// - note: The style is applied to both the `attributedText` and
-    /// `typingAtributes`. If you plan on styling them differently, use
+    /// `typingAttributes`. If you plan on styling them differently, use
     /// attributed strings directly.
     public final var bonMotStyle: StringStyle? {
         get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }

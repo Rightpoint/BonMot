@@ -218,7 +218,7 @@ extension UIToolbar {
 // MARK: - AdaptableTextContainer for UIViewController
 extension UIViewController {
 
-    /// Adapt the attributed text of teh bar items in the navigation item or in
+    /// Adapt the attributed text of the bar items in the navigation item or in
     /// the toolbar to the specified trait collection.
     ///
     /// - parameter traitCollection: The new trait collection.
@@ -246,7 +246,7 @@ extension UIBarItem {
     /// Adapt `titleTextAttributes` to the specified trait collection.
     ///
     /// - note: This extension does not conform to `AdaptableTextContainer`
-    /// because `UIBarIterm` is not a view or view controller.
+    /// because `UIBarItem` is not a view or view controller.
     /// - parameter traitCollection: the new trait collection.
     @objc(bon_updateTextForTraitCollection:)
     public func adaptText(forTraitCollection traitCollection: UITraitCollection) {

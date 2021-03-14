@@ -29,7 +29,7 @@ class StyleViewController: UITableViewController {
         ("Baseline Offset", [DemoStrings.heartsExample]),
         ("Indentation", DemoStrings.indentationExamples),
         ("Advanced XML and Kerning", [DemoStrings.advancedXMLAndKerningExample]),
-        ("Dynamic Type", [DemoStrings.dynamcTypeUIKitExample, DemoStrings.preferredFontsExample]),
+        ("Dynamic Type", [DemoStrings.dynamicTypeUIKitExample, DemoStrings.preferredFontsExample]),
         ("OpenType Features", [
             DemoStrings.figureStylesExample,
             DemoStrings.ordinalsExample,
