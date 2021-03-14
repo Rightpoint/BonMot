@@ -73,7 +73,9 @@ extension StringStyle {
 // MARK: - Deprecations
 extension NSAttributedString {
 
-    @available(*, deprecated, renamed: "adapted(to:)") public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
+    // Deprecated - search the code and remove other deprecations when you remove this
+    @available(*, deprecated, renamed: "adapted(to:)")
+    public final func adapt(to traitCollection: UITraitCollection) -> NSAttributedString {
         return adapted(to: traitCollection)
     }
 
