@@ -127,19 +127,19 @@ class ComposableTests: XCTestCase {
             XCTAssertEqual(value, expected, line: line)
         }
 
-        check(forPart: .paragraphSpacingAfter(10), { $0.paragraphSpacing }, 10)
-        check(forPart: .alignment(.center), { $0.alignment }, .center)
-        check(forPart: .firstLineHeadIndent(10), { $0.firstLineHeadIndent }, 10)
-        check(forPart: .headIndent(10), { $0.headIndent }, 10)
-        check(forPart: .tailIndent(10), { $0.tailIndent }, 10)
-        check(forPart: .lineBreakMode(.byClipping), { $0.lineBreakMode }, .byClipping)
-        check(forPart: .minimumLineHeight(10), { $0.minimumLineHeight }, 10)
-        check(forPart: .maximumLineHeight(10), { $0.maximumLineHeight }, 10)
-        check(forPart: .baseWritingDirection(.leftToRight), { $0.baseWritingDirection }, .leftToRight)
-        check(forPart: .lineHeightMultiple(10), { $0.lineHeightMultiple }, 10)
-        check(forPart: .paragraphSpacingBefore(10), { $0.paragraphSpacingBefore }, 10)
-        check(forPart: .hyphenationFactor(10), { $0.hyphenationFactor }, 10)
-        check(forPart: .allowsDefaultTighteningForTruncation(true), { $0.allowsDefaultTighteningForTruncation }, true)
+        check(forPart: .paragraphSpacingAfter(10), \.paragraphSpacing, 10)
+        check(forPart: .alignment(.center), \.alignment, .center)
+        check(forPart: .firstLineHeadIndent(10), \.firstLineHeadIndent, 10)
+        check(forPart: .headIndent(10), \.headIndent, 10)
+        check(forPart: .tailIndent(10), \.tailIndent, 10)
+        check(forPart: .lineBreakMode(.byClipping), \.lineBreakMode, .byClipping)
+        check(forPart: .minimumLineHeight(10), \.minimumLineHeight, 10)
+        check(forPart: .maximumLineHeight(10), \.maximumLineHeight, 10)
+        check(forPart: .baseWritingDirection(.leftToRight), \.baseWritingDirection, .leftToRight)
+        check(forPart: .lineHeightMultiple(10), \.lineHeightMultiple, 10)
+        check(forPart: .paragraphSpacingBefore(10), \.paragraphSpacingBefore, 10)
+        check(forPart: .hyphenationFactor(10), \.hyphenationFactor, 10)
+        check(forPart: .allowsDefaultTighteningForTruncation(true), \.allowsDefaultTighteningForTruncation, true)
     }
 
     func testInitialParagraphStyle() {

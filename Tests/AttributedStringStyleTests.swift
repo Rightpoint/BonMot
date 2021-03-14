@@ -153,7 +153,7 @@ class StringStyleTests: XCTestCase {
         let style = StringStyle(.alignment(.center))
         for (style, fullStyle) in additiviePermutations(for: style) {
             XCTAssertTrue(fullStyle == true || style.attributes.count == 1)
-            BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
+            BONAssert(attributes: style.attributes, query: \.alignment, value: .center)
         }
     }
 
@@ -558,15 +558,15 @@ class StringStyleTests: XCTestCase {
     static let floatingPointPropertiesLine = #line
     static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
         //swiftlint:disable opening_brace
-        { $0.lineSpacing },
-        { $0.paragraphSpacing },
-        { $0.headIndent },
-        { $0.tailIndent },
-        { $0.firstLineHeadIndent },
-        { $0.minimumLineHeight },
-        { $0.maximumLineHeight },
-        { $0.lineHeightMultiple },
-        { $0.paragraphSpacingBefore },
+        \.lineSpacing,
+        \.paragraphSpacing,
+        \.headIndent,
+        \.tailIndent,
+        \.firstLineHeadIndent,
+        \.minimumLineHeight,
+        \.maximumLineHeight,
+        \.lineHeightMultiple,
+        \.paragraphSpacingBefore,
         { CGFloat($0.hyphenationFactor) },
         //swiftlint:enable opening_brace
     ]
@@ -592,10 +592,10 @@ class StringStyleTests: XCTestCase {
             let line = UInt(StringStyleTests.floatingPointPropertiesLine + 2 + index)
             BONAssert(attributes: style.attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
-        BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
-        BONAssert(attributes: style.attributes, query: { $0.lineBreakMode }, value: .byClipping)
-        BONAssert(attributes: style.attributes, query: { $0.baseWritingDirection }, value: .leftToRight)
-        BONAssert(attributes: style.attributes, query: { $0.allowsDefaultTighteningForTruncation }, value: true)
+        BONAssert(attributes: style.attributes, query: \.alignment, value: .center)
+        BONAssert(attributes: style.attributes, query: \.lineBreakMode, value: .byClipping)
+        BONAssert(attributes: style.attributes, query: \.baseWritingDirection, value: .leftToRight)
+        BONAssert(attributes: style.attributes, query: \.allowsDefaultTighteningForTruncation, value: true)
     }
 
     func testParagraphStyleAdd() {
@@ -635,10 +635,10 @@ class StringStyleTests: XCTestCase {
             let line = UInt(StringStyleTests.floatingPointPropertiesLine + 2 + index)
             BONAssert(attributes: style.attributes, query: check, float: 10, accuracy: 0.001, line: line)
         }
-        BONAssert(attributes: style.attributes, query: { $0.alignment }, value: .center)
-        BONAssert(attributes: style.attributes, query: { $0.lineBreakMode }, value: .byClipping)
-        BONAssert(attributes: style.attributes, query: { $0.baseWritingDirection }, value: .leftToRight)
-        BONAssert(attributes: style.attributes, query: { $0.allowsDefaultTighteningForTruncation }, value: true)
+        BONAssert(attributes: style.attributes, query: \.alignment, value: .center)
+        BONAssert(attributes: style.attributes, query: \.lineBreakMode, value: .byClipping)
+        BONAssert(attributes: style.attributes, query: \.baseWritingDirection, value: .leftToRight)
+        BONAssert(attributes: style.attributes, query: \.allowsDefaultTighteningForTruncation, value: true)
     }
 
     func testAdobeTracking() {
