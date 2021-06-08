@@ -174,7 +174,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
     }
 
     func testBONXML() {
-        for value in Special.all {
+        for value in Special.allCases {
             let xmlString = "this<BON:\(value.name)/>should embed a special character"
             let xmlAttributedString = try? NSAttributedString.composed(ofXML: xmlString)
             XCTAssertEqual(xmlAttributedString?.string, "this\(value)should embed a special character")
