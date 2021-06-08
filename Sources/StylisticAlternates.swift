@@ -209,7 +209,7 @@
 
     extension StylisticAlternates: FontFeatureProvider {
 
-        //swiftlint:disable:next cyclomatic_complexity
+        // swiftlint:disable:next cyclomatic_complexity
         public func featureSettings() -> [(type: Int, selector: Int)] {
             var selectors = [Int]()
 

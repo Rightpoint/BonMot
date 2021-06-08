@@ -375,7 +375,7 @@ public extension StringStyle {
 
 extension NSParagraphStyle {
 
-    //swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable cyclomatic_complexity
     /// Update the passed `NSParagraphStyle`'s properties with the value in this
     /// the receiver (only if the supplied `NSParagraphStyle`'s value for a
     /// given property is the default value).
@@ -402,7 +402,7 @@ extension NSParagraphStyle {
         if paragraph.allowsDefaultTighteningForTruncation == defaults.allowsDefaultTighteningForTruncation { paragraph.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation }
         return paragraph
     }
-    //swiftlint:enable cyclomatic_complexity
+    // swiftlint:enable cyclomatic_complexity
 
 }
 

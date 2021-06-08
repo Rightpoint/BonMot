@@ -16,7 +16,7 @@ import XCTest
 let defaultTraitCollection = UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.large)
 
 // These tests rely on iOS 10.0 APIs. Test method needs to be updated to run on iOS 9.0
-//swiftlint:disable type_body_length
+// swiftlint:disable type_body_length
 @available(iOS 10.0, *)
 class AdaptiveStyleTests: XCTestCase {
 
@@ -293,7 +293,7 @@ class AdaptiveStyleTests: XCTestCase {
             }
         }
     }
-    //swiftlint:enable function_body_length
+    // swiftlint:enable function_body_length
 
     func testTabAdaptation() {
         func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {

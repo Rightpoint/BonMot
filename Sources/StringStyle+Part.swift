@@ -156,8 +156,8 @@ extension StringStyle {
         return style
     }
 
-    //swiftlint:disable function_body_length
-    //swiftlint:disable cyclomatic_complexity
+    // swiftlint:disable function_body_length
+    // swiftlint:disable cyclomatic_complexity
     /// Update the style with the specified style part.
     ///
     /// - Parameter stylePart: The style part with which to update the receiver.
@@ -224,53 +224,53 @@ extension StringStyle {
             self.hyphenationFactor = hyphenationFactor
         case let .allowsDefaultTighteningForTruncation(allowsDefaultTighteningForTruncation):
             self.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
-        #if os(iOS) || os(tvOS) || os(watchOS)
-            case let .speaksPunctuation(speaksPunctuation):
-                self.speaksPunctuation = speaksPunctuation
-            case let .speakingLanguage(speakingLanguage):
-                self.speakingLanguage = speakingLanguage
-            case let .speakingPitch(speakingPitch):
-                self.speakingPitch = speakingPitch
-            case let .speakingPronunciation(speakingPronunciation):
-                self.speakingPronunciation = speakingPronunciation
-            case let .shouldQueueSpeechAnnouncement(shouldQueueSpeechAnnouncement):
-                self.shouldQueueSpeechAnnouncement = shouldQueueSpeechAnnouncement
-            case let .headingLevel(headingLevel):
-                self.headingLevel = headingLevel
-        #endif
-        #if os(OSX) || os(iOS) || os(tvOS)
-            case let .numberCase(numberCase):
-                self.numberCase = numberCase
-            case let .numberSpacing(numberSpacing):
-                self.numberSpacing = numberSpacing
-            case let .fractions(fractions):
-                self.fractions = fractions
-            case let .superscript(superscript):
-                self.superscript = superscript
-            case let .`subscript`(`subscript`):
-                self.`subscript` = `subscript`
-            case let .ordinals(ordinals):
-                self.ordinals = ordinals
-            case let .scientificInferiors(scientificInferiors):
-                self.scientificInferiors = scientificInferiors
-            case let .smallCaps(smallCaps):
-                self.smallCaps.insert(smallCaps)
-            case let .stylisticAlternates(stylisticAlternates):
-                self.stylisticAlternates.add(other: stylisticAlternates)
-            case let .contextualAlternates(contextualAlternates):
-                self.contextualAlternates.add(other: contextualAlternates)
-            case let .fontFeature(featureProvider):
-                self.fontFeatureProviders.append(featureProvider)
-        #endif
-        #if os(iOS) || os(tvOS)
-            case let .adapt(style):
-                self.adaptations.append(style)
-            case let .textStyle(textStyle):
-                self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
-        #endif
+#if os(iOS) || os(tvOS) || os(watchOS)
+        case let .speaksPunctuation(speaksPunctuation):
+            self.speaksPunctuation = speaksPunctuation
+        case let .speakingLanguage(speakingLanguage):
+            self.speakingLanguage = speakingLanguage
+        case let .speakingPitch(speakingPitch):
+            self.speakingPitch = speakingPitch
+        case let .speakingPronunciation(speakingPronunciation):
+            self.speakingPronunciation = speakingPronunciation
+        case let .shouldQueueSpeechAnnouncement(shouldQueueSpeechAnnouncement):
+            self.shouldQueueSpeechAnnouncement = shouldQueueSpeechAnnouncement
+        case let .headingLevel(headingLevel):
+            self.headingLevel = headingLevel
+#endif
+#if os(OSX) || os(iOS) || os(tvOS)
+        case let .numberCase(numberCase):
+            self.numberCase = numberCase
+        case let .numberSpacing(numberSpacing):
+            self.numberSpacing = numberSpacing
+        case let .fractions(fractions):
+            self.fractions = fractions
+        case let .superscript(superscript):
+            self.superscript = superscript
+        case let .`subscript`(`subscript`):
+            self.`subscript` = `subscript`
+        case let .ordinals(ordinals):
+            self.ordinals = ordinals
+        case let .scientificInferiors(scientificInferiors):
+            self.scientificInferiors = scientificInferiors
+        case let .smallCaps(smallCaps):
+            self.smallCaps.insert(smallCaps)
+        case let .stylisticAlternates(stylisticAlternates):
+            self.stylisticAlternates.add(other: stylisticAlternates)
+        case let .contextualAlternates(contextualAlternates):
+            self.contextualAlternates.add(other: contextualAlternates)
+        case let .fontFeature(featureProvider):
+            self.fontFeatureProviders.append(featureProvider)
+#endif
+#if os(iOS) || os(tvOS)
+        case let .adapt(style):
+            self.adaptations.append(style)
+        case let .textStyle(textStyle):
+            self.font = UIFont.bon_preferredFont(forTextStyle: textStyle, compatibleWith: nil)
+#endif
         }
     }
-    //swiftlint:enable function_body_length
-    //swiftlint:enable cyclomatic_complexity
+    // swiftlint:enable function_body_length
+    // swiftlint:enable cyclomatic_complexity
 
 }
