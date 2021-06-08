@@ -27,8 +27,8 @@
     public typealias BONFontDescriptor = UIFontDescriptor
     public typealias BONSymbolicTraits = UIFontDescriptor.SymbolicTraits
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
-    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
-    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
+    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.type
+    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.selector
 
     #if os(iOS) || os(tvOS)
         public typealias BONTextField = UITextField

@@ -9,6 +9,9 @@
 @testable import BonMot
 import XCTest
 
+// Override Foundation's StringStyle from iOS 15+, macOS 12+, tvOS 15+, watchOS 8+.
+typealias StringStyle = BonMot.StringStyle
+
 #if os(OSX)
 #else
     import UIKit
