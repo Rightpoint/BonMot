@@ -9,7 +9,7 @@
 import BonMot
 import UIKit
 
-//swiftlint:disable type_body_length file_length
+// swiftlint:disable type_body_length file_length
 enum DemoStrings {
 
     // A Simple Example
@@ -434,7 +434,7 @@ enum DemoStrings {
     }()
 
 }
-//swiftlint:enable type_body_length
+// swiftlint:enable type_body_length
 
 extension DemoStrings {
 
@@ -450,4 +450,4 @@ extension DemoStrings {
 
 }
 
-//swiftlint:enable file_length
+// swiftlint:enable file_length

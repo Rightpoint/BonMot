@@ -11,7 +11,7 @@ import UIKit
 
 /// UITableViewCell's built in labels are re-created when the content size
 /// category changes, so we use a cell subclass with a custom label to avoid this.
-class MasterTableViewCell: UITableViewCell {
+class BaseTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel?
 
@@ -51,7 +51,7 @@ class StyleViewController: UITableViewController {
     }
 
     func cell(at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StyleCell", for: indexPath) as? MasterTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StyleCell", for: indexPath) as? BaseTableViewCell else {
             fatalError("Misconfigured VC")
         }
         let attributedText = styles[indexPath.section].1[indexPath.row]

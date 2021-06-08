@@ -10,8 +10,8 @@
 import CoreText
 import XCTest
 
-//swiftlint:disable file_length
-//swiftlint:disable:next type_body_length
+// swiftlint:disable file_length
+// swiftlint:disable:next type_body_length
 class StringStyleTests: XCTestCase {
 
     override func setUp() {
@@ -557,7 +557,7 @@ class StringStyleTests: XCTestCase {
 
     static let floatingPointPropertiesLine = #line
     static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
-        //swiftlint:disable opening_brace
+        // swiftlint:disable opening_brace
         \.lineSpacing,
         \.paragraphSpacing,
         \.headIndent,
@@ -568,7 +568,7 @@ class StringStyleTests: XCTestCase {
         \.lineHeightMultiple,
         \.paragraphSpacingBefore,
         { CGFloat($0.hyphenationFactor) },
-        //swiftlint:enable opening_brace
+        // swiftlint:enable opening_brace
     ]
 
     func testParagraphStyles() {
@@ -768,4 +768,4 @@ private extension StringStyleTests {
 
 }
 
-//swiftlint:enable file_length
+// swiftlint:enable file_length

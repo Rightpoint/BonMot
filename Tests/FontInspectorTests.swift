@@ -29,7 +29,7 @@ class FontInspectorTests: XCTestCase {
         XCTAssertTrue(garamond.has(feature: NumberCase.lower))
     }
 
-    //swiftlint:disable function_body_length
+    // swiftlint:disable function_body_length
     /// This test is disabled on macOS because, although it works locally,
     /// the font reports _slightly_ different feature availability on the build
     /// machine. Perhaps it is installed on the build machine? Possible fix: use
@@ -121,6 +121,6 @@ class FontInspectorTests: XCTestCase {
             ].joined(separator: "\n")
         XCTAssertEqual(garamond.availableFontFeatures(includeIdentifiers: false), garamondControlString)
     }
-    //swiftlint:enable function_body_length
+    // swiftlint:enable function_body_length
 
 }
