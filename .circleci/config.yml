@@ -59,6 +59,7 @@ jobs:
     steps:
       - setup
       - run: swift build
+      - run: swift test
 
   test-swift-5-0:
     executor: xcode-12
@@ -69,16 +70,6 @@ jobs:
       - run: bundle exec fastlane test_all
       - lint-pod:
           swift-version: "5.0"
-
-  test-swift-4-2:
-    executor: xcode-12
-    environment:
-      SWIFT_VERSION: "4.2"
-    steps:
-      - setup
-      - run: bundle exec fastlane test_all
-      - lint-pod:
-          swift-version: "4.2"
 
   carthage-build:
     executor: xcode-12
@@ -156,10 +147,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test-swift-4-2:
-          filters:
-            tags:
-              only: /.*/
       - carthage-build:
           filters:
             tags:
@@ -170,7 +157,6 @@ workflows:
             - danger
             - build-swift-package
             - test-swift-5-0
-            - test-swift-4-2
             - carthage-build
           filters:
             tags:
