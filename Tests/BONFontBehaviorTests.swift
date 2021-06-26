@@ -47,8 +47,8 @@ class BONFontBehaviorTests: XCTestCase {
         var attributes = UIFont(name: "Avenir-Roman", size: 10)!.fontDescriptor.fontAttributes
         attributes[UIFontDescriptor.AttributeName.featureSettings] = [
             [
-                UIFontDescriptor.FeatureKey.type: 1,
-                UIFontDescriptor.FeatureKey.selector: 1,
+                UIFontDescriptor.FeatureKey.featureIdentifier: 1,
+                UIFontDescriptor.FeatureKey.typeIdentifier: 1,
             ],
         ]
         attributes[UIFontDescriptor.AttributeName.textStyle] = "Test"

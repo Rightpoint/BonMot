@@ -9,6 +9,14 @@
 @testable import BonMot
 import XCTest
 
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
+#if canImport(UIKit) || canImport(AppKit)
+
 class ComposableTests: XCTestCase {
 
     #if os(OSX)
@@ -233,3 +241,5 @@ class ComposableTests: XCTestCase {
         }
     }
 }
+
+#endif

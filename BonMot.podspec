@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name             = "BonMot"
-  s.version          = "5.6.0"
+  s.version          = "6.0.0"
   s.summary          = "Beautiful, easy attributed strings in Swift"
-  s.swift_versions    = ["4.2", "5.0"]
+  s.swift_versions    = ["5.0"]
   s.description      = <<-DESC
   BonMot removes all the mystery from creating beautiful, powerful attributed strings in Swift.
                        DESC
@@ -13,10 +13,10 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/ZevEisenberg'
   s.requires_arc = true
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.ios.source_files = 'Sources/**/*.swift'
 
-  s.tvos.deployment_target = '10.0'
+  s.tvos.deployment_target = '11.0'
   s.tvos.source_files = 'Sources/**/*.swift'
 
   s.osx.deployment_target = '10.11'

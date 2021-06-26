@@ -8,6 +8,7 @@
 
 @testable import BonMot
 import XCTest
+import Foundation
 
 // Override Foundation's StringStyle from iOS 15+, macOS 12+, tvOS 15+, watchOS 8+.
 typealias StringStyle = BonMot.StringStyle
@@ -21,8 +22,12 @@ typealias StringStyle = BonMot.StringStyle
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #endif
 
+#if SWIFT_PACKAGE
+let testBundle = Bundle.module
+#else
 class DummyClassForTests {}
 let testBundle = Bundle(for: DummyClassForTests.self)
+#endif
 
 extension BONColor {
 
@@ -163,7 +168,7 @@ class EBGaramondLoader: NSObject {
     // Source: http://stackoverflow.com/questions/14735522/can-i-embed-a-custom-font-in-a-bundle-and-access-it-from-an-ios-framework
     // Method: https://marco.org/2012/12/21/ios-dynamic-font-loading
     private static var loadFont: Void = {
-        guard let path = Bundle(for: EBGaramondLoader.self).path(forResource: "EBGaramond12-Regular", ofType: "otf"),
+        guard let path = testBundle.path(forResource: "EBGaramond12-Regular", ofType: "otf"),
             let data = NSData(contentsOfFile: path)
             else {
                 fatalError("Can not load EBGaramond12")

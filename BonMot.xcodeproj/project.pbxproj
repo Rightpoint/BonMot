@@ -265,8 +265,8 @@
 		AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tab+Adaptive.swift"; path = "UIKit/Tab+Adaptive.swift"; sourceTree = "<group>"; };
 		AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tracking+Adaptive.swift"; path = "UIKit/Tracking+Adaptive.swift"; sourceTree = "<group>"; };
 		AB9C18D11D9975CE00A54787 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
-		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "EBGaramond12-Regular.otf"; path = "../Tests/Resources/EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
+		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Tests/Resources/Images.xcassets; sourceTree = "<group>"; };
 		ABA75DEA1D99E10400B64705 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA75E091D99E43300B64705 /* Tracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		ABC7774B1DC29F3000815FB9 /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };

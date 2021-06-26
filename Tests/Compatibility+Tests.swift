@@ -17,8 +17,8 @@ import BonMot
 #else
     import UIKit
     let BONFontDescriptorFeatureSettingsAttribute = UIFontDescriptor.AttributeName.featureSettings
-    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.type
-    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.selector
+    let BONFontFeatureTypeIdentifierKey = UIFontDescriptor.FeatureKey.featureIdentifier
+    let BONFontFeatureSelectorIdentifierKey = UIFontDescriptor.FeatureKey.typeIdentifier
     typealias BONView = UIView
 #endif
 
@@ -37,24 +37,3 @@ extension BONFontDescriptor.AttributeName: ExpressibleByStringLiteral {
     }
 
 }
-
-#if os(OSX)
-    #if swift(>=4.2)
-    #else
-        extension NSImage.Name: ExpressibleByStringLiteral {
-
-            public init(stringLiteral value: String) {
-                self.init(value)
-            }
-
-        }
-
-        extension Bundle {
-
-            func image(forResource resource: String) -> NSImage? {
-                return image(forResource: NSImage.Name(resource))
-            }
-
-        }
-    #endif
-#endif

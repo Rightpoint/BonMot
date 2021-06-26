@@ -17,11 +17,7 @@ func dataFromImage(image theImage: BONImage) -> Data {
         let pngData = bitmapImageRep.representation(using: .png, properties: [:])!
         return pngData
     #else
-        #if swift(>=4.2)
-            return theImage.pngData()!
-        #else
-            return UIImagePNGRepresentation(theImage)!
-        #endif
+        return theImage.pngData()!
     #endif
 }
 
