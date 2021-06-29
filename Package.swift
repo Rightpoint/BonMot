@@ -31,7 +31,7 @@ let package = Package(
                 "Info.plist",
                 "BonMot-iOSTests.xctestplan", // *.xctestplan didn't seem to work
                 "BonMot-OSXTests.xctestplan",
-                "BonMot-tvOSTests.xctestplan"
+                "BonMot-tvOSTests.xctestplan",
             ],
             resources: [
                 .process("Resources"),

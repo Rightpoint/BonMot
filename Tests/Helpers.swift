@@ -7,8 +7,8 @@
 //
 
 @testable import BonMot
-import XCTest
 import Foundation
+import XCTest
 
 // Override Foundation's StringStyle from iOS 15+, macOS 12+, tvOS 15+, watchOS 8+.
 typealias StringStyle = BonMot.StringStyle
@@ -21,7 +21,6 @@ typealias StringStyle = BonMot.StringStyle
     @available(iOS 10.0, tvOS 10.0, *)
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #endif
-
 
 let testBundle: Bundle = {
     #if SWIFT_PACKAGE

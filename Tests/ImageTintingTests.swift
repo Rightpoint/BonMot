@@ -92,7 +92,7 @@ class ImageTintingTests: XCTestCase {
         #if os(iOS)
         try XCTSkipIf(true, "No longer working for iOS targets")
         #endif
-        
+
         let imageForTest = try logoImage()
 
         let untintedString = NSAttributedString.composed(of: [
