@@ -22,12 +22,17 @@ typealias StringStyle = BonMot.StringStyle
     let largeTraitCollection = UITraitCollection(preferredContentSizeCategory: .large)
 #endif
 
-#if SWIFT_PACKAGE
-let testBundle = Bundle.module
-#else
-class DummyClassForTests {}
-let testBundle = Bundle(for: DummyClassForTests.self)
-#endif
+
+let testBundle: Bundle = {
+    #if SWIFT_PACKAGE
+    let testBundle = Bundle.module
+    #else
+    class DummyClassForTests {}
+    let testBundle = Bundle(for: DummyClassForTests.self)
+    #endif
+    print("testBundle: \(testBundle)")
+    return testBundle
+}()
 
 extension BONColor {
 

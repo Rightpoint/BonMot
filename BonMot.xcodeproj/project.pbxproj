@@ -31,6 +31,16 @@
 		1E902AB41DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */; };
 		1E902AB51DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */; };
 		1E902AB61DA6915F00BD154D /* TextAlignmentConstraintTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */; };
+		526C7050268BCC61002C0C71 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 526C704D268BCC61002C0C71 /* EBGaramond12-Regular.otf */; };
+		526C7051268BCC61002C0C71 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 526C704D268BCC61002C0C71 /* EBGaramond12-Regular.otf */; };
+		526C7052268BCC61002C0C71 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 526C704D268BCC61002C0C71 /* EBGaramond12-Regular.otf */; };
+		526C7053268BCC61002C0C71 /* rz-logo-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 526C704E268BCC61002C0C71 /* rz-logo-black.png */; };
+		526C7054268BCC61002C0C71 /* rz-logo-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 526C704E268BCC61002C0C71 /* rz-logo-black.png */; };
+		526C7055268BCC61002C0C71 /* rz-logo-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 526C704E268BCC61002C0C71 /* rz-logo-black.png */; };
+		526C7056268BCC61002C0C71 /* rz-logo-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 526C704F268BCC61002C0C71 /* rz-logo-red.png */; };
+		526C7057268BCC61002C0C71 /* rz-logo-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 526C704F268BCC61002C0C71 /* rz-logo-red.png */; };
+		526C7058268BCC61002C0C71 /* rz-logo-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 526C704F268BCC61002C0C71 /* rz-logo-red.png */; };
+		526C7059268BCC86002C0C71 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 526C704D268BCC61002C0C71 /* EBGaramond12-Regular.otf */; };
 		AB30D4FF1D9C1EEC006ADC9D /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */; };
 		AB30D50C1D9CB4FE006ADC9D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
 		AB30D50D1D9CB4FE006ADC9D /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB30D50B1D9CB4FE006ADC9D /* Tab.swift */; };
@@ -52,11 +62,8 @@
 		AB8497B51DA16DAE00FE3414 /* Tab+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */; };
 		AB8497B61DA16DAE00FE3414 /* Tracking+Adaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */; };
 		AB86628E1D9B060D00DEE3E3 /* FontFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D561D96F02F00273936 /* FontFeatures.swift */; };
-		AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
-		AB9C18DA1D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18DB1D9975FD00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
-		AB9C18DC1D9975FE00A54787 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		AB9C18DD1D9975FE00A54787 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
 		ABA75DD21D99E10400B64705 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D581D96F02F00273936 /* Platform.swift */; };
 		ABA75DD61D99E10400B64705 /* StringStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3D521D96F02F00273936 /* StringStyle.swift */; };
@@ -81,7 +88,6 @@
 		ABC777711DC2A07400815FB9 /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABC777731DC2A0AB00815FB9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABC777721DC2A0AB00815FB9 /* UIKit.framework */; };
 		ABC777741DC2A12600815FB9 /* Compatibility+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCD3DA41D96F06800273936 /* Compatibility+Tests.swift */; };
-		ABC777751DC2A16E00815FB9 /* EBGaramond12-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */; };
 		ABC777761DC2A16E00815FB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB9C18D51D9975EE00A54787 /* Images.xcassets */; };
 		ABCBFD601D96E61100FAD37A /* BonMot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD571D96E61000FAD37A /* BonMot.framework */; };
 		ABCBFDA01D96E7F300FAD37A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCBFD9F1D96E7F300FAD37A /* UIKit.framework */; };
@@ -256,6 +262,9 @@
 /* Begin PBXFileReference section */
 		1E7B10EB1DA41F9300C668A4 /* TextAlignmentConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignmentConstraint.swift; sourceTree = "<group>"; };
 		1E902AB31DA6915F00BD154D /* TextAlignmentConstraintTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignmentConstraintTests.swift; sourceTree = "<group>"; };
+		526C704D268BCC61002C0C71 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
+		526C704E268BCC61002C0C71 /* rz-logo-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rz-logo-black.png"; sourceTree = "<group>"; };
+		526C704F268BCC61002C0C71 /* rz-logo-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rz-logo-red.png"; sourceTree = "<group>"; };
 		5B8FFE322326F79900372DC0 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		AB167C8F1D997A2C0084808D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB30D4FE1D9C1EEC006ADC9D /* Composable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
@@ -265,8 +274,7 @@
 		AB560A071DA0C14000100D15 /* Tab+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tab+Adaptive.swift"; path = "UIKit/Tab+Adaptive.swift"; sourceTree = "<group>"; };
 		AB560A091DA0C17800100D15 /* Tracking+Adaptive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Tracking+Adaptive.swift"; path = "UIKit/Tracking+Adaptive.swift"; sourceTree = "<group>"; };
 		AB9C18D11D9975CE00A54787 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "EBGaramond12-Regular.otf"; path = "../Tests/Resources/EBGaramond12-Regular.otf"; sourceTree = "<group>"; };
-		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Tests/Resources/Images.xcassets; sourceTree = "<group>"; };
+		AB9C18D51D9975EE00A54787 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ABA75DEA1D99E10400B64705 /* BonMot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BonMot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA75E091D99E43300B64705 /* Tracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracking.swift; sourceTree = "<group>"; };
 		ABC7774B1DC29F3000815FB9 /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,6 +414,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		526C704C268BCC61002C0C71 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				526C704D268BCC61002C0C71 /* EBGaramond12-Regular.otf */,
+				526C704E268BCC61002C0C71 /* rz-logo-black.png */,
+				526C704F268BCC61002C0C71 /* rz-logo-red.png */,
+			);
+			name = Resources;
+			path = Tests/Resources;
+			sourceTree = "<group>";
+		};
 		AB30D5021D9CB2D4006ADC9D /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,15 +481,6 @@
 			name = Adaptive;
 			sourceTree = "<group>";
 		};
-		AB9C18D31D9975EE00A54787 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				AB9C18D41D9975EE00A54787 /* EBGaramond12-Regular.otf */,
-				AB9C18D51D9975EE00A54787 /* Images.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		ABC7774C1DC29F3000815FB9 /* Example-iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,6 +497,7 @@
 		ABC7775F1DC29F7700815FB9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB9C18D51D9975EE00A54787 /* Images.xcassets */,
 				ABC7776D1DC2A02B00815FB9 /* Launch Screen.xib */,
 				ABC7776E1DC2A02B00815FB9 /* Main.storyboard */,
 				ABC777601DC29F7700815FB9 /* Info.plist */,
@@ -504,7 +515,7 @@
 				5B8FFE322326F79900372DC0 /* Package.swift */,
 				ABCD3D511D96F02F00273936 /* Sources */,
 				ABCD3DA01D96F06800273936 /* Tests */,
-				AB9C18D31D9975EE00A54787 /* Resources */,
+				526C704C268BCC61002C0C71 /* Resources */,
 				ABCD3DC61D96F56400273936 /* README.md */,
 				ABCD3DC51D96F56400273936 /* BonMot.podspec */,
 				ABCD3DC71D96F56400273936 /* LICENSE */,
@@ -851,7 +862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABC777691DC29F7700815FB9 /* InfoPlist.strings in Resources */,
-				ABC777751DC2A16E00815FB9 /* EBGaramond12-Regular.otf in Resources */,
+				526C7059268BCC86002C0C71 /* EBGaramond12-Regular.otf in Resources */,
 				ABC777761DC2A16E00815FB9 /* Images.xcassets in Resources */,
 				ABC7776F1DC2A02B00815FB9 /* Launch Screen.xib in Resources */,
 				ABC777701DC2A02B00815FB9 /* Main.storyboard in Resources */,
@@ -869,8 +880,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9C18D81D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */,
+				526C7056268BCC61002C0C71 /* rz-logo-red.png in Resources */,
+				526C7053268BCC61002C0C71 /* rz-logo-black.png in Resources */,
 				AB9C18D91D9975FD00A54787 /* Images.xcassets in Resources */,
+				526C7050268BCC61002C0C71 /* EBGaramond12-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,8 +898,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9C18DA1D9975FD00A54787 /* EBGaramond12-Regular.otf in Resources */,
+				526C7057268BCC61002C0C71 /* rz-logo-red.png in Resources */,
+				526C7054268BCC61002C0C71 /* rz-logo-black.png in Resources */,
 				AB9C18DB1D9975FD00A54787 /* Images.xcassets in Resources */,
+				526C7051268BCC61002C0C71 /* EBGaramond12-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,8 +916,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9C18DC1D9975FE00A54787 /* EBGaramond12-Regular.otf in Resources */,
+				526C7058268BCC61002C0C71 /* rz-logo-red.png in Resources */,
+				526C7055268BCC61002C0C71 /* rz-logo-black.png in Resources */,
 				AB9C18DD1D9975FE00A54787 /* Images.xcassets in Resources */,
+				526C7052268BCC61002C0C71 /* EBGaramond12-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,7 +994,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FCD1D9B0ADF007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
