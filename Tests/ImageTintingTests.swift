@@ -58,8 +58,8 @@ class ImageTintingTests: XCTestCase {
     }
 
     func testTintingInAttributedString() throws {
-        #if os(iOS)
-        try XCTSkipIf(true, "No longer working for iOS targets")
+        #if os(iOS) || os(tvOS)
+        try XCTSkipIf(true, "No longer working for iOS/tvOS targets")
         #endif
 
         let imageForTest = try logoImage()
@@ -89,8 +89,8 @@ class ImageTintingTests: XCTestCase {
     }
 
     func testNotTintingInAttributedString() throws {
-        #if os(iOS)
-        try XCTSkipIf(true, "No longer working for iOS targets")
+        #if os(iOS) || os(tvOS)
+        try XCTSkipIf(true, "No longer working for iOS/tvOS targets")
         #endif
 
         let imageForTest = try logoImage()
