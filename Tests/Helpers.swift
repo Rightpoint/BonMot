@@ -29,7 +29,6 @@ let testBundle: Bundle = {
     class DummyClassForTests {}
     let testBundle = Bundle(for: DummyClassForTests.self)
     #endif
-    print("testBundle: \(testBundle)")
     return testBundle
 }()
 
