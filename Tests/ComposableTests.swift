@@ -19,13 +19,17 @@ import AppKit
 
 class ComposableTests: XCTestCase {
 
-    #if os(OSX)
-        let imageForTest = testBundle.image(forResource: "robot")!
-    #else
-        let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
-    #endif
+    func robotImage() throws -> BONImage {
+        #if os(OSX)
+        let imageForTest = testBundle.image(forResource: "robot")
+        #else
+        let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)
+        #endif
+        return try XCTUnwrap(imageForTest)
+    }
 
-    func testImageConstructor() {
+    func testImageConstructor() throws {
+        let imageForTest = try robotImage()
         let imageString = imageForTest.attributedString()
         let string = "\(Special.objectReplacementCharacter)"
         XCTAssertEqual(imageString.string, string)
@@ -36,7 +40,9 @@ class ComposableTests: XCTestCase {
         XCTAssertEqual("A-B-C", string.string)
     }
 
-    func testAttributesArePassedAlongExtend() {
+    func testAttributesArePassedAlongExtend() throws {
+        let imageForTest = try robotImage()
+
         let style = StringStyle(.extraAttributes(["test": "test"]))
 
         let chainString = NSAttributedString.composed(of: [imageForTest, "Test", imageForTest], baseStyle: style).attributedString()
@@ -45,7 +51,9 @@ class ComposableTests: XCTestCase {
         XCTAssertEqual(attributes["test"] as? String, "test")
     }
 
-    func testTabStopsWithSpacer() {
+    func testTabStopsWithSpacer() throws {
+        let imageForTest = try robotImage()
+
         let stringWidth = CGFloat(115)
 
         let multiLineWithTabs = NSAttributedString.composed(of: [
