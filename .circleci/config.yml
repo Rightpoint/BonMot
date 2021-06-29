@@ -54,22 +54,30 @@ jobs:
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
-  build-swift-package:
+  swift-package:
     executor: xcode-12
     steps:
       - setup
       - run: swift build
       - run: swift test
 
-  test-swift-5-0:
+  lint-pod:
     executor: xcode-12
-    environment:
-      SWIFT_VERSION: "5.0"
+    steps:
+      - setup
+      - lint-pod
+
+  fastlane-tests:
+    executor: xcode-12
     steps:
       - setup
       - run: bundle exec fastlane test_all
-      - lint-pod:
-          swift-version: "5.0"
+
+  fastlane-tests-xcode-13:
+    executor: xcode-13
+    steps:
+      - setup
+      - run: bundle exec fastlane test_all
 
   carthage-build:
     executor: xcode-12
@@ -90,11 +98,18 @@ jobs:
       - setup
       - run: bundle exec pod trunk push
 
-
 executors:
   xcode-12:
     macos:
-      xcode: "12.5.0"
+      xcode: "12.5.1"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+  xcode-13:
+    macos:
+      xcode: "13.0.0"
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -139,11 +154,19 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - build-swift-package:
+      - swift-package:
           filters:
             tags:
               only: /.*/
-      - test-swift-5-0:
+      - fastlane-tests:
+          filters:
+            tags:
+              only: /.*/
+      - fastlane-tests-xcode-13:
+          filters:
+            tags:
+              only: /.*/
+      - lint-pod:
           filters:
             tags:
               only: /.*/
@@ -155,8 +178,10 @@ workflows:
           context: CocoaPods
           requires:
             - danger
-            - build-swift-package
-            - test-swift-5-0
+            - swift-package
+            - fastlane-tests
+            - fastlane-tests-xcode-13
+            - lint-pod
             - carthage-build
           filters:
             tags:
