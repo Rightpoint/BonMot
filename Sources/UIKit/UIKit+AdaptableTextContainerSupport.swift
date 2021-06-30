@@ -57,7 +57,7 @@ extension UIViewController {
     final func notifyContainedAdaptiveContentSizeContainers() {
         if let view = viewIfLoaded {
             if view.window == nil {
-                view.notifyContainedAdaptiveContentSizeContainers()
+                view.notifyContainedAdaptiveContentSizeContainers(with: traitCollection)
             }
         }
         for viewController in children {
@@ -72,9 +72,9 @@ extension UIViewController {
 extension UIView {
 
     /// Notify any subviews, then notify the receiver if it conforms to `AdaptableTextContainer`.
-    final func notifyContainedAdaptiveContentSizeContainers() {
+    final func notifyContainedAdaptiveContentSizeContainers(with traitCollection: UITraitCollection? = nil) {
         for view in subviews {
-            view.notifyContainedAdaptiveContentSizeContainers()
+            view.notifyContainedAdaptiveContentSizeContainers(with: traitCollection ?? self.traitCollection)
         }
         if responds(to: #selector(AdaptableTextContainer.adaptText(forTraitCollection:))) {
             perform(#selector(AdaptableTextContainer.adaptText(forTraitCollection:)), with: traitCollection)
