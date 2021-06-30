@@ -1,19 +1,18 @@
 <img width=443 src="Resources/readme-images/BonMot-logo.png" alt="BonMot Logo" />
 
-[![Swift 4.2 + 5.0](https://img.shields.io/badge/Swift-4.2%20+%205.0-orange.svg?style=flat)](https://swift.org)
+[![Swift 5.0](https://img.shields.io/badge/Swift-%205.0-orange.svg?style=flat)](https://swift.org)
 [![CircleCI](https://img.shields.io/circleci/project/github/Rightpoint/BonMot/master.svg)](https://circleci.com/gh/Rightpoint/BonMot)
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Platform](https://img.shields.io/cocoapods/p/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Swift Package Manager compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat)](https://swift.org/package-manager/)
 [![codecov](https://codecov.io/gh/Rightpoint/BonMot/branch/master/graph/badge.svg)](https://codecov.io/gh/Rightpoint/BonMot)
 
 BonMot (pronounced *Bon Mo*, French for *good word*) is a Swift attributed string library. It abstracts away the complexities of the iOS, macOS, tvOS, and watchOS typography tools, freeing you to focus on making your text beautiful.
 
 To run the example project, run `pod try BonMot`, or clone the repo, open `BonMot.xcodeproj`, and run the **Example-iOS** target.
 
-### Note
-If you are migrating a project from BonMot 3 to BonMot 4, please see the [Migration Guide](#bonmot-3--4-migration-guide).
+BonMot has been [sherlocked](https://en.wikipedia.org/wiki/Sherlock_(software)#Sherlocked_as_a_term)!  If you're targeting iOS 15 or higher, you may want to check out [AttributedString](https://developer.apple.com/documentation/foundation/attributedstring) instead.
 
 # Usage
 
@@ -345,6 +344,15 @@ let attrString = "some string".styled(with: Constants.myStyle)
 ```
 
 # Installation
+
+## Swift Package Manager
+
+BonMot is available through [Swift Package Manager](https://swift.org/package-manager/). To install
+it through Xcode, go to `File -> Swift Packages -> Add Package Dependency...` and paste the repository URL:
+
+```
+https://github.com/Rightpoint/BonMot.git
+```
 
 ## CocoaPods
 
