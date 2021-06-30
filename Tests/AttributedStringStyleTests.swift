@@ -555,6 +555,106 @@ class StringStyleTests: XCTestCase {
         XCTAssertFalse(stillHasAltSixDict)
     }
 
+    func testStyleBlockRules() throws {
+        let string = #"0<one attr1="11">1<two attr2="12">2</two></one>"#
+
+        var tagAttr1Value: String?
+        var tagAttr2Value: String?
+
+        let rules: [XMLStyleRule] = [
+            .styleBlock("one") { attributes in
+                tagAttr1Value = attributes["attr1"]
+
+                return StringStyle(.baselineOffset(CGFloat(Int(tagAttr1Value ?? "") ?? 0)))
+            },
+            .styleBlock("two") { attributes in
+                tagAttr2Value = attributes["attr2"]
+
+                return StringStyle(.baselineOffset(CGFloat(Int(tagAttr2Value ?? "") ?? 0)))
+            },
+        ]
+
+        let attributed = string.styled(with: .font(BONFont.fontA), .xmlRules(rules))
+        XCTAssertEqual(attributed.string, "012")
+
+        XCTAssertEqual(tagAttr1Value, "11")
+        XCTAssertEqual(tagAttr2Value, "12")
+
+        let attrs0 = attributed.attributes(at: 0, effectiveRange: nil)
+        let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
+        let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
+
+        XCTAssertEqual(attrs0.count, 1)
+        XCTAssertEqual(attrs1.count, 2)
+        XCTAssertEqual(attrs2.count, 2)
+
+        XCTAssertNil(attrs0[.baselineOffset])
+        let lineSpacing1 = try XCTUnwrap(attrs1[.baselineOffset] as? Int)
+        let lineSpacing2 = try XCTUnwrap(attrs2[.baselineOffset] as? Int)
+
+        XCTAssertEqual(lineSpacing1, 11)
+        XCTAssertEqual(lineSpacing2, 12)
+    }
+
+    func testEnterExitBlockRules() throws {
+        let string = #"0<one attr1="11" attr2="a">1<two attr3="12" attr4="b">2</two></one>"#
+
+        var tagAttr1Value: String?
+        var tagAttr2Value: String?
+        var tagAttr3Value: String?
+        var tagAttr4Value: String?
+
+        let rules: [XMLStyleRule] = [
+            .enterBlock(element: "one") { attributes in
+                tagAttr1Value = attributes["attr1"]
+                tagAttr2Value = attributes["attr2"]
+
+                return (tagAttr2Value ?? "").styled(with: .baselineOffset(CGFloat(Int(tagAttr1Value ?? "") ?? 0)))
+            },
+            .exitBlock(element: "one") {
+                return "c"
+            },
+            .enterBlock(element: "two") { attributes in
+                tagAttr3Value = attributes["attr3"]
+                tagAttr4Value = attributes["attr4"]
+
+                return (tagAttr4Value ?? "").styled(with: .baselineOffset(CGFloat(Int(tagAttr3Value ?? "") ?? 0)))
+            },
+            .exitBlock(element: "two") {
+                return "d"
+            },
+        ]
+
+        let attributed = string.styled(with: .font(BONFont.fontA), .xmlRules(rules))
+        XCTAssertEqual(attributed.string, "0a1b2dc")
+
+        XCTAssertEqual(tagAttr1Value, "11")
+        XCTAssertEqual(tagAttr2Value, "a")
+        XCTAssertEqual(tagAttr3Value, "12")
+        XCTAssertEqual(tagAttr4Value, "b")
+
+        let attrs0 = attributed.attributes(at: 0, effectiveRange: nil)
+        let attrs1 = attributed.attributes(at: 1, effectiveRange: nil)
+        let attrs2 = attributed.attributes(at: 2, effectiveRange: nil)
+        let attrs3 = attributed.attributes(at: 3, effectiveRange: nil)
+        let attrs4 = attributed.attributes(at: 4, effectiveRange: nil)
+
+        XCTAssertEqual(attrs0.count, 1)
+        XCTAssertEqual(attrs1.count, 2)
+        XCTAssertEqual(attrs2.count, 1)
+        XCTAssertEqual(attrs3.count, 2)
+        XCTAssertEqual(attrs4.count, 1)
+
+        XCTAssertNil(attrs0[.baselineOffset])
+        let lineSpacing1 = try XCTUnwrap(attrs1[.baselineOffset] as? Int)
+        XCTAssertNil(attrs2[.baselineOffset])
+        let lineSpacing3 = try XCTUnwrap(attrs3[.baselineOffset] as? Int)
+        XCTAssertNil(attrs4[.baselineOffset])
+
+        XCTAssertEqual(lineSpacing1, 11)
+        XCTAssertEqual(lineSpacing3, 12)
+    }
+
     static let floatingPointPropertiesLine = #line
     static let floatingPointProperties: [(NSParagraphStyle) -> CGFloat] = [
         // swiftlint:disable opening_brace
