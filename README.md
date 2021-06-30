@@ -20,6 +20,8 @@ BonMot has been [sherlocked](https://en.wikipedia.org/wiki/Sherlock_(software)#S
 typealias StringStyle = BonMot.StringStyle
 ```
 
+There is also currently a [known issue](https://github.com/Rightpoint/BonMot/issues/415) in Xcode 13 Beta 2 that will cause crashes when deploying to older OS versions.
+
 # Usage
 
 In any Swift file where you want to use BonMot, simply `import BonMot`.
