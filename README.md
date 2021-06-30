@@ -179,7 +179,7 @@ If you want more manual control over the adaptation process and are targeting iO
 
 The `.control` and `.body` behaviors both scale the same, except that when enabling the "Larger Dynamic Type" accessibility setting, `.body` grows unbounded. Here is a graph of the default behaviors of the [system Dynamic Type styles](https://developer.apple.com/ios/human-interface-guidelines/visual-design/typography#dynamic-type-sizes):
 
-<img width=443 src="Resources/readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that Control text tops out at the XXL size, but Body text keeps growing all the way up to AccessibilityXXL" />
+<img width=443 src="Resources/readme-images/ios-type-scaling-behavior.png" alt="Graph of iOS Dynamic Type scaling behavior, showing that most text tops out at the XXL size, but Body, Large Title, and Title 1 text keeps growing all the way up through AccessibilityXXXL" />
 
 ## Storyboard and XIB Integration
 
@@ -309,7 +309,7 @@ In BonMot 3, you may have stored `BONChain`s for later use. You can accomplish t
 ##### BonMot 3
 
 ```swift
-struct Constants {
+enum Constants {
 
     static let myChain = BONChain()
         .color(myColor)
@@ -328,7 +328,7 @@ let attrString = myChain.string("some string").attributedString
 ##### BonMot 4
 
 ```swift
-struct Constants {
+enum Constants {
 
     static let myStyle = StringStyle(
         .color(myColor),
