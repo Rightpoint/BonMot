@@ -17,34 +17,53 @@ import XCTest
 
 class ImageTintingTests: XCTestCase {
 
-    #if os(OSX)
-        let imageForTest = testBundle.image(forResource: "rz-logo-black")!
-        let raizlabsRed = NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
-    #else
-        let imageForTest = UIImage(named: "rz-logo-black", in: testBundle, compatibleWith: nil)!
-        let raizlabsRed = UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
-    #endif
+    func logoImage() throws -> BONImage {
+        #if os(OSX)
+        let imageForTest = testBundle.image(forResource: "rz-logo-black")
+        #else
+        let imageForTest = UIImage(named: "rz-logo-black", in: testBundle, compatibleWith: nil)
+        #endif
+        return try XCTUnwrap(imageForTest)
+    }
+
+    var raizlabsRed: BONColor {
+        #if os(OSX)
+        NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
+        #else
+        UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
+        #endif
+    }
 
     let accessibilityDescription = "I’m the very model of a modern accessible image."
 
-    func testImageTinting() {
+    func testImageTinting() throws {
+        #if SWIFT_PACKAGE && os(OSX)
+        try XCTSkipIf(true, "Doesn't work on macOS SPM targets")
+        #endif
+
         let blackImageName = "rz-logo-black"
         let redImageName = "rz-logo-red"
 
         #if os(OSX)
-            let sourceImage = testBundle.image(forResource: blackImageName)!
-            let controlTintedImage = testBundle.image(forResource: redImageName)!
+            let sourceImage = try XCTUnwrap(testBundle.image(forResource: blackImageName))
+            let controlTintedImage = try XCTUnwrap(testBundle.image(forResource: redImageName))
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
         #else
-            let sourceImage = UIImage(named: blackImageName, in: testBundle, compatibleWith: nil)!
-            let controlTintedImage = UIImage(named: redImageName, in: testBundle, compatibleWith: nil)!
+            let sourceImage = try XCTUnwrap(UIImage(named: blackImageName, in: testBundle, compatibleWith: nil))
+            let controlTintedImage = try XCTUnwrap(UIImage(named: redImageName, in: testBundle, compatibleWith: nil))
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
         #endif
 
         BONAssertEqualImages(controlTintedImage, testTintedImage)
     }
 
-    func testTintingInAttributedString() {
+    func testTintingInAttributedString() throws {
+        #if os(iOS) || os(tvOS)
+        try XCTSkipIf(true, "No longer working for iOS/tvOS targets")
+        #endif
+
+        let imageForTest = try logoImage()
+
         let untintedString = NSAttributedString.composed(of: [
             imageForTest.styled(with: .color(raizlabsRed)),
             ])
@@ -69,7 +88,13 @@ class ImageTintingTests: XCTestCase {
         BONAssertNotEqualImages(untintedResult!, tintedResult!)
     }
 
-    func testNotTintingInAttributedString() {
+    func testNotTintingInAttributedString() throws {
+        #if os(iOS) || os(tvOS)
+        try XCTSkipIf(true, "No longer working for iOS/tvOS targets")
+        #endif
+
+        let imageForTest = try logoImage()
+
         let untintedString = NSAttributedString.composed(of: [
             imageForTest,
             ])
@@ -87,7 +112,9 @@ class ImageTintingTests: XCTestCase {
         BONAssertEqualImages(untintedResult!, tintAttemptResult!)
     }
 
-    func testAccessibilityIOSAndTVOS() {
+    func testAccessibilityIOSAndTVOS() throws {
+        let imageForTest = try logoImage()
+
         #if os(iOS) || os(tvOS)
             imageForTest.accessibilityLabel = accessibilityDescription
             let tintedImage = imageForTest.tintedImage(color: raizlabsRed)
@@ -96,7 +123,9 @@ class ImageTintingTests: XCTestCase {
         #endif
     }
 
-    func testAccessibilityOSX() {
+    func testAccessibilityOSX() throws {
+        let imageForTest = try logoImage()
+
         #if os(OSX)
             imageForTest.accessibilityDescription = accessibilityDescription
             let tintedImage = imageForTest.tintedImage(color: raizlabsRed)

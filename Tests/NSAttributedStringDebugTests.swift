@@ -11,11 +11,14 @@ import XCTest
 
 class NSAttributedStringDebugTests: XCTestCase {
 
-    #if os(OSX)
-        let imageForTest = testBundle.image(forResource: "robot")!
-    #else
-        let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)!
-    #endif
+    func robotImage() throws -> BONImage {
+        #if os(OSX)
+        let imageForTest = testBundle.image(forResource: "robot")
+        #else
+        let imageForTest = UIImage(named: "robot", in: testBundle, compatibleWith: nil)
+        #endif
+        return try XCTUnwrap(imageForTest)
+    }
 
     func testSpecialFromUnicodeScalar() {
         let enDash = Special(rawValue: "\u{2013}")
@@ -47,7 +50,9 @@ class NSAttributedStringDebugTests: XCTestCase {
         }
     }
 
-    func testComposedDebugRepresentation() {
+    func testComposedDebugRepresentation() throws {
+        let imageForTest = try robotImage()
+
         let testCases: [([Composable], String, UInt)] = [
             ([imageForTest], "<BON:image size='36x36'/>", #line),
             ([Special.enDash], "<BON:enDash/>", #line),

@@ -9,7 +9,8 @@
 import BonMot
 import XCTest
 
-#if swift(>=2.3)
+#if canImport(UIKit)
+import UIKit
 
 class UIKitBonMotTests: XCTestCase {
 

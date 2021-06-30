@@ -7,6 +7,7 @@
 //
 
 @testable import BonMot
+#if canImport(UIKit)
 import UIKit
 import XCTest
 
@@ -148,7 +149,6 @@ class AdaptiveStyleTests: XCTestCase {
         }
     }
 
-    @available(iOS 11, *)
     func testFontMetricsAdaptation() {
         // Test is still always run (and fails) on the iOS 10 simulator despite
         // the availability annotation.
@@ -174,7 +174,6 @@ class AdaptiveStyleTests: XCTestCase {
         BONAssert(attributes: testAttributes(UIContentSizeCategory.extraExtraExtraLarge), query: \.pointSize, float: 37)
     }
 
-    @available(iOS 11, *)
     func testFontMetricsWithMaxPointSizeAdaptation() {
         // Test is still always run (and fails) on the iOS 10 simulator despite
         // the availability annotation.
@@ -335,4 +334,5 @@ class AdaptiveStyleTests: XCTestCase {
 
 }
 
+#endif
 #endif

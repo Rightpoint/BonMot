@@ -16,6 +16,9 @@ let defaultTextFieldFontSize: CGFloat = 38
 let defaultTextViewFontSize: CGFloat = 38
 #endif
 
+#if canImport(UIKit)
+import UIKit
+
 class UIKitBehaviorTests: XCTestCase {
 
     func testLabelPropertyBehavior() {
@@ -122,3 +125,5 @@ class UIKitBehaviorTests: XCTestCase {
     }
 
 }
+
+#endif

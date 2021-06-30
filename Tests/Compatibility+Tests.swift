@@ -37,24 +37,3 @@ extension BONFontDescriptor.AttributeName: ExpressibleByStringLiteral {
     }
 
 }
-
-#if os(OSX)
-    #if swift(>=4.2)
-    #else
-        extension NSImage.Name: ExpressibleByStringLiteral {
-
-            public init(stringLiteral value: String) {
-                self.init(value)
-            }
-
-        }
-
-        extension Bundle {
-
-            func image(forResource resource: String) -> NSImage? {
-                return image(forResource: NSImage.Name(resource))
-            }
-
-        }
-    #endif
-#endif

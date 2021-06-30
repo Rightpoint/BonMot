@@ -65,11 +65,7 @@ extension UITextField {
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
             styledText = text
             let attributes = (bonMotStyle?.attributes(adaptedTo: traitCollection) ?? [:])
-            #if swift(>=4.2)
-                defaultTextAttributes = attributes
-            #else
-                defaultTextAttributes = attributes.withStringKeys
-            #endif
+            defaultTextAttributes = attributes
         }
     }
 
@@ -131,11 +127,7 @@ extension UITextView {
         get { return StyleableUIElementHelpers.getAssociatedStyle(from: self) }
         set {
             StyleableUIElementHelpers.setAssociatedStyle(on: self, style: newValue)
-            #if swift(>=4.2)
-                typingAttributes = newValue?.attributes(adaptedTo: traitCollection) ?? typingAttributes
-            #else
-                typingAttributes = newValue?.attributes(adaptedTo: traitCollection).withStringKeys ?? typingAttributes
-            #endif
+            typingAttributes = newValue?.attributes(adaptedTo: traitCollection) ?? typingAttributes
             styledText = text
         }
     }

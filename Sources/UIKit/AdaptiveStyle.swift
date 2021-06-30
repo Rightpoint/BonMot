@@ -10,37 +10,72 @@
 import UIKit
 
 /// A few default font scaling behaviors.
-public enum AdaptiveStyle {
+public struct AdaptiveStyle {
+
+    public enum Behavior {
+        case control
+        case body
+        case preferred
+
+        case fontMetrics
+
+        case above(size: CGFloat, useFontNamed: String)
+        case below(size: CGFloat, useFontNamed: String)
+    }
+
+    public let behavior: Behavior
+
+    // These two values are used only in the fontMetrics case. They should be associated enum values, but marking enum
+    // cases as @available is not supported: https://github.com/apple/swift/pull/36327
+    public let textStyle: BonMotTextStyle?
+    public let maxPointSize: CGFloat?
+
+    init(behavior: Behavior, textStyle: BonMotTextStyle? = nil, maxPointSize: CGFloat? = nil) {
+        self.behavior = behavior
+        self.textStyle = textStyle
+        self.maxPointSize = maxPointSize
+    }
 
     /// Scale the font up or down based on the Dynamic Type slider, but do not
     /// grow into the Accessibility ranges.
-    case control
+    public static var control: AdaptiveStyle {
+        AdaptiveStyle(behavior: .control)
+    }
 
     /// Scale the font up or down based on the Dynamic Type slider,
     /// including Accessibility sizes.
-    case body
+    public static var body: AdaptiveStyle {
+        AdaptiveStyle(behavior: .body)
+    }
 
     /// Enable automatic scaling of fonts obtained using the `preferredFont(…)`
     /// family of methods.
-    case preferred
+    public static var preferred: AdaptiveStyle {
+        AdaptiveStyle(behavior: .preferred)
+    }
 
     /// Enable automatic scaling of fonts obtained using `UIFontMetrics`
     /// available on iOS 11+ based on the provided `textStyle` and optional
     /// `maxPointSize`. If `maxPointSize` is `nil` the font will grow unbounded.
-    @available(iOS 11, tvOS 11, *)
-    case fontMetrics(textStyle: BonMotTextStyle, maxPointSize: CGFloat?)
+    public static func fontMetrics(textStyle: BonMotTextStyle, maxPointSize: CGFloat?) -> AdaptiveStyle {
+        AdaptiveStyle(behavior: .fontMetrics, textStyle: textStyle, maxPointSize: maxPointSize)
+    }
 
     /// If the text is scaled above `size`, substitute the font named
     /// `useFontNamed`, but using all the same attributes as the original font.
     /// This style may be combined with other scaling behaviors such as `control`
     /// and `body`.
-    case above(size: CGFloat, useFontNamed: String)
+    public static func above(size: CGFloat, useFontNamed fontName: String) -> AdaptiveStyle {
+        AdaptiveStyle(behavior: .above(size: size, useFontNamed: fontName))
+    }
 
     /// If the text is scaled below `size`, substitute the font named
     /// `useFontNamed`, but using all the same attributes as the original font.
     /// This style may be combined with other scaling behaviors such as `control`
     /// and `body`.
-    case below(size: CGFloat, useFontNamed: String)
+    public static func below(size: CGFloat, useFontNamed fontName: String) -> AdaptiveStyle {
+        AdaptiveStyle(behavior: .below(size: size, useFontNamed: fontName))
+    }
 
 }
 
@@ -70,7 +105,7 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
         let pointSize = font.pointSize
         let contentSizeCategory = traitCollection.bon_preferredContentSizeCategory
         var styleAttributes = theAttributes
-        switch self {
+        switch behavior {
         case .control:
             font = UIFont(descriptor: font.fontDescriptor, size: AdaptiveStyle.adapt(designatedSize: pointSize, for: contentSizeCategory))
         case .body:
@@ -82,9 +117,9 @@ extension AdaptiveStyle: AdaptiveStyleTransformation {
             else {
                 print("No text style in the font, can not adapt")
             }
-        case .fontMetrics(let style, let maxPointSize):
+        case .fontMetrics:
             if #available(iOS 11, tvOS 11, *) {
-                let metrics = UIFontMetrics(forTextStyle: style)
+                let metrics = UIFontMetrics(forTextStyle: textStyle ?? .body)
                 if let maxPointSize = maxPointSize {
                     font = metrics.scaledFont(for: font, maximumPointSize: maxPointSize, compatibleWith: traitCollection)
                 }
@@ -214,7 +249,7 @@ extension AdaptiveStyle: EmbeddedTransformation {
     }
 
     var asDictionary: StyleAttributes {
-        switch self {
+        switch behavior {
         case let .above(size, family):
             return [
                 EmbeddedTransformationHelpers.Key.type: Value.above,
@@ -233,10 +268,10 @@ extension AdaptiveStyle: EmbeddedTransformation {
             return [EmbeddedTransformationHelpers.Key.type: Value.body]
         case .preferred:
             return [EmbeddedTransformationHelpers.Key.type: Value.preferred]
-        case .fontMetrics(let textStyle, let maxPointSize):
+        case .fontMetrics:
             var attributes: StyleAttributes = [
                 EmbeddedTransformationHelpers.Key.type: Value.fontMetrics,
-                EmbeddedTransformationHelpers.Key.textStyle: textStyle,
+                EmbeddedTransformationHelpers.Key.textStyle: textStyle ?? .body,
             ]
             if let maxPointSize = maxPointSize {
                 attributes[EmbeddedTransformationHelpers.Key.maxPointSize] = maxPointSize
