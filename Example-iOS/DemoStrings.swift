@@ -9,6 +9,8 @@
 import BonMot
 import UIKit
 
+typealias StringStyle = BonMot.StringStyle
+
 // swiftlint:disable type_body_length file_length
 enum DemoStrings {
 

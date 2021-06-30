@@ -17,7 +17,6 @@ public struct AdaptiveStyle {
         case body
         case preferred
 
-        @available(iOS 11, tvOS 11, *)
         case fontMetrics
 
         case above(size: CGFloat, useFontNamed: String)
@@ -58,7 +57,6 @@ public struct AdaptiveStyle {
     /// Enable automatic scaling of fonts obtained using `UIFontMetrics`
     /// available on iOS 11+ based on the provided `textStyle` and optional
     /// `maxPointSize`. If `maxPointSize` is `nil` the font will grow unbounded.
-    @available(iOS 11, tvOS 11, *)
     public static func fontMetrics(textStyle: BonMotTextStyle, maxPointSize: CGFloat?) -> AdaptiveStyle {
         AdaptiveStyle(behavior: .fontMetrics, textStyle: textStyle, maxPointSize: maxPointSize)
     }

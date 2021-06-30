@@ -42,11 +42,7 @@ class StyleViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if swift(>=4.2)
-            tableView.rowHeight = UITableView.automaticDimension
-        #else
-            tableView.rowHeight = UITableViewAutomaticDimension
-        #endif
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
     }
 
