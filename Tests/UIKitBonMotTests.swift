@@ -120,7 +120,30 @@ class UIKitBonMotTests: XCTestCase {
         }
     }
 
-    func writeTestSegmentedControl() {}
+    func testSegmentedControl() {
+        let segmentedControl = UISegmentedControl()
+        // Make sure the test is valid and the title text attributes are not defined for the normal state
+        XCTAssertNil(segmentedControl.titleTextAttributes(for: .normal))
+
+        segmentedControl.insertSegment(withTitle: ".", at: 0, animated: false)
+
+        // Assign the title text attributes for the normal state and ensure original values match
+        segmentedControl.setTitleTextAttributes(adaptiveStyle.attributes, for: .normal)
+
+        var attributes = segmentedControl.titleTextAttributes(for: .normal)
+        XCTAssertEqual(attributes?[.font] as? UIFont, expectedFont)
+        BONAssertColor(inAttributes: attributes, key: .foregroundColor, color: adaptiveStyle.color!)
+        BONAssert(attributes: attributes, query: { $0.pointSize }, float: expectedFont.pointSize)
+
+        // Update the trait collection and ensure the font grows.
+        if #available(iOS 10.0, tvOS 10.0, *) {
+            segmentedControl.adaptText(forTraitCollection: UITraitCollection(preferredContentSizeCategory: UIContentSizeCategory.extraLarge))
+            attributes = segmentedControl.titleTextAttributes(for: .normal)
+            BONAssert(attributes: attributes, query: { $0.pointSize }, float: expectedFont.pointSize + 2)
+            BONAssertColor(inAttributes: attributes, key: .foregroundColor, color: adaptiveStyle.color!)
+        }
+    }
+
     func writeTestNavigationBar() {}
     func writeTestToolbar() {}
     func writeTestViewController() {}
