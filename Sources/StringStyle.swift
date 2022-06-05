@@ -33,6 +33,7 @@ public struct StringStyle {
     public var headIndent: CGFloat?
     public var tailIndent: CGFloat?
     public var lineBreakMode: NSLineBreakMode?
+    public var lineBreakStrategy: NSParagraphStyle.LineBreakStrategy?
     public var minimumLineHeight: CGFloat?
     public var maximumLineHeight: CGFloat?
     public var baseWritingDirection: NSWritingDirection?
@@ -117,6 +118,7 @@ extension StringStyle {
         paragraph.headIndent = headIndent ?? paragraph.headIndent
         paragraph.tailIndent = tailIndent ?? paragraph.tailIndent
         paragraph.lineBreakMode = lineBreakMode ?? paragraph.lineBreakMode
+        paragraph.lineBreakStrategy = lineBreakStrategy ?? paragraph.lineBreakStrategy
         paragraph.minimumLineHeight = minimumLineHeight ?? paragraph.minimumLineHeight
         paragraph.maximumLineHeight = maximumLineHeight ?? paragraph.maximumLineHeight
         paragraph.baseWritingDirection = baseWritingDirection ?? paragraph.baseWritingDirection
@@ -269,6 +271,7 @@ extension StringStyle {
         headIndent = theStringStyle.headIndent ?? headIndent
         tailIndent = theStringStyle.tailIndent ?? tailIndent
         lineBreakMode = theStringStyle.lineBreakMode ?? lineBreakMode
+        lineBreakStrategy = theStringStyle.lineBreakStrategy ?? lineBreakStrategy
         minimumLineHeight = theStringStyle.minimumLineHeight ?? minimumLineHeight
         maximumLineHeight = theStringStyle.maximumLineHeight ?? maximumLineHeight
         baseWritingDirection = theStringStyle.baseWritingDirection ?? baseWritingDirection
@@ -392,6 +395,7 @@ extension NSParagraphStyle {
         if paragraph.headIndent == defaults.headIndent { paragraph.headIndent = headIndent }
         if paragraph.tailIndent == defaults.tailIndent { paragraph.tailIndent = tailIndent }
         if paragraph.lineBreakMode == defaults.lineBreakMode { paragraph.lineBreakMode = lineBreakMode }
+        if paragraph.lineBreakStrategy == defaults.lineBreakStrategy { paragraph.lineBreakStrategy = lineBreakStrategy }
         if paragraph.minimumLineHeight == defaults.minimumLineHeight { paragraph.minimumLineHeight = minimumLineHeight }
         if paragraph.maximumLineHeight == defaults.maximumLineHeight { paragraph.maximumLineHeight = maximumLineHeight }
         if paragraph.baseWritingDirection == defaults.baseWritingDirection { paragraph.baseWritingDirection = baseWritingDirection }

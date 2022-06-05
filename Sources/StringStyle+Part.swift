@@ -64,6 +64,7 @@ extension StringStyle {
         case headIndent(CGFloat)
         case tailIndent(CGFloat)
         case lineBreakMode(NSLineBreakMode)
+        case lineBreakStrategy(NSParagraphStyle.LineBreakStrategy)
         case minimumLineHeight(CGFloat)
         case maximumLineHeight(CGFloat)
         case baseWritingDirection(NSWritingDirection)
@@ -197,6 +198,8 @@ extension StringStyle {
             self.tailIndent = tailIndent
         case let .lineBreakMode(lineBreakMode):
             self.lineBreakMode = lineBreakMode
+        case let .lineBreakStrategy(lineBreakStrategy):
+            self.lineBreakStrategy = lineBreakStrategy
         case let .minimumLineHeight(minimumLineHeight):
             self.minimumLineHeight = minimumLineHeight
         case let .maximumLineHeight(maximumLineHeight):
