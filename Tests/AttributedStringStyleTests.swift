@@ -680,6 +680,7 @@ class StringStyleTests: XCTestCase {
             .headIndent(10),
             .tailIndent(10),
             .lineBreakMode(.byClipping),
+            .lineBreakStrategy(.pushOut),
             .minimumLineHeight(10),
             .maximumLineHeight(10),
             .baseWritingDirection(.leftToRight),
@@ -694,6 +695,7 @@ class StringStyleTests: XCTestCase {
         }
         BONAssert(attributes: style.attributes, query: \.alignment, value: .center)
         BONAssert(attributes: style.attributes, query: \.lineBreakMode, value: .byClipping)
+        BONAssert(attributes: style.attributes, query: \.lineBreakStrategy, value: .pushOut)
         BONAssert(attributes: style.attributes, query: \.baseWritingDirection, value: .leftToRight)
         BONAssert(attributes: style.attributes, query: \.allowsDefaultTighteningForTruncation, value: true)
     }
@@ -707,6 +709,7 @@ class StringStyleTests: XCTestCase {
             .headIndent(1),
             .tailIndent(1),
             .lineBreakMode(.byWordWrapping),
+            .lineBreakStrategy(.init(rawValue: 0)),
             .minimumLineHeight(1),
             .maximumLineHeight(1),
             .baseWritingDirection(.natural),
@@ -723,6 +726,7 @@ class StringStyleTests: XCTestCase {
             .headIndent(10),
             .tailIndent(10),
             .lineBreakMode(.byClipping),
+            .lineBreakStrategy(.pushOut),
             .minimumLineHeight(10),
             .maximumLineHeight(10),
             .baseWritingDirection(.leftToRight),
@@ -737,6 +741,7 @@ class StringStyleTests: XCTestCase {
         }
         BONAssert(attributes: style.attributes, query: \.alignment, value: .center)
         BONAssert(attributes: style.attributes, query: \.lineBreakMode, value: .byClipping)
+        BONAssert(attributes: style.attributes, query: \.lineBreakStrategy, value: .pushOut)
         BONAssert(attributes: style.attributes, query: \.baseWritingDirection, value: .leftToRight)
         BONAssert(attributes: style.attributes, query: \.allowsDefaultTighteningForTruncation, value: true)
     }

@@ -149,6 +149,7 @@ class ComposableTests: XCTestCase {
         check(forPart: .headIndent(10), \.headIndent, 10)
         check(forPart: .tailIndent(10), \.tailIndent, 10)
         check(forPart: .lineBreakMode(.byClipping), \.lineBreakMode, .byClipping)
+        check(forPart: .lineBreakStrategy(.pushOut), \.lineBreakStrategy, .pushOut)
         check(forPart: .minimumLineHeight(10), \.minimumLineHeight, 10)
         check(forPart: .maximumLineHeight(10), \.maximumLineHeight, 10)
         check(forPart: .baseWritingDirection(.leftToRight), \.baseWritingDirection, .leftToRight)
