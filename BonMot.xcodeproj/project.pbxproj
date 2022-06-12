@@ -994,7 +994,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FCD1D9B0ADF007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1008,7 +1008,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FCE1D9B0AF2007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1022,7 +1022,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FCF1D9B0B12007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1036,7 +1036,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FD01D9B0B1F007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1050,7 +1050,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FD11D9B0B2E007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1064,7 +1064,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CD4B2FD21D9B0B3D007CF808 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1078,7 +1078,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if [ -d /opt/homebrew/bin ]; then\n    export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif [ \"${CARTHAGE}\" == \"YES\" ]; then\n    echo \"warning: Detected Carthage. Will not run SwiftLint\"\nelif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		CDC513361F36B1FA00EA1712 /* Build iOS example project */ = {
 			isa = PBXShellScriptBuildPhase;
