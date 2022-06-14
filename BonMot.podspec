@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "BonMot"
-  s.version          = "6.0.0"
+  s.version          = "6.1.1"
   s.summary          = "Beautiful, easy attributed strings in Swift"
   s.swift_versions    = ["5.0"]
   s.description      = <<-DESC
