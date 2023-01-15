@@ -124,6 +124,22 @@ extension NSAttributedString {
         string.endEditing()
         return string
     }
+    
+    @nonobjc public static func composed(of composables: Composable..., baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
+        let string = NSMutableAttributedString()
+        string.beginEditing()
+        let lastComposableIndex = composables.endIndex
+        for (index, composable) in composables.enumerated() {
+            composable.append(to: string, baseStyle: baseStyle, isLastElement: index == lastComposableIndex - 1)
+            if let separator = separator {
+                if index != composables.indices.last {
+                    separator.append(to: string, baseStyle: baseStyle)
+                }
+            }
+        }
+        string.endEditing()
+        return string
+    }
 
     public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
         let newStyle = style.byAdding(overrideParts)
