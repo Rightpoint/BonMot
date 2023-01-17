@@ -125,20 +125,22 @@ extension NSAttributedString {
         return string
     }
     
+    /// Compose an `NSAttributedString` by concatenating every item in
+    /// `composables` with `baseStyle` applied. The `separator` is inserted
+    /// between every item. `baseStyle` acts as the default style, and apply to
+    /// the `Composable` item only if the `Composable` does not have a style
+    /// value configured.
+    ///
+    /// - parameter composables: An array of `Composable` to join into an
+    ///                          `NSAttributedString`.
+    /// - parameter baseStyle: The base style to apply to every `Composable`.
+    ///                        If no `baseStyle` is supplied, no additional
+    ///                        styling will be added.
+    /// - parameter separator: The separator to insert between every pair of
+    ///                        elements in `composables`.
+    /// - returns: A new `NSAttributedString`.    
     @nonobjc public static func composed(of composables: Composable..., baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
-        let string = NSMutableAttributedString()
-        string.beginEditing()
-        let lastComposableIndex = composables.endIndex
-        for (index, composable) in composables.enumerated() {
-            composable.append(to: string, baseStyle: baseStyle, isLastElement: index == lastComposableIndex - 1)
-            if let separator = separator {
-                if index != composables.indices.last {
-                    separator.append(to: string, baseStyle: baseStyle)
-                }
-            }
-        }
-        string.endEditing()
-        return string
+        return .composed(of: composables, baseStyle: baseStyle, separator: separator)
     }
 
     public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
