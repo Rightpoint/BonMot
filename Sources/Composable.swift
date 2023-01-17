@@ -131,7 +131,7 @@ extension NSAttributedString {
     /// the `Composable` item only if the `Composable` does not have a style
     /// value configured.
     ///
-    /// - parameter composables: An array of `Composable` to join into an
+    /// - parameter composables: A list of `Composable` to join into an
     ///                          `NSAttributedString`.
     /// - parameter baseStyle: The base style to apply to every `Composable`.
     ///                        If no `baseStyle` is supplied, no additional
