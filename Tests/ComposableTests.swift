@@ -18,7 +18,7 @@ import AppKit
 #if canImport(UIKit) || canImport(AppKit)
 
 class ComposableTests: XCTestCase {
-
+  
     func robotImage() throws -> BONImage {
         #if os(OSX)
         let imageForTest = testBundle.image(forResource: "robot")
@@ -40,6 +40,11 @@ class ComposableTests: XCTestCase {
         XCTAssertEqual("A-B-C", string.string)
     }
 
+    func testBasicJoinVariadic() {
+      let string = NSAttributedString.composed(of: "A", "B", "C", separator: NSAttributedString(string: "-"))
+      XCTAssertEqual("A-B-C", string.string)
+    }
+  
     func testAttributesArePassedAlongExtend() throws {
         let imageForTest = try robotImage()
 
