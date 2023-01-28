@@ -18,7 +18,6 @@ import AppKit
 #if canImport(UIKit) || canImport(AppKit)
 
 class ComposableTests: XCTestCase {
-  
     func robotImage() throws -> BONImage {
         #if os(OSX)
         let imageForTest = testBundle.image(forResource: "robot")
