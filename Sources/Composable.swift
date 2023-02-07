@@ -124,6 +124,24 @@ extension NSAttributedString {
         string.endEditing()
         return string
     }
+    
+    /// Compose an `NSAttributedString` by concatenating every item in
+    /// `composables` with `baseStyle` applied. The `separator` is inserted
+    /// between every item. `baseStyle` acts as the default style, and apply to
+    /// the `Composable` item only if the `Composable` does not have a style
+    /// value configured.
+    ///
+    /// - parameter composables: A list of `Composable` to join into an
+    ///                          `NSAttributedString`.
+    /// - parameter baseStyle: The base style to apply to every `Composable`.
+    ///                        If no `baseStyle` is supplied, no additional
+    ///                        styling will be added.
+    /// - parameter separator: The separator to insert between every pair of
+    ///                        elements in `composables`.
+    /// - returns: A new `NSAttributedString`.    
+    @nonobjc public static func composed(of composables: Composable..., baseStyle: StringStyle = StringStyle(), separator: Composable? = nil) -> NSAttributedString {
+        return .composed(of: composables, baseStyle: baseStyle, separator: separator)
+    }
 
     public func styled(with style: StringStyle, _ overrideParts: StringStyle.Part...) -> NSAttributedString {
         let newStyle = style.byAdding(overrideParts)
