@@ -43,7 +43,7 @@ class ComposableTests: XCTestCase {
       let string = NSAttributedString.composed(of: "A", "B", "C", separator: NSAttributedString(string: "-"))
       XCTAssertEqual("A-B-C", string.string)
     }
-  
+
     func testAttributesArePassedAlongExtend() throws {
         let imageForTest = try robotImage()
 

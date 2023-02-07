@@ -124,7 +124,7 @@ extension NSAttributedString {
         string.endEditing()
         return string
     }
-    
+
     /// Compose an `NSAttributedString` by concatenating every item in
     /// `composables` with `baseStyle` applied. The `separator` is inserted
     /// between every item. `baseStyle` acts as the default style, and apply to
