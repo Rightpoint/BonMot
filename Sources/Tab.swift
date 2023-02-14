@@ -40,7 +40,8 @@ extension Tab: Composable {
 
         attributedString.append(NSAttributedString(string: Special.tab.description, attributes: tabAttributes))
 
-        // Calculate the tab spacing
+        //comment
+	// Calculate the tab spacing
         update(string: attributedString, in: tabRange)
     }
 
