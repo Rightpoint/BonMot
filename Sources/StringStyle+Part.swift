@@ -165,7 +165,7 @@ extension StringStyle {
     mutating func update(part stylePart: Part) {
         switch stylePart {
         case let .extraAttributes(attributes):
-            self.extraAttributes = attributes
+            self.add(extraAttributes: attributes)
         case let .font(font):
             self.font = font
         case let .link(link):

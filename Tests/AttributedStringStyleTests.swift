@@ -829,6 +829,15 @@ class StringStyleTests: XCTestCase {
         BONAssert(attributes: childAttributes, key: .foregroundColor, value: BONColor.black)
     }
 
+    func testOverridingExtraAttributesPart() {
+        let style = StringStyle()
+            .byAdding(.extraAttributes([.backgroundColor: UIColor.white]))
+            .byAdding(.extraAttributes([.foregroundColor: UIColor.black]))
+
+        BONAssert(attributes: style.attributes, key: .backgroundColor, value: UIColor.white)
+        BONAssert(attributes: style.attributes, key: .foregroundColor, value: UIColor.black)
+    }
+
 }
 
 private extension StringStyleTests {
