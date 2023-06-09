@@ -831,11 +831,11 @@ class StringStyleTests: XCTestCase {
 
     func testOverridingExtraAttributesPart() {
         let style = StringStyle()
-            .byAdding(.extraAttributes([.backgroundColor: UIColor.white]))
-            .byAdding(.extraAttributes([.foregroundColor: UIColor.black]))
+            .byAdding(.extraAttributes([.backgroundColor: BONColor.white]))
+            .byAdding(.extraAttributes([.foregroundColor: BONColor.black]))
 
-        BONAssert(attributes: style.attributes, key: .backgroundColor, value: UIColor.white)
-        BONAssert(attributes: style.attributes, key: .foregroundColor, value: UIColor.black)
+        BONAssert(attributes: style.attributes, key: .backgroundColor, value: BONColor.white)
+        BONAssert(attributes: style.attributes, key: .foregroundColor, value: BONColor.black)
     }
 
 }
