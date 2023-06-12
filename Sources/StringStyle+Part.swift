@@ -157,8 +157,6 @@ extension StringStyle {
         return style
     }
 
-    // swiftlint:disable function_body_length
-    // swiftlint:disable cyclomatic_complexity
     /// Update the style with the specified style part.
     ///
     /// - Parameter stylePart: The style part with which to update the receiver.
@@ -273,7 +271,4 @@ extension StringStyle {
 #endif
         }
     }
-    // swiftlint:enable function_body_length
-    // swiftlint:enable cyclomatic_complexity
-
 }

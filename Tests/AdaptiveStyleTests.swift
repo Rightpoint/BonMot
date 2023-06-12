@@ -291,7 +291,6 @@ class AdaptiveStyleTests: XCTestCase {
             }
         }
     }
-    // swiftlint:enable function_body_length
 
     func testTabAdaptation() {
         func firstTabLocation(attributedString string: NSAttributedString) -> CGFloat {
