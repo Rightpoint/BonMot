@@ -10,8 +10,6 @@
 import CoreText
 import XCTest
 
-// swiftlint:disable file_length
-// swiftlint:disable:next type_body_length
 class StringStyleTests: XCTestCase {
 
     override func setUp() {
@@ -881,5 +879,3 @@ private extension StringStyleTests {
     }
 
 }
-
-// swiftlint:enable file_length

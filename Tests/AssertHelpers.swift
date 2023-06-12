@@ -26,7 +26,7 @@ func BONAssert<T: Equatable>(attributes dictionary: StyleAttributes?, key: NSAtt
         XCTFail("value is not of expected type", file: file, line: line)
         return
     }
-    XCTAssert(dictionaryValue == value, "\(key): \(dictionaryValue) != \(value)", file: file, line: line)
+    XCTAssertEqual(dictionaryValue, value, "\(key): \(dictionaryValue) != \(value)", file: file, line: line)
 }
 
 func BONAssertColor(inAttributes dictionary: StyleAttributes?, key: NSAttributedString.Key, color controlColor: BONColor, file: StaticString = #filePath, line: UInt = #line) {

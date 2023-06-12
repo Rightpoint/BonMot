@@ -39,7 +39,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedString.Key.font.rawValue)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"]!)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"]!)
-        XCTAssert(fonts.count == 2)
+        XCTAssertEqual(fonts.count, 2)
     }
 
     func testUnicodeInXML() {
@@ -60,7 +60,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedString.Key.font.rawValue)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 30)!, fonts["8:7"]!)
         BONAssertEqualFonts(BONFont(name: "Avenir-Roman", size: 20)!, fonts["25:7"]!)
-        XCTAssert(fonts.count == 2)
+        XCTAssertEqual(fonts.count, 2)
     }
 
     /// Verify the behavior when a style is not registered
@@ -77,7 +77,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let attributedString = style.attributedString(from: "This <B>style</B> is not registered and that's OK")
         XCTAssertEqual("This style is not registered and that's OK", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedString.Key.font.rawValue)
-        XCTAssert(fonts.count == 0)
+        XCTAssertEqual(fonts.count, 0)
     }
 
     func testInvalidXMLByStyle() {
@@ -86,7 +86,7 @@ class XMLTagStyleBuilderTests: XCTestCase {
         let attributedString = style.attributedString(from: "This <B>style has no closing tag and that is :(")
         XCTAssertEqual("This <B>style has no closing tag and that is :(", attributedString.string)
         let fonts: [String: BONFont] = attributedString.rangesFor(attribute: NSAttributedString.Key.font.rawValue)
-        XCTAssert(fonts.count == 0)
+        XCTAssertEqual(fonts.count, 0)
     }
 
     /// Verify that the string is read when fully contained

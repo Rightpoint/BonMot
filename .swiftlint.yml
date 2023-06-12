@@ -1,16 +1,16 @@
 disabled_rules: # rule identifiers to exclude from running
+  - cyclomatic_complexity
+  - file_length
+  - function_body_length
+  - identifier_name
+  - implicit_return # Re-enable when we drop support for Swift 4.2
+  - large_tuple
   - line_length
   - nesting
-  - identifier_name
-  - large_tuple
-  - file_length
-  - implicit_return # Re-enable when we drop support for Swift 4.2
+  - type_body_length
 
 statement_position:
   statement_mode: uncuddled_else
-
-function_body_length:
-  - 75 # warning
 
 opt_in_rules:
   - anyobject_protocol
