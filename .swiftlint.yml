@@ -5,6 +5,7 @@ disabled_rules: # rule identifiers to exclude from running
   - large_tuple
   - line_length
   - nesting
+  - type_body_length
 
 statement_position:
   statement_mode: uncuddled_else

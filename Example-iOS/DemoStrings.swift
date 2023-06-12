@@ -11,7 +11,6 @@ import UIKit
 
 typealias StringStyle = BonMot.StringStyle
 
-// swiftlint:disable type_body_length file_length
 enum DemoStrings {
 
     // A Simple Example
@@ -436,7 +435,6 @@ enum DemoStrings {
     }()
 
 }
-// swiftlint:enable type_body_length
 
 extension DemoStrings {
 
@@ -451,5 +449,3 @@ extension DemoStrings {
     }
 
 }
-
-// swiftlint:enable file_length
