@@ -184,12 +184,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     }
 
     private func updateConstant() {
-        #if os(OSX)
-            let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
-        #else
-            let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
-        #endif
-
+        let distanceFromTop1 = distanceFromTop(of: firstItem!, with: firstItemAttribute)
         let distanceFromTop2 = distanceFromTop(of: secondItem!, with: secondItemAttribute)
         let difference = distanceFromTop2 - distanceFromTop1
         constant = difference
