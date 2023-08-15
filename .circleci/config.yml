@@ -2,9 +2,9 @@ version: 2.1
 
 jobs:
   danger:
-    executor: xcode-12
+    executor: xcode-14
     steps:
-      - setup
+      - setup-apple-silicon
       - run:
           name: Install xchtmlreport
           command: |
@@ -48,26 +48,32 @@ jobs:
           name: Danger
           when: always
           command: |
-            if [ -n "$DANGER_GITHUB_API_TOKEN" ]; then bundle exec danger; else echo "Skipping Danger for forked pull request."; fi
+            if [ -n "$DANGER_GITHUB_API_TOKEN" ]; then bundle exec danger --verbose; else echo "Skipping Danger for forked pull request."; fi
       - run:
           name: Upload to Codecov
           when: always
           command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
 
   swift-package:
-    executor: xcode-12
+    executor: xcode-14
     steps:
-      - setup
+      - setup-apple-silicon
       - run: swift build
-      - run: swift test
+      - run: swift test --verbose
 
   lint-pod:
-    executor: xcode-12
+    executor: xcode-14
     steps:
-      - setup
+      - setup-apple-silicon
       - lint-pod
 
   fastlane-tests:
+    executor: xcode-14
+    steps:
+      - setup-apple-silicon
+      - run: bundle exec fastlane test_all --verbose
+
+  fastlane-tests-xcode-12:
     executor: xcode-12
     steps:
       - setup
@@ -80,7 +86,7 @@ jobs:
       - run: bundle exec fastlane test_all
 
   carthage-build:
-    executor: xcode-12
+    executor: xcode-14
     steps:
       - checkout
       - run:
@@ -93,7 +99,7 @@ jobs:
       # - run: carthage build --no-skip-current && for platform in Mac iOS tvOS watchOS; do test -d Carthage/Build/${platform}/BonMot.framework || exit 1; done
 
   deploy-to-cocoapods:
-    executor: xcode-12
+    executor: xcode-14
     steps:
       - setup
       - run: bundle exec pod trunk push
@@ -109,7 +115,16 @@ executors:
     shell: /bin/bash --login -eo pipefail
   xcode-13:
     macos:
-      xcode: "13.0.0"
+      xcode: "13.4.1"
+    environment:
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+      HOMEBREW_NO_AUTO_UPDATE: 1
+    shell: /bin/bash --login -eo pipefail
+  xcode-14:
+    macos:
+      xcode: "14.3.1"
+    resource_class: macos.m1.large.gen1
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -117,6 +132,30 @@ executors:
     shell: /bin/bash --login -eo pipefail
 
 commands:
+
+  setup-apple-silicon:
+    description: "Shared Apple Silicon setup"
+    steps:
+      - checkout
+      - restore-gems-apple-silicon
+
+  restore-gems-apple-silicon:
+    description: "Restore Ruby Gems: Apple Silicon"
+    steps:
+      - run:
+          name: Ruby Setup
+          command: bash ./.circleci/ruby_setup.sh
+      - run:
+          name: Set Ruby Version
+          command: bash ./.circleci/ruby_version.sh
+      - restore_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+      - run: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: 1-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
   setup:
     description: "Shared setup"
     steps:
@@ -127,8 +166,8 @@ commands:
     description: "Restore Ruby Gems"
     steps:
       - run:
-          name: Set Ruby Version
-          command:  echo "ruby-2.5" > ~/.ruby-version
+           name: Set Ruby Version
+           command:  echo "ruby-2.5" > ~/.ruby-version
       - restore_cache:
           key: 1-gems-{{ checksum "Gemfile.lock" }}
       - run: bundle check || bundle install --path vendor/bundle
@@ -166,6 +205,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - fastlane-tests-xcode-12:
+          filters:
+            tags:
+              only: /.*/
       - lint-pod:
           filters:
             tags:
@@ -181,6 +224,7 @@ workflows:
             - swift-package
             - fastlane-tests
             - fastlane-tests-xcode-13
+            - fastlane-tests-xcode-12
             - lint-pod
             - carthage-build
           filters:
