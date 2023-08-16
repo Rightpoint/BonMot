@@ -267,9 +267,7 @@ class XMLBuilder: NSObject, XMLParserDelegate {
             string :
             "<\(XMLBuilder.internalTopLevelElement)>\(string)</\(XMLBuilder.internalTopLevelElement)>")
 
-        guard let data = xml.data(using: String.Encoding.utf8) else {
-            fatalError("Unable to convert to UTF8")
-        }
+        let data = Data(xml.utf8)
         self.attributedString = NSMutableAttributedString()
         self.parser = XMLParser(data: data)
         self.options = options
