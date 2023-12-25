@@ -10,7 +10,6 @@
 # update_fastlane
 
 # default_platform(:ios)
-fastlane_require 'circleci_artifact'
 fastlane_version "2.93.1"
 
 BUILD_PATH="./build"
