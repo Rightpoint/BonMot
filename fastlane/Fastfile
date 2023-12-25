@@ -85,11 +85,9 @@ def get_devices()
   # The full list of iOS simulators available on CircleCI
   # https://circleci.com/docs/2.0/testing-ios/#supported-xcode-versions
   devices = []
-	devices.push("iPhone SE")
-	devices.push("iPhone X")
-  devices.push("iPhone 11 Pro Max")
-	devices.push("iPhone 8")
-	devices.push("iPhone 8 Plus")
-	devices.push("iPad Pro (10.5-inch)")
+	devices.push("iPhone SE (3rd generation)")
+	devices.push("iPhone 14")
+  devices.push("iPhone 14 Pro Max")
+	devices.push("iPad Pro (11-inch) (4th generation)")
   devices
 end
