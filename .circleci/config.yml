@@ -66,7 +66,7 @@ commands:
     description: "Switch Ruby"
     steps:
       - macos/switch-ruby:
-          version: "3.0.6"
+          version: "3.1.4" # must match version in .ruby-version
       - run: bundle install
 
   lint-pod:
