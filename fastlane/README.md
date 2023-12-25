@@ -13,14 +13,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-### coverage_all
-
-```sh
-[bundle exec] fastlane coverage_all
-```
-
-Tests & Coverage: iOS, tvOS, macOS. Builds: watchOS.
-
 ### test_all
 
 ```sh
@@ -33,14 +25,6 @@ Tests: iOS, tvOS, macOS. Builds: watchOS.
 
 
 ## Mac
-
-### mac coverage_macos
-
-```sh
-[bundle exec] fastlane mac coverage_macos
-```
-
-Runs Tests & Generates Code Coverage Reports for macOS
 
 ### mac test_macos
 
@@ -55,14 +39,6 @@ Runs Tests for macOS
 
 ## iOS
 
-### ios coverage_ios
-
-```sh
-[bundle exec] fastlane ios coverage_ios
-```
-
-Runs Tests & Generates Code Coverage Reports for latest iOS
-
 ### ios test_ios
 
 ```sh
@@ -70,14 +46,6 @@ Runs Tests & Generates Code Coverage Reports for latest iOS
 ```
 
 Runs Tests for latest iOS
-
-### ios coverage_tvos
-
-```sh
-[bundle exec] fastlane ios coverage_tvos
-```
-
-Runs Tests & Generates Code Coverage Reports for tvOS
 
 ### ios test_tvos
 
