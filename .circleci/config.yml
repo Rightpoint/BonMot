@@ -1,59 +1,6 @@
 version: 2.1
 
 jobs:
-  danger:
-    executor: xcode-14
-    steps:
-      - setup
-      - run:
-          name: Install xchtmlreport
-          command: |
-            curl -O https://raw.githubusercontent.com/TitouanVanBelle/XCTestHTMLReport/develop/xchtmlreport.rb
-            brew install --HEAD --build-from-source xchtmlreport.rb
-      - run:
-          name: Install xcparse
-          when: always
-          command: |
-            brew install chargepoint/xcparse/xcparse
-      - run:
-          name: Tests & Code Coverage
-          when: always
-          command: |
-            bundle exec fastlane coverage_all
-      # Store xcov Code Coverage HTML report artifact
-      - store_artifacts:
-          path: build/BonMot-iOS/xcov
-          destination: xcov
-      - store_artifacts:
-          path: build/BonMot-iOS/slather
-          destination: slather
-      - store_artifacts:
-          path: build/BonMot-iOS/scan
-          destination: scan
-      - run:
-          name: Rename CircleCI JUnit XML
-          when: always
-          command: |
-            mkdir -p build/test-results/danger
-            cp build/BonMot-iOS/scan/BonMot-iOS.xcresult/report.junit build/test-results/danger/results.xml
-      - store_test_results:
-          path: build/test-results
-      # Install SwiftLint only before Danger because otherwise it fails the build
-      - run:
-          name: Install SwiftLint
-          when: always
-          command: |
-            brew install swiftlint
-      - run:
-          name: Danger
-          when: always
-          command: |
-            if [ -n "$DANGER_GITHUB_API_TOKEN" ]; then bundle exec danger; else echo "Skipping Danger for forked pull request."; fi
-      - run:
-          name: Upload to Codecov
-          when: always
-          command: bash <(curl -s https://codecov.io/bash) -f build/BonMot-iOS/slather/cobertura.xml -X coveragepy -X gcov -X xcode
-
   swift-package:
     executor: xcode-14
     steps:
@@ -139,10 +86,6 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - danger:
-          filters:
-            tags:
-              only: /.*/
       - swift-package:
           filters:
             tags:
@@ -162,7 +105,6 @@ workflows:
       - deploy-to-cocoapods:
           context: CocoaPods
           requires:
-            - danger
             - swift-package
             - fastlane-tests
             - fastlane-tests-xcode-15
