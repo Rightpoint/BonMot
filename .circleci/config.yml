@@ -89,6 +89,7 @@ executors:
   xcode-14:
     macos:
       xcode: "14.3.1"
+    resource_class: macos.m1.large.gen1
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
@@ -97,6 +98,7 @@ executors:
   xcode-15:
     macos:
       xcode: "15.1.0"
+    resource_class: macos.m1.large.gen1
     environment:
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
