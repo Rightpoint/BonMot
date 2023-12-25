@@ -14,16 +14,16 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/ZevEisenberg'
   s.requires_arc = true
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '12.0'
   s.ios.source_files = 'Sources/**/*.swift'
 
-  s.tvos.deployment_target = '11.0'
+  s.tvos.deployment_target = '12.0'
   s.tvos.source_files = 'Sources/**/*.swift'
 
-  s.osx.deployment_target = '10.11'
+  s.osx.deployment_target = '10.15'
   s.osx.source_files = 'Sources/*.swift'
 
-  s.watchos.deployment_target = '2.2'
+  s.watchos.deployment_target = '4.0'
   s.watchos.source_files = 'Sources/*.swift'
 
 end
