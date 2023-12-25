@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  macos: circleci/macos@2
+
 jobs:
   swift-package:
     executor: xcode-14
@@ -57,28 +60,21 @@ commands:
     description: "Shared setup"
     steps:
       - checkout
-      - restore-gems
+      - switch-ruby
 
-  restore-gems:
-    description: "Restore Ruby Gems"
+  switch-ruby:
+    description: "Switch Ruby"
     steps:
-      - run:
-          name: Set Ruby Version
-          command:  echo "ruby-3.0.6" > ~/.ruby-version
-      - restore_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-      - run: bundle check || bundle config set --local path 'vendor/bundle' && bundle install
-      - save_cache:
-          key: 1-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+      - macos/switch-ruby:
+          version: "3.0.6"
+      - run: bundle install
 
   lint-pod:
     description: "Lints podspec with specified Swift version"
     parameters:
       swift-version:
         type: string
-        default: "5.0"
+        default: "5.8"
     steps:
       - run: bundle exec pod lib lint --swift-version=<< parameters.swift-version >>
 
