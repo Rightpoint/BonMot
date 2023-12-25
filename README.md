@@ -5,7 +5,6 @@
 [![Version](https://img.shields.io/cocoapods/v/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![License](https://img.shields.io/cocoapods/l/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
 [![Platform](https://img.shields.io/cocoapods/p/BonMot.svg?style=flat)](http://cocoapods.org/pods/BonMot)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Swift Package Manager compatible](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange?style=flat)](https://swift.org/package-manager/)
 [![codecov](https://codecov.io/gh/Rightpoint/BonMot/branch/master/graph/badge.svg)](https://codecov.io/gh/Rightpoint/BonMot)
 
 BonMot (pronounced *Bon Mo*, French for *good word*) is a Swift attributed string library. It abstracts away the complexities of the iOS, macOS, tvOS, and watchOS typography tools, freeing you to focus on making your text beautiful.
@@ -367,14 +366,6 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'BonMot'
-```
-
-## Carthage
-
-BonMot is also compatible with [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Cartfile:
-
-```ogdl
-github "Rightpoint/BonMot"
 ```
 
 # Contributing
