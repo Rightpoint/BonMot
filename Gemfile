@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'abbrev' # added this because a warning told me to. It is a dependency of highline which is a dependency of something else, maybe fastlane?
 gem 'cocoapods'
 gem 'fastlane'
 gem 'nkf' # added this because a warning told me to. It is a dependency of CFPropertyList which is a dependency of something else, maybe fastlane?

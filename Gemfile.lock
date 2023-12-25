@@ -3,6 +3,7 @@ GEM
   specs:
     CFPropertyList (3.0.6)
       rexml
+    abbrev (0.1.2)
     activesupport (7.1.2)
       base64
       bigdecimal
@@ -283,6 +284,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  abbrev
   cocoapods
   fastlane
   nkf
