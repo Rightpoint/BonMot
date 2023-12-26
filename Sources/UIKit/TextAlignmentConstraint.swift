@@ -8,9 +8,9 @@
 
 #if !os(watchOS)
 
-#if os(OSX)
+#if canImport(AppKit)
     import AppKit
-#else
+#elseif canImport(UIKit)
     import UIKit
 #endif
 
@@ -100,7 +100,7 @@ public class TextAlignmentConstraint: NSLayoutConstraint {
     // The class part of these selectors are ignored; it is there simply to satisfy Xcode's selector syntax.
     private static let fontSelector = #selector(getter: BONTextField.font)
 
-    #if os(OSX)
+    #if canImport(AppKit)
         private static let attributedTextSelector = #selector(getter: NSTextField.attributedStringValue)
     #else
         private static let attributedTextSelector = #selector(getter: UITextField.attributedText)

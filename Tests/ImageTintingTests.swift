@@ -6,30 +6,31 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
-#if os(OSX)
+#if canImport(AppKit)
     import AppKit
-#else
+#elseif canImport(UIKit)
     import UIKit
 #endif
 
 @testable import BonMot
 import XCTest
 
+#if !os(watchOS)
 class ImageTintingTests: XCTestCase {
 
     func logoImage() throws -> BONImage {
-        #if os(OSX)
+        #if canImport(AppKit)
         let imageForTest = testBundle.image(forResource: "rz-logo-black")
-        #else
+        #elseif canImport(UIKit)
         let imageForTest = UIImage(named: "rz-logo-black", in: testBundle, compatibleWith: nil)
         #endif
         return try XCTUnwrap(imageForTest)
     }
 
     var raizlabsRed: BONColor {
-        #if os(OSX)
+        #if canImport(AppKit)
         NSColor(deviceRed: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
-        #else
+        #elseif canImport(UIKit)
         UIColor(red: 0.92549, green: 0.352941, blue: 0.301961, alpha: 1.0)
         #endif
     }
@@ -37,18 +38,18 @@ class ImageTintingTests: XCTestCase {
     let accessibilityDescription = "I’m the very model of a modern accessible image."
 
     func testImageTinting() throws {
-        #if SWIFT_PACKAGE && os(OSX)
+        #if SWIFT_PACKAGE && canImport(AppKit)
         try XCTSkipIf(true, "Doesn't work on macOS SPM targets")
         #endif
 
         let blackImageName = "rz-logo-black"
         let redImageName = "rz-logo-red"
 
-        #if os(OSX)
+        #if canImport(AppKit)
             let sourceImage = try XCTUnwrap(testBundle.image(forResource: blackImageName))
             let controlTintedImage = try XCTUnwrap(testBundle.image(forResource: redImageName))
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
-        #else
+        #elseif canImport(UIKit)
             let sourceImage = try XCTUnwrap(UIImage(named: blackImageName, in: testBundle, compatibleWith: nil))
             let controlTintedImage = try XCTUnwrap(UIImage(named: redImageName, in: testBundle, compatibleWith: nil))
             let testTintedImage = sourceImage.tintedImage(color: raizlabsRed)
@@ -68,10 +69,10 @@ class ImageTintingTests: XCTestCase {
             imageForTest.styled(with: .color(raizlabsRed)),
             ])
 
-        #if os(OSX)
+        #if canImport(AppKit)
             let tintableImage = imageForTest
             tintableImage.isTemplate = true
-        #else
+        #elseif canImport(UIKit)
             let tintableImage = imageForTest.withRenderingMode(.alwaysTemplate)
         #endif
 
@@ -123,14 +124,15 @@ class ImageTintingTests: XCTestCase {
         #endif
     }
 
-    func testAccessibilityOSX() throws {
+    #if canImport(AppKit)
+    func testAccessibilityMacOS() throws {
         let imageForTest = try logoImage()
 
-        #if os(OSX)
             imageForTest.accessibilityDescription = accessibilityDescription
             let tintedImage = imageForTest.tintedImage(color: raizlabsRed)
             XCTAssertEqual(tintedImage.accessibilityDescription, accessibilityDescription)
             XCTAssertEqual(tintedImage.accessibilityDescription, tintedImage.accessibilityDescription)
-        #endif
     }
+    #endif
 }
+#endif

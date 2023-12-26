@@ -11,12 +11,12 @@ import XCTest
 
 func dataFromImage(image theImage: BONImage) -> Data {
     assert(theImage.size != .zero)
-    #if os(OSX)
+    #if canImport(AppKit)
         let cgImageRef = theImage.cgImage(forProposedRect: nil, context: nil, hints: nil)
         let bitmapImageRep = NSBitmapImageRep(cgImage: cgImageRef!)
         let pngData = bitmapImageRep.representation(using: .png, properties: [:])!
         return pngData
-    #else
+    #elseif canImport(UIKit)
         return theImage.pngData()!
     #endif
 }
