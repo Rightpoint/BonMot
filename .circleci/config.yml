@@ -21,13 +21,19 @@ jobs:
     executor: xcode-14
     steps:
       - setup
-      - run: make test_all
+      - run: make test_macos
+      - run: make test_ios
+      - run: make test_tvos
+      - run: make test_watchos
 
   tests-xcode-15:
     executor: xcode-15
     steps:
       - setup
-      - run: make test_all
+      - run: make test_macos
+      - run: make test_ios
+      - run: make test_tvos
+      - run: make test_watchos
 
   deploy-to-cocoapods:
     executor: xcode-14
