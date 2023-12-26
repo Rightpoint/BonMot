@@ -10,9 +10,5 @@ test_tvos:
 test_watchos:
 	xcodebuild test -scheme BonMot -destination "platform=watchOS Simulator,name=Apple Watch Series 9 (45mm)" | xcbeautify
 
-test_all:
-	# Platforms listed in order of convenience to run, so if there's a failure early it's easier to test.
-	test_macos
-	test_ios
-	test_tvos
-	test_watchos
+# Platforms listed in order of convenience to run, so if there's a failure early it's easier to test.
+test_all: test_macos test_ios test_tvos test_watchos
