@@ -61,6 +61,7 @@ commands:
     steps:
       - checkout
       - switch-ruby
+      - run: brew install xcbeautify
 
   switch-ruby:
     description: "Switch Ruby"
