@@ -17,7 +17,7 @@ jobs:
       - setup
       - lint-pod
 
-  tests:
+  tests-xcode-14:
     executor: xcode-14
     steps:
       - setup
@@ -86,7 +86,7 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - tests:
+      - tests-xcode-14:
           filters:
             tags:
               only: /.*/
@@ -102,7 +102,7 @@ workflows:
           context: CocoaPods
           requires:
             - swift-package
-            - tests
+            - tests-xcode-14
             - tests-xcode-15
             - lint-pod
           filters:
