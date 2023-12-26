@@ -21,18 +21,13 @@ let package = Package(
             name: "BonMot",
             dependencies: [],
             path: "Sources",
-            exclude: ["Info.plist"]
+            exclude: []
         ),
         .testTarget(
             name: "BonMotTests",
             dependencies: ["BonMot"],
             path: "Tests",
-            exclude: [
-                "Info.plist",
-                "BonMot-iOSTests.xctestplan", // *.xctestplan didn't seem to work
-                "BonMot-OSXTests.xctestplan",
-                "BonMot-tvOSTests.xctestplan",
-            ],
+            exclude: [],
             resources: [
                 .process("Resources"),
         ]),

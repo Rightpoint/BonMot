@@ -9,7 +9,7 @@
 
 BonMot (pronounced *Bon Mo*, French for *good word*) is a Swift attributed string library. It abstracts away the complexities of the iOS, macOS, tvOS, and watchOS typography tools, freeing you to focus on making your text beautiful.
 
-To run the example project, run `pod try BonMot`, or clone the repo, open `BonMot.xcodeproj`, and run the **Example-iOS** target.
+To run the example project, run `pod try BonMot`, or clone the repo, open `Example/BonMot.xcodeproj`, and run the **Example-iOS** target.
 
 ### AttributedString
 

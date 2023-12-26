@@ -17,17 +17,17 @@ jobs:
       - setup
       - lint-pod
 
-  fastlane-tests:
+  tests:
     executor: xcode-14
     steps:
       - setup
-      - run: bundle exec fastlane test_all
+      - run: make test_all
 
-  fastlane-tests-xcode-15:
+  tests-xcode-15:
     executor: xcode-15
     steps:
       - setup
-      - run: bundle exec fastlane test_all
+      - run: make test_all
 
   deploy-to-cocoapods:
     executor: xcode-14
@@ -86,11 +86,11 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - fastlane-tests:
+      - tests:
           filters:
             tags:
               only: /.*/
-      - fastlane-tests-xcode-15:
+      - tests-xcode-15:
           filters:
             tags:
               only: /.*/
@@ -102,8 +102,8 @@ workflows:
           context: CocoaPods
           requires:
             - swift-package
-            - fastlane-tests
-            - fastlane-tests-xcode-15
+            - tests
+            - tests-xcode-15
             - lint-pod
           filters:
             tags:
