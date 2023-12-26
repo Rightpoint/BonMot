@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.8
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,10 +6,10 @@ import PackageDescription
 let package = Package(
     name: "BonMot",
     platforms: [
-        .iOS(.v11),
-        .macOS(.v10_11),
-        .tvOS(.v11),
-        .watchOS(.v2),
+        .iOS(.v12),
+        .macOS(.v10_13),
+        .tvOS(.v12),
+        .watchOS(.v4),
     ],
     products: [
         .library(
@@ -21,18 +21,13 @@ let package = Package(
             name: "BonMot",
             dependencies: [],
             path: "Sources",
-            exclude: ["Info.plist"]
+            exclude: []
         ),
         .testTarget(
             name: "BonMotTests",
             dependencies: ["BonMot"],
             path: "Tests",
-            exclude: [
-                "Info.plist",
-                "BonMot-iOSTests.xctestplan", // *.xctestplan didn't seem to work
-                "BonMot-OSXTests.xctestplan",
-                "BonMot-tvOSTests.xctestplan",
-            ],
+            exclude: [],
             resources: [
                 .process("Resources"),
         ]),

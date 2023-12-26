@@ -16,7 +16,7 @@ let defaultTextFieldFontSize: CGFloat = 38
 let defaultTextViewFontSize: CGFloat = 38
 #endif
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 class UIKitBehaviorTests: XCTestCase {

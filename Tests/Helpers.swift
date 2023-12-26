@@ -13,8 +13,7 @@ import XCTest
 // Override Foundation's StringStyle from iOS 15+, macOS 12+, tvOS 15+, watchOS 8+.
 typealias StringStyle = BonMot.StringStyle
 
-#if os(OSX)
-#else
+#if os(iOS) || os(tvOS)
     import UIKit
     let titleTextStyle = UIFont.TextStyle.title1
     let differentTextStyle = UIFont.TextStyle.title2
@@ -81,8 +80,7 @@ let styleB = StringStyle(
     .tailIndent(10)
 )
 
-#if os(OSX)
-#else
+#if os(iOS) || os(tvOS)
 let adaptiveStyle = StringStyle(
     .font(.fontA),
     .color(.colorA),
@@ -215,7 +213,7 @@ extension NSAttributedString {
             return nil
         }
 
-        #if os(OSX)
+        #if canImport(AppKit)
             let image = NSImage(size: rect.size)
 
             let rep = NSBitmapImageRep(
@@ -239,27 +237,9 @@ extension NSAttributedString {
 
             image.unlockFocus()
             return image
-        #else
+        #elseif canImport(UIKit)
             UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
             draw(with: rect, options: .usesLineFragmentOrigin, context: nil)
-            let image = UIGraphicsGetImageFromCurrentImageContext()!
-            UIGraphicsEndImageContext()
-            return image
-        #endif
-    }
-
-}
-
-extension BONView {
-
-    func testingSnapshot() -> BONImage {
-        #if os(OSX)
-            let dataOfView = dataWithPDF(inside: bounds)
-            let image = NSImage(data: dataOfView)!
-            return image
-        #else
-            UIGraphicsBeginImageContextWithOptions(bounds.size, isOpaque, 0.0)
-            layer.render(in: UIGraphicsGetCurrentContext()!)
             let image = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             return image

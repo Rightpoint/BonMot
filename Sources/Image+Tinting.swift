@@ -6,17 +6,19 @@
 //  Copyright © 2016 Rightpoint. All rights reserved.
 //
 
+#if !os(watchOS)
+
 import Foundation
 
-#if os(OSX)
+#if canImport(AppKit)
     import AppKit
-#else
+#elseif canImport(UIKit)
     import UIKit
 #endif
 
 public extension BONImage {
 
-    #if os(OSX)
+    #if canImport(AppKit)
     /// Returns a copy of the receiver where the alpha channel is maintained,
     /// but every pixel's color is replaced with `color`.
     ///
@@ -69,7 +71,7 @@ public extension BONImage {
 
         return image
     }
-    #else
+    #elseif canImport(UIKit)
     /// Returns a copy of the receiver where the alpha channel is maintained,
     /// but every pixel's color is replaced with `color`.
     ///
@@ -126,3 +128,4 @@ public extension BONImage {
     #endif
 
 }
+#endif
