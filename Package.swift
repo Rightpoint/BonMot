@@ -35,6 +35,7 @@ let package = Package(
             ],
             resources: [
                 .process("Resources"),
+                .copy("PrivacyInfo.xcprivacy"),
         ]),
     ],
     swiftLanguageVersions: [.v5]
