@@ -22,7 +22,9 @@ let package = Package(
             dependencies: [],
             path: "Sources",
             exclude: ["Info.plist"]
-        ),
+            resources: [
+                .copy("PrivacyInfo.xcprivacy"),
+        ]),
         .testTarget(
             name: "BonMotTests",
             dependencies: ["BonMot"],
