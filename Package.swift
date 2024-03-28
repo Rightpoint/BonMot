@@ -21,8 +21,10 @@ let package = Package(
             name: "BonMot",
             dependencies: [],
             path: "Sources",
-            exclude: ["Info.plist"]
-        ),
+            exclude: ["Info.plist"],
+            resources: [
+                .copy("PrivacyInfo.xcprivacy"),
+        ]),
         .testTarget(
             name: "BonMotTests",
             dependencies: ["BonMot"],
@@ -35,6 +37,7 @@ let package = Package(
             ],
             resources: [
                 .process("Resources"),
+                .copy("PrivacyInfo.xcprivacy"),
         ]),
     ],
     swiftLanguageVersions: [.v5]

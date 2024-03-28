@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '11.0'
   s.ios.source_files = 'Sources/**/*.swift'
+  s.resource_bundles = {'BonMot' => ['Source/PrivacyInfo.xcprivacy']}
 
   s.tvos.deployment_target = '11.0'
   s.tvos.source_files = 'Sources/**/*.swift'
