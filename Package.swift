@@ -21,7 +21,7 @@ let package = Package(
             name: "BonMot",
             dependencies: [],
             path: "Sources",
-            exclude: ["Info.plist"]
+            exclude: ["Info.plist"],
             resources: [
                 .copy("PrivacyInfo.xcprivacy"),
         ]),
